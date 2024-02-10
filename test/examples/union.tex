@@ -1,0 +1,21 @@
+\begin{axiom}[Extensionality]\label{ext}
+    Suppose for all $a$ we have $a\in A$ iff $a\in B$.
+    Then $A = B$.
+\end{axiom}
+
+\begin{axiom}\label{union_defn}
+    Let $A, B$ be sets.
+    $a\in A\union B$ iff $a\in A$ or $a\in B$.
+\end{axiom}
+
+\begin{proposition}\label{union_comm}
+    $A\union B = B\union A$.
+\end{proposition}
+
+\begin{proposition}\label{union_assoc}
+    $(A\union B)\union C = A\union (B\union C)$.
+\end{proposition}
+\begin{proof}
+    For all $a$ we have if $a\in (A\union B)\union C$, then $a\in A\union (B\union C)$.
+    For all $a$ we have if $a\in A\union (B\union C)$, then $a\in (A\union B)\union C$.
+\end{proof}

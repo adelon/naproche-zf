@@ -1,0 +1,70 @@
+\import{set/cons.tex}
+\import{set/regularity.tex}
+
+\subsection{Successor}
+
+\begin{definition}\label{suc}
+    $\suc{x} = \cons{x}{x}$.
+\end{definition}
+
+\begin{proposition}\label{suc_intro_self}
+    $x\in\suc{x}$.
+\end{proposition}
+
+\begin{proposition}\label{suc_intro_in}
+    Suppose $x\in y$. Then $x\in\suc{y}$.
+\end{proposition}
+
+\begin{proposition}\label{suc_elim}
+    Suppose $x\in\suc{y}$.
+    Then $x = y$ or $x\in y$.
+\end{proposition}
+
+\begin{proposition}\label{suc_iff}
+    $x\in\suc{y}$ iff $x = y$ or $x\in y$.
+\end{proposition}
+
+\begin{proposition}\label{suc_neq_emptyset}
+    $\suc{x}\neq \emptyset$.
+\end{proposition}
+
+\begin{proposition}\label{suc_subseteq_implies_in}
+    Suppose $\suc{x}\subseteq y$. Then $x\in y$.
+\end{proposition}
+
+\begin{proposition}\label{suc_neq_self}
+    $\suc{x}\neq x$.
+\end{proposition}
+
+\begin{proposition}\label{suc_injective}
+    Suppose $\suc{x} = \suc{y}$. Then $x = y$.
+\end{proposition}
+\begin{proof}
+    Suppose not.
+    $\suc{x}\subseteq \suc{y}$. Hence $x\in\suc{y}$.
+    Then $x\in y$.
+    $\suc{y}\subseteq \suc{x}$. Hence $y\in\suc{x}$.
+    Then $y\in x$.
+    Contradiction.
+\end{proof}
+
+\begin{proposition}\label{subseteq_self_suc_intro}
+    $x\subseteq\suc{x}$.
+\end{proposition}
+
+\begin{proposition}\label{suc_subseteq_intro}
+    Suppose $x\in y$ and $x\subseteq y$.
+    Then $\suc{x}\subseteq y$.
+\end{proposition}
+
+\begin{proposition}\label{suc_subseteq_elim}
+    Suppose $\suc{x}\subseteq y$.
+    Then $x\in y$ and $x\subseteq y$.
+\end{proposition}
+
+\begin{proposition}\label{suc_next_subset}
+    There exists no $z$ such that $x\subset z\subset \suc{x}$.
+\end{proposition}
+\begin{proof}
+    Follows by \cref{suc,subset,subseteq,subset_witness,suc_elim}.
+\end{proof}

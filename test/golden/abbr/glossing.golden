@@ -1,0 +1,384 @@
+[ BlockAbbr
+    ( SourcePos
+        { sourceName = "test/examples/abbr.tex"
+        , sourceLine = Pos 1
+        , sourceColumn = Pos 1
+        }
+    )
+    ( Marker "empty" )
+    ( Abbreviation
+        ( SymbolPredicate
+            ( PredicateAdj
+                [ Just
+                    ( Word "empty" )
+                ]
+            )
+        )
+        ( Scope
+            ( Not
+                ( Quantified Existentially
+                    ( Scope
+                        ( TermSymbol
+                            ( SymbolPredicate
+                                ( PredicateRelation
+                                    ( Command "in" )
+                                )
+                            )
+                            [ TermVar
+                                ( B
+                                    ( NamedVar "y" )
+                                )
+                            , TermVar
+                                ( F
+                                    ( TermVar
+                                        ( B 0 )
+                                    )
+                                )
+                            ]
+                        )
+                    )
+                )
+            )
+        )
+    )
+, BlockLemma
+    ( SourcePos
+        { sourceName = "test/examples/abbr.tex"
+        , sourceLine = Pos 5
+        , sourceColumn = Pos 1
+        }
+    )
+    ( Marker "dummy_abbr_test_adj" )
+    ( Lemma []
+        ( Connected Implication
+            ( TermSymbol
+                ( SymbolPredicate
+                    ( PredicateAdj
+                        [ Just
+                            ( Word "empty" )
+                        ]
+                    )
+                )
+                [ TermVar
+                    ( NamedVar "x" )
+                ]
+            )
+            ( TermSymbol
+                ( SymbolPredicate
+                    ( PredicateAdj
+                        [ Just
+                            ( Word "empty" )
+                        ]
+                    )
+                )
+                [ TermVar
+                    ( NamedVar "x" )
+                ]
+            )
+        )
+    )
+, BlockAbbr
+    ( SourcePos
+        { sourceName = "test/examples/abbr.tex"
+        , sourceLine = Pos 11
+        , sourceColumn = Pos 1
+        }
+    )
+    ( Marker "function" )
+    ( Abbreviation
+        ( SymbolPredicate
+            ( PredicateNoun
+                ( SgPl
+                    { sg =
+                        [ Just
+                            ( Word "function" )
+                        ]
+                    , pl =
+                        [ Just
+                            ( Word "functions" )
+                        ]
+                    }
+                )
+            )
+        )
+        ( Scope
+            ( TermSymbol
+                ( SymbolPredicate
+                    ( PredicateRelation
+                        ( Symbol "=" )
+                    )
+                )
+                [ TermVar
+                    ( B 0 )
+                , TermVar
+                    ( B 0 )
+                ]
+            )
+        )
+    )
+, BlockLemma
+    ( SourcePos
+        { sourceName = "test/examples/abbr.tex"
+        , sourceLine = Pos 15
+        , sourceColumn = Pos 1
+        }
+    )
+    ( Marker "dummy_abbr_test_noun" )
+    ( Lemma []
+        ( TermSymbol
+            ( SymbolPredicate
+                ( PredicateNoun
+                    ( SgPl
+                        { sg =
+                            [ Just
+                                ( Word "function" )
+                            ]
+                        , pl =
+                            [ Just
+                                ( Word "functions" )
+                            ]
+                        }
+                    )
+                )
+            )
+            [ TermVar
+                ( NamedVar "x" )
+            ]
+        )
+    )
+, BlockAbbr
+    ( SourcePos
+        { sourceName = "test/examples/abbr.tex"
+        , sourceLine = Pos 21
+        , sourceColumn = Pos 1
+        }
+    )
+    ( Marker "converges" )
+    ( Abbreviation
+        ( SymbolPredicate
+            ( PredicateVerb
+                ( SgPl
+                    { sg =
+                        [ Just
+                            ( Word "converges" )
+                        , Just
+                            ( Word "to" )
+                        , Nothing
+                        ]
+                    , pl =
+                        [ Just
+                            ( Word "converge" )
+                        , Just
+                            ( Word "to" )
+                        , Nothing
+                        ]
+                    }
+                )
+            )
+        )
+        ( Scope
+            ( TermSymbol
+                ( SymbolPredicate
+                    ( PredicateRelation
+                        ( Symbol "=" )
+                    )
+                )
+                [ TermVar
+                    ( B 0 )
+                , TermVar
+                    ( B 1 )
+                ]
+            )
+        )
+    )
+, BlockLemma
+    ( SourcePos
+        { sourceName = "test/examples/abbr.tex"
+        , sourceLine = Pos 25
+        , sourceColumn = Pos 1
+        }
+    )
+    ( Marker "dummy_abbr_test_verb" )
+    ( Lemma []
+        ( Connected Implication
+            ( TermSymbol
+                ( SymbolPredicate
+                    ( PredicateVerb
+                        ( SgPl
+                            { sg =
+                                [ Just
+                                    ( Word "converges" )
+                                , Just
+                                    ( Word "to" )
+                                , Nothing
+                                ]
+                            , pl =
+                                [ Just
+                                    ( Word "converge" )
+                                , Just
+                                    ( Word "to" )
+                                , Nothing
+                                ]
+                            }
+                        )
+                    )
+                )
+                [ TermVar
+                    ( NamedVar "x" )
+                , TermVar
+                    ( NamedVar "y" )
+                ]
+            )
+            ( TermSymbol
+                ( SymbolPredicate
+                    ( PredicateRelation
+                        ( Symbol "=" )
+                    )
+                )
+                [ TermVar
+                    ( NamedVar "x" )
+                , TermVar
+                    ( NamedVar "y" )
+                ]
+            )
+        )
+    )
+, BlockLemma
+    ( SourcePos
+        { sourceName = "test/examples/abbr.tex"
+        , sourceLine = Pos 31
+        , sourceColumn = Pos 1
+        }
+    )
+    ( Marker "abbr_test_notin" )
+    ( Lemma []
+        ( Connected Implication
+            ( TermSymbol
+                ( SymbolPredicate
+                    ( PredicateRelation
+                        ( Command "notin" )
+                    )
+                )
+                [ TermVar
+                    ( NamedVar "x" )
+                , TermVar
+                    ( NamedVar "y" )
+                ]
+            )
+            ( Not
+                ( TermSymbol
+                    ( SymbolPredicate
+                        ( PredicateRelation
+                            ( Command "in" )
+                        )
+                    )
+                    [ TermVar
+                        ( NamedVar "x" )
+                    , TermVar
+                        ( NamedVar "y" )
+                    ]
+                )
+            )
+        )
+    )
+, BlockLemma
+    ( SourcePos
+        { sourceName = "test/examples/abbr.tex"
+        , sourceLine = Pos 37
+        , sourceColumn = Pos 1
+        }
+    )
+    ( Marker "abbr_test_elementof_is_in" )
+    ( Lemma []
+        ( Connected Implication
+            ( TermSymbol
+                ( SymbolPredicate
+                    ( PredicateNoun
+                        ( SgPl
+                            { sg =
+                                [ Just
+                                    ( Word "element" )
+                                , Just
+                                    ( Word "of" )
+                                , Nothing
+                                ]
+                            , pl =
+                                [ Just
+                                    ( Word "elements" )
+                                , Just
+                                    ( Word "of" )
+                                , Nothing
+                                ]
+                            }
+                        )
+                    )
+                )
+                [ TermVar
+                    ( NamedVar "x" )
+                , TermVar
+                    ( NamedVar "y" )
+                ]
+            )
+            ( TermSymbol
+                ( SymbolPredicate
+                    ( PredicateRelation
+                        ( Command "in" )
+                    )
+                )
+                [ TermVar
+                    ( NamedVar "x" )
+                , TermVar
+                    ( NamedVar "y" )
+                ]
+            )
+        )
+    )
+, BlockLemma
+    ( SourcePos
+        { sourceName = "test/examples/abbr.tex"
+        , sourceLine = Pos 43
+        , sourceColumn = Pos 1
+        }
+    )
+    ( Marker "abbr_test_equals_is_eq" )
+    ( Lemma []
+        ( Connected Implication
+            ( TermSymbol
+                ( SymbolPredicate
+                    ( PredicateVerb
+                        ( SgPl
+                            { sg =
+                                [ Just
+                                    ( Word "equals" )
+                                , Nothing
+                                ]
+                            , pl =
+                                [ Just
+                                    ( Word "equal" )
+                                , Nothing
+                                ]
+                            }
+                        )
+                    )
+                )
+                [ TermVar
+                    ( NamedVar "x" )
+                , TermVar
+                    ( NamedVar "y" )
+                ]
+            )
+            ( TermSymbol
+                ( SymbolPredicate
+                    ( PredicateRelation
+                        ( Symbol "=" )
+                    )
+                )
+                [ TermVar
+                    ( NamedVar "x" )
+                , TermVar
+                    ( NamedVar "y" )
+                ]
+            )
+        )
+    )
+]

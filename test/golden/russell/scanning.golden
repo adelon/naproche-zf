@@ -1,0 +1,6 @@
+[ ScanAdj
+    [ Just
+        ( Word "universal" )
+    ]
+    ( Marker "universal_set" )
+]

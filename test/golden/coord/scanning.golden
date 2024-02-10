@@ -1,0 +1,16 @@
+[ ScanNoun
+    [ Just
+        ( Word "bar" )
+    ]
+    ( Marker "bar" )
+, ScanAdj
+    [ Just
+        ( Word "foo" )
+    ]
+    ( Marker "foo" )
+, ScanAdj
+    [ Just
+        ( Word "baz" )
+    ]
+    ( Marker "baz" )
+]

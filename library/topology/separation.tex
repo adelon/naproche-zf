@@ -1,0 +1,124 @@
+\import{topology/topological-space.tex}
+
+
+% T0 separation
+\begin{definition}\label{is_kolmogorov}
+    $X$ is Kolmogorov iff
+    for all $x,y\in\carrier[X]$ such that $x\neq y$
+    there exist $U\in\opens[X]$ such that
+    $x\in U\not\ni y$ or $x\notin U\ni y$.
+\end{definition}
+
+\begin{abbreviation}\label{kolmogorov_space}
+    $X$ is a Kolmogorov space iff $X$ is a topological space and
+    $X$ is Kolmogorov.
+\end{abbreviation}
+
+\begin{abbreviation}\label{teezero}
+    $X$ is \teezero\ iff $X$ is Kolmogorov.
+\end{abbreviation}
+
+\begin{abbreviation}\label{teezero_space}
+    $X$ is a \teezero-space iff $X$ is a Kolmogorov space.
+\end{abbreviation}
+
+\begin{proposition}\label{kolmogorov_implies_kolmogorov_for_closeds}
+    Suppose $X$ is a Kolmogorov space.
+    Let $x,y\in\carrier[X]$.
+    Suppose $x\neq y$.
+    Then there exist $A\in\closeds{X}$ such that
+    $x\in A\not\ni y$ or $x\notin A\ni y$.
+\end{proposition}
+\begin{proof}
+    Take $U\in\opens[X]$ such that $x\in U\not\ni y$ or $x\notin U\ni y$
+        by \cref{is_kolmogorov}.
+    Then $\carrier[X]\setminus U\in\closeds{X}$ by \cref{complement_of_open_elem_closeds}.
+    Now $x\in (\carrier[X]\setminus U)\not\ni y$ or $x\notin (\carrier[X]\setminus U)\ni y$
+        by \cref{setminus}.
+\end{proof}
+
+\begin{proposition}\label{kolmogorov_for_closeds_implies_kolmogorov}
+    Suppose for all $x,y\in\carrier[X]$ such that $x\neq y$
+        there exist $U\in\closeds{X}$ such that
+        $x\in U\not\ni y$ or $x\notin U\ni y$.
+    Then $X$ is Kolmogorov.
+\end{proposition}
+\begin{proof}
+    Follows by \cref{closeds,is_closed_in,is_kolmogorov,setminus}.
+\end{proof}
+
+\begin{proposition}\label{kolmogorov_iff_kolmogorov_for_closeds}
+    Let $X$ be a topological space.
+    $X$ is Kolmogorov iff
+    for all $x,y\in\carrier[X]$ such that $x\neq y$
+    there exist $U\in\closeds{X}$ such that
+    $x\in U\not\ni y$ or $x\notin U\ni y$.
+\end{proposition}
+\begin{proof}
+    Follows by \cref{kolmogorov_implies_kolmogorov_for_closeds,kolmogorov_for_closeds_implies_kolmogorov}.
+\end{proof}
+
+% T1 separation (Fréchet topology)
+\begin{definition}\label{teeone}
+    $X$ is \teeone\ iff
+    for all $x,y\in\carrier[X]$ such that $x\neq y$
+    there exist $U, V\in\opens[X]$ such that
+    $U\ni x\notin V$ and $V\ni y\notin U$.
+\end{definition}
+
+\begin{abbreviation}\label{teeone_space}
+    $X$ is a \teeone-space iff $X$ is a topological space and
+    $X$ is \teeone.
+\end{abbreviation}
+
+\begin{proposition}\label{teeone_implies_singletons_closed}
+    Let $X$ be a \teeone-space.
+    Then for all $x\in\carrier[X]$ we have $\{x\}$ is closed in $X$.
+\end{proposition}
+\begin{proof}
+    Omitted.
+    % TODO
+    % Choose for every y distinct from x and open subset U_y containing y but not x.
+    % The union U of all the U_y is open.
+    % {x} is the complement of U in \carrier[X].
+\end{proof}
+%
+% Conversely, if \{x\} is open, then for any y distinct from x we can use
+% X\setminus\{x\} as the open neighbourhood of y.
+
+% T2 separation
+\begin{definition}\label{is_hausdorff}
+    $X$ is Hausdorff iff
+    for all $x,y\in\carrier[X]$ such that $x\neq y$
+    there exist $U, V\in\opens[X]$ such that
+    $x\in U$ and $y\in V$ and $U$ is disjoint from $V$.
+\end{definition}
+
+\begin{abbreviation}\label{hausdorff_space}
+    $X$ is a Hausdorff space iff $X$ is a topological space and
+    $X$ is Hausdorff.
+\end{abbreviation}
+
+\begin{abbreviation}\label{teetwo}
+    $X$ is \teetwo\ iff $X$ is Hausdorff.
+\end{abbreviation}
+
+\begin{abbreviation}\label{teetwo_space}
+    $X$ is a \teetwo-space iff $X$ is a Hausdorff space.
+\end{abbreviation}
+
+\begin{proposition}\label{teeone_space_is_teezero_space}
+    Let $X$ be a \teeone-space.
+    Then $X$ is a \teezero-space.
+\end{proposition}
+\begin{proof}
+    Follows by \cref{is_kolmogorov,teeone}.
+\end{proof}
+
+\begin{proposition}\label{teetwo_space_is_teeone_space}
+    Let $X$ be a \teetwo-space.
+    Then $X$ is a \teeone-space.
+\end{proposition}
+\begin{proof}
+    Omitted. % TODO
+\end{proof}

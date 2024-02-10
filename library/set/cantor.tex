@@ -1,0 +1,18 @@
+\import{set/powerset.tex}
+\import{function.tex}
+
+\subsection{Cantor's theorem}
+
+
+\begin{theorem}[Cantor]\label{cantor}
+    There exists no surjection from $A$ to $\pow{A}$.
+\end{theorem}
+\begin{proof}
+    Suppose not.
+    Consider a surjection $f$ from $A$ to $\pow{A}$.
+    Let $B = \{a \in A \mid a\notin f(a)\}$.
+    Then $B\in\pow{A}$.
+    There exists $a'\in A$ such that $f(a') = B$ by \hyperref[surj]{the definition of surjectivity}.
+    Now $a' \in B$ iff $a' \notin f(a') = B$.
+    Contradiction.
+\end{proof}

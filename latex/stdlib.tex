@@ -1,0 +1,46 @@
+\documentclass{scrartcl}
+
+\usepackage{amsmath}
+\usepackage{hyperref}
+\usepackage{comment}
+\usepackage{cleveref}
+\usepackage{naproche}
+
+\crefdefaultlabelformat{[#2#1#3]}
+%\creflabelformat{theoremcount}{[#2#1#3]}
+
+\begin{document}
+    \tableofcontents
+
+    \input{../library/set.tex}
+    \input{../library/set/cons.tex}
+    \input{../library/set/suc.tex}
+    \input{../library/set/symdiff.tex}
+    \input{../library/set/product.tex}
+    \input{../library/set/powerset.tex}
+    \input{../library/set/bipartition.tex}
+    \input{../library/set/partition.tex}
+    \input{../library/set/cantor.tex}
+    \input{../library/set/filter.tex}
+    \input{../library/set/regularity.tex}
+    \input{../library/set/fixpoint.tex}
+    \input{../library/relation.tex}
+    \input{../library/relation/properties.tex}
+    \input{../library/order/quasiorder.tex}
+    \input{../library/relation/equivalence.tex}
+    \input{../library/relation/closure.tex}
+    \input{../library/relation/uniqueness.tex}
+    \input{../library/function.tex}
+    \input{../library/ordinal.tex}
+    \input{../library/nat.tex}
+    \input{../library/cardinal.tex}
+    \input{../library/algebra/magma.tex}
+    \input{../library/algebra/semigroup.tex}
+    %\input{../library/algebra/quasigroup.tex}
+    %\input{../library/algebra/loop.tex}
+    \input{../library/order/order.tex}
+    \input{../library/order/semilattice.tex}
+    \input{../library/topology/topological-space.tex}
+    \input{../library/topology/basis.tex}
+    \input{../library/topology/disconnection.tex}
+\end{document}

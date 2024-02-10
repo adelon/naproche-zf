@@ -1,0 +1,68 @@
+\import{set/powerset.tex}
+\import{set/fixpoint.tex}
+\import{function.tex}
+
+
+\begin{definition}\label{equinum}
+    $A$ is equinumerous with $B$ iff there exists a bijection from $A$ to $B$.
+\end{definition}
+
+\begin{abbreviation}\label{approx}
+    $A\approx B$ iff $A$ is equinumerous with $B$.
+\end{abbreviation}
+
+\begin{proposition}\label{equinum_refl}
+    $A\approx A$.
+\end{proposition}
+\begin{proof}
+    $\identity{A}$ is a bijection from $A$ to $A$ by \cref{id_is_bijection}.
+    Follows by \cref{equinum}.
+\end{proof}
+
+\begin{proposition}\label{equinum_sym}
+    Suppose $A\approx B$. Then $B\approx A$.
+\end{proposition}
+\begin{proof}
+    Take a bijection $f$ from $A$ to $B$ by \cref{equinum}.
+    Then $\converse{f}$ is a bijection from $B$ to $A$ by \cref{bijection_converse_is_bijection}.
+    Follows by \cref{equinum}.
+\end{proof}
+
+\begin{proposition}\label{equinum_tran}
+    Suppose $A\approx B\approx C$. Then $A\approx C$.
+\end{proposition}
+\begin{proof}
+    Take a bijection $f$ from $A$ to $B$ by \cref{equinum}.
+    Take a bijection $g$ from $B$ to $C$ by \cref{equinum}.
+    Then $g\circ f$ is a bijection from $A$ to $C$ by \cref{bijection_circ}.
+    Follows by \cref{equinum}.
+\end{proof}
+
+
+
+\begin{theorem}[Cantor--Schröder--Bernstein]\label{cantorschroederbernstein}
+    Let $f$ be an injective function from $A$ to $B$.
+    Let $g$ be an injective function from $B$ to $A$.
+    Then $A\approx B$.
+\end{theorem}
+\begin{proof}
+    Let $h(X) = A\setminus \img{g}{B\setminus\img{f}{X}}$ for $X\in\pow{A}$.
+    %By construction: $h$ is a relation.
+    %By construction: $h$ is right-unique.
+    %By construction: $\dom{h} = \pow{A}$.
+    For all $X\in\pow{A}$ we have $h(X)\in\pow{A}$ by \cref{setminus_subseteq,pow_iff}.
+    Thus $h$ is a function from $\pow{A}$ to $\pow{A}$.
+
+    $h$ is \subseteq-preserving by \cref{subseteqpreserving,img_subseteq,subseteq_implies_setminus_supseteq}. % apply each each lemma twice (alternating).
+
+    Take a fixpoint $X$ of $h$ by \cref{knastertarski}.
+    Now $X = A\setminus \img{g}{B\setminus\img{f}{X}}$ by \cref{fixpoint}.
+
+    $\img{g}{B\setminus\img{f}{X}}\subseteq A$.
+
+    Thus $\img{g}{B\setminus\img{f}{X}} = A\setminus X$ by \cref{double_relative_complement}.
+
+    Let $h' = \restrl{h}{X}$.
+
+    Omitted. % TODO
+\end{proof}

@@ -1,0 +1,352 @@
+[ Task
+    { taskDirectness = Direct
+    , taskHypotheses = []
+    , taskConjectureLabel = Marker "first_proposition"
+    , taskConjecture = TermSymbol
+        ( SymbolPredicate
+            ( PredicateRelation
+                ( Symbol "=" )
+            )
+        )
+        [ TermVar
+            ( NamedVar "a" )
+        , TermVar
+            ( NamedVar "a" )
+        ]
+    }
+, Task
+    { taskDirectness = Direct
+    , taskHypotheses =
+        [
+            ( Marker "first_proposition"
+            , Quantified Universally
+                ( Scope
+                    ( TermSymbol
+                        ( SymbolPredicate
+                            ( PredicateRelation
+                                ( Symbol "=" )
+                            )
+                        )
+                        [ TermVar
+                            ( B
+                                ( NamedVar "a" )
+                            )
+                        , TermVar
+                            ( B
+                                ( NamedVar "a" )
+                            )
+                        ]
+                    )
+                )
+            )
+        ]
+    , taskConjectureLabel = Marker "second_proposition"
+    , taskConjecture = TermSymbol
+        ( SymbolPredicate
+            ( PredicateRelation
+                ( Symbol "=" )
+            )
+        )
+        [ TermVar
+            ( NamedVar "b" )
+        , TermVar
+            ( NamedVar "b" )
+        ]
+    }
+, Task
+    { taskDirectness = Direct
+    , taskHypotheses =
+        [
+            ( Marker "first_proposition"
+            , Quantified Universally
+                ( Scope
+                    ( TermSymbol
+                        ( SymbolPredicate
+                            ( PredicateRelation
+                                ( Symbol "=" )
+                            )
+                        )
+                        [ TermVar
+                            ( B
+                                ( NamedVar "a" )
+                            )
+                        , TermVar
+                            ( B
+                                ( NamedVar "a" )
+                            )
+                        ]
+                    )
+                )
+            )
+        ]
+    , taskConjectureLabel = Marker "third_proposition"
+    , taskConjecture = TermSymbol
+        ( SymbolPredicate
+            ( PredicateRelation
+                ( Symbol "=" )
+            )
+        )
+        [ TermVar
+            ( NamedVar "c" )
+        , TermVar
+            ( NamedVar "c" )
+        ]
+    }
+, Task
+    { taskDirectness = Direct
+    , taskHypotheses =
+        [
+            ( Marker "first_proposition"
+            , Quantified Universally
+                ( Scope
+                    ( TermSymbol
+                        ( SymbolPredicate
+                            ( PredicateRelation
+                                ( Symbol "=" )
+                            )
+                        )
+                        [ TermVar
+                            ( B
+                                ( NamedVar "a" )
+                            )
+                        , TermVar
+                            ( B
+                                ( NamedVar "a" )
+                            )
+                        ]
+                    )
+                )
+            )
+        ]
+    , taskConjectureLabel = Marker "fourth_proposition"
+    , taskConjecture = Quantified Universally
+        ( Scope
+            ( TermSymbol
+                ( SymbolPredicate
+                    ( PredicateRelation
+                        ( Symbol "=" )
+                    )
+                )
+                [ TermVar
+                    ( B
+                        ( NamedVar "d" )
+                    )
+                , TermVar
+                    ( B
+                        ( NamedVar "d" )
+                    )
+                ]
+            )
+        )
+    }
+, Task
+    { taskDirectness = Direct
+    , taskHypotheses =
+        [
+            ( Marker "third_proposition"
+            , Quantified Universally
+                ( Scope
+                    ( TermSymbol
+                        ( SymbolPredicate
+                            ( PredicateRelation
+                                ( Symbol "=" )
+                            )
+                        )
+                        [ TermVar
+                            ( B
+                                ( NamedVar "c" )
+                            )
+                        , TermVar
+                            ( B
+                                ( NamedVar "c" )
+                            )
+                        ]
+                    )
+                )
+            )
+        ,
+            ( Marker "second_proposition"
+            , Quantified Universally
+                ( Scope
+                    ( TermSymbol
+                        ( SymbolPredicate
+                            ( PredicateRelation
+                                ( Symbol "=" )
+                            )
+                        )
+                        [ TermVar
+                            ( B
+                                ( NamedVar "b" )
+                            )
+                        , TermVar
+                            ( B
+                                ( NamedVar "b" )
+                            )
+                        ]
+                    )
+                )
+            )
+        ,
+            ( Marker "first_proposition"
+            , Quantified Universally
+                ( Scope
+                    ( TermSymbol
+                        ( SymbolPredicate
+                            ( PredicateRelation
+                                ( Symbol "=" )
+                            )
+                        )
+                        [ TermVar
+                            ( B
+                                ( NamedVar "a" )
+                            )
+                        , TermVar
+                            ( B
+                                ( NamedVar "a" )
+                            )
+                        ]
+                    )
+                )
+            )
+        ,
+            ( Marker "fourth_proposition1"
+            , Quantified Universally
+                ( Scope
+                    ( TermSymbol
+                        ( SymbolPredicate
+                            ( PredicateRelation
+                                ( Symbol "=" )
+                            )
+                        )
+                        [ TermVar
+                            ( B
+                                ( NamedVar "d" )
+                            )
+                        , TermVar
+                            ( B
+                                ( NamedVar "d" )
+                            )
+                        ]
+                    )
+                )
+            )
+        ]
+    , taskConjectureLabel = Marker "fourth_proposition"
+    , taskConjecture = TermSymbol
+        ( SymbolPredicate
+            ( PredicateRelation
+                ( Symbol "=" )
+            )
+        )
+        [ TermVar
+            ( NamedVar "e" )
+        , TermVar
+            ( NamedVar "e" )
+        ]
+    }
+, Task
+    { taskDirectness = Direct
+    , taskHypotheses =
+        [
+            ( Marker "fourth_proposition"
+            , Quantified Universally
+                ( Scope
+                    ( TermSymbol
+                        ( SymbolPredicate
+                            ( PredicateRelation
+                                ( Symbol "=" )
+                            )
+                        )
+                        [ TermVar
+                            ( B
+                                ( NamedVar "e" )
+                            )
+                        , TermVar
+                            ( B
+                                ( NamedVar "e" )
+                            )
+                        ]
+                    )
+                )
+            )
+        ,
+            ( Marker "third_proposition"
+            , Quantified Universally
+                ( Scope
+                    ( TermSymbol
+                        ( SymbolPredicate
+                            ( PredicateRelation
+                                ( Symbol "=" )
+                            )
+                        )
+                        [ TermVar
+                            ( B
+                                ( NamedVar "c" )
+                            )
+                        , TermVar
+                            ( B
+                                ( NamedVar "c" )
+                            )
+                        ]
+                    )
+                )
+            )
+        ,
+            ( Marker "second_proposition"
+            , Quantified Universally
+                ( Scope
+                    ( TermSymbol
+                        ( SymbolPredicate
+                            ( PredicateRelation
+                                ( Symbol "=" )
+                            )
+                        )
+                        [ TermVar
+                            ( B
+                                ( NamedVar "b" )
+                            )
+                        , TermVar
+                            ( B
+                                ( NamedVar "b" )
+                            )
+                        ]
+                    )
+                )
+            )
+        ,
+            ( Marker "first_proposition"
+            , Quantified Universally
+                ( Scope
+                    ( TermSymbol
+                        ( SymbolPredicate
+                            ( PredicateRelation
+                                ( Symbol "=" )
+                            )
+                        )
+                        [ TermVar
+                            ( B
+                                ( NamedVar "a" )
+                            )
+                        , TermVar
+                            ( B
+                                ( NamedVar "a" )
+                            )
+                        ]
+                    )
+                )
+            )
+        ]
+    , taskConjectureLabel = Marker "fifth_proposition"
+    , taskConjecture = TermSymbol
+        ( SymbolPredicate
+            ( PredicateRelation
+                ( Symbol "=" )
+            )
+        )
+        [ TermVar
+            ( NamedVar "f" )
+        , TermVar
+            ( NamedVar "f" )
+        ]
+    }
+]

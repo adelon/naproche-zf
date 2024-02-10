@@ -1,0 +1,1378 @@
+[ Task
+    { taskDirectness = Direct
+    , taskHypotheses =
+        [
+            ( Marker "unit"
+            , Quantified Universally
+                ( Scope
+                    ( Connected Equivalence
+                        ( TermSymbol
+                            ( SymbolPredicate
+                                ( PredicateRelation
+                                    ( Command "in" )
+                                )
+                            )
+                            [ TermVar
+                                ( B
+                                    ( NamedVar "any" )
+                                )
+                            , TermSymbol
+                                ( SymbolMixfix
+                                    [ Just
+                                        ( Command "unit" )
+                                    ]
+                                ) []
+                            ]
+                        )
+                        ( Connected Disjunction
+                            ( TermSymbol
+                                ( SymbolPredicate
+                                    ( PredicateRelation
+                                        ( Command "in" )
+                                    )
+                                )
+                                [ TermVar
+                                    ( B
+                                        ( NamedVar "any" )
+                                    )
+                                , TermSymbol
+                                    ( SymbolMixfix
+                                        [ Just
+                                            ( Command "emptyset" )
+                                        ]
+                                    ) []
+                                ]
+                            )
+                            ( TermSymbol
+                                ( SymbolPredicate
+                                    ( PredicateRelation
+                                        ( Symbol "=" )
+                                    )
+                                )
+                                [ TermVar
+                                    ( B
+                                        ( NamedVar "any" )
+                                    )
+                                , TermSymbol
+                                    ( SymbolMixfix
+                                        [ Just
+                                            ( Command "emptyset" )
+                                        ]
+                                    ) []
+                                ]
+                            )
+                        )
+                    )
+                )
+            )
+        ,
+            ( Marker "times"
+            , Quantified Universally
+                ( Scope
+                    ( Quantified Universally
+                        ( Scope
+                            ( Connected Equivalence
+                                ( TermSymbol
+                                    ( SymbolPredicate
+                                        ( PredicateRelation
+                                            ( Command "in" )
+                                        )
+                                    )
+                                    [ TermVar
+                                        ( B
+                                            ( NamedVar "frv" )
+                                        )
+                                    , TermSymbol
+                                        ( SymbolMixfix
+                                            [ Nothing
+                                            , Just
+                                                ( Command "times" )
+                                            , Nothing
+                                            ]
+                                        )
+                                        [ TermVar
+                                            ( F
+                                                ( TermVar
+                                                    ( B
+                                                        ( NamedVar "A" )
+                                                    )
+                                                )
+                                            )
+                                        , TermVar
+                                            ( F
+                                                ( TermVar
+                                                    ( B
+                                                        ( NamedVar "B" )
+                                                    )
+                                                )
+                                            )
+                                        ]
+                                    ]
+                                )
+                                ( Quantified Existentially
+                                    ( Scope
+                                        ( Connected Conjunction
+                                            ( Connected Conjunction
+                                                ( TermSymbol
+                                                    ( SymbolPredicate
+                                                        ( PredicateRelation
+                                                            ( Command "in" )
+                                                        )
+                                                    )
+                                                    [ TermVar
+                                                        ( B
+                                                            ( NamedVar "a" )
+                                                        )
+                                                    , TermVar
+                                                        ( F
+                                                            ( TermVar
+                                                                ( F
+                                                                    ( TermVar
+                                                                        ( B
+                                                                            ( NamedVar "A" )
+                                                                        )
+                                                                    )
+                                                                )
+                                                            )
+                                                        )
+                                                    ]
+                                                )
+                                                ( TermSymbol
+                                                    ( SymbolPredicate
+                                                        ( PredicateRelation
+                                                            ( Command "in" )
+                                                        )
+                                                    )
+                                                    [ TermVar
+                                                        ( B
+                                                            ( NamedVar "b" )
+                                                        )
+                                                    , TermVar
+                                                        ( F
+                                                            ( TermVar
+                                                                ( F
+                                                                    ( TermVar
+                                                                        ( B
+                                                                            ( NamedVar "B" )
+                                                                        )
+                                                                    )
+                                                                )
+                                                            )
+                                                        )
+                                                    ]
+                                                )
+                                            )
+                                            ( TermSymbol
+                                                ( SymbolPredicate
+                                                    ( PredicateRelation
+                                                        ( Symbol "=" )
+                                                    )
+                                                )
+                                                [ TermSymbol
+                                                    ( SymbolMixfix
+                                                        [ Just
+                                                            ( Command "pair" )
+                                                        , Just InvisibleBraceL
+                                                        , Nothing
+                                                        , Just InvisibleBraceR
+                                                        , Just InvisibleBraceL
+                                                        , Nothing
+                                                        , Just InvisibleBraceR
+                                                        ]
+                                                    )
+                                                    [ TermVar
+                                                        ( B
+                                                            ( NamedVar "a" )
+                                                        )
+                                                    , TermVar
+                                                        ( B
+                                                            ( NamedVar "b" )
+                                                        )
+                                                    ]
+                                                , TermVar
+                                                    ( F
+                                                        ( TermVar
+                                                            ( B
+                                                                ( NamedVar "frv" )
+                                                            )
+                                                        )
+                                                    )
+                                                ]
+                                            )
+                                        )
+                                    )
+                                )
+                            )
+                        )
+                    )
+                )
+            )
+        ,
+            ( Marker "cons"
+            , Quantified Universally
+                ( Scope
+                    ( Connected Equivalence
+                        ( TermSymbol
+                            ( SymbolPredicate
+                                ( PredicateRelation
+                                    ( Command "in" )
+                                )
+                            )
+                            [ TermVar
+                                ( B
+                                    ( NamedVar "x" )
+                                )
+                            , TermSymbol
+                                ( SymbolMixfix
+                                    [ Just
+                                        ( Command "cons" )
+                                    , Just InvisibleBraceL
+                                    , Nothing
+                                    , Just InvisibleBraceR
+                                    , Just InvisibleBraceL
+                                    , Nothing
+                                    , Just InvisibleBraceR
+                                    ]
+                                )
+                                [ TermVar
+                                    ( B
+                                        ( NamedVar "y" )
+                                    )
+                                , TermVar
+                                    ( B
+                                        ( NamedVar "X" )
+                                    )
+                                ]
+                            ]
+                        )
+                        ( Connected Disjunction
+                            ( TermSymbol
+                                ( SymbolPredicate
+                                    ( PredicateRelation
+                                        ( Symbol "=" )
+                                    )
+                                )
+                                [ TermVar
+                                    ( B
+                                        ( NamedVar "x" )
+                                    )
+                                , TermVar
+                                    ( B
+                                        ( NamedVar "y" )
+                                    )
+                                ]
+                            )
+                            ( TermSymbol
+                                ( SymbolPredicate
+                                    ( PredicateRelation
+                                        ( Command "in" )
+                                    )
+                                )
+                                [ TermVar
+                                    ( B
+                                        ( NamedVar "x" )
+                                    )
+                                , TermVar
+                                    ( B
+                                        ( NamedVar "X" )
+                                    )
+                                ]
+                            )
+                        )
+                    )
+                )
+            )
+        ]
+    , taskConjectureLabel = Marker "pair_emptyset_in_times_unit"
+    , taskConjecture = TermSymbol
+        ( SymbolPredicate
+            ( PredicateRelation
+                ( Command "in" )
+            )
+        )
+        [ TermSymbol
+            ( SymbolMixfix
+                [ Just
+                    ( Command "pair" )
+                , Just InvisibleBraceL
+                , Nothing
+                , Just InvisibleBraceR
+                , Just InvisibleBraceL
+                , Nothing
+                , Just InvisibleBraceR
+                ]
+            )
+            [ TermSymbol
+                ( SymbolMixfix
+                    [ Just
+                        ( Command "emptyset" )
+                    ]
+                ) []
+            , TermSymbol
+                ( SymbolMixfix
+                    [ Just
+                        ( Command "emptyset" )
+                    ]
+                ) []
+            ]
+        , TermSymbol
+            ( SymbolMixfix
+                [ Nothing
+                , Just
+                    ( Command "times" )
+                , Nothing
+                ]
+            )
+            [ TermSymbol
+                ( SymbolMixfix
+                    [ Just
+                        ( Command "unit" )
+                    ]
+                ) []
+            , TermSymbol
+                ( SymbolMixfix
+                    [ Just
+                        ( Command "unit" )
+                    ]
+                ) []
+            ]
+        ]
+    }
+, Task
+    { taskDirectness = Direct
+    , taskHypotheses =
+        [
+            ( Marker "pair_emptyset_in_times_unit"
+            , TermSymbol
+                ( SymbolPredicate
+                    ( PredicateRelation
+                        ( Command "in" )
+                    )
+                )
+                [ TermSymbol
+                    ( SymbolMixfix
+                        [ Just
+                            ( Command "pair" )
+                        , Just InvisibleBraceL
+                        , Nothing
+                        , Just InvisibleBraceR
+                        , Just InvisibleBraceL
+                        , Nothing
+                        , Just InvisibleBraceR
+                        ]
+                    )
+                    [ TermSymbol
+                        ( SymbolMixfix
+                            [ Just
+                                ( Command "emptyset" )
+                            ]
+                        ) []
+                    , TermSymbol
+                        ( SymbolMixfix
+                            [ Just
+                                ( Command "emptyset" )
+                            ]
+                        ) []
+                    ]
+                , TermSymbol
+                    ( SymbolMixfix
+                        [ Nothing
+                        , Just
+                            ( Command "times" )
+                        , Nothing
+                        ]
+                    )
+                    [ TermSymbol
+                        ( SymbolMixfix
+                            [ Just
+                                ( Command "unit" )
+                            ]
+                        ) []
+                    , TermSymbol
+                        ( SymbolMixfix
+                            [ Just
+                                ( Command "unit" )
+                            ]
+                        ) []
+                    ]
+                ]
+            )
+        ,
+            ( Marker "unit"
+            , Quantified Universally
+                ( Scope
+                    ( Connected Equivalence
+                        ( TermSymbol
+                            ( SymbolPredicate
+                                ( PredicateRelation
+                                    ( Command "in" )
+                                )
+                            )
+                            [ TermVar
+                                ( B
+                                    ( NamedVar "any" )
+                                )
+                            , TermSymbol
+                                ( SymbolMixfix
+                                    [ Just
+                                        ( Command "unit" )
+                                    ]
+                                ) []
+                            ]
+                        )
+                        ( Connected Disjunction
+                            ( TermSymbol
+                                ( SymbolPredicate
+                                    ( PredicateRelation
+                                        ( Command "in" )
+                                    )
+                                )
+                                [ TermVar
+                                    ( B
+                                        ( NamedVar "any" )
+                                    )
+                                , TermSymbol
+                                    ( SymbolMixfix
+                                        [ Just
+                                            ( Command "emptyset" )
+                                        ]
+                                    ) []
+                                ]
+                            )
+                            ( TermSymbol
+                                ( SymbolPredicate
+                                    ( PredicateRelation
+                                        ( Symbol "=" )
+                                    )
+                                )
+                                [ TermVar
+                                    ( B
+                                        ( NamedVar "any" )
+                                    )
+                                , TermSymbol
+                                    ( SymbolMixfix
+                                        [ Just
+                                            ( Command "emptyset" )
+                                        ]
+                                    ) []
+                                ]
+                            )
+                        )
+                    )
+                )
+            )
+        ,
+            ( Marker "times"
+            , Quantified Universally
+                ( Scope
+                    ( Quantified Universally
+                        ( Scope
+                            ( Connected Equivalence
+                                ( TermSymbol
+                                    ( SymbolPredicate
+                                        ( PredicateRelation
+                                            ( Command "in" )
+                                        )
+                                    )
+                                    [ TermVar
+                                        ( B
+                                            ( NamedVar "frv" )
+                                        )
+                                    , TermSymbol
+                                        ( SymbolMixfix
+                                            [ Nothing
+                                            , Just
+                                                ( Command "times" )
+                                            , Nothing
+                                            ]
+                                        )
+                                        [ TermVar
+                                            ( F
+                                                ( TermVar
+                                                    ( B
+                                                        ( NamedVar "A" )
+                                                    )
+                                                )
+                                            )
+                                        , TermVar
+                                            ( F
+                                                ( TermVar
+                                                    ( B
+                                                        ( NamedVar "B" )
+                                                    )
+                                                )
+                                            )
+                                        ]
+                                    ]
+                                )
+                                ( Quantified Existentially
+                                    ( Scope
+                                        ( Connected Conjunction
+                                            ( Connected Conjunction
+                                                ( TermSymbol
+                                                    ( SymbolPredicate
+                                                        ( PredicateRelation
+                                                            ( Command "in" )
+                                                        )
+                                                    )
+                                                    [ TermVar
+                                                        ( B
+                                                            ( NamedVar "a" )
+                                                        )
+                                                    , TermVar
+                                                        ( F
+                                                            ( TermVar
+                                                                ( F
+                                                                    ( TermVar
+                                                                        ( B
+                                                                            ( NamedVar "A" )
+                                                                        )
+                                                                    )
+                                                                )
+                                                            )
+                                                        )
+                                                    ]
+                                                )
+                                                ( TermSymbol
+                                                    ( SymbolPredicate
+                                                        ( PredicateRelation
+                                                            ( Command "in" )
+                                                        )
+                                                    )
+                                                    [ TermVar
+                                                        ( B
+                                                            ( NamedVar "b" )
+                                                        )
+                                                    , TermVar
+                                                        ( F
+                                                            ( TermVar
+                                                                ( F
+                                                                    ( TermVar
+                                                                        ( B
+                                                                            ( NamedVar "B" )
+                                                                        )
+                                                                    )
+                                                                )
+                                                            )
+                                                        )
+                                                    ]
+                                                )
+                                            )
+                                            ( TermSymbol
+                                                ( SymbolPredicate
+                                                    ( PredicateRelation
+                                                        ( Symbol "=" )
+                                                    )
+                                                )
+                                                [ TermSymbol
+                                                    ( SymbolMixfix
+                                                        [ Just
+                                                            ( Command "pair" )
+                                                        , Just InvisibleBraceL
+                                                        , Nothing
+                                                        , Just InvisibleBraceR
+                                                        , Just InvisibleBraceL
+                                                        , Nothing
+                                                        , Just InvisibleBraceR
+                                                        ]
+                                                    )
+                                                    [ TermVar
+                                                        ( B
+                                                            ( NamedVar "a" )
+                                                        )
+                                                    , TermVar
+                                                        ( B
+                                                            ( NamedVar "b" )
+                                                        )
+                                                    ]
+                                                , TermVar
+                                                    ( F
+                                                        ( TermVar
+                                                            ( B
+                                                                ( NamedVar "frv" )
+                                                            )
+                                                        )
+                                                    )
+                                                ]
+                                            )
+                                        )
+                                    )
+                                )
+                            )
+                        )
+                    )
+                )
+            )
+        ,
+            ( Marker "cons"
+            , Quantified Universally
+                ( Scope
+                    ( Connected Equivalence
+                        ( TermSymbol
+                            ( SymbolPredicate
+                                ( PredicateRelation
+                                    ( Command "in" )
+                                )
+                            )
+                            [ TermVar
+                                ( B
+                                    ( NamedVar "x" )
+                                )
+                            , TermSymbol
+                                ( SymbolMixfix
+                                    [ Just
+                                        ( Command "cons" )
+                                    , Just InvisibleBraceL
+                                    , Nothing
+                                    , Just InvisibleBraceR
+                                    , Just InvisibleBraceL
+                                    , Nothing
+                                    , Just InvisibleBraceR
+                                    ]
+                                )
+                                [ TermVar
+                                    ( B
+                                        ( NamedVar "y" )
+                                    )
+                                , TermVar
+                                    ( B
+                                        ( NamedVar "X" )
+                                    )
+                                ]
+                            ]
+                        )
+                        ( Connected Disjunction
+                            ( TermSymbol
+                                ( SymbolPredicate
+                                    ( PredicateRelation
+                                        ( Symbol "=" )
+                                    )
+                                )
+                                [ TermVar
+                                    ( B
+                                        ( NamedVar "x" )
+                                    )
+                                , TermVar
+                                    ( B
+                                        ( NamedVar "y" )
+                                    )
+                                ]
+                            )
+                            ( TermSymbol
+                                ( SymbolPredicate
+                                    ( PredicateRelation
+                                        ( Command "in" )
+                                    )
+                                )
+                                [ TermVar
+                                    ( B
+                                        ( NamedVar "x" )
+                                    )
+                                , TermVar
+                                    ( B
+                                        ( NamedVar "X" )
+                                    )
+                                ]
+                            )
+                        )
+                    )
+                )
+            )
+        ]
+    , taskConjectureLabel = Marker "suc"
+    , taskConjecture = Quantified Universally
+        ( Scope
+            ( Connected Implication
+                ( TermSymbol
+                    ( SymbolPredicate
+                        ( PredicateRelation
+                            ( Command "in" )
+                        )
+                    )
+                    [ TermVar
+                        ( B
+                            ( FreshVar 0 )
+                        )
+                    , TermVar
+                        ( F
+                            ( TermVar
+                                ( NamedVar "a" )
+                            )
+                        )
+                    ]
+                )
+                ( Quantified Universally
+                    ( Scope
+                        ( Connected Implication
+                            ( Connected Conjunction
+                                ( TermSymbol
+                                    ( SymbolPredicate
+                                        ( PredicateRelation
+                                            ( Symbol "=" )
+                                        )
+                                    )
+                                    [ TermVar
+                                        ( B
+                                            ( FreshVar 1 )
+                                        )
+                                    , TermSymbol
+                                        ( SymbolMixfix
+                                            [ Just
+                                                ( Command "cons" )
+                                            , Just InvisibleBraceL
+                                            , Nothing
+                                            , Just InvisibleBraceR
+                                            , Just InvisibleBraceL
+                                            , Nothing
+                                            , Just InvisibleBraceR
+                                            ]
+                                        )
+                                        [ TermVar
+                                            ( F
+                                                ( TermVar
+                                                    ( B
+                                                        ( FreshVar 0 )
+                                                    )
+                                                )
+                                            )
+                                        , TermSymbol
+                                            ( SymbolMixfix
+                                                [ Just
+                                                    ( Command "emptyset" )
+                                                ]
+                                            ) []
+                                        ]
+                                    ]
+                                )
+                                ( TermSymbol
+                                    ( SymbolPredicate
+                                        ( PredicateRelation
+                                            ( Symbol "=" )
+                                        )
+                                    )
+                                    [ TermVar
+                                        ( B
+                                            ( FreshVar 2 )
+                                        )
+                                    , TermSymbol
+                                        ( SymbolMixfix
+                                            [ Just
+                                                ( Command "cons" )
+                                            , Just InvisibleBraceL
+                                            , Nothing
+                                            , Just InvisibleBraceR
+                                            , Just InvisibleBraceL
+                                            , Nothing
+                                            , Just InvisibleBraceR
+                                            ]
+                                        )
+                                        [ TermVar
+                                            ( F
+                                                ( TermVar
+                                                    ( B
+                                                        ( FreshVar 0 )
+                                                    )
+                                                )
+                                            )
+                                        , TermSymbol
+                                            ( SymbolMixfix
+                                                [ Just
+                                                    ( Command "emptyset" )
+                                                ]
+                                            ) []
+                                        ]
+                                    ]
+                                )
+                            )
+                            ( TermSymbol
+                                ( SymbolPredicate
+                                    ( PredicateRelation
+                                        ( Symbol "=" )
+                                    )
+                                )
+                                [ TermVar
+                                    ( B
+                                        ( FreshVar 1 )
+                                    )
+                                , TermVar
+                                    ( B
+                                        ( FreshVar 2 )
+                                    )
+                                ]
+                            )
+                        )
+                    )
+                )
+            )
+        )
+    }
+, Task
+    { taskDirectness = Direct
+    , taskHypotheses =
+        [
+            ( Marker "suc"
+            , Quantified Universally
+                ( Scope
+                    ( Connected Equivalence
+                        ( TermSymbol
+                            ( SymbolPredicate
+                                ( PredicateRelation
+                                    ( Command "in" )
+                                )
+                            )
+                            [ TermVar
+                                ( B
+                                    ( FreshVar 1 )
+                                )
+                            , TermSymbol
+                                ( SymbolMixfix
+                                    [ Just
+                                        ( Command "suc" )
+                                    , Just InvisibleBraceL
+                                    , Nothing
+                                    , Just InvisibleBraceR
+                                    ]
+                                )
+                                [ TermVar
+                                    ( B
+                                        ( NamedVar "a" )
+                                    )
+                                ]
+                            ]
+                        )
+                        ( Quantified Existentially
+                            ( Scope
+                                ( Connected Conjunction
+                                    ( TermSymbol
+                                        ( SymbolPredicate
+                                            ( PredicateRelation
+                                                ( Command "in" )
+                                            )
+                                        )
+                                        [ TermVar
+                                            ( B
+                                                ( FreshVar 0 )
+                                            )
+                                        , TermVar
+                                            ( F
+                                                ( TermVar
+                                                    ( B
+                                                        ( NamedVar "a" )
+                                                    )
+                                                )
+                                            )
+                                        ]
+                                    )
+                                    ( TermSymbol
+                                        ( SymbolPredicate
+                                            ( PredicateRelation
+                                                ( Symbol "=" )
+                                            )
+                                        )
+                                        [ TermVar
+                                            ( F
+                                                ( TermVar
+                                                    ( B
+                                                        ( FreshVar 1 )
+                                                    )
+                                                )
+                                            )
+                                        , TermSymbol
+                                            ( SymbolMixfix
+                                                [ Just
+                                                    ( Command "cons" )
+                                                , Just InvisibleBraceL
+                                                , Nothing
+                                                , Just InvisibleBraceR
+                                                , Just InvisibleBraceL
+                                                , Nothing
+                                                , Just InvisibleBraceR
+                                                ]
+                                            )
+                                            [ TermVar
+                                                ( B
+                                                    ( FreshVar 0 )
+                                                )
+                                            , TermSymbol
+                                                ( SymbolMixfix
+                                                    [ Just
+                                                        ( Command "emptyset" )
+                                                    ]
+                                                ) []
+                                            ]
+                                        ]
+                                    )
+                                )
+                            )
+                        )
+                    )
+                )
+            )
+        ,
+            ( Marker "pair_emptyset_in_times_unit"
+            , TermSymbol
+                ( SymbolPredicate
+                    ( PredicateRelation
+                        ( Command "in" )
+                    )
+                )
+                [ TermSymbol
+                    ( SymbolMixfix
+                        [ Just
+                            ( Command "pair" )
+                        , Just InvisibleBraceL
+                        , Nothing
+                        , Just InvisibleBraceR
+                        , Just InvisibleBraceL
+                        , Nothing
+                        , Just InvisibleBraceR
+                        ]
+                    )
+                    [ TermSymbol
+                        ( SymbolMixfix
+                            [ Just
+                                ( Command "emptyset" )
+                            ]
+                        ) []
+                    , TermSymbol
+                        ( SymbolMixfix
+                            [ Just
+                                ( Command "emptyset" )
+                            ]
+                        ) []
+                    ]
+                , TermSymbol
+                    ( SymbolMixfix
+                        [ Nothing
+                        , Just
+                            ( Command "times" )
+                        , Nothing
+                        ]
+                    )
+                    [ TermSymbol
+                        ( SymbolMixfix
+                            [ Just
+                                ( Command "unit" )
+                            ]
+                        ) []
+                    , TermSymbol
+                        ( SymbolMixfix
+                            [ Just
+                                ( Command "unit" )
+                            ]
+                        ) []
+                    ]
+                ]
+            )
+        ,
+            ( Marker "unit"
+            , Quantified Universally
+                ( Scope
+                    ( Connected Equivalence
+                        ( TermSymbol
+                            ( SymbolPredicate
+                                ( PredicateRelation
+                                    ( Command "in" )
+                                )
+                            )
+                            [ TermVar
+                                ( B
+                                    ( NamedVar "any" )
+                                )
+                            , TermSymbol
+                                ( SymbolMixfix
+                                    [ Just
+                                        ( Command "unit" )
+                                    ]
+                                ) []
+                            ]
+                        )
+                        ( Connected Disjunction
+                            ( TermSymbol
+                                ( SymbolPredicate
+                                    ( PredicateRelation
+                                        ( Command "in" )
+                                    )
+                                )
+                                [ TermVar
+                                    ( B
+                                        ( NamedVar "any" )
+                                    )
+                                , TermSymbol
+                                    ( SymbolMixfix
+                                        [ Just
+                                            ( Command "emptyset" )
+                                        ]
+                                    ) []
+                                ]
+                            )
+                            ( TermSymbol
+                                ( SymbolPredicate
+                                    ( PredicateRelation
+                                        ( Symbol "=" )
+                                    )
+                                )
+                                [ TermVar
+                                    ( B
+                                        ( NamedVar "any" )
+                                    )
+                                , TermSymbol
+                                    ( SymbolMixfix
+                                        [ Just
+                                            ( Command "emptyset" )
+                                        ]
+                                    ) []
+                                ]
+                            )
+                        )
+                    )
+                )
+            )
+        ,
+            ( Marker "times"
+            , Quantified Universally
+                ( Scope
+                    ( Quantified Universally
+                        ( Scope
+                            ( Connected Equivalence
+                                ( TermSymbol
+                                    ( SymbolPredicate
+                                        ( PredicateRelation
+                                            ( Command "in" )
+                                        )
+                                    )
+                                    [ TermVar
+                                        ( B
+                                            ( NamedVar "frv" )
+                                        )
+                                    , TermSymbol
+                                        ( SymbolMixfix
+                                            [ Nothing
+                                            , Just
+                                                ( Command "times" )
+                                            , Nothing
+                                            ]
+                                        )
+                                        [ TermVar
+                                            ( F
+                                                ( TermVar
+                                                    ( B
+                                                        ( NamedVar "A" )
+                                                    )
+                                                )
+                                            )
+                                        , TermVar
+                                            ( F
+                                                ( TermVar
+                                                    ( B
+                                                        ( NamedVar "B" )
+                                                    )
+                                                )
+                                            )
+                                        ]
+                                    ]
+                                )
+                                ( Quantified Existentially
+                                    ( Scope
+                                        ( Connected Conjunction
+                                            ( Connected Conjunction
+                                                ( TermSymbol
+                                                    ( SymbolPredicate
+                                                        ( PredicateRelation
+                                                            ( Command "in" )
+                                                        )
+                                                    )
+                                                    [ TermVar
+                                                        ( B
+                                                            ( NamedVar "a" )
+                                                        )
+                                                    , TermVar
+                                                        ( F
+                                                            ( TermVar
+                                                                ( F
+                                                                    ( TermVar
+                                                                        ( B
+                                                                            ( NamedVar "A" )
+                                                                        )
+                                                                    )
+                                                                )
+                                                            )
+                                                        )
+                                                    ]
+                                                )
+                                                ( TermSymbol
+                                                    ( SymbolPredicate
+                                                        ( PredicateRelation
+                                                            ( Command "in" )
+                                                        )
+                                                    )
+                                                    [ TermVar
+                                                        ( B
+                                                            ( NamedVar "b" )
+                                                        )
+                                                    , TermVar
+                                                        ( F
+                                                            ( TermVar
+                                                                ( F
+                                                                    ( TermVar
+                                                                        ( B
+                                                                            ( NamedVar "B" )
+                                                                        )
+                                                                    )
+                                                                )
+                                                            )
+                                                        )
+                                                    ]
+                                                )
+                                            )
+                                            ( TermSymbol
+                                                ( SymbolPredicate
+                                                    ( PredicateRelation
+                                                        ( Symbol "=" )
+                                                    )
+                                                )
+                                                [ TermSymbol
+                                                    ( SymbolMixfix
+                                                        [ Just
+                                                            ( Command "pair" )
+                                                        , Just InvisibleBraceL
+                                                        , Nothing
+                                                        , Just InvisibleBraceR
+                                                        , Just InvisibleBraceL
+                                                        , Nothing
+                                                        , Just InvisibleBraceR
+                                                        ]
+                                                    )
+                                                    [ TermVar
+                                                        ( B
+                                                            ( NamedVar "a" )
+                                                        )
+                                                    , TermVar
+                                                        ( B
+                                                            ( NamedVar "b" )
+                                                        )
+                                                    ]
+                                                , TermVar
+                                                    ( F
+                                                        ( TermVar
+                                                            ( B
+                                                                ( NamedVar "frv" )
+                                                            )
+                                                        )
+                                                    )
+                                                ]
+                                            )
+                                        )
+                                    )
+                                )
+                            )
+                        )
+                    )
+                )
+            )
+        ,
+            ( Marker "cons"
+            , Quantified Universally
+                ( Scope
+                    ( Connected Equivalence
+                        ( TermSymbol
+                            ( SymbolPredicate
+                                ( PredicateRelation
+                                    ( Command "in" )
+                                )
+                            )
+                            [ TermVar
+                                ( B
+                                    ( NamedVar "x" )
+                                )
+                            , TermSymbol
+                                ( SymbolMixfix
+                                    [ Just
+                                        ( Command "cons" )
+                                    , Just InvisibleBraceL
+                                    , Nothing
+                                    , Just InvisibleBraceR
+                                    , Just InvisibleBraceL
+                                    , Nothing
+                                    , Just InvisibleBraceR
+                                    ]
+                                )
+                                [ TermVar
+                                    ( B
+                                        ( NamedVar "y" )
+                                    )
+                                , TermVar
+                                    ( B
+                                        ( NamedVar "X" )
+                                    )
+                                ]
+                            ]
+                        )
+                        ( Connected Disjunction
+                            ( TermSymbol
+                                ( SymbolPredicate
+                                    ( PredicateRelation
+                                        ( Symbol "=" )
+                                    )
+                                )
+                                [ TermVar
+                                    ( B
+                                        ( NamedVar "x" )
+                                    )
+                                , TermVar
+                                    ( B
+                                        ( NamedVar "y" )
+                                    )
+                                ]
+                            )
+                            ( TermSymbol
+                                ( SymbolPredicate
+                                    ( PredicateRelation
+                                        ( Command "in" )
+                                    )
+                                )
+                                [ TermVar
+                                    ( B
+                                        ( NamedVar "x" )
+                                    )
+                                , TermVar
+                                    ( B
+                                        ( NamedVar "X" )
+                                    )
+                                ]
+                            )
+                        )
+                    )
+                )
+            )
+        ]
+    , taskConjectureLabel = Marker "times_replacement_test"
+    , taskConjecture = Quantified Universally
+        ( Scope
+            ( Connected Equivalence
+                ( TermSymbol
+                    ( SymbolPredicate
+                        ( PredicateRelation
+                            ( Command "in" )
+                        )
+                    )
+                    [ TermVar
+                        ( B
+                            ( NamedVar "frv" )
+                        )
+                    , TermSymbol
+                        ( SymbolMixfix
+                            [ Nothing
+                            , Just
+                                ( Command "times" )
+                            , Nothing
+                            ]
+                        )
+                        [ TermVar
+                            ( F
+                                ( TermVar
+                                    ( NamedVar "A" )
+                                )
+                            )
+                        , TermVar
+                            ( F
+                                ( TermVar
+                                    ( NamedVar "B" )
+                                )
+                            )
+                        ]
+                    ]
+                )
+                ( Quantified Existentially
+                    ( Scope
+                        ( Connected Conjunction
+                            ( Connected Conjunction
+                                ( TermSymbol
+                                    ( SymbolPredicate
+                                        ( PredicateRelation
+                                            ( Command "in" )
+                                        )
+                                    )
+                                    [ TermVar
+                                        ( B
+                                            ( NamedVar "a" )
+                                        )
+                                    , TermVar
+                                        ( F
+                                            ( TermVar
+                                                ( F
+                                                    ( TermVar
+                                                        ( NamedVar "A" )
+                                                    )
+                                                )
+                                            )
+                                        )
+                                    ]
+                                )
+                                ( TermSymbol
+                                    ( SymbolPredicate
+                                        ( PredicateRelation
+                                            ( Command "in" )
+                                        )
+                                    )
+                                    [ TermVar
+                                        ( B
+                                            ( NamedVar "b" )
+                                        )
+                                    , TermVar
+                                        ( F
+                                            ( TermVar
+                                                ( F
+                                                    ( TermVar
+                                                        ( NamedVar "B" )
+                                                    )
+                                                )
+                                            )
+                                        )
+                                    ]
+                                )
+                            )
+                            ( TermSymbol
+                                ( SymbolPredicate
+                                    ( PredicateRelation
+                                        ( Symbol "=" )
+                                    )
+                                )
+                                [ TermSymbol
+                                    ( SymbolMixfix
+                                        [ Just
+                                            ( Command "pair" )
+                                        , Just InvisibleBraceL
+                                        , Nothing
+                                        , Just InvisibleBraceR
+                                        , Just InvisibleBraceL
+                                        , Nothing
+                                        , Just InvisibleBraceR
+                                        ]
+                                    )
+                                    [ TermVar
+                                        ( B
+                                            ( NamedVar "a" )
+                                        )
+                                    , TermVar
+                                        ( B
+                                            ( NamedVar "b" )
+                                        )
+                                    ]
+                                , TermVar
+                                    ( F
+                                        ( TermVar
+                                            ( B
+                                                ( NamedVar "frv" )
+                                            )
+                                        )
+                                    )
+                                ]
+                            )
+                        )
+                    )
+                )
+            )
+        )
+    }
+]

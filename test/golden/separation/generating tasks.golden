@@ -1,0 +1,65 @@
+[ Task
+    { taskDirectness = Direct
+    , taskHypotheses = []
+    , taskConjectureLabel = Marker "sep_test"
+    , taskConjecture = Quantified Universally
+        ( Scope
+            ( Connected Equivalence
+                ( TermSymbol
+                    ( SymbolPredicate
+                        ( PredicateRelation
+                            ( Command "in" )
+                        )
+                    )
+                    [ TermVar
+                        ( B
+                            ( NamedVar "x" )
+                        )
+                    , TermVar
+                        ( F
+                            ( TermVar
+                                ( NamedVar "X" )
+                            )
+                        )
+                    ]
+                )
+                ( Connected Conjunction
+                    ( TermSymbol
+                        ( SymbolPredicate
+                            ( PredicateRelation
+                                ( Command "in" )
+                            )
+                        )
+                        [ TermVar
+                            ( B
+                                ( NamedVar "x" )
+                            )
+                        , TermVar
+                            ( F
+                                ( TermVar
+                                    ( NamedVar "X" )
+                                )
+                            )
+                        ]
+                    )
+                    ( TermSymbol
+                        ( SymbolPredicate
+                            ( PredicateRelation
+                                ( Symbol "=" )
+                            )
+                        )
+                        [ TermVar
+                            ( B
+                                ( NamedVar "x" )
+                            )
+                        , TermVar
+                            ( B
+                                ( NamedVar "x" )
+                            )
+                        ]
+                    )
+                )
+            )
+        )
+    }
+]

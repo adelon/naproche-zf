@@ -1,0 +1,67 @@
+[ BlockLemma
+    ( SourcePos
+        { sourceName = "test/examples/relation-notation.tex"
+        , sourceLine = Pos 1
+        , sourceColumn = Pos 1
+        }
+    )
+    ( Marker "mathrel_notation_test" )
+    ( Lemma []
+        ( Connected Implication
+            ( TermSymbol
+                ( SymbolPredicate
+                    ( PredicateRelation
+                        ( Command "in" )
+                    )
+                )
+                [ TermSymbol
+                    ( SymbolMixfix
+                        [ Just
+                            ( Command "pair" )
+                        , Just InvisibleBraceL
+                        , Nothing
+                        , Just InvisibleBraceR
+                        , Just InvisibleBraceL
+                        , Nothing
+                        , Just InvisibleBraceR
+                        ]
+                    )
+                    [ TermVar
+                        ( NamedVar "x" )
+                    , TermVar
+                        ( NamedVar "y" )
+                    ]
+                , TermVar
+                    ( NamedVar "R" )
+                ]
+            )
+            ( TermSymbol
+                ( SymbolPredicate
+                    ( PredicateRelation
+                        ( Command "in" )
+                    )
+                )
+                [ TermSymbol
+                    ( SymbolMixfix
+                        [ Just
+                            ( Command "pair" )
+                        , Just InvisibleBraceL
+                        , Nothing
+                        , Just InvisibleBraceR
+                        , Just InvisibleBraceL
+                        , Nothing
+                        , Just InvisibleBraceR
+                        ]
+                    )
+                    [ TermVar
+                        ( NamedVar "x" )
+                    , TermVar
+                        ( NamedVar "y" )
+                    ]
+                , TermVar
+                    ( NamedVar "R" )
+                ]
+            )
+        )
+    )
+]

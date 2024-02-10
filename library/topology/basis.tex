@@ -1,0 +1,45 @@
+\import{topology/topological-space.tex}
+
+\subsection{Topological basis}
+
+\begin{abbreviation}\label{covers}
+    $C$ covers $X$ iff
+    for all $x\in X$ there exists $U\in C$ such that $x\in U$.
+\end{abbreviation}
+
+\begin{proposition}\label{covers_unions_intro}
+    Suppose $C$ covers $X$.
+    Then $X\subseteq\unions{C}$.
+\end{proposition}
+
+\begin{proposition}\label{covers_unions_elim}
+    Suppose $X\subseteq\unions{C}$.
+    Then $C$ covers $X$.
+\end{proposition}
+
+% Also called "prebase", "subbasis", or "subbase". We prefer "pre-" or "quasi-"
+% for consistency when handling generalizations, even if "subbasis" is more common.
+\begin{abbreviation}\label{topological_prebasis}
+    $B$ is a topological prebasis for $X$ iff $\unions{B} = X$.
+\end{abbreviation}
+
+\begin{proposition}\label{topological_prebasis_iff_covering_family}
+    $B$ is a topological prebasis for $X$ iff
+    $B$ is a family of subsets of $X$ and $B$ covers $X$.
+\end{proposition}
+\begin{proof}
+    If $B$ is a family of subsets of $X$ and $B$ covers $X$,
+        then $\unions{B} = X$
+            by \cref{subseteq_antisymmetric,unions_family,covers_unions_intro}.
+    If $\unions{B} = X$,
+        then $B$ is a family of subsets of $X$ and $B$ covers $X$
+            by \cref{covers_unions_intro,subseteq_refl,covers_unions_elim}.
+\end{proof}
+
+% Also called "base of topology".
+\begin{definition}\label{topological_basis}
+    $B$ is a topological basis for $X$ iff
+    $B$ is a topological prebasis for $X$ and
+    for all $U, V, x$ such that $U, V\in B$ and $x\in U,V$
+    there exists $W\in B$ such that $x\in W\subseteq U, V$.
+\end{definition}

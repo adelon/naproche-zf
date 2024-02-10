@@ -1,0 +1,174 @@
+[ BlockLemma
+    ( SourcePos
+        { sourceName = "test/examples/calc.tex"
+        , sourceLine = Pos 1
+        , sourceColumn = Pos 1
+        }
+    )
+    ( Marker "trivial" )
+    ( Lemma []
+        ( StmtFormula
+            ( FormulaChain
+                ( ChainBase
+                    ( ExprVar
+                        ( NamedVar "x" ) :| []
+                    ) Positive
+                    ( RelationSymbol
+                        ( Symbol "=" )
+                    )
+                    ( ExprVar
+                        ( NamedVar "x" ) :| []
+                    )
+                )
+            )
+        )
+    )
+, BlockLemma
+    ( SourcePos
+        { sourceName = "test/examples/calc.tex"
+        , sourceLine = Pos 5
+        , sourceColumn = Pos 1
+        }
+    )
+    ( Marker "irrelevant" )
+    ( Lemma []
+        ( StmtFormula
+            ( FormulaChain
+                ( ChainBase
+                    ( ExprVar
+                        ( NamedVar "z" ) :| []
+                    ) Positive
+                    ( RelationSymbol
+                        ( Symbol "=" )
+                    )
+                    ( ExprVar
+                        ( NamedVar "z" ) :| []
+                    )
+                )
+            )
+        )
+    )
+, BlockLemma
+    ( SourcePos
+        { sourceName = "test/examples/calc.tex"
+        , sourceLine = Pos 9
+        , sourceColumn = Pos 1
+        }
+    )
+    ( Marker "alsotrivial" )
+    ( Lemma []
+        ( StmtFormula
+            ( FormulaChain
+                ( ChainBase
+                    ( ExprVar
+                        ( NamedVar "y" ) :| []
+                    ) Positive
+                    ( RelationSymbol
+                        ( Symbol "=" )
+                    )
+                    ( ExprVar
+                        ( NamedVar "y" ) :| []
+                    )
+                )
+            )
+        )
+    )
+, BlockProof
+    ( SourcePos
+        { sourceName = "test/examples/calc.tex"
+        , sourceLine = Pos 12
+        , sourceColumn = Pos 1
+        }
+    )
+    ( Calc
+        ( Equation
+            ( ExprVar
+                ( NamedVar "y" )
+            )
+            (
+                ( ExprVar
+                    ( NamedVar "y" )
+                , JustificationEmpty
+                ) :|
+                [
+                    ( ExprVar
+                        ( NamedVar "y" )
+                    , JustificationRef
+                        ( Marker "trivial" :| [] )
+                    )
+                ]
+            )
+        ) ( Qed JustificationEmpty )
+    )
+, BlockLemma
+    ( SourcePos
+        { sourceName = "test/examples/calc.tex"
+        , sourceLine = Pos 22
+        , sourceColumn = Pos 1
+        }
+    )
+    ( Marker "trivial_biconditionals" )
+    ( Lemma []
+        ( StmtFormula
+            ( FormulaChain
+                ( ChainBase
+                    ( ExprVar
+                        ( NamedVar "y" ) :| []
+                    ) Positive
+                    ( RelationSymbol
+                        ( Symbol "=" )
+                    )
+                    ( ExprVar
+                        ( NamedVar "y" ) :| []
+                    )
+                )
+            )
+        )
+    )
+, BlockProof
+    ( SourcePos
+        { sourceName = "test/examples/calc.tex"
+        , sourceLine = Pos 25
+        , sourceColumn = Pos 1
+        }
+    )
+    ( Calc
+        ( Biconditionals
+            ( FormulaChain
+                ( ChainBase
+                    ( ExprVar
+                        ( NamedVar "y" ) :| []
+                    ) Positive
+                    ( RelationSymbol
+                        ( Symbol "=" )
+                    )
+                    ( ExprVar
+                        ( NamedVar "y" ) :| []
+                    )
+                )
+            )
+            (
+                ( PropositionalConstant IsTop
+                , JustificationEmpty
+                ) :|
+                [
+                    ( FormulaChain
+                        ( ChainBase
+                            ( ExprVar
+                                ( NamedVar "y" ) :| []
+                            ) Positive
+                            ( RelationSymbol
+                                ( Symbol "=" )
+                            )
+                            ( ExprVar
+                                ( NamedVar "y" ) :| []
+                            )
+                        )
+                    , JustificationRef
+                        ( Marker "trivial" :| [] )
+                    )
+                ]
+            )
+        ) ( Qed JustificationEmpty )
+    )
+]

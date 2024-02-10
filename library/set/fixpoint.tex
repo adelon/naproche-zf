@@ -1,0 +1,48 @@
+\import{set/powerset.tex}
+\import{function.tex}
+
+\subsection{Fixpoints}
+
+% NOTE: we need to explicitly require that a is an element of the domain,
+% otherwise the emptyset becomes a fixpoint when it's not in the domain.
+\begin{definition}\label{fixpoint}
+    $a$ is a fixpoint of $f$ iff $a\in\dom{f}$ and $f(a) = a$.
+\end{definition}
+
+\begin{definition}\label{subseteqpreserving}
+    $f$ is \subseteq-preserving iff
+    for all $A, B\in\dom{f}$ such that $A\subseteq B$ we have $f(A)\subseteq f(B)$.
+\end{definition}
+
+\begin{theorem}[Knaster--Tarski]\label{knastertarski}
+    Let $f$ be a \subseteq-preserving function from $\pow{A}$ to $\pow{A}$.
+    Then there exists a fixpoint of $f$.
+\end{theorem}
+\begin{proof}
+    $\dom{f} = \pow{A}$.
+    Let $P = \{a\in\pow{A}\mid a\subseteq f(a)\}$.
+    $P\subseteq\pow{A}$.
+    Thus $\unions{P}\in\pow{A}$.
+    Hence $f(\unions{P})\in\pow{A}$ by \cref{funs_type_apply}.
+
+    Show $\unions{P}\subseteq f(\unions{P})$.
+    \begin{subproof}
+        It suffices to show that every element of $\unions{P}$ is an element of $f(\unions{P})$.
+        %
+        Fix $u\in\unions{P}$.
+        %
+        Take $p\in P$ such that $u\in p$.
+        Then $u\in f(p)$.
+        $p\subseteq\unions{P}$.
+        $f(p)\subseteq f(\unions{P})$ by \cref{subseteqpreserving}.
+        Thus $u\in f(\unions{P})$.
+    \end{subproof}
+
+    Now $f(\unions{P})\subseteq f(f(\unions{P}))$ by \cref{subseteqpreserving}.
+    Thus $f(\unions{P})\in P$ by definition.
+
+    Hence $f(\unions{P})\subseteq \unions{P}$.
+
+    Thus $f(\unions{P}) = \unions{P}$ by \cref{subseteq_antisymmetric}.
+    Follows by \cref{fixpoint}.
+\end{proof}

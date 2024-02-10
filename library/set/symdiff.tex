@@ -1,0 +1,45 @@
+\subsection{Symmetric difference}
+
+\import{set.tex}
+
+\begin{definition}\label{symdiff}
+    $x\symdiff y = (x\setminus y)\union (y\setminus x)$.
+\end{definition}
+
+\begin{proposition}%
+\label{symdiff_as_setdiff}
+    $x\symdiff y = (x\union y)\setminus (y\inter x)$.
+\end{proposition}
+\begin{proof}
+    Follows by set extensionality.
+\end{proof}
+
+\begin{proposition}%
+\label{symdiff_implies_xor_in}
+    If $z\in x\symdiff y$, then either $z\in x$ or $z\in y$.
+\end{proposition}
+
+\begin{proposition}%
+\label{xor_in_implies_symdiff}
+    If either $z\in x$ or $z\in y$, then $z\in x\symdiff y$.
+\end{proposition}
+\begin{proof}
+    If $z\in x$ and $z\not\in y$, then $z\in x\setminus y$.
+    If $z\not\in x$ and $z\in y$, then $z\in y\setminus x$.
+\end{proof}
+
+\begin{proposition}%
+\label{symdiff_assoc}
+    $x\symdiff (y\symdiff z) = (x\symdiff y)\symdiff z$.
+\end{proposition}
+\begin{proof}
+    Follows by set extensionality.
+\end{proof}
+
+\begin{proposition}%
+\label{symdiff_comm}
+    $x\symdiff y = y\symdiff x$.
+\end{proposition}
+\begin{proof}
+    Follows by set extensionality.
+\end{proof}

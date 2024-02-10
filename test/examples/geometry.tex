@@ -1,0 +1,132 @@
+\begin{definition}\label{collinear}
+    $a$ is collinear with $b$ and $c$ iff $\Betw{a}{b}{c}$ or $\Betw{b}{c}{a}$ or $\Betw{c}{a}{b}$.
+\end{definition}
+
+\begin{axiom}[Reflexivity of congruence]\label{cong_refl_swap} % SST A1
+    Let $a, b$ be points.
+    Then $\Cong{a}{b}{b}{a}$.
+\end{axiom}
+
+\begin{axiom}[Pseudotransitivity of congruence]\label{cong_pseudotransitive} % SST A2
+    Let $a, b, c, d$ be points.
+    If $\Cong{c}{d}{a}{b}$ and $\Cong{c}{d}{e}{f}$ then $\Cong{a}{b}{e}{f}$.
+\end{axiom}
+
+\begin{axiom}[Identity of congruence]\label{cong_id} % SST A3
+    Let $a, b, c$ be points.
+    If $\Cong{a}{b}{c}{c}$ then $a = b$.
+\end{axiom}
+
+
+\begin{axiom}[Segment construction]\label{segment_construction} % SST A4
+    There exists a point $c$ such that $\Betw{a}{b}{c}$ and $\Cong{b}{c}{d}{e}$.
+\end{axiom}
+
+
+\begin{definition}\label{ofs}
+    Let $x,y,z,r,u,v,w,p$ be points.
+    $\OFS{x}{y}{z}{r}{u}{v}{w}{p}$ if and only if
+    $\Betw{x}{y}{z}
+      \land \Betw{u}{v}{w}$
+    and
+    $\Cong{x}{y}{u}{v}
+      \land \Cong{y}{z}{v}{w}
+      \land \Cong{x}{r}{u}{p}
+      \land \Cong{y}{r}{v}{p}$.
+\end{definition}
+
+
+\begin{axiom}[Five segment axiom]\label{five_segment} % SST A5
+    Let $a,b,c,d,a',b',c',d'$ be points.
+    If $\OFS{a}{b}{c}{d}{a'}{b'}{c'}{d'}$ and
+    $a \neq b$ then $\Cong{c}{d}{c'}{d'}$.
+\end{axiom}
+
+
+\begin{axiom}[Identity of betweenness]\label{betw_id}
+    Let $a,b$ be points.
+    If $\Betw{a}{b}{a}$ then $a = b$.
+\end{axiom}
+
+
+\begin{axiom}[Inner Pasch]\label{innerpasch} % SST A7
+    Let $x,y,z,u,v,w$ be points.
+    If $\Betw{x}{u}{z}$ and $\Betw{y}{v}{z}$ then there exists a point $w$
+    such that $\Betw{u}{w}{y}$ and $\Betw{v}{w}{x}$.
+\end{axiom}
+
+
+% \begin{axiom}[Lower dimension] % SST A8
+%     %There exist points $a, b, c$ such that
+%     There exists $a, b, c$ such that $a,b,c$ are points and
+%     $a$ is not collinear with $b$ and $c$.
+% \end{axiom}
+
+
+\begin{axiom}[Upper dimension]\label{upperdim} % SST A9
+    Let $x,y,z,u,v$ be points.
+    If $\Cong{x}{u}{x}{v}$ and $\Cong{y}{u}{y}{v}$
+    and $\Cong{z}{u}{z}{v}$ and $u \neq v$
+    then $x$ is collinear with $y$ and $z$.
+\end{axiom}
+
+
+% \begin{axiom}[Euclid]
+%     Assume $x \neq r$.
+%     If $\Betw{x}{r}{v}$ and $\Betw{y}{r}{z}$
+%     then there exist points $s,t$ such that
+%     $\Betw{x}{y}{s}$ and $\Betw{x}{z}{t}$ and $\Betw{s}{v}{t}$.
+% \end{axiom}
+
+
+\begin{lemma}[Reflexivity of congruence]\label{cong_refl} % Satz 2.1
+    Let $a, b$ be points.
+    Then $\Cong{a}{b}{a}{b}$.
+\end{lemma}
+
+
+\begin{lemma}[Symmetry of congruence]\label{cong_sym} % Satz 2.2
+    Let $a, b, c, d$ be points.
+    Suppose $\Cong{a}{b}{c}{d}$.
+    Then $\Cong{c}{d}{a}{b}$.
+\end{lemma}
+
+
+\begin{lemma}[Transitivity of congruence]\label{cong_transitive} % Satz 2.3
+    Let $a, b, c, d, e, f$ be points.
+    If $\Cong{a}{b}{c}{d}$ and $\Cong{c}{d}{e}{f}$
+    then $\Cong{a}{b}{e}{f}$.
+\end{lemma}
+
+
+\begin{lemma}\label{cong_shuffle_left} % Satz 2.4
+    Let $a, b, c, d$ be points.
+    If $\Cong{a}{b}{c}{d}$
+    then $\Cong{b}{a}{c}{d}$.
+\end{lemma}
+
+
+\begin{lemma}\label{cong_shuffle_right} % Satz 2.5
+    Let $a, b, c, d$ be points.
+    If $\Cong{a}{b}{c}{d}$
+    then $\Cong{b}{a}{d}{c}$.
+\end{lemma}
+
+
+\begin{lemma}[Zero segments are congruent]\label{cong_zero} % Satz 2.8
+    Let $a,b$ be points.
+    Then $\Cong{a}{a}{b}{b}$.
+\end{lemma}
+
+% Somewhat slow for now.
+%\begin{lemma}[Concatenation of segments]\label{segment_concat} % Satz 2.11
+%    Assume $\Betw{x}{y}{z}$ and $\Betw{r}{v}{w}$.
+%    Assume $\Cong{x}{y}{r}{v}$ and $\Cong{y}{z}{v}{w}$.
+%    Then $\Cong{x}{z}{r}{w}$.
+%\end{lemma}
+%\begin{proof}
+%    % We have
+%    $\OFS{x}{y}{z}{x}{r}{v}{w}{r}$. % By previous results and assumption.
+%    If $x = y$ then $r = v$.                % Axiom A3 gives this implication.
+%    If $x \neq y$ then $\Cong{x}{z}{r}{w}$. % Axiom A5 completes the proof.
+%\end{proof}

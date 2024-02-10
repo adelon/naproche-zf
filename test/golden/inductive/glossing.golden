@@ -1,0 +1,1136 @@
+[ BlockDefn
+    ( SourcePos
+        { sourceName = "test/examples/inductive.tex"
+        , sourceLine = Pos 3
+        , sourceColumn = Pos 1
+        }
+    )
+    ( Marker "subseteq" )
+    ( DefnPredicate []
+        ( PredicateRelation
+            ( Command "subseteq" )
+        )
+        ( NamedVar "A" :|
+            [ NamedVar "B" ]
+        )
+        ( TermSymbol
+            ( SymbolPredicate
+                ( PredicateRelation
+                    ( Symbol "=" )
+                )
+            )
+            [ TermVar
+                ( NamedVar "A" )
+            , TermVar
+                ( NamedVar "B" )
+            ]
+        )
+    )
+, BlockDefn
+    ( SourcePos
+        { sourceName = "test/examples/inductive.tex"
+        , sourceLine = Pos 7
+        , sourceColumn = Pos 1
+        }
+    )
+    ( Marker "pow" )
+    ( DefnOp
+        [ Just
+            ( Command "pow" )
+        , Just InvisibleBraceL
+        , Nothing
+        , Just InvisibleBraceR
+        ]
+        [ NamedVar "A" ]
+        ( TermSymbol
+            ( SymbolMixfix
+                [ Just
+                    ( Command "emptyset" )
+                ]
+            ) []
+        )
+    )
+, BlockDefn
+    ( SourcePos
+        { sourceName = "test/examples/inductive.tex"
+        , sourceLine = Pos 11
+        , sourceColumn = Pos 1
+        }
+    )
+    ( Marker "cons" )
+    ( DefnOp
+        [ Just
+            ( Command "cons" )
+        , Just InvisibleBraceL
+        , Nothing
+        , Just InvisibleBraceR
+        , Just InvisibleBraceL
+        , Nothing
+        , Just InvisibleBraceR
+        ]
+        [ NamedVar "a"
+        , NamedVar "B"
+        ]
+        ( TermSymbol
+            ( SymbolMixfix
+                [ Just
+                    ( Command "emptyset" )
+                ]
+            ) []
+        )
+    )
+, BlockDefn
+    ( SourcePos
+        { sourceName = "test/examples/inductive.tex"
+        , sourceLine = Pos 15
+        , sourceColumn = Pos 1
+        }
+    )
+    ( Marker "times" )
+    ( DefnOp
+        [ Nothing
+        , Just
+            ( Command "times" )
+        , Nothing
+        ]
+        [ NamedVar "A"
+        , NamedVar "B"
+        ]
+        ( TermSymbol
+            ( SymbolMixfix
+                [ Just
+                    ( Command "emptyset" )
+                ]
+            ) []
+        )
+    )
+, BlockDefn
+    ( SourcePos
+        { sourceName = "test/examples/inductive.tex"
+        , sourceLine = Pos 19
+        , sourceColumn = Pos 1
+        }
+    )
+    ( Marker "fld" )
+    ( DefnOp
+        [ Just
+            ( Command "fld" )
+        , Just InvisibleBraceL
+        , Nothing
+        , Just InvisibleBraceR
+        ]
+        [ NamedVar "R" ]
+        ( TermSymbol
+            ( SymbolMixfix
+                [ Just
+                    ( Command "emptyset" )
+                ]
+            ) []
+        )
+    )
+, BlockDefn
+    ( SourcePos
+        { sourceName = "test/examples/inductive.tex"
+        , sourceLine = Pos 23
+        , sourceColumn = Pos 1
+        }
+    )
+    ( Marker "preimg" )
+    ( DefnOp
+        [ Just
+            ( Command "preimg" )
+        , Just InvisibleBraceL
+        , Nothing
+        , Just InvisibleBraceR
+        , Just InvisibleBraceL
+        , Nothing
+        , Just InvisibleBraceR
+        ]
+        [ NamedVar "R"
+        , NamedVar "A"
+        ]
+        ( TermSymbol
+            ( SymbolMixfix
+                [ Just
+                    ( Command "emptyset" )
+                ]
+            ) []
+        )
+    )
+, BlockAxiom
+    ( SourcePos
+        { sourceName = "test/examples/inductive.tex"
+        , sourceLine = Pos 27
+        , sourceColumn = Pos 1
+        }
+    )
+    ( Marker "lmao" )
+    ( Axiom []
+        ( TermSymbol
+            ( SymbolPredicate
+                ( PredicateRelation
+                    ( Command "in" )
+                )
+            )
+            [ TermVar
+                ( NamedVar "x" )
+            , TermSymbol
+                ( SymbolMixfix
+                    [ Just
+                        ( Command "emptyset" )
+                    ]
+                ) []
+            ]
+        )
+    )
+, BlockInductive
+    ( SourcePos
+        { sourceName = "test/examples/inductive.tex"
+        , sourceLine = Pos 31
+        , sourceColumn = Pos 1
+        }
+    )
+    ( Marker "fin" )
+    ( Inductive
+        { inductiveSymbol =
+            [ Just
+                ( Command "fin" )
+            , Just InvisibleBraceL
+            , Nothing
+            , Just InvisibleBraceR
+            ]
+        , inductiveParams =
+            [ NamedVar "A" ]
+        , inductiveDomain = TermSymbol
+            ( SymbolMixfix
+                [ Just
+                    ( Command "pow" )
+                , Just InvisibleBraceL
+                , Nothing
+                , Just InvisibleBraceR
+                ]
+            )
+            [ TermVar
+                ( NamedVar "A" )
+            ]
+        , inductiveIntros = IntroRule
+            { introConditions = []
+            , introResult = TermSymbol
+                ( SymbolPredicate
+                    ( PredicateRelation
+                        ( Command "in" )
+                    )
+                )
+                [ TermSymbol
+                    ( SymbolMixfix
+                        [ Just
+                            ( Command "emptyset" )
+                        ]
+                    ) []
+                , TermSymbol
+                    ( SymbolMixfix
+                        [ Just
+                            ( Command "fin" )
+                        , Just InvisibleBraceL
+                        , Nothing
+                        , Just InvisibleBraceR
+                        ]
+                    )
+                    [ TermVar
+                        ( NamedVar "A" )
+                    ]
+                ]
+            } :|
+            [ IntroRule
+                { introConditions =
+                    [ TermSymbol
+                        ( SymbolPredicate
+                            ( PredicateRelation
+                                ( Command "in" )
+                            )
+                        )
+                        [ TermVar
+                            ( NamedVar "a" )
+                        , TermVar
+                            ( NamedVar "A" )
+                        ]
+                    , TermSymbol
+                        ( SymbolPredicate
+                            ( PredicateRelation
+                                ( Command "in" )
+                            )
+                        )
+                        [ TermVar
+                            ( NamedVar "B" )
+                        , TermSymbol
+                            ( SymbolMixfix
+                                [ Just
+                                    ( Command "fin" )
+                                , Just InvisibleBraceL
+                                , Nothing
+                                , Just InvisibleBraceR
+                                ]
+                            )
+                            [ TermVar
+                                ( NamedVar "A" )
+                            ]
+                        ]
+                    ]
+                , introResult = TermSymbol
+                    ( SymbolPredicate
+                        ( PredicateRelation
+                            ( Command "in" )
+                        )
+                    )
+                    [ TermSymbol
+                        ( SymbolMixfix
+                            [ Just
+                                ( Command "cons" )
+                            , Just InvisibleBraceL
+                            , Nothing
+                            , Just InvisibleBraceR
+                            , Just InvisibleBraceL
+                            , Nothing
+                            , Just InvisibleBraceR
+                            ]
+                        )
+                        [ TermVar
+                            ( NamedVar "a" )
+                        , TermVar
+                            ( NamedVar "B" )
+                        ]
+                    , TermSymbol
+                        ( SymbolMixfix
+                            [ Just
+                                ( Command "fin" )
+                            , Just InvisibleBraceL
+                            , Nothing
+                            , Just InvisibleBraceR
+                            ]
+                        )
+                        [ TermVar
+                            ( NamedVar "A" )
+                        ]
+                    ]
+                }
+            ]
+        }
+    )
+, BlockLemma
+    ( SourcePos
+        { sourceName = "test/examples/inductive.tex"
+        , sourceLine = Pos 39
+        , sourceColumn = Pos 1
+        }
+    )
+    ( Marker "fin_mono" )
+    ( Lemma
+        [ Asm ( PropositionalConstant IsTop )
+        , Asm ( PropositionalConstant IsTop )
+        , Asm
+            ( TermSymbol
+                ( SymbolPredicate
+                    ( PredicateRelation
+                        ( Command "subseteq" )
+                    )
+                )
+                [ TermVar
+                    ( NamedVar "A" )
+                , TermVar
+                    ( NamedVar "B" )
+                ]
+            )
+        ]
+        ( TermSymbol
+            ( SymbolPredicate
+                ( PredicateRelation
+                    ( Command "subseteq" )
+                )
+            )
+            [ TermSymbol
+                ( SymbolMixfix
+                    [ Just
+                        ( Command "fin" )
+                    , Just InvisibleBraceL
+                    , Nothing
+                    , Just InvisibleBraceR
+                    ]
+                )
+                [ TermVar
+                    ( NamedVar "A" )
+                ]
+            , TermSymbol
+                ( SymbolMixfix
+                    [ Just
+                        ( Command "fin" )
+                    , Just InvisibleBraceL
+                    , Nothing
+                    , Just InvisibleBraceR
+                    ]
+                )
+                [ TermVar
+                    ( NamedVar "B" )
+                ]
+            ]
+        )
+    )
+, BlockInductive
+    ( SourcePos
+        { sourceName = "test/examples/inductive.tex"
+        , sourceLine = Pos 45
+        , sourceColumn = Pos 1
+        }
+    )
+    ( Marker "tracl" )
+    ( Inductive
+        { inductiveSymbol =
+            [ Just
+                ( Command "tracl" )
+            , Just InvisibleBraceL
+            , Nothing
+            , Just InvisibleBraceR
+            ]
+        , inductiveParams =
+            [ NamedVar "R" ]
+        , inductiveDomain = TermSymbol
+            ( SymbolMixfix
+                [ Nothing
+                , Just
+                    ( Command "times" )
+                , Nothing
+                ]
+            )
+            [ TermSymbol
+                ( SymbolMixfix
+                    [ Just
+                        ( Command "fld" )
+                    , Just InvisibleBraceL
+                    , Nothing
+                    , Just InvisibleBraceR
+                    ]
+                )
+                [ TermVar
+                    ( NamedVar "R" )
+                ]
+            , TermSymbol
+                ( SymbolMixfix
+                    [ Just
+                        ( Command "fld" )
+                    , Just InvisibleBraceL
+                    , Nothing
+                    , Just InvisibleBraceR
+                    ]
+                )
+                [ TermVar
+                    ( NamedVar "R" )
+                ]
+            ]
+        , inductiveIntros = IntroRule
+            { introConditions =
+                [ TermSymbol
+                    ( SymbolPredicate
+                        ( PredicateRelation
+                            ( Command "in" )
+                        )
+                    )
+                    [ TermVar
+                        ( NamedVar "w" )
+                    , TermVar
+                        ( NamedVar "R" )
+                    ]
+                ]
+            , introResult = TermSymbol
+                ( SymbolPredicate
+                    ( PredicateRelation
+                        ( Command "in" )
+                    )
+                )
+                [ TermVar
+                    ( NamedVar "w" )
+                , TermSymbol
+                    ( SymbolMixfix
+                        [ Just
+                            ( Command "tracl" )
+                        , Just InvisibleBraceL
+                        , Nothing
+                        , Just InvisibleBraceR
+                        ]
+                    )
+                    [ TermVar
+                        ( NamedVar "R" )
+                    ]
+                ]
+            } :|
+            [ IntroRule
+                { introConditions =
+                    [ TermSymbol
+                        ( SymbolPredicate
+                            ( PredicateRelation
+                                ( Command "in" )
+                            )
+                        )
+                        [ TermSymbol
+                            ( SymbolMixfix
+                                [ Just
+                                    ( Command "pair" )
+                                , Just InvisibleBraceL
+                                , Nothing
+                                , Just InvisibleBraceR
+                                , Just InvisibleBraceL
+                                , Nothing
+                                , Just InvisibleBraceR
+                                ]
+                            )
+                            [ TermVar
+                                ( NamedVar "a" )
+                            , TermVar
+                                ( NamedVar "b" )
+                            ]
+                        , TermSymbol
+                            ( SymbolMixfix
+                                [ Just
+                                    ( Command "tracl" )
+                                , Just InvisibleBraceL
+                                , Nothing
+                                , Just InvisibleBraceR
+                                ]
+                            )
+                            [ TermVar
+                                ( NamedVar "R" )
+                            ]
+                        ]
+                    , TermSymbol
+                        ( SymbolPredicate
+                            ( PredicateRelation
+                                ( Command "in" )
+                            )
+                        )
+                        [ TermSymbol
+                            ( SymbolMixfix
+                                [ Just
+                                    ( Command "pair" )
+                                , Just InvisibleBraceL
+                                , Nothing
+                                , Just InvisibleBraceR
+                                , Just InvisibleBraceL
+                                , Nothing
+                                , Just InvisibleBraceR
+                                ]
+                            )
+                            [ TermVar
+                                ( NamedVar "b" )
+                            , TermVar
+                                ( NamedVar "c" )
+                            ]
+                        , TermVar
+                            ( NamedVar "R" )
+                        ]
+                    ]
+                , introResult = TermSymbol
+                    ( SymbolPredicate
+                        ( PredicateRelation
+                            ( Command "in" )
+                        )
+                    )
+                    [ TermSymbol
+                        ( SymbolMixfix
+                            [ Just
+                                ( Command "pair" )
+                            , Just InvisibleBraceL
+                            , Nothing
+                            , Just InvisibleBraceR
+                            , Just InvisibleBraceL
+                            , Nothing
+                            , Just InvisibleBraceR
+                            ]
+                        )
+                        [ TermVar
+                            ( NamedVar "a" )
+                        , TermVar
+                            ( NamedVar "c" )
+                        ]
+                    , TermSymbol
+                        ( SymbolMixfix
+                            [ Just
+                                ( Command "tracl" )
+                            , Just InvisibleBraceL
+                            , Nothing
+                            , Just InvisibleBraceR
+                            ]
+                        )
+                        [ TermVar
+                            ( NamedVar "R" )
+                        ]
+                    ]
+                }
+            ]
+        }
+    )
+, BlockInductive
+    ( SourcePos
+        { sourceName = "test/examples/inductive.tex"
+        , sourceLine = Pos 53
+        , sourceColumn = Pos 1
+        }
+    )
+    ( Marker "quasirefltracl" )
+    ( Inductive
+        { inductiveSymbol =
+            [ Just
+                ( Command "qrefltracl" )
+            , Just InvisibleBraceL
+            , Nothing
+            , Just InvisibleBraceR
+            ]
+        , inductiveParams =
+            [ NamedVar "R" ]
+        , inductiveDomain = TermSymbol
+            ( SymbolMixfix
+                [ Nothing
+                , Just
+                    ( Command "times" )
+                , Nothing
+                ]
+            )
+            [ TermSymbol
+                ( SymbolMixfix
+                    [ Just
+                        ( Command "fld" )
+                    , Just InvisibleBraceL
+                    , Nothing
+                    , Just InvisibleBraceR
+                    ]
+                )
+                [ TermVar
+                    ( NamedVar "R" )
+                ]
+            , TermSymbol
+                ( SymbolMixfix
+                    [ Just
+                        ( Command "fld" )
+                    , Just InvisibleBraceL
+                    , Nothing
+                    , Just InvisibleBraceR
+                    ]
+                )
+                [ TermVar
+                    ( NamedVar "R" )
+                ]
+            ]
+        , inductiveIntros = IntroRule
+            { introConditions =
+                [ TermSymbol
+                    ( SymbolPredicate
+                        ( PredicateRelation
+                            ( Command "in" )
+                        )
+                    )
+                    [ TermVar
+                        ( NamedVar "a" )
+                    , TermSymbol
+                        ( SymbolMixfix
+                            [ Just
+                                ( Command "fld" )
+                            , Just InvisibleBraceL
+                            , Nothing
+                            , Just InvisibleBraceR
+                            ]
+                        )
+                        [ TermVar
+                            ( NamedVar "R" )
+                        ]
+                    ]
+                ]
+            , introResult = TermSymbol
+                ( SymbolPredicate
+                    ( PredicateRelation
+                        ( Command "in" )
+                    )
+                )
+                [ TermSymbol
+                    ( SymbolMixfix
+                        [ Just
+                            ( Command "pair" )
+                        , Just InvisibleBraceL
+                        , Nothing
+                        , Just InvisibleBraceR
+                        , Just InvisibleBraceL
+                        , Nothing
+                        , Just InvisibleBraceR
+                        ]
+                    )
+                    [ TermVar
+                        ( NamedVar "a" )
+                    , TermVar
+                        ( NamedVar "a" )
+                    ]
+                , TermSymbol
+                    ( SymbolMixfix
+                        [ Just
+                            ( Command "qrefltracl" )
+                        , Just InvisibleBraceL
+                        , Nothing
+                        , Just InvisibleBraceR
+                        ]
+                    )
+                    [ TermVar
+                        ( NamedVar "R" )
+                    ]
+                ]
+            } :|
+            [ IntroRule
+                { introConditions =
+                    [ TermSymbol
+                        ( SymbolPredicate
+                            ( PredicateRelation
+                                ( Command "in" )
+                            )
+                        )
+                        [ TermSymbol
+                            ( SymbolMixfix
+                                [ Just
+                                    ( Command "pair" )
+                                , Just InvisibleBraceL
+                                , Nothing
+                                , Just InvisibleBraceR
+                                , Just InvisibleBraceL
+                                , Nothing
+                                , Just InvisibleBraceR
+                                ]
+                            )
+                            [ TermVar
+                                ( NamedVar "a" )
+                            , TermVar
+                                ( NamedVar "b" )
+                            ]
+                        , TermSymbol
+                            ( SymbolMixfix
+                                [ Just
+                                    ( Command "qrefltracl" )
+                                , Just InvisibleBraceL
+                                , Nothing
+                                , Just InvisibleBraceR
+                                ]
+                            )
+                            [ TermVar
+                                ( NamedVar "R" )
+                            ]
+                        ]
+                    , TermSymbol
+                        ( SymbolPredicate
+                            ( PredicateRelation
+                                ( Command "in" )
+                            )
+                        )
+                        [ TermSymbol
+                            ( SymbolMixfix
+                                [ Just
+                                    ( Command "pair" )
+                                , Just InvisibleBraceL
+                                , Nothing
+                                , Just InvisibleBraceR
+                                , Just InvisibleBraceL
+                                , Nothing
+                                , Just InvisibleBraceR
+                                ]
+                            )
+                            [ TermVar
+                                ( NamedVar "b" )
+                            , TermVar
+                                ( NamedVar "c" )
+                            ]
+                        , TermVar
+                            ( NamedVar "R" )
+                        ]
+                    ]
+                , introResult = TermSymbol
+                    ( SymbolPredicate
+                        ( PredicateRelation
+                            ( Command "in" )
+                        )
+                    )
+                    [ TermSymbol
+                        ( SymbolMixfix
+                            [ Just
+                                ( Command "pair" )
+                            , Just InvisibleBraceL
+                            , Nothing
+                            , Just InvisibleBraceR
+                            , Just InvisibleBraceL
+                            , Nothing
+                            , Just InvisibleBraceR
+                            ]
+                        )
+                        [ TermVar
+                            ( NamedVar "a" )
+                        , TermVar
+                            ( NamedVar "c" )
+                        ]
+                    , TermSymbol
+                        ( SymbolMixfix
+                            [ Just
+                                ( Command "qrefltracl" )
+                            , Just InvisibleBraceL
+                            , Nothing
+                            , Just InvisibleBraceR
+                            ]
+                        )
+                        [ TermVar
+                            ( NamedVar "R" )
+                        ]
+                    ]
+                }
+            ]
+        }
+    )
+, BlockInductive
+    ( SourcePos
+        { sourceName = "test/examples/inductive.tex"
+        , sourceLine = Pos 61
+        , sourceColumn = Pos 1
+        }
+    )
+    ( Marker "refltracl" )
+    ( Inductive
+        { inductiveSymbol =
+            [ Just
+                ( Command "refltracl" )
+            , Just InvisibleBraceL
+            , Nothing
+            , Just InvisibleBraceR
+            , Just InvisibleBraceL
+            , Nothing
+            , Just InvisibleBraceR
+            ]
+        , inductiveParams =
+            [ NamedVar "A"
+            , NamedVar "R"
+            ]
+        , inductiveDomain = TermSymbol
+            ( SymbolMixfix
+                [ Nothing
+                , Just
+                    ( Command "times" )
+                , Nothing
+                ]
+            )
+            [ TermVar
+                ( NamedVar "A" )
+            , TermVar
+                ( NamedVar "A" )
+            ]
+        , inductiveIntros = IntroRule
+            { introConditions =
+                [ TermSymbol
+                    ( SymbolPredicate
+                        ( PredicateRelation
+                            ( Command "in" )
+                        )
+                    )
+                    [ TermVar
+                        ( NamedVar "a" )
+                    , TermVar
+                        ( NamedVar "A" )
+                    ]
+                ]
+            , introResult = TermSymbol
+                ( SymbolPredicate
+                    ( PredicateRelation
+                        ( Command "in" )
+                    )
+                )
+                [ TermSymbol
+                    ( SymbolMixfix
+                        [ Just
+                            ( Command "pair" )
+                        , Just InvisibleBraceL
+                        , Nothing
+                        , Just InvisibleBraceR
+                        , Just InvisibleBraceL
+                        , Nothing
+                        , Just InvisibleBraceR
+                        ]
+                    )
+                    [ TermVar
+                        ( NamedVar "a" )
+                    , TermVar
+                        ( NamedVar "a" )
+                    ]
+                , TermSymbol
+                    ( SymbolMixfix
+                        [ Just
+                            ( Command "refltracl" )
+                        , Just InvisibleBraceL
+                        , Nothing
+                        , Just InvisibleBraceR
+                        , Just InvisibleBraceL
+                        , Nothing
+                        , Just InvisibleBraceR
+                        ]
+                    )
+                    [ TermVar
+                        ( NamedVar "A" )
+                    , TermVar
+                        ( NamedVar "R" )
+                    ]
+                ]
+            } :|
+            [ IntroRule
+                { introConditions =
+                    [ TermSymbol
+                        ( SymbolPredicate
+                            ( PredicateRelation
+                                ( Command "in" )
+                            )
+                        )
+                        [ TermSymbol
+                            ( SymbolMixfix
+                                [ Just
+                                    ( Command "pair" )
+                                , Just InvisibleBraceL
+                                , Nothing
+                                , Just InvisibleBraceR
+                                , Just InvisibleBraceL
+                                , Nothing
+                                , Just InvisibleBraceR
+                                ]
+                            )
+                            [ TermVar
+                                ( NamedVar "a" )
+                            , TermVar
+                                ( NamedVar "b" )
+                            ]
+                        , TermSymbol
+                            ( SymbolMixfix
+                                [ Just
+                                    ( Command "refltracl" )
+                                , Just InvisibleBraceL
+                                , Nothing
+                                , Just InvisibleBraceR
+                                , Just InvisibleBraceL
+                                , Nothing
+                                , Just InvisibleBraceR
+                                ]
+                            )
+                            [ TermVar
+                                ( NamedVar "A" )
+                            , TermVar
+                                ( NamedVar "R" )
+                            ]
+                        ]
+                    , TermSymbol
+                        ( SymbolPredicate
+                            ( PredicateRelation
+                                ( Command "in" )
+                            )
+                        )
+                        [ TermSymbol
+                            ( SymbolMixfix
+                                [ Just
+                                    ( Command "pair" )
+                                , Just InvisibleBraceL
+                                , Nothing
+                                , Just InvisibleBraceR
+                                , Just InvisibleBraceL
+                                , Nothing
+                                , Just InvisibleBraceR
+                                ]
+                            )
+                            [ TermVar
+                                ( NamedVar "b" )
+                            , TermVar
+                                ( NamedVar "c" )
+                            ]
+                        , TermVar
+                            ( NamedVar "R" )
+                        ]
+                    ]
+                , introResult = TermSymbol
+                    ( SymbolPredicate
+                        ( PredicateRelation
+                            ( Command "in" )
+                        )
+                    )
+                    [ TermSymbol
+                        ( SymbolMixfix
+                            [ Just
+                                ( Command "pair" )
+                            , Just InvisibleBraceL
+                            , Nothing
+                            , Just InvisibleBraceR
+                            , Just InvisibleBraceL
+                            , Nothing
+                            , Just InvisibleBraceR
+                            ]
+                        )
+                        [ TermVar
+                            ( NamedVar "a" )
+                        , TermVar
+                            ( NamedVar "c" )
+                        ]
+                    , TermSymbol
+                        ( SymbolMixfix
+                            [ Just
+                                ( Command "refltracl" )
+                            , Just InvisibleBraceL
+                            , Nothing
+                            , Just InvisibleBraceR
+                            , Just InvisibleBraceL
+                            , Nothing
+                            , Just InvisibleBraceR
+                            ]
+                        )
+                        [ TermVar
+                            ( NamedVar "A" )
+                        , TermVar
+                            ( NamedVar "R" )
+                        ]
+                    ]
+                }
+            ]
+        }
+    )
+, BlockInductive
+    ( SourcePos
+        { sourceName = "test/examples/inductive.tex"
+        , sourceLine = Pos 69
+        , sourceColumn = Pos 1
+        }
+    )
+    ( Marker "acc" )
+    ( Inductive
+        { inductiveSymbol =
+            [ Just
+                ( Command "acc" )
+            , Just InvisibleBraceL
+            , Nothing
+            , Just InvisibleBraceR
+            ]
+        , inductiveParams =
+            [ NamedVar "R" ]
+        , inductiveDomain = TermSymbol
+            ( SymbolMixfix
+                [ Just
+                    ( Command "fld" )
+                , Just InvisibleBraceL
+                , Nothing
+                , Just InvisibleBraceR
+                ]
+            )
+            [ TermVar
+                ( NamedVar "R" )
+            ]
+        , inductiveIntros = IntroRule
+            { introConditions =
+                [ TermSymbol
+                    ( SymbolPredicate
+                        ( PredicateRelation
+                            ( Command "in" )
+                        )
+                    )
+                    [ TermVar
+                        ( NamedVar "a" )
+                    , TermSymbol
+                        ( SymbolMixfix
+                            [ Just
+                                ( Command "fld" )
+                            , Just InvisibleBraceL
+                            , Nothing
+                            , Just InvisibleBraceR
+                            ]
+                        )
+                        [ TermVar
+                            ( NamedVar "R" )
+                        ]
+                    ]
+                , TermSymbol
+                    ( SymbolPredicate
+                        ( PredicateRelation
+                            ( Command "in" )
+                        )
+                    )
+                    [ TermSymbol
+                        ( SymbolMixfix
+                            [ Just
+                                ( Command "preimg" )
+                            , Just InvisibleBraceL
+                            , Nothing
+                            , Just InvisibleBraceR
+                            , Just InvisibleBraceL
+                            , Nothing
+                            , Just InvisibleBraceR
+                            ]
+                        )
+                        [ TermVar
+                            ( NamedVar "R" )
+                        , TermSymbol
+                            ( SymbolMixfix
+                                [ Just
+                                    ( Command "cons" )
+                                , Just InvisibleBraceL
+                                , Nothing
+                                , Just InvisibleBraceR
+                                , Just InvisibleBraceL
+                                , Nothing
+                                , Just InvisibleBraceR
+                                ]
+                            )
+                            [ TermVar
+                                ( NamedVar "a" )
+                            , TermSymbol
+                                ( SymbolMixfix
+                                    [ Just
+                                        ( Command "emptyset" )
+                                    ]
+                                ) []
+                            ]
+                        ]
+                    , TermSymbol
+                        ( SymbolMixfix
+                            [ Just
+                                ( Command "pow" )
+                            , Just InvisibleBraceL
+                            , Nothing
+                            , Just InvisibleBraceR
+                            ]
+                        )
+                        [ TermSymbol
+                            ( SymbolMixfix
+                                [ Just
+                                    ( Command "acc" )
+                                , Just InvisibleBraceL
+                                , Nothing
+                                , Just InvisibleBraceR
+                                ]
+                            )
+                            [ TermVar
+                                ( NamedVar "R" )
+                            ]
+                        ]
+                    ]
+                ]
+            , introResult = TermSymbol
+                ( SymbolPredicate
+                    ( PredicateRelation
+                        ( Command "in" )
+                    )
+                )
+                [ TermVar
+                    ( NamedVar "a" )
+                , TermSymbol
+                    ( SymbolMixfix
+                        [ Just
+                            ( Command "acc" )
+                        , Just InvisibleBraceL
+                        , Nothing
+                        , Just InvisibleBraceR
+                        ]
+                    )
+                    [ TermVar
+                        ( NamedVar "R" )
+                    ]
+                ]
+            } :| []
+        }
+    )
+]

@@ -1,0 +1,456 @@
+[ BlockAxiom
+    ( SourcePos
+        { sourceName = "test/examples/union.tex"
+        , sourceLine = Pos 1
+        , sourceColumn = Pos 1
+        }
+    )
+    ( Marker "ext" )
+    ( Axiom
+        [ Asm
+            ( Quantified Universally
+                ( Scope
+                    ( Connected Equivalence
+                        ( TermSymbol
+                            ( SymbolPredicate
+                                ( PredicateRelation
+                                    ( Command "in" )
+                                )
+                            )
+                            [ TermVar
+                                ( B
+                                    ( NamedVar "a" )
+                                )
+                            , TermVar
+                                ( F
+                                    ( TermVar
+                                        ( NamedVar "A" )
+                                    )
+                                )
+                            ]
+                        )
+                        ( TermSymbol
+                            ( SymbolPredicate
+                                ( PredicateRelation
+                                    ( Command "in" )
+                                )
+                            )
+                            [ TermVar
+                                ( B
+                                    ( NamedVar "a" )
+                                )
+                            , TermVar
+                                ( F
+                                    ( TermVar
+                                        ( NamedVar "B" )
+                                    )
+                                )
+                            ]
+                        )
+                    )
+                )
+            )
+        ]
+        ( TermSymbol
+            ( SymbolPredicate
+                ( PredicateRelation
+                    ( Symbol "=" )
+                )
+            )
+            [ TermVar
+                ( NamedVar "A" )
+            , TermVar
+                ( NamedVar "B" )
+            ]
+        )
+    )
+, BlockAxiom
+    ( SourcePos
+        { sourceName = "test/examples/union.tex"
+        , sourceLine = Pos 6
+        , sourceColumn = Pos 1
+        }
+    )
+    ( Marker "union_defn" )
+    ( Axiom
+        [ Asm ( PropositionalConstant IsTop )
+        , Asm ( PropositionalConstant IsTop )
+        ]
+        ( Connected Equivalence
+            ( TermSymbol
+                ( SymbolPredicate
+                    ( PredicateRelation
+                        ( Command "in" )
+                    )
+                )
+                [ TermVar
+                    ( NamedVar "a" )
+                , TermSymbol
+                    ( SymbolMixfix
+                        [ Nothing
+                        , Just
+                            ( Command "union" )
+                        , Nothing
+                        ]
+                    )
+                    [ TermVar
+                        ( NamedVar "A" )
+                    , TermVar
+                        ( NamedVar "B" )
+                    ]
+                ]
+            )
+            ( Connected Disjunction
+                ( TermSymbol
+                    ( SymbolPredicate
+                        ( PredicateRelation
+                            ( Command "in" )
+                        )
+                    )
+                    [ TermVar
+                        ( NamedVar "a" )
+                    , TermVar
+                        ( NamedVar "A" )
+                    ]
+                )
+                ( TermSymbol
+                    ( SymbolPredicate
+                        ( PredicateRelation
+                            ( Command "in" )
+                        )
+                    )
+                    [ TermVar
+                        ( NamedVar "a" )
+                    , TermVar
+                        ( NamedVar "B" )
+                    ]
+                )
+            )
+        )
+    )
+, BlockLemma
+    ( SourcePos
+        { sourceName = "test/examples/union.tex"
+        , sourceLine = Pos 11
+        , sourceColumn = Pos 1
+        }
+    )
+    ( Marker "union_comm" )
+    ( Lemma []
+        ( TermSymbol
+            ( SymbolPredicate
+                ( PredicateRelation
+                    ( Symbol "=" )
+                )
+            )
+            [ TermSymbol
+                ( SymbolMixfix
+                    [ Nothing
+                    , Just
+                        ( Command "union" )
+                    , Nothing
+                    ]
+                )
+                [ TermVar
+                    ( NamedVar "A" )
+                , TermVar
+                    ( NamedVar "B" )
+                ]
+            , TermSymbol
+                ( SymbolMixfix
+                    [ Nothing
+                    , Just
+                        ( Command "union" )
+                    , Nothing
+                    ]
+                )
+                [ TermVar
+                    ( NamedVar "B" )
+                , TermVar
+                    ( NamedVar "A" )
+                ]
+            ]
+        )
+    )
+, BlockLemma
+    ( SourcePos
+        { sourceName = "test/examples/union.tex"
+        , sourceLine = Pos 15
+        , sourceColumn = Pos 1
+        }
+    )
+    ( Marker "union_assoc" )
+    ( Lemma []
+        ( TermSymbol
+            ( SymbolPredicate
+                ( PredicateRelation
+                    ( Symbol "=" )
+                )
+            )
+            [ TermSymbol
+                ( SymbolMixfix
+                    [ Nothing
+                    , Just
+                        ( Command "union" )
+                    , Nothing
+                    ]
+                )
+                [ TermSymbol
+                    ( SymbolMixfix
+                        [ Nothing
+                        , Just
+                            ( Command "union" )
+                        , Nothing
+                        ]
+                    )
+                    [ TermVar
+                        ( NamedVar "A" )
+                    , TermVar
+                        ( NamedVar "B" )
+                    ]
+                , TermVar
+                    ( NamedVar "C" )
+                ]
+            , TermSymbol
+                ( SymbolMixfix
+                    [ Nothing
+                    , Just
+                        ( Command "union" )
+                    , Nothing
+                    ]
+                )
+                [ TermVar
+                    ( NamedVar "A" )
+                , TermSymbol
+                    ( SymbolMixfix
+                        [ Nothing
+                        , Just
+                            ( Command "union" )
+                        , Nothing
+                        ]
+                    )
+                    [ TermVar
+                        ( NamedVar "B" )
+                    , TermVar
+                        ( NamedVar "C" )
+                    ]
+                ]
+            ]
+        )
+    )
+, BlockProof
+    ( SourcePos
+        { sourceName = "test/examples/union.tex"
+        , sourceLine = Pos 18
+        , sourceColumn = Pos 1
+        }
+    )
+    ( Have
+        ( Quantified Universally
+            ( Scope
+                ( Connected Implication
+                    ( TermSymbol
+                        ( SymbolPredicate
+                            ( PredicateRelation
+                                ( Command "in" )
+                            )
+                        )
+                        [ TermVar
+                            ( B
+                                ( NamedVar "a" )
+                            )
+                        , TermSymbol
+                            ( SymbolMixfix
+                                [ Nothing
+                                , Just
+                                    ( Command "union" )
+                                , Nothing
+                                ]
+                            )
+                            [ TermSymbol
+                                ( SymbolMixfix
+                                    [ Nothing
+                                    , Just
+                                        ( Command "union" )
+                                    , Nothing
+                                    ]
+                                )
+                                [ TermVar
+                                    ( F
+                                        ( TermVar
+                                            ( NamedVar "A" )
+                                        )
+                                    )
+                                , TermVar
+                                    ( F
+                                        ( TermVar
+                                            ( NamedVar "B" )
+                                        )
+                                    )
+                                ]
+                            , TermVar
+                                ( F
+                                    ( TermVar
+                                        ( NamedVar "C" )
+                                    )
+                                )
+                            ]
+                        ]
+                    )
+                    ( TermSymbol
+                        ( SymbolPredicate
+                            ( PredicateRelation
+                                ( Command "in" )
+                            )
+                        )
+                        [ TermVar
+                            ( B
+                                ( NamedVar "a" )
+                            )
+                        , TermSymbol
+                            ( SymbolMixfix
+                                [ Nothing
+                                , Just
+                                    ( Command "union" )
+                                , Nothing
+                                ]
+                            )
+                            [ TermVar
+                                ( F
+                                    ( TermVar
+                                        ( NamedVar "A" )
+                                    )
+                                )
+                            , TermSymbol
+                                ( SymbolMixfix
+                                    [ Nothing
+                                    , Just
+                                        ( Command "union" )
+                                    , Nothing
+                                    ]
+                                )
+                                [ TermVar
+                                    ( F
+                                        ( TermVar
+                                            ( NamedVar "B" )
+                                        )
+                                    )
+                                , TermVar
+                                    ( F
+                                        ( TermVar
+                                            ( NamedVar "C" )
+                                        )
+                                    )
+                                ]
+                            ]
+                        ]
+                    )
+                )
+            )
+        ) JustificationEmpty
+        ( Have
+            ( Quantified Universally
+                ( Scope
+                    ( Connected Implication
+                        ( TermSymbol
+                            ( SymbolPredicate
+                                ( PredicateRelation
+                                    ( Command "in" )
+                                )
+                            )
+                            [ TermVar
+                                ( B
+                                    ( NamedVar "a" )
+                                )
+                            , TermSymbol
+                                ( SymbolMixfix
+                                    [ Nothing
+                                    , Just
+                                        ( Command "union" )
+                                    , Nothing
+                                    ]
+                                )
+                                [ TermVar
+                                    ( F
+                                        ( TermVar
+                                            ( NamedVar "A" )
+                                        )
+                                    )
+                                , TermSymbol
+                                    ( SymbolMixfix
+                                        [ Nothing
+                                        , Just
+                                            ( Command "union" )
+                                        , Nothing
+                                        ]
+                                    )
+                                    [ TermVar
+                                        ( F
+                                            ( TermVar
+                                                ( NamedVar "B" )
+                                            )
+                                        )
+                                    , TermVar
+                                        ( F
+                                            ( TermVar
+                                                ( NamedVar "C" )
+                                            )
+                                        )
+                                    ]
+                                ]
+                            ]
+                        )
+                        ( TermSymbol
+                            ( SymbolPredicate
+                                ( PredicateRelation
+                                    ( Command "in" )
+                                )
+                            )
+                            [ TermVar
+                                ( B
+                                    ( NamedVar "a" )
+                                )
+                            , TermSymbol
+                                ( SymbolMixfix
+                                    [ Nothing
+                                    , Just
+                                        ( Command "union" )
+                                    , Nothing
+                                    ]
+                                )
+                                [ TermSymbol
+                                    ( SymbolMixfix
+                                        [ Nothing
+                                        , Just
+                                            ( Command "union" )
+                                        , Nothing
+                                        ]
+                                    )
+                                    [ TermVar
+                                        ( F
+                                            ( TermVar
+                                                ( NamedVar "A" )
+                                            )
+                                        )
+                                    , TermVar
+                                        ( F
+                                            ( TermVar
+                                                ( NamedVar "B" )
+                                            )
+                                        )
+                                    ]
+                                , TermVar
+                                    ( F
+                                        ( TermVar
+                                            ( NamedVar "C" )
+                                        )
+                                    )
+                                ]
+                            ]
+                        )
+                    )
+                )
+            ) JustificationEmpty ( Qed JustificationEmpty )
+        )
+    )
+]

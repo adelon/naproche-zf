@@ -1,0 +1,638 @@
+\import{set.tex}
+\import{set/cons.tex}
+\import{set/powerset.tex}
+\import{set/regularity.tex}
+\import{set/suc.tex}
+\import{nat.tex}
+
+
+\section{Transitive sets}
+
+We use the word \emph{transitive} to talk about sets as relations,
+so we will explicitly talk about \emph{\in-transitivity} here.
+
+% Here we have to ask TeX to forgive us for eliding the math
+% mode around \in. We have to put the following into
+% the preamble of our document:
+%
+% \let\mathonlyin\in
+% \renewcommand{\in}{\ensuremath{\mathonlyin}}
+%
+\begin{definition}\label{transitiveset}
+    A set $A$ is \in-transitive iff for all $x, y$
+    such that $x\in y\in A$ we have $x\in A$.
+\end{definition}
+
+\begin{proposition}\label{transitiveset_iff_subseteq}
+    $A$ is \in-transitive iff
+    for all $a\in A$ we have $a\subseteq A$.
+\end{proposition}
+
+\begin{proposition}\label{transitiveset_iff_pow}
+    $A$ is \in-transitive iff $A\subseteq \pow{A}$.
+\end{proposition}
+\begin{proof}
+    For all $a\in A$ we have $a\subseteq A \iff a\in\pow{A}$.
+    Follows by \cref{elem_subseteq,subseteq,pow_iff,transitiveset_iff_subseteq}.
+\end{proof}
+
+\begin{proposition}\label{transitiveset_iff_unions_suc}
+    $A$ is \in-transitive iff $\unions{\suc{A}} = A$.
+\end{proposition}
+\begin{proof}
+    Follows by \cref{transitiveset,subseteq,subseteq_antisymmetric,suc,transitiveset_iff_pow,unions_subseteq_of_powerset_is_subseteq,unions_iff,suc_subseteq_intro,powerset_top}.
+\end{proof}
+
+\begin{proposition}\label{transitiveset_iff_unions_subseteq}
+    $A$ is \in-transitive iff $\unions{A}\subseteq A$.
+\end{proposition}
+
+\begin{proposition}\label{transitiveset_upair}
+    Suppose $A$ is \in-transitive.
+    Suppose $\{a,b\}\in A$.
+    Then $a,b\in A$.
+\end{proposition}
+
+% For Kuratowski pairs only:
+%\begin{proposition}\label{transitiveset_pair}
+%    Suppose $A$ is \in-transitive.
+%    Suppose $(a,b )\in A$.
+%    Then $a,b\in A$.
+%\end{proposition}
+
+% For Kuratowski pairs only:
+%\begin{proposition}\label{transitiveset_dom}
+%    Suppose $C$ is \in-transitive.
+%    Suppose $A\times B\subseteq C$.
+%    Suppose $b\in B$.
+%    Then $A\subseteq C$.
+%\end{proposition}
+
+% For Kuratowski pairs only:
+%\begin{proposition}\label{transitiveset_ran}
+%    Suppose $C$ is \in-transitive.
+%    Suppose $A\times B\subseteq C$.
+%    Suppose $a\in A$.
+%    Then $B\subseteq C$.
+%\end{proposition}
+
+\subsubsection{Closure properties of \in-transitive sets}
+
+\begin{proposition}\label{emptyset_transitiveset}
+    $\emptyset$ is \in-transitive.
+\end{proposition}
+
+\begin{proposition}\label{union_of_transitiveset_is_transitiveset}
+    Suppose $A$ and $B$ are \in-transitive.
+    Then $A\union B$ is \in-transitive.
+\end{proposition}
+
+\begin{proposition}\label{inter_of_transitiveset_is_transitiveset}
+    Let $A, B$ be \in-transitive sets.
+    Then $A\inter B$ is \in-transitive.
+\end{proposition}
+
+\begin{proposition}\label{suc_of_transitiveset_is_transitiveset}
+    Let $A$ be an \in-transitive set.
+    Then $\suc{A}$ is \in-transitive.
+\end{proposition}
+
+\begin{proposition}\label{unions_of_transitiveset_is_transitiveset}
+    Let $A$ be an \in-transitive set.
+    Then $\unions{A}$ is \in-transitive.
+\end{proposition}
+
+\begin{proposition}\label{unions_family_of_transitiveset_is_transitiveset}
+    Suppose every element of $A$ is an \in-transitive set.
+    Then $\unions{A}$ is \in-transitive.
+\end{proposition}
+\begin{proof}
+    Follows by \cref{transitiveset,unions_iff}.
+\end{proof}
+
+\begin{proposition}\label{inters_family_of_transitiveset_is_transitiveset}
+    Suppose every element of $A$ is an \in-transitive set.
+    Then $\inters{A}$ is \in-transitive.
+\end{proposition}
+\begin{proof}
+    Follows by \cref{transitiveset,inters,unions_family_of_transitiveset_is_transitiveset}.
+\end{proof}
+
+
+\section{Ordinals}
+
+\begin{definition}\label{ordinal}
+    $\alpha$ is an ordinal iff
+    $\alpha$ is \in-transitive and
+    every element of $\alpha$ is \in-transitive.
+\end{definition}
+
+\begin{proposition}\label{ordinal_intro}
+    Suppose $\alpha$ is \in-transitive.
+    Suppose every element of $\alpha$ is \in-transitive.
+    Then $\alpha$ is an ordinal.
+\end{proposition}
+
+\begin{proposition}\label{ordinal_is_transitiveset}
+    Let $\alpha$ be an ordinal.
+    Then $\alpha$ is \in-transitive.
+\end{proposition}
+
+\begin{proposition}\label{ordinal_elem_is_transitiveset}
+    Let $\alpha$ be an ordinal.
+    Suppose $A\in\alpha$.
+    Then $A$ is \in-transitive.
+\end{proposition}
+
+\begin{proposition}\label{elem_of_ordinal_is_ordinal}
+    Let $\alpha$ be an ordinal.
+    Suppose $\beta\in\alpha$.
+    Then $\beta$ is an ordinal.
+\end{proposition}
+
+\begin{proposition}\label{suc_ordinal_implies_ordinal}
+    Suppose $\suc{\alpha}$ is an ordinal.
+    Then $\alpha$ is an ordinal.
+\end{proposition}
+
+\begin{proposition}\label{transitivesubseteq_of_ordinal_is_ordinal}
+    Let $\alpha$ be an ordinal.
+    Suppose $\beta\subseteq\alpha$.
+    Suppose $\beta$ is \in-transitive.
+    Then $\beta$ is an ordinal.
+\end{proposition}
+\begin{proof}
+    Follows by \cref{subseteq,ordinal}.
+\end{proof}
+
+\begin{proposition}\label{ordinal_elem_implies_subseteq}
+    Let $\alpha,\beta$ be ordinals.
+    Suppose $\alpha\in\beta$.
+    Then $\alpha\subseteq\beta$.
+\end{proposition}
+
+\begin{proposition}\label{ordinal_transitivity}
+    Let $\alpha$ be an ordinal.
+    Suppose $\gamma\in\beta\in\alpha$.
+    Then $\gamma\in\alpha$.
+\end{proposition}
+\begin{proof}
+    Follows by \cref{ordinal,transitiveset}.
+    % Vampire proof: Follows by \cref{ordinal,subseteq,transitiveset_iff_subseteq}.
+\end{proof}
+
+\begin{proposition}\label{ordinal_suc_subseteq}
+    Let $\beta$ be an ordinal.
+    Suppose $\alpha\in\beta$.
+    Then $\suc{\alpha}\subseteq\beta$.
+\end{proposition}
+
+
+\begin{abbreviation}\label{ordinal_prec}
+    $\alpha \precedes \beta$ iff
+    $\beta$ is an ordinal and
+    $\alpha\in\beta$.
+\end{abbreviation}
+
+\begin{abbreviation}\label{ordinal_preceq}
+    $\alpha\precedeseq \beta$ iff $\beta$ is an ordinal and $\alpha\subseteq\beta$.
+    %
+    %$\alpha\precedeseq \beta$ iff $\alpha\precedes\beta$
+    %or $\alpha = \beta$ and $\beta$ is an ordinal.
+    %
+    %$\alpha\precedeseq \beta$ iff $\alpha\precedes\beta$
+    %or $\beta$ is an ordinal equal to $\alpha$.
+\end{abbreviation}
+
+\begin{lemma}\label{prec_is_ordinal}
+    Let $\alpha,\beta$ be sets.
+    Suppose $\alpha\precedes \beta$.
+    Then $\alpha$ is an ordinal.
+\end{lemma}
+\begin{proof}
+    Follows by \cref{elem_of_ordinal_is_ordinal}.
+\end{proof}
+
+We already have global irreflexivity and asymmetry of \in.
+\in\ is transitive on ordinals by definition.
+To show that \in\ is a strict total order it only remains to show that \in\ is connex.
+
+\begin{proposition}\label{ordinal_elem_connex}
+    For all ordinals $\alpha,\beta$
+    we have $\alpha\in\beta\lor \beta\in\alpha \lor \alpha = \beta$.
+\end{proposition}
+\begin{proof}[Proof by \in-induction on $\alpha$]
+    % Ind hypothesis:
+    % ![Xi,Xbeta]:(elem(Xi,falpha)=>((ordinal(Xi)&ordinal(Xbeta))=>(elem(Xi,Xbeta)|elem(Xbeta,Xi)|Xi=Xbeta))))
+    % Goal:
+    % ordinal(falpha)&ordinal(fbeta))=>(elem(falpha,fbeta)|elem(fbeta,falpha)|falpha=fbeta)
+    %
+    Assume $\alpha$ is an ordinal.
+    Show for all ordinals $\gamma$ we have $\alpha\in\gamma\lor \gamma\in\alpha \lor \alpha = \gamma$.
+    \begin{subproof}[Proof by \in-induction on $\gamma$]
+        % Now we have:
+        % ![Xi]:(elem(Xi,fgamma)=>(ordinal(Xi)=>(elem(falpha,Xi)|elem(Xi,falpha)|falpha=Xi)))).
+        % Goal: ordinal(fgamma)=>(elem(falpha,fgamma)|elem(fgamma,falpha)|falpha=fgamma))
+        %
+        Assume $\gamma$ is an ordinal.
+        % Goal:
+        % elem(falpha,fgamma)|elem(fgamma,falpha)|falpha=fgamma
+        %
+        % Original Vampire proof:
+        % Follows by \cref{setext,transitiveset,ordinal,in_implies_neq,prec_is_ordinal,in_asymmetric}.
+        %
+        % Pruned proof:
+        Follows by \cref{setext,transitiveset,ordinal}.
+    \end{subproof}
+\end{proof}
+
+\begin{proposition}\label{ordinal_proper_subset_implies_elem}
+    Let $\alpha,\beta$ be ordinals.
+    Suppose $\alpha\subset\beta$.
+    Then $\alpha\in\beta$.
+\end{proposition}
+\begin{proof}
+    $\beta\setminus\alpha$ is inhabited.
+    Take $\gamma$ such that $\gamma$ is an \in-minimal element of $\beta\setminus\alpha$.
+    Now $\gamma\in\beta$ by \cref{setminus_elim_left}.
+    Hence $\gamma\subseteq\beta$
+        by \cref{ordinal,transitiveset_iff_subseteq}.
+    For all $\delta\in\beta\setminus\alpha$ we have $\delta\notin\gamma$.
+    Thus $\gamma\setminus\alpha = \emptyset$.
+    Hence $\gamma\subseteq\alpha$.
+    It suffices to show that for all $\delta\in\alpha$ we have $\delta\in\gamma$.
+        Suppose not.
+        Take $\delta\in\alpha$ such that $\delta\notin\gamma$.
+        Now if $\delta = \gamma$ or $\gamma\in\delta$, then $\gamma\in\alpha$
+            % Original Vampire proof: by \cref{ordinal,elem_subseteq,elem_of_ordinal_is_ordinal,setminus_elim_left,ordinal_elem_connex,inter_eq_left_implies_subseteq,inter_absorb_supseteq_left,transitiveset_iff_subseteq}.
+            by \cref{ordinal,elem_subseteq,elem_of_ordinal_is_ordinal,ordinal_elem_connex,transitiveset_iff_subseteq}.
+\end{proof}
+
+\begin{proposition}\label{ordinal_elem_implies_proper_subset}
+    Let $\alpha,\beta$ be ordinals.
+    Suppose $\alpha\in\beta$.
+    Then $\alpha\subset\beta$.
+\end{proposition}
+\begin{proof}
+    $\alpha\subseteq\beta$.
+\end{proof}
+
+\begin{proposition}\label{ordinal_preceq_implies_subseteq}
+Let $\alpha,\beta$ be ordinals.
+Suppose $\alpha\precedeseq\beta$.
+Then $\alpha\subseteq\beta$.
+\end{proposition}
+\begin{proof}
+    \begin{byCase}
+        \caseOf{$\alpha = \beta$.}
+            Trivial.
+        \caseOf{$\alpha\precedes\beta$.}
+            $\alpha\subset\beta$.
+    \end{byCase}
+\end{proof}
+
+%\begin{proposition}%
+%\label{ordinal-subseteq-implies-preceq}
+%Let $\alpha,\beta$ be ordinals.
+%Suppose $\alpha\subseteq\beta$.
+%Then $\alpha\precedeseq\beta$.
+%\end{proposition}
+%\begin{proof}
+%    \begin{byCase}
+%        \caseOf{$\alpha = \beta$.}
+%            Trivial.
+%        \caseOf{$\alpha\subset\beta$.}
+%            $\alpha\precedes\beta$.
+%    \end{byCase}
+%\end{proof}
+
+
+\begin{proposition}\label{ordinal_elem_or_subseteq}
+    Let $\alpha,\beta$ be ordinals.
+    Then $\alpha\in\beta$ or $\beta\subseteq\alpha$.
+\end{proposition}
+
+
+\begin{proposition}\label{ordinal_subseteq_or_subseteq}
+    Let $\alpha,\beta$ be ordinals.
+    Then $\alpha\subseteq\beta$ or $\beta\subseteq\alpha$.
+\end{proposition}
+
+
+\begin{proposition}\label{ordinal_subseteq_implies_elem_or_eq}
+    Let $\alpha,\beta$ be ordinals.
+    Suppose $\alpha\subseteq\beta$.
+    Then $\alpha\in\beta$ or $\alpha = \beta$.
+\end{proposition}
+
+
+\begin{corollary}\label{ordinal_subset_trichotomy}
+    Let $\alpha,\beta$ be ordinals.
+    Then $(\alpha\subset\beta \lor \beta\subset\alpha) \lor \alpha = \beta$.
+\end{corollary}
+
+\begin{proposition}\label{ordinal_nor_elem_implies_eq}
+    Let $\alpha,\beta$ be ordinals.
+    Suppose neither $\alpha\in\beta$ nor $\beta\in\alpha$.
+    Then $\alpha = \beta$.
+\end{proposition}
+\begin{proof}
+    Neither $\alpha\subset\beta$ nor $\beta\subset\alpha$.
+\end{proof}
+
+\begin{proposition}\label{ordinal_in_trichotomy}
+    Let $\alpha,\beta$ be ordinals. Then $(\alpha\in\beta \lor \beta\in\alpha) \lor \alpha = \beta$.
+\end{proposition}
+\begin{proof}
+    Suppose not.
+    Then neither $\alpha\in\beta$ nor $\beta\in\alpha$.
+    Thus $\alpha = \beta$ by \cref{ordinal_nor_elem_implies_eq}. Contradiction.
+\end{proof}
+
+\begin{corollary}\label{ordinal_prec_trichotomy}
+    Let $\alpha,\beta$ be ordinals.
+    Suppose neither $\alpha\precedes\beta$ nor $\beta\precedes\alpha$.
+    Then $\alpha = \beta$.
+\end{corollary}
+\begin{proof}
+    Follows by \cref{ordinal_nor_elem_implies_eq}.
+\end{proof}
+
+\begin{corollary}\label{ordinal_elem_or_superset}
+    Let $\alpha,\beta$ be ordinals. Then $\alpha\in \beta$ or $\beta\subseteq \alpha$.
+\end{corollary}
+
+
+
+\subsubsection{Construction of ordinals}
+
+\begin{proposition}\label{emptyset_is_ordinal}
+    $\emptyset$ is an ordinal.
+\end{proposition}
+
+% The proof of this theorem benefits from the alternate definition of
+% transitivity in terms of $\subseteq$.
+\begin{proposition}\label{suc_ordinal}
+    Let $\alpha$ be an ordinal.
+    $\suc{\alpha}$ is an ordinal.
+\end{proposition}
+\begin{proof}
+    $\suc{\alpha}$ is \in-transitive by \cref{ordinal,suc_of_transitiveset_is_transitiveset}.
+    For every $\beta\in\alpha$ we have that $\beta$ is \in-transitive.
+\end{proof}
+
+\begin{proposition}\label{ordinal_iff_suc_ordinal}
+    $\alpha$ is an ordinal iff $\suc{\alpha}$ is an ordinal.
+\end{proposition}
+
+\begin{proposition}\label{ordinal_in_suc}
+    Let $\alpha$ be an ordinal.
+    Then $\alpha\in\suc{\alpha}$.
+\end{proposition}
+
+\begin{corollary}\label{ordinal_precedes_suc}
+    Let $\alpha$ be an ordinal.
+    Then $\alpha\precedes \suc{\alpha}$.
+\end{corollary}
+
+\begin{proposition}\label{ordinal_elem_implies_subset_of_suc}
+    Let $\alpha,\beta$ be ordinals.
+    Suppose $\alpha\in\beta$.
+    Then $\alpha\subseteq\suc{\beta}$.
+\end{proposition}
+\begin{proof}
+    $\alpha\subset \beta$.
+    In particular, $\alpha\subseteq \beta$.
+    Hence $\alpha\subseteq \cons{\beta}{\beta}$.
+\end{proof}
+
+\begin{proposition}\label{unions_of_ordinal_is_ordinal}
+    Let $\alpha$ be an ordinal.
+    Then $\unions{\alpha}$ is an ordinal.
+\end{proposition}
+\begin{proof}
+    For all $x, y$ such that $x\in y\in \unions{\alpha}$ we have $x\in \unions{\alpha}$
+        by \cref{unions_intro,unions_iff,transitiveset,ordinal}.
+    Thus $\unions{\alpha}$ is \in-transitive.
+    Every element of $\unions{\alpha}$ is \in-transitive.
+\end{proof}
+
+\begin{lemma}\label{ordinal_subseteq_unions}
+    Let $\alpha$ be an ordinal.
+    Then $\unions{\alpha}\subseteq \alpha$.
+\end{lemma}
+\begin{proof}
+    Follows by \cref{ordinal,transitiveset_iff_unions_subseteq}.
+\end{proof}
+
+\begin{proposition}\label{union_of_two_ordinals_is_ordinal}
+    Let $\alpha,\beta$ be ordinals.
+    Then $\alpha\union\beta$ is an ordinal.
+\end{proposition}
+\begin{proof}
+    $\alpha\union\beta$ is \in-transitive by \cref{union_of_transitiveset_is_transitiveset,ordinal}.
+    Every element of $\alpha\union\beta$ is \in-transitive
+        by \cref{transitiveset,union_iff,ordinal}.
+    Follows by \cref{ordinal}.
+\end{proof}
+
+\begin{proposition}\label{ordinal_empty_or_emptyset_elem}
+    For all ordinals $\alpha$
+    we have $\alpha=\emptyset$ or $\emptyset\in\alpha$.
+\end{proposition}
+\begin{proof}[Proof by \in-induction]
+    Straightforward.
+\end{proof}
+
+\begin{proposition}\label{transitive_set_of_ordinals_is_ordinal}
+    Let $A$ be a set.
+    Suppose that for every $\alpha\in A$ we have $\alpha$ is an ordinal.
+    Suppose that $A$ is \in-transitive.
+    Then $A$ is an ordinal.
+\end{proposition}
+
+% Apparently Russel first noticed this antimony while reading a paper by Burali-Forti.
+% Typographic NB: Cesare Burali-Forti is a single person, therefore only a single hyphen!
+\begin{theorem}[Burali-Forti antimony]\label{buraliforti_antinomy}
+    There exists no set $\Omega$ such that
+    for all $\alpha$ we have $\alpha\in \Omega$ iff $\alpha$ is an ordinal.
+\end{theorem}
+\begin{proof}
+    Suppose not.
+    Take $\Omega$ such that for all $\alpha$ we have $\alpha\in \Omega$ iff $\alpha$ is an ordinal.
+    For all $x, y$ such that $x\in y\in \Omega$ we have $x\in \Omega$.
+    Thus $\Omega$ is \in-transitive.
+    Thus $\Omega$ is an ordinal.
+    Therefore $\Omega\in\Omega$.
+    Contradiction.
+\end{proof}
+
+\begin{proposition}\label{inters_of_ordinals_is_ordinal}
+    Let $A$ be an inhabited set.
+    Suppose for every $\alpha\in A$ we have $\alpha$ is an ordinal.
+    Then $\inters{A}$ is an ordinal.
+\end{proposition}
+\begin{proof}
+    It suffices to show that $\inters{A}$ is \in-transitive.
+\end{proof}
+
+\begin{proposition}\label{inters_of_ordinals_subseteq}
+    Let $A$ be an inhabited set.
+    Suppose for every $\alpha\in A$ we have $\alpha$ is an ordinal.
+    Then for all $\alpha\in A$ we have $\inters{A}\subseteq \alpha$.
+\end{proposition}
+
+\begin{proposition}\label{inters_of_ordinals_elem}
+    Let $A$ be an inhabited set.
+    Suppose for every $\alpha\in A$ we have $\alpha$ is an ordinal.
+    Then $\inters{A}\in A$.
+\end{proposition}
+\begin{proof}
+    % Vampire proof:
+    Follows by \cref{inters_of_ordinals_is_ordinal,in_implies_neq,inters_iff_forall,ordinal_subseteq_implies_elem_or_eq,inters_subseteq_elem}.
+\end{proof}
+
+\begin{proposition}\label{inters_of_ordinals_is_minimal}
+    Let $A$ be an inhabited set.
+    Suppose for every $\alpha\in A$ we have $\alpha$ is an ordinal.
+    Then $\inters{A}$ is an \in-minimal element of $A$.
+\end{proposition}
+\begin{proof}
+    For all $\alpha\in A$ we have $\inters{A}\subseteq \alpha$.
+\end{proof}
+
+\begin{proposition}\label{inters_of_ordinals_is_minimal_alternate}
+    Let $A$ be an inhabited set.
+    Suppose for every $\alpha\in A$ we have $\alpha$ is an ordinal.
+    Then for all $\alpha\in A$ we have $\inters{A} = \alpha$ or $\inters{A}\in\alpha$.
+\end{proposition}
+\begin{proof}
+    For all $\alpha\in A$ we have $\inters{A}\subseteq \alpha$.
+\end{proof}
+
+\begin{proposition}\label{inter_of_two_ordinals_is_ordinal}
+    Let $\alpha,\beta$ be ordinals.
+    Then $\alpha\inter\beta$ is an ordinal.
+    \end{proposition}
+\begin{proof}
+    $\alpha\inter\beta$ is \in-transitive by \cref{inter,ordinal,transitiveset}.
+    Every element of $\alpha\inter\beta$ is \in-transitive
+        by \cref{transitiveset,inter,ordinal}.
+    Follows by \cref{ordinal}.
+\end{proof}
+
+
+\subsubsection{Limit and successor ordinals}
+
+
+\begin{definition}\label{limit_ordinal}
+    $\lambda$ is a limit ordinal iff
+    $\emptyset\precedes \lambda$ % by definition of \precedes this means that $\lambda$ is an ordinal
+    and for all $\alpha\in \lambda$ we have $\suc{\alpha}\in \lambda$.
+\end{definition}
+
+\begin{definition}\label{successor_ordinal}
+    $\alpha$ is a successor ordinal iff
+    there exists an ordinal $\beta$ such that $\alpha = \suc{\beta}$.
+\end{definition}
+
+\begin{lemma}\label{positive_ordinal_is_limit_or_successor}
+    Let $\alpha$ be an ordinal such that $\emptyset\precedes\alpha$.
+    Then $\alpha$ is a limit ordinal or $\alpha$ is a successor ordinal.
+\end{lemma}
+\begin{proof}
+    \begin{byCase}
+        \caseOf{$\alpha$ is a limit ordinal.}
+            Trivial.
+        \caseOf{$\alpha$ is not a limit ordinal.}
+            Take $\beta$ such that $\beta\in\alpha$ and $\suc{\beta}\notin\alpha$
+                by \cref{limit_ordinal}.
+    \end{byCase}
+\end{proof}
+
+\begin{lemma}\label{zero_not_successorordinal}
+    $\emptyset$ is not a successor ordinal.
+\end{lemma}
+
+\begin{lemma}\label{zero_not_limitordinal}
+    $\emptyset$ is not a limit ordinal.
+\end{lemma}
+\begin{proof}
+    Suppose not.
+    Then $\emptyset\precedes \emptyset$ by \cref{notin_emptyset,limit_ordinal}.
+    Thus $\emptyset\in \emptyset$.
+    Contradiction.
+\end{proof}
+
+\begin{lemma}\label{suc_elem_limitordinal}
+    Let $\lambda$ be a limit ordinal.
+    Let $\alpha\in\lambda$.
+    Then $\suc{\alpha}\in\lambda$.
+\end{lemma}
+\begin{proof}
+    Follows by \cref{limit_ordinal}.
+\end{proof}
+
+\begin{lemma}\label{limitordinal_eq_unions}
+    Let $\lambda$ be a limit ordinal.
+    Then $\unions{\lambda} = \lambda$.
+\end{lemma}
+\begin{proof}
+    $\unions{\lambda}\subseteq\lambda$ by \cref{limit_ordinal,ordinal_subseteq_unions}.
+    For all $\alpha\in\lambda$ we have $\alpha\in\suc{\alpha}\in\lambda$ by \cref{suc_intro_self,suc_elem_limitordinal}.
+    Thus $\lambda\subseteq\unions{\lambda}$ by \cref{subseteq,unions_intro}.
+    Follows by \cref{subseteq_antisymmetric}.
+\end{proof}
+
+
+\subsection{Natural numbers as ordinals}
+
+\begin{lemma}\label{nat_is_successor_ordinal}
+    Let $n\in\naturals$.
+    Suppose $n\neq \emptyset$.
+    Then $n$ is a successor ordinal.
+\end{lemma}
+\begin{proof}
+    Let $M = \{ m\in \naturals \mid\text{$m = \emptyset$ or $m$ is a successor ordinal}\}$.
+    $M$ is an inductive set by \cref{suc_ordinal,naturals_inductive_set,successor_ordinal,emptyset_is_ordinal}.
+    Now $M\subseteq \naturals\subseteq M$
+        by \cref{subseteq,naturals_smallest_inductive_set}.
+    Thus $M = \naturals$.
+    Follows by \cref{subseteq}.
+\end{proof}
+
+\begin{lemma}\label{nat_is_transitiveset}
+    $\naturals$ is \in-transitive.
+\end{lemma}
+\begin{proof}
+    Let $M = \{ m\in\naturals \mid \text{for all $n\in m$ we have $n\in\naturals$} \}$.
+    $\emptyset\in M$.
+    For all $n\in M$ we have $\suc{n}\in M$
+        by \cref{naturals_inductive_set,suc}.
+    Thus $M$ is an inductive set.
+    Now $M\subseteq \naturals\subseteq M$
+        by \cref{subseteq,naturals_smallest_inductive_set}.
+    Hence $\naturals = M$.
+\end{proof}
+
+\begin{lemma}\label{natural_number_is_ordinal}
+    Every natural number is an ordinal.
+\end{lemma}
+\begin{proof}
+    Follows by \cref{suc_ordinal,suc_neq_emptyset,naturals_inductive_set,nat_is_successor_ordinal,successor_ordinal,suc_ordinal_implies_ordinal}.
+\end{proof}
+
+\begin{lemma}\label{omega_is_an_ordinal}
+    $\naturals$ is an ordinal.
+\end{lemma}
+\begin{proof}
+    Follows by \cref{natural_number_is_ordinal,transitive_set_of_ordinals_is_ordinal,nat_is_transitiveset}.
+\end{proof}
+
+\begin{lemma}\label{omega_is_a_limit_ordinal}
+    $\naturals$ is a limit ordinal.
+\end{lemma}
+\begin{proof}
+    $\emptyset\precedes \naturals$.
+    If $n\in \naturals$, then $\suc{n}\in\naturals$.
+\end{proof}

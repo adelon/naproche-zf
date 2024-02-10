@@ -1,0 +1,1198 @@
+[ BlockDefn
+    ( SourcePos
+        { sourceName = "test/examples/geometry.tex"
+        , sourceLine = Pos 1
+        , sourceColumn = Pos 1
+        }
+    )
+    ( Marker "collinear" )
+    ( Defn []
+        ( DefnAdj Nothing
+            ( NamedVar "a" )
+            ( Adj
+                [ Just
+                    ( Word "collinear" )
+                , Just
+                    ( Word "with" )
+                , Nothing
+                , Just
+                    ( Word "and" )
+                , Nothing
+                ]
+                [ NamedVar "b"
+                , NamedVar "c"
+                ]
+            )
+        )
+        ( StmtConnected Disjunction
+            ( StmtFormula
+                ( FormulaPredicate
+                    ( PrefixPredicate "Betw" 3 )
+                    ( ExprVar
+                        ( NamedVar "a" ) :|
+                        [ ExprVar
+                            ( NamedVar "b" )
+                        , ExprVar
+                            ( NamedVar "c" )
+                        ]
+                    )
+                )
+            )
+            ( StmtConnected Disjunction
+                ( StmtFormula
+                    ( FormulaPredicate
+                        ( PrefixPredicate "Betw" 3 )
+                        ( ExprVar
+                            ( NamedVar "b" ) :|
+                            [ ExprVar
+                                ( NamedVar "c" )
+                            , ExprVar
+                                ( NamedVar "a" )
+                            ]
+                        )
+                    )
+                )
+                ( StmtFormula
+                    ( FormulaPredicate
+                        ( PrefixPredicate "Betw" 3 )
+                        ( ExprVar
+                            ( NamedVar "c" ) :|
+                            [ ExprVar
+                                ( NamedVar "a" )
+                            , ExprVar
+                                ( NamedVar "b" )
+                            ]
+                        )
+                    )
+                )
+            )
+        )
+    )
+, BlockAxiom
+    ( SourcePos
+        { sourceName = "test/examples/geometry.tex"
+        , sourceLine = Pos 5
+        , sourceColumn = Pos 1
+        }
+    )
+    ( Marker "cong_refl_swap" )
+    ( Axiom
+        [ AsmLetNoun
+            ( NamedVar "a" :|
+                [ NamedVar "b" ]
+            ) NounPhrase ( [] )
+            ( Noun
+                ( SgPl
+                    { sg =
+                        [ Just
+                            ( Word "point" )
+                        ]
+                    , pl =
+                        [ Just
+                            ( Word "points" )
+                        ]
+                    }
+                ) []
+            ) ( Nothing ) ( [] ) ( Nothing )
+        ]
+        ( StmtFormula
+            ( FormulaPredicate
+                ( PrefixPredicate "Cong" 4 )
+                ( ExprVar
+                    ( NamedVar "a" ) :|
+                    [ ExprVar
+                        ( NamedVar "b" )
+                    , ExprVar
+                        ( NamedVar "b" )
+                    , ExprVar
+                        ( NamedVar "a" )
+                    ]
+                )
+            )
+        )
+    )
+, BlockAxiom
+    ( SourcePos
+        { sourceName = "test/examples/geometry.tex"
+        , sourceLine = Pos 10
+        , sourceColumn = Pos 1
+        }
+    )
+    ( Marker "cong_pseudotransitive" )
+    ( Axiom
+        [ AsmLetNoun
+            ( NamedVar "a" :|
+                [ NamedVar "b"
+                , NamedVar "c"
+                , NamedVar "d"
+                ]
+            ) NounPhrase ( [] )
+            ( Noun
+                ( SgPl
+                    { sg =
+                        [ Just
+                            ( Word "point" )
+                        ]
+                    , pl =
+                        [ Just
+                            ( Word "points" )
+                        ]
+                    }
+                ) []
+            ) ( Nothing ) ( [] ) ( Nothing )
+        ]
+        ( StmtConnected Implication
+            ( StmtConnected Conjunction
+                ( StmtFormula
+                    ( FormulaPredicate
+                        ( PrefixPredicate "Cong" 4 )
+                        ( ExprVar
+                            ( NamedVar "c" ) :|
+                            [ ExprVar
+                                ( NamedVar "d" )
+                            , ExprVar
+                                ( NamedVar "a" )
+                            , ExprVar
+                                ( NamedVar "b" )
+                            ]
+                        )
+                    )
+                )
+                ( StmtFormula
+                    ( FormulaPredicate
+                        ( PrefixPredicate "Cong" 4 )
+                        ( ExprVar
+                            ( NamedVar "c" ) :|
+                            [ ExprVar
+                                ( NamedVar "d" )
+                            , ExprVar
+                                ( NamedVar "e" )
+                            , ExprVar
+                                ( NamedVar "f" )
+                            ]
+                        )
+                    )
+                )
+            )
+            ( StmtFormula
+                ( FormulaPredicate
+                    ( PrefixPredicate "Cong" 4 )
+                    ( ExprVar
+                        ( NamedVar "a" ) :|
+                        [ ExprVar
+                            ( NamedVar "b" )
+                        , ExprVar
+                            ( NamedVar "e" )
+                        , ExprVar
+                            ( NamedVar "f" )
+                        ]
+                    )
+                )
+            )
+        )
+    )
+, BlockAxiom
+    ( SourcePos
+        { sourceName = "test/examples/geometry.tex"
+        , sourceLine = Pos 15
+        , sourceColumn = Pos 1
+        }
+    )
+    ( Marker "cong_id" )
+    ( Axiom
+        [ AsmLetNoun
+            ( NamedVar "a" :|
+                [ NamedVar "b"
+                , NamedVar "c"
+                ]
+            ) NounPhrase ( [] )
+            ( Noun
+                ( SgPl
+                    { sg =
+                        [ Just
+                            ( Word "point" )
+                        ]
+                    , pl =
+                        [ Just
+                            ( Word "points" )
+                        ]
+                    }
+                ) []
+            ) ( Nothing ) ( [] ) ( Nothing )
+        ]
+        ( StmtConnected Implication
+            ( StmtFormula
+                ( FormulaPredicate
+                    ( PrefixPredicate "Cong" 4 )
+                    ( ExprVar
+                        ( NamedVar "a" ) :|
+                        [ ExprVar
+                            ( NamedVar "b" )
+                        , ExprVar
+                            ( NamedVar "c" )
+                        , ExprVar
+                            ( NamedVar "c" )
+                        ]
+                    )
+                )
+            )
+            ( StmtFormula
+                ( FormulaChain
+                    ( ChainBase
+                        ( ExprVar
+                            ( NamedVar "a" ) :| []
+                        ) Positive
+                        ( RelationSymbol
+                            ( Symbol "=" )
+                        )
+                        ( ExprVar
+                            ( NamedVar "b" ) :| []
+                        )
+                    )
+                )
+            )
+        )
+    )
+, BlockAxiom
+    ( SourcePos
+        { sourceName = "test/examples/geometry.tex"
+        , sourceLine = Pos 21
+        , sourceColumn = Pos 1
+        }
+    )
+    ( Marker "segment_construction" )
+    ( Axiom []
+        ( StmtExists NounPhrase ( [] )
+            ( Noun
+                ( SgPl
+                    { sg =
+                        [ Just
+                            ( Word "point" )
+                        ]
+                    , pl =
+                        [ Just
+                            ( Word "points" )
+                        ]
+                    }
+                ) []
+            )
+            (
+                [ NamedVar "c" ]
+            ) ( [] )
+            ( Just
+                ( StmtConnected Conjunction
+                    ( StmtFormula
+                        ( FormulaPredicate
+                            ( PrefixPredicate "Betw" 3 )
+                            ( ExprVar
+                                ( NamedVar "a" ) :|
+                                [ ExprVar
+                                    ( NamedVar "b" )
+                                , ExprVar
+                                    ( NamedVar "c" )
+                                ]
+                            )
+                        )
+                    )
+                    ( StmtFormula
+                        ( FormulaPredicate
+                            ( PrefixPredicate "Cong" 4 )
+                            ( ExprVar
+                                ( NamedVar "b" ) :|
+                                [ ExprVar
+                                    ( NamedVar "c" )
+                                , ExprVar
+                                    ( NamedVar "d" )
+                                , ExprVar
+                                    ( NamedVar "e" )
+                                ]
+                            )
+                        )
+                    )
+                )
+            )
+        )
+    )
+, BlockDefn
+    ( SourcePos
+        { sourceName = "test/examples/geometry.tex"
+        , sourceLine = Pos 26
+        , sourceColumn = Pos 1
+        }
+    )
+    ( Marker "ofs" )
+    ( Defn
+        [ AsmLetNoun
+            ( NamedVar "x" :|
+                [ NamedVar "y"
+                , NamedVar "z"
+                , NamedVar "r"
+                , NamedVar "u"
+                , NamedVar "v"
+                , NamedVar "w"
+                , NamedVar "p"
+                ]
+            ) NounPhrase ( [] )
+            ( Noun
+                ( SgPl
+                    { sg =
+                        [ Just
+                            ( Word "point" )
+                        ]
+                    , pl =
+                        [ Just
+                            ( Word "points" )
+                        ]
+                    }
+                ) []
+            ) ( Nothing ) ( [] ) ( Nothing )
+        ]
+        ( DefnSymbolicPredicate
+            ( PrefixPredicate "OFS" 8 )
+            ( NamedVar "x" :|
+                [ NamedVar "y"
+                , NamedVar "z"
+                , NamedVar "r"
+                , NamedVar "u"
+                , NamedVar "v"
+                , NamedVar "w"
+                , NamedVar "p"
+                ]
+            )
+        )
+        ( StmtConnected Conjunction
+            ( StmtFormula
+                ( Connected Conjunction
+                    ( FormulaPredicate
+                        ( PrefixPredicate "Betw" 3 )
+                        ( ExprVar
+                            ( NamedVar "x" ) :|
+                            [ ExprVar
+                                ( NamedVar "y" )
+                            , ExprVar
+                                ( NamedVar "z" )
+                            ]
+                        )
+                    )
+                    ( FormulaPredicate
+                        ( PrefixPredicate "Betw" 3 )
+                        ( ExprVar
+                            ( NamedVar "u" ) :|
+                            [ ExprVar
+                                ( NamedVar "v" )
+                            , ExprVar
+                                ( NamedVar "w" )
+                            ]
+                        )
+                    )
+                )
+            )
+            ( StmtFormula
+                ( Connected Conjunction
+                    ( Connected Conjunction
+                        ( Connected Conjunction
+                            ( FormulaPredicate
+                                ( PrefixPredicate "Cong" 4 )
+                                ( ExprVar
+                                    ( NamedVar "x" ) :|
+                                    [ ExprVar
+                                        ( NamedVar "y" )
+                                    , ExprVar
+                                        ( NamedVar "u" )
+                                    , ExprVar
+                                        ( NamedVar "v" )
+                                    ]
+                                )
+                            )
+                            ( FormulaPredicate
+                                ( PrefixPredicate "Cong" 4 )
+                                ( ExprVar
+                                    ( NamedVar "y" ) :|
+                                    [ ExprVar
+                                        ( NamedVar "z" )
+                                    , ExprVar
+                                        ( NamedVar "v" )
+                                    , ExprVar
+                                        ( NamedVar "w" )
+                                    ]
+                                )
+                            )
+                        )
+                        ( FormulaPredicate
+                            ( PrefixPredicate "Cong" 4 )
+                            ( ExprVar
+                                ( NamedVar "x" ) :|
+                                [ ExprVar
+                                    ( NamedVar "r" )
+                                , ExprVar
+                                    ( NamedVar "u" )
+                                , ExprVar
+                                    ( NamedVar "p" )
+                                ]
+                            )
+                        )
+                    )
+                    ( FormulaPredicate
+                        ( PrefixPredicate "Cong" 4 )
+                        ( ExprVar
+                            ( NamedVar "y" ) :|
+                            [ ExprVar
+                                ( NamedVar "r" )
+                            , ExprVar
+                                ( NamedVar "v" )
+                            , ExprVar
+                                ( NamedVar "p" )
+                            ]
+                        )
+                    )
+                )
+            )
+        )
+    )
+, BlockAxiom
+    ( SourcePos
+        { sourceName = "test/examples/geometry.tex"
+        , sourceLine = Pos 39
+        , sourceColumn = Pos 1
+        }
+    )
+    ( Marker "five_segment" )
+    ( Axiom
+        [ AsmLetNoun
+            ( NamedVar "a" :|
+                [ NamedVar "b"
+                , NamedVar "c"
+                , NamedVar "d"
+                , NamedVar "aprime"
+                , NamedVar "bprime"
+                , NamedVar "cprime"
+                , NamedVar "dprime"
+                ]
+            ) NounPhrase ( [] )
+            ( Noun
+                ( SgPl
+                    { sg =
+                        [ Just
+                            ( Word "point" )
+                        ]
+                    , pl =
+                        [ Just
+                            ( Word "points" )
+                        ]
+                    }
+                ) []
+            ) ( Nothing ) ( [] ) ( Nothing )
+        ]
+        ( StmtConnected Implication
+            ( StmtConnected Conjunction
+                ( StmtFormula
+                    ( FormulaPredicate
+                        ( PrefixPredicate "OFS" 8 )
+                        ( ExprVar
+                            ( NamedVar "a" ) :|
+                            [ ExprVar
+                                ( NamedVar "b" )
+                            , ExprVar
+                                ( NamedVar "c" )
+                            , ExprVar
+                                ( NamedVar "d" )
+                            , ExprVar
+                                ( NamedVar "aprime" )
+                            , ExprVar
+                                ( NamedVar "bprime" )
+                            , ExprVar
+                                ( NamedVar "cprime" )
+                            , ExprVar
+                                ( NamedVar "dprime" )
+                            ]
+                        )
+                    )
+                )
+                ( StmtFormula
+                    ( FormulaChain
+                        ( ChainBase
+                            ( ExprVar
+                                ( NamedVar "a" ) :| []
+                            ) Positive
+                            ( RelationSymbol
+                                ( Command "neq" )
+                            )
+                            ( ExprVar
+                                ( NamedVar "b" ) :| []
+                            )
+                        )
+                    )
+                )
+            )
+            ( StmtFormula
+                ( FormulaPredicate
+                    ( PrefixPredicate "Cong" 4 )
+                    ( ExprVar
+                        ( NamedVar "c" ) :|
+                        [ ExprVar
+                            ( NamedVar "d" )
+                        , ExprVar
+                            ( NamedVar "cprime" )
+                        , ExprVar
+                            ( NamedVar "dprime" )
+                        ]
+                    )
+                )
+            )
+        )
+    )
+, BlockAxiom
+    ( SourcePos
+        { sourceName = "test/examples/geometry.tex"
+        , sourceLine = Pos 46
+        , sourceColumn = Pos 1
+        }
+    )
+    ( Marker "betw_id" )
+    ( Axiom
+        [ AsmLetNoun
+            ( NamedVar "a" :|
+                [ NamedVar "b" ]
+            ) NounPhrase ( [] )
+            ( Noun
+                ( SgPl
+                    { sg =
+                        [ Just
+                            ( Word "point" )
+                        ]
+                    , pl =
+                        [ Just
+                            ( Word "points" )
+                        ]
+                    }
+                ) []
+            ) ( Nothing ) ( [] ) ( Nothing )
+        ]
+        ( StmtConnected Implication
+            ( StmtFormula
+                ( FormulaPredicate
+                    ( PrefixPredicate "Betw" 3 )
+                    ( ExprVar
+                        ( NamedVar "a" ) :|
+                        [ ExprVar
+                            ( NamedVar "b" )
+                        , ExprVar
+                            ( NamedVar "a" )
+                        ]
+                    )
+                )
+            )
+            ( StmtFormula
+                ( FormulaChain
+                    ( ChainBase
+                        ( ExprVar
+                            ( NamedVar "a" ) :| []
+                        ) Positive
+                        ( RelationSymbol
+                            ( Symbol "=" )
+                        )
+                        ( ExprVar
+                            ( NamedVar "b" ) :| []
+                        )
+                    )
+                )
+            )
+        )
+    )
+, BlockAxiom
+    ( SourcePos
+        { sourceName = "test/examples/geometry.tex"
+        , sourceLine = Pos 52
+        , sourceColumn = Pos 1
+        }
+    )
+    ( Marker "innerpasch" )
+    ( Axiom
+        [ AsmLetNoun
+            ( NamedVar "x" :|
+                [ NamedVar "y"
+                , NamedVar "z"
+                , NamedVar "u"
+                , NamedVar "v"
+                , NamedVar "w"
+                ]
+            ) NounPhrase ( [] )
+            ( Noun
+                ( SgPl
+                    { sg =
+                        [ Just
+                            ( Word "point" )
+                        ]
+                    , pl =
+                        [ Just
+                            ( Word "points" )
+                        ]
+                    }
+                ) []
+            ) ( Nothing ) ( [] ) ( Nothing )
+        ]
+        ( StmtConnected Implication
+            ( StmtConnected Conjunction
+                ( StmtFormula
+                    ( FormulaPredicate
+                        ( PrefixPredicate "Betw" 3 )
+                        ( ExprVar
+                            ( NamedVar "x" ) :|
+                            [ ExprVar
+                                ( NamedVar "u" )
+                            , ExprVar
+                                ( NamedVar "z" )
+                            ]
+                        )
+                    )
+                )
+                ( StmtFormula
+                    ( FormulaPredicate
+                        ( PrefixPredicate "Betw" 3 )
+                        ( ExprVar
+                            ( NamedVar "y" ) :|
+                            [ ExprVar
+                                ( NamedVar "v" )
+                            , ExprVar
+                                ( NamedVar "z" )
+                            ]
+                        )
+                    )
+                )
+            )
+            ( StmtExists NounPhrase ( [] )
+                ( Noun
+                    ( SgPl
+                        { sg =
+                            [ Just
+                                ( Word "point" )
+                            ]
+                        , pl =
+                            [ Just
+                                ( Word "points" )
+                            ]
+                        }
+                    ) []
+                )
+                (
+                    [ NamedVar "w" ]
+                ) ( [] )
+                ( Just
+                    ( StmtConnected Conjunction
+                        ( StmtFormula
+                            ( FormulaPredicate
+                                ( PrefixPredicate "Betw" 3 )
+                                ( ExprVar
+                                    ( NamedVar "u" ) :|
+                                    [ ExprVar
+                                        ( NamedVar "w" )
+                                    , ExprVar
+                                        ( NamedVar "y" )
+                                    ]
+                                )
+                            )
+                        )
+                        ( StmtFormula
+                            ( FormulaPredicate
+                                ( PrefixPredicate "Betw" 3 )
+                                ( ExprVar
+                                    ( NamedVar "v" ) :|
+                                    [ ExprVar
+                                        ( NamedVar "w" )
+                                    , ExprVar
+                                        ( NamedVar "x" )
+                                    ]
+                                )
+                            )
+                        )
+                    )
+                )
+            )
+        )
+    )
+, BlockAxiom
+    ( SourcePos
+        { sourceName = "test/examples/geometry.tex"
+        , sourceLine = Pos 66
+        , sourceColumn = Pos 1
+        }
+    )
+    ( Marker "upperdim" )
+    ( Axiom
+        [ AsmLetNoun
+            ( NamedVar "x" :|
+                [ NamedVar "y"
+                , NamedVar "z"
+                , NamedVar "u"
+                , NamedVar "v"
+                ]
+            ) NounPhrase ( [] )
+            ( Noun
+                ( SgPl
+                    { sg =
+                        [ Just
+                            ( Word "point" )
+                        ]
+                    , pl =
+                        [ Just
+                            ( Word "points" )
+                        ]
+                    }
+                ) []
+            ) ( Nothing ) ( [] ) ( Nothing )
+        ]
+        ( StmtConnected Implication
+            ( StmtConnected Conjunction
+                ( StmtFormula
+                    ( FormulaPredicate
+                        ( PrefixPredicate "Cong" 4 )
+                        ( ExprVar
+                            ( NamedVar "x" ) :|
+                            [ ExprVar
+                                ( NamedVar "u" )
+                            , ExprVar
+                                ( NamedVar "x" )
+                            , ExprVar
+                                ( NamedVar "v" )
+                            ]
+                        )
+                    )
+                )
+                ( StmtConnected Conjunction
+                    ( StmtFormula
+                        ( FormulaPredicate
+                            ( PrefixPredicate "Cong" 4 )
+                            ( ExprVar
+                                ( NamedVar "y" ) :|
+                                [ ExprVar
+                                    ( NamedVar "u" )
+                                , ExprVar
+                                    ( NamedVar "y" )
+                                , ExprVar
+                                    ( NamedVar "v" )
+                                ]
+                            )
+                        )
+                    )
+                    ( StmtConnected Conjunction
+                        ( StmtFormula
+                            ( FormulaPredicate
+                                ( PrefixPredicate "Cong" 4 )
+                                ( ExprVar
+                                    ( NamedVar "z" ) :|
+                                    [ ExprVar
+                                        ( NamedVar "u" )
+                                    , ExprVar
+                                        ( NamedVar "z" )
+                                    , ExprVar
+                                        ( NamedVar "v" )
+                                    ]
+                                )
+                            )
+                        )
+                        ( StmtFormula
+                            ( FormulaChain
+                                ( ChainBase
+                                    ( ExprVar
+                                        ( NamedVar "u" ) :| []
+                                    ) Positive
+                                    ( RelationSymbol
+                                        ( Command "neq" )
+                                    )
+                                    ( ExprVar
+                                        ( NamedVar "v" ) :| []
+                                    )
+                                )
+                            )
+                        )
+                    )
+                )
+            )
+            ( StmtVerbPhrase
+                ( TermExpr
+                    ( ExprVar
+                        ( NamedVar "x" )
+                    ) :| []
+                )
+                ( VPAdj
+                    ( Adj
+                        [ Just
+                            ( Word "collinear" )
+                        , Just
+                            ( Word "with" )
+                        , Nothing
+                        , Just
+                            ( Word "and" )
+                        , Nothing
+                        ]
+                        [ TermExpr
+                            ( ExprVar
+                                ( NamedVar "y" )
+                            )
+                        , TermExpr
+                            ( ExprVar
+                                ( NamedVar "z" )
+                            )
+                        ] :| []
+                    )
+                )
+            )
+        )
+    )
+, BlockLemma
+    ( SourcePos
+        { sourceName = "test/examples/geometry.tex"
+        , sourceLine = Pos 82
+        , sourceColumn = Pos 1
+        }
+    )
+    ( Marker "cong_refl" )
+    ( Lemma
+        [ AsmLetNoun
+            ( NamedVar "a" :|
+                [ NamedVar "b" ]
+            ) NounPhrase ( [] )
+            ( Noun
+                ( SgPl
+                    { sg =
+                        [ Just
+                            ( Word "point" )
+                        ]
+                    , pl =
+                        [ Just
+                            ( Word "points" )
+                        ]
+                    }
+                ) []
+            ) ( Nothing ) ( [] ) ( Nothing )
+        ]
+        ( StmtFormula
+            ( FormulaPredicate
+                ( PrefixPredicate "Cong" 4 )
+                ( ExprVar
+                    ( NamedVar "a" ) :|
+                    [ ExprVar
+                        ( NamedVar "b" )
+                    , ExprVar
+                        ( NamedVar "a" )
+                    , ExprVar
+                        ( NamedVar "b" )
+                    ]
+                )
+            )
+        )
+    )
+, BlockLemma
+    ( SourcePos
+        { sourceName = "test/examples/geometry.tex"
+        , sourceLine = Pos 88
+        , sourceColumn = Pos 1
+        }
+    )
+    ( Marker "cong_sym" )
+    ( Lemma
+        [ AsmLetNoun
+            ( NamedVar "a" :|
+                [ NamedVar "b"
+                , NamedVar "c"
+                , NamedVar "d"
+                ]
+            ) NounPhrase ( [] )
+            ( Noun
+                ( SgPl
+                    { sg =
+                        [ Just
+                            ( Word "point" )
+                        ]
+                    , pl =
+                        [ Just
+                            ( Word "points" )
+                        ]
+                    }
+                ) []
+            ) ( Nothing ) ( [] ) ( Nothing )
+        , AsmSuppose
+            ( StmtFormula
+                ( FormulaPredicate
+                    ( PrefixPredicate "Cong" 4 )
+                    ( ExprVar
+                        ( NamedVar "a" ) :|
+                        [ ExprVar
+                            ( NamedVar "b" )
+                        , ExprVar
+                            ( NamedVar "c" )
+                        , ExprVar
+                            ( NamedVar "d" )
+                        ]
+                    )
+                )
+            )
+        ]
+        ( StmtFormula
+            ( FormulaPredicate
+                ( PrefixPredicate "Cong" 4 )
+                ( ExprVar
+                    ( NamedVar "c" ) :|
+                    [ ExprVar
+                        ( NamedVar "d" )
+                    , ExprVar
+                        ( NamedVar "a" )
+                    , ExprVar
+                        ( NamedVar "b" )
+                    ]
+                )
+            )
+        )
+    )
+, BlockLemma
+    ( SourcePos
+        { sourceName = "test/examples/geometry.tex"
+        , sourceLine = Pos 95
+        , sourceColumn = Pos 1
+        }
+    )
+    ( Marker "cong_transitive" )
+    ( Lemma
+        [ AsmLetNoun
+            ( NamedVar "a" :|
+                [ NamedVar "b"
+                , NamedVar "c"
+                , NamedVar "d"
+                , NamedVar "e"
+                , NamedVar "f"
+                ]
+            ) NounPhrase ( [] )
+            ( Noun
+                ( SgPl
+                    { sg =
+                        [ Just
+                            ( Word "point" )
+                        ]
+                    , pl =
+                        [ Just
+                            ( Word "points" )
+                        ]
+                    }
+                ) []
+            ) ( Nothing ) ( [] ) ( Nothing )
+        ]
+        ( StmtConnected Implication
+            ( StmtConnected Conjunction
+                ( StmtFormula
+                    ( FormulaPredicate
+                        ( PrefixPredicate "Cong" 4 )
+                        ( ExprVar
+                            ( NamedVar "a" ) :|
+                            [ ExprVar
+                                ( NamedVar "b" )
+                            , ExprVar
+                                ( NamedVar "c" )
+                            , ExprVar
+                                ( NamedVar "d" )
+                            ]
+                        )
+                    )
+                )
+                ( StmtFormula
+                    ( FormulaPredicate
+                        ( PrefixPredicate "Cong" 4 )
+                        ( ExprVar
+                            ( NamedVar "c" ) :|
+                            [ ExprVar
+                                ( NamedVar "d" )
+                            , ExprVar
+                                ( NamedVar "e" )
+                            , ExprVar
+                                ( NamedVar "f" )
+                            ]
+                        )
+                    )
+                )
+            )
+            ( StmtFormula
+                ( FormulaPredicate
+                    ( PrefixPredicate "Cong" 4 )
+                    ( ExprVar
+                        ( NamedVar "a" ) :|
+                        [ ExprVar
+                            ( NamedVar "b" )
+                        , ExprVar
+                            ( NamedVar "e" )
+                        , ExprVar
+                            ( NamedVar "f" )
+                        ]
+                    )
+                )
+            )
+        )
+    )
+, BlockLemma
+    ( SourcePos
+        { sourceName = "test/examples/geometry.tex"
+        , sourceLine = Pos 102
+        , sourceColumn = Pos 1
+        }
+    )
+    ( Marker "cong_shuffle_left" )
+    ( Lemma
+        [ AsmLetNoun
+            ( NamedVar "a" :|
+                [ NamedVar "b"
+                , NamedVar "c"
+                , NamedVar "d"
+                ]
+            ) NounPhrase ( [] )
+            ( Noun
+                ( SgPl
+                    { sg =
+                        [ Just
+                            ( Word "point" )
+                        ]
+                    , pl =
+                        [ Just
+                            ( Word "points" )
+                        ]
+                    }
+                ) []
+            ) ( Nothing ) ( [] ) ( Nothing )
+        ]
+        ( StmtConnected Implication
+            ( StmtFormula
+                ( FormulaPredicate
+                    ( PrefixPredicate "Cong" 4 )
+                    ( ExprVar
+                        ( NamedVar "a" ) :|
+                        [ ExprVar
+                            ( NamedVar "b" )
+                        , ExprVar
+                            ( NamedVar "c" )
+                        , ExprVar
+                            ( NamedVar "d" )
+                        ]
+                    )
+                )
+            )
+            ( StmtFormula
+                ( FormulaPredicate
+                    ( PrefixPredicate "Cong" 4 )
+                    ( ExprVar
+                        ( NamedVar "b" ) :|
+                        [ ExprVar
+                            ( NamedVar "a" )
+                        , ExprVar
+                            ( NamedVar "c" )
+                        , ExprVar
+                            ( NamedVar "d" )
+                        ]
+                    )
+                )
+            )
+        )
+    )
+, BlockLemma
+    ( SourcePos
+        { sourceName = "test/examples/geometry.tex"
+        , sourceLine = Pos 109
+        , sourceColumn = Pos 1
+        }
+    )
+    ( Marker "cong_shuffle_right" )
+    ( Lemma
+        [ AsmLetNoun
+            ( NamedVar "a" :|
+                [ NamedVar "b"
+                , NamedVar "c"
+                , NamedVar "d"
+                ]
+            ) NounPhrase ( [] )
+            ( Noun
+                ( SgPl
+                    { sg =
+                        [ Just
+                            ( Word "point" )
+                        ]
+                    , pl =
+                        [ Just
+                            ( Word "points" )
+                        ]
+                    }
+                ) []
+            ) ( Nothing ) ( [] ) ( Nothing )
+        ]
+        ( StmtConnected Implication
+            ( StmtFormula
+                ( FormulaPredicate
+                    ( PrefixPredicate "Cong" 4 )
+                    ( ExprVar
+                        ( NamedVar "a" ) :|
+                        [ ExprVar
+                            ( NamedVar "b" )
+                        , ExprVar
+                            ( NamedVar "c" )
+                        , ExprVar
+                            ( NamedVar "d" )
+                        ]
+                    )
+                )
+            )
+            ( StmtFormula
+                ( FormulaPredicate
+                    ( PrefixPredicate "Cong" 4 )
+                    ( ExprVar
+                        ( NamedVar "b" ) :|
+                        [ ExprVar
+                            ( NamedVar "a" )
+                        , ExprVar
+                            ( NamedVar "d" )
+                        , ExprVar
+                            ( NamedVar "c" )
+                        ]
+                    )
+                )
+            )
+        )
+    )
+, BlockLemma
+    ( SourcePos
+        { sourceName = "test/examples/geometry.tex"
+        , sourceLine = Pos 116
+        , sourceColumn = Pos 1
+        }
+    )
+    ( Marker "cong_zero" )
+    ( Lemma
+        [ AsmLetNoun
+            ( NamedVar "a" :|
+                [ NamedVar "b" ]
+            ) NounPhrase ( [] )
+            ( Noun
+                ( SgPl
+                    { sg =
+                        [ Just
+                            ( Word "point" )
+                        ]
+                    , pl =
+                        [ Just
+                            ( Word "points" )
+                        ]
+                    }
+                ) []
+            ) ( Nothing ) ( [] ) ( Nothing )
+        ]
+        ( StmtFormula
+            ( FormulaPredicate
+                ( PrefixPredicate "Cong" 4 )
+                ( ExprVar
+                    ( NamedVar "a" ) :|
+                    [ ExprVar
+                        ( NamedVar "a" )
+                    , ExprVar
+                        ( NamedVar "b" )
+                    , ExprVar
+                        ( NamedVar "b" )
+                    ]
+                )
+            )
+        )
+    )
+]

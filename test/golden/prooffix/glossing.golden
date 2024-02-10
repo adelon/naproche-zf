@@ -1,0 +1,55 @@
+[ BlockLemma
+    ( SourcePos
+        { sourceName = "test/examples/prooffix.tex"
+        , sourceLine = Pos 1
+        , sourceColumn = Pos 1
+        }
+    )
+    ( Marker "assumetest" )
+    ( Lemma []
+        ( Quantified Universally
+            ( Scope
+                ( TermSymbol
+                    ( SymbolPredicate
+                        ( PredicateRelation
+                            ( Symbol "=" )
+                        )
+                    )
+                    [ TermVar
+                        ( B
+                            ( NamedVar "x" )
+                        )
+                    , TermVar
+                        ( B
+                            ( NamedVar "x" )
+                        )
+                    ]
+                )
+            )
+        )
+    )
+, BlockProof
+    ( SourcePos
+        { sourceName = "test/examples/prooffix.tex"
+        , sourceLine = Pos 4
+        , sourceColumn = Pos 1
+        }
+    )
+    ( Fix
+        ( NamedVar "x" :| [] ) ( PropositionalConstant IsTop )
+        ( Have
+            ( TermSymbol
+                ( SymbolPredicate
+                    ( PredicateRelation
+                        ( Symbol "=" )
+                    )
+                )
+                [ TermVar
+                    ( NamedVar "x" )
+                , TermVar
+                    ( NamedVar "x" )
+                ]
+            ) JustificationEmpty ( Qed JustificationEmpty )
+        )
+    )
+]

@@ -1,0 +1,44 @@
+\import{set.tex}
+\import{set/bipartition.tex}
+\import{topology/topological-space.tex}
+
+\subsection{Disconnections}
+
+\begin{definition}\label{disconnections}
+    $\disconnections{X} = \{ p\in\bipartitions{\carrier[X]} \mid \text{$\fst{p},\snd{p}\in\opens[X]$} \}$.
+\end{definition}
+
+\begin{abbreviation}\label{is_a_disconnection}
+    $D$ is a disconnection of $X$ iff $D\in\disconnections{X}$.
+\end{abbreviation}
+
+\begin{definition}\label{disconnected}
+    $X$ is disconnected iff there exist $U, V\in\opens[X]$
+    such that  $\carrier[X]$ is partitioned by $U$ and $V$.
+\end{definition}
+
+\begin{proposition}\label{disconnection_from_disconnected}
+    Let $X$ be a topological space.
+    Suppose $X$ is disconnected.
+    Then there exists a disconnection of $X$.
+\end{proposition}
+\begin{proof}
+    Take $U, V\in\opens[X]$ such that $\carrier[X]$ is partitioned by $U$ and $V$
+        by \cref{disconnected}.
+    Then $(U, V)$ is a bipartition of $\carrier[X]$.
+    Thus $(U, V)$ is a disconnection of $X$ by \cref{disconnections,times_proj_elim,times_tuple_intro}.
+\end{proof}
+
+\begin{proposition}\label{disconnected_from_disconnection}
+    Let $X$ be a topological space.
+    Let $D$ be a disconnection of $X$.
+    Then $X$ is disconnected.
+\end{proposition}
+\begin{proof}
+    $\fst{D}, \snd{D}\in\opens[X]$.
+    $\carrier[X]$ is partitioned by $\fst{D}$ and $\snd{D}$.
+\end{proof}
+
+\begin{abbreviation}\label{connected}
+    $X$ is connected iff $X$ is not disconnected.
+\end{abbreviation}

@@ -1,0 +1,168 @@
+[ BlockLemma
+    ( SourcePos
+        { sourceName = "test/examples/byRef.tex"
+        , sourceLine = Pos 1
+        , sourceColumn = Pos 1
+        }
+    )
+    ( Marker "first_proposition" )
+    ( Lemma []
+        ( StmtFormula
+            ( FormulaChain
+                ( ChainBase
+                    ( ExprVar
+                        ( NamedVar "a" ) :| []
+                    ) Positive
+                    ( RelationSymbol
+                        ( Symbol "=" )
+                    )
+                    ( ExprVar
+                        ( NamedVar "a" ) :| []
+                    )
+                )
+            )
+        )
+    )
+, BlockLemma
+    ( SourcePos
+        { sourceName = "test/examples/byRef.tex"
+        , sourceLine = Pos 5
+        , sourceColumn = Pos 1
+        }
+    )
+    ( Marker "second_proposition" )
+    ( Lemma []
+        ( StmtFormula
+            ( FormulaChain
+                ( ChainBase
+                    ( ExprVar
+                        ( NamedVar "b" ) :| []
+                    ) Positive
+                    ( RelationSymbol
+                        ( Symbol "=" )
+                    )
+                    ( ExprVar
+                        ( NamedVar "b" ) :| []
+                    )
+                )
+            )
+        )
+    )
+, BlockLemma
+    ( SourcePos
+        { sourceName = "test/examples/byRef.tex"
+        , sourceLine = Pos 9
+        , sourceColumn = Pos 1
+        }
+    )
+    ( Marker "third_proposition" )
+    ( Lemma []
+        ( StmtFormula
+            ( FormulaChain
+                ( ChainBase
+                    ( ExprVar
+                        ( NamedVar "c" ) :| []
+                    ) Positive
+                    ( RelationSymbol
+                        ( Symbol "=" )
+                    )
+                    ( ExprVar
+                        ( NamedVar "c" ) :| []
+                    )
+                )
+            )
+        )
+    )
+, BlockProof
+    ( SourcePos
+        { sourceName = "test/examples/byRef.tex"
+        , sourceLine = Pos 12
+        , sourceColumn = Pos 1
+        }
+    )
+    ( Qed
+        ( JustificationRef
+            ( Marker "first_proposition" :| [] )
+        )
+    )
+, BlockLemma
+    ( SourcePos
+        { sourceName = "test/examples/byRef.tex"
+        , sourceLine = Pos 16
+        , sourceColumn = Pos 1
+        }
+    )
+    ( Marker "fourth_proposition" )
+    ( Lemma []
+        ( StmtFormula
+            ( FormulaChain
+                ( ChainBase
+                    ( ExprVar
+                        ( NamedVar "e" ) :| []
+                    ) Positive
+                    ( RelationSymbol
+                        ( Symbol "=" )
+                    )
+                    ( ExprVar
+                        ( NamedVar "e" ) :| []
+                    )
+                )
+            )
+        )
+    )
+, BlockProof
+    ( SourcePos
+        { sourceName = "test/examples/byRef.tex"
+        , sourceLine = Pos 19
+        , sourceColumn = Pos 1
+        }
+    )
+    ( Have Nothing
+        ( SymbolicQuantified Universally
+            ( NamedVar "d" :| [] ) Unbounded Nothing
+            ( StmtFormula
+                ( FormulaChain
+                    ( ChainBase
+                        ( ExprVar
+                            ( NamedVar "d" ) :| []
+                        ) Positive
+                        ( RelationSymbol
+                            ( Symbol "=" )
+                        )
+                        ( ExprVar
+                            ( NamedVar "d" ) :| []
+                        )
+                    )
+                )
+            )
+        )
+        ( JustificationRef
+            ( Marker "first_proposition" :| [] )
+        ) ( Qed JustificationEmpty )
+    )
+, BlockLemma
+    ( SourcePos
+        { sourceName = "test/examples/byRef.tex"
+        , sourceLine = Pos 23
+        , sourceColumn = Pos 1
+        }
+    )
+    ( Marker "fifth_proposition" )
+    ( Lemma []
+        ( StmtFormula
+            ( FormulaChain
+                ( ChainBase
+                    ( ExprVar
+                        ( NamedVar "f" ) :| []
+                    ) Positive
+                    ( RelationSymbol
+                        ( Symbol "=" )
+                    )
+                    ( ExprVar
+                        ( NamedVar "f" ) :| []
+                    )
+                )
+            )
+        )
+    )
+]

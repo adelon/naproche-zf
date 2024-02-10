@@ -1,0 +1,74 @@
+% Dummy setup to test the syntax and the generated proof tasks
+
+\begin{definition}\label{subseteq}
+    $A\subseteq B$ iff $A = B$.
+\end{definition}
+
+\begin{definition}\label{pow}
+    $\pow{A} = \emptyset$.
+\end{definition}
+
+\begin{definition}\label{cons}
+    $\cons{a}{B} = \emptyset$.
+\end{definition}
+
+\begin{definition}\label{times}
+    $A\times B = \emptyset$.
+\end{definition}
+
+\begin{definition}\label{fld}
+    $\fld{R} = \emptyset$.
+\end{definition}
+
+\begin{definition}\label{preimg}
+    $\preimg{R}{A} = \emptyset$.
+\end{definition}
+
+\begin{axiom}\label{lmao}
+    $x\in\emptyset$.
+\end{axiom}
+
+\begin{inductive}\label{fin}
+    Define $\fin{A}\subseteq\pow{A}$ inductively as follows.
+    \begin{enumerate}
+        \item $\emptyset \in\fin{A}$.
+        \item If $a\in A$ and $B\in\fin{A}$, then $\cons{a}{B}\in\fin{A}$.
+    \end{enumerate}
+\end{inductive}
+
+\begin{lemma}\label{fin_mono}
+    Let $A, B$ be sets.
+    Suppose $A\subseteq B$.
+    Then $\fin{A}\subseteq\fin{B}$.
+\end{lemma}
+
+\begin{inductive}\label{tracl}
+    Define $\tracl{R}\subseteq\fld{R}\times\fld{R}$ inductively as follows.
+    \begin{enumerate}
+        \item If $w\in R$, then $w\in\tracl{R}$.
+        \item If $(a, b)\in\tracl{R}$ and $(b,c)\in R$, then $(a,c)\in\tracl{R}$.
+    \end{enumerate}
+\end{inductive}
+
+\begin{inductive}\label{quasirefltracl}
+    Define $\qrefltracl{R}\subseteq\fld{R}\times\fld{R}$ inductively as follows.
+    \begin{enumerate}
+        \item If $a\in\fld{R}$, then $(a,a)\in\qrefltracl{R}$.
+        \item If $(a, b)\in\qrefltracl{R}$ and $(b,c)\in R$, then $(a,c)\in\qrefltracl{R}$.
+    \end{enumerate}
+\end{inductive}
+
+\begin{inductive}\label{refltracl}
+    Define $\refltracl{A}{R}\subseteq A\times A$ inductively as follows.
+    \begin{enumerate}
+        \item If $a\in A$, then $(a,a)\in\refltracl{A}{R}$.
+        \item If $(a, b)\in\refltracl{A}{R}$ and $(b,c)\in R$, then $(a,c)\in\refltracl{A}{R}$.
+    \end{enumerate}
+\end{inductive}
+
+\begin{inductive}\label{acc}
+    Define $\acc{R}\subseteq \fld{R}$ inductively as follows.
+    \begin{enumerate}
+        \item If $a\in\fld{R}$ and $\preimg{R}{\{a\}}\in\pow{\acc{R}}$, then $a\in\acc{R}$.
+    \end{enumerate}
+\end{inductive}

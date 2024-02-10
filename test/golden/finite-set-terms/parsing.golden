@@ -1,0 +1,124 @@
+[ BlockAxiom
+    ( SourcePos
+        { sourceName = "test/examples/finite-set-terms.tex"
+        , sourceLine = Pos 1
+        , sourceColumn = Pos 1
+        }
+    )
+    ( Marker "cons" )
+    ( Axiom []
+        ( StmtConnected Equivalence
+            ( StmtFormula
+                ( FormulaChain
+                    ( ChainBase
+                        ( ExprVar
+                            ( NamedVar "x" ) :| []
+                        ) Positive
+                        ( RelationSymbol
+                            ( Command "in" )
+                        )
+                        ( ExprOp
+                            [ Just
+                                ( Command "cons" )
+                            , Just InvisibleBraceL
+                            , Nothing
+                            , Just InvisibleBraceR
+                            , Just InvisibleBraceL
+                            , Nothing
+                            , Just InvisibleBraceR
+                            ]
+                            [ ExprVar
+                                ( NamedVar "y" )
+                            , ExprVar
+                                ( NamedVar "X" )
+                            ] :| []
+                        )
+                    )
+                )
+            )
+            ( StmtConnected Disjunction
+                ( StmtFormula
+                    ( FormulaChain
+                        ( ChainBase
+                            ( ExprVar
+                                ( NamedVar "x" ) :| []
+                            ) Positive
+                            ( RelationSymbol
+                                ( Symbol "=" )
+                            )
+                            ( ExprVar
+                                ( NamedVar "y" ) :| []
+                            )
+                        )
+                    )
+                )
+                ( StmtFormula
+                    ( FormulaChain
+                        ( ChainBase
+                            ( ExprVar
+                                ( NamedVar "x" ) :| []
+                            ) Positive
+                            ( RelationSymbol
+                                ( Command "in" )
+                            )
+                            ( ExprVar
+                                ( NamedVar "X" ) :| []
+                            )
+                        )
+                    )
+                )
+            )
+        )
+    )
+, BlockDefn
+    ( SourcePos
+        { sourceName = "test/examples/finite-set-terms.tex"
+        , sourceLine = Pos 5
+        , sourceColumn = Pos 1
+        }
+    )
+    ( Marker "unit" )
+    ( DefnOp
+        ( SymbolPattern
+            [ Just
+                ( Command "unit" )
+            ] []
+        )
+        ( ExprFiniteSet
+            ( ExprOp
+                [ Just
+                    ( Command "emptyset" )
+                ] [] :| []
+            )
+        )
+    )
+, BlockLemma
+    ( SourcePos
+        { sourceName = "test/examples/finite-set-terms.tex"
+        , sourceLine = Pos 9
+        , sourceColumn = Pos 1
+        }
+    )
+    ( Marker "emptyset_in_unit" )
+    ( Lemma []
+        ( StmtFormula
+            ( FormulaChain
+                ( ChainBase
+                    ( ExprOp
+                        [ Just
+                            ( Command "emptyset" )
+                        ] [] :| []
+                    ) Positive
+                    ( RelationSymbol
+                        ( Command "in" )
+                    )
+                    ( ExprOp
+                        [ Just
+                            ( Command "unit" )
+                        ] [] :| []
+                    )
+                )
+            )
+        )
+    )
+]

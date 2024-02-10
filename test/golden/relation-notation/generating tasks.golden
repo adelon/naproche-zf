@@ -1,0 +1,61 @@
+[ Task
+    { taskDirectness = Direct
+    , taskHypotheses = []
+    , taskConjectureLabel = Marker "mathrel_notation_test"
+    , taskConjecture = Connected Implication
+        ( TermSymbol
+            ( SymbolPredicate
+                ( PredicateRelation
+                    ( Command "in" )
+                )
+            )
+            [ TermSymbol
+                ( SymbolMixfix
+                    [ Just
+                        ( Command "pair" )
+                    , Just InvisibleBraceL
+                    , Nothing
+                    , Just InvisibleBraceR
+                    , Just InvisibleBraceL
+                    , Nothing
+                    , Just InvisibleBraceR
+                    ]
+                )
+                [ TermVar
+                    ( NamedVar "x" )
+                , TermVar
+                    ( NamedVar "y" )
+                ]
+            , TermVar
+                ( NamedVar "R" )
+            ]
+        )
+        ( TermSymbol
+            ( SymbolPredicate
+                ( PredicateRelation
+                    ( Command "in" )
+                )
+            )
+            [ TermSymbol
+                ( SymbolMixfix
+                    [ Just
+                        ( Command "pair" )
+                    , Just InvisibleBraceL
+                    , Nothing
+                    , Just InvisibleBraceR
+                    , Just InvisibleBraceL
+                    , Nothing
+                    , Just InvisibleBraceR
+                    ]
+                )
+                [ TermVar
+                    ( NamedVar "x" )
+                , TermVar
+                    ( NamedVar "y" )
+                ]
+            , TermVar
+                ( NamedVar "R" )
+            ]
+        )
+    }
+]

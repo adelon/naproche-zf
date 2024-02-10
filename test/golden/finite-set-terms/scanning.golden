@@ -1,0 +1,6 @@
+[ ScanFunctionSymbol
+    [ Just
+        ( Command "unit" )
+    ]
+    ( Marker "unit" )
+]

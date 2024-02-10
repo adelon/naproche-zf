@@ -1,0 +1,102 @@
+\import{relation.tex}
+\import{relation/properties.tex}
+\import{order/quasiorder.tex}
+
+% also called "(partial) ordering" or "partial order" to contrast with connex (i.e. "total") orders.
+\begin{abbreviation}\label{order}
+    $R$ is an order iff
+        $R$ is an antisymmetric quasiorder.
+\end{abbreviation}
+
+\begin{abbreviation}\label{order_on}
+    $R$ is an order on $A$ iff
+        $R$ is an antisymmetric quasiorder on $A$.
+\end{abbreviation}
+
+\begin{abbreviation}\label{strictorder}
+    $R$ is a strict order iff
+        $R$ is transitive and asymmetric.
+\end{abbreviation}
+
+\begin{struct}\label{orderedset}
+    An ordered set $X$ is a quasiordered set
+    such that
+    \begin{enumerate}
+        \item\label{orderedset_antisym} $\lt[X]$ is antisymmetric.
+    \end{enumerate}
+\end{struct}
+
+\begin{definition}\label{tostrictorder}
+    $\tostrictorder{R} = \{w\in R\mid \fst{w}\neq\snd{w}\}$.
+\end{definition}
+
+\begin{definition}\label{toorder}
+    $\toorder{A}{R} = R\union\identity{A}$.
+\end{definition}
+
+\begin{proposition}\label{tostrictorder_iff}
+    $(a,b)\in\tostrictorder{R}$ iff $(a,b)\in R$ and $a\neq b$.
+\end{proposition}
+\begin{proof}
+    Follows by \cref{tostrictorder,fst_eq,snd_eq}.
+\end{proof}
+
+\begin{proposition}\label{toorder_reflexive}
+    $\toorder{A}{R}$ is reflexive on $A$.
+\end{proposition}
+
+\begin{proposition}\label{toorder_intro}
+    Suppose $(a,b)\in R$.
+    Then $(a,b)\in\toorder{A}{R}$.
+\end{proposition}
+\begin{proof}
+    $R\subseteq\toorder{A}{R}$.
+\end{proof}
+
+\begin{proposition}\label{toorder_elim}
+    Suppose $(a,b)\in\toorder{A}{R}$.
+    Then $(a,b)\in R$ or $a = b$.
+\end{proposition}
+\begin{proof}
+    Follows by \cref{toorder,id,union_iff,upair_intro_right,tostrictorder_iff}.
+\end{proof}
+
+\begin{proposition}\label{toorder_iff}
+    $(a,b)\in\toorder{A}{R}$ iff $(a,b)\in R$ or $a = b\in A$.
+\end{proposition}
+
+\begin{proposition}\label{strictorder_from_order}
+    Suppose $R$ is an order.
+    Then $\tostrictorder{R}$ is a strict order.
+\end{proposition}
+\begin{proof}
+    $\tostrictorder{R}$ is asymmetric.
+    $\tostrictorder{R}$ is transitive.
+\end{proof}
+
+\begin{proposition}\label{order_from_strictorder}
+    Suppose $R$ is a strict order.
+    Suppose $R$ is a binary relation on $A$.
+    Then $\toorder{A}{R}$ is an order on $A$.
+\end{proposition}
+\begin{proof}
+    $\toorder{A}{R}$ is antisymmetric.
+    $\toorder{A}{R}$ is transitive by \cref{transitive,toorder_iff}.
+    $\toorder{A}{R}$ is reflexive on $A$.
+\end{proof}
+
+\begin{proposition}\label{subseteqrel_antisymmetric}
+    $\subseteqrel{A}$ is antisymmetric.
+\end{proposition}
+\begin{proof}
+    Follows by \cref{subseteqrel,antisymmetric,pair_eq_iff,subseteq_antisymmetric}.
+\end{proof}
+
+
+\begin{proposition}\label{subseteqrel_is_order}
+    $\subseteqrel{A}$ is an order on $A$.
+\end{proposition}
+\begin{proof}
+    $\subseteqrel{A}$ is a quasiorder on $A$ by \cref{subseteqrel_is_quasiorder}.
+    $\subseteqrel{A}$ is antisymmetric by \cref{subseteqrel_antisymmetric}.
+\end{proof}

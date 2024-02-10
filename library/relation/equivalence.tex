@@ -1,0 +1,271 @@
+\import{set.tex}
+\import{set/partition.tex}
+\import{relation.tex}
+\import{order/quasiorder.tex}
+
+
+\subsection{Equivalences}
+
+% Sometimes also called "restricted equivalence".
+\begin{abbreviation}\label{partialequivalence}
+    $E$ is a partial equivalence iff
+    $E$ is transitive and symmetric.
+\end{abbreviation}
+
+\begin{proposition}\label{partialequivalence_is_quasireflexive}
+    Let $E$ be a partial equivalence.
+    Then $E$ is quasireflexive.
+\end{proposition}
+
+\begin{abbreviation}\label{equivalence}
+    $E$ is an equivalence iff
+    $E$ is a symmetric quasiorder.
+\end{abbreviation}
+
+\begin{abbreviation}\label{equivalence_on}
+    $E$ is an equivalence on $A$ iff
+    $E$ is a symmetric quasiorder on $A$.
+\end{abbreviation}
+
+\begin{proposition}\label{inters_of_family_of_equivalences_is_equivalence}
+    Let $F$ be a family of relations.
+    Suppose every element of $F$ is an equivalence.
+    Then $\inters{F}$ is an equivalence.
+\end{proposition}
+\begin{proof}
+    $\inters{F}$ is quasireflexive by \cref{quasireflexive,inters_destr,inters_iff_forall}.
+    $\inters{F}$ is symmetric by \cref{symmetric,inters_iff_forall,inters_destr}.
+    $\inters{F}$ is transitive by \cref{transitive,inters_iff_forall,inters_destr}.
+\end{proof}
+
+\begin{proposition}\label{inters_of_family_of_equivalences_on_a_set_is_equivalence_on_that_set}
+    Let $F$ be an inhabited family of relations.
+    Suppose every element of $F$ is an equivalence on $A$.
+    Then $\inters{F}$ is an equivalence on $A$.
+\end{proposition}
+\begin{proof}
+    $\inters{F}$ is reflexive on $A$ by \cref{inters_of_family_of_reflexive_relations_is_reflexive}.
+    $\inters{F}$ is symmetric.
+    $\inters{F}$ is transitive.
+\end{proof}
+% NOTE: the union of a family of equivalence relations is not necessarily an
+% equivalence relation because a binary union of transitive relations is not
+% necessarily transitive.
+
+
+\subsubsection{Equivalence classes}
+
+\begin{abbreviation}\label{equiv_class}
+    $\equivalenceClass{E}{a} = \downward{E}{a}$.
+\end{abbreviation}
+
+\begin{abbreviation}\label{equivclass_abbr}
+    The $E$-equivalence class of $a$ is $\equivalenceClass{E}{a}$.
+\end{abbreviation}
+
+\begin{proposition}\label{equivclasses_inhabited}
+    Let $E$ be an equivalence.
+    Let $a\in \fld{E}$.
+    Then $a\in\equivalenceClass{E}{a}$.
+\end{proposition}
+\begin{proof}
+    $a\mathrel{E} a$ by \cref{reflexive_on,quasireflexive_implies_reflexive_on_fld}.
+\end{proof}
+
+\begin{proposition}\label{equivclasses_inhabited_equivalenceon}
+    Let $E$ be an equivalence on $A$.
+    Let $a\in A$.
+    Then $a\in\equivalenceClass{E}{a}$.
+\end{proposition}
+\begin{proof}
+    $a\mathrel{E} a$ by \cref{reflexive_on}.
+\end{proof}
+
+\begin{proposition}\label{equiv_implies_equivanlence_classes_eq}
+    Let $E$ be an equivalence on $A$.
+    Let $a, b\in A$.
+    Suppose $a\mathrel{E} b$.
+    Then $\equivalenceClass{E}{a} = \equivalenceClass{E}{b}$.
+\end{proposition}
+\begin{proof}
+    Follows by set extensionality.
+\end{proof}
+
+\begin{proposition}\label{equivclasses_eq_implies_equiv}
+    Let $E$ be an equivalence on $A$.
+    Let $a, b\in A$.
+    Suppose $\equivalenceClass{E}{a} = \equivalenceClass{E}{b}$.
+    Then $a\mathrel{E} b$.
+\end{proposition}
+
+\begin{proposition}\label{equiv_iff_equivclasses_eq}
+    Let $E$ be an equivalence on $A$.
+    Let $a, b\in A$.
+    Then $a\mathrel{E} b$ iff $\equivalenceClass{E}{a} = \equivalenceClass{E}{b}$.
+\end{proposition}
+
+\begin{proposition}\label{equivclasses_diseq_implies_disjoint}
+    Let $E$ be a partial equivalence.
+    Suppose $\equivalenceClass{E}{a}\neq \equivalenceClass{E}{b}$.
+    Then $\equivalenceClass{E}{a}$ is disjoint from $\equivalenceClass{E}{b}$.
+\end{proposition}
+\begin{proof}
+    Suppose not.
+    Take $c$ such that $c\in \equivalenceClass{E}{a},\equivalenceClass{E}{b}$.
+    Then $c\mathrel{E} a$ and
+         $c\mathrel{E} b$.
+    $E$ is symmetric.
+    Thus $a\mathrel{E} c$ by \hyperref[symmetric]{symmetry}.
+    $E$ is transitive.
+    Thus $a\mathrel{E} b$ by \hyperref[transitive]{transitivity}.
+    Then $b\mathrel{E} a$ by \hyperref[symmetric]{symmetry}.
+    %
+    Thus $a\in \equivalenceClass{E}{b}$ and $b\in \equivalenceClass{E}{a}$
+        by \cref{downward_closure_iff}.
+    Hence $\equivalenceClass{E}{a}\subseteq \equivalenceClass{E}{b}\subseteq \equivalenceClass{E}{a}$
+        by \cref{transitive_downward_subseteq}.
+    Contradiction by \cref{subseteq_antisymmetric}.
+\end{proof}
+
+\begin{corollary}\label{equivalence_equivclasses_diseq_implies_disjoint}
+    Let $E$ be an equivalence.
+    Suppose $\equivalenceClass{E}{a}\neq \equivalenceClass{E}{b}$.
+    Then $\equivalenceClass{E}{a}$ is disjoint from $\equivalenceClass{E}{b}$.
+\end{corollary}
+\begin{proof}
+    Follows by \cref{equivclasses_diseq_implies_disjoint}.
+\end{proof}
+
+\begin{corollary}\label{equivalenceon_equivclasses_diseq_implies_disjoint}
+    Let $E$ be an equivalence on $A$.
+    Suppose $\equivalenceClass{E}{a}\neq \equivalenceClass{E}{b}$.
+    Then $\equivalenceClass{E}{a}$ is disjoint from $\equivalenceClass{E}{b}$.
+\end{corollary}
+\begin{proof}
+    Follows by \cref{equivclasses_diseq_implies_disjoint}.
+\end{proof}
+
+
+\subsubsection{Quotients}
+
+\begin{definition}\label{quotient}
+    $\quotient{A}{E} = \{\equivalenceClass{E}{a}\mid a\in A\}$.
+\end{definition}
+
+%\begin{definition}\label{equivalenceclasses}
+%    $\equivalenceClasses{E} = \{\equivalenceClass{E}{a}\mid a\in\dom{E}\}$.
+%\end{definition}
+
+\begin{proposition}\label{quotient_emptyset}
+    $\quotient{\emptyset}{\emptyset} = \emptyset$.
+\end{proposition}
+
+
+\begin{proposition}\label{quotient_elems_disjoint}
+    Let $E$ be an equivalence on $A$.
+    Suppose $B,C\in\quotient{A}{E}$ and $B\neq C$.
+    Then $B$ is disjoint from $C$.
+\end{proposition}
+\begin{proof}
+    Take $b$ such that $B = \equivalenceClass{E}{b}$.
+    Take $c$ such that $C = \equivalenceClass{E}{c}$.
+    Then $B$ is disjoint from $C$ by \cref{equivalenceon_equivclasses_diseq_implies_disjoint}.
+\end{proof}
+
+\begin{proposition}\label{quotient_elems_inhabited}
+    Let $E$ be an equivalence on $A$.
+    Suppose $C\in\quotient{A}{E}$.
+    Then $C$ is inhabited.
+\end{proposition}
+\begin{proof}
+    Take $a\in A$ such that $C = \equivalenceClass{E}{a}$.
+    Then $a\in \equivalenceClass{E}{a}$.
+    $C$ is inhabited by \cref{quotient,inhabited,equivclasses_inhabited}.
+\end{proof}
+
+\begin{proposition}\label{quotient_elems_type}
+    Let $E$ be an equivalence on $A$.
+    Suppose $a\in C\in\quotient{A}{E}$.
+    Then $a\in A$.
+\end{proposition}
+\begin{proof}
+    Take $b\in A$ such that $C = \equivalenceClass{E}{b}$
+        by \cref{quotient}.
+    Then $a\mathrel{E} b$.
+    Thus $a\in A$ by \cref{times_tuple_elim,subseteq}.
+\end{proof}
+
+
+\begin{corollary}\label{quotient_notni_emptyset}
+    Let $E$ be an equivalence on $A$.
+    $\emptyset\notin\quotient{A}{E}$.
+\end{corollary}
+
+\begin{proposition}\label{quotient_partition}
+    Let $E$ be an equivalence on $A$.
+    $\quotient{A}{E}$ is a partition.
+\end{proposition}
+\begin{proof}
+    $\emptyset\notin\quotient{A}{E}$.
+    For all $B, C\in \quotient{A}{E}$ such that $B\neq C$ we have $B$ is disjoint from $C$.
+\end{proof}
+
+\begin{proposition}\label{quotient_partition_of}
+    Let $E$ be an equivalence on $A$.
+    $\quotient{A}{E}$ is a partition of $A$.
+\end{proposition}
+\begin{proof}
+    $\unions{(\quotient{A}{E})} = A$ by set extensionality.
+\end{proof}
+
+
+
+\begin{definition}\label{equivalence_from_partition}
+    $\equivfrompartition{P} = \{(a, b)\mid a\in A, b\in A\mid \exists C\in P.\ a, b\in C\}$.
+\end{definition}
+
+\begin{proposition}\label{equivalence_from_partition_intro}
+    Let $P$ be a partition of $A$.
+    Let $a,b\in A$.
+    Suppose $a,b\in C\in P$.
+    Then $a\mathrel{\equivfrompartition{P}} b$.
+\end{proposition}
+
+\begin{proposition}\label{equivalence_from_partition_reflexive}
+    Let $P$ be a partition of $A$.
+    $\equivfrompartition{P}$ is reflexive on $A$.
+\end{proposition}
+
+\begin{proposition}\label{equivalence_from_partition_symmetric}
+    Let $P$ be a partition.
+    $\equivfrompartition{P}$ is symmetric.
+\end{proposition}
+\begin{proof}
+    Follows by \cref{symmetric,equivalence_from_partition,notin_emptyset}.
+\end{proof}
+
+\begin{proposition}\label{equivalence_from_partition_transitive}
+    Let $P$ be a partition.
+    $\equivfrompartition{P}$ is transitive.
+\end{proposition}
+
+\begin{proposition}\label{equivalence_from_partition_is_equivalence}
+    Let $P$ be a partition of $A$.
+    $\equivfrompartition{P}$ is an equivalence on $A$.
+\end{proposition}
+
+\begin{proposition}\label{equivalence_from_quotient}
+    Let $E$ be an equivalence on $A$.
+    Then $\equivfrompartition{\quotient{A}{E}} = E$.
+\end{proposition}
+\begin{proof}
+    Follows by set extensionality.
+\end{proof}
+
+\begin{proposition}\label{partition_eq_quotient_by_equivalence_from_partition}
+    Let $P$ be a partition of $A$.
+    Then $\quotient{A}{\equivfrompartition{P}} = P$.
+\end{proposition}
+\begin{proof}
+    Follows by set extensionality.
+\end{proof}

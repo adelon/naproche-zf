@@ -1,0 +1,5 @@
+# Do not normalize golden files.
+*.golden -text
+
+# Exclude generated Megalodon files from GitHub language stats
+megalodon/** linguist-generated

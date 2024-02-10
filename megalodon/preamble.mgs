@@ -1,0 +1,434 @@
+(* Parameter Eps_i "174b78e53fc239e8c2aab4ab5a996a27e3e5741e88070dad186e05fb13f275e5" *)
+Parameter Eps_i : (set->prop)->set.
+
+Axiom Eps_i_ax : forall P:set->prop, forall x:set, P x -> P (Eps_i P).
+
+Definition True : prop := forall p:prop, p -> p.
+Definition False : prop := forall p:prop, p.
+
+Definition not : prop -> prop := fun A:prop => A -> False.
+
+(* Unicode ~ "00ac" *)
+Prefix ~ 700 := not.
+
+Definition and : prop -> prop -> prop := fun A B:prop => forall p:prop, (A -> B -> p) -> p.
+
+(* Unicode /\ "2227" *)
+Infix /\ 780 left := and.
+
+Definition or : prop -> prop -> prop := fun A B:prop => forall p:prop, (A -> p) -> (B -> p) -> p.
+
+(* Unicode \/ "2228" *)
+Infix \/ 785 left := or.
+
+Definition iff : prop -> prop -> prop := fun A B:prop => and (A -> B) (B -> A).
+
+(* Unicode <-> "2194" *)
+Infix <-> 805 := iff.
+
+Section Eq.
+Variable A:SType.
+Definition eq : A->A->prop := fun x y:A => forall Q:A->A->prop, Q x y -> Q y x.
+Definition neq : A->A->prop := fun x y:A => ~ eq x y.
+End Eq.
+
+Infix = 502 := eq.
+(* Unicode <> "2260" *)
+Infix <> 502 := neq.
+
+Section FE.
+Variable A B : SType.
+Axiom func_ext : forall f g : A -> B , (forall x : A , f x = g x) -> f = g.
+End FE.
+
+Section Ex.
+Variable A:SType.
+Definition ex : (A->prop)->prop := fun Q:A->prop => forall P:prop, (forall x:A, Q x -> P) -> P.
+End Ex.
+
+(* Unicode exists "2203" *)
+Binder+ exists , := ex.
+
+Axiom prop_ext : forall p q:prop, iff p q -> p = q.
+
+Parameter In:set->set->prop.
+
+Definition Subq : set -> set -> prop := fun A B => forall x :e A, x :e B.
+
+Axiom set_ext : forall X Y:set, X c= Y -> Y c= X -> X = Y.
+
+Axiom In_ind : forall P:set->prop, (forall X:set, (forall x :e X, P x) -> P X) -> forall X:set, P X.
+
+Binder+ exists , := ex; and.
+
+Parameter Empty : set.
+Axiom EmptyAx : ~exists x:set, x :e Empty.
+
+(* Unicode Union "22C3" *)
+Parameter Union : set->set.
+
+Axiom UnionEq : forall X x, x :e Union X <-> exists Y, x :e Y /\ Y :e X.
+
+(* Unicode Power "1D4AB" *)
+Parameter Power : set->set.
+
+Axiom PowerEq : forall X Y:set, Y :e Power X <-> Y c= X.
+
+Parameter Repl : set -> (set -> set) -> set.
+Notation Repl Repl.
+
+Axiom ReplEq : forall A:set, forall F:set->set, forall y:set, y :e {F x|x :e A} <-> exists x :e A, y = F x.
+
+Definition TransSet : set->prop := fun U:set => forall x :e U, x c= U.
+
+Definition Union_closed : set->prop := fun U:set => forall X:set, X :e U -> Union X :e U.
+Definition Power_closed : set->prop := fun U:set => forall X:set, X :e U -> Power X :e U.
+Definition Repl_closed : set->prop := fun U:set => forall X:set, X :e U -> forall F:set->set,
+   (forall x:set, x :e X -> F x :e U) -> {F x|x :e X} :e U.
+Definition ZF_closed : set->prop := fun U:set =>
+   Union_closed U
+/\ Power_closed U
+/\ Repl_closed U.
+
+Parameter UnivOf : set->set.
+
+Axiom UnivOf_In : forall N:set, N :e UnivOf N.
+
+Axiom UnivOf_TransSet : forall N:set, TransSet (UnivOf N).
+
+Axiom UnivOf_ZF_closed : forall N:set, ZF_closed (UnivOf N).
+
+Axiom UnivOf_Min : forall N U:set, N :e U
+  -> TransSet U
+  -> ZF_closed U
+  -> UnivOf N c= U.
+
+Axiom FalseE : False -> forall p:prop, p.
+
+Axiom TrueI : True.
+
+Axiom notI : forall A:prop, (A -> False) -> ~A.
+
+Axiom notE : forall A:prop, ~A -> A -> False.
+
+Axiom andI : forall (A B : prop), A -> B -> A /\ B.
+
+Axiom andEL : forall (A B : prop), A /\ B -> A.
+
+Axiom andER : forall (A B : prop), A /\ B -> B.
+
+Axiom orIL : forall (A B : prop), A -> A \/ B.
+
+Axiom orIR : forall (A B : prop), B -> A \/ B.
+
+Axiom orE : forall (A B C:prop), (A -> C) -> (B -> C) -> A \/ B -> C.
+
+Section PropN.
+
+Variable P1 P2 P3:prop.
+
+Axiom and3I : P1 -> P2 -> P3 -> P1 /\ P2 /\ P3.
+Axiom and3E : P1 /\ P2 /\ P3 -> (forall p:prop, (P1 -> P2 -> P3 -> p) -> p).
+Axiom or3I1 : P1 -> P1 \/ P2 \/ P3.
+Axiom or3I2 : P2 -> P1 \/ P2 \/ P3.
+Axiom or3I3 : P3 -> P1 \/ P2 \/ P3.
+Axiom or3E : P1 \/ P2 \/ P3 -> (forall p:prop, (P1 -> p) -> (P2 -> p) -> (P3 -> p) -> p).
+
+Variable P4:prop.
+
+Axiom and4I : P1 -> P2 -> P3 -> P4 -> P1 /\ P2 /\ P3 /\ P4.
+Axiom and4E : P1 /\ P2 /\ P3 /\ P4 -> (forall p:prop, (P1 -> P2 -> P3 -> P4 -> p) -> p).
+Axiom or4I1 : P1 -> P1 \/ P2 \/ P3 \/ P4.
+Axiom or4I2 : P2 -> P1 \/ P2 \/ P3 \/ P4.
+Axiom or4I3 : P3 -> P1 \/ P2 \/ P3 \/ P4.
+Axiom or4I4 : P4 -> P1 \/ P2 \/ P3 \/ P4.
+Axiom or4E : P1 \/ P2 \/ P3 \/ P4 -> (forall p:prop, (P1 -> p) -> (P2 -> p) -> (P3 -> p) -> (P4 -> p) -> p).
+
+Variable P5:prop.
+
+Axiom and5I : P1 -> P2 -> P3 -> P4 -> P5 -> P1 /\ P2 /\ P3 /\ P4 /\ P5.
+Axiom and5E : P1 /\ P2 /\ P3 /\ P4 /\ P5 -> (forall p:prop, (P1 -> P2 -> P3 -> P4 -> P5 -> p) -> p).
+Axiom or5I1 : P1 -> P1 \/ P2 \/ P3 \/ P4 \/ P5.
+Axiom or5I2 : P2 -> P1 \/ P2 \/ P3 \/ P4 \/ P5.
+Axiom or5I3 : P3 -> P1 \/ P2 \/ P3 \/ P4 \/ P5.
+Axiom or5I4 : P4 -> P1 \/ P2 \/ P3 \/ P4 \/ P5.
+Axiom or5I5 : P5 -> P1 \/ P2 \/ P3 \/ P4 \/ P5.
+Axiom or5E : P1 \/ P2 \/ P3 \/ P4 \/ P5 -> (forall p:prop, (P1 -> p) -> (P2 -> p) -> (P3 -> p) -> (P4 -> p) -> (P5 -> p) -> p).
+
+Variable P6:prop.
+
+Axiom and6I: P1 -> P2 -> P3 -> P4 -> P5 -> P6 -> P1 /\ P2 /\ P3 /\ P4 /\ P5 /\ P6.
+Axiom and6E : P1 /\ P2 /\ P3 /\ P4 /\ P5 /\ P6 -> (forall p:prop, (P1 -> P2 -> P3 -> P4 -> P5 -> P6 -> p) -> p).
+
+Variable P7:prop.
+
+Axiom and7I: P1 -> P2 -> P3 -> P4 -> P5 -> P6 -> P7 -> P1 /\ P2 /\ P3 /\ P4 /\ P5 /\ P6 /\ P7.
+Axiom and7E : P1 /\ P2 /\ P3 /\ P4 /\ P5 /\ P6 /\ P7 -> (forall p:prop, (P1 -> P2 -> P3 -> P4 -> P5 -> P6 -> P7 -> p) -> p).
+
+End PropN.
+
+Axiom iffI : forall A B:prop, (A -> B) -> (B -> A) -> (A <-> B).
+Axiom iffEL : forall A B:prop, (A <-> B) -> A -> B.
+Axiom iffER : forall A B:prop, (A <-> B) -> B -> A.
+Axiom iff_ref : forall A:prop, A <-> A.
+
+Axiom neq_i_sym: forall x y, x <> y -> y <> x.
+
+Definition nIn : set->set->prop :=
+fun x X => ~In x X.
+
+(* Unicode /:e "2209" *)
+Infix /:e 502 := nIn.
+
+Axiom Eps_i_ex : forall P:set -> prop, (exists x, P x) -> P (Eps_i P).
+
+Axiom pred_ext : forall P Q:set -> prop, (forall x, P x <-> Q x) -> P = Q.
+Axiom prop_ext_2 : forall p q:prop, (p -> q) -> (q -> p) -> p = q.
+Axiom pred_ext_2 : forall P Q:set -> prop, P c= Q -> Q c= P -> P = Q.
+
+Axiom Subq_ref : forall X:set, X c= X.
+Axiom Subq_tra : forall X Y Z:set, X c= Y -> Y c= Z -> X c= Z.
+Axiom Subq_contra : forall X Y z:set, X c= Y -> z /:e Y -> z /:e X.
+
+Axiom EmptyE : forall x:set, x /:e Empty.
+Axiom Subq_Empty : forall X:set, Empty c= X.
+Axiom Empty_Subq_eq : forall X:set, X c= Empty -> X = Empty.
+Axiom Empty_eq : forall X:set, (forall x, x /:e X) -> X = Empty.
+
+Axiom UnionI : forall X x Y:set, x :e Y -> Y :e X -> x :e Union X.
+Axiom UnionE : forall X x:set, x :e Union X -> exists Y:set, x :e Y /\ Y :e X.
+Axiom UnionE_impred : forall X x:set, x :e Union X -> forall p:prop, (forall Y:set, x :e Y -> Y :e X -> p) -> p.
+
+Axiom Union_Empty : Union Empty = Empty.
+
+Axiom PowerI : forall X Y:set, Y c= X -> Y :e Power X.
+Axiom PowerE : forall X Y:set, Y :e Power X -> Y c= X.
+Axiom Power_Subq : forall X Y:set, X c= Y -> Power X c= Power Y.
+Axiom Empty_In_Power : forall X:set, Empty :e Power X.
+Axiom Self_In_Power : forall X:set, X :e Power X.
+
+Axiom Union_Power_Subq : forall X:set, Union (Power X) c= X.
+
+Axiom xm : forall P:prop, P \/ ~P.
+Axiom dneg : forall P:prop, ~~P -> P.
+Axiom imp_not_or : forall p q:prop, (p -> q) -> ~p \/ q.
+Axiom not_and_or_demorgan : forall p q:prop, ~(p /\ q) -> ~p \/ ~q.
+
+(* Parameter exactly1of2 "3578b0d6a7b318714bc5ea889c6a38cf27f08eaccfab7edbde3cb7a350cf2d9b" "163602f90de012a7426ee39176523ca58bc964ccde619b652cb448bd678f7e21" *)
+Parameter exactly1of2 : prop->prop->prop.
+
+Axiom exactly1of2_I1 : forall A B:prop, A -> ~B -> exactly1of2 A B.
+Axiom exactly1of2_I2 : forall A B:prop, ~A -> B -> exactly1of2 A B.
+Axiom exactly1of2_impI1 : forall A B:prop, (A -> ~B) -> (~A -> B) -> exactly1of2 A B.
+Axiom exactly1of2_impI2 : forall A B:prop, (B -> ~A) -> (~B -> A) -> exactly1of2 A B.
+
+Axiom exactly1of2_E : forall A B:prop, exactly1of2 A B ->
+forall p:prop,
+(A -> ~B -> p) ->
+(~A -> B -> p) ->
+p.
+
+Axiom exactly1of2_or : forall A B:prop, exactly1of2 A B -> A \/ B.
+Axiom exactly1of2_impn12 : forall A B:prop, exactly1of2 A B -> A -> ~B.
+Axiom exactly1of2_impn21 : forall A B:prop, exactly1of2 A B -> B -> ~A.
+Axiom exactly1of2_nimp12 : forall A B:prop, exactly1of2 A B -> ~A -> B.
+Axiom exactly1of2_nimp21 : forall A B:prop, exactly1of2 A B -> ~B -> A.
+
+(* Parameter exactly1of3 "d2a0e4530f6e4a8ef3d5fadfbb12229fa580c2add302f925c85ede027bb4b175" "aa4bcd059b9a4c99635877362627f7d5998ee755c58679934cc62913f8ef06e0" *)
+Parameter exactly1of3 : prop->prop->prop->prop.
+
+Axiom exactly1of3_I1 : forall A B C:prop, A -> ~B -> ~C -> exactly1of3 A B C.
+Axiom exactly1of3_I2 : forall A B C:prop, ~A -> B -> ~C -> exactly1of3 A B C.
+Axiom exactly1of3_I3 : forall A B C:prop, ~A -> ~B -> C -> exactly1of3 A B C.
+Axiom exactly1of3_impI1 : forall A B C:prop, (A -> ~B) -> (A -> ~C) -> (B -> ~C) -> (~A -> B \/ C) -> exactly1of3 A B C.
+Axiom exactly1of3_impI2 : forall A B C:prop, (B -> ~A) -> (B -> ~C) -> (A -> ~C) -> (~B -> A \/ C) -> exactly1of3 A B C.
+Axiom exactly1of3_impI3 : forall A B C:prop, (C -> ~A) -> (C -> ~B) -> (A -> ~B) -> (~A -> B) -> exactly1of3 A B C.
+
+Axiom exactly1of3_E : forall A B C:prop, exactly1of3 A B C ->
+forall p:prop,
+(A -> ~B -> ~C -> p) ->
+(~A -> B -> ~C -> p) ->
+(~A -> ~B -> C -> p) ->
+p.
+
+Axiom exactly1of3_or : forall A B C:prop, exactly1of3 A B C -> A \/ B \/ C.
+Axiom exactly1of3_impn12 : forall A B C:prop, exactly1of3 A B C -> A -> ~B.
+Axiom exactly1of3_impn13 : forall A B C:prop, exactly1of3 A B C -> A -> ~C.
+Axiom exactly1of3_impn21 : forall A B C:prop, exactly1of3 A B C -> B -> ~A.
+Axiom exactly1of3_impn23 : forall A B C:prop, exactly1of3 A B C -> B -> ~C.
+Axiom exactly1of3_impn31 : forall A B C:prop, exactly1of3 A B C -> C -> ~A.
+Axiom exactly1of3_impn32 : forall A B C:prop, exactly1of3 A B C -> C -> ~B.
+Axiom exactly1of3_nimp1 : forall A B C:prop, exactly1of3 A B C -> ~A -> B \/ C.
+Axiom exactly1of3_nimp2 : forall A B C:prop, exactly1of3 A B C -> ~B -> A \/ C.
+Axiom exactly1of3_nimp3 : forall A B C:prop, exactly1of3 A B C -> ~C -> A \/ B.
+
+Axiom ReplI : forall A:set, forall F:set->set, forall x:set, x :e A -> F x :e {F x|x :e A}.
+
+Axiom ReplE : forall A:set, forall F:set->set, forall y:set, y :e {F x|x :e A} -> exists x :e A, y = F x.
+Axiom ReplE_impred : forall A:set, forall F:set->set, forall y:set, y :e {F x|x :e A} -> forall p:prop, (forall x:set, x :e A -> y = F x -> p) -> p.
+Axiom ReplE' : forall X, forall f:set -> set, forall p:set -> prop, (forall x :e X, p (f x)) -> forall y :e {f x|x :e X}, p y.
+
+Axiom Repl_Empty : forall F:set -> set, {F x|x :e Empty} = Empty.
+
+Axiom ReplEq_ext_sub : forall X, forall F G:set -> set, (forall x :e X, F x = G x) -> {F x|x :e X} c= {G x|x :e X}.
+
+Axiom ReplEq_ext : forall X, forall F G:set -> set, (forall x :e X, F x = G x) -> {F x|x :e X} = {G x|x :e X}.
+
+(* Parameter If_i "8c8f550868df4fdc93407b979afa60092db4b1bb96087bc3c2f17fadf3f35cbf" "b8ff52f838d0ff97beb955ee0b26fad79602e1529f8a2854bda0ecd4193a8a3c" *)
+Parameter If_i : prop->set->set->set.
+
+Notation IfThenElse If_i.
+
+Axiom If_i_correct : forall p:prop, forall x y:set,
+p /\ (if p then x else y) = x \/ ~p /\ (if p then x else y) = y.
+
+Axiom If_i_0 : forall p:prop, forall x y:set,
+~ p -> (if p then x else y) = y.
+
+Axiom If_i_1 : forall p:prop, forall x y:set,
+p -> (if p then x else y) = x.
+
+Axiom If_i_or : forall p:prop, forall x y:set, (if p then x else y) = x \/ (if p then x else y) = y.
+
+Axiom If_i_eta : forall p:prop, forall x:set, (if p then x else x) = x.
+
+(* Parameter UPair "80aea0a41bb8a47c7340fe8af33487887119c29240a470e920d3f6642b91990d" "74243828e4e6c9c0b467551f19c2ddaebf843f72e2437cc2dea41d079a31107f" *)
+Parameter UPair : set->set->set.
+
+Notation SetEnum2 UPair.
+
+Axiom UPairE :
+forall x y z:set, x :e {y,z} -> x = y \/ x = z.
+
+Axiom UPairI1 : forall y z:set, y :e {y,z}.
+
+Axiom UPairI2 : forall y z:set, z :e {y,z}.
+
+Axiom UPair_com : forall x y:set, {x,y} = {y,x}.
+
+(* Parameter Sing "158bae29452f8cbf276df6f8db2be0a5d20290e15eca88ffe1e7b41d211d41d7" "bd01a809e97149be7e091bf7cbb44e0c2084c018911c24e159f585455d8e6bd0" *)
+Parameter Sing : set -> set.
+Notation SetEnum1 Sing.
+
+Axiom SingI : forall x:set, x :e {x}.
+Axiom SingE : forall x y:set, y :e {x} -> y = x.
+
+(* Parameter binunion "0a445311c45f0eb3ba2217c35ecb47f122b2301b2b80124922fbf03a5c4d223e" "5e1ac4ac93257583d0e9e17d6d048ff7c0d6ccc1a69875b2a505a2d4da305784" *)
+Parameter binunion : set -> set -> set.
+
+(* Unicode :\/: "222a" *)
+Infix :\/: 345 left := binunion.
+
+Axiom binunionI1 : forall X Y z:set, z :e X -> z :e X :\/: Y.
+
+Axiom binunionI2 : forall X Y z:set, z :e Y -> z :e X :\/: Y.
+
+Axiom binunionE : forall X Y z:set, z :e X :\/: Y -> z :e X \/ z :e Y.
+Axiom binunionE' : forall X Y z, forall p:prop, (z :e X -> p) -> (z :e Y -> p) -> (z :e X :\/: Y -> p).
+Axiom binunion_Repl_E' : forall X Y, forall f g:set -> set, forall p:set -> prop,
+    (forall x :e X, p (f x))
+ -> (forall y :e Y, p (g y))
+ -> (forall w :e {f x|x :e X} :\/: {g y|y :e Y}, p w).
+
+Definition SetAdjoin : set->set->set := fun X y => X :\/: {y}.
+
+Notation SetEnum Empty Sing UPair SetAdjoin.
+
+Axiom Power_0_Sing_0 : Power Empty = {Empty}.
+
+Axiom Repl_UPair : forall F:set->set, forall x y:set, {F z|z :e {x,y}} = {F x,F y}.
+
+Axiom Repl_Sing : forall F:set->set, forall x:set, {F z|z :e {x}} = {F x}.
+
+Axiom Repl_restr : forall X:set, forall F G:set -> set, (forall x:set, x :e X -> F x = G x) -> {F x|x :e X} = {G x|x :e X}.
+
+(* Parameter famunion "d772b0f5d472e1ef525c5f8bd11cf6a4faed2e76d4eacfa455f4d65cc24ec792" "b3e3bf86a58af5d468d398d3acad61ccc50261f43c856a68f8594967a06ec07a" *)
+Parameter famunion:set->(set->set)->set.
+
+(* Unicode \/_ "22C3" *)
+(* Subscript \/_ *)
+Binder \/_ , := famunion.
+
+Axiom famunionI:forall X:set, forall F:(set->set), forall x y:set, x :e X -> y :e F x -> y :e \/_ x :e X, F x.
+
+Axiom famunionE:forall X:set, forall F:(set->set), forall y:set, y :e (\/_ x :e X, F x) -> exists x :e X, y :e F x.
+
+Axiom famunionE_impred : forall X : set , forall F : (set -> set) , forall y : set , y :e (\/_ x :e X , F x) -> forall p:prop, (forall x, x :e X -> y :e F x -> p) -> p.
+
+Axiom UnionEq_famunionId:forall X:set, Union X = \/_ x :e X, x.
+
+Axiom ReplEq_famunion_Sing:forall X:set, forall F:(set->set), {F x|x :e X} = \/_ x :e X, {F x}.
+
+Axiom Power_Sing : forall x:set, Power {x} = {Empty,{x}}.
+Axiom Power_Sing_0 : Power {Empty} = {Empty,{Empty}}.
+
+(* Parameter Sep "f7e63d81e8f98ac9bc7864e0b01f93952ef3b0cbf9777abab27bcbd743b6b079" "f336a4ec8d55185095e45a638507748bac5384e04e0c48d008e4f6a9653e9c44" *)
+Parameter Sep: set -> (set -> prop) -> set.
+
+Notation Sep Sep.
+
+Axiom SepI:forall X:set, forall P:(set->prop), forall x:set, x :e X -> P x -> x :e {x :e X|P x}.
+Axiom SepE:forall X:set, forall P:(set->prop), forall x:set, x :e {x :e X|P x} -> x :e X /\ P x.
+Axiom SepE1:forall X:set, forall P:(set->prop), forall x:set, x :e {x :e X|P x} -> x :e X.
+Axiom SepE2:forall X:set, forall P:(set->prop), forall x:set, x :e {x :e X|P x} -> P x.
+
+Axiom Sep_Subq : forall X:set, forall P:set->prop, {x :e X|P x} c= X.
+
+Axiom Sep_In_Power : forall X:set, forall P:set->prop, {x :e X|P x} :e Power X.
+
+(* Parameter ReplSep "f627d20f1b21063483a5b96e4e2704bac09415a75fed6806a2587ce257f1f2fd" "ec807b205da3293041239ff9552e2912636525180ddecb3a2b285b91b53f70d8" *)
+Parameter ReplSep : set->(set->prop)->(set->set)->set.
+Notation ReplSep ReplSep.
+
+Axiom ReplSepI: forall X:set, forall P:set->prop, forall F:set->set, forall x:set, x :e X -> P x -> F x :e {F x|x :e X, P x}.
+
+Axiom ReplSepE:forall X:set, forall P:set->prop, forall F:set->set, forall y:set, y :e {F x|x :e X, P x} -> exists x:set, x :e X /\ P x /\ y = F x.
+
+Axiom ReplSepE_impred: forall X:set, forall P:set->prop, forall F:set->set, forall y:set, y :e {F x|x :e X, P x} -> forall p:prop, (forall x :e X, P x -> y = F x -> p) -> p.
+
+(* Parameter ReplSep2 "816cc62796568c2de8e31e57b826d72c2e70ee3394c00fbc921f2e41e996e83a" "da098a2dd3a59275101fdd49b6d2258642997171eac15c6b60570c638743e785" *)
+Parameter ReplSep2 : set -> (set -> set) -> (set -> set -> prop) -> (set -> set -> set) -> set.
+
+Axiom ReplSep2I : forall A, forall B:set -> set, forall P:set -> set -> prop, forall F:set -> set -> set, forall x :e A, forall y :e B x, P x y -> F x y :e ReplSep2 A B P F.
+
+Axiom ReplSep2E_impred : forall A, forall B:set -> set, forall P:set -> set -> prop, forall F:set -> set -> set, forall r :e ReplSep2 A B P F, forall p:prop, (forall x :e A, forall y :e B x, P x y -> r = F x y -> p) -> p.
+
+Axiom ReplSep2E : forall A, forall B:set -> set, forall P:set -> set -> prop, forall F:set -> set -> set, forall r :e ReplSep2 A B P F, exists x :e A, exists y :e B x, P x y /\ r = F x y.
+
+Axiom binunion_asso: forall X Y Z:set, X :\/: (Y :\/: Z) = (X :\/: Y) :\/: Z.
+Axiom binunion_com: forall X Y:set, X :\/: Y = Y :\/: X.
+Axiom binunion_idl: forall X:set, Empty :\/: X = X.
+Axiom binunion_idr: forall X:set, X :\/: Empty = X.
+Axiom binunion_idem: forall X:set, X :\/: X = X.
+Axiom binunion_Subq_1: forall X Y:set, X c= X :\/: Y.
+Axiom binunion_Subq_2: forall X Y:set, Y c= X :\/: Y.
+Axiom binunion_Subq_min: forall X Y Z:set, X c= Z -> Y c= Z -> X :\/: Y c= Z.
+Axiom Subq_binunion_eq:forall X Y, (X c= Y) = (X :\/: Y = Y).
+Axiom binunion_nIn_I : forall X Y z:set, z /:e X -> z /:e Y -> z /:e X :\/: Y.
+Axiom binunion_nIn_E : forall X Y z:set, z /:e X :\/: Y -> z /:e X /\ z /:e Y.
+
+(* Parameter binintersect "8cf6b1f490ef8eb37db39c526ab9d7c756e98b0eb12143156198f1956deb5036" "b2abd2e5215c0170efe42d2fa0fb8a62cdafe2c8fbd0d37ca14e3497e54ba729" *)
+Parameter binintersect:set->set->set.
+
+(* Unicode :/\: "2229" *)
+Infix :/\: 340 left := binintersect.
+
+Axiom binintersectI:forall X Y z, z :e X -> z :e Y -> z :e X :/\: Y.
+Axiom binintersectE:forall X Y z, z :e X :/\: Y -> z :e X /\ z :e Y.
+Axiom binintersectE1:forall X Y z, z :e X :/\: Y -> z :e X.
+Axiom binintersectE2:forall X Y z, z :e X :/\: Y -> z :e Y.
+Axiom binintersect_Subq_1:forall X Y:set, X :/\: Y c= X.
+Axiom binintersect_Subq_2:forall X Y:set, X :/\: Y c= Y.
+Axiom binintersect_Subq_eq_1 : forall X Y, X c= Y -> X :/\: Y = X.
+Axiom binintersect_Subq_max:forall X Y Z:set, Z c= X -> Z c= Y -> Z c= X :/\: Y.
+Axiom binintersect_asso:forall X Y Z:set, X :/\: (Y :/\: Z) = (X :/\: Y) :/\: Z.
+Axiom binintersect_com: forall X Y:set, X :/\: Y = Y :/\: X.
+Axiom binintersect_annil:forall X:set, Empty :/\: X = Empty.
+Axiom binintersect_annir:forall X:set, X :/\: Empty = Empty.
+Axiom binintersect_idem:forall X:set, X :/\: X = X.
+Axiom binintersect_binunion_distr:forall X Y Z:set, X :/\: (Y :\/: Z) = X :/\: Y :\/: X :/\: Z.
+Axiom binunion_binintersect_distr:forall X Y Z:set, X :\/: Y :/\: Z = (X :\/: Y) :/\: (X :\/: Z).
+Axiom Subq_binintersection_eq:forall X Y:set, (X c= Y) = (X :/\: Y = X).
+Axiom binintersect_nIn_I1 : forall X Y z:set, z /:e X -> z /:e X :/\: Y.
+Axiom binintersect_nIn_I2 : forall X Y z:set, z /:e Y -> z /:e X :/\: Y.
+Axiom binintersect_nIn_E : forall X Y z:set, z /:e X :/\: Y -> z /:e X \/ z /:e Y.

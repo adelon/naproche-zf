@@ -1,0 +1,82 @@
+\import{algebra/magma.tex}
+
+\section{Semigroups}
+
+\begin{struct}\label{semigroup}
+    A semigroup $A$ is a magma such that
+    \begin{enumerate}
+        %\item for all $a, b, c\in \carrier[A]$ we have $\mul[A](a,\mul[A](b,c)) = \mul[A](\mul[A](a,b),c)$.
+        \item\label{semigroup_assoc} for all $a, b, c$ we have $\mul[A](a,\mul[A](b,c)) = \mul[A](\mul[A](a,b),c)$.
+    \end{enumerate}
+\end{struct}
+
+
+
+\section{Regular semigroups}
+
+
+\begin{struct}\label{regularsemigroup}
+    A regular semigroup $A$ is a semigroup such that
+    \begin{enumerate}
+        %\item for all $a\in \carrier[A]$ there exists $b\in\carrier[A]$ such that $\mul[A](a, \mul[A](b, a)) = a$.
+        \item\label{regularsemigroup_regular} for all $a$ there exists $b\in\carrier[A]$ such that $\mul[A](a, \mul[A](b, a)) = a$.
+    \end{enumerate}
+\end{struct}
+
+
+
+\section{Inverse semigroups}
+
+\begin{struct}\label{inversesemigroup}
+    An inverse semigroup $A$ is a regular semigroup such that
+    \begin{enumerate}
+        \item\label{inversesemigroup_comm} for all $a,b\in\idempotents{A}$ we have $\mul[A](a, b) = \mul[A](b, a)$.
+    \end{enumerate}
+\end{struct}
+
+\begin{proposition}\label{inversesemigroup_is_semigroup}
+    Suppose $A$ is an inverse semigroup.
+    Then $A$ is a semigroup.
+\end{proposition}
+
+
+\begin{proposition}\label{inversesemigroup_is_regularsemigroup}
+    Suppose $A$ is an inverse semigroup.
+    Then $A$ is a regular semigroup.
+\end{proposition}
+
+\begin{proposition}\label{idempotentelems_eq_iff_orbits_eq}
+    Let $A$ be an inverse semigroup.
+    Let $e,f\in\idempotents{A}$.
+    % TODO use Orbits explicitly?
+    Suppose for all $x\in\carrier[A]$ there exists $y\in\carrier[A]$
+    such that $x\cdot e = y\cdot f$.
+    Suppose for all $x\in\carrier[A]$ there exists $y\in\carrier[A]$
+    such that $x\cdot f = y\cdot e$.
+    Then $e = f$.
+\end{proposition}
+\begin{proof}
+    Take $x, y\in\carrier[A]$ such that $e = x\cdot f$ and $f = y\cdot e$ by \cref{idempotents}.
+    %
+    \begin{align*}
+        e
+            &= x \cdot f
+                \explanation{by assumption}\\
+            &= x\cdot (f\cdot f)
+                \explanation{by \cref{idempotents}}\\
+            &= (x\cdot f)\cdot f
+                \explanation{by \cref{semigroup_assoc,inversesemigroup_is_semigroup}}\\
+            &= e\cdot f
+            \explanation{by assumption}\\
+            &= f\cdot e
+                \explanation{by \hyperref[inversesemigroup_comm]{commutativity of idempotent elements}}\\
+            &= (y\cdot e)\cdot e
+                \explanation{by assumption}\\
+            &= y\cdot (e\cdot e)
+                \explanation{by \cref{semigroup_assoc,inversesemigroup_is_semigroup}}\\
+            &= y \cdot e
+                \explanation{by \cref{idempotents}}\\
+            &= f
+                \explanation{by assumption}
+    \end{align*}
+\end{proof}

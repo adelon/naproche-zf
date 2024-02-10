@@ -1,0 +1,21 @@
+[ ScanFunctionSymbol
+    [ Nothing
+    , Just
+        ( Command "times" )
+    , Nothing
+    ]
+    ( Marker "times" )
+, ScanFunctionSymbol
+    [ Just
+        ( Command "unit" )
+    ]
+    ( Marker "unit" )
+, ScanFunctionSymbol
+    [ Just
+        ( Command "suc" )
+    , Just InvisibleBraceL
+    , Nothing
+    , Just InvisibleBraceR
+    ]
+    ( Marker "suc" )
+]

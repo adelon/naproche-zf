@@ -1,0 +1,1968 @@
+[ Task
+    { taskDirectness = Direct
+    , taskHypotheses =
+        [
+            ( Marker "baz"
+            , Quantified Universally
+                ( Scope
+                    ( Connected Equivalence
+                        ( TermSymbol
+                            ( SymbolPredicate
+                                ( PredicateAdj
+                                    [ Just
+                                        ( Word "baz" )
+                                    ]
+                                )
+                            )
+                            [ TermVar
+                                ( B
+                                    ( NamedVar "x" )
+                                )
+                            ]
+                        )
+                        ( Quantified Universally
+                            ( Scope
+                                ( TermSymbol
+                                    ( SymbolPredicate
+                                        ( PredicateRelation
+                                            ( Symbol "=" )
+                                        )
+                                    )
+                                    [ TermVar
+                                        ( F
+                                            ( TermVar
+                                                ( B
+                                                    ( NamedVar "x" )
+                                                )
+                                            )
+                                        )
+                                    , TermVar
+                                        ( F
+                                            ( TermVar
+                                                ( B
+                                                    ( NamedVar "x" )
+                                                )
+                                            )
+                                        )
+                                    ]
+                                )
+                            )
+                        )
+                    )
+                )
+            )
+        ,
+            ( Marker "foo"
+            , Quantified Universally
+                ( Scope
+                    ( Connected Equivalence
+                        ( TermSymbol
+                            ( SymbolPredicate
+                                ( PredicateAdj
+                                    [ Just
+                                        ( Word "foo" )
+                                    ]
+                                )
+                            )
+                            [ TermVar
+                                ( B
+                                    ( NamedVar "x" )
+                                )
+                            ]
+                        )
+                        ( Quantified Universally
+                            ( Scope
+                                ( TermSymbol
+                                    ( SymbolPredicate
+                                        ( PredicateRelation
+                                            ( Symbol "=" )
+                                        )
+                                    )
+                                    [ TermVar
+                                        ( F
+                                            ( TermVar
+                                                ( B
+                                                    ( NamedVar "x" )
+                                                )
+                                            )
+                                        )
+                                    , TermVar
+                                        ( F
+                                            ( TermVar
+                                                ( B
+                                                    ( NamedVar "x" )
+                                                )
+                                            )
+                                        )
+                                    ]
+                                )
+                            )
+                        )
+                    )
+                )
+            )
+        ,
+            ( Marker "bar"
+            , Quantified Universally
+                ( Scope
+                    ( Connected Equivalence
+                        ( TermSymbol
+                            ( SymbolPredicate
+                                ( PredicateNoun
+                                    ( SgPl
+                                        { sg =
+                                            [ Just
+                                                ( Word "bar" )
+                                            ]
+                                        , pl =
+                                            [ Just
+                                                ( Word "bars" )
+                                            ]
+                                        }
+                                    )
+                                )
+                            )
+                            [ TermVar
+                                ( B
+                                    ( NamedVar "x" )
+                                )
+                            ]
+                        )
+                        ( Quantified Universally
+                            ( Scope
+                                ( TermSymbol
+                                    ( SymbolPredicate
+                                        ( PredicateRelation
+                                            ( Symbol "=" )
+                                        )
+                                    )
+                                    [ TermVar
+                                        ( F
+                                            ( TermVar
+                                                ( B
+                                                    ( NamedVar "x" )
+                                                )
+                                            )
+                                        )
+                                    , TermVar
+                                        ( F
+                                            ( TermVar
+                                                ( B
+                                                    ( NamedVar "x" )
+                                                )
+                                            )
+                                        )
+                                    ]
+                                )
+                            )
+                        )
+                    )
+                )
+            )
+        ,
+            ( Marker "nouns1"
+            , TermSymbol
+                ( SymbolPredicate
+                    ( PredicateNoun
+                        ( SgPl
+                            { sg =
+                                [ Just
+                                    ( Word "bar" )
+                                ]
+                            , pl =
+                                [ Just
+                                    ( Word "bars" )
+                                ]
+                            }
+                        )
+                    )
+                )
+                [ TermVar
+                    ( NamedVar "y" )
+                ]
+            )
+        ,
+            ( Marker "nouns2"
+            , TermSymbol
+                ( SymbolPredicate
+                    ( PredicateNoun
+                        ( SgPl
+                            { sg =
+                                [ Just
+                                    ( Word "bar" )
+                                ]
+                            , pl =
+                                [ Just
+                                    ( Word "bars" )
+                                ]
+                            }
+                        )
+                    )
+                )
+                [ TermVar
+                    ( NamedVar "x" )
+                ]
+            )
+        ]
+    , taskConjectureLabel = Marker "nouns"
+    , taskConjecture = TermSymbol
+        ( SymbolPredicate
+            ( PredicateRelation
+                ( Symbol "=" )
+            )
+        )
+        [ TermVar
+            ( NamedVar "x" )
+        , TermVar
+            ( NamedVar "x" )
+        ]
+    }
+, Task
+    { taskDirectness = Direct
+    , taskHypotheses =
+        [
+            ( Marker "nouns"
+            , Quantified Universally
+                ( Scope
+                    ( Connected Implication
+                        ( Connected Conjunction
+                            ( TermSymbol
+                                ( SymbolPredicate
+                                    ( PredicateNoun
+                                        ( SgPl
+                                            { sg =
+                                                [ Just
+                                                    ( Word "bar" )
+                                                ]
+                                            , pl =
+                                                [ Just
+                                                    ( Word "bars" )
+                                                ]
+                                            }
+                                        )
+                                    )
+                                )
+                                [ TermVar
+                                    ( B
+                                        ( NamedVar "x" )
+                                    )
+                                ]
+                            )
+                            ( TermSymbol
+                                ( SymbolPredicate
+                                    ( PredicateNoun
+                                        ( SgPl
+                                            { sg =
+                                                [ Just
+                                                    ( Word "bar" )
+                                                ]
+                                            , pl =
+                                                [ Just
+                                                    ( Word "bars" )
+                                                ]
+                                            }
+                                        )
+                                    )
+                                )
+                                [ TermVar
+                                    ( B
+                                        ( NamedVar "y" )
+                                    )
+                                ]
+                            )
+                        )
+                        ( TermSymbol
+                            ( SymbolPredicate
+                                ( PredicateRelation
+                                    ( Symbol "=" )
+                                )
+                            )
+                            [ TermVar
+                                ( B
+                                    ( NamedVar "x" )
+                                )
+                            , TermVar
+                                ( B
+                                    ( NamedVar "x" )
+                                )
+                            ]
+                        )
+                    )
+                )
+            )
+        ,
+            ( Marker "baz"
+            , Quantified Universally
+                ( Scope
+                    ( Connected Equivalence
+                        ( TermSymbol
+                            ( SymbolPredicate
+                                ( PredicateAdj
+                                    [ Just
+                                        ( Word "baz" )
+                                    ]
+                                )
+                            )
+                            [ TermVar
+                                ( B
+                                    ( NamedVar "x" )
+                                )
+                            ]
+                        )
+                        ( Quantified Universally
+                            ( Scope
+                                ( TermSymbol
+                                    ( SymbolPredicate
+                                        ( PredicateRelation
+                                            ( Symbol "=" )
+                                        )
+                                    )
+                                    [ TermVar
+                                        ( F
+                                            ( TermVar
+                                                ( B
+                                                    ( NamedVar "x" )
+                                                )
+                                            )
+                                        )
+                                    , TermVar
+                                        ( F
+                                            ( TermVar
+                                                ( B
+                                                    ( NamedVar "x" )
+                                                )
+                                            )
+                                        )
+                                    ]
+                                )
+                            )
+                        )
+                    )
+                )
+            )
+        ,
+            ( Marker "foo"
+            , Quantified Universally
+                ( Scope
+                    ( Connected Equivalence
+                        ( TermSymbol
+                            ( SymbolPredicate
+                                ( PredicateAdj
+                                    [ Just
+                                        ( Word "foo" )
+                                    ]
+                                )
+                            )
+                            [ TermVar
+                                ( B
+                                    ( NamedVar "x" )
+                                )
+                            ]
+                        )
+                        ( Quantified Universally
+                            ( Scope
+                                ( TermSymbol
+                                    ( SymbolPredicate
+                                        ( PredicateRelation
+                                            ( Symbol "=" )
+                                        )
+                                    )
+                                    [ TermVar
+                                        ( F
+                                            ( TermVar
+                                                ( B
+                                                    ( NamedVar "x" )
+                                                )
+                                            )
+                                        )
+                                    , TermVar
+                                        ( F
+                                            ( TermVar
+                                                ( B
+                                                    ( NamedVar "x" )
+                                                )
+                                            )
+                                        )
+                                    ]
+                                )
+                            )
+                        )
+                    )
+                )
+            )
+        ,
+            ( Marker "bar"
+            , Quantified Universally
+                ( Scope
+                    ( Connected Equivalence
+                        ( TermSymbol
+                            ( SymbolPredicate
+                                ( PredicateNoun
+                                    ( SgPl
+                                        { sg =
+                                            [ Just
+                                                ( Word "bar" )
+                                            ]
+                                        , pl =
+                                            [ Just
+                                                ( Word "bars" )
+                                            ]
+                                        }
+                                    )
+                                )
+                            )
+                            [ TermVar
+                                ( B
+                                    ( NamedVar "x" )
+                                )
+                            ]
+                        )
+                        ( Quantified Universally
+                            ( Scope
+                                ( TermSymbol
+                                    ( SymbolPredicate
+                                        ( PredicateRelation
+                                            ( Symbol "=" )
+                                        )
+                                    )
+                                    [ TermVar
+                                        ( F
+                                            ( TermVar
+                                                ( B
+                                                    ( NamedVar "x" )
+                                                )
+                                            )
+                                        )
+                                    , TermVar
+                                        ( F
+                                            ( TermVar
+                                                ( B
+                                                    ( NamedVar "x" )
+                                                )
+                                            )
+                                        )
+                                    ]
+                                )
+                            )
+                        )
+                    )
+                )
+            )
+        ,
+            ( Marker "adj_nouns1"
+            , Connected Conjunction
+                ( TermSymbol
+                    ( SymbolPredicate
+                        ( PredicateNoun
+                            ( SgPl
+                                { sg =
+                                    [ Just
+                                        ( Word "bar" )
+                                    ]
+                                , pl =
+                                    [ Just
+                                        ( Word "bars" )
+                                    ]
+                                }
+                            )
+                        )
+                    )
+                    [ TermVar
+                        ( NamedVar "y" )
+                    ]
+                )
+                ( TermSymbol
+                    ( SymbolPredicate
+                        ( PredicateAdj
+                            [ Just
+                                ( Word "foo" )
+                            ]
+                        )
+                    )
+                    [ TermVar
+                        ( NamedVar "y" )
+                    ]
+                )
+            )
+        ,
+            ( Marker "adj_nouns2"
+            , Connected Conjunction
+                ( TermSymbol
+                    ( SymbolPredicate
+                        ( PredicateNoun
+                            ( SgPl
+                                { sg =
+                                    [ Just
+                                        ( Word "bar" )
+                                    ]
+                                , pl =
+                                    [ Just
+                                        ( Word "bars" )
+                                    ]
+                                }
+                            )
+                        )
+                    )
+                    [ TermVar
+                        ( NamedVar "x" )
+                    ]
+                )
+                ( TermSymbol
+                    ( SymbolPredicate
+                        ( PredicateAdj
+                            [ Just
+                                ( Word "foo" )
+                            ]
+                        )
+                    )
+                    [ TermVar
+                        ( NamedVar "x" )
+                    ]
+                )
+            )
+        ]
+    , taskConjectureLabel = Marker "adj_nouns"
+    , taskConjecture = TermSymbol
+        ( SymbolPredicate
+            ( PredicateRelation
+                ( Symbol "=" )
+            )
+        )
+        [ TermVar
+            ( NamedVar "x" )
+        , TermVar
+            ( NamedVar "x" )
+        ]
+    }
+, Task
+    { taskDirectness = Direct
+    , taskHypotheses =
+        [
+            ( Marker "adj_nouns"
+            , Quantified Universally
+                ( Scope
+                    ( Connected Implication
+                        ( Connected Conjunction
+                            ( Connected Conjunction
+                                ( TermSymbol
+                                    ( SymbolPredicate
+                                        ( PredicateNoun
+                                            ( SgPl
+                                                { sg =
+                                                    [ Just
+                                                        ( Word "bar" )
+                                                    ]
+                                                , pl =
+                                                    [ Just
+                                                        ( Word "bars" )
+                                                    ]
+                                                }
+                                            )
+                                        )
+                                    )
+                                    [ TermVar
+                                        ( B
+                                            ( NamedVar "x" )
+                                        )
+                                    ]
+                                )
+                                ( TermSymbol
+                                    ( SymbolPredicate
+                                        ( PredicateAdj
+                                            [ Just
+                                                ( Word "foo" )
+                                            ]
+                                        )
+                                    )
+                                    [ TermVar
+                                        ( B
+                                            ( NamedVar "x" )
+                                        )
+                                    ]
+                                )
+                            )
+                            ( Connected Conjunction
+                                ( TermSymbol
+                                    ( SymbolPredicate
+                                        ( PredicateNoun
+                                            ( SgPl
+                                                { sg =
+                                                    [ Just
+                                                        ( Word "bar" )
+                                                    ]
+                                                , pl =
+                                                    [ Just
+                                                        ( Word "bars" )
+                                                    ]
+                                                }
+                                            )
+                                        )
+                                    )
+                                    [ TermVar
+                                        ( B
+                                            ( NamedVar "y" )
+                                        )
+                                    ]
+                                )
+                                ( TermSymbol
+                                    ( SymbolPredicate
+                                        ( PredicateAdj
+                                            [ Just
+                                                ( Word "foo" )
+                                            ]
+                                        )
+                                    )
+                                    [ TermVar
+                                        ( B
+                                            ( NamedVar "y" )
+                                        )
+                                    ]
+                                )
+                            )
+                        )
+                        ( TermSymbol
+                            ( SymbolPredicate
+                                ( PredicateRelation
+                                    ( Symbol "=" )
+                                )
+                            )
+                            [ TermVar
+                                ( B
+                                    ( NamedVar "x" )
+                                )
+                            , TermVar
+                                ( B
+                                    ( NamedVar "x" )
+                                )
+                            ]
+                        )
+                    )
+                )
+            )
+        ,
+            ( Marker "nouns"
+            , Quantified Universally
+                ( Scope
+                    ( Connected Implication
+                        ( Connected Conjunction
+                            ( TermSymbol
+                                ( SymbolPredicate
+                                    ( PredicateNoun
+                                        ( SgPl
+                                            { sg =
+                                                [ Just
+                                                    ( Word "bar" )
+                                                ]
+                                            , pl =
+                                                [ Just
+                                                    ( Word "bars" )
+                                                ]
+                                            }
+                                        )
+                                    )
+                                )
+                                [ TermVar
+                                    ( B
+                                        ( NamedVar "x" )
+                                    )
+                                ]
+                            )
+                            ( TermSymbol
+                                ( SymbolPredicate
+                                    ( PredicateNoun
+                                        ( SgPl
+                                            { sg =
+                                                [ Just
+                                                    ( Word "bar" )
+                                                ]
+                                            , pl =
+                                                [ Just
+                                                    ( Word "bars" )
+                                                ]
+                                            }
+                                        )
+                                    )
+                                )
+                                [ TermVar
+                                    ( B
+                                        ( NamedVar "y" )
+                                    )
+                                ]
+                            )
+                        )
+                        ( TermSymbol
+                            ( SymbolPredicate
+                                ( PredicateRelation
+                                    ( Symbol "=" )
+                                )
+                            )
+                            [ TermVar
+                                ( B
+                                    ( NamedVar "x" )
+                                )
+                            , TermVar
+                                ( B
+                                    ( NamedVar "x" )
+                                )
+                            ]
+                        )
+                    )
+                )
+            )
+        ,
+            ( Marker "baz"
+            , Quantified Universally
+                ( Scope
+                    ( Connected Equivalence
+                        ( TermSymbol
+                            ( SymbolPredicate
+                                ( PredicateAdj
+                                    [ Just
+                                        ( Word "baz" )
+                                    ]
+                                )
+                            )
+                            [ TermVar
+                                ( B
+                                    ( NamedVar "x" )
+                                )
+                            ]
+                        )
+                        ( Quantified Universally
+                            ( Scope
+                                ( TermSymbol
+                                    ( SymbolPredicate
+                                        ( PredicateRelation
+                                            ( Symbol "=" )
+                                        )
+                                    )
+                                    [ TermVar
+                                        ( F
+                                            ( TermVar
+                                                ( B
+                                                    ( NamedVar "x" )
+                                                )
+                                            )
+                                        )
+                                    , TermVar
+                                        ( F
+                                            ( TermVar
+                                                ( B
+                                                    ( NamedVar "x" )
+                                                )
+                                            )
+                                        )
+                                    ]
+                                )
+                            )
+                        )
+                    )
+                )
+            )
+        ,
+            ( Marker "foo"
+            , Quantified Universally
+                ( Scope
+                    ( Connected Equivalence
+                        ( TermSymbol
+                            ( SymbolPredicate
+                                ( PredicateAdj
+                                    [ Just
+                                        ( Word "foo" )
+                                    ]
+                                )
+                            )
+                            [ TermVar
+                                ( B
+                                    ( NamedVar "x" )
+                                )
+                            ]
+                        )
+                        ( Quantified Universally
+                            ( Scope
+                                ( TermSymbol
+                                    ( SymbolPredicate
+                                        ( PredicateRelation
+                                            ( Symbol "=" )
+                                        )
+                                    )
+                                    [ TermVar
+                                        ( F
+                                            ( TermVar
+                                                ( B
+                                                    ( NamedVar "x" )
+                                                )
+                                            )
+                                        )
+                                    , TermVar
+                                        ( F
+                                            ( TermVar
+                                                ( B
+                                                    ( NamedVar "x" )
+                                                )
+                                            )
+                                        )
+                                    ]
+                                )
+                            )
+                        )
+                    )
+                )
+            )
+        ,
+            ( Marker "bar"
+            , Quantified Universally
+                ( Scope
+                    ( Connected Equivalence
+                        ( TermSymbol
+                            ( SymbolPredicate
+                                ( PredicateNoun
+                                    ( SgPl
+                                        { sg =
+                                            [ Just
+                                                ( Word "bar" )
+                                            ]
+                                        , pl =
+                                            [ Just
+                                                ( Word "bars" )
+                                            ]
+                                        }
+                                    )
+                                )
+                            )
+                            [ TermVar
+                                ( B
+                                    ( NamedVar "x" )
+                                )
+                            ]
+                        )
+                        ( Quantified Universally
+                            ( Scope
+                                ( TermSymbol
+                                    ( SymbolPredicate
+                                        ( PredicateRelation
+                                            ( Symbol "=" )
+                                        )
+                                    )
+                                    [ TermVar
+                                        ( F
+                                            ( TermVar
+                                                ( B
+                                                    ( NamedVar "x" )
+                                                )
+                                            )
+                                        )
+                                    , TermVar
+                                        ( F
+                                            ( TermVar
+                                                ( B
+                                                    ( NamedVar "x" )
+                                                )
+                                            )
+                                        )
+                                    ]
+                                )
+                            )
+                        )
+                    )
+                )
+            )
+        ,
+            ( Marker "nouns_suchthat1"
+            , TermSymbol
+                ( SymbolPredicate
+                    ( PredicateNoun
+                        ( SgPl
+                            { sg =
+                                [ Just
+                                    ( Word "bar" )
+                                ]
+                            , pl =
+                                [ Just
+                                    ( Word "bars" )
+                                ]
+                            }
+                        )
+                    )
+                )
+                [ TermVar
+                    ( NamedVar "y" )
+                ]
+            )
+        ,
+            ( Marker "nouns_suchthat2"
+            , TermSymbol
+                ( SymbolPredicate
+                    ( PredicateNoun
+                        ( SgPl
+                            { sg =
+                                [ Just
+                                    ( Word "bar" )
+                                ]
+                            , pl =
+                                [ Just
+                                    ( Word "bars" )
+                                ]
+                            }
+                        )
+                    )
+                )
+                [ TermVar
+                    ( NamedVar "x" )
+                ]
+            )
+        ,
+            ( Marker "nouns_suchthat3"
+            , Connected Conjunction
+                ( TermSymbol
+                    ( SymbolPredicate
+                        ( PredicateAdj
+                            [ Just
+                                ( Word "foo" )
+                            ]
+                        )
+                    )
+                    [ TermVar
+                        ( NamedVar "x" )
+                    ]
+                )
+                ( TermSymbol
+                    ( SymbolPredicate
+                        ( PredicateAdj
+                            [ Just
+                                ( Word "baz" )
+                            ]
+                        )
+                    )
+                    [ TermVar
+                        ( NamedVar "y" )
+                    ]
+                )
+            )
+        ]
+    , taskConjectureLabel = Marker "nouns_suchthat"
+    , taskConjecture = TermSymbol
+        ( SymbolPredicate
+            ( PredicateRelation
+                ( Symbol "=" )
+            )
+        )
+        [ TermVar
+            ( NamedVar "x" )
+        , TermVar
+            ( NamedVar "x" )
+        ]
+    }
+, Task
+    { taskDirectness = Direct
+    , taskHypotheses =
+        [
+            ( Marker "nouns_suchthat"
+            , Quantified Universally
+                ( Scope
+                    ( Connected Implication
+                        ( Connected Conjunction
+                            ( Connected Conjunction
+                                ( Connected Conjunction
+                                    ( TermSymbol
+                                        ( SymbolPredicate
+                                            ( PredicateAdj
+                                                [ Just
+                                                    ( Word "foo" )
+                                                ]
+                                            )
+                                        )
+                                        [ TermVar
+                                            ( B
+                                                ( NamedVar "x" )
+                                            )
+                                        ]
+                                    )
+                                    ( TermSymbol
+                                        ( SymbolPredicate
+                                            ( PredicateAdj
+                                                [ Just
+                                                    ( Word "baz" )
+                                                ]
+                                            )
+                                        )
+                                        [ TermVar
+                                            ( B
+                                                ( NamedVar "y" )
+                                            )
+                                        ]
+                                    )
+                                )
+                                ( TermSymbol
+                                    ( SymbolPredicate
+                                        ( PredicateNoun
+                                            ( SgPl
+                                                { sg =
+                                                    [ Just
+                                                        ( Word "bar" )
+                                                    ]
+                                                , pl =
+                                                    [ Just
+                                                        ( Word "bars" )
+                                                    ]
+                                                }
+                                            )
+                                        )
+                                    )
+                                    [ TermVar
+                                        ( B
+                                            ( NamedVar "x" )
+                                        )
+                                    ]
+                                )
+                            )
+                            ( TermSymbol
+                                ( SymbolPredicate
+                                    ( PredicateNoun
+                                        ( SgPl
+                                            { sg =
+                                                [ Just
+                                                    ( Word "bar" )
+                                                ]
+                                            , pl =
+                                                [ Just
+                                                    ( Word "bars" )
+                                                ]
+                                            }
+                                        )
+                                    )
+                                )
+                                [ TermVar
+                                    ( B
+                                        ( NamedVar "y" )
+                                    )
+                                ]
+                            )
+                        )
+                        ( TermSymbol
+                            ( SymbolPredicate
+                                ( PredicateRelation
+                                    ( Symbol "=" )
+                                )
+                            )
+                            [ TermVar
+                                ( B
+                                    ( NamedVar "x" )
+                                )
+                            , TermVar
+                                ( B
+                                    ( NamedVar "x" )
+                                )
+                            ]
+                        )
+                    )
+                )
+            )
+        ,
+            ( Marker "adj_nouns"
+            , Quantified Universally
+                ( Scope
+                    ( Connected Implication
+                        ( Connected Conjunction
+                            ( Connected Conjunction
+                                ( TermSymbol
+                                    ( SymbolPredicate
+                                        ( PredicateNoun
+                                            ( SgPl
+                                                { sg =
+                                                    [ Just
+                                                        ( Word "bar" )
+                                                    ]
+                                                , pl =
+                                                    [ Just
+                                                        ( Word "bars" )
+                                                    ]
+                                                }
+                                            )
+                                        )
+                                    )
+                                    [ TermVar
+                                        ( B
+                                            ( NamedVar "x" )
+                                        )
+                                    ]
+                                )
+                                ( TermSymbol
+                                    ( SymbolPredicate
+                                        ( PredicateAdj
+                                            [ Just
+                                                ( Word "foo" )
+                                            ]
+                                        )
+                                    )
+                                    [ TermVar
+                                        ( B
+                                            ( NamedVar "x" )
+                                        )
+                                    ]
+                                )
+                            )
+                            ( Connected Conjunction
+                                ( TermSymbol
+                                    ( SymbolPredicate
+                                        ( PredicateNoun
+                                            ( SgPl
+                                                { sg =
+                                                    [ Just
+                                                        ( Word "bar" )
+                                                    ]
+                                                , pl =
+                                                    [ Just
+                                                        ( Word "bars" )
+                                                    ]
+                                                }
+                                            )
+                                        )
+                                    )
+                                    [ TermVar
+                                        ( B
+                                            ( NamedVar "y" )
+                                        )
+                                    ]
+                                )
+                                ( TermSymbol
+                                    ( SymbolPredicate
+                                        ( PredicateAdj
+                                            [ Just
+                                                ( Word "foo" )
+                                            ]
+                                        )
+                                    )
+                                    [ TermVar
+                                        ( B
+                                            ( NamedVar "y" )
+                                        )
+                                    ]
+                                )
+                            )
+                        )
+                        ( TermSymbol
+                            ( SymbolPredicate
+                                ( PredicateRelation
+                                    ( Symbol "=" )
+                                )
+                            )
+                            [ TermVar
+                                ( B
+                                    ( NamedVar "x" )
+                                )
+                            , TermVar
+                                ( B
+                                    ( NamedVar "x" )
+                                )
+                            ]
+                        )
+                    )
+                )
+            )
+        ,
+            ( Marker "nouns"
+            , Quantified Universally
+                ( Scope
+                    ( Connected Implication
+                        ( Connected Conjunction
+                            ( TermSymbol
+                                ( SymbolPredicate
+                                    ( PredicateNoun
+                                        ( SgPl
+                                            { sg =
+                                                [ Just
+                                                    ( Word "bar" )
+                                                ]
+                                            , pl =
+                                                [ Just
+                                                    ( Word "bars" )
+                                                ]
+                                            }
+                                        )
+                                    )
+                                )
+                                [ TermVar
+                                    ( B
+                                        ( NamedVar "x" )
+                                    )
+                                ]
+                            )
+                            ( TermSymbol
+                                ( SymbolPredicate
+                                    ( PredicateNoun
+                                        ( SgPl
+                                            { sg =
+                                                [ Just
+                                                    ( Word "bar" )
+                                                ]
+                                            , pl =
+                                                [ Just
+                                                    ( Word "bars" )
+                                                ]
+                                            }
+                                        )
+                                    )
+                                )
+                                [ TermVar
+                                    ( B
+                                        ( NamedVar "y" )
+                                    )
+                                ]
+                            )
+                        )
+                        ( TermSymbol
+                            ( SymbolPredicate
+                                ( PredicateRelation
+                                    ( Symbol "=" )
+                                )
+                            )
+                            [ TermVar
+                                ( B
+                                    ( NamedVar "x" )
+                                )
+                            , TermVar
+                                ( B
+                                    ( NamedVar "x" )
+                                )
+                            ]
+                        )
+                    )
+                )
+            )
+        ,
+            ( Marker "baz"
+            , Quantified Universally
+                ( Scope
+                    ( Connected Equivalence
+                        ( TermSymbol
+                            ( SymbolPredicate
+                                ( PredicateAdj
+                                    [ Just
+                                        ( Word "baz" )
+                                    ]
+                                )
+                            )
+                            [ TermVar
+                                ( B
+                                    ( NamedVar "x" )
+                                )
+                            ]
+                        )
+                        ( Quantified Universally
+                            ( Scope
+                                ( TermSymbol
+                                    ( SymbolPredicate
+                                        ( PredicateRelation
+                                            ( Symbol "=" )
+                                        )
+                                    )
+                                    [ TermVar
+                                        ( F
+                                            ( TermVar
+                                                ( B
+                                                    ( NamedVar "x" )
+                                                )
+                                            )
+                                        )
+                                    , TermVar
+                                        ( F
+                                            ( TermVar
+                                                ( B
+                                                    ( NamedVar "x" )
+                                                )
+                                            )
+                                        )
+                                    ]
+                                )
+                            )
+                        )
+                    )
+                )
+            )
+        ,
+            ( Marker "foo"
+            , Quantified Universally
+                ( Scope
+                    ( Connected Equivalence
+                        ( TermSymbol
+                            ( SymbolPredicate
+                                ( PredicateAdj
+                                    [ Just
+                                        ( Word "foo" )
+                                    ]
+                                )
+                            )
+                            [ TermVar
+                                ( B
+                                    ( NamedVar "x" )
+                                )
+                            ]
+                        )
+                        ( Quantified Universally
+                            ( Scope
+                                ( TermSymbol
+                                    ( SymbolPredicate
+                                        ( PredicateRelation
+                                            ( Symbol "=" )
+                                        )
+                                    )
+                                    [ TermVar
+                                        ( F
+                                            ( TermVar
+                                                ( B
+                                                    ( NamedVar "x" )
+                                                )
+                                            )
+                                        )
+                                    , TermVar
+                                        ( F
+                                            ( TermVar
+                                                ( B
+                                                    ( NamedVar "x" )
+                                                )
+                                            )
+                                        )
+                                    ]
+                                )
+                            )
+                        )
+                    )
+                )
+            )
+        ,
+            ( Marker "bar"
+            , Quantified Universally
+                ( Scope
+                    ( Connected Equivalence
+                        ( TermSymbol
+                            ( SymbolPredicate
+                                ( PredicateNoun
+                                    ( SgPl
+                                        { sg =
+                                            [ Just
+                                                ( Word "bar" )
+                                            ]
+                                        , pl =
+                                            [ Just
+                                                ( Word "bars" )
+                                            ]
+                                        }
+                                    )
+                                )
+                            )
+                            [ TermVar
+                                ( B
+                                    ( NamedVar "x" )
+                                )
+                            ]
+                        )
+                        ( Quantified Universally
+                            ( Scope
+                                ( TermSymbol
+                                    ( SymbolPredicate
+                                        ( PredicateRelation
+                                            ( Symbol "=" )
+                                        )
+                                    )
+                                    [ TermVar
+                                        ( F
+                                            ( TermVar
+                                                ( B
+                                                    ( NamedVar "x" )
+                                                )
+                                            )
+                                        )
+                                    , TermVar
+                                        ( F
+                                            ( TermVar
+                                                ( B
+                                                    ( NamedVar "x" )
+                                                )
+                                            )
+                                        )
+                                    ]
+                                )
+                            )
+                        )
+                    )
+                )
+            )
+        ]
+    , taskConjectureLabel = Marker "noun_verb"
+    , taskConjecture = Connected Equivalence
+        ( TermSymbol
+            ( SymbolPredicate
+                ( PredicateRelation
+                    ( Symbol "=" )
+                )
+            )
+            [ TermVar
+                ( NamedVar "x" )
+            , TermVar
+                ( NamedVar "y" )
+            ]
+        )
+        ( Connected Conjunction
+            ( TermSymbol
+                ( SymbolPredicate
+                    ( PredicateNoun
+                        ( SgPl
+                            { sg =
+                                [ Just
+                                    ( Word "bar" )
+                                ]
+                            , pl =
+                                [ Just
+                                    ( Word "bars" )
+                                ]
+                            }
+                        )
+                    )
+                )
+                [ TermVar
+                    ( NamedVar "x" )
+                ]
+            )
+            ( TermSymbol
+                ( SymbolPredicate
+                    ( PredicateRelation
+                        ( Symbol "=" )
+                    )
+                )
+                [ TermVar
+                    ( NamedVar "x" )
+                , TermVar
+                    ( NamedVar "y" )
+                ]
+            )
+        )
+    }
+, Task
+    { taskDirectness = Direct
+    , taskHypotheses =
+        [
+            ( Marker "noun_verb"
+            , Quantified Universally
+                ( Scope
+                    ( Connected Equivalence
+                        ( TermSymbol
+                            ( SymbolPredicate
+                                ( PredicateRelation
+                                    ( Symbol "=" )
+                                )
+                            )
+                            [ TermVar
+                                ( B
+                                    ( NamedVar "x" )
+                                )
+                            , TermVar
+                                ( B
+                                    ( NamedVar "y" )
+                                )
+                            ]
+                        )
+                        ( Connected Conjunction
+                            ( TermSymbol
+                                ( SymbolPredicate
+                                    ( PredicateNoun
+                                        ( SgPl
+                                            { sg =
+                                                [ Just
+                                                    ( Word "bar" )
+                                                ]
+                                            , pl =
+                                                [ Just
+                                                    ( Word "bars" )
+                                                ]
+                                            }
+                                        )
+                                    )
+                                )
+                                [ TermVar
+                                    ( B
+                                        ( NamedVar "x" )
+                                    )
+                                ]
+                            )
+                            ( TermSymbol
+                                ( SymbolPredicate
+                                    ( PredicateRelation
+                                        ( Symbol "=" )
+                                    )
+                                )
+                                [ TermVar
+                                    ( B
+                                        ( NamedVar "x" )
+                                    )
+                                , TermVar
+                                    ( B
+                                        ( NamedVar "y" )
+                                    )
+                                ]
+                            )
+                        )
+                    )
+                )
+            )
+        ,
+            ( Marker "nouns_suchthat"
+            , Quantified Universally
+                ( Scope
+                    ( Connected Implication
+                        ( Connected Conjunction
+                            ( Connected Conjunction
+                                ( Connected Conjunction
+                                    ( TermSymbol
+                                        ( SymbolPredicate
+                                            ( PredicateAdj
+                                                [ Just
+                                                    ( Word "foo" )
+                                                ]
+                                            )
+                                        )
+                                        [ TermVar
+                                            ( B
+                                                ( NamedVar "x" )
+                                            )
+                                        ]
+                                    )
+                                    ( TermSymbol
+                                        ( SymbolPredicate
+                                            ( PredicateAdj
+                                                [ Just
+                                                    ( Word "baz" )
+                                                ]
+                                            )
+                                        )
+                                        [ TermVar
+                                            ( B
+                                                ( NamedVar "y" )
+                                            )
+                                        ]
+                                    )
+                                )
+                                ( TermSymbol
+                                    ( SymbolPredicate
+                                        ( PredicateNoun
+                                            ( SgPl
+                                                { sg =
+                                                    [ Just
+                                                        ( Word "bar" )
+                                                    ]
+                                                , pl =
+                                                    [ Just
+                                                        ( Word "bars" )
+                                                    ]
+                                                }
+                                            )
+                                        )
+                                    )
+                                    [ TermVar
+                                        ( B
+                                            ( NamedVar "x" )
+                                        )
+                                    ]
+                                )
+                            )
+                            ( TermSymbol
+                                ( SymbolPredicate
+                                    ( PredicateNoun
+                                        ( SgPl
+                                            { sg =
+                                                [ Just
+                                                    ( Word "bar" )
+                                                ]
+                                            , pl =
+                                                [ Just
+                                                    ( Word "bars" )
+                                                ]
+                                            }
+                                        )
+                                    )
+                                )
+                                [ TermVar
+                                    ( B
+                                        ( NamedVar "y" )
+                                    )
+                                ]
+                            )
+                        )
+                        ( TermSymbol
+                            ( SymbolPredicate
+                                ( PredicateRelation
+                                    ( Symbol "=" )
+                                )
+                            )
+                            [ TermVar
+                                ( B
+                                    ( NamedVar "x" )
+                                )
+                            , TermVar
+                                ( B
+                                    ( NamedVar "x" )
+                                )
+                            ]
+                        )
+                    )
+                )
+            )
+        ,
+            ( Marker "adj_nouns"
+            , Quantified Universally
+                ( Scope
+                    ( Connected Implication
+                        ( Connected Conjunction
+                            ( Connected Conjunction
+                                ( TermSymbol
+                                    ( SymbolPredicate
+                                        ( PredicateNoun
+                                            ( SgPl
+                                                { sg =
+                                                    [ Just
+                                                        ( Word "bar" )
+                                                    ]
+                                                , pl =
+                                                    [ Just
+                                                        ( Word "bars" )
+                                                    ]
+                                                }
+                                            )
+                                        )
+                                    )
+                                    [ TermVar
+                                        ( B
+                                            ( NamedVar "x" )
+                                        )
+                                    ]
+                                )
+                                ( TermSymbol
+                                    ( SymbolPredicate
+                                        ( PredicateAdj
+                                            [ Just
+                                                ( Word "foo" )
+                                            ]
+                                        )
+                                    )
+                                    [ TermVar
+                                        ( B
+                                            ( NamedVar "x" )
+                                        )
+                                    ]
+                                )
+                            )
+                            ( Connected Conjunction
+                                ( TermSymbol
+                                    ( SymbolPredicate
+                                        ( PredicateNoun
+                                            ( SgPl
+                                                { sg =
+                                                    [ Just
+                                                        ( Word "bar" )
+                                                    ]
+                                                , pl =
+                                                    [ Just
+                                                        ( Word "bars" )
+                                                    ]
+                                                }
+                                            )
+                                        )
+                                    )
+                                    [ TermVar
+                                        ( B
+                                            ( NamedVar "y" )
+                                        )
+                                    ]
+                                )
+                                ( TermSymbol
+                                    ( SymbolPredicate
+                                        ( PredicateAdj
+                                            [ Just
+                                                ( Word "foo" )
+                                            ]
+                                        )
+                                    )
+                                    [ TermVar
+                                        ( B
+                                            ( NamedVar "y" )
+                                        )
+                                    ]
+                                )
+                            )
+                        )
+                        ( TermSymbol
+                            ( SymbolPredicate
+                                ( PredicateRelation
+                                    ( Symbol "=" )
+                                )
+                            )
+                            [ TermVar
+                                ( B
+                                    ( NamedVar "x" )
+                                )
+                            , TermVar
+                                ( B
+                                    ( NamedVar "x" )
+                                )
+                            ]
+                        )
+                    )
+                )
+            )
+        ,
+            ( Marker "nouns"
+            , Quantified Universally
+                ( Scope
+                    ( Connected Implication
+                        ( Connected Conjunction
+                            ( TermSymbol
+                                ( SymbolPredicate
+                                    ( PredicateNoun
+                                        ( SgPl
+                                            { sg =
+                                                [ Just
+                                                    ( Word "bar" )
+                                                ]
+                                            , pl =
+                                                [ Just
+                                                    ( Word "bars" )
+                                                ]
+                                            }
+                                        )
+                                    )
+                                )
+                                [ TermVar
+                                    ( B
+                                        ( NamedVar "x" )
+                                    )
+                                ]
+                            )
+                            ( TermSymbol
+                                ( SymbolPredicate
+                                    ( PredicateNoun
+                                        ( SgPl
+                                            { sg =
+                                                [ Just
+                                                    ( Word "bar" )
+                                                ]
+                                            , pl =
+                                                [ Just
+                                                    ( Word "bars" )
+                                                ]
+                                            }
+                                        )
+                                    )
+                                )
+                                [ TermVar
+                                    ( B
+                                        ( NamedVar "y" )
+                                    )
+                                ]
+                            )
+                        )
+                        ( TermSymbol
+                            ( SymbolPredicate
+                                ( PredicateRelation
+                                    ( Symbol "=" )
+                                )
+                            )
+                            [ TermVar
+                                ( B
+                                    ( NamedVar "x" )
+                                )
+                            , TermVar
+                                ( B
+                                    ( NamedVar "x" )
+                                )
+                            ]
+                        )
+                    )
+                )
+            )
+        ,
+            ( Marker "baz"
+            , Quantified Universally
+                ( Scope
+                    ( Connected Equivalence
+                        ( TermSymbol
+                            ( SymbolPredicate
+                                ( PredicateAdj
+                                    [ Just
+                                        ( Word "baz" )
+                                    ]
+                                )
+                            )
+                            [ TermVar
+                                ( B
+                                    ( NamedVar "x" )
+                                )
+                            ]
+                        )
+                        ( Quantified Universally
+                            ( Scope
+                                ( TermSymbol
+                                    ( SymbolPredicate
+                                        ( PredicateRelation
+                                            ( Symbol "=" )
+                                        )
+                                    )
+                                    [ TermVar
+                                        ( F
+                                            ( TermVar
+                                                ( B
+                                                    ( NamedVar "x" )
+                                                )
+                                            )
+                                        )
+                                    , TermVar
+                                        ( F
+                                            ( TermVar
+                                                ( B
+                                                    ( NamedVar "x" )
+                                                )
+                                            )
+                                        )
+                                    ]
+                                )
+                            )
+                        )
+                    )
+                )
+            )
+        ,
+            ( Marker "foo"
+            , Quantified Universally
+                ( Scope
+                    ( Connected Equivalence
+                        ( TermSymbol
+                            ( SymbolPredicate
+                                ( PredicateAdj
+                                    [ Just
+                                        ( Word "foo" )
+                                    ]
+                                )
+                            )
+                            [ TermVar
+                                ( B
+                                    ( NamedVar "x" )
+                                )
+                            ]
+                        )
+                        ( Quantified Universally
+                            ( Scope
+                                ( TermSymbol
+                                    ( SymbolPredicate
+                                        ( PredicateRelation
+                                            ( Symbol "=" )
+                                        )
+                                    )
+                                    [ TermVar
+                                        ( F
+                                            ( TermVar
+                                                ( B
+                                                    ( NamedVar "x" )
+                                                )
+                                            )
+                                        )
+                                    , TermVar
+                                        ( F
+                                            ( TermVar
+                                                ( B
+                                                    ( NamedVar "x" )
+                                                )
+                                            )
+                                        )
+                                    ]
+                                )
+                            )
+                        )
+                    )
+                )
+            )
+        ,
+            ( Marker "bar"
+            , Quantified Universally
+                ( Scope
+                    ( Connected Equivalence
+                        ( TermSymbol
+                            ( SymbolPredicate
+                                ( PredicateNoun
+                                    ( SgPl
+                                        { sg =
+                                            [ Just
+                                                ( Word "bar" )
+                                            ]
+                                        , pl =
+                                            [ Just
+                                                ( Word "bars" )
+                                            ]
+                                        }
+                                    )
+                                )
+                            )
+                            [ TermVar
+                                ( B
+                                    ( NamedVar "x" )
+                                )
+                            ]
+                        )
+                        ( Quantified Universally
+                            ( Scope
+                                ( TermSymbol
+                                    ( SymbolPredicate
+                                        ( PredicateRelation
+                                            ( Symbol "=" )
+                                        )
+                                    )
+                                    [ TermVar
+                                        ( F
+                                            ( TermVar
+                                                ( B
+                                                    ( NamedVar "x" )
+                                                )
+                                            )
+                                        )
+                                    , TermVar
+                                        ( F
+                                            ( TermVar
+                                                ( B
+                                                    ( NamedVar "x" )
+                                                )
+                                            )
+                                        )
+                                    ]
+                                )
+                            )
+                        )
+                    )
+                )
+            )
+        ]
+    , taskConjectureLabel = Marker "adjs"
+    , taskConjecture = Connected Conjunction
+        ( TermSymbol
+            ( SymbolPredicate
+                ( PredicateAdj
+                    [ Just
+                        ( Word "foo" )
+                    ]
+                )
+            )
+            [ TermVar
+                ( NamedVar "x" )
+            ]
+        )
+        ( TermSymbol
+            ( SymbolPredicate
+                ( PredicateAdj
+                    [ Just
+                        ( Word "baz" )
+                    ]
+                )
+            )
+            [ TermVar
+                ( NamedVar "x" )
+            ]
+        )
+    }
+]

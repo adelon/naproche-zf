@@ -1,0 +1,201 @@
+[ BlockLemma
+    ( SourcePos
+        { sourceName = "test/examples/proofassume.tex"
+        , sourceLine = Pos 1
+        , sourceColumn = Pos 1
+        }
+    )
+    ( Marker "assumetest" )
+    ( Lemma []
+        ( StmtConnected Implication
+            ( StmtFormula
+                ( FormulaChain
+                    ( ChainBase
+                        ( ExprVar
+                            ( NamedVar "x" ) :| []
+                        ) Positive
+                        ( RelationSymbol
+                            ( Command "in" )
+                        )
+                        ( ExprVar
+                            ( NamedVar "y" ) :| []
+                        )
+                    )
+                )
+            )
+            ( StmtFormula
+                ( FormulaChain
+                    ( ChainBase
+                        ( ExprVar
+                            ( NamedVar "x" ) :| []
+                        ) Positive
+                        ( RelationSymbol
+                            ( Command "in" )
+                        )
+                        ( ExprVar
+                            ( NamedVar "y" ) :| []
+                        )
+                    )
+                )
+            )
+        )
+    )
+, BlockProof
+    ( SourcePos
+        { sourceName = "test/examples/proofassume.tex"
+        , sourceLine = Pos 4
+        , sourceColumn = Pos 1
+        }
+    )
+    ( Assume
+        ( StmtFormula
+            ( FormulaChain
+                ( ChainBase
+                    ( ExprVar
+                        ( NamedVar "x" ) :| []
+                    ) Positive
+                    ( RelationSymbol
+                        ( Command "in" )
+                    )
+                    ( ExprVar
+                        ( NamedVar "y" ) :| []
+                    )
+                )
+            )
+        )
+        ( Have Nothing
+            ( StmtFormula
+                ( FormulaChain
+                    ( ChainBase
+                        ( ExprVar
+                            ( NamedVar "x" ) :| []
+                        ) Positive
+                        ( RelationSymbol
+                            ( Command "in" )
+                        )
+                        ( ExprVar
+                            ( NamedVar "y" ) :| []
+                        )
+                    )
+                )
+            ) JustificationEmpty ( Qed JustificationEmpty )
+        )
+    )
+, BlockLemma
+    ( SourcePos
+        { sourceName = "test/examples/proofassume.tex"
+        , sourceLine = Pos 9
+        , sourceColumn = Pos 1
+        }
+    )
+    ( Marker "assumetesttwo" )
+    ( Lemma []
+        ( StmtConnected Implication
+            ( StmtConnected Conjunction
+                ( StmtFormula
+                    ( FormulaChain
+                        ( ChainBase
+                            ( ExprVar
+                                ( NamedVar "x" ) :| []
+                            ) Positive
+                            ( RelationSymbol
+                                ( Command "in" )
+                            )
+                            ( ExprVar
+                                ( NamedVar "y" ) :| []
+                            )
+                        )
+                    )
+                )
+                ( StmtFormula
+                    ( FormulaChain
+                        ( ChainBase
+                            ( ExprVar
+                                ( NamedVar "a" ) :| []
+                            ) Positive
+                            ( RelationSymbol
+                                ( Command "in" )
+                            )
+                            ( ExprVar
+                                ( NamedVar "b" ) :| []
+                            )
+                        )
+                    )
+                )
+            )
+            ( StmtFormula
+                ( FormulaChain
+                    ( ChainBase
+                        ( ExprVar
+                            ( NamedVar "x" ) :| []
+                        ) Positive
+                        ( RelationSymbol
+                            ( Command "in" )
+                        )
+                        ( ExprVar
+                            ( NamedVar "y" ) :| []
+                        )
+                    )
+                )
+            )
+        )
+    )
+, BlockProof
+    ( SourcePos
+        { sourceName = "test/examples/proofassume.tex"
+        , sourceLine = Pos 12
+        , sourceColumn = Pos 1
+        }
+    )
+    ( Assume
+        ( StmtFormula
+            ( FormulaChain
+                ( ChainBase
+                    ( ExprVar
+                        ( NamedVar "a" ) :| []
+                    ) Positive
+                    ( RelationSymbol
+                        ( Command "in" )
+                    )
+                    ( ExprVar
+                        ( NamedVar "b" ) :| []
+                    )
+                )
+            )
+        )
+        ( Assume
+            ( StmtFormula
+                ( FormulaChain
+                    ( ChainBase
+                        ( ExprVar
+                            ( NamedVar "x" ) :| []
+                        ) Positive
+                        ( RelationSymbol
+                            ( Command "in" )
+                        )
+                        ( ExprVar
+                            ( NamedVar "y" ) :| []
+                        )
+                    )
+                )
+            )
+            ( Have Nothing
+                ( StmtFormula
+                    ( FormulaChain
+                        ( ChainBase
+                            ( ExprVar
+                                ( NamedVar "x" ) :| []
+                            ) Positive
+                            ( RelationSymbol
+                                ( Command "in" )
+                            )
+                            ( ExprVar
+                                ( NamedVar "y" ) :| []
+                            )
+                        )
+                    )
+                ) JustificationEmpty ( Qed JustificationEmpty )
+            )
+        )
+    )
+]

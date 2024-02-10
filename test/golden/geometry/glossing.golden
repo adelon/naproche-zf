@@ -1,0 +1,2187 @@
+[ BlockDefn
+    ( SourcePos
+        { sourceName = "test/examples/geometry.tex"
+        , sourceLine = Pos 1
+        , sourceColumn = Pos 1
+        }
+    )
+    ( Marker "collinear" )
+    ( DefnPredicate []
+        ( PredicateAdj
+            [ Just
+                ( Word "collinear" )
+            , Just
+                ( Word "with" )
+            , Nothing
+            , Just
+                ( Word "and" )
+            , Nothing
+            ]
+        )
+        ( NamedVar "a" :|
+            [ NamedVar "b"
+            , NamedVar "c"
+            ]
+        )
+        ( Connected Disjunction
+            ( TermSymbol
+                ( SymbolPredicate
+                    ( PredicateSymbol "Betw" )
+                )
+                [ TermVar
+                    ( NamedVar "a" )
+                , TermVar
+                    ( NamedVar "b" )
+                , TermVar
+                    ( NamedVar "c" )
+                ]
+            )
+            ( Connected Disjunction
+                ( TermSymbol
+                    ( SymbolPredicate
+                        ( PredicateSymbol "Betw" )
+                    )
+                    [ TermVar
+                        ( NamedVar "b" )
+                    , TermVar
+                        ( NamedVar "c" )
+                    , TermVar
+                        ( NamedVar "a" )
+                    ]
+                )
+                ( TermSymbol
+                    ( SymbolPredicate
+                        ( PredicateSymbol "Betw" )
+                    )
+                    [ TermVar
+                        ( NamedVar "c" )
+                    , TermVar
+                        ( NamedVar "a" )
+                    , TermVar
+                        ( NamedVar "b" )
+                    ]
+                )
+            )
+        )
+    )
+, BlockAxiom
+    ( SourcePos
+        { sourceName = "test/examples/geometry.tex"
+        , sourceLine = Pos 5
+        , sourceColumn = Pos 1
+        }
+    )
+    ( Marker "cong_refl_swap" )
+    ( Axiom
+        [ Asm
+            ( TermSymbol
+                ( SymbolPredicate
+                    ( PredicateNoun
+                        ( SgPl
+                            { sg =
+                                [ Just
+                                    ( Word "point" )
+                                ]
+                            , pl =
+                                [ Just
+                                    ( Word "points" )
+                                ]
+                            }
+                        )
+                    )
+                )
+                [ TermVar
+                    ( NamedVar "a" )
+                ]
+            )
+        , Asm
+            ( TermSymbol
+                ( SymbolPredicate
+                    ( PredicateNoun
+                        ( SgPl
+                            { sg =
+                                [ Just
+                                    ( Word "point" )
+                                ]
+                            , pl =
+                                [ Just
+                                    ( Word "points" )
+                                ]
+                            }
+                        )
+                    )
+                )
+                [ TermVar
+                    ( NamedVar "b" )
+                ]
+            )
+        ]
+        ( TermSymbol
+            ( SymbolPredicate
+                ( PredicateSymbol "Cong" )
+            )
+            [ TermVar
+                ( NamedVar "a" )
+            , TermVar
+                ( NamedVar "b" )
+            , TermVar
+                ( NamedVar "b" )
+            , TermVar
+                ( NamedVar "a" )
+            ]
+        )
+    )
+, BlockAxiom
+    ( SourcePos
+        { sourceName = "test/examples/geometry.tex"
+        , sourceLine = Pos 10
+        , sourceColumn = Pos 1
+        }
+    )
+    ( Marker "cong_pseudotransitive" )
+    ( Axiom
+        [ Asm
+            ( TermSymbol
+                ( SymbolPredicate
+                    ( PredicateNoun
+                        ( SgPl
+                            { sg =
+                                [ Just
+                                    ( Word "point" )
+                                ]
+                            , pl =
+                                [ Just
+                                    ( Word "points" )
+                                ]
+                            }
+                        )
+                    )
+                )
+                [ TermVar
+                    ( NamedVar "a" )
+                ]
+            )
+        , Asm
+            ( TermSymbol
+                ( SymbolPredicate
+                    ( PredicateNoun
+                        ( SgPl
+                            { sg =
+                                [ Just
+                                    ( Word "point" )
+                                ]
+                            , pl =
+                                [ Just
+                                    ( Word "points" )
+                                ]
+                            }
+                        )
+                    )
+                )
+                [ TermVar
+                    ( NamedVar "b" )
+                ]
+            )
+        , Asm
+            ( TermSymbol
+                ( SymbolPredicate
+                    ( PredicateNoun
+                        ( SgPl
+                            { sg =
+                                [ Just
+                                    ( Word "point" )
+                                ]
+                            , pl =
+                                [ Just
+                                    ( Word "points" )
+                                ]
+                            }
+                        )
+                    )
+                )
+                [ TermVar
+                    ( NamedVar "c" )
+                ]
+            )
+        , Asm
+            ( TermSymbol
+                ( SymbolPredicate
+                    ( PredicateNoun
+                        ( SgPl
+                            { sg =
+                                [ Just
+                                    ( Word "point" )
+                                ]
+                            , pl =
+                                [ Just
+                                    ( Word "points" )
+                                ]
+                            }
+                        )
+                    )
+                )
+                [ TermVar
+                    ( NamedVar "d" )
+                ]
+            )
+        ]
+        ( Connected Implication
+            ( Connected Conjunction
+                ( TermSymbol
+                    ( SymbolPredicate
+                        ( PredicateSymbol "Cong" )
+                    )
+                    [ TermVar
+                        ( NamedVar "c" )
+                    , TermVar
+                        ( NamedVar "d" )
+                    , TermVar
+                        ( NamedVar "a" )
+                    , TermVar
+                        ( NamedVar "b" )
+                    ]
+                )
+                ( TermSymbol
+                    ( SymbolPredicate
+                        ( PredicateSymbol "Cong" )
+                    )
+                    [ TermVar
+                        ( NamedVar "c" )
+                    , TermVar
+                        ( NamedVar "d" )
+                    , TermVar
+                        ( NamedVar "e" )
+                    , TermVar
+                        ( NamedVar "f" )
+                    ]
+                )
+            )
+            ( TermSymbol
+                ( SymbolPredicate
+                    ( PredicateSymbol "Cong" )
+                )
+                [ TermVar
+                    ( NamedVar "a" )
+                , TermVar
+                    ( NamedVar "b" )
+                , TermVar
+                    ( NamedVar "e" )
+                , TermVar
+                    ( NamedVar "f" )
+                ]
+            )
+        )
+    )
+, BlockAxiom
+    ( SourcePos
+        { sourceName = "test/examples/geometry.tex"
+        , sourceLine = Pos 15
+        , sourceColumn = Pos 1
+        }
+    )
+    ( Marker "cong_id" )
+    ( Axiom
+        [ Asm
+            ( TermSymbol
+                ( SymbolPredicate
+                    ( PredicateNoun
+                        ( SgPl
+                            { sg =
+                                [ Just
+                                    ( Word "point" )
+                                ]
+                            , pl =
+                                [ Just
+                                    ( Word "points" )
+                                ]
+                            }
+                        )
+                    )
+                )
+                [ TermVar
+                    ( NamedVar "a" )
+                ]
+            )
+        , Asm
+            ( TermSymbol
+                ( SymbolPredicate
+                    ( PredicateNoun
+                        ( SgPl
+                            { sg =
+                                [ Just
+                                    ( Word "point" )
+                                ]
+                            , pl =
+                                [ Just
+                                    ( Word "points" )
+                                ]
+                            }
+                        )
+                    )
+                )
+                [ TermVar
+                    ( NamedVar "b" )
+                ]
+            )
+        , Asm
+            ( TermSymbol
+                ( SymbolPredicate
+                    ( PredicateNoun
+                        ( SgPl
+                            { sg =
+                                [ Just
+                                    ( Word "point" )
+                                ]
+                            , pl =
+                                [ Just
+                                    ( Word "points" )
+                                ]
+                            }
+                        )
+                    )
+                )
+                [ TermVar
+                    ( NamedVar "c" )
+                ]
+            )
+        ]
+        ( Connected Implication
+            ( TermSymbol
+                ( SymbolPredicate
+                    ( PredicateSymbol "Cong" )
+                )
+                [ TermVar
+                    ( NamedVar "a" )
+                , TermVar
+                    ( NamedVar "b" )
+                , TermVar
+                    ( NamedVar "c" )
+                , TermVar
+                    ( NamedVar "c" )
+                ]
+            )
+            ( TermSymbol
+                ( SymbolPredicate
+                    ( PredicateRelation
+                        ( Symbol "=" )
+                    )
+                )
+                [ TermVar
+                    ( NamedVar "a" )
+                , TermVar
+                    ( NamedVar "b" )
+                ]
+            )
+        )
+    )
+, BlockAxiom
+    ( SourcePos
+        { sourceName = "test/examples/geometry.tex"
+        , sourceLine = Pos 21
+        , sourceColumn = Pos 1
+        }
+    )
+    ( Marker "segment_construction" )
+    ( Axiom []
+        ( Quantified Existentially
+            ( Scope
+                ( Connected Conjunction
+                    ( TermSymbol
+                        ( SymbolPredicate
+                            ( PredicateNoun
+                                ( SgPl
+                                    { sg =
+                                        [ Just
+                                            ( Word "point" )
+                                        ]
+                                    , pl =
+                                        [ Just
+                                            ( Word "points" )
+                                        ]
+                                    }
+                                )
+                            )
+                        )
+                        [ TermVar
+                            ( B
+                                ( NamedVar "c" )
+                            )
+                        ]
+                    )
+                    ( Connected Conjunction
+                        ( TermSymbol
+                            ( SymbolPredicate
+                                ( PredicateSymbol "Betw" )
+                            )
+                            [ TermVar
+                                ( F
+                                    ( TermVar
+                                        ( NamedVar "a" )
+                                    )
+                                )
+                            , TermVar
+                                ( F
+                                    ( TermVar
+                                        ( NamedVar "b" )
+                                    )
+                                )
+                            , TermVar
+                                ( B
+                                    ( NamedVar "c" )
+                                )
+                            ]
+                        )
+                        ( TermSymbol
+                            ( SymbolPredicate
+                                ( PredicateSymbol "Cong" )
+                            )
+                            [ TermVar
+                                ( F
+                                    ( TermVar
+                                        ( NamedVar "b" )
+                                    )
+                                )
+                            , TermVar
+                                ( B
+                                    ( NamedVar "c" )
+                                )
+                            , TermVar
+                                ( F
+                                    ( TermVar
+                                        ( NamedVar "d" )
+                                    )
+                                )
+                            , TermVar
+                                ( F
+                                    ( TermVar
+                                        ( NamedVar "e" )
+                                    )
+                                )
+                            ]
+                        )
+                    )
+                )
+            )
+        )
+    )
+, BlockDefn
+    ( SourcePos
+        { sourceName = "test/examples/geometry.tex"
+        , sourceLine = Pos 26
+        , sourceColumn = Pos 1
+        }
+    )
+    ( Marker "ofs" )
+    ( DefnPredicate
+        [ Asm
+            ( TermSymbol
+                ( SymbolPredicate
+                    ( PredicateNoun
+                        ( SgPl
+                            { sg =
+                                [ Just
+                                    ( Word "point" )
+                                ]
+                            , pl =
+                                [ Just
+                                    ( Word "points" )
+                                ]
+                            }
+                        )
+                    )
+                )
+                [ TermVar
+                    ( NamedVar "x" )
+                ]
+            )
+        , Asm
+            ( TermSymbol
+                ( SymbolPredicate
+                    ( PredicateNoun
+                        ( SgPl
+                            { sg =
+                                [ Just
+                                    ( Word "point" )
+                                ]
+                            , pl =
+                                [ Just
+                                    ( Word "points" )
+                                ]
+                            }
+                        )
+                    )
+                )
+                [ TermVar
+                    ( NamedVar "y" )
+                ]
+            )
+        , Asm
+            ( TermSymbol
+                ( SymbolPredicate
+                    ( PredicateNoun
+                        ( SgPl
+                            { sg =
+                                [ Just
+                                    ( Word "point" )
+                                ]
+                            , pl =
+                                [ Just
+                                    ( Word "points" )
+                                ]
+                            }
+                        )
+                    )
+                )
+                [ TermVar
+                    ( NamedVar "z" )
+                ]
+            )
+        , Asm
+            ( TermSymbol
+                ( SymbolPredicate
+                    ( PredicateNoun
+                        ( SgPl
+                            { sg =
+                                [ Just
+                                    ( Word "point" )
+                                ]
+                            , pl =
+                                [ Just
+                                    ( Word "points" )
+                                ]
+                            }
+                        )
+                    )
+                )
+                [ TermVar
+                    ( NamedVar "r" )
+                ]
+            )
+        , Asm
+            ( TermSymbol
+                ( SymbolPredicate
+                    ( PredicateNoun
+                        ( SgPl
+                            { sg =
+                                [ Just
+                                    ( Word "point" )
+                                ]
+                            , pl =
+                                [ Just
+                                    ( Word "points" )
+                                ]
+                            }
+                        )
+                    )
+                )
+                [ TermVar
+                    ( NamedVar "u" )
+                ]
+            )
+        , Asm
+            ( TermSymbol
+                ( SymbolPredicate
+                    ( PredicateNoun
+                        ( SgPl
+                            { sg =
+                                [ Just
+                                    ( Word "point" )
+                                ]
+                            , pl =
+                                [ Just
+                                    ( Word "points" )
+                                ]
+                            }
+                        )
+                    )
+                )
+                [ TermVar
+                    ( NamedVar "v" )
+                ]
+            )
+        , Asm
+            ( TermSymbol
+                ( SymbolPredicate
+                    ( PredicateNoun
+                        ( SgPl
+                            { sg =
+                                [ Just
+                                    ( Word "point" )
+                                ]
+                            , pl =
+                                [ Just
+                                    ( Word "points" )
+                                ]
+                            }
+                        )
+                    )
+                )
+                [ TermVar
+                    ( NamedVar "w" )
+                ]
+            )
+        , Asm
+            ( TermSymbol
+                ( SymbolPredicate
+                    ( PredicateNoun
+                        ( SgPl
+                            { sg =
+                                [ Just
+                                    ( Word "point" )
+                                ]
+                            , pl =
+                                [ Just
+                                    ( Word "points" )
+                                ]
+                            }
+                        )
+                    )
+                )
+                [ TermVar
+                    ( NamedVar "p" )
+                ]
+            )
+        ]
+        ( PredicateSymbol "OFS" )
+        ( NamedVar "x" :|
+            [ NamedVar "y"
+            , NamedVar "z"
+            , NamedVar "r"
+            , NamedVar "u"
+            , NamedVar "v"
+            , NamedVar "w"
+            , NamedVar "p"
+            ]
+        )
+        ( Connected Conjunction
+            ( Connected Conjunction
+                ( TermSymbol
+                    ( SymbolPredicate
+                        ( PredicateSymbol "Betw" )
+                    )
+                    [ TermVar
+                        ( NamedVar "x" )
+                    , TermVar
+                        ( NamedVar "y" )
+                    , TermVar
+                        ( NamedVar "z" )
+                    ]
+                )
+                ( TermSymbol
+                    ( SymbolPredicate
+                        ( PredicateSymbol "Betw" )
+                    )
+                    [ TermVar
+                        ( NamedVar "u" )
+                    , TermVar
+                        ( NamedVar "v" )
+                    , TermVar
+                        ( NamedVar "w" )
+                    ]
+                )
+            )
+            ( Connected Conjunction
+                ( Connected Conjunction
+                    ( Connected Conjunction
+                        ( TermSymbol
+                            ( SymbolPredicate
+                                ( PredicateSymbol "Cong" )
+                            )
+                            [ TermVar
+                                ( NamedVar "x" )
+                            , TermVar
+                                ( NamedVar "y" )
+                            , TermVar
+                                ( NamedVar "u" )
+                            , TermVar
+                                ( NamedVar "v" )
+                            ]
+                        )
+                        ( TermSymbol
+                            ( SymbolPredicate
+                                ( PredicateSymbol "Cong" )
+                            )
+                            [ TermVar
+                                ( NamedVar "y" )
+                            , TermVar
+                                ( NamedVar "z" )
+                            , TermVar
+                                ( NamedVar "v" )
+                            , TermVar
+                                ( NamedVar "w" )
+                            ]
+                        )
+                    )
+                    ( TermSymbol
+                        ( SymbolPredicate
+                            ( PredicateSymbol "Cong" )
+                        )
+                        [ TermVar
+                            ( NamedVar "x" )
+                        , TermVar
+                            ( NamedVar "r" )
+                        , TermVar
+                            ( NamedVar "u" )
+                        , TermVar
+                            ( NamedVar "p" )
+                        ]
+                    )
+                )
+                ( TermSymbol
+                    ( SymbolPredicate
+                        ( PredicateSymbol "Cong" )
+                    )
+                    [ TermVar
+                        ( NamedVar "y" )
+                    , TermVar
+                        ( NamedVar "r" )
+                    , TermVar
+                        ( NamedVar "v" )
+                    , TermVar
+                        ( NamedVar "p" )
+                    ]
+                )
+            )
+        )
+    )
+, BlockAxiom
+    ( SourcePos
+        { sourceName = "test/examples/geometry.tex"
+        , sourceLine = Pos 39
+        , sourceColumn = Pos 1
+        }
+    )
+    ( Marker "five_segment" )
+    ( Axiom
+        [ Asm
+            ( TermSymbol
+                ( SymbolPredicate
+                    ( PredicateNoun
+                        ( SgPl
+                            { sg =
+                                [ Just
+                                    ( Word "point" )
+                                ]
+                            , pl =
+                                [ Just
+                                    ( Word "points" )
+                                ]
+                            }
+                        )
+                    )
+                )
+                [ TermVar
+                    ( NamedVar "a" )
+                ]
+            )
+        , Asm
+            ( TermSymbol
+                ( SymbolPredicate
+                    ( PredicateNoun
+                        ( SgPl
+                            { sg =
+                                [ Just
+                                    ( Word "point" )
+                                ]
+                            , pl =
+                                [ Just
+                                    ( Word "points" )
+                                ]
+                            }
+                        )
+                    )
+                )
+                [ TermVar
+                    ( NamedVar "b" )
+                ]
+            )
+        , Asm
+            ( TermSymbol
+                ( SymbolPredicate
+                    ( PredicateNoun
+                        ( SgPl
+                            { sg =
+                                [ Just
+                                    ( Word "point" )
+                                ]
+                            , pl =
+                                [ Just
+                                    ( Word "points" )
+                                ]
+                            }
+                        )
+                    )
+                )
+                [ TermVar
+                    ( NamedVar "c" )
+                ]
+            )
+        , Asm
+            ( TermSymbol
+                ( SymbolPredicate
+                    ( PredicateNoun
+                        ( SgPl
+                            { sg =
+                                [ Just
+                                    ( Word "point" )
+                                ]
+                            , pl =
+                                [ Just
+                                    ( Word "points" )
+                                ]
+                            }
+                        )
+                    )
+                )
+                [ TermVar
+                    ( NamedVar "d" )
+                ]
+            )
+        , Asm
+            ( TermSymbol
+                ( SymbolPredicate
+                    ( PredicateNoun
+                        ( SgPl
+                            { sg =
+                                [ Just
+                                    ( Word "point" )
+                                ]
+                            , pl =
+                                [ Just
+                                    ( Word "points" )
+                                ]
+                            }
+                        )
+                    )
+                )
+                [ TermVar
+                    ( NamedVar "aprime" )
+                ]
+            )
+        , Asm
+            ( TermSymbol
+                ( SymbolPredicate
+                    ( PredicateNoun
+                        ( SgPl
+                            { sg =
+                                [ Just
+                                    ( Word "point" )
+                                ]
+                            , pl =
+                                [ Just
+                                    ( Word "points" )
+                                ]
+                            }
+                        )
+                    )
+                )
+                [ TermVar
+                    ( NamedVar "bprime" )
+                ]
+            )
+        , Asm
+            ( TermSymbol
+                ( SymbolPredicate
+                    ( PredicateNoun
+                        ( SgPl
+                            { sg =
+                                [ Just
+                                    ( Word "point" )
+                                ]
+                            , pl =
+                                [ Just
+                                    ( Word "points" )
+                                ]
+                            }
+                        )
+                    )
+                )
+                [ TermVar
+                    ( NamedVar "cprime" )
+                ]
+            )
+        , Asm
+            ( TermSymbol
+                ( SymbolPredicate
+                    ( PredicateNoun
+                        ( SgPl
+                            { sg =
+                                [ Just
+                                    ( Word "point" )
+                                ]
+                            , pl =
+                                [ Just
+                                    ( Word "points" )
+                                ]
+                            }
+                        )
+                    )
+                )
+                [ TermVar
+                    ( NamedVar "dprime" )
+                ]
+            )
+        ]
+        ( Connected Implication
+            ( Connected Conjunction
+                ( TermSymbol
+                    ( SymbolPredicate
+                        ( PredicateSymbol "OFS" )
+                    )
+                    [ TermVar
+                        ( NamedVar "a" )
+                    , TermVar
+                        ( NamedVar "b" )
+                    , TermVar
+                        ( NamedVar "c" )
+                    , TermVar
+                        ( NamedVar "d" )
+                    , TermVar
+                        ( NamedVar "aprime" )
+                    , TermVar
+                        ( NamedVar "bprime" )
+                    , TermVar
+                        ( NamedVar "cprime" )
+                    , TermVar
+                        ( NamedVar "dprime" )
+                    ]
+                )
+                ( TermSymbol
+                    ( SymbolPredicate
+                        ( PredicateRelation
+                            ( Command "neq" )
+                        )
+                    )
+                    [ TermVar
+                        ( NamedVar "a" )
+                    , TermVar
+                        ( NamedVar "b" )
+                    ]
+                )
+            )
+            ( TermSymbol
+                ( SymbolPredicate
+                    ( PredicateSymbol "Cong" )
+                )
+                [ TermVar
+                    ( NamedVar "c" )
+                , TermVar
+                    ( NamedVar "d" )
+                , TermVar
+                    ( NamedVar "cprime" )
+                , TermVar
+                    ( NamedVar "dprime" )
+                ]
+            )
+        )
+    )
+, BlockAxiom
+    ( SourcePos
+        { sourceName = "test/examples/geometry.tex"
+        , sourceLine = Pos 46
+        , sourceColumn = Pos 1
+        }
+    )
+    ( Marker "betw_id" )
+    ( Axiom
+        [ Asm
+            ( TermSymbol
+                ( SymbolPredicate
+                    ( PredicateNoun
+                        ( SgPl
+                            { sg =
+                                [ Just
+                                    ( Word "point" )
+                                ]
+                            , pl =
+                                [ Just
+                                    ( Word "points" )
+                                ]
+                            }
+                        )
+                    )
+                )
+                [ TermVar
+                    ( NamedVar "a" )
+                ]
+            )
+        , Asm
+            ( TermSymbol
+                ( SymbolPredicate
+                    ( PredicateNoun
+                        ( SgPl
+                            { sg =
+                                [ Just
+                                    ( Word "point" )
+                                ]
+                            , pl =
+                                [ Just
+                                    ( Word "points" )
+                                ]
+                            }
+                        )
+                    )
+                )
+                [ TermVar
+                    ( NamedVar "b" )
+                ]
+            )
+        ]
+        ( Connected Implication
+            ( TermSymbol
+                ( SymbolPredicate
+                    ( PredicateSymbol "Betw" )
+                )
+                [ TermVar
+                    ( NamedVar "a" )
+                , TermVar
+                    ( NamedVar "b" )
+                , TermVar
+                    ( NamedVar "a" )
+                ]
+            )
+            ( TermSymbol
+                ( SymbolPredicate
+                    ( PredicateRelation
+                        ( Symbol "=" )
+                    )
+                )
+                [ TermVar
+                    ( NamedVar "a" )
+                , TermVar
+                    ( NamedVar "b" )
+                ]
+            )
+        )
+    )
+, BlockAxiom
+    ( SourcePos
+        { sourceName = "test/examples/geometry.tex"
+        , sourceLine = Pos 52
+        , sourceColumn = Pos 1
+        }
+    )
+    ( Marker "innerpasch" )
+    ( Axiom
+        [ Asm
+            ( TermSymbol
+                ( SymbolPredicate
+                    ( PredicateNoun
+                        ( SgPl
+                            { sg =
+                                [ Just
+                                    ( Word "point" )
+                                ]
+                            , pl =
+                                [ Just
+                                    ( Word "points" )
+                                ]
+                            }
+                        )
+                    )
+                )
+                [ TermVar
+                    ( NamedVar "x" )
+                ]
+            )
+        , Asm
+            ( TermSymbol
+                ( SymbolPredicate
+                    ( PredicateNoun
+                        ( SgPl
+                            { sg =
+                                [ Just
+                                    ( Word "point" )
+                                ]
+                            , pl =
+                                [ Just
+                                    ( Word "points" )
+                                ]
+                            }
+                        )
+                    )
+                )
+                [ TermVar
+                    ( NamedVar "y" )
+                ]
+            )
+        , Asm
+            ( TermSymbol
+                ( SymbolPredicate
+                    ( PredicateNoun
+                        ( SgPl
+                            { sg =
+                                [ Just
+                                    ( Word "point" )
+                                ]
+                            , pl =
+                                [ Just
+                                    ( Word "points" )
+                                ]
+                            }
+                        )
+                    )
+                )
+                [ TermVar
+                    ( NamedVar "z" )
+                ]
+            )
+        , Asm
+            ( TermSymbol
+                ( SymbolPredicate
+                    ( PredicateNoun
+                        ( SgPl
+                            { sg =
+                                [ Just
+                                    ( Word "point" )
+                                ]
+                            , pl =
+                                [ Just
+                                    ( Word "points" )
+                                ]
+                            }
+                        )
+                    )
+                )
+                [ TermVar
+                    ( NamedVar "u" )
+                ]
+            )
+        , Asm
+            ( TermSymbol
+                ( SymbolPredicate
+                    ( PredicateNoun
+                        ( SgPl
+                            { sg =
+                                [ Just
+                                    ( Word "point" )
+                                ]
+                            , pl =
+                                [ Just
+                                    ( Word "points" )
+                                ]
+                            }
+                        )
+                    )
+                )
+                [ TermVar
+                    ( NamedVar "v" )
+                ]
+            )
+        , Asm
+            ( TermSymbol
+                ( SymbolPredicate
+                    ( PredicateNoun
+                        ( SgPl
+                            { sg =
+                                [ Just
+                                    ( Word "point" )
+                                ]
+                            , pl =
+                                [ Just
+                                    ( Word "points" )
+                                ]
+                            }
+                        )
+                    )
+                )
+                [ TermVar
+                    ( NamedVar "w" )
+                ]
+            )
+        ]
+        ( Connected Implication
+            ( Connected Conjunction
+                ( TermSymbol
+                    ( SymbolPredicate
+                        ( PredicateSymbol "Betw" )
+                    )
+                    [ TermVar
+                        ( NamedVar "x" )
+                    , TermVar
+                        ( NamedVar "u" )
+                    , TermVar
+                        ( NamedVar "z" )
+                    ]
+                )
+                ( TermSymbol
+                    ( SymbolPredicate
+                        ( PredicateSymbol "Betw" )
+                    )
+                    [ TermVar
+                        ( NamedVar "y" )
+                    , TermVar
+                        ( NamedVar "v" )
+                    , TermVar
+                        ( NamedVar "z" )
+                    ]
+                )
+            )
+            ( Quantified Existentially
+                ( Scope
+                    ( Connected Conjunction
+                        ( TermSymbol
+                            ( SymbolPredicate
+                                ( PredicateNoun
+                                    ( SgPl
+                                        { sg =
+                                            [ Just
+                                                ( Word "point" )
+                                            ]
+                                        , pl =
+                                            [ Just
+                                                ( Word "points" )
+                                            ]
+                                        }
+                                    )
+                                )
+                            )
+                            [ TermVar
+                                ( B
+                                    ( NamedVar "w" )
+                                )
+                            ]
+                        )
+                        ( Connected Conjunction
+                            ( TermSymbol
+                                ( SymbolPredicate
+                                    ( PredicateSymbol "Betw" )
+                                )
+                                [ TermVar
+                                    ( F
+                                        ( TermVar
+                                            ( NamedVar "u" )
+                                        )
+                                    )
+                                , TermVar
+                                    ( B
+                                        ( NamedVar "w" )
+                                    )
+                                , TermVar
+                                    ( F
+                                        ( TermVar
+                                            ( NamedVar "y" )
+                                        )
+                                    )
+                                ]
+                            )
+                            ( TermSymbol
+                                ( SymbolPredicate
+                                    ( PredicateSymbol "Betw" )
+                                )
+                                [ TermVar
+                                    ( F
+                                        ( TermVar
+                                            ( NamedVar "v" )
+                                        )
+                                    )
+                                , TermVar
+                                    ( B
+                                        ( NamedVar "w" )
+                                    )
+                                , TermVar
+                                    ( F
+                                        ( TermVar
+                                            ( NamedVar "x" )
+                                        )
+                                    )
+                                ]
+                            )
+                        )
+                    )
+                )
+            )
+        )
+    )
+, BlockAxiom
+    ( SourcePos
+        { sourceName = "test/examples/geometry.tex"
+        , sourceLine = Pos 66
+        , sourceColumn = Pos 1
+        }
+    )
+    ( Marker "upperdim" )
+    ( Axiom
+        [ Asm
+            ( TermSymbol
+                ( SymbolPredicate
+                    ( PredicateNoun
+                        ( SgPl
+                            { sg =
+                                [ Just
+                                    ( Word "point" )
+                                ]
+                            , pl =
+                                [ Just
+                                    ( Word "points" )
+                                ]
+                            }
+                        )
+                    )
+                )
+                [ TermVar
+                    ( NamedVar "x" )
+                ]
+            )
+        , Asm
+            ( TermSymbol
+                ( SymbolPredicate
+                    ( PredicateNoun
+                        ( SgPl
+                            { sg =
+                                [ Just
+                                    ( Word "point" )
+                                ]
+                            , pl =
+                                [ Just
+                                    ( Word "points" )
+                                ]
+                            }
+                        )
+                    )
+                )
+                [ TermVar
+                    ( NamedVar "y" )
+                ]
+            )
+        , Asm
+            ( TermSymbol
+                ( SymbolPredicate
+                    ( PredicateNoun
+                        ( SgPl
+                            { sg =
+                                [ Just
+                                    ( Word "point" )
+                                ]
+                            , pl =
+                                [ Just
+                                    ( Word "points" )
+                                ]
+                            }
+                        )
+                    )
+                )
+                [ TermVar
+                    ( NamedVar "z" )
+                ]
+            )
+        , Asm
+            ( TermSymbol
+                ( SymbolPredicate
+                    ( PredicateNoun
+                        ( SgPl
+                            { sg =
+                                [ Just
+                                    ( Word "point" )
+                                ]
+                            , pl =
+                                [ Just
+                                    ( Word "points" )
+                                ]
+                            }
+                        )
+                    )
+                )
+                [ TermVar
+                    ( NamedVar "u" )
+                ]
+            )
+        , Asm
+            ( TermSymbol
+                ( SymbolPredicate
+                    ( PredicateNoun
+                        ( SgPl
+                            { sg =
+                                [ Just
+                                    ( Word "point" )
+                                ]
+                            , pl =
+                                [ Just
+                                    ( Word "points" )
+                                ]
+                            }
+                        )
+                    )
+                )
+                [ TermVar
+                    ( NamedVar "v" )
+                ]
+            )
+        ]
+        ( Connected Implication
+            ( Connected Conjunction
+                ( TermSymbol
+                    ( SymbolPredicate
+                        ( PredicateSymbol "Cong" )
+                    )
+                    [ TermVar
+                        ( NamedVar "x" )
+                    , TermVar
+                        ( NamedVar "u" )
+                    , TermVar
+                        ( NamedVar "x" )
+                    , TermVar
+                        ( NamedVar "v" )
+                    ]
+                )
+                ( Connected Conjunction
+                    ( TermSymbol
+                        ( SymbolPredicate
+                            ( PredicateSymbol "Cong" )
+                        )
+                        [ TermVar
+                            ( NamedVar "y" )
+                        , TermVar
+                            ( NamedVar "u" )
+                        , TermVar
+                            ( NamedVar "y" )
+                        , TermVar
+                            ( NamedVar "v" )
+                        ]
+                    )
+                    ( Connected Conjunction
+                        ( TermSymbol
+                            ( SymbolPredicate
+                                ( PredicateSymbol "Cong" )
+                            )
+                            [ TermVar
+                                ( NamedVar "z" )
+                            , TermVar
+                                ( NamedVar "u" )
+                            , TermVar
+                                ( NamedVar "z" )
+                            , TermVar
+                                ( NamedVar "v" )
+                            ]
+                        )
+                        ( TermSymbol
+                            ( SymbolPredicate
+                                ( PredicateRelation
+                                    ( Command "neq" )
+                                )
+                            )
+                            [ TermVar
+                                ( NamedVar "u" )
+                            , TermVar
+                                ( NamedVar "v" )
+                            ]
+                        )
+                    )
+                )
+            )
+            ( TermSymbol
+                ( SymbolPredicate
+                    ( PredicateAdj
+                        [ Just
+                            ( Word "collinear" )
+                        , Just
+                            ( Word "with" )
+                        , Nothing
+                        , Just
+                            ( Word "and" )
+                        , Nothing
+                        ]
+                    )
+                )
+                [ TermVar
+                    ( NamedVar "x" )
+                , TermVar
+                    ( NamedVar "y" )
+                , TermVar
+                    ( NamedVar "z" )
+                ]
+            )
+        )
+    )
+, BlockLemma
+    ( SourcePos
+        { sourceName = "test/examples/geometry.tex"
+        , sourceLine = Pos 82
+        , sourceColumn = Pos 1
+        }
+    )
+    ( Marker "cong_refl" )
+    ( Lemma
+        [ Asm
+            ( TermSymbol
+                ( SymbolPredicate
+                    ( PredicateNoun
+                        ( SgPl
+                            { sg =
+                                [ Just
+                                    ( Word "point" )
+                                ]
+                            , pl =
+                                [ Just
+                                    ( Word "points" )
+                                ]
+                            }
+                        )
+                    )
+                )
+                [ TermVar
+                    ( NamedVar "a" )
+                ]
+            )
+        , Asm
+            ( TermSymbol
+                ( SymbolPredicate
+                    ( PredicateNoun
+                        ( SgPl
+                            { sg =
+                                [ Just
+                                    ( Word "point" )
+                                ]
+                            , pl =
+                                [ Just
+                                    ( Word "points" )
+                                ]
+                            }
+                        )
+                    )
+                )
+                [ TermVar
+                    ( NamedVar "b" )
+                ]
+            )
+        ]
+        ( TermSymbol
+            ( SymbolPredicate
+                ( PredicateSymbol "Cong" )
+            )
+            [ TermVar
+                ( NamedVar "a" )
+            , TermVar
+                ( NamedVar "b" )
+            , TermVar
+                ( NamedVar "a" )
+            , TermVar
+                ( NamedVar "b" )
+            ]
+        )
+    )
+, BlockLemma
+    ( SourcePos
+        { sourceName = "test/examples/geometry.tex"
+        , sourceLine = Pos 88
+        , sourceColumn = Pos 1
+        }
+    )
+    ( Marker "cong_sym" )
+    ( Lemma
+        [ Asm
+            ( TermSymbol
+                ( SymbolPredicate
+                    ( PredicateNoun
+                        ( SgPl
+                            { sg =
+                                [ Just
+                                    ( Word "point" )
+                                ]
+                            , pl =
+                                [ Just
+                                    ( Word "points" )
+                                ]
+                            }
+                        )
+                    )
+                )
+                [ TermVar
+                    ( NamedVar "a" )
+                ]
+            )
+        , Asm
+            ( TermSymbol
+                ( SymbolPredicate
+                    ( PredicateNoun
+                        ( SgPl
+                            { sg =
+                                [ Just
+                                    ( Word "point" )
+                                ]
+                            , pl =
+                                [ Just
+                                    ( Word "points" )
+                                ]
+                            }
+                        )
+                    )
+                )
+                [ TermVar
+                    ( NamedVar "b" )
+                ]
+            )
+        , Asm
+            ( TermSymbol
+                ( SymbolPredicate
+                    ( PredicateNoun
+                        ( SgPl
+                            { sg =
+                                [ Just
+                                    ( Word "point" )
+                                ]
+                            , pl =
+                                [ Just
+                                    ( Word "points" )
+                                ]
+                            }
+                        )
+                    )
+                )
+                [ TermVar
+                    ( NamedVar "c" )
+                ]
+            )
+        , Asm
+            ( TermSymbol
+                ( SymbolPredicate
+                    ( PredicateNoun
+                        ( SgPl
+                            { sg =
+                                [ Just
+                                    ( Word "point" )
+                                ]
+                            , pl =
+                                [ Just
+                                    ( Word "points" )
+                                ]
+                            }
+                        )
+                    )
+                )
+                [ TermVar
+                    ( NamedVar "d" )
+                ]
+            )
+        , Asm
+            ( TermSymbol
+                ( SymbolPredicate
+                    ( PredicateSymbol "Cong" )
+                )
+                [ TermVar
+                    ( NamedVar "a" )
+                , TermVar
+                    ( NamedVar "b" )
+                , TermVar
+                    ( NamedVar "c" )
+                , TermVar
+                    ( NamedVar "d" )
+                ]
+            )
+        ]
+        ( TermSymbol
+            ( SymbolPredicate
+                ( PredicateSymbol "Cong" )
+            )
+            [ TermVar
+                ( NamedVar "c" )
+            , TermVar
+                ( NamedVar "d" )
+            , TermVar
+                ( NamedVar "a" )
+            , TermVar
+                ( NamedVar "b" )
+            ]
+        )
+    )
+, BlockLemma
+    ( SourcePos
+        { sourceName = "test/examples/geometry.tex"
+        , sourceLine = Pos 95
+        , sourceColumn = Pos 1
+        }
+    )
+    ( Marker "cong_transitive" )
+    ( Lemma
+        [ Asm
+            ( TermSymbol
+                ( SymbolPredicate
+                    ( PredicateNoun
+                        ( SgPl
+                            { sg =
+                                [ Just
+                                    ( Word "point" )
+                                ]
+                            , pl =
+                                [ Just
+                                    ( Word "points" )
+                                ]
+                            }
+                        )
+                    )
+                )
+                [ TermVar
+                    ( NamedVar "a" )
+                ]
+            )
+        , Asm
+            ( TermSymbol
+                ( SymbolPredicate
+                    ( PredicateNoun
+                        ( SgPl
+                            { sg =
+                                [ Just
+                                    ( Word "point" )
+                                ]
+                            , pl =
+                                [ Just
+                                    ( Word "points" )
+                                ]
+                            }
+                        )
+                    )
+                )
+                [ TermVar
+                    ( NamedVar "b" )
+                ]
+            )
+        , Asm
+            ( TermSymbol
+                ( SymbolPredicate
+                    ( PredicateNoun
+                        ( SgPl
+                            { sg =
+                                [ Just
+                                    ( Word "point" )
+                                ]
+                            , pl =
+                                [ Just
+                                    ( Word "points" )
+                                ]
+                            }
+                        )
+                    )
+                )
+                [ TermVar
+                    ( NamedVar "c" )
+                ]
+            )
+        , Asm
+            ( TermSymbol
+                ( SymbolPredicate
+                    ( PredicateNoun
+                        ( SgPl
+                            { sg =
+                                [ Just
+                                    ( Word "point" )
+                                ]
+                            , pl =
+                                [ Just
+                                    ( Word "points" )
+                                ]
+                            }
+                        )
+                    )
+                )
+                [ TermVar
+                    ( NamedVar "d" )
+                ]
+            )
+        , Asm
+            ( TermSymbol
+                ( SymbolPredicate
+                    ( PredicateNoun
+                        ( SgPl
+                            { sg =
+                                [ Just
+                                    ( Word "point" )
+                                ]
+                            , pl =
+                                [ Just
+                                    ( Word "points" )
+                                ]
+                            }
+                        )
+                    )
+                )
+                [ TermVar
+                    ( NamedVar "e" )
+                ]
+            )
+        , Asm
+            ( TermSymbol
+                ( SymbolPredicate
+                    ( PredicateNoun
+                        ( SgPl
+                            { sg =
+                                [ Just
+                                    ( Word "point" )
+                                ]
+                            , pl =
+                                [ Just
+                                    ( Word "points" )
+                                ]
+                            }
+                        )
+                    )
+                )
+                [ TermVar
+                    ( NamedVar "f" )
+                ]
+            )
+        ]
+        ( Connected Implication
+            ( Connected Conjunction
+                ( TermSymbol
+                    ( SymbolPredicate
+                        ( PredicateSymbol "Cong" )
+                    )
+                    [ TermVar
+                        ( NamedVar "a" )
+                    , TermVar
+                        ( NamedVar "b" )
+                    , TermVar
+                        ( NamedVar "c" )
+                    , TermVar
+                        ( NamedVar "d" )
+                    ]
+                )
+                ( TermSymbol
+                    ( SymbolPredicate
+                        ( PredicateSymbol "Cong" )
+                    )
+                    [ TermVar
+                        ( NamedVar "c" )
+                    , TermVar
+                        ( NamedVar "d" )
+                    , TermVar
+                        ( NamedVar "e" )
+                    , TermVar
+                        ( NamedVar "f" )
+                    ]
+                )
+            )
+            ( TermSymbol
+                ( SymbolPredicate
+                    ( PredicateSymbol "Cong" )
+                )
+                [ TermVar
+                    ( NamedVar "a" )
+                , TermVar
+                    ( NamedVar "b" )
+                , TermVar
+                    ( NamedVar "e" )
+                , TermVar
+                    ( NamedVar "f" )
+                ]
+            )
+        )
+    )
+, BlockLemma
+    ( SourcePos
+        { sourceName = "test/examples/geometry.tex"
+        , sourceLine = Pos 102
+        , sourceColumn = Pos 1
+        }
+    )
+    ( Marker "cong_shuffle_left" )
+    ( Lemma
+        [ Asm
+            ( TermSymbol
+                ( SymbolPredicate
+                    ( PredicateNoun
+                        ( SgPl
+                            { sg =
+                                [ Just
+                                    ( Word "point" )
+                                ]
+                            , pl =
+                                [ Just
+                                    ( Word "points" )
+                                ]
+                            }
+                        )
+                    )
+                )
+                [ TermVar
+                    ( NamedVar "a" )
+                ]
+            )
+        , Asm
+            ( TermSymbol
+                ( SymbolPredicate
+                    ( PredicateNoun
+                        ( SgPl
+                            { sg =
+                                [ Just
+                                    ( Word "point" )
+                                ]
+                            , pl =
+                                [ Just
+                                    ( Word "points" )
+                                ]
+                            }
+                        )
+                    )
+                )
+                [ TermVar
+                    ( NamedVar "b" )
+                ]
+            )
+        , Asm
+            ( TermSymbol
+                ( SymbolPredicate
+                    ( PredicateNoun
+                        ( SgPl
+                            { sg =
+                                [ Just
+                                    ( Word "point" )
+                                ]
+                            , pl =
+                                [ Just
+                                    ( Word "points" )
+                                ]
+                            }
+                        )
+                    )
+                )
+                [ TermVar
+                    ( NamedVar "c" )
+                ]
+            )
+        , Asm
+            ( TermSymbol
+                ( SymbolPredicate
+                    ( PredicateNoun
+                        ( SgPl
+                            { sg =
+                                [ Just
+                                    ( Word "point" )
+                                ]
+                            , pl =
+                                [ Just
+                                    ( Word "points" )
+                                ]
+                            }
+                        )
+                    )
+                )
+                [ TermVar
+                    ( NamedVar "d" )
+                ]
+            )
+        ]
+        ( Connected Implication
+            ( TermSymbol
+                ( SymbolPredicate
+                    ( PredicateSymbol "Cong" )
+                )
+                [ TermVar
+                    ( NamedVar "a" )
+                , TermVar
+                    ( NamedVar "b" )
+                , TermVar
+                    ( NamedVar "c" )
+                , TermVar
+                    ( NamedVar "d" )
+                ]
+            )
+            ( TermSymbol
+                ( SymbolPredicate
+                    ( PredicateSymbol "Cong" )
+                )
+                [ TermVar
+                    ( NamedVar "b" )
+                , TermVar
+                    ( NamedVar "a" )
+                , TermVar
+                    ( NamedVar "c" )
+                , TermVar
+                    ( NamedVar "d" )
+                ]
+            )
+        )
+    )
+, BlockLemma
+    ( SourcePos
+        { sourceName = "test/examples/geometry.tex"
+        , sourceLine = Pos 109
+        , sourceColumn = Pos 1
+        }
+    )
+    ( Marker "cong_shuffle_right" )
+    ( Lemma
+        [ Asm
+            ( TermSymbol
+                ( SymbolPredicate
+                    ( PredicateNoun
+                        ( SgPl
+                            { sg =
+                                [ Just
+                                    ( Word "point" )
+                                ]
+                            , pl =
+                                [ Just
+                                    ( Word "points" )
+                                ]
+                            }
+                        )
+                    )
+                )
+                [ TermVar
+                    ( NamedVar "a" )
+                ]
+            )
+        , Asm
+            ( TermSymbol
+                ( SymbolPredicate
+                    ( PredicateNoun
+                        ( SgPl
+                            { sg =
+                                [ Just
+                                    ( Word "point" )
+                                ]
+                            , pl =
+                                [ Just
+                                    ( Word "points" )
+                                ]
+                            }
+                        )
+                    )
+                )
+                [ TermVar
+                    ( NamedVar "b" )
+                ]
+            )
+        , Asm
+            ( TermSymbol
+                ( SymbolPredicate
+                    ( PredicateNoun
+                        ( SgPl
+                            { sg =
+                                [ Just
+                                    ( Word "point" )
+                                ]
+                            , pl =
+                                [ Just
+                                    ( Word "points" )
+                                ]
+                            }
+                        )
+                    )
+                )
+                [ TermVar
+                    ( NamedVar "c" )
+                ]
+            )
+        , Asm
+            ( TermSymbol
+                ( SymbolPredicate
+                    ( PredicateNoun
+                        ( SgPl
+                            { sg =
+                                [ Just
+                                    ( Word "point" )
+                                ]
+                            , pl =
+                                [ Just
+                                    ( Word "points" )
+                                ]
+                            }
+                        )
+                    )
+                )
+                [ TermVar
+                    ( NamedVar "d" )
+                ]
+            )
+        ]
+        ( Connected Implication
+            ( TermSymbol
+                ( SymbolPredicate
+                    ( PredicateSymbol "Cong" )
+                )
+                [ TermVar
+                    ( NamedVar "a" )
+                , TermVar
+                    ( NamedVar "b" )
+                , TermVar
+                    ( NamedVar "c" )
+                , TermVar
+                    ( NamedVar "d" )
+                ]
+            )
+            ( TermSymbol
+                ( SymbolPredicate
+                    ( PredicateSymbol "Cong" )
+                )
+                [ TermVar
+                    ( NamedVar "b" )
+                , TermVar
+                    ( NamedVar "a" )
+                , TermVar
+                    ( NamedVar "d" )
+                , TermVar
+                    ( NamedVar "c" )
+                ]
+            )
+        )
+    )
+, BlockLemma
+    ( SourcePos
+        { sourceName = "test/examples/geometry.tex"
+        , sourceLine = Pos 116
+        , sourceColumn = Pos 1
+        }
+    )
+    ( Marker "cong_zero" )
+    ( Lemma
+        [ Asm
+            ( TermSymbol
+                ( SymbolPredicate
+                    ( PredicateNoun
+                        ( SgPl
+                            { sg =
+                                [ Just
+                                    ( Word "point" )
+                                ]
+                            , pl =
+                                [ Just
+                                    ( Word "points" )
+                                ]
+                            }
+                        )
+                    )
+                )
+                [ TermVar
+                    ( NamedVar "a" )
+                ]
+            )
+        , Asm
+            ( TermSymbol
+                ( SymbolPredicate
+                    ( PredicateNoun
+                        ( SgPl
+                            { sg =
+                                [ Just
+                                    ( Word "point" )
+                                ]
+                            , pl =
+                                [ Just
+                                    ( Word "points" )
+                                ]
+                            }
+                        )
+                    )
+                )
+                [ TermVar
+                    ( NamedVar "b" )
+                ]
+            )
+        ]
+        ( TermSymbol
+            ( SymbolPredicate
+                ( PredicateSymbol "Cong" )
+            )
+            [ TermVar
+                ( NamedVar "a" )
+            , TermVar
+                ( NamedVar "a" )
+            , TermVar
+                ( NamedVar "b" )
+            , TermVar
+                ( NamedVar "b" )
+            ]
+        )
+    )
+]

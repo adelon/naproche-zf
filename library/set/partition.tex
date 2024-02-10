@@ -1,0 +1,50 @@
+\import{set.tex}
+
+\subsection{Partitions}
+
+\begin{definition}\label{partition}
+    $P$ is a partition iff
+    $\emptyset\notin P$ and
+    for all $B, C\in P$ such that $B\neq C$ we have $B$ is disjoint from $C$.
+\end{definition}
+
+\begin{abbreviation}\label{partition_of}
+    $P$ is a partition of $A$ iff
+    $P$ is a partition and
+    $\unions{P} = A$.
+\end{abbreviation}
+
+\begin{proposition}\label{partition_emptyset}
+    $\emptyset$ is a partition of $\emptyset$.
+\end{proposition}
+
+\begin{definition}\label{partition_refinement}
+    $P'$ is a refinement of $P$ iff
+    for every $A'\in P'$ there exists
+    $A\in P$ such that $A'\subseteq A$.
+\end{definition}
+
+\begin{abbreviation}\label{partition_refines}
+    $P'\refines P$ iff
+    $P'$ is a refinement of $P$.
+\end{abbreviation}
+
+\begin{proposition}\label{partition_refinement_transitive}
+    Suppose $P''\refines P'\refines P$.
+    Then $P''\refines P$.
+\end{proposition}
+\begin{proof}
+    It suffices to show that for all $A''\in P''$ there exists $A\in P$ such that $A''\subseteq A$.
+    Fix $A''\in P''$.
+    Take $A'\in P'$ such that $A''\subseteq A'$
+        by \cref{partition_refinement}.
+    Take $A\in P$ such that $A'\subseteq A$.
+    Then $A''\subseteq A$.
+    Follows by definition. %i.e. A will do for the current existential goal.
+\end{proof}
+
+%\begin{definition}\label{set_of_representatives}
+%    $X$ is a set of representatives for $P$ iff
+%    for all $A\in P$ there exists $a\in A$ such that
+%    $X\inter A = \{a\}$.
+%\end{definition}

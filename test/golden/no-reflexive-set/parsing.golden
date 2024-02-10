@@ -1,0 +1,54 @@
+[ BlockLemma
+    ( SourcePos
+        { sourceName = "test/examples/no-reflexive-set.tex"
+        , sourceLine = Pos 1
+        , sourceColumn = Pos 1
+        }
+    )
+    ( Marker "in_irrefl" )
+    ( Lemma []
+        ( StmtQuantPhrase
+            ( QuantPhrase Universally NounPhrase ( [] )
+                ( Noun
+                    ( SgPl
+                        { sg =
+                            [ Just
+                                ( Word "set" )
+                            ]
+                        , pl =
+                            [ Just
+                                ( Word "sets" )
+                            ]
+                        }
+                    ) []
+                )
+                (
+                    [ NamedVar "A" ]
+                ) ( [] ) ( Nothing )
+            )
+            ( StmtFormula
+                ( FormulaChain
+                    ( ChainBase
+                        ( ExprVar
+                            ( NamedVar "A" ) :| []
+                        ) Negative
+                        ( RelationSymbol
+                            ( Command "in" )
+                        )
+                        ( ExprVar
+                            ( NamedVar "A" ) :| []
+                        )
+                    )
+                )
+            )
+        )
+    )
+, BlockProof
+    ( SourcePos
+        { sourceName = "test/examples/no-reflexive-set.tex"
+        , sourceLine = Pos 4
+        , sourceColumn = Pos 1
+        }
+    )
+    ( BySetInduction Nothing ( Qed JustificationEmpty ) )
+]

@@ -1,0 +1,406 @@
+[ BlockAxiom
+    ( SourcePos
+        { sourceName = "test/examples/union.tex"
+        , sourceLine = Pos 1
+        , sourceColumn = Pos 1
+        }
+    )
+    ( Marker "ext" )
+    ( Axiom
+        [ AsmSuppose
+            ( SymbolicQuantified Universally
+                ( NamedVar "a" :| [] ) Unbounded Nothing
+                ( StmtConnected Equivalence
+                    ( StmtFormula
+                        ( FormulaChain
+                            ( ChainBase
+                                ( ExprVar
+                                    ( NamedVar "a" ) :| []
+                                ) Positive
+                                ( RelationSymbol
+                                    ( Command "in" )
+                                )
+                                ( ExprVar
+                                    ( NamedVar "A" ) :| []
+                                )
+                            )
+                        )
+                    )
+                    ( StmtFormula
+                        ( FormulaChain
+                            ( ChainBase
+                                ( ExprVar
+                                    ( NamedVar "a" ) :| []
+                                ) Positive
+                                ( RelationSymbol
+                                    ( Command "in" )
+                                )
+                                ( ExprVar
+                                    ( NamedVar "B" ) :| []
+                                )
+                            )
+                        )
+                    )
+                )
+            )
+        ]
+        ( StmtFormula
+            ( FormulaChain
+                ( ChainBase
+                    ( ExprVar
+                        ( NamedVar "A" ) :| []
+                    ) Positive
+                    ( RelationSymbol
+                        ( Symbol "=" )
+                    )
+                    ( ExprVar
+                        ( NamedVar "B" ) :| []
+                    )
+                )
+            )
+        )
+    )
+, BlockAxiom
+    ( SourcePos
+        { sourceName = "test/examples/union.tex"
+        , sourceLine = Pos 6
+        , sourceColumn = Pos 1
+        }
+    )
+    ( Marker "union_defn" )
+    ( Axiom
+        [ AsmLetNoun
+            ( NamedVar "A" :|
+                [ NamedVar "B" ]
+            ) NounPhrase ( [] )
+            ( Noun
+                ( SgPl
+                    { sg =
+                        [ Just
+                            ( Word "set" )
+                        ]
+                    , pl =
+                        [ Just
+                            ( Word "sets" )
+                        ]
+                    }
+                ) []
+            ) ( Nothing ) ( [] ) ( Nothing )
+        ]
+        ( StmtConnected Equivalence
+            ( StmtFormula
+                ( FormulaChain
+                    ( ChainBase
+                        ( ExprVar
+                            ( NamedVar "a" ) :| []
+                        ) Positive
+                        ( RelationSymbol
+                            ( Command "in" )
+                        )
+                        ( ExprOp
+                            [ Nothing
+                            , Just
+                                ( Command "union" )
+                            , Nothing
+                            ]
+                            [ ExprVar
+                                ( NamedVar "A" )
+                            , ExprVar
+                                ( NamedVar "B" )
+                            ] :| []
+                        )
+                    )
+                )
+            )
+            ( StmtConnected Disjunction
+                ( StmtFormula
+                    ( FormulaChain
+                        ( ChainBase
+                            ( ExprVar
+                                ( NamedVar "a" ) :| []
+                            ) Positive
+                            ( RelationSymbol
+                                ( Command "in" )
+                            )
+                            ( ExprVar
+                                ( NamedVar "A" ) :| []
+                            )
+                        )
+                    )
+                )
+                ( StmtFormula
+                    ( FormulaChain
+                        ( ChainBase
+                            ( ExprVar
+                                ( NamedVar "a" ) :| []
+                            ) Positive
+                            ( RelationSymbol
+                                ( Command "in" )
+                            )
+                            ( ExprVar
+                                ( NamedVar "B" ) :| []
+                            )
+                        )
+                    )
+                )
+            )
+        )
+    )
+, BlockLemma
+    ( SourcePos
+        { sourceName = "test/examples/union.tex"
+        , sourceLine = Pos 11
+        , sourceColumn = Pos 1
+        }
+    )
+    ( Marker "union_comm" )
+    ( Lemma []
+        ( StmtFormula
+            ( FormulaChain
+                ( ChainBase
+                    ( ExprOp
+                        [ Nothing
+                        , Just
+                            ( Command "union" )
+                        , Nothing
+                        ]
+                        [ ExprVar
+                            ( NamedVar "A" )
+                        , ExprVar
+                            ( NamedVar "B" )
+                        ] :| []
+                    ) Positive
+                    ( RelationSymbol
+                        ( Symbol "=" )
+                    )
+                    ( ExprOp
+                        [ Nothing
+                        , Just
+                            ( Command "union" )
+                        , Nothing
+                        ]
+                        [ ExprVar
+                            ( NamedVar "B" )
+                        , ExprVar
+                            ( NamedVar "A" )
+                        ] :| []
+                    )
+                )
+            )
+        )
+    )
+, BlockLemma
+    ( SourcePos
+        { sourceName = "test/examples/union.tex"
+        , sourceLine = Pos 15
+        , sourceColumn = Pos 1
+        }
+    )
+    ( Marker "union_assoc" )
+    ( Lemma []
+        ( StmtFormula
+            ( FormulaChain
+                ( ChainBase
+                    ( ExprOp
+                        [ Nothing
+                        , Just
+                            ( Command "union" )
+                        , Nothing
+                        ]
+                        [ ExprOp
+                            [ Nothing
+                            , Just
+                                ( Command "union" )
+                            , Nothing
+                            ]
+                            [ ExprVar
+                                ( NamedVar "A" )
+                            , ExprVar
+                                ( NamedVar "B" )
+                            ]
+                        , ExprVar
+                            ( NamedVar "C" )
+                        ] :| []
+                    ) Positive
+                    ( RelationSymbol
+                        ( Symbol "=" )
+                    )
+                    ( ExprOp
+                        [ Nothing
+                        , Just
+                            ( Command "union" )
+                        , Nothing
+                        ]
+                        [ ExprVar
+                            ( NamedVar "A" )
+                        , ExprOp
+                            [ Nothing
+                            , Just
+                                ( Command "union" )
+                            , Nothing
+                            ]
+                            [ ExprVar
+                                ( NamedVar "B" )
+                            , ExprVar
+                                ( NamedVar "C" )
+                            ]
+                        ] :| []
+                    )
+                )
+            )
+        )
+    )
+, BlockProof
+    ( SourcePos
+        { sourceName = "test/examples/union.tex"
+        , sourceLine = Pos 18
+        , sourceColumn = Pos 1
+        }
+    )
+    ( Have Nothing
+        ( SymbolicQuantified Universally
+            ( NamedVar "a" :| [] ) Unbounded Nothing
+            ( StmtConnected Implication
+                ( StmtFormula
+                    ( FormulaChain
+                        ( ChainBase
+                            ( ExprVar
+                                ( NamedVar "a" ) :| []
+                            ) Positive
+                            ( RelationSymbol
+                                ( Command "in" )
+                            )
+                            ( ExprOp
+                                [ Nothing
+                                , Just
+                                    ( Command "union" )
+                                , Nothing
+                                ]
+                                [ ExprOp
+                                    [ Nothing
+                                    , Just
+                                        ( Command "union" )
+                                    , Nothing
+                                    ]
+                                    [ ExprVar
+                                        ( NamedVar "A" )
+                                    , ExprVar
+                                        ( NamedVar "B" )
+                                    ]
+                                , ExprVar
+                                    ( NamedVar "C" )
+                                ] :| []
+                            )
+                        )
+                    )
+                )
+                ( StmtFormula
+                    ( FormulaChain
+                        ( ChainBase
+                            ( ExprVar
+                                ( NamedVar "a" ) :| []
+                            ) Positive
+                            ( RelationSymbol
+                                ( Command "in" )
+                            )
+                            ( ExprOp
+                                [ Nothing
+                                , Just
+                                    ( Command "union" )
+                                , Nothing
+                                ]
+                                [ ExprVar
+                                    ( NamedVar "A" )
+                                , ExprOp
+                                    [ Nothing
+                                    , Just
+                                        ( Command "union" )
+                                    , Nothing
+                                    ]
+                                    [ ExprVar
+                                        ( NamedVar "B" )
+                                    , ExprVar
+                                        ( NamedVar "C" )
+                                    ]
+                                ] :| []
+                            )
+                        )
+                    )
+                )
+            )
+        ) JustificationEmpty
+        ( Have Nothing
+            ( SymbolicQuantified Universally
+                ( NamedVar "a" :| [] ) Unbounded Nothing
+                ( StmtConnected Implication
+                    ( StmtFormula
+                        ( FormulaChain
+                            ( ChainBase
+                                ( ExprVar
+                                    ( NamedVar "a" ) :| []
+                                ) Positive
+                                ( RelationSymbol
+                                    ( Command "in" )
+                                )
+                                ( ExprOp
+                                    [ Nothing
+                                    , Just
+                                        ( Command "union" )
+                                    , Nothing
+                                    ]
+                                    [ ExprVar
+                                        ( NamedVar "A" )
+                                    , ExprOp
+                                        [ Nothing
+                                        , Just
+                                            ( Command "union" )
+                                        , Nothing
+                                        ]
+                                        [ ExprVar
+                                            ( NamedVar "B" )
+                                        , ExprVar
+                                            ( NamedVar "C" )
+                                        ]
+                                    ] :| []
+                                )
+                            )
+                        )
+                    )
+                    ( StmtFormula
+                        ( FormulaChain
+                            ( ChainBase
+                                ( ExprVar
+                                    ( NamedVar "a" ) :| []
+                                ) Positive
+                                ( RelationSymbol
+                                    ( Command "in" )
+                                )
+                                ( ExprOp
+                                    [ Nothing
+                                    , Just
+                                        ( Command "union" )
+                                    , Nothing
+                                    ]
+                                    [ ExprOp
+                                        [ Nothing
+                                        , Just
+                                            ( Command "union" )
+                                        , Nothing
+                                        ]
+                                        [ ExprVar
+                                            ( NamedVar "A" )
+                                        , ExprVar
+                                            ( NamedVar "B" )
+                                        ]
+                                    , ExprVar
+                                        ( NamedVar "C" )
+                                    ] :| []
+                                )
+                            )
+                        )
+                    )
+                )
+            ) JustificationEmpty ( Qed JustificationEmpty )
+        )
+    )
+]

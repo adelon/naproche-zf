@@ -1,0 +1,160 @@
+[ BlockLemma
+    ( SourcePos
+        { sourceName = "test/examples/calc.tex"
+        , sourceLine = Pos 1
+        , sourceColumn = Pos 1
+        }
+    )
+    ( Marker "trivial" )
+    ( Lemma []
+        ( TermSymbol
+            ( SymbolPredicate
+                ( PredicateRelation
+                    ( Symbol "=" )
+                )
+            )
+            [ TermVar
+                ( NamedVar "x" )
+            , TermVar
+                ( NamedVar "x" )
+            ]
+        )
+    )
+, BlockLemma
+    ( SourcePos
+        { sourceName = "test/examples/calc.tex"
+        , sourceLine = Pos 5
+        , sourceColumn = Pos 1
+        }
+    )
+    ( Marker "irrelevant" )
+    ( Lemma []
+        ( TermSymbol
+            ( SymbolPredicate
+                ( PredicateRelation
+                    ( Symbol "=" )
+                )
+            )
+            [ TermVar
+                ( NamedVar "z" )
+            , TermVar
+                ( NamedVar "z" )
+            ]
+        )
+    )
+, BlockLemma
+    ( SourcePos
+        { sourceName = "test/examples/calc.tex"
+        , sourceLine = Pos 9
+        , sourceColumn = Pos 1
+        }
+    )
+    ( Marker "alsotrivial" )
+    ( Lemma []
+        ( TermSymbol
+            ( SymbolPredicate
+                ( PredicateRelation
+                    ( Symbol "=" )
+                )
+            )
+            [ TermVar
+                ( NamedVar "y" )
+            , TermVar
+                ( NamedVar "y" )
+            ]
+        )
+    )
+, BlockProof
+    ( SourcePos
+        { sourceName = "test/examples/calc.tex"
+        , sourceLine = Pos 12
+        , sourceColumn = Pos 1
+        }
+    )
+    ( Calc
+        ( Equation
+            ( TermVar
+                ( NamedVar "y" )
+            )
+            (
+                ( TermVar
+                    ( NamedVar "y" )
+                , JustificationEmpty
+                ) :|
+                [
+                    ( TermVar
+                        ( NamedVar "y" )
+                    , JustificationRef
+                        ( Marker "trivial" :| [] )
+                    )
+                ]
+            )
+        ) ( Qed JustificationEmpty )
+    )
+, BlockLemma
+    ( SourcePos
+        { sourceName = "test/examples/calc.tex"
+        , sourceLine = Pos 22
+        , sourceColumn = Pos 1
+        }
+    )
+    ( Marker "trivial_biconditionals" )
+    ( Lemma []
+        ( TermSymbol
+            ( SymbolPredicate
+                ( PredicateRelation
+                    ( Symbol "=" )
+                )
+            )
+            [ TermVar
+                ( NamedVar "y" )
+            , TermVar
+                ( NamedVar "y" )
+            ]
+        )
+    )
+, BlockProof
+    ( SourcePos
+        { sourceName = "test/examples/calc.tex"
+        , sourceLine = Pos 25
+        , sourceColumn = Pos 1
+        }
+    )
+    ( Calc
+        ( Biconditionals
+            ( TermSymbol
+                ( SymbolPredicate
+                    ( PredicateRelation
+                        ( Symbol "=" )
+                    )
+                )
+                [ TermVar
+                    ( NamedVar "y" )
+                , TermVar
+                    ( NamedVar "y" )
+                ]
+            )
+            (
+                ( PropositionalConstant IsTop
+                , JustificationEmpty
+                ) :|
+                [
+                    ( TermSymbol
+                        ( SymbolPredicate
+                            ( PredicateRelation
+                                ( Symbol "=" )
+                            )
+                        )
+                        [ TermVar
+                            ( NamedVar "y" )
+                        , TermVar
+                            ( NamedVar "y" )
+                        ]
+                    , JustificationRef
+                        ( Marker "trivial" :| [] )
+                    )
+                ]
+            )
+        ) ( Qed JustificationEmpty )
+    )
+]

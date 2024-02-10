@@ -1,0 +1,19 @@
+[ ScanAdj
+    [ Just
+        ( Word "empty" )
+    ]
+    ( Marker "empty" )
+, ScanNoun
+    [ Just
+        ( Word "function" )
+    ]
+    ( Marker "function" )
+, ScanVerb
+    [ Just
+        ( Word "converges" )
+    , Just
+        ( Word "to" )
+    , Nothing
+    ]
+    ( Marker "converges" )
+]

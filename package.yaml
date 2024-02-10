@@ -1,0 +1,123 @@
+name: zf
+version: 0.3.0.0
+license: CC0-1.0
+license-file: license.md
+github: adelon/zf
+
+extra-source-files:
+    - license.md
+    - readme.md
+
+dependencies:
+    - base
+    - binary
+    - bound
+    - charset
+    - containers
+    - deriving-compat # for bound
+    - directory
+    - dlist
+    - Earley
+    - filepath
+    - hashable >= 1.3.1.0 # 1.3.1.0 provides Hashable1 for NonEmpty
+    - megaparsec
+    - monad-logger
+    - mtl
+    - optparse-applicative
+    - parser-combinators
+    - pretty-simple
+    - prettyprinter
+    - process-extras
+    - regex-applicative
+    - regex-applicative-text
+    - tasty
+    - tasty-golden
+    - tasty-hunit
+    - text
+    - text-builder
+    - time
+    - transformers
+    - unliftio
+    - unordered-containers
+
+default-extensions:
+    - ApplicativeDo
+    - ImportQualifiedPost
+    - BlockArguments
+    - DeriveFunctor
+    - DeriveGeneric
+    - FlexibleContexts
+    - FlexibleInstances
+    - GADTs
+    - GeneralizedNewtypeDeriving
+    - InstanceSigs
+    - LambdaCase
+    - NoImplicitPrelude
+    - OverloadedStrings
+    - PartialTypeSignatures
+    - PatternSynonyms
+    - ScopedTypeVariables
+    - TypeFamilies
+    - TypeOperators
+
+
+# Each part gets it own GHC options, because otherwise all
+# external libraries are compiled with our picky settings,
+# resulting in an unfriendly wall of warnings.
+
+library:
+    source-dirs: source/
+    ghc-options:
+        # Warnings
+        - -Wall
+        - -Wcompat
+        - -Wincomplete-uni-patterns
+        - -Wincomplete-record-updates
+        - -Wredundant-constraints
+        - -fno-warn-unused-do-bind
+        # Cleaning up GHC's error messages
+        - -freverse-errors
+        - -fhide-source-paths
+
+executables:
+    zf:
+        main: cli/Main.hs
+        dependencies:
+            - zf
+        ghc-options:
+            - -rtsopts
+            - -threaded
+            - -with-rtsopts=-N
+            # Warnings
+            - -Wall
+            - -Wcompat
+            - -Wincomplete-uni-patterns
+            - -Wincomplete-record-updates
+            - -Wredundant-constraints
+            - -fno-warn-unused-do-bind
+            # Cleaning up GHC's error messages
+            - -freverse-errors
+            - -fhide-source-paths
+        # Workaround: supresses warning about
+        # 'Multiple files use the same module name'.
+        when:
+        - condition: false
+          other-modules: Paths_zf
+
+tests:
+    zf-test:
+        main: Main.hs
+        source-dirs: test/
+        dependencies:
+            - zf
+        ghc-options:
+            # Warnings
+            - -Wall
+            - -Wcompat
+            - -Wincomplete-uni-patterns
+            - -Wincomplete-record-updates
+            - -Wredundant-constraints
+            - -fno-warn-unused-do-bind
+            # Cleaning up GHC's error messages
+            - -freverse-errors
+            - -fhide-source-paths

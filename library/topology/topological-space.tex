@@ -1,0 +1,258 @@
+\import{set.tex}
+\import{set/powerset.tex}
+
+\section{Topological spaces}
+
+\begin{struct}\label{topological_space}
+    A topological space $X$ is a onesorted structure equipped with
+    \begin{enumerate}
+        \item $\opens$
+    \end{enumerate}
+    such that
+    \begin{enumerate}
+        \item\label{opens_type} $\opens[X]$ is a family of subsets of $\carrier[X]$.
+        \item\label{emptyset_open} $\emptyset\in\opens[X]$.
+        \item\label{carrier_open} $\carrier[X]\in\opens[X]$.
+        \item\label{opens_inter} For all $A, B\in \opens[X]$ we have $A\inter B\in\opens[X]$.
+        \item\label{opens_unions} For all $F\subseteq \opens[X]$ we have $\unions{F}\in\opens[X]$.
+    \end{enumerate}
+\end{struct}
+
+\begin{abbreviation}\label{is_open_in}
+    $U$ is open iff $U\in\opens$.
+\end{abbreviation}
+
+\begin{abbreviation}\label{is_open}
+    $U$ is open in $X$ iff $U\in\opens[X]$.
+\end{abbreviation}
+
+\begin{proposition}\label{union_open}
+    Let $X$ be a topological space.
+    Suppose $A$, $B$ are open.
+    Then $A\union B$ is open.
+\end{proposition}
+\begin{proof}
+    $\{A, B\}\subseteq \opens$.
+    $\unions{\{A, B\}}$ is open.
+    $\unions{\{A, B\}} = A\union B$.
+\end{proof}
+
+\begin{definition}[Interiors]\label{interiors}
+    $\interiors{A}{X} = \{ U\in\opens[X]\mid U\subseteq A\}$.
+\end{definition}
+
+\begin{definition}[Interior]\label{interior}
+    $\interior{A}{X} = \unions{\interiors{A}{X}}$.
+\end{definition}
+
+\begin{proposition}[Interior]\label{interior_elem_intro}
+    Suppose $U\in\opens[X]$ and $a\in U\subseteq A$.
+    Then $a\in\interior{A}{X}$.
+\end{proposition}
+\begin{proof}
+    $U\in\interiors{A}{X}$.
+\end{proof}
+
+\begin{proposition}[Interior]\label{interior_elem_elim}
+    Suppose $a\in\interior{A}{X}$.
+    Then there exists $U\in\opens[X]$
+    such that $a\in U\subseteq A$.
+\end{proposition}
+\begin{proof}
+    Take $U\in\interiors{A}{X}$ such that $a\in U$.
+\end{proof}
+
+\begin{proposition}[Interior]\label{interior_elem_iff}
+    $a\in\interior{A}{X}$ iff
+    there exists $U\in\opens[X]$
+    such that $a\in U\subseteq A$.
+\end{proposition}
+\begin{proof}
+    Follows by \cref{interior_elem_intro,interior_elem_elim}.
+\end{proof}
+
+\begin{proposition}\label{interior_of_open}
+    Let $X$ be a topological space.
+    Suppose $U$ is open in $X$.
+    Then $\interior{U}{X} = U$.
+\end{proposition}
+\begin{proof}
+    $U\in\interiors{U}{X}$.
+    Follows by \cref{subseteq,interior_elem_iff,neq_witness}.
+\end{proof}
+
+\begin{proposition}\label{interior_is_open}
+    Let $X$ be a topological space.
+    Then $\interior{A}{X}$ is open.
+\end{proposition}
+\begin{proof}
+    $\interiors{A}{X}\subseteq\opens[X]$.
+\end{proof}
+
+\begin{proposition}\label{interior_subseteq}
+    Then $\interior{A}{X}\subseteq A$.
+\end{proposition}
+
+\begin{proposition}\label{interior_maximal}
+    Let $X$ be a topological space.
+    Suppose $U\subseteq A\subseteq \carrier[X]$.
+    Suppose $U$ is open.
+    Then $U\subseteq \interior{A}{X}$.
+\end{proposition}
+
+\begin{proposition}\label{interior_eq_self_implies_open}
+    Let $X$ be a topological space.
+    Suppose $\interior{A}{X} = A$.
+    Then $A$ is open.
+\end{proposition}
+
+\begin{corollary}\label{interior_eq_self_iff_open}
+    Let $X$ be a topological space.
+    Then $\interior{A}{X} = A$ iff $A$ is open in $X$.
+\end{corollary}
+
+\begin{proposition}\label{interior_carrier}
+    Let $X$ be a topological space.
+    $\interior{\carrier[X]}{X} = \carrier[X]$.
+\end{proposition}
+\begin{proof}
+    $\carrier[X]\in\opens[X]$.
+    $\carrier[X]\subseteq\carrier[X]$ by \cref{subseteq_refl}.
+    Thus $\carrier[X]\in\interiors{\carrier[X]}{X}$ by \cref{interiors}.
+    Follows by set extensionality.
+\end{proof}
+
+\begin{proposition}\label{interior_type}
+    Let $X$ be a topological space.
+    Then $\interior{A}{X}\in\pow{\carrier[X]}$.
+\end{proposition}
+\begin{proof}
+    We have $\interiors{A}{X}\subseteq \pow{\carrier[X]}$.
+    % As they are open subsets of X containing A
+    %
+    Thus $\interior{A}{X}\subseteq \carrier[X]$ by \cref{interior,unions_subseteq_of_powerset_is_subseteq}.
+\end{proof}
+
+\subsection{Closed sets}
+
+\begin{definition}\label{is_closed_in}
+    $A$ is closed in $X$ iff $\carrier[X]\setminus A$ is open in $X$.
+\end{definition}
+
+\begin{abbreviation}\label{is_clopen_in}
+    $A$ is clopen in $X$ iff $A$ is open in $X$ and closed in $X$.
+\end{abbreviation}
+
+\begin{proposition}\label{emptyset_is_closed}
+    Let $X$ be a topological space.
+    Then $\emptyset$ is closed in $X$.
+\end{proposition}
+\begin{proof}
+    $\carrier[X]\setminus \emptyset = \carrier[X]$.
+\end{proof}
+
+\begin{proposition}\label{carrier_is_closed}
+    Let $X$ be a topological space.
+    Then $\emptyset$ is closed in $X$.
+\end{proposition}
+\begin{proof}
+    $\carrier[X]\setminus \carrier[X] = \emptyset$.
+\end{proof}
+
+\begin{definition}[Closed sets]\label{closeds}
+    $\closeds{X} = \{ A\in\pow{\carrier[X]}\mid\text{$A$ is closed in $X$}\}$.
+\end{definition}
+
+\begin{proposition}\label{complement_of_open_elem_closeds}
+    Let $X$ be a topological space.
+    Let $U\in\opens[X]$.
+    Then $\carrier[X]\setminus U\in\closeds{X}$.
+\end{proposition}
+\begin{proof}
+    $\carrier[X]\setminus U\in\pow{\carrier[X]}$.
+    $U\subseteq\carrier[X]$ by \cref{opens_type}.
+    Hence $\carrier[X]\setminus(\carrier[X]\setminus U) = U$ by \cref{double_relative_complement}.
+    $\carrier[X]\setminus U$ is closed in $X$.
+\end{proof}
+
+
+\begin{definition}[Closed covers]\label{closures}
+    $\closures{A}{X} = \{ D\in\pow{\carrier[X]}\mid \text{$A\subseteq D$ and $D$ is closed in $X$}\}$.
+\end{definition}
+
+\begin{definition}[Closure]\label{closure}
+    $\closure{A}{X} = \inters{\closures{A}{X}}$.
+\end{definition}
+
+\begin{proposition}\label{closure_emptyset}
+    Let $X$ be a topological space.
+    Then $\closure{\emptyset}{X} = \emptyset$.
+\end{proposition}
+\begin{proof}
+    $\emptyset\in\closures{\emptyset}{X}$.
+\end{proof}
+
+\begin{proposition}\label{closure_carrier}
+    Let $X$ be a topological space.
+    Then $\closure{\carrier[X]}{X} = \carrier[X]$.
+\end{proposition}
+\begin{proof}
+    %For all $D\in\closures{\carrier[X]}{X}$ we have $\carrier[X]\subseteq D$ by \cref{closures}.
+    %For all $D\in\closures{\carrier[X]}{X}$ we have $\carrier[X]\supseteq D$ by \cref{pow_iff,closures}.
+    %For all $D\in\closures{\carrier[X]}{X}$ we have $\carrier[X] = D$ by \cref{subseteq_antisymmetric}.
+    For all $D\in\closures{\carrier[X]}{X}$ we have $\carrier[X] = D$
+        by \cref{pow_iff,closures,subseteq_antisymmetric}.
+    Now $\carrier[X]\in\closures{\carrier[X]}{X}$.
+    Thus $\closures{\carrier[X]}{X} = \{\carrier[X]\}$
+        by \cref{singleton_iff_inhabited_subsingleton}.
+    Follows by \cref{inters_singleton,closure}.
+\end{proof}
+
+
+\begin{proposition}%[Complement of interior equals closure of complement]
+\label{complement_interior_eq_closure_complement}
+    $\carrier[X]\setminus\interior{A}{X} = \closure{(\carrier[X]\setminus A)}{X}$.
+\end{proposition}
+\begin{proof}
+    Omitted. % Use general De Morgan's Law in Pow|X|
+\end{proof}
+
+\begin{definition}[Frontier]\label{frontier}
+    $\frontier{A}{X} = \closure{A}{X}\setminus\interior{A}{X}$.
+\end{definition}
+
+
+
+\begin{proposition}%[Frontier as intersection of closures]
+\label{frontier_as_inter}
+    $\frontier{A}{X} = \closure{A}{X} \inter \closure{(\carrier[X]\setminus A)}{X}$.
+\end{proposition}
+\begin{proof}
+    % TODO
+    Omitted.
+    %$\frontier{A}{X} = \closure{A}{X}\setminus\interior{A}{X}$. % by frontier (definition)
+    %$\closure{A}{X}\setminus\interior{A}{X} = \closure{A}{X}\inter(\carrier[X]\setminus\interior{A}{X})$. % by setminus_eq_inter_complement
+    %$\closure{A}{X}\inter(\carrier[X]\setminus\interior{A}{X}) = \closure{A}{X} \inter \closure{(\carrier[X]\setminus A)}{X}$. % by complement_interior_eq_closure_complement
+\end{proof}
+
+\begin{proposition}\label{frontier_of_emptyset}
+    Let $X$ be a topological space.
+    Then $\frontier{\emptyset}{X} = \emptyset$.
+\end{proposition}
+\begin{proof}
+    Follows by set extensionality.
+\end{proof}
+
+\begin{proposition}\label{frontier_of_carrier}
+    Let $X$ be a topological space.
+    Then $\frontier{\carrier[X]}{X} = \emptyset$.
+\end{proposition}
+\begin{proof}
+    $\frontier{\carrier[X]}{X} = \carrier[X]\setminus\carrier[X]$
+        by \cref{frontier,interior_carrier,closure_carrier}.
+    Follows by \cref{setminus_self}.
+\end{proof}
+
+\begin{definition}\label{neighbourhoods}
+    $\neighbourhoods{x}{X} = \{U\in\opens[X] \mid x\in U\}$.
+\end{definition}

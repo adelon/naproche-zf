@@ -1,0 +1,44 @@
+[ BlockLemma
+    ( SourcePos
+        { sourceName = "test/examples/separation.tex"
+        , sourceLine = Pos 1
+        , sourceColumn = Pos 1
+        }
+    )
+    ( Marker "sep_test" )
+    ( Lemma []
+        ( StmtFormula
+            ( FormulaChain
+                ( ChainBase
+                    ( ExprVar
+                        ( NamedVar "X" ) :| []
+                    ) Positive
+                    ( RelationSymbol
+                        ( Symbol "=" )
+                    )
+                    ( ExprSep
+                        ( NamedVar "x" )
+                        ( ExprVar
+                            ( NamedVar "X" )
+                        )
+                        ( StmtFormula
+                            ( FormulaChain
+                                ( ChainBase
+                                    ( ExprVar
+                                        ( NamedVar "x" ) :| []
+                                    ) Positive
+                                    ( RelationSymbol
+                                        ( Symbol "=" )
+                                    )
+                                    ( ExprVar
+                                        ( NamedVar "x" ) :| []
+                                    )
+                                )
+                            )
+                        ) :| []
+                    )
+                )
+            )
+        )
+    )
+]

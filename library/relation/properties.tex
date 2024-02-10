@@ -1,0 +1,202 @@
+\import{set.tex}
+\import{relation.tex}
+
+\subsection{Properties of relations}
+
+\begin{definition}\label{left_quasireflexive}
+    $R$ is left quasireflexive iff
+    for all $x, y$ such that $x\mathrel{R} y$
+    we have $x\mathrel{R}x$.
+\end{definition}
+
+\begin{definition}\label{right_quasireflexive}
+    $R$ is right quasireflexive iff
+    for all $x, y$ such that $x\mathrel{R} y$
+    we have $y\mathrel{R}y$.
+\end{definition}
+
+\begin{definition}\label{quasireflexive}
+    $R$ is quasireflexive iff
+    for all $x, y$ such that $x\mathrel{R} y$
+    we have $x\mathrel{R}x$ and $y\mathrel{R}y$.
+\end{definition}
+
+\begin{definition}\label{coreflexive}
+    $R$ is coreflexive iff
+    for all $x, y$ such that $x\mathrel{R} y$
+    we have $x = y$.
+\end{definition}
+
+\begin{definition}\label{reflexive_on}
+    $R$ is reflexive on $X$ iff
+    for all $x\in X$
+    we have $x\mathrel{R}x$.
+\end{definition}
+
+\begin{definition}\label{irreflexive}
+    $R$ is irreflexive iff
+    for all $x$ we have $(x,x)\notin R$.
+\end{definition}
+
+
+\begin{proposition}\label{quasireflexive_implies_reflexive_on_fld}
+    Suppose $R$ is quasireflexive.
+    Then $R$ is reflexive on $\fld{R}$.
+\end{proposition}
+
+\begin{proposition}\label{reflexive_on_fld_impliesquasireflexive}
+    Suppose $R$ is reflexive on $\fld{R}$.
+    Then $R$ is quasireflexive.
+\end{proposition}
+
+\begin{proposition}\label{inters_of_family_of_reflexive_relations_is_reflexive}
+    Let $F$ be an inhabited family of relations.
+    Suppose every element of $F$ is reflexive on $A$.
+    Then $\inters{F}$ is reflexive on $A$.
+\end{proposition}
+\begin{proof}
+    For all $a\in A$ we have for all $R\in F$ we have $a\mathrel{R} a$.
+    Thus for all $a\in A$ we have $a\mathrel{(\inters{F})} a$.
+\end{proof}
+
+\begin{definition}\label{antisymmetric}
+    $R$ is antisymmetric iff
+    for all $x, y$ such that $x\mathrel{R}y\mathrel{R}x$
+    we have $x = y$.
+\end{definition}
+
+\begin{definition}[Symmetry]\label{symmetric}
+    $R$ is symmetric iff
+    for all $x, y$ we have
+    $x\mathrel{R} y \iff y\mathrel{R}x$.
+\end{definition}
+
+\begin{definition}\label{asymmetric}
+    $R$ is asymmetric iff
+    for all $x, y$ such that
+    $x\mathrel{R} y$ we have $y\not\mathrel{R}x$.
+\end{definition}
+
+\begin{proposition}\label{asymmetric_implies_irreflexive}
+    Suppose $R$ is asymmetric.
+    Then $R$ is irreflexive.
+\end{proposition}
+
+\begin{proposition}\label{asymmetric_implies_antisymmetric}
+    Suppose $R$ is asymmetric.
+    Then $R$ is antisymmetric.
+\end{proposition}
+
+\begin{proposition}\label{antisymmetric_and_irreflexive_implies_asymmetric}
+    Suppose $R$ is antisymmetric.
+    Suppose $R$ is irreflexive.
+    Then $R$ is asymmetric.
+\end{proposition}
+
+% TODO
+%\begin{proposition}\label{symmetric_relation_eq_converse}
+%    Let $R$ be a symmetric relation.
+%    Then $\converse{R} = R$.
+%\end{proposition}
+%\begin{proof}
+%    Follows by set extensionality.
+%\end{proof}
+
+\begin{definition}[Transitivity]\label{transitive}
+    $R$ is transitive iff
+    for all $x, y, z$ such that $x\mathrel{R}y\mathrel{R}z$
+        we have $x\mathrel{R} z$.
+\end{definition}
+
+\begin{proposition}\label{transitive_downward_elem}
+    Suppose $R$ is transitive.
+    Suppose $a\in\downward{R}{b}$.
+    Suppose $c\in\downward{R}{a}$.
+    Then $c\in \downward{R}{b}$.
+\end{proposition}
+\begin{proof}
+    $c\mathrel{R} a\mathrel{R}b$.
+    Thus $c\mathrel{R} b$ by \hyperref[transitive]{transitivity}.
+\end{proof}
+
+\begin{proposition}\label{transitive_downward_subseteq}
+    Suppose $R$ is transitive.
+    Suppose $a\in\downward{R}{b}$.
+    Then $\downward{R}{a}\subseteq \downward{R}{b}$.
+\end{proposition}
+
+\begin{definition}\label{dense}
+    $R$ is dense iff
+    for all $x, z$ such that $x\mathrel{R}z$
+        there exists $y$ such that $x\mathrel{R}y\mathrel{R}z$.
+\end{definition}
+
+% Variation of connexity that does not depend on a carrier.
+\begin{definition}\label{quasiconnex}
+    $R$ is quasiconnex iff
+    for all $x, y\in\fld{R}$ such that $x\neq y$ we have
+        $x\mathrel{R}y$ or $y\mathrel{R}x$.
+\end{definition}
+
+% Also called "connected" (here reserved for topology),
+% "complete" (heavily overloaded), and total" (also overloaded).
+\begin{definition}\label{connex}
+    $R$ is connex on $X$ iff
+    for all $x, y\in X$ such that $x\neq y$ we have
+        $x\mathrel{R}y$ or $y\mathrel{R}x$.
+\end{definition}
+
+\begin{definition}\label{strongly_quasiconnex}
+    $R$ is strongly quasiconnex iff
+    for all $x, y\in\fld{R}$ we have
+        $x\mathrel{R}y$ or $y\mathrel{R}x$.
+\end{definition}
+
+\begin{definition}\label{strongly_connex}
+    $R$ is strongly connex on $X$ iff
+    for all $x, y\in X$ we have
+        $x\mathrel{R}y$ or $y\mathrel{R}x$.
+\end{definition}
+
+%\begin{proposition}\label{strongly_quasiconnex_implies_quasiconnex_and_quasireflexive}
+%    Suppose $R$ is strongly quasiconnex.
+%    Then $R$ is quasiconnex and quasireflexive.
+%\end{proposition}
+
+%\begin{proposition}\label{quasiconnex_and_quasireflexive_implies_strongly_quasiconnex}
+%    Suppose $R$ is quasiconnex and quasireflexive.
+%    Then $R$ is strongly quasiconnex.
+%\end{proposition}
+
+\begin{proposition}\label{strongly_quasiconnex_iff_quasiconnex_and_quasireflexive}
+    $R$ is strongly quasiconnex iff
+    $R$ is quasiconnex and quasireflexive.
+\end{proposition}
+\begin{proof}
+    Follows by \cref{quasiconnex,strongly_quasiconnex,quasireflexive_implies_reflexive_on_fld,reflexive_on,fld,reflexive_on_fld_impliesquasireflexive}.
+\end{proof}
+
+\begin{proposition}\label{connex_reaches_all_or_all_but_one}
+    Suppose $R$ is connex on $A$.
+    Let $a, b\in A\setminus\ran{R}$.
+    Then $a = b$.
+\end{proposition}
+\begin{proof}
+    Suppose not.
+    $a, b\in A$.
+    Then $(a, b)\in R$ or $(b,a)\in R$ by \cref{connex}.
+    $(a, b)\notin R$.
+    $(b, a)\notin R$.
+    Thus $a = b$.
+\end{proof}
+
+
+\begin{definition}\label{righteuclidean}
+    $R$ is right Euclidean iff
+    for all $a,b,c$ such that $a\mathrel{R}b,c$ we have $b\mathrel{R}c$.
+\end{definition}
+
+\begin{definition}\label{lefteuclidean}
+    $R$ is left Euclidean iff
+    for all $a,b,c$ such that $a,b\mathrel{R}c$ we have $a\mathrel{R}b$.
+\end{definition}

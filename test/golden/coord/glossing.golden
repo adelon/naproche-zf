@@ -1,0 +1,437 @@
+[ BlockDefn
+    ( SourcePos
+        { sourceName = "test/examples/coord.tex"
+        , sourceLine = Pos 1
+        , sourceColumn = Pos 1
+        }
+    )
+    ( Marker "bar" )
+    ( DefnPredicate []
+        ( PredicateNoun
+            ( SgPl
+                { sg =
+                    [ Just
+                        ( Word "bar" )
+                    ]
+                , pl =
+                    [ Just
+                        ( Word "bars" )
+                    ]
+                }
+            )
+        )
+        ( NamedVar "x" :| [] )
+        ( TermSymbol
+            ( SymbolPredicate
+                ( PredicateRelation
+                    ( Symbol "=" )
+                )
+            )
+            [ TermVar
+                ( NamedVar "x" )
+            , TermVar
+                ( NamedVar "x" )
+            ]
+        )
+    )
+, BlockDefn
+    ( SourcePos
+        { sourceName = "test/examples/coord.tex"
+        , sourceLine = Pos 5
+        , sourceColumn = Pos 1
+        }
+    )
+    ( Marker "foo" )
+    ( DefnPredicate []
+        ( PredicateAdj
+            [ Just
+                ( Word "foo" )
+            ]
+        )
+        ( NamedVar "x" :| [] )
+        ( TermSymbol
+            ( SymbolPredicate
+                ( PredicateRelation
+                    ( Symbol "=" )
+                )
+            )
+            [ TermVar
+                ( NamedVar "x" )
+            , TermVar
+                ( NamedVar "x" )
+            ]
+        )
+    )
+, BlockDefn
+    ( SourcePos
+        { sourceName = "test/examples/coord.tex"
+        , sourceLine = Pos 9
+        , sourceColumn = Pos 1
+        }
+    )
+    ( Marker "baz" )
+    ( DefnPredicate []
+        ( PredicateAdj
+            [ Just
+                ( Word "baz" )
+            ]
+        )
+        ( NamedVar "x" :| [] )
+        ( TermSymbol
+            ( SymbolPredicate
+                ( PredicateRelation
+                    ( Symbol "=" )
+                )
+            )
+            [ TermVar
+                ( NamedVar "x" )
+            , TermVar
+                ( NamedVar "x" )
+            ]
+        )
+    )
+, BlockLemma
+    ( SourcePos
+        { sourceName = "test/examples/coord.tex"
+        , sourceLine = Pos 13
+        , sourceColumn = Pos 1
+        }
+    )
+    ( Marker "nouns" )
+    ( Lemma
+        [ Asm
+            ( TermSymbol
+                ( SymbolPredicate
+                    ( PredicateNoun
+                        ( SgPl
+                            { sg =
+                                [ Just
+                                    ( Word "bar" )
+                                ]
+                            , pl =
+                                [ Just
+                                    ( Word "bars" )
+                                ]
+                            }
+                        )
+                    )
+                )
+                [ TermVar
+                    ( NamedVar "x" )
+                ]
+            )
+        , Asm
+            ( TermSymbol
+                ( SymbolPredicate
+                    ( PredicateNoun
+                        ( SgPl
+                            { sg =
+                                [ Just
+                                    ( Word "bar" )
+                                ]
+                            , pl =
+                                [ Just
+                                    ( Word "bars" )
+                                ]
+                            }
+                        )
+                    )
+                )
+                [ TermVar
+                    ( NamedVar "y" )
+                ]
+            )
+        ]
+        ( TermSymbol
+            ( SymbolPredicate
+                ( PredicateRelation
+                    ( Symbol "=" )
+                )
+            )
+            [ TermVar
+                ( NamedVar "x" )
+            , TermVar
+                ( NamedVar "x" )
+            ]
+        )
+    )
+, BlockLemma
+    ( SourcePos
+        { sourceName = "test/examples/coord.tex"
+        , sourceLine = Pos 18
+        , sourceColumn = Pos 1
+        }
+    )
+    ( Marker "adj_nouns" )
+    ( Lemma
+        [ Asm
+            ( Connected Conjunction
+                ( TermSymbol
+                    ( SymbolPredicate
+                        ( PredicateNoun
+                            ( SgPl
+                                { sg =
+                                    [ Just
+                                        ( Word "bar" )
+                                    ]
+                                , pl =
+                                    [ Just
+                                        ( Word "bars" )
+                                    ]
+                                }
+                            )
+                        )
+                    )
+                    [ TermVar
+                        ( NamedVar "x" )
+                    ]
+                )
+                ( TermSymbol
+                    ( SymbolPredicate
+                        ( PredicateAdj
+                            [ Just
+                                ( Word "foo" )
+                            ]
+                        )
+                    )
+                    [ TermVar
+                        ( NamedVar "x" )
+                    ]
+                )
+            )
+        , Asm
+            ( Connected Conjunction
+                ( TermSymbol
+                    ( SymbolPredicate
+                        ( PredicateNoun
+                            ( SgPl
+                                { sg =
+                                    [ Just
+                                        ( Word "bar" )
+                                    ]
+                                , pl =
+                                    [ Just
+                                        ( Word "bars" )
+                                    ]
+                                }
+                            )
+                        )
+                    )
+                    [ TermVar
+                        ( NamedVar "y" )
+                    ]
+                )
+                ( TermSymbol
+                    ( SymbolPredicate
+                        ( PredicateAdj
+                            [ Just
+                                ( Word "foo" )
+                            ]
+                        )
+                    )
+                    [ TermVar
+                        ( NamedVar "y" )
+                    ]
+                )
+            )
+        ]
+        ( TermSymbol
+            ( SymbolPredicate
+                ( PredicateRelation
+                    ( Symbol "=" )
+                )
+            )
+            [ TermVar
+                ( NamedVar "x" )
+            , TermVar
+                ( NamedVar "x" )
+            ]
+        )
+    )
+, BlockLemma
+    ( SourcePos
+        { sourceName = "test/examples/coord.tex"
+        , sourceLine = Pos 24
+        , sourceColumn = Pos 1
+        }
+    )
+    ( Marker "nouns_suchthat" )
+    ( Lemma
+        [ Asm
+            ( Connected Conjunction
+                ( TermSymbol
+                    ( SymbolPredicate
+                        ( PredicateAdj
+                            [ Just
+                                ( Word "foo" )
+                            ]
+                        )
+                    )
+                    [ TermVar
+                        ( NamedVar "x" )
+                    ]
+                )
+                ( TermSymbol
+                    ( SymbolPredicate
+                        ( PredicateAdj
+                            [ Just
+                                ( Word "baz" )
+                            ]
+                        )
+                    )
+                    [ TermVar
+                        ( NamedVar "y" )
+                    ]
+                )
+            )
+        , Asm
+            ( TermSymbol
+                ( SymbolPredicate
+                    ( PredicateNoun
+                        ( SgPl
+                            { sg =
+                                [ Just
+                                    ( Word "bar" )
+                                ]
+                            , pl =
+                                [ Just
+                                    ( Word "bars" )
+                                ]
+                            }
+                        )
+                    )
+                )
+                [ TermVar
+                    ( NamedVar "x" )
+                ]
+            )
+        , Asm
+            ( TermSymbol
+                ( SymbolPredicate
+                    ( PredicateNoun
+                        ( SgPl
+                            { sg =
+                                [ Just
+                                    ( Word "bar" )
+                                ]
+                            , pl =
+                                [ Just
+                                    ( Word "bars" )
+                                ]
+                            }
+                        )
+                    )
+                )
+                [ TermVar
+                    ( NamedVar "y" )
+                ]
+            )
+        ]
+        ( TermSymbol
+            ( SymbolPredicate
+                ( PredicateRelation
+                    ( Symbol "=" )
+                )
+            )
+            [ TermVar
+                ( NamedVar "x" )
+            , TermVar
+                ( NamedVar "x" )
+            ]
+        )
+    )
+, BlockLemma
+    ( SourcePos
+        { sourceName = "test/examples/coord.tex"
+        , sourceLine = Pos 30
+        , sourceColumn = Pos 1
+        }
+    )
+    ( Marker "noun_verb" )
+    ( Lemma []
+        ( Connected Equivalence
+            ( TermSymbol
+                ( SymbolPredicate
+                    ( PredicateRelation
+                        ( Symbol "=" )
+                    )
+                )
+                [ TermVar
+                    ( NamedVar "x" )
+                , TermVar
+                    ( NamedVar "y" )
+                ]
+            )
+            ( Connected Conjunction
+                ( TermSymbol
+                    ( SymbolPredicate
+                        ( PredicateNoun
+                            ( SgPl
+                                { sg =
+                                    [ Just
+                                        ( Word "bar" )
+                                    ]
+                                , pl =
+                                    [ Just
+                                        ( Word "bars" )
+                                    ]
+                                }
+                            )
+                        )
+                    )
+                    [ TermVar
+                        ( NamedVar "x" )
+                    ]
+                )
+                ( TermSymbol
+                    ( SymbolPredicate
+                        ( PredicateRelation
+                            ( Symbol "=" )
+                        )
+                    )
+                    [ TermVar
+                        ( NamedVar "x" )
+                    , TermVar
+                        ( NamedVar "y" )
+                    ]
+                )
+            )
+        )
+    )
+, BlockLemma
+    ( SourcePos
+        { sourceName = "test/examples/coord.tex"
+        , sourceLine = Pos 35
+        , sourceColumn = Pos 1
+        }
+    )
+    ( Marker "adjs" )
+    ( Lemma []
+        ( Connected Conjunction
+            ( TermSymbol
+                ( SymbolPredicate
+                    ( PredicateAdj
+                        [ Just
+                            ( Word "foo" )
+                        ]
+                    )
+                )
+                [ TermVar
+                    ( NamedVar "x" )
+                ]
+            )
+            ( TermSymbol
+                ( SymbolPredicate
+                    ( PredicateAdj
+                        [ Just
+                            ( Word "baz" )
+                        ]
+                    )
+                )
+                [ TermVar
+                    ( NamedVar "x" )
+                ]
+            )
+        )
+    )
+]

@@ -1,0 +1,31 @@
+[ BlockLemma
+    ( SourcePos
+        { sourceName = "test/examples/indefinite-terms.tex"
+        , sourceLine = Pos 1
+        , sourceColumn = Pos 1
+        }
+    )
+    ( Marker "indefinite_test_forall" )
+    ( Lemma []
+        ( Quantified Universally
+            ( Scope
+                ( Connected Implication ( PropositionalConstant IsTop ) ( PropositionalConstant IsTop ) )
+            )
+        )
+    )
+, BlockLemma
+    ( SourcePos
+        { sourceName = "test/examples/indefinite-terms.tex"
+        , sourceLine = Pos 5
+        , sourceColumn = Pos 1
+        }
+    )
+    ( Marker "indefinite_test_exists" )
+    ( Lemma []
+        ( Quantified Existentially
+            ( Scope
+                ( Connected Conjunction ( PropositionalConstant IsTop ) ( PropositionalConstant IsTop ) )
+            )
+        )
+    )
+]

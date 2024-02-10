@@ -1,0 +1,24 @@
+[ BeginEnv "proposition"
+, Label "mathrel_notation_test"
+, Word "if"
+, BeginEnv "math"
+, Variable "x"
+, Command "mathrel"
+, InvisibleBraceL
+, Variable "R"
+, InvisibleBraceR
+, Variable "y"
+, EndEnv "math"
+, Symbol ","
+, Word "then"
+, BeginEnv "math"
+, Variable "x"
+, Command "mathrel"
+, InvisibleBraceL
+, Variable "R"
+, InvisibleBraceR
+, Variable "y"
+, EndEnv "math"
+, Symbol "."
+, EndEnv "proposition"
+]

@@ -1,0 +1,118 @@
+\import{set.tex}
+
+\begin{proposition}\label{times_subseteq_left}
+    Suppose $A\subseteq C$. Then $A\times B\subseteq C\times B$.
+\end{proposition}
+\begin{proof}
+    It suffices to show that for all $w\in A\times B$ we have $w\in C\times B$.
+\end{proof}
+
+\begin{proposition}\label{times_subseteq_right}
+    Suppose $B\subseteq D$. Then $A\times B\subseteq A\times D$.
+\end{proposition}
+\begin{proof}
+    It suffices to show that for all $w\in A\times B$ we have $w\in A\times D$.
+\end{proof}
+
+\begin{proposition}\label{inter_times_intro}
+    Suppose $w\in(A\inter B)\times (C\inter D)$.
+    Then $w\in(A\times C)\inter (B\times D)$.
+\end{proposition}
+\begin{proof}
+    Take $a,c$ such that $w = (a, c)$
+        by \cref{times_elem_is_tuple}.
+    Then $a\in A, B$ and $c\in C,D$
+        by \cref{times_tuple_elim,inter}.
+    Thus $w\in (A\times C), (B\times D)$.
+\end{proof}
+
+\begin{proposition}\label{inter_times_elim}
+    Suppose $w\in(A\times C)\inter (B\times D)$.
+    Then $w\in(A\inter B)\times (C\inter D)$.
+\end{proposition}
+\begin{proof}
+    $w\in A\times C$.
+    Take $a, c$ such that $w = (a, c)$.
+    $a\in A, B$ by \cref{inter,times_tuple_elim}.
+    $c\in C, D$ by \cref{inter,times_tuple_elim}.
+    Thus $(a,c) \in (A\inter B)\times (C\inter D)$ by \cref{times,inter_intro}.
+\end{proof}
+
+\begin{proposition}\label{inter_times}
+    $(A\inter B)\times (C\inter D) = (A\times C)\inter (B\times D)$.
+\end{proposition}
+\begin{proof}
+    Follows by set extensionality.
+\end{proof}
+
+\begin{proposition}\label{inter_times_right}
+    $(X\inter Y)\times Z = (X\times Z)\inter (Y\times Z)$.
+\end{proposition}
+\begin{proof}
+    Follows by set extensionality.
+\end{proof}
+
+\begin{proposition}\label{inter_times_left}
+    $X\times (Y\inter Z) = (X\times Y)\inter (X\times Z)$.
+\end{proposition}
+\begin{proof}
+    Follows by set extensionality.
+\end{proof}
+
+\begin{proposition}\label{union_times_intro}
+    Suppose $w\in(A\union B)\times (C\union D)$.
+    Then $w\in(A\times C)\union (B\times D)\union (A\times D)\union (B\times C)$.
+\end{proposition}
+\begin{proof}
+    Take $a,c$ such that $w = (a, c)$.
+    $a\in A$ or $a\in B$ by \cref{union_iff,times_tuple_elim}.
+    $c\in C$ or $c\in D$ by \cref{union_iff,times_tuple_elim}.
+    Thus $(a, c)\in (A\times C)$ or $(a, c)\in (B\times D)$ or $(a, c)\in (A\times D)$ or $(a, c)\in (B\times C)$.
+    Thus $(a, c)\in (A\times C)\union (B\times D)\union (A\times D)\union (B\times C)$.
+\end{proof}
+
+\begin{proposition}\label{union_times_elim}
+    Suppose $w\in(A\times C)\union (B\times D)\union (A\times D)\union (B\times C)$.
+    Then $w\in(A\union B)\times (C\union D)$.
+\end{proposition}
+\begin{proof}
+    \begin{byCase}
+        \caseOf{$w\in(A\times C)$.}
+            Take $a, c$ such that $w = (a, c) \land a\in A\land c\in C$ by \cref{times}.
+            Then $a\in A\union B$ and $c\in C\union D$.
+            Follows by \cref{times_tuple_intro}.
+        \caseOf{$w\in(B\times D)$.}
+            Take $b, d$ such that $w = (b, d) \land b\in B\land d\in D$ by \cref{times}.
+            Then $b\in A\union B$ and $d\in C\union D$.
+            Follows by \cref{times_tuple_intro}.
+        \caseOf{$w\in(A\times D)$.}
+            Take $a, d$ such that $w = (a, d) \land a\in A\land d\in D$ by \cref{times}.
+            Then $a\in A\union B$ and $d\in C\union D$.
+            Follows by \cref{times_tuple_intro}.
+        \caseOf{$w\in(B\times C)$.}
+            Take $b, c$ such that $w = (b, c) \land b\in B\land c\in C$ by \cref{times}.
+            Then $b\in A\union B$ and $c\in C\union D$.
+            Follows by \cref{times_tuple_intro}.
+    \end{byCase}
+\end{proof}
+
+\begin{proposition}\label{union_times}
+    $(A\union B)\times (C\union D) = (A\times C)\union (B\times D)\union (A\times D)\union (B\times C)$.
+\end{proposition}
+\begin{proof}
+    Follows by set extensionality.
+\end{proof}
+
+\begin{proposition}\label{union_times_left}
+    $(X\union Y)\times Z = (X\times Z)\union (Y\times Z)$.
+\end{proposition}
+\begin{proof}
+    Follows by set extensionality.
+\end{proof}
+
+\begin{proposition}\label{union_times_right}
+    $X\times (Y\union Z) = (X\times Y)\union (X\times Z)$.
+\end{proposition}
+\begin{proof}
+    Follows by set extensionality.
+\end{proof}

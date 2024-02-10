@@ -1,0 +1,48 @@
+[ Task
+    { taskDirectness = Direct
+    , taskHypotheses = []
+    , taskConjectureLabel = Marker "assumetest"
+    , taskConjecture = TermSymbol
+        ( SymbolPredicate
+            ( PredicateRelation
+                ( Symbol "=" )
+            )
+        )
+        [ TermVar
+            ( NamedVar "x" )
+        , TermVar
+            ( NamedVar "x" )
+        ]
+    }
+, Task
+    { taskDirectness = Direct
+    , taskHypotheses =
+        [
+            ( Marker "assumetest1"
+            , TermSymbol
+                ( SymbolPredicate
+                    ( PredicateRelation
+                        ( Symbol "=" )
+                    )
+                )
+                [ TermVar
+                    ( NamedVar "x" )
+                , TermVar
+                    ( NamedVar "x" )
+                ]
+            )
+        ]
+    , taskConjectureLabel = Marker "assumetest"
+    , taskConjecture = TermSymbol
+        ( SymbolPredicate
+            ( PredicateRelation
+                ( Symbol "=" )
+            )
+        )
+        [ TermVar
+            ( NamedVar "x" )
+        , TermVar
+            ( NamedVar "x" )
+        ]
+    }
+]

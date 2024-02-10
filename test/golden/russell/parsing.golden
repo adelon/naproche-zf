@@ -1,0 +1,198 @@
+[ BlockDefn
+    ( SourcePos
+        { sourceName = "test/examples/russell.tex"
+        , sourceLine = Pos 1
+        , sourceColumn = Pos 1
+        }
+    )
+    ( Marker "universal_set" )
+    ( Defn []
+        ( DefnAdj
+            ( Just NounPhrase ( [] )
+                ( Noun
+                    ( SgPl
+                        { sg =
+                            [ Just
+                                ( Word "set" )
+                            ]
+                        , pl =
+                            [ Just
+                                ( Word "sets" )
+                            ]
+                        }
+                    ) []
+                ) ( Nothing ) ( [] ) ( Nothing )
+            )
+            ( NamedVar "V" )
+            ( Adj
+                [ Just
+                    ( Word "universal" )
+                ] []
+            )
+        )
+        ( StmtQuantPhrase
+            ( QuantPhrase Universally NounPhrase ( [] )
+                ( Noun
+                    ( SgPl
+                        { sg =
+                            [ Just
+                                ( Word "set" )
+                            ]
+                        , pl =
+                            [ Just
+                                ( Word "sets" )
+                            ]
+                        }
+                    ) []
+                )
+                (
+                    [ NamedVar "x" ]
+                ) ( [] ) ( Nothing )
+            )
+            ( StmtFormula
+                ( FormulaChain
+                    ( ChainBase
+                        ( ExprVar
+                            ( NamedVar "x" ) :| []
+                        ) Positive
+                        ( RelationSymbol
+                            ( Command "in" )
+                        )
+                        ( ExprVar
+                            ( NamedVar "V" ) :| []
+                        )
+                    )
+                )
+            )
+        )
+    )
+, BlockLemma
+    ( SourcePos
+        { sourceName = "test/examples/russell.tex"
+        , sourceLine = Pos 7
+        , sourceColumn = Pos 1
+        }
+    )
+    ( Marker "no_universal_set" )
+    ( Lemma []
+        ( StmtNeg
+            ( StmtExists NounPhrase
+                (
+                    [ AdjL
+                        [ Just
+                            ( Word "universal" )
+                        ] []
+                    ]
+                )
+                ( Noun
+                    ( SgPl
+                        { sg =
+                            [ Just
+                                ( Word "set" )
+                            ]
+                        , pl =
+                            [ Just
+                                ( Word "sets" )
+                            ]
+                        }
+                    ) []
+                ) ( [] ) ( [] ) ( Nothing )
+            )
+        )
+    )
+, BlockProof
+    ( SourcePos
+        { sourceName = "test/examples/russell.tex"
+        , sourceLine = Pos 10
+        , sourceColumn = Pos 1
+        }
+    )
+    ( ByContradiction
+        ( TakeNoun NounPhrase
+            (
+                [ AdjL
+                    [ Just
+                        ( Word "universal" )
+                    ] []
+                ]
+            )
+            ( Noun
+                ( SgPl
+                    { sg =
+                        [ Just
+                            ( Word "set" )
+                        ]
+                    , pl =
+                        [ Just
+                            ( Word "sets" )
+                        ]
+                    }
+                ) []
+            )
+            (
+                [ NamedVar "V" ]
+            ) ( [] ) ( Nothing ) JustificationEmpty
+            ( Define
+                ( NamedVar "R" )
+                ( ExprSep
+                    ( NamedVar "x" )
+                    ( ExprVar
+                        ( NamedVar "V" )
+                    )
+                    ( StmtFormula
+                        ( FormulaChain
+                            ( ChainBase
+                                ( ExprVar
+                                    ( NamedVar "x" ) :| []
+                                ) Negative
+                                ( RelationSymbol
+                                    ( Command "in" )
+                                )
+                                ( ExprVar
+                                    ( NamedVar "x" ) :| []
+                                )
+                            )
+                        )
+                    )
+                )
+                ( Have Nothing
+                    ( StmtConnected Equivalence
+                        ( StmtFormula
+                            ( FormulaChain
+                                ( ChainBase
+                                    ( ExprVar
+                                        ( NamedVar "R" ) :| []
+                                    ) Positive
+                                    ( RelationSymbol
+                                        ( Command "in" )
+                                    )
+                                    ( ExprVar
+                                        ( NamedVar "R" ) :| []
+                                    )
+                                )
+                            )
+                        )
+                        ( StmtFormula
+                            ( FormulaChain
+                                ( ChainBase
+                                    ( ExprVar
+                                        ( NamedVar "R" ) :| []
+                                    ) Negative
+                                    ( RelationSymbol
+                                        ( Command "in" )
+                                    )
+                                    ( ExprVar
+                                        ( NamedVar "R" ) :| []
+                                    )
+                                )
+                            )
+                        )
+                    ) JustificationEmpty
+                    ( Have Nothing
+                        ( StmtFormula ( PropositionalConstant IsBottom ) ) JustificationEmpty ( Qed JustificationEmpty )
+                    )
+                )
+            )
+        )
+    )
+]

@@ -1,0 +1,17 @@
+\begin{axiom}\label{trivial}
+    For all $x$ we have $x = x$.
+\end{axiom}
+
+% Axiom EmptyAx : ~exists x:set, x :e Empty.
+\begin{axiom}\label{empty_axiom}
+    There exists no set $x$ such that $x\in\emptyset$.
+\end{axiom}
+
+% UnionEq : forall X x, x :e Union X <-> exists Y, x :e Y /\ Y :e X.
+\begin{axiom}\label{union_eq}
+    For all $x, X$ we have $x\in\unions{X}$ iff there exists $Y$ such that $x\in Y\in X$.
+\end{axiom}
+
+\begin{theorem}\label{eq_refl}
+    For all $x$ we have $x=x$.
+\end{theorem}

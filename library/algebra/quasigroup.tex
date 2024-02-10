@@ -1,0 +1,36 @@
+\import{algebra/magma.tex}
+
+\section{Quasigroups}
+
+\begin{struct}\label{quasigroup}
+    A quasigroup $A$ is a magma equipped with
+    \begin{enumerate}
+        \item $\ldiv$
+        \item $\rdiv$
+    \end{enumerate}
+    such that
+    \begin{enumerate}
+        \item for all $a, b\in A$ we have $\ldiv (a,b)\in A$.
+        \item for all $a, b\in A$ we have $\rdiv (a,b)\in A$.
+        \item for all $a,b \in A$ we have $b = \mul(a,\ldiv (a,b))$.
+        \item for all $a,b \in A$ we have $b = \ldiv(a,\mul (a,b))$.
+        \item for all $a,b \in A$ we have $b = \mul(\rdiv (b,a),a)$.
+        \item for all $a,b \in A$ we have $b = \rdiv(\mul (b,a),a)$.
+    \end{enumerate}
+\end{struct}
+
+% Cancelling an element on the left.
+\begin{lemma}\label{quasigroup_cancel_left}
+    Let $A$ be a quasigroup.
+    Let $a,b,c \in A$.
+    Suppose $\mul(a,b) = \mul(a,c)$.
+    Then $b = c$.
+\end{lemma}
+
+% Cancelling an element on the right.
+\begin{lemma}\label{quasigroup_cancel_right}
+    Let $A$ be a quasigroup.
+    Let $a,b,c \in A$.
+    Suppose $\mul(a,c) = \mul(b,c)$.
+    Then $a = b$.
+\end{lemma}

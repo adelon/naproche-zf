@@ -1,0 +1,64 @@
+[ Task
+    { taskDirectness = Direct
+    , taskHypotheses =
+        [
+            ( Marker "in_irrefl1"
+            , Quantified Universally
+                ( Scope
+                    ( Connected Implication
+                        ( TermSymbol
+                            ( SymbolPredicate
+                                ( PredicateRelation
+                                    ( Command "in" )
+                                )
+                            )
+                            [ TermVar
+                                ( B
+                                    ( NamedVar "IndAntecedent" )
+                                )
+                            , TermVar
+                                ( F
+                                    ( TermVar
+                                        ( NamedVar "A" )
+                                    )
+                                )
+                            ]
+                        )
+                        ( Not
+                            ( TermSymbol
+                                ( SymbolPredicate
+                                    ( PredicateRelation
+                                        ( Command "in" )
+                                    )
+                                )
+                                [ TermVar
+                                    ( B
+                                        ( NamedVar "IndAntecedent" )
+                                    )
+                                , TermVar
+                                    ( B
+                                        ( NamedVar "IndAntecedent" )
+                                    )
+                                ]
+                            )
+                        )
+                    )
+                )
+            )
+        ]
+    , taskConjectureLabel = Marker "in_irrefl"
+    , taskConjecture = Not
+        ( TermSymbol
+            ( SymbolPredicate
+                ( PredicateRelation
+                    ( Command "in" )
+                )
+            )
+            [ TermVar
+                ( NamedVar "A" )
+            , TermVar
+                ( NamedVar "A" )
+            ]
+        )
+    }
+]

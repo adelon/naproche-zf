@@ -1,0 +1,304 @@
+[ BlockAxiom
+    ( SourcePos
+        { sourceName = "test/examples/replace.tex"
+        , sourceLine = Pos 1
+        , sourceColumn = Pos 1
+        }
+    )
+    ( Marker "cons" )
+    ( Axiom []
+        ( StmtConnected Equivalence
+            ( StmtFormula
+                ( FormulaChain
+                    ( ChainBase
+                        ( ExprVar
+                            ( NamedVar "x" ) :| []
+                        ) Positive
+                        ( RelationSymbol
+                            ( Command "in" )
+                        )
+                        ( ExprOp
+                            [ Just
+                                ( Command "cons" )
+                            , Just InvisibleBraceL
+                            , Nothing
+                            , Just InvisibleBraceR
+                            , Just InvisibleBraceL
+                            , Nothing
+                            , Just InvisibleBraceR
+                            ]
+                            [ ExprVar
+                                ( NamedVar "y" )
+                            , ExprVar
+                                ( NamedVar "X" )
+                            ] :| []
+                        )
+                    )
+                )
+            )
+            ( StmtConnected Disjunction
+                ( StmtFormula
+                    ( FormulaChain
+                        ( ChainBase
+                            ( ExprVar
+                                ( NamedVar "x" ) :| []
+                            ) Positive
+                            ( RelationSymbol
+                                ( Symbol "=" )
+                            )
+                            ( ExprVar
+                                ( NamedVar "y" ) :| []
+                            )
+                        )
+                    )
+                )
+                ( StmtFormula
+                    ( FormulaChain
+                        ( ChainBase
+                            ( ExprVar
+                                ( NamedVar "x" ) :| []
+                            ) Positive
+                            ( RelationSymbol
+                                ( Command "in" )
+                            )
+                            ( ExprVar
+                                ( NamedVar "X" ) :| []
+                            )
+                        )
+                    )
+                )
+            )
+        )
+    )
+, BlockDefn
+    ( SourcePos
+        { sourceName = "test/examples/replace.tex"
+        , sourceLine = Pos 5
+        , sourceColumn = Pos 1
+        }
+    )
+    ( Marker "times" )
+    ( DefnOp
+        ( SymbolPattern
+            [ Nothing
+            , Just
+                ( Command "times" )
+            , Nothing
+            ]
+            [ NamedVar "A"
+            , NamedVar "B"
+            ]
+        )
+        ( ExprReplace
+            ( ExprOp
+                [ Just
+                    ( Command "pair" )
+                , Just InvisibleBraceL
+                , Nothing
+                , Just InvisibleBraceR
+                , Just InvisibleBraceL
+                , Nothing
+                , Just InvisibleBraceR
+                ]
+                [ ExprVar
+                    ( NamedVar "a" )
+                , ExprVar
+                    ( NamedVar "b" )
+                ]
+            )
+            (
+                ( NamedVar "a"
+                , ExprVar
+                    ( NamedVar "A" )
+                ) :|
+                [
+                    ( NamedVar "b"
+                    , ExprVar
+                        ( NamedVar "B" )
+                    )
+                ]
+            ) Nothing
+        )
+    )
+, BlockDefn
+    ( SourcePos
+        { sourceName = "test/examples/replace.tex"
+        , sourceLine = Pos 9
+        , sourceColumn = Pos 1
+        }
+    )
+    ( Marker "unit" )
+    ( DefnOp
+        ( SymbolPattern
+            [ Just
+                ( Command "unit" )
+            ] []
+        )
+        ( ExprFiniteSet
+            ( ExprOp
+                [ Just
+                    ( Command "emptyset" )
+                ] [] :| []
+            )
+        )
+    )
+, BlockLemma
+    ( SourcePos
+        { sourceName = "test/examples/replace.tex"
+        , sourceLine = Pos 13
+        , sourceColumn = Pos 1
+        }
+    )
+    ( Marker "pair_emptyset_in_times_unit" )
+    ( Lemma []
+        ( StmtFormula
+            ( FormulaChain
+                ( ChainBase
+                    ( ExprOp
+                        [ Just
+                            ( Command "pair" )
+                        , Just InvisibleBraceL
+                        , Nothing
+                        , Just InvisibleBraceR
+                        , Just InvisibleBraceL
+                        , Nothing
+                        , Just InvisibleBraceR
+                        ]
+                        [ ExprOp
+                            [ Just
+                                ( Command "emptyset" )
+                            ] []
+                        , ExprOp
+                            [ Just
+                                ( Command "emptyset" )
+                            ] []
+                        ] :| []
+                    ) Positive
+                    ( RelationSymbol
+                        ( Command "in" )
+                    )
+                    ( ExprOp
+                        [ Nothing
+                        , Just
+                            ( Command "times" )
+                        , Nothing
+                        ]
+                        [ ExprOp
+                            [ Just
+                                ( Command "unit" )
+                            ] []
+                        , ExprOp
+                            [ Just
+                                ( Command "unit" )
+                            ] []
+                        ] :| []
+                    )
+                )
+            )
+        )
+    )
+, BlockDefn
+    ( SourcePos
+        { sourceName = "test/examples/replace.tex"
+        , sourceLine = Pos 19
+        , sourceColumn = Pos 1
+        }
+    )
+    ( Marker "suc" )
+    ( DefnOp
+        ( SymbolPattern
+            [ Just
+                ( Command "suc" )
+            , Just InvisibleBraceL
+            , Nothing
+            , Just InvisibleBraceR
+            ]
+            [ NamedVar "a" ]
+        )
+        ( ExprReplacePred
+            ( NamedVar "y" )
+            ( NamedVar "x" )
+            ( ExprVar
+                ( NamedVar "a" )
+            )
+            ( StmtFormula
+                ( FormulaChain
+                    ( ChainBase
+                        ( ExprVar
+                            ( NamedVar "y" ) :| []
+                        ) Positive
+                        ( RelationSymbol
+                            ( Symbol "=" )
+                        )
+                        ( ExprFiniteSet
+                            ( ExprVar
+                                ( NamedVar "x" ) :| []
+                            ) :| []
+                        )
+                    )
+                )
+            )
+        )
+    )
+, BlockLemma
+    ( SourcePos
+        { sourceName = "test/examples/replace.tex"
+        , sourceLine = Pos 25
+        , sourceColumn = Pos 1
+        }
+    )
+    ( Marker "times_replacement_test" )
+    ( Lemma []
+        ( StmtFormula
+            ( FormulaChain
+                ( ChainBase
+                    ( ExprOp
+                        [ Nothing
+                        , Just
+                            ( Command "times" )
+                        , Nothing
+                        ]
+                        [ ExprVar
+                            ( NamedVar "A" )
+                        , ExprVar
+                            ( NamedVar "B" )
+                        ] :| []
+                    ) Positive
+                    ( RelationSymbol
+                        ( Symbol "=" )
+                    )
+                    ( ExprReplace
+                        ( ExprOp
+                            [ Just
+                                ( Command "pair" )
+                            , Just InvisibleBraceL
+                            , Nothing
+                            , Just InvisibleBraceR
+                            , Just InvisibleBraceL
+                            , Nothing
+                            , Just InvisibleBraceR
+                            ]
+                            [ ExprVar
+                                ( NamedVar "a" )
+                            , ExprVar
+                                ( NamedVar "b" )
+                            ]
+                        )
+                        (
+                            ( NamedVar "a"
+                            , ExprVar
+                                ( NamedVar "A" )
+                            ) :|
+                            [
+                                ( NamedVar "b"
+                                , ExprVar
+                                    ( NamedVar "B" )
+                                )
+                            ]
+                        ) Nothing :| []
+                    )
+                )
+            )
+        )
+    )
+]

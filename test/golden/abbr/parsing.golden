@@ -1,0 +1,408 @@
+[ BlockAbbr
+    ( SourcePos
+        { sourceName = "test/examples/abbr.tex"
+        , sourceLine = Pos 1
+        , sourceColumn = Pos 1
+        }
+    )
+    ( Marker "empty" )
+    ( AbbreviationAdj
+        ( NamedVar "x" )
+        ( Adj
+            [ Just
+                ( Word "empty" )
+            ] []
+        )
+        ( StmtNeg
+            ( SymbolicQuantified Existentially
+                ( NamedVar "y" :| [] ) Unbounded Nothing
+                ( StmtFormula
+                    ( FormulaChain
+                        ( ChainBase
+                            ( ExprVar
+                                ( NamedVar "y" ) :| []
+                            ) Positive
+                            ( RelationSymbol
+                                ( Command "in" )
+                            )
+                            ( ExprVar
+                                ( NamedVar "x" ) :| []
+                            )
+                        )
+                    )
+                )
+            )
+        )
+    )
+, BlockLemma
+    ( SourcePos
+        { sourceName = "test/examples/abbr.tex"
+        , sourceLine = Pos 5
+        , sourceColumn = Pos 1
+        }
+    )
+    ( Marker "dummy_abbr_test_adj" )
+    ( Lemma []
+        ( StmtConnected Implication
+            ( StmtVerbPhrase
+                ( TermExpr
+                    ( ExprVar
+                        ( NamedVar "x" )
+                    ) :| []
+                )
+                ( VPAdj
+                    ( Adj
+                        [ Just
+                            ( Word "empty" )
+                        ] [] :| []
+                    )
+                )
+            )
+            ( StmtVerbPhrase
+                ( TermExpr
+                    ( ExprVar
+                        ( NamedVar "x" )
+                    ) :| []
+                )
+                ( VPAdj
+                    ( Adj
+                        [ Just
+                            ( Word "empty" )
+                        ] [] :| []
+                    )
+                )
+            )
+        )
+    )
+, BlockAbbr
+    ( SourcePos
+        { sourceName = "test/examples/abbr.tex"
+        , sourceLine = Pos 11
+        , sourceColumn = Pos 1
+        }
+    )
+    ( Marker "function" )
+    ( AbbreviationNoun
+        ( NamedVar "x" )
+        ( Noun
+            ( SgPl
+                { sg =
+                    [ Just
+                        ( Word "function" )
+                    ]
+                , pl =
+                    [ Just
+                        ( Word "functions" )
+                    ]
+                }
+            ) []
+        )
+        ( StmtFormula
+            ( FormulaChain
+                ( ChainBase
+                    ( ExprVar
+                        ( NamedVar "x" ) :| []
+                    ) Positive
+                    ( RelationSymbol
+                        ( Symbol "=" )
+                    )
+                    ( ExprVar
+                        ( NamedVar "x" ) :| []
+                    )
+                )
+            )
+        )
+    )
+, BlockLemma
+    ( SourcePos
+        { sourceName = "test/examples/abbr.tex"
+        , sourceLine = Pos 15
+        , sourceColumn = Pos 1
+        }
+    )
+    ( Marker "dummy_abbr_test_noun" )
+    ( Lemma []
+        ( StmtNoun
+            ( TermExpr
+                ( ExprVar
+                    ( NamedVar "x" )
+                )
+            ) NounPhrase ( [] )
+            ( Noun
+                ( SgPl
+                    { sg =
+                        [ Just
+                            ( Word "function" )
+                        ]
+                    , pl =
+                        [ Just
+                            ( Word "functions" )
+                        ]
+                    }
+                ) []
+            ) ( Nothing ) ( [] ) ( Nothing )
+        )
+    )
+, BlockAbbr
+    ( SourcePos
+        { sourceName = "test/examples/abbr.tex"
+        , sourceLine = Pos 21
+        , sourceColumn = Pos 1
+        }
+    )
+    ( Marker "converges" )
+    ( AbbreviationVerb
+        ( NamedVar "x" )
+        ( Verb
+            ( SgPl
+                { sg =
+                    [ Just
+                        ( Word "converges" )
+                    , Just
+                        ( Word "to" )
+                    , Nothing
+                    ]
+                , pl =
+                    [ Just
+                        ( Word "converge" )
+                    , Just
+                        ( Word "to" )
+                    , Nothing
+                    ]
+                }
+            )
+            [ NamedVar "y" ]
+        )
+        ( StmtFormula
+            ( FormulaChain
+                ( ChainBase
+                    ( ExprVar
+                        ( NamedVar "x" ) :| []
+                    ) Positive
+                    ( RelationSymbol
+                        ( Symbol "=" )
+                    )
+                    ( ExprVar
+                        ( NamedVar "y" ) :| []
+                    )
+                )
+            )
+        )
+    )
+, BlockLemma
+    ( SourcePos
+        { sourceName = "test/examples/abbr.tex"
+        , sourceLine = Pos 25
+        , sourceColumn = Pos 1
+        }
+    )
+    ( Marker "dummy_abbr_test_verb" )
+    ( Lemma []
+        ( StmtConnected Implication
+            ( StmtVerbPhrase
+                ( TermExpr
+                    ( ExprVar
+                        ( NamedVar "x" )
+                    ) :| []
+                )
+                ( VPVerb
+                    ( Verb
+                        ( SgPl
+                            { sg =
+                                [ Just
+                                    ( Word "converges" )
+                                , Just
+                                    ( Word "to" )
+                                , Nothing
+                                ]
+                            , pl =
+                                [ Just
+                                    ( Word "converge" )
+                                , Just
+                                    ( Word "to" )
+                                , Nothing
+                                ]
+                            }
+                        )
+                        [ TermExpr
+                            ( ExprVar
+                                ( NamedVar "y" )
+                            )
+                        ]
+                    )
+                )
+            )
+            ( StmtFormula
+                ( FormulaChain
+                    ( ChainBase
+                        ( ExprVar
+                            ( NamedVar "x" ) :| []
+                        ) Positive
+                        ( RelationSymbol
+                            ( Symbol "=" )
+                        )
+                        ( ExprVar
+                            ( NamedVar "y" ) :| []
+                        )
+                    )
+                )
+            )
+        )
+    )
+, BlockLemma
+    ( SourcePos
+        { sourceName = "test/examples/abbr.tex"
+        , sourceLine = Pos 31
+        , sourceColumn = Pos 1
+        }
+    )
+    ( Marker "abbr_test_notin" )
+    ( Lemma []
+        ( StmtConnected Implication
+            ( StmtFormula
+                ( FormulaChain
+                    ( ChainBase
+                        ( ExprVar
+                            ( NamedVar "x" ) :| []
+                        ) Positive
+                        ( RelationSymbol
+                            ( Command "notin" )
+                        )
+                        ( ExprVar
+                            ( NamedVar "y" ) :| []
+                        )
+                    )
+                )
+            )
+            ( StmtFormula
+                ( FormulaChain
+                    ( ChainBase
+                        ( ExprVar
+                            ( NamedVar "x" ) :| []
+                        ) Negative
+                        ( RelationSymbol
+                            ( Command "in" )
+                        )
+                        ( ExprVar
+                            ( NamedVar "y" ) :| []
+                        )
+                    )
+                )
+            )
+        )
+    )
+, BlockLemma
+    ( SourcePos
+        { sourceName = "test/examples/abbr.tex"
+        , sourceLine = Pos 37
+        , sourceColumn = Pos 1
+        }
+    )
+    ( Marker "abbr_test_elementof_is_in" )
+    ( Lemma []
+        ( StmtConnected Implication
+            ( StmtNoun
+                ( TermExpr
+                    ( ExprVar
+                        ( NamedVar "x" )
+                    )
+                ) NounPhrase ( [] )
+                ( Noun
+                    ( SgPl
+                        { sg =
+                            [ Just
+                                ( Word "element" )
+                            , Just
+                                ( Word "of" )
+                            , Nothing
+                            ]
+                        , pl =
+                            [ Just
+                                ( Word "elements" )
+                            , Just
+                                ( Word "of" )
+                            , Nothing
+                            ]
+                        }
+                    )
+                    [ TermExpr
+                        ( ExprVar
+                            ( NamedVar "y" )
+                        )
+                    ]
+                ) ( Nothing ) ( [] ) ( Nothing )
+            )
+            ( StmtFormula
+                ( FormulaChain
+                    ( ChainBase
+                        ( ExprVar
+                            ( NamedVar "x" ) :| []
+                        ) Positive
+                        ( RelationSymbol
+                            ( Command "in" )
+                        )
+                        ( ExprVar
+                            ( NamedVar "y" ) :| []
+                        )
+                    )
+                )
+            )
+        )
+    )
+, BlockLemma
+    ( SourcePos
+        { sourceName = "test/examples/abbr.tex"
+        , sourceLine = Pos 43
+        , sourceColumn = Pos 1
+        }
+    )
+    ( Marker "abbr_test_equals_is_eq" )
+    ( Lemma []
+        ( StmtConnected Implication
+            ( StmtVerbPhrase
+                ( TermExpr
+                    ( ExprVar
+                        ( NamedVar "x" )
+                    ) :| []
+                )
+                ( VPVerb
+                    ( Verb
+                        ( SgPl
+                            { sg =
+                                [ Just
+                                    ( Word "equals" )
+                                , Nothing
+                                ]
+                            , pl =
+                                [ Just
+                                    ( Word "equal" )
+                                , Nothing
+                                ]
+                            }
+                        )
+                        [ TermExpr
+                            ( ExprVar
+                                ( NamedVar "y" )
+                            )
+                        ]
+                    )
+                )
+            )
+            ( StmtFormula
+                ( FormulaChain
+                    ( ChainBase
+                        ( ExprVar
+                            ( NamedVar "x" ) :| []
+                        ) Positive
+                        ( RelationSymbol
+                            ( Symbol "=" )
+                        )
+                        ( ExprVar
+                            ( NamedVar "y" ) :| []
+                        )
+                    )
+                )
+            )
+        )
+    )
+]

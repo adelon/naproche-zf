@@ -1,0 +1,350 @@
+[ BlockAxiom
+    ( SourcePos
+        { sourceName = "test/examples/replace.tex"
+        , sourceLine = Pos 1
+        , sourceColumn = Pos 1
+        }
+    )
+    ( Marker "cons" )
+    ( Axiom []
+        ( Connected Equivalence
+            ( TermSymbol
+                ( SymbolPredicate
+                    ( PredicateRelation
+                        ( Command "in" )
+                    )
+                )
+                [ TermVar
+                    ( NamedVar "x" )
+                , TermSymbol
+                    ( SymbolMixfix
+                        [ Just
+                            ( Command "cons" )
+                        , Just InvisibleBraceL
+                        , Nothing
+                        , Just InvisibleBraceR
+                        , Just InvisibleBraceL
+                        , Nothing
+                        , Just InvisibleBraceR
+                        ]
+                    )
+                    [ TermVar
+                        ( NamedVar "y" )
+                    , TermVar
+                        ( NamedVar "X" )
+                    ]
+                ]
+            )
+            ( Connected Disjunction
+                ( TermSymbol
+                    ( SymbolPredicate
+                        ( PredicateRelation
+                            ( Symbol "=" )
+                        )
+                    )
+                    [ TermVar
+                        ( NamedVar "x" )
+                    , TermVar
+                        ( NamedVar "y" )
+                    ]
+                )
+                ( TermSymbol
+                    ( SymbolPredicate
+                        ( PredicateRelation
+                            ( Command "in" )
+                        )
+                    )
+                    [ TermVar
+                        ( NamedVar "x" )
+                    , TermVar
+                        ( NamedVar "X" )
+                    ]
+                )
+            )
+        )
+    )
+, BlockDefn
+    ( SourcePos
+        { sourceName = "test/examples/replace.tex"
+        , sourceLine = Pos 5
+        , sourceColumn = Pos 1
+        }
+    )
+    ( Marker "times" )
+    ( DefnOp
+        [ Nothing
+        , Just
+            ( Command "times" )
+        , Nothing
+        ]
+        [ NamedVar "A"
+        , NamedVar "B"
+        ]
+        ( ReplaceFun
+            (
+                ( NamedVar "a"
+                , TermVar
+                    ( NamedVar "A" )
+                ) :|
+                [
+                    ( NamedVar "b"
+                    , TermVar
+                        ( NamedVar "B" )
+                    )
+                ]
+            )
+            ( Scope
+                ( TermSymbol
+                    ( SymbolMixfix
+                        [ Just
+                            ( Command "pair" )
+                        , Just InvisibleBraceL
+                        , Nothing
+                        , Just InvisibleBraceR
+                        , Just InvisibleBraceL
+                        , Nothing
+                        , Just InvisibleBraceR
+                        ]
+                    )
+                    [ TermVar
+                        ( B
+                            ( NamedVar "a" )
+                        )
+                    , TermVar
+                        ( B
+                            ( NamedVar "b" )
+                        )
+                    ]
+                )
+            )
+            ( Scope ( PropositionalConstant IsTop ) )
+        )
+    )
+, BlockDefn
+    ( SourcePos
+        { sourceName = "test/examples/replace.tex"
+        , sourceLine = Pos 9
+        , sourceColumn = Pos 1
+        }
+    )
+    ( Marker "unit" )
+    ( DefnOp
+        [ Just
+            ( Command "unit" )
+        ] []
+        ( TermSymbol
+            ( SymbolMixfix
+                [ Just
+                    ( Command "cons" )
+                , Just InvisibleBraceL
+                , Nothing
+                , Just InvisibleBraceR
+                , Just InvisibleBraceL
+                , Nothing
+                , Just InvisibleBraceR
+                ]
+            )
+            [ TermSymbol
+                ( SymbolMixfix
+                    [ Just
+                        ( Command "emptyset" )
+                    ]
+                ) []
+            , TermSymbol
+                ( SymbolMixfix
+                    [ Just
+                        ( Command "emptyset" )
+                    ]
+                ) []
+            ]
+        )
+    )
+, BlockLemma
+    ( SourcePos
+        { sourceName = "test/examples/replace.tex"
+        , sourceLine = Pos 13
+        , sourceColumn = Pos 1
+        }
+    )
+    ( Marker "pair_emptyset_in_times_unit" )
+    ( Lemma []
+        ( TermSymbol
+            ( SymbolPredicate
+                ( PredicateRelation
+                    ( Command "in" )
+                )
+            )
+            [ TermSymbol
+                ( SymbolMixfix
+                    [ Just
+                        ( Command "pair" )
+                    , Just InvisibleBraceL
+                    , Nothing
+                    , Just InvisibleBraceR
+                    , Just InvisibleBraceL
+                    , Nothing
+                    , Just InvisibleBraceR
+                    ]
+                )
+                [ TermSymbol
+                    ( SymbolMixfix
+                        [ Just
+                            ( Command "emptyset" )
+                        ]
+                    ) []
+                , TermSymbol
+                    ( SymbolMixfix
+                        [ Just
+                            ( Command "emptyset" )
+                        ]
+                    ) []
+                ]
+            , TermSymbol
+                ( SymbolMixfix
+                    [ Nothing
+                    , Just
+                        ( Command "times" )
+                    , Nothing
+                    ]
+                )
+                [ TermSymbol
+                    ( SymbolMixfix
+                        [ Just
+                            ( Command "unit" )
+                        ]
+                    ) []
+                , TermSymbol
+                    ( SymbolMixfix
+                        [ Just
+                            ( Command "unit" )
+                        ]
+                    ) []
+                ]
+            ]
+        )
+    )
+, BlockDefn
+    ( SourcePos
+        { sourceName = "test/examples/replace.tex"
+        , sourceLine = Pos 19
+        , sourceColumn = Pos 1
+        }
+    )
+    ( Marker "suc" )
+    ( DefnOp
+        [ Just
+            ( Command "suc" )
+        , Just InvisibleBraceL
+        , Nothing
+        , Just InvisibleBraceR
+        ]
+        [ NamedVar "a" ]
+        ( ReplacePred
+            ( NamedVar "y" )
+            ( NamedVar "x" )
+            ( TermVar
+                ( NamedVar "a" )
+            )
+            ( Scope
+                ( TermSymbol
+                    ( SymbolPredicate
+                        ( PredicateRelation
+                            ( Symbol "=" )
+                        )
+                    )
+                    [ TermVar ( B ReplacementRangeVar )
+                    , TermSymbol
+                        ( SymbolMixfix
+                            [ Just
+                                ( Command "cons" )
+                            , Just InvisibleBraceL
+                            , Nothing
+                            , Just InvisibleBraceR
+                            , Just InvisibleBraceL
+                            , Nothing
+                            , Just InvisibleBraceR
+                            ]
+                        )
+                        [ TermVar ( B ReplacementDomVar )
+                        , TermSymbol
+                            ( SymbolMixfix
+                                [ Just
+                                    ( Command "emptyset" )
+                                ]
+                            ) []
+                        ]
+                    ]
+                )
+            )
+        )
+    )
+, BlockLemma
+    ( SourcePos
+        { sourceName = "test/examples/replace.tex"
+        , sourceLine = Pos 25
+        , sourceColumn = Pos 1
+        }
+    )
+    ( Marker "times_replacement_test" )
+    ( Lemma []
+        ( TermSymbol
+            ( SymbolPredicate
+                ( PredicateRelation
+                    ( Symbol "=" )
+                )
+            )
+            [ TermSymbol
+                ( SymbolMixfix
+                    [ Nothing
+                    , Just
+                        ( Command "times" )
+                    , Nothing
+                    ]
+                )
+                [ TermVar
+                    ( NamedVar "A" )
+                , TermVar
+                    ( NamedVar "B" )
+                ]
+            , ReplaceFun
+                (
+                    ( NamedVar "a"
+                    , TermVar
+                        ( NamedVar "A" )
+                    ) :|
+                    [
+                        ( NamedVar "b"
+                        , TermVar
+                            ( NamedVar "B" )
+                        )
+                    ]
+                )
+                ( Scope
+                    ( TermSymbol
+                        ( SymbolMixfix
+                            [ Just
+                                ( Command "pair" )
+                            , Just InvisibleBraceL
+                            , Nothing
+                            , Just InvisibleBraceR
+                            , Just InvisibleBraceL
+                            , Nothing
+                            , Just InvisibleBraceR
+                            ]
+                        )
+                        [ TermVar
+                            ( B
+                                ( NamedVar "a" )
+                            )
+                        , TermVar
+                            ( B
+                                ( NamedVar "b" )
+                            )
+                        ]
+                    )
+                )
+                ( Scope ( PropositionalConstant IsTop ) )
+            ]
+        )
+    )
+]

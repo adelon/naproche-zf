@@ -1,0 +1,41 @@
+\import{order/partial-order.tex}
+
+\begin{struct}\label{meet_semilattice}
+    A meet semilattice $X$ is a partial order
+    equipped with
+    \begin{enumerate}
+        \item $\meet$
+    \end{enumerate}
+    such that
+    \begin{enumerate}
+        \item\label{meet_type} for all $x,y\in \carrier[X]$ we have
+           $\meet[X](x,y)\in X$.
+        \item\label{meet_lb} for all $x,y\in \carrier[X]$ we have
+            $\meet[X](x,y) \mathrel{\lt[X]} x, y$.
+        \item\label{meet_glb} for all $a,x,y\in \carrier[X]$ such that $a\mathrel{\lt[X]} x, y$ we have
+            $a\mathrel{\lt[X]} \meet[X](x,y)$.
+    \end{enumerate}
+\end{struct}
+
+
+\begin{proposition}\label{meet_idempotent}
+    Let $X$ be a meet semilattice.
+    Then $\meet(x,x) = x$.
+\end{proposition}
+\begin{proof}
+    $\meet(x,x) \mathrel{\lt} x$.
+    $x\mathrel{\lt[X]} x, x$.
+    Thus $x\mathrel{\lt[X]} \meet(x,x)$.
+\end{proof}
+
+%\begin{proposition}\label{meet_comm}
+%    Let $X$ be a meet semilattice.
+%    Suppose $x, y\in X$.
+%    Then $\meet(x,y) = \meet(y,x)$.
+%\end{proposition}
+
+%\begin{proposition}\label{meet_assoc}
+%    Let $X$ be a meet semilattice.
+%    Suppose $x, y, z\in X$.
+%    Then $\meet(x,\meet(y,z)) = \meet(\meet(x,y),z)$.
+%\end{proposition}

@@ -1,0 +1,47 @@
+[ BlockLemma
+    ( SourcePos
+        { sourceName = "test/examples/relation-notation.tex"
+        , sourceLine = Pos 1
+        , sourceColumn = Pos 1
+        }
+    )
+    ( Marker "mathrel_notation_test" )
+    ( Lemma []
+        ( StmtConnected Implication
+            ( StmtFormula
+                ( FormulaChain
+                    ( ChainBase
+                        ( ExprVar
+                            ( NamedVar "x" ) :| []
+                        ) Positive
+                        ( RelationExpr
+                            ( ExprVar
+                                ( NamedVar "R" )
+                            )
+                        )
+                        ( ExprVar
+                            ( NamedVar "y" ) :| []
+                        )
+                    )
+                )
+            )
+            ( StmtFormula
+                ( FormulaChain
+                    ( ChainBase
+                        ( ExprVar
+                            ( NamedVar "x" ) :| []
+                        ) Positive
+                        ( RelationExpr
+                            ( ExprVar
+                                ( NamedVar "R" )
+                            )
+                        )
+                        ( ExprVar
+                            ( NamedVar "y" ) :| []
+                        )
+                    )
+                )
+            )
+        )
+    )
+]

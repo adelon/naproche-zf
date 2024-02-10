@@ -1,0 +1,155 @@
+[ BlockLemma
+    ( SourcePos
+        { sourceName = "test/examples/byRef.tex"
+        , sourceLine = Pos 1
+        , sourceColumn = Pos 1
+        }
+    )
+    ( Marker "first_proposition" )
+    ( Lemma []
+        ( TermSymbol
+            ( SymbolPredicate
+                ( PredicateRelation
+                    ( Symbol "=" )
+                )
+            )
+            [ TermVar
+                ( NamedVar "a" )
+            , TermVar
+                ( NamedVar "a" )
+            ]
+        )
+    )
+, BlockLemma
+    ( SourcePos
+        { sourceName = "test/examples/byRef.tex"
+        , sourceLine = Pos 5
+        , sourceColumn = Pos 1
+        }
+    )
+    ( Marker "second_proposition" )
+    ( Lemma []
+        ( TermSymbol
+            ( SymbolPredicate
+                ( PredicateRelation
+                    ( Symbol "=" )
+                )
+            )
+            [ TermVar
+                ( NamedVar "b" )
+            , TermVar
+                ( NamedVar "b" )
+            ]
+        )
+    )
+, BlockLemma
+    ( SourcePos
+        { sourceName = "test/examples/byRef.tex"
+        , sourceLine = Pos 9
+        , sourceColumn = Pos 1
+        }
+    )
+    ( Marker "third_proposition" )
+    ( Lemma []
+        ( TermSymbol
+            ( SymbolPredicate
+                ( PredicateRelation
+                    ( Symbol "=" )
+                )
+            )
+            [ TermVar
+                ( NamedVar "c" )
+            , TermVar
+                ( NamedVar "c" )
+            ]
+        )
+    )
+, BlockProof
+    ( SourcePos
+        { sourceName = "test/examples/byRef.tex"
+        , sourceLine = Pos 12
+        , sourceColumn = Pos 1
+        }
+    )
+    ( Qed
+        ( JustificationRef
+            ( Marker "first_proposition" :| [] )
+        )
+    )
+, BlockLemma
+    ( SourcePos
+        { sourceName = "test/examples/byRef.tex"
+        , sourceLine = Pos 16
+        , sourceColumn = Pos 1
+        }
+    )
+    ( Marker "fourth_proposition" )
+    ( Lemma []
+        ( TermSymbol
+            ( SymbolPredicate
+                ( PredicateRelation
+                    ( Symbol "=" )
+                )
+            )
+            [ TermVar
+                ( NamedVar "e" )
+            , TermVar
+                ( NamedVar "e" )
+            ]
+        )
+    )
+, BlockProof
+    ( SourcePos
+        { sourceName = "test/examples/byRef.tex"
+        , sourceLine = Pos 19
+        , sourceColumn = Pos 1
+        }
+    )
+    ( Have
+        ( Quantified Universally
+            ( Scope
+                ( TermSymbol
+                    ( SymbolPredicate
+                        ( PredicateRelation
+                            ( Symbol "=" )
+                        )
+                    )
+                    [ TermVar
+                        ( B
+                            ( NamedVar "d" )
+                        )
+                    , TermVar
+                        ( B
+                            ( NamedVar "d" )
+                        )
+                    ]
+                )
+            )
+        )
+        ( JustificationRef
+            ( Marker "first_proposition" :| [] )
+        ) ( Qed JustificationEmpty )
+    )
+, BlockLemma
+    ( SourcePos
+        { sourceName = "test/examples/byRef.tex"
+        , sourceLine = Pos 23
+        , sourceColumn = Pos 1
+        }
+    )
+    ( Marker "fifth_proposition" )
+    ( Lemma []
+        ( TermSymbol
+            ( SymbolPredicate
+                ( PredicateRelation
+                    ( Symbol "=" )
+                )
+            )
+            [ TermVar
+                ( NamedVar "f" )
+            , TermVar
+                ( NamedVar "f" )
+            ]
+        )
+    )
+]

@@ -1,0 +1,51 @@
+\import{relation.tex}
+\import{relation/properties.tex}
+
+\subsection{Quasiorders}
+
+% also called preorder
+\begin{abbreviation}\label{quasiorder}
+    $R$ is a quasiorder iff
+    $R$ is quasireflexive and transitive.
+\end{abbreviation}
+
+% also called preorder
+\begin{abbreviation}\label{quasiorder_on}
+    $R$ is a quasiorder on $A$ iff
+        $R$ is a binary relation on $A$ and
+        $R$ is reflexive on $A$ and transitive.
+\end{abbreviation}
+
+\begin{struct}\label{quasiordered_set}
+    A quasiordered set $X$ is a onesorted structure
+    equipped with
+        \begin{enumerate}
+            \item $\lt$
+        \end{enumerate}
+    such that
+    \begin{enumerate}
+        \item\label{quasiorder_type} $\lt[X]$ is a binary relation on $\carrier[X]$.
+        \item\label{quasiorder_refl} $\lt[X]$ is reflexive on $\carrier[X]$.
+        \item\label{quasiorder_tran} $\lt[X]$ is transitive.
+    \end{enumerate}
+\end{struct}
+
+\begin{lemma}\label{quasiorder_transitive_double}
+    Let $X$ be a quasiordered set.
+    Let $a, b, c, d \in X$.
+    Suppose $a\mathrel{\lt[X]} b\mathrel{\lt[X]} c\mathrel{\lt[X]} d$.
+    Then $a\mathrel{\lt[X]} d$.
+\end{lemma}
+\begin{proof}
+    $\lt[X]$ is transitive.
+    Thus $a\mathrel{\lt[X]} c\mathrel{\lt[X]} d$ by \hyperref[transitive]{transitivity}.
+    Hence $a\mathrel{\lt[X]} d$ by \hyperref[transitive]{transitivity}.
+\end{proof}
+
+\begin{proposition}\label{subseteqrel_is_quasiorder}
+    $\subseteqrel{A}$ is a quasiorder on $A$.
+\end{proposition}
+\begin{proof}
+    $\subseteqrel{A}$ is reflexive on $A$.
+    $\subseteqrel{A}$ is transitive.
+\end{proof}

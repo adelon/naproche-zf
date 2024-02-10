@@ -1,0 +1,261 @@
+[ Task
+    { taskDirectness = Direct
+    , taskHypotheses =
+        [
+            ( Marker "assumetest1"
+            , TermSymbol
+                ( SymbolPredicate
+                    ( PredicateRelation
+                        ( Command "in" )
+                    )
+                )
+                [ TermVar
+                    ( NamedVar "x" )
+                , TermVar
+                    ( NamedVar "y" )
+                ]
+            )
+        ]
+    , taskConjectureLabel = Marker "assumetest"
+    , taskConjecture = TermSymbol
+        ( SymbolPredicate
+            ( PredicateRelation
+                ( Command "in" )
+            )
+        )
+        [ TermVar
+            ( NamedVar "x" )
+        , TermVar
+            ( NamedVar "y" )
+        ]
+    }
+, Task
+    { taskDirectness = Direct
+    , taskHypotheses =
+        [
+            ( Marker "assumetest1"
+            , TermSymbol
+                ( SymbolPredicate
+                    ( PredicateRelation
+                        ( Command "in" )
+                    )
+                )
+                [ TermVar
+                    ( NamedVar "x" )
+                , TermVar
+                    ( NamedVar "y" )
+                ]
+            )
+        ,
+            ( Marker "assumetest2"
+            , TermSymbol
+                ( SymbolPredicate
+                    ( PredicateRelation
+                        ( Command "in" )
+                    )
+                )
+                [ TermVar
+                    ( NamedVar "x" )
+                , TermVar
+                    ( NamedVar "y" )
+                ]
+            )
+        ]
+    , taskConjectureLabel = Marker "assumetest"
+    , taskConjecture = TermSymbol
+        ( SymbolPredicate
+            ( PredicateRelation
+                ( Command "in" )
+            )
+        )
+        [ TermVar
+            ( NamedVar "x" )
+        , TermVar
+            ( NamedVar "y" )
+        ]
+    }
+, Task
+    { taskDirectness = Direct
+    , taskHypotheses =
+        [
+            ( Marker "assumetest"
+            , Quantified Universally
+                ( Scope
+                    ( Connected Implication
+                        ( TermSymbol
+                            ( SymbolPredicate
+                                ( PredicateRelation
+                                    ( Command "in" )
+                                )
+                            )
+                            [ TermVar
+                                ( B
+                                    ( NamedVar "x" )
+                                )
+                            , TermVar
+                                ( B
+                                    ( NamedVar "y" )
+                                )
+                            ]
+                        )
+                        ( TermSymbol
+                            ( SymbolPredicate
+                                ( PredicateRelation
+                                    ( Command "in" )
+                                )
+                            )
+                            [ TermVar
+                                ( B
+                                    ( NamedVar "x" )
+                                )
+                            , TermVar
+                                ( B
+                                    ( NamedVar "y" )
+                                )
+                            ]
+                        )
+                    )
+                )
+            )
+        ,
+            ( Marker "assumetesttwo1"
+            , TermSymbol
+                ( SymbolPredicate
+                    ( PredicateRelation
+                        ( Command "in" )
+                    )
+                )
+                [ TermVar
+                    ( NamedVar "x" )
+                , TermVar
+                    ( NamedVar "y" )
+                ]
+            )
+        ,
+            ( Marker "assumetesttwo2"
+            , TermSymbol
+                ( SymbolPredicate
+                    ( PredicateRelation
+                        ( Command "in" )
+                    )
+                )
+                [ TermVar
+                    ( NamedVar "a" )
+                , TermVar
+                    ( NamedVar "b" )
+                ]
+            )
+        ]
+    , taskConjectureLabel = Marker "assumetesttwo"
+    , taskConjecture = TermSymbol
+        ( SymbolPredicate
+            ( PredicateRelation
+                ( Command "in" )
+            )
+        )
+        [ TermVar
+            ( NamedVar "x" )
+        , TermVar
+            ( NamedVar "y" )
+        ]
+    }
+, Task
+    { taskDirectness = Direct
+    , taskHypotheses =
+        [
+            ( Marker "assumetest"
+            , Quantified Universally
+                ( Scope
+                    ( Connected Implication
+                        ( TermSymbol
+                            ( SymbolPredicate
+                                ( PredicateRelation
+                                    ( Command "in" )
+                                )
+                            )
+                            [ TermVar
+                                ( B
+                                    ( NamedVar "x" )
+                                )
+                            , TermVar
+                                ( B
+                                    ( NamedVar "y" )
+                                )
+                            ]
+                        )
+                        ( TermSymbol
+                            ( SymbolPredicate
+                                ( PredicateRelation
+                                    ( Command "in" )
+                                )
+                            )
+                            [ TermVar
+                                ( B
+                                    ( NamedVar "x" )
+                                )
+                            , TermVar
+                                ( B
+                                    ( NamedVar "y" )
+                                )
+                            ]
+                        )
+                    )
+                )
+            )
+        ,
+            ( Marker "assumetesttwo1"
+            , TermSymbol
+                ( SymbolPredicate
+                    ( PredicateRelation
+                        ( Command "in" )
+                    )
+                )
+                [ TermVar
+                    ( NamedVar "x" )
+                , TermVar
+                    ( NamedVar "y" )
+                ]
+            )
+        ,
+            ( Marker "assumetesttwo2"
+            , TermSymbol
+                ( SymbolPredicate
+                    ( PredicateRelation
+                        ( Command "in" )
+                    )
+                )
+                [ TermVar
+                    ( NamedVar "x" )
+                , TermVar
+                    ( NamedVar "y" )
+                ]
+            )
+        ,
+            ( Marker "assumetesttwo3"
+            , TermSymbol
+                ( SymbolPredicate
+                    ( PredicateRelation
+                        ( Command "in" )
+                    )
+                )
+                [ TermVar
+                    ( NamedVar "a" )
+                , TermVar
+                    ( NamedVar "b" )
+                ]
+            )
+        ]
+    , taskConjectureLabel = Marker "assumetesttwo"
+    , taskConjecture = TermSymbol
+        ( SymbolPredicate
+            ( PredicateRelation
+                ( Command "in" )
+            )
+        )
+        [ TermVar
+            ( NamedVar "x" )
+        , TermVar
+            ( NamedVar "y" )
+        ]
+    }
+]

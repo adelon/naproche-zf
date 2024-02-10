@@ -1,0 +1,56 @@
+[ BlockLemma
+    ( SourcePos
+        { sourceName = "test/examples/prooffix.tex"
+        , sourceLine = Pos 1
+        , sourceColumn = Pos 1
+        }
+    )
+    ( Marker "assumetest" )
+    ( Lemma []
+        ( SymbolicQuantified Universally
+            ( NamedVar "x" :| [] ) Unbounded Nothing
+            ( StmtFormula
+                ( FormulaChain
+                    ( ChainBase
+                        ( ExprVar
+                            ( NamedVar "x" ) :| []
+                        ) Positive
+                        ( RelationSymbol
+                            ( Symbol "=" )
+                        )
+                        ( ExprVar
+                            ( NamedVar "x" ) :| []
+                        )
+                    )
+                )
+            )
+        )
+    )
+, BlockProof
+    ( SourcePos
+        { sourceName = "test/examples/prooffix.tex"
+        , sourceLine = Pos 4
+        , sourceColumn = Pos 1
+        }
+    )
+    ( FixSymbolic
+        ( NamedVar "x" :| [] ) Unbounded
+        ( Have Nothing
+            ( StmtFormula
+                ( FormulaChain
+                    ( ChainBase
+                        ( ExprVar
+                            ( NamedVar "x" ) :| []
+                        ) Positive
+                        ( RelationSymbol
+                            ( Symbol "=" )
+                        )
+                        ( ExprVar
+                            ( NamedVar "x" ) :| []
+                        )
+                    )
+                )
+            ) JustificationEmpty ( Qed JustificationEmpty )
+        )
+    )
+]

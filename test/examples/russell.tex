@@ -1,0 +1,16 @@
+\begin{definition}\label{universal_set}
+    A set $V$ is universal iff
+    %every set is an element of $V$.
+    for all sets $x$ we have $x\in V$.
+\end{definition}
+
+\begin{theorem}\label{no_universal_set}
+    There exists no universal set.
+\end{theorem}
+\begin{proof}
+    Suppose not.
+    Take a universal set $V$.
+    Let $R = \{ x\in V \mid x\not\in x \}$.
+    Then $R\in R$ iff $R\not\in R$.
+    Contradiction.
+\end{proof}

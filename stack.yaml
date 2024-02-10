@@ -1,0 +1,7 @@
+resolver: lts-21.25
+
+# Put documentation into an easily accessible directory.
+build:
+    haddock-arguments:
+        haddock-args:
+        - "--odir=./haddocks"

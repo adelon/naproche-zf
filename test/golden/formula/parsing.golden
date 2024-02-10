@@ -1,0 +1,76 @@
+[ BlockLemma
+    ( SourcePos
+        { sourceName = "test/examples/formula.tex"
+        , sourceLine = Pos 1
+        , sourceColumn = Pos 1
+        }
+    )
+    ( Marker "formula_test_forall" )
+    ( Lemma []
+        ( StmtFormula
+            ( FormulaQuantified Universally
+                ( NamedVar "x" :|
+                    [ NamedVar "y" ]
+                ) Unbounded
+                ( Connected Conjunction
+                    ( FormulaChain
+                        ( ChainBase
+                            ( ExprVar
+                                ( NamedVar "x" ) :| []
+                            ) Positive
+                            ( RelationSymbol
+                                ( Symbol "=" )
+                            )
+                            ( ExprVar
+                                ( NamedVar "x" ) :| []
+                            )
+                        )
+                    )
+                    ( FormulaChain
+                        ( ChainBase
+                            ( ExprVar
+                                ( NamedVar "y" ) :| []
+                            ) Positive
+                            ( RelationSymbol
+                                ( Symbol "=" )
+                            )
+                            ( ExprVar
+                                ( NamedVar "y" ) :| []
+                            )
+                        )
+                    )
+                )
+            )
+        )
+    )
+, BlockLemma
+    ( SourcePos
+        { sourceName = "test/examples/formula.tex"
+        , sourceLine = Pos 5
+        , sourceColumn = Pos 1
+        }
+    )
+    ( Marker "formula_test_exists" )
+    ( Lemma []
+        ( StmtFormula
+            ( FormulaQuantified Existentially
+                ( NamedVar "x" :|
+                    [ NamedVar "y" ]
+                ) Unbounded
+                ( FormulaChain
+                    ( ChainBase
+                        ( ExprVar
+                            ( NamedVar "x" ) :| []
+                        ) Positive
+                        ( RelationSymbol
+                            ( Symbol "=" )
+                        )
+                        ( ExprVar
+                            ( NamedVar "y" ) :| []
+                        )
+                    )
+                )
+            )
+        )
+    )
+]

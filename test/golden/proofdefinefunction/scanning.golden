@@ -1,0 +1,30 @@
+[ ScanFunctionSymbol
+    [ Just
+        ( Command "apply" )
+    , Just InvisibleBraceL
+    , Nothing
+    , Just InvisibleBraceR
+    , Just InvisibleBraceL
+    , Nothing
+    , Just InvisibleBraceR
+    ]
+    ( Marker "apply" )
+, ScanFunctionSymbol
+    [ Just
+        ( Command "dom" )
+    , Just InvisibleBraceL
+    , Nothing
+    , Just InvisibleBraceR
+    ]
+    ( Marker "dom" )
+, ScanAdj
+    [ Just
+        ( Word "right-unique" )
+    ]
+    ( Marker "rightunique" )
+, ScanNoun
+    [ Just
+        ( Word "relation" )
+    ]
+    ( Marker "relation" )
+]

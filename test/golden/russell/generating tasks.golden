@@ -1,0 +1,769 @@
+[ Task
+    { taskDirectness = Indirect
+        ( Not
+            ( Quantified Existentially
+                ( Scope
+                    ( Connected Conjunction ( PropositionalConstant IsTop )
+                        ( TermSymbol
+                            ( SymbolPredicate
+                                ( PredicateAdj
+                                    [ Just
+                                        ( Word "universal" )
+                                    ]
+                                )
+                            )
+                            [ TermVar
+                                ( B
+                                    ( FreshVar 0 )
+                                )
+                            ]
+                        )
+                    )
+                )
+            )
+        )
+    , taskHypotheses =
+        [
+            ( Marker "universal_set"
+            , Quantified Universally
+                ( Scope
+                    ( Connected Equivalence
+                        ( TermSymbol
+                            ( SymbolPredicate
+                                ( PredicateAdj
+                                    [ Just
+                                        ( Word "universal" )
+                                    ]
+                                )
+                            )
+                            [ TermVar
+                                ( B
+                                    ( NamedVar "V" )
+                                )
+                            ]
+                        )
+                        ( Quantified Universally
+                            ( Scope
+                                ( Quantified Universally
+                                    ( Scope
+                                        ( TermSymbol
+                                            ( SymbolPredicate
+                                                ( PredicateRelation
+                                                    ( Command "in" )
+                                                )
+                                            )
+                                            [ TermVar
+                                                ( B
+                                                    ( NamedVar "x" )
+                                                )
+                                            , TermVar
+                                                ( F
+                                                    ( TermVar
+                                                        ( F
+                                                            ( TermVar
+                                                                ( B
+                                                                    ( NamedVar "V" )
+                                                                )
+                                                            )
+                                                        )
+                                                    )
+                                                )
+                                            ]
+                                        )
+                                    )
+                                )
+                            )
+                        )
+                    )
+                )
+            )
+        ,
+            ( Marker "no_universal_set1"
+            , Not
+                ( Not
+                    ( Quantified Existentially
+                        ( Scope
+                            ( TermSymbol
+                                ( SymbolPredicate
+                                    ( PredicateAdj
+                                        [ Just
+                                            ( Word "universal" )
+                                        ]
+                                    )
+                                )
+                                [ TermVar
+                                    ( B
+                                        ( FreshVar 0 )
+                                    )
+                                ]
+                            )
+                        )
+                    )
+                )
+            )
+        ]
+    , taskConjectureLabel = Marker "no_universal_set"
+    , taskConjecture = Quantified Existentially
+        ( Scope
+            ( TermSymbol
+                ( SymbolPredicate
+                    ( PredicateAdj
+                        [ Just
+                            ( Word "universal" )
+                        ]
+                    )
+                )
+                [ TermVar
+                    ( B
+                        ( NamedVar "V" )
+                    )
+                ]
+            )
+        )
+    }
+, Task
+    { taskDirectness = Indirect
+        ( Not
+            ( Quantified Existentially
+                ( Scope
+                    ( Connected Conjunction ( PropositionalConstant IsTop )
+                        ( TermSymbol
+                            ( SymbolPredicate
+                                ( PredicateAdj
+                                    [ Just
+                                        ( Word "universal" )
+                                    ]
+                                )
+                            )
+                            [ TermVar
+                                ( B
+                                    ( FreshVar 0 )
+                                )
+                            ]
+                        )
+                    )
+                )
+            )
+        )
+    , taskHypotheses =
+        [
+            ( Marker "universal_set"
+            , Quantified Universally
+                ( Scope
+                    ( Connected Equivalence
+                        ( TermSymbol
+                            ( SymbolPredicate
+                                ( PredicateAdj
+                                    [ Just
+                                        ( Word "universal" )
+                                    ]
+                                )
+                            )
+                            [ TermVar
+                                ( B
+                                    ( NamedVar "V" )
+                                )
+                            ]
+                        )
+                        ( Quantified Universally
+                            ( Scope
+                                ( Quantified Universally
+                                    ( Scope
+                                        ( TermSymbol
+                                            ( SymbolPredicate
+                                                ( PredicateRelation
+                                                    ( Command "in" )
+                                                )
+                                            )
+                                            [ TermVar
+                                                ( B
+                                                    ( NamedVar "x" )
+                                                )
+                                            , TermVar
+                                                ( F
+                                                    ( TermVar
+                                                        ( F
+                                                            ( TermVar
+                                                                ( B
+                                                                    ( NamedVar "V" )
+                                                                )
+                                                            )
+                                                        )
+                                                    )
+                                                )
+                                            ]
+                                        )
+                                    )
+                                )
+                            )
+                        )
+                    )
+                )
+            )
+        ,
+            ( Marker "no_universal_set1"
+            , Quantified Universally
+                ( Scope
+                    ( Connected Equivalence
+                        ( TermSymbol
+                            ( SymbolPredicate
+                                ( PredicateRelation
+                                    ( Command "in" )
+                                )
+                            )
+                            [ TermVar
+                                ( B
+                                    ( NamedVar "x" )
+                                )
+                            , TermVar
+                                ( F
+                                    ( TermVar
+                                        ( NamedVar "R" )
+                                    )
+                                )
+                            ]
+                        )
+                        ( Connected Conjunction
+                            ( TermSymbol
+                                ( SymbolPredicate
+                                    ( PredicateRelation
+                                        ( Command "in" )
+                                    )
+                                )
+                                [ TermVar
+                                    ( B
+                                        ( NamedVar "x" )
+                                    )
+                                , TermVar
+                                    ( F
+                                        ( TermVar
+                                            ( NamedVar "V" )
+                                        )
+                                    )
+                                ]
+                            )
+                            ( Not
+                                ( TermSymbol
+                                    ( SymbolPredicate
+                                        ( PredicateRelation
+                                            ( Command "in" )
+                                        )
+                                    )
+                                    [ TermVar
+                                        ( B
+                                            ( NamedVar "x" )
+                                        )
+                                    , TermVar
+                                        ( B
+                                            ( NamedVar "x" )
+                                        )
+                                    ]
+                                )
+                            )
+                        )
+                    )
+                )
+            )
+        ,
+            ( Marker "no_universal_set2"
+            , TermSymbol
+                ( SymbolPredicate
+                    ( PredicateAdj
+                        [ Just
+                            ( Word "universal" )
+                        ]
+                    )
+                )
+                [ TermVar
+                    ( NamedVar "V" )
+                ]
+            )
+        ,
+            ( Marker "no_universal_set3"
+            , Not
+                ( Not
+                    ( Quantified Existentially
+                        ( Scope
+                            ( TermSymbol
+                                ( SymbolPredicate
+                                    ( PredicateAdj
+                                        [ Just
+                                            ( Word "universal" )
+                                        ]
+                                    )
+                                )
+                                [ TermVar
+                                    ( B
+                                        ( FreshVar 0 )
+                                    )
+                                ]
+                            )
+                        )
+                    )
+                )
+            )
+        ]
+    , taskConjectureLabel = Marker "no_universal_set"
+    , taskConjecture = Connected Equivalence
+        ( TermSymbol
+            ( SymbolPredicate
+                ( PredicateRelation
+                    ( Command "in" )
+                )
+            )
+            [ TermVar
+                ( NamedVar "R" )
+            , TermVar
+                ( NamedVar "R" )
+            ]
+        )
+        ( Not
+            ( TermSymbol
+                ( SymbolPredicate
+                    ( PredicateRelation
+                        ( Command "in" )
+                    )
+                )
+                [ TermVar
+                    ( NamedVar "R" )
+                , TermVar
+                    ( NamedVar "R" )
+                ]
+            )
+        )
+    }
+, Task
+    { taskDirectness = Indirect
+        ( Not
+            ( Quantified Existentially
+                ( Scope
+                    ( Connected Conjunction ( PropositionalConstant IsTop )
+                        ( TermSymbol
+                            ( SymbolPredicate
+                                ( PredicateAdj
+                                    [ Just
+                                        ( Word "universal" )
+                                    ]
+                                )
+                            )
+                            [ TermVar
+                                ( B
+                                    ( FreshVar 0 )
+                                )
+                            ]
+                        )
+                    )
+                )
+            )
+        )
+    , taskHypotheses =
+        [
+            ( Marker "universal_set"
+            , Quantified Universally
+                ( Scope
+                    ( Connected Equivalence
+                        ( TermSymbol
+                            ( SymbolPredicate
+                                ( PredicateAdj
+                                    [ Just
+                                        ( Word "universal" )
+                                    ]
+                                )
+                            )
+                            [ TermVar
+                                ( B
+                                    ( NamedVar "V" )
+                                )
+                            ]
+                        )
+                        ( Quantified Universally
+                            ( Scope
+                                ( Quantified Universally
+                                    ( Scope
+                                        ( TermSymbol
+                                            ( SymbolPredicate
+                                                ( PredicateRelation
+                                                    ( Command "in" )
+                                                )
+                                            )
+                                            [ TermVar
+                                                ( B
+                                                    ( NamedVar "x" )
+                                                )
+                                            , TermVar
+                                                ( F
+                                                    ( TermVar
+                                                        ( F
+                                                            ( TermVar
+                                                                ( B
+                                                                    ( NamedVar "V" )
+                                                                )
+                                                            )
+                                                        )
+                                                    )
+                                                )
+                                            ]
+                                        )
+                                    )
+                                )
+                            )
+                        )
+                    )
+                )
+            )
+        ,
+            ( Marker "no_universal_set1"
+            , Connected Equivalence
+                ( TermSymbol
+                    ( SymbolPredicate
+                        ( PredicateRelation
+                            ( Command "in" )
+                        )
+                    )
+                    [ TermVar
+                        ( NamedVar "R" )
+                    , TermVar
+                        ( NamedVar "R" )
+                    ]
+                )
+                ( Not
+                    ( TermSymbol
+                        ( SymbolPredicate
+                            ( PredicateRelation
+                                ( Command "in" )
+                            )
+                        )
+                        [ TermVar
+                            ( NamedVar "R" )
+                        , TermVar
+                            ( NamedVar "R" )
+                        ]
+                    )
+                )
+            )
+        ,
+            ( Marker "no_universal_set2"
+            , Quantified Universally
+                ( Scope
+                    ( Connected Equivalence
+                        ( TermSymbol
+                            ( SymbolPredicate
+                                ( PredicateRelation
+                                    ( Command "in" )
+                                )
+                            )
+                            [ TermVar
+                                ( B
+                                    ( NamedVar "x" )
+                                )
+                            , TermVar
+                                ( F
+                                    ( TermVar
+                                        ( NamedVar "R" )
+                                    )
+                                )
+                            ]
+                        )
+                        ( Connected Conjunction
+                            ( TermSymbol
+                                ( SymbolPredicate
+                                    ( PredicateRelation
+                                        ( Command "in" )
+                                    )
+                                )
+                                [ TermVar
+                                    ( B
+                                        ( NamedVar "x" )
+                                    )
+                                , TermVar
+                                    ( F
+                                        ( TermVar
+                                            ( NamedVar "V" )
+                                        )
+                                    )
+                                ]
+                            )
+                            ( Not
+                                ( TermSymbol
+                                    ( SymbolPredicate
+                                        ( PredicateRelation
+                                            ( Command "in" )
+                                        )
+                                    )
+                                    [ TermVar
+                                        ( B
+                                            ( NamedVar "x" )
+                                        )
+                                    , TermVar
+                                        ( B
+                                            ( NamedVar "x" )
+                                        )
+                                    ]
+                                )
+                            )
+                        )
+                    )
+                )
+            )
+        ,
+            ( Marker "no_universal_set3"
+            , TermSymbol
+                ( SymbolPredicate
+                    ( PredicateAdj
+                        [ Just
+                            ( Word "universal" )
+                        ]
+                    )
+                )
+                [ TermVar
+                    ( NamedVar "V" )
+                ]
+            )
+        ,
+            ( Marker "no_universal_set4"
+            , Not
+                ( Not
+                    ( Quantified Existentially
+                        ( Scope
+                            ( TermSymbol
+                                ( SymbolPredicate
+                                    ( PredicateAdj
+                                        [ Just
+                                            ( Word "universal" )
+                                        ]
+                                    )
+                                )
+                                [ TermVar
+                                    ( B
+                                        ( FreshVar 0 )
+                                    )
+                                ]
+                            )
+                        )
+                    )
+                )
+            )
+        ]
+    , taskConjectureLabel = Marker "no_universal_set"
+    , taskConjecture = PropositionalConstant IsBottom
+    }
+, Task
+    { taskDirectness = Indirect
+        ( Not
+            ( Quantified Existentially
+                ( Scope
+                    ( Connected Conjunction ( PropositionalConstant IsTop )
+                        ( TermSymbol
+                            ( SymbolPredicate
+                                ( PredicateAdj
+                                    [ Just
+                                        ( Word "universal" )
+                                    ]
+                                )
+                            )
+                            [ TermVar
+                                ( B
+                                    ( FreshVar 0 )
+                                )
+                            ]
+                        )
+                    )
+                )
+            )
+        )
+    , taskHypotheses =
+        [
+            ( Marker "universal_set"
+            , Quantified Universally
+                ( Scope
+                    ( Connected Equivalence
+                        ( TermSymbol
+                            ( SymbolPredicate
+                                ( PredicateAdj
+                                    [ Just
+                                        ( Word "universal" )
+                                    ]
+                                )
+                            )
+                            [ TermVar
+                                ( B
+                                    ( NamedVar "V" )
+                                )
+                            ]
+                        )
+                        ( Quantified Universally
+                            ( Scope
+                                ( Quantified Universally
+                                    ( Scope
+                                        ( TermSymbol
+                                            ( SymbolPredicate
+                                                ( PredicateRelation
+                                                    ( Command "in" )
+                                                )
+                                            )
+                                            [ TermVar
+                                                ( B
+                                                    ( NamedVar "x" )
+                                                )
+                                            , TermVar
+                                                ( F
+                                                    ( TermVar
+                                                        ( F
+                                                            ( TermVar
+                                                                ( B
+                                                                    ( NamedVar "V" )
+                                                                )
+                                                            )
+                                                        )
+                                                    )
+                                                )
+                                            ]
+                                        )
+                                    )
+                                )
+                            )
+                        )
+                    )
+                )
+            )
+        ,
+            ( Marker "no_universal_set1"
+            , PropositionalConstant IsBottom
+            )
+        ,
+            ( Marker "no_universal_set2"
+            , Connected Equivalence
+                ( TermSymbol
+                    ( SymbolPredicate
+                        ( PredicateRelation
+                            ( Command "in" )
+                        )
+                    )
+                    [ TermVar
+                        ( NamedVar "R" )
+                    , TermVar
+                        ( NamedVar "R" )
+                    ]
+                )
+                ( Not
+                    ( TermSymbol
+                        ( SymbolPredicate
+                            ( PredicateRelation
+                                ( Command "in" )
+                            )
+                        )
+                        [ TermVar
+                            ( NamedVar "R" )
+                        , TermVar
+                            ( NamedVar "R" )
+                        ]
+                    )
+                )
+            )
+        ,
+            ( Marker "no_universal_set3"
+            , Quantified Universally
+                ( Scope
+                    ( Connected Equivalence
+                        ( TermSymbol
+                            ( SymbolPredicate
+                                ( PredicateRelation
+                                    ( Command "in" )
+                                )
+                            )
+                            [ TermVar
+                                ( B
+                                    ( NamedVar "x" )
+                                )
+                            , TermVar
+                                ( F
+                                    ( TermVar
+                                        ( NamedVar "R" )
+                                    )
+                                )
+                            ]
+                        )
+                        ( Connected Conjunction
+                            ( TermSymbol
+                                ( SymbolPredicate
+                                    ( PredicateRelation
+                                        ( Command "in" )
+                                    )
+                                )
+                                [ TermVar
+                                    ( B
+                                        ( NamedVar "x" )
+                                    )
+                                , TermVar
+                                    ( F
+                                        ( TermVar
+                                            ( NamedVar "V" )
+                                        )
+                                    )
+                                ]
+                            )
+                            ( Not
+                                ( TermSymbol
+                                    ( SymbolPredicate
+                                        ( PredicateRelation
+                                            ( Command "in" )
+                                        )
+                                    )
+                                    [ TermVar
+                                        ( B
+                                            ( NamedVar "x" )
+                                        )
+                                    , TermVar
+                                        ( B
+                                            ( NamedVar "x" )
+                                        )
+                                    ]
+                                )
+                            )
+                        )
+                    )
+                )
+            )
+        ,
+            ( Marker "no_universal_set4"
+            , TermSymbol
+                ( SymbolPredicate
+                    ( PredicateAdj
+                        [ Just
+                            ( Word "universal" )
+                        ]
+                    )
+                )
+                [ TermVar
+                    ( NamedVar "V" )
+                ]
+            )
+        ,
+            ( Marker "no_universal_set5"
+            , Not
+                ( Not
+                    ( Quantified Existentially
+                        ( Scope
+                            ( TermSymbol
+                                ( SymbolPredicate
+                                    ( PredicateAdj
+                                        [ Just
+                                            ( Word "universal" )
+                                        ]
+                                    )
+                                )
+                                [ TermVar
+                                    ( B
+                                        ( FreshVar 0 )
+                                    )
+                                ]
+                            )
+                        )
+                    )
+                )
+            )
+        ]
+    , taskConjectureLabel = Marker "no_universal_set"
+    , taskConjecture = PropositionalConstant IsBottom
+    }
+]

@@ -1,0 +1,43 @@
+[ BlockLemma
+    ( SourcePos
+        { sourceName = "test/examples/no-reflexive-set.tex"
+        , sourceLine = Pos 1
+        , sourceColumn = Pos 1
+        }
+    )
+    ( Marker "in_irrefl" )
+    ( Lemma []
+        ( Quantified Universally
+            ( Scope
+                ( Connected Implication ( PropositionalConstant IsTop )
+                    ( Not
+                        ( TermSymbol
+                            ( SymbolPredicate
+                                ( PredicateRelation
+                                    ( Command "in" )
+                                )
+                            )
+                            [ TermVar
+                                ( B
+                                    ( NamedVar "A" )
+                                )
+                            , TermVar
+                                ( B
+                                    ( NamedVar "A" )
+                                )
+                            ]
+                        )
+                    )
+                )
+            )
+        )
+    )
+, BlockProof
+    ( SourcePos
+        { sourceName = "test/examples/no-reflexive-set.tex"
+        , sourceLine = Pos 4
+        , sourceColumn = Pos 1
+        }
+    )
+    ( BySetInduction Nothing ( Qed JustificationEmpty ) )
+]

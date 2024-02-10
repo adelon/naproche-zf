@@ -1,0 +1,464 @@
+[ Task
+    { taskDirectness = Direct
+    , taskHypotheses = []
+    , taskConjectureLabel = Marker "trivial"
+    , taskConjecture = TermSymbol
+        ( SymbolPredicate
+            ( PredicateRelation
+                ( Symbol "=" )
+            )
+        )
+        [ TermVar
+            ( NamedVar "x" )
+        , TermVar
+            ( NamedVar "x" )
+        ]
+    }
+, Task
+    { taskDirectness = Direct
+    , taskHypotheses =
+        [
+            ( Marker "trivial"
+            , Quantified Universally
+                ( Scope
+                    ( TermSymbol
+                        ( SymbolPredicate
+                            ( PredicateRelation
+                                ( Symbol "=" )
+                            )
+                        )
+                        [ TermVar
+                            ( B
+                                ( NamedVar "x" )
+                            )
+                        , TermVar
+                            ( B
+                                ( NamedVar "x" )
+                            )
+                        ]
+                    )
+                )
+            )
+        ]
+    , taskConjectureLabel = Marker "irrelevant"
+    , taskConjecture = TermSymbol
+        ( SymbolPredicate
+            ( PredicateRelation
+                ( Symbol "=" )
+            )
+        )
+        [ TermVar
+            ( NamedVar "z" )
+        , TermVar
+            ( NamedVar "z" )
+        ]
+    }
+, Task
+    { taskDirectness = Direct
+    , taskHypotheses =
+        [
+            ( Marker "irrelevant"
+            , Quantified Universally
+                ( Scope
+                    ( TermSymbol
+                        ( SymbolPredicate
+                            ( PredicateRelation
+                                ( Symbol "=" )
+                            )
+                        )
+                        [ TermVar
+                            ( B
+                                ( NamedVar "z" )
+                            )
+                        , TermVar
+                            ( B
+                                ( NamedVar "z" )
+                            )
+                        ]
+                    )
+                )
+            )
+        ,
+            ( Marker "trivial"
+            , Quantified Universally
+                ( Scope
+                    ( TermSymbol
+                        ( SymbolPredicate
+                            ( PredicateRelation
+                                ( Symbol "=" )
+                            )
+                        )
+                        [ TermVar
+                            ( B
+                                ( NamedVar "x" )
+                            )
+                        , TermVar
+                            ( B
+                                ( NamedVar "x" )
+                            )
+                        ]
+                    )
+                )
+            )
+        ]
+    , taskConjectureLabel = Marker "alsotrivial"
+    , taskConjecture = TermSymbol
+        ( SymbolPredicate
+            ( PredicateRelation
+                ( Symbol "=" )
+            )
+        )
+        [ TermVar
+            ( NamedVar "y" )
+        , TermVar
+            ( NamedVar "y" )
+        ]
+    }
+, Task
+    { taskDirectness = Direct
+    , taskHypotheses =
+        [
+            ( Marker "trivial"
+            , Quantified Universally
+                ( Scope
+                    ( TermSymbol
+                        ( SymbolPredicate
+                            ( PredicateRelation
+                                ( Symbol "=" )
+                            )
+                        )
+                        [ TermVar
+                            ( B
+                                ( NamedVar "x" )
+                            )
+                        , TermVar
+                            ( B
+                                ( NamedVar "x" )
+                            )
+                        ]
+                    )
+                )
+            )
+        ]
+    , taskConjectureLabel = Marker "alsotrivial"
+    , taskConjecture = TermSymbol
+        ( SymbolPredicate
+            ( PredicateRelation
+                ( Symbol "=" )
+            )
+        )
+        [ TermVar
+            ( NamedVar "y" )
+        , TermVar
+            ( NamedVar "y" )
+        ]
+    }
+, Task
+    { taskDirectness = Direct
+    , taskHypotheses =
+        [
+            ( Marker "irrelevant"
+            , Quantified Universally
+                ( Scope
+                    ( TermSymbol
+                        ( SymbolPredicate
+                            ( PredicateRelation
+                                ( Symbol "=" )
+                            )
+                        )
+                        [ TermVar
+                            ( B
+                                ( NamedVar "z" )
+                            )
+                        , TermVar
+                            ( B
+                                ( NamedVar "z" )
+                            )
+                        ]
+                    )
+                )
+            )
+        ,
+            ( Marker "trivial"
+            , Quantified Universally
+                ( Scope
+                    ( TermSymbol
+                        ( SymbolPredicate
+                            ( PredicateRelation
+                                ( Symbol "=" )
+                            )
+                        )
+                        [ TermVar
+                            ( B
+                                ( NamedVar "x" )
+                            )
+                        , TermVar
+                            ( B
+                                ( NamedVar "x" )
+                            )
+                        ]
+                    )
+                )
+            )
+        ,
+            ( Marker "alsotrivial1"
+            , TermSymbol
+                ( SymbolPredicate
+                    ( PredicateRelation
+                        ( Symbol "=" )
+                    )
+                )
+                [ TermVar
+                    ( NamedVar "y" )
+                , TermVar
+                    ( NamedVar "y" )
+                ]
+            )
+        ]
+    , taskConjectureLabel = Marker "alsotrivial"
+    , taskConjecture = TermSymbol
+        ( SymbolPredicate
+            ( PredicateRelation
+                ( Symbol "=" )
+            )
+        )
+        [ TermVar
+            ( NamedVar "y" )
+        , TermVar
+            ( NamedVar "y" )
+        ]
+    }
+, Task
+    { taskDirectness = Direct
+    , taskHypotheses =
+        [
+            ( Marker "alsotrivial"
+            , Quantified Universally
+                ( Scope
+                    ( TermSymbol
+                        ( SymbolPredicate
+                            ( PredicateRelation
+                                ( Symbol "=" )
+                            )
+                        )
+                        [ TermVar
+                            ( B
+                                ( NamedVar "y" )
+                            )
+                        , TermVar
+                            ( B
+                                ( NamedVar "y" )
+                            )
+                        ]
+                    )
+                )
+            )
+        ,
+            ( Marker "irrelevant"
+            , Quantified Universally
+                ( Scope
+                    ( TermSymbol
+                        ( SymbolPredicate
+                            ( PredicateRelation
+                                ( Symbol "=" )
+                            )
+                        )
+                        [ TermVar
+                            ( B
+                                ( NamedVar "z" )
+                            )
+                        , TermVar
+                            ( B
+                                ( NamedVar "z" )
+                            )
+                        ]
+                    )
+                )
+            )
+        ,
+            ( Marker "trivial"
+            , Quantified Universally
+                ( Scope
+                    ( TermSymbol
+                        ( SymbolPredicate
+                            ( PredicateRelation
+                                ( Symbol "=" )
+                            )
+                        )
+                        [ TermVar
+                            ( B
+                                ( NamedVar "x" )
+                            )
+                        , TermVar
+                            ( B
+                                ( NamedVar "x" )
+                            )
+                        ]
+                    )
+                )
+            )
+        ]
+    , taskConjectureLabel = Marker "trivial_biconditionals"
+    , taskConjecture = TermSymbol
+        ( SymbolPredicate
+            ( PredicateRelation
+                ( Symbol "=" )
+            )
+        )
+        [ TermVar
+            ( NamedVar "y" )
+        , TermVar
+            ( NamedVar "y" )
+        ]
+    }
+, Task
+    { taskDirectness = Direct
+    , taskHypotheses =
+        [
+            ( Marker "trivial"
+            , Quantified Universally
+                ( Scope
+                    ( TermSymbol
+                        ( SymbolPredicate
+                            ( PredicateRelation
+                                ( Symbol "=" )
+                            )
+                        )
+                        [ TermVar
+                            ( B
+                                ( NamedVar "x" )
+                            )
+                        , TermVar
+                            ( B
+                                ( NamedVar "x" )
+                            )
+                        ]
+                    )
+                )
+            )
+        ]
+    , taskConjectureLabel = Marker "trivial_biconditionals"
+    , taskConjecture = TermSymbol
+        ( SymbolPredicate
+            ( PredicateRelation
+                ( Symbol "=" )
+            )
+        )
+        [ TermVar
+            ( NamedVar "y" )
+        , TermVar
+            ( NamedVar "y" )
+        ]
+    }
+, Task
+    { taskDirectness = Direct
+    , taskHypotheses =
+        [
+            ( Marker "alsotrivial"
+            , Quantified Universally
+                ( Scope
+                    ( TermSymbol
+                        ( SymbolPredicate
+                            ( PredicateRelation
+                                ( Symbol "=" )
+                            )
+                        )
+                        [ TermVar
+                            ( B
+                                ( NamedVar "y" )
+                            )
+                        , TermVar
+                            ( B
+                                ( NamedVar "y" )
+                            )
+                        ]
+                    )
+                )
+            )
+        ,
+            ( Marker "irrelevant"
+            , Quantified Universally
+                ( Scope
+                    ( TermSymbol
+                        ( SymbolPredicate
+                            ( PredicateRelation
+                                ( Symbol "=" )
+                            )
+                        )
+                        [ TermVar
+                            ( B
+                                ( NamedVar "z" )
+                            )
+                        , TermVar
+                            ( B
+                                ( NamedVar "z" )
+                            )
+                        ]
+                    )
+                )
+            )
+        ,
+            ( Marker "trivial"
+            , Quantified Universally
+                ( Scope
+                    ( TermSymbol
+                        ( SymbolPredicate
+                            ( PredicateRelation
+                                ( Symbol "=" )
+                            )
+                        )
+                        [ TermVar
+                            ( B
+                                ( NamedVar "x" )
+                            )
+                        , TermVar
+                            ( B
+                                ( NamedVar "x" )
+                            )
+                        ]
+                    )
+                )
+            )
+        ,
+            ( Marker "trivial_biconditionals1"
+            , Connected Equivalence
+                ( TermSymbol
+                    ( SymbolPredicate
+                        ( PredicateRelation
+                            ( Symbol "=" )
+                        )
+                    )
+                    [ TermVar
+                        ( NamedVar "y" )
+                    , TermVar
+                        ( NamedVar "y" )
+                    ]
+                )
+                ( TermSymbol
+                    ( SymbolPredicate
+                        ( PredicateRelation
+                            ( Symbol "=" )
+                        )
+                    )
+                    [ TermVar
+                        ( NamedVar "y" )
+                    , TermVar
+                        ( NamedVar "y" )
+                    ]
+                )
+            )
+        ]
+    , taskConjectureLabel = Marker "trivial_biconditionals"
+    , taskConjecture = TermSymbol
+        ( SymbolPredicate
+            ( PredicateRelation
+                ( Symbol "=" )
+            )
+        )
+        [ TermVar
+            ( NamedVar "y" )
+        , TermVar
+            ( NamedVar "y" )
+        ]
+    }
+]

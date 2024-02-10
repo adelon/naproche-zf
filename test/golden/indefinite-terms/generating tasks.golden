@@ -1,0 +1,13 @@
+[ Task
+    { taskDirectness = Direct
+    , taskHypotheses = []
+    , taskConjectureLabel = Marker "indefinite_test_forall"
+    , taskConjecture = PropositionalConstant IsTop
+    }
+, Task
+    { taskDirectness = Direct
+    , taskHypotheses = []
+    , taskConjectureLabel = Marker "indefinite_test_exists"
+    , taskConjecture = PropositionalConstant IsTop
+    }
+]

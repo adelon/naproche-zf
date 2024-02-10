@@ -1,0 +1,182 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{naproche}[2021/02/04 Typesetting for Naproche formalizations]
+
+\RequirePackage{amsmath}
+\RequirePackage{amssymb}
+\RequirePackage{amsthm}
+\RequirePackage{etoolbox}
+\RequirePackage{thmtools}
+\RequirePackage{nameref,cleveref}
+
+% command for importing theories, no visible rendering
+\newcommand{\import}[1]{}
+\newcommand{\explanation}[1]{\quad\text{[#1]}}
+
+
+
+
+\newtheoremstyle{formalized}% name of the style to be used
+    {4pt}% measure of space to leave above the theorem. E.g.: 3pt
+    {4pt}% measure of space to leave below the theorem. E.g.: 3pt
+    {\normalfont} % name of font to use in the body of the theorem
+    {0pt}% measure of space to indent
+    {\bfseries}% name of head font
+    {}% punctuation between head and body
+    { }% space after theorem head; " " = normal inter-word space
+    {\thmname{#1}\thmnumber{ #2}. \thmnote{ (#3) }}
+
+\theoremstyle{formalized}
+\newcounter{theoremcount}
+
+\newtheorem{abbreviation}[theoremcount]{Abbreviation}
+\newtheorem{axiom}[theoremcount]{Axiom}
+\newtheorem{corollary}[theoremcount]{Corollary}
+\newtheorem{definition}[theoremcount]{Definition}
+\newtheorem{struct}[theoremcount]{Struct}
+\newtheorem{fact}[theoremcount]{Fact}
+\newtheorem{lemma}[theoremcount]{Lemma}
+\newtheorem{proposition}[theoremcount]{Proposition}
+\newtheorem{remark}[theoremcount]{Remark}
+\newtheorem{signature}[theoremcount]{Signature}
+\newtheorem{theorem}[theoremcount]{Theorem}
+
+% Theorem environments without numbering.
+\newtheorem*{quotedaxiom}{Axiom}
+\newtheorem*{quotedcorollary}{Corollary}
+\newtheorem*{quoteddefinition}{Definition}
+\newtheorem*{quotedstruct}{Struct}
+\newtheorem*{quotedfact}{Fact}
+\newtheorem*{quotedlemma}{Lemma}
+\newtheorem*{quotedproposition}{Proposition}
+\newtheorem*{quotedremark}{Remark}
+\newtheorem*{quotedsignature}{Signature}
+\newtheorem*{quotedtheorem}{Theorem}
+
+\crefname{axiom}{axiom}{axioms}
+\crefname{claim}{claim}{claims}
+\crefname{theorem}{theorem}{theorems}
+\crefname{definition}{definition}{definitions}
+\crefname{abbreviation}{abbreviation}{abbreviations}
+\crefname{proposition}{proposition}{propositions}
+\crefname{lemma}{lemma}{lemmas}
+
+\newcommand{\fun}[1]{\operatorname{\mathsf{#1}}}
+
+
+\newenvironment{byCase}{}{}
+\newcommand{\caseOf}[1]{\par{}Case:\ #1}
+
+\newenvironment{subproof}{\textit{Subproof.\ }}{$\square$}
+
+
+
+
+% Symbols
+% =======
+
+\newcommand{\addNat}{+_{\naturals}}
+\newcommand{\apply}[2]{#1(#2)}
+\newcommand{\bipartitions}[1]{\fun{Bipartitions}#1}
+\newcommand{\bijections}[2]{\fun{Bi}(#1,#2)}
+\newcommand{\cons}[2]{\fun{cons}(#1,#2)}
+\newcommand{\converse}[1]{{#1^{\mathsf{T}}}}
+\newcommand{\dom}[1]{\fun{dom}#1}
+\newcommand{\downward}[2]{#2^{\downarrow #1}}
+\newcommand{\equivalenceClass}[2]{[#2]_{#1}}
+\newcommand{\equivfrompartition}[1]{E_{#1}}
+\newcommand{\fld}[1]{\fun{field}#1}
+\newcommand{\fst}[1]{\fun{fst}#1}
+\newcommand{\funs}[2]{\fun{Fun}(#1,#2)}
+\newcommand{\idempotents}[1]{\fun{Idempotent}(#1)}
+\newcommand{\identity}[1]{\fun{id}_{#1}}
+\newcommand{\img}[2]{#1^{\to}(#2)}
+\newcommand{\inj}[2]{\fun{Inj}(#1,#2)}
+\newcommand{\inter}{\cap}
+\newcommand{\inters}[1]{\bigcap #1}
+\newcommand{\leNat}{\leq_{\naturals}}
+\newcommand{\meets}{\mathrel{\supset\!\!\!\subset}}
+\newcommand{\memrel}[1]{{\in_{#1}}}
+\newcommand{\monusNat}{-_{\naturals}}
+\newcommand{\naturals}{\mathcal{N}}
+\newcommand{\notmeets}{\mathrel{\not\meets}}
+\newcommand{\pow}[1]{\fun{Pow}(#1)}
+\newcommand{\precedes}{<}
+\newcommand{\precedeseq}{\leq}
+\newcommand{\preimg}[2]{#1^{\leftarrow}(#2)}
+\newcommand{\principalfilter}[2]{{\uparrow_{#1}}#2}
+\newcommand{\quotient}[2]{#1/#2}
+\newcommand{\ran}[1]{\fun{ran}#1}
+\newcommand{\reals}{\mathcal{R}}
+\newcommand{\refines}{\leq}
+\newcommand{\reflexiveClosure}[2]{\fun{ReflCl}_{#1}(#2)}
+\newcommand{\reflexiveReduction}[2]{\fun{ReflReduc}_{#1}(#2)}
+\newcommand{\relcomp}{;}
+\newcommand{\rels}[2]{\fun{Rel}(#1,#2)}
+\newcommand{\remove}[2]{#2\setminus\{#1\}}
+\newcommand{\snd}[1]{\fun{snd}#1}
+\newcommand{\subseteqrel}[1]{{\subseteq_{#1}}}
+\newcommand{\suc}[1]{#1^{+}}
+\newcommand{\sucNat}[1]{\suc{#1}}
+\newcommand{\surj}[2]{\fun{Surj}(#1,#2)}
+\newcommand{\symdiff}{\mathbin{\triangle}}
+\newcommand{\symmetricClosure}[1]{\fun{SymCl}(#1)}
+\newcommand{\toorder}[2]{\fun{OrderFromStrictOrder}_{#1}(#2)}
+\newcommand{\tostrictorder}[1]{\fun{StrictOrderFromOrder}(#1)}
+\newcommand{\union}{\cup}
+\newcommand{\unions}[1]{\bigcup #1}
+\newcommand{\Univ}[1]{\fun{Univ}(#1)}
+\newcommand{\upward}[2]{#2^{\uparrow #1}}
+\newcommand{\LeftOrb}[2]{#2\cdot #1}
+
+
+\newcommand\restrl[2]{{% we make the whole thing an ordinary symbol
+  \left.\kern-\nulldelimiterspace % automatically resize the bar with \right
+  #1 % the function
+  \vphantom{\big|} % pretend it's a little taller at normal size
+  \right|_{#2} % this is the delimiter
+  }}
+\let\mathonlyin\in
+\renewcommand{\in}{\texorpdfstring{\ensuremath{\mathonlyin}}{∈}}
+
+\let\mathonlysubseteq\subseteq
+%\renewcommand{\subseteq}{\ensuremath{\mathonlysubseteq}}
+\renewcommand{\subseteq}{\texorpdfstring{\ensuremath{\mathonlysubseteq}}{⊆}}
+
+
+% Structure operations
+
+\newcommand{\carrier}[1][]{#1}
+\newcommand{\mul}[1][]{\textsf{mul}_{#1}}
+\newcommand{\neutral}[1][]{\textsf{e}_{#1}}
+\newcommand{\lt}[1][]{\leq_{#1}}
+\newcommand{\opens}[1][]{\mathcal{O}_{#1}}
+\newcommand{\meet}[1][]{\sqcap_{#1}}
+\newcommand{\join}[1][]{\sqcup_{#1}}
+
+\newcommand{\closeds}[1]{\mathcal{C}_{#1}}
+\newcommand{\interiors}[2]{\fun{Int}_{#2}{#1}}
+\newcommand{\interior}[2]{\fun{int}_{#2}{#1}}
+\newcommand{\closures}[2]{\fun{Cl}_{#2}{#1}}
+\newcommand{\closure}[2]{\fun{cl}_{#2}{#1}}
+\newcommand{\frontier}[2]{\fun{fr}_{#2}{#1}}
+\newcommand{\neighbourhoods}[2]{\textsf{N}_{#2}{#1}}
+\newcommand{\disconnections}[1]{\fun{Disconnections}{#1}}
+
+\newcommand{\teezero}{\ensuremath{T_0}} % Kolmogorov
+\newcommand{\teeone}{\ensuremath{T_1}} % accessible/Frechet
+\newcommand{\teetwo}{\ensuremath{T_2}} % separated/Hausdorff
+\newcommand{\teetwoandahalf}{\ensuremath{T_{2\frac{1}{2}}}} % Urysohn
+\newcommand{\teethree}{\ensuremath{T_3}} % regular Hausdorff
+
+
+% Options
+% =======
+
+\DeclareOption{numberswithinsection}{%
+    \counterwithin{theoremcount}{section}
+}
+\DeclareOption{numberswithinsubsection}{%
+    \counterwithin{theoremcount}{subsection}
+}
+\DeclareOption*{\PackageWarning{naproche}{Unknown ‘\CurrentOption’}}
+\ProcessOptions\relax

@@ -1,0 +1,107 @@
+\import{set.tex}
+
+\subsection{Powerset}
+
+\begin{abbreviation}\label{powerset_of}
+    The powerset of $X$ denotes $\pow{X}$.
+\end{abbreviation}
+
+\begin{axiom}%
+\label{pow_iff}
+    $B\in\pow{A}$ iff $B\subseteq A$.
+\end{axiom}
+
+\begin{proposition}\label{powerset_intro}
+    Suppose $A\subseteq B$.
+    Then $A\in\pow{B}$.
+\end{proposition}
+
+\begin{proposition}\label{powerset_elim}
+    Let $A\in\pow{B}$.
+    Then $A\subseteq B$.
+\end{proposition}
+
+\begin{proposition}\label{powerset_bottom}
+    $\emptyset\in\pow{A}$.
+\end{proposition}
+
+\begin{proposition}\label{powerset_top}
+    $A\in\pow{A}$.
+\end{proposition}
+
+\begin{proposition}\label{unions_subseteq_of_powerset_is_subseteq}
+    Let $A$ be a set.
+    Let $B$ be a subset of $\pow{A}$.
+    Then $\unions{B}\subseteq A$.
+\end{proposition}
+\begin{proof}
+    Follows by \cref{subseteq,powerset_elim,unions_iff}.
+\end{proof}
+
+\begin{corollary}\label{powerset_closed_unions}
+    Let $A$ be a set.
+    Let $B$ be a subset of $\pow{A}$.
+    Then $\unions{B}\in\pow{A}$.
+\end{corollary}
+\begin{proof}
+    Follows by \cref{pow_iff,unions_subseteq_of_powerset_is_subseteq}.
+\end{proof}
+
+\begin{proposition}\label{unions_powerset}
+    $\unions{\pow{A}} = A$.
+\end{proposition}
+\begin{proof}
+    Follows by set extensionality.
+\end{proof}
+
+\begin{proposition}\label{inters_powerset}
+    $\inters{\pow{A}} = \emptyset$.
+\end{proposition}
+\begin{proof}
+    Follows by set extensionality.
+\end{proof}
+
+\begin{proposition}\label{union_powersets_subseteq}
+    $\pow{A}\union\pow{B} \subseteq \pow{A\union B}$.
+\end{proposition}
+\begin{proof}
+    $\pow{A}\subseteq \pow{A}\union\pow{B}$ by \cref{union_upper_left}.
+    $\pow{B}\subseteq \pow{A}\union\pow{B}$ by \cref{union_upper_right}.
+    Follows by \cref{subseteq,pow_iff,powerset_elim,union_iff,subset_transitive}.
+\end{proof}
+
+\begin{proposition}\label{powerset_emptyset}
+    $\pow{\emptyset} = \{\emptyset\}$.
+\end{proposition}
+
+% LATER
+%\begin{proposition}\label{powerset_cons}
+%    Then $\pow{\cons{b}{A}} = \pow{A}\union \{\cons{b}{B}\mid B\in\pow{A}\}$.
+%\end{proposition}
+
+\begin{proposition}\label{powerset_union_subseteq}
+    $\pow{A}\union\pow{B}\subseteq \pow{A\union B}$.
+\end{proposition}
+
+\begin{proposition}\label{subseteq_pow_unions}
+    $A\subseteq\pow{\unions{A}}$.
+\end{proposition}
+\begin{proof}
+    Follows by \cref{subseteq,pow_iff,unions_intro}.
+\end{proof}
+
+\begin{proposition}\label{unions_pow}
+    $\unions{\pow{A}} = A$.
+\end{proposition}
+
+
+\begin{proposition}\label{unions_elem_pow_iff}
+    $\unions{A}\in\pow{B}$ iff $A\in\pow{\pow{B}}$.
+\end{proposition}
+
+\begin{proposition}\label{pow_inter}
+    $\pow{A\inter B} = \pow{A}\inter\pow{B}$.
+\end{proposition}
+\begin{proof}
+    Follows by \cref{setext,inter,pow_iff,subseteq_inter_iff}.
+\end{proof}

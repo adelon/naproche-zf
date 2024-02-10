@@ -1,0 +1,8 @@
+cradle:
+  stack:
+    - path: "./test/"
+      component: "zf:zf-test"
+    - path: "./source/"
+      component: "zf:lib"
+    - path: "./cli/Main.hs"
+      component: "zf"

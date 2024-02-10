@@ -1,0 +1,15 @@
+[ ScanAdj
+    [ Just
+        ( Word "collinear" )
+    , Just
+        ( Word "with" )
+    , Nothing
+    , Just
+        ( Word "and" )
+    , Nothing
+    ]
+    ( Marker "collinear" )
+, ScanPrefixPredicate
+    ( PrefixPredicate "OFS" 8 )
+    ( Marker "ofs" )
+]

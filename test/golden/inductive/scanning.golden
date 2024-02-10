@@ -1,0 +1,92 @@
+[ ScanRelationSymbol
+    ( Command "subseteq" )
+    ( Marker "subseteq" )
+, ScanFunctionSymbol
+    [ Just
+        ( Command "pow" )
+    , Just InvisibleBraceL
+    , Nothing
+    , Just InvisibleBraceR
+    ]
+    ( Marker "pow" )
+, ScanFunctionSymbol
+    [ Just
+        ( Command "cons" )
+    , Just InvisibleBraceL
+    , Nothing
+    , Just InvisibleBraceR
+    , Just InvisibleBraceL
+    , Nothing
+    , Just InvisibleBraceR
+    ]
+    ( Marker "cons" )
+, ScanFunctionSymbol
+    [ Nothing
+    , Just
+        ( Command "times" )
+    , Nothing
+    ]
+    ( Marker "times" )
+, ScanFunctionSymbol
+    [ Just
+        ( Command "fld" )
+    , Just InvisibleBraceL
+    , Nothing
+    , Just InvisibleBraceR
+    ]
+    ( Marker "fld" )
+, ScanFunctionSymbol
+    [ Just
+        ( Command "preimg" )
+    , Just InvisibleBraceL
+    , Nothing
+    , Just InvisibleBraceR
+    , Just InvisibleBraceL
+    , Nothing
+    , Just InvisibleBraceR
+    ]
+    ( Marker "preimg" )
+, ScanFunctionSymbol
+    [ Just
+        ( Command "fin" )
+    , Just InvisibleBraceL
+    , Nothing
+    , Just InvisibleBraceR
+    ]
+    ( Marker "fin" )
+, ScanFunctionSymbol
+    [ Just
+        ( Command "tracl" )
+    , Just InvisibleBraceL
+    , Nothing
+    , Just InvisibleBraceR
+    ]
+    ( Marker "tracl" )
+, ScanFunctionSymbol
+    [ Just
+        ( Command "qrefltracl" )
+    , Just InvisibleBraceL
+    , Nothing
+    , Just InvisibleBraceR
+    ]
+    ( Marker "quasirefltracl" )
+, ScanFunctionSymbol
+    [ Just
+        ( Command "refltracl" )
+    , Just InvisibleBraceL
+    , Nothing
+    , Just InvisibleBraceR
+    , Just InvisibleBraceL
+    , Nothing
+    , Just InvisibleBraceR
+    ]
+    ( Marker "refltracl" )
+, ScanFunctionSymbol
+    [ Just
+        ( Command "acc" )
+    , Just InvisibleBraceL
+    , Nothing
+    , Just InvisibleBraceR
+    ]
+    ( Marker "acc" )
+]

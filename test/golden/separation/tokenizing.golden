@@ -1,0 +1,18 @@
+[ BeginEnv "proposition"
+, Label "sep_test"
+, BeginEnv "math"
+, Variable "X"
+, Symbol "="
+, VisibleBraceL
+, Variable "x"
+, Command "in"
+, Variable "X"
+, Command "mid"
+, Variable "x"
+, Symbol "="
+, Variable "x"
+, VisibleBraceR
+, EndEnv "math"
+, Symbol "."
+, EndEnv "proposition"
+]

@@ -1,0 +1,836 @@
+[ Task
+    { taskDirectness = Direct
+    , taskHypotheses = []
+    , taskConjectureLabel = Marker "dummy_abbr_test_adj"
+    , taskConjecture = Connected Implication
+        ( Not
+            ( Quantified Existentially
+                ( Scope
+                    ( TermSymbol
+                        ( SymbolPredicate
+                            ( PredicateRelation
+                                ( Command "in" )
+                            )
+                        )
+                        [ TermVar
+                            ( B
+                                ( NamedVar "y" )
+                            )
+                        , TermVar
+                            ( F
+                                ( TermVar
+                                    ( NamedVar "x" )
+                                )
+                            )
+                        ]
+                    )
+                )
+            )
+        )
+        ( Not
+            ( Quantified Existentially
+                ( Scope
+                    ( TermSymbol
+                        ( SymbolPredicate
+                            ( PredicateRelation
+                                ( Command "in" )
+                            )
+                        )
+                        [ TermVar
+                            ( B
+                                ( NamedVar "y" )
+                            )
+                        , TermVar
+                            ( F
+                                ( TermVar
+                                    ( NamedVar "x" )
+                                )
+                            )
+                        ]
+                    )
+                )
+            )
+        )
+    }
+, Task
+    { taskDirectness = Direct
+    , taskHypotheses =
+        [
+            ( Marker "dummy_abbr_test_adj"
+            , Quantified Universally
+                ( Scope
+                    ( Connected Implication
+                        ( Not
+                            ( Quantified Existentially
+                                ( Scope
+                                    ( TermSymbol
+                                        ( SymbolPredicate
+                                            ( PredicateRelation
+                                                ( Command "in" )
+                                            )
+                                        )
+                                        [ TermVar
+                                            ( B
+                                                ( NamedVar "y" )
+                                            )
+                                        , TermVar
+                                            ( F
+                                                ( TermVar
+                                                    ( B
+                                                        ( NamedVar "x" )
+                                                    )
+                                                )
+                                            )
+                                        ]
+                                    )
+                                )
+                            )
+                        )
+                        ( Not
+                            ( Quantified Existentially
+                                ( Scope
+                                    ( TermSymbol
+                                        ( SymbolPredicate
+                                            ( PredicateRelation
+                                                ( Command "in" )
+                                            )
+                                        )
+                                        [ TermVar
+                                            ( B
+                                                ( NamedVar "y" )
+                                            )
+                                        , TermVar
+                                            ( F
+                                                ( TermVar
+                                                    ( B
+                                                        ( NamedVar "x" )
+                                                    )
+                                                )
+                                            )
+                                        ]
+                                    )
+                                )
+                            )
+                        )
+                    )
+                )
+            )
+        ]
+    , taskConjectureLabel = Marker "dummy_abbr_test_noun"
+    , taskConjecture = TermSymbol
+        ( SymbolPredicate
+            ( PredicateRelation
+                ( Symbol "=" )
+            )
+        )
+        [ TermVar
+            ( NamedVar "x" )
+        , TermVar
+            ( NamedVar "x" )
+        ]
+    }
+, Task
+    { taskDirectness = Direct
+    , taskHypotheses =
+        [
+            ( Marker "dummy_abbr_test_noun"
+            , Quantified Universally
+                ( Scope
+                    ( TermSymbol
+                        ( SymbolPredicate
+                            ( PredicateRelation
+                                ( Symbol "=" )
+                            )
+                        )
+                        [ TermVar
+                            ( B
+                                ( NamedVar "x" )
+                            )
+                        , TermVar
+                            ( B
+                                ( NamedVar "x" )
+                            )
+                        ]
+                    )
+                )
+            )
+        ,
+            ( Marker "dummy_abbr_test_adj"
+            , Quantified Universally
+                ( Scope
+                    ( Connected Implication
+                        ( Not
+                            ( Quantified Existentially
+                                ( Scope
+                                    ( TermSymbol
+                                        ( SymbolPredicate
+                                            ( PredicateRelation
+                                                ( Command "in" )
+                                            )
+                                        )
+                                        [ TermVar
+                                            ( B
+                                                ( NamedVar "y" )
+                                            )
+                                        , TermVar
+                                            ( F
+                                                ( TermVar
+                                                    ( B
+                                                        ( NamedVar "x" )
+                                                    )
+                                                )
+                                            )
+                                        ]
+                                    )
+                                )
+                            )
+                        )
+                        ( Not
+                            ( Quantified Existentially
+                                ( Scope
+                                    ( TermSymbol
+                                        ( SymbolPredicate
+                                            ( PredicateRelation
+                                                ( Command "in" )
+                                            )
+                                        )
+                                        [ TermVar
+                                            ( B
+                                                ( NamedVar "y" )
+                                            )
+                                        , TermVar
+                                            ( F
+                                                ( TermVar
+                                                    ( B
+                                                        ( NamedVar "x" )
+                                                    )
+                                                )
+                                            )
+                                        ]
+                                    )
+                                )
+                            )
+                        )
+                    )
+                )
+            )
+        ]
+    , taskConjectureLabel = Marker "dummy_abbr_test_verb"
+    , taskConjecture = Connected Implication
+        ( TermSymbol
+            ( SymbolPredicate
+                ( PredicateRelation
+                    ( Symbol "=" )
+                )
+            )
+            [ TermVar
+                ( NamedVar "x" )
+            , TermVar
+                ( NamedVar "y" )
+            ]
+        )
+        ( TermSymbol
+            ( SymbolPredicate
+                ( PredicateRelation
+                    ( Symbol "=" )
+                )
+            )
+            [ TermVar
+                ( NamedVar "x" )
+            , TermVar
+                ( NamedVar "y" )
+            ]
+        )
+    }
+, Task
+    { taskDirectness = Direct
+    , taskHypotheses =
+        [
+            ( Marker "dummy_abbr_test_verb"
+            , Quantified Universally
+                ( Scope
+                    ( Connected Implication
+                        ( TermSymbol
+                            ( SymbolPredicate
+                                ( PredicateRelation
+                                    ( Symbol "=" )
+                                )
+                            )
+                            [ TermVar
+                                ( B
+                                    ( NamedVar "x" )
+                                )
+                            , TermVar
+                                ( B
+                                    ( NamedVar "y" )
+                                )
+                            ]
+                        )
+                        ( TermSymbol
+                            ( SymbolPredicate
+                                ( PredicateRelation
+                                    ( Symbol "=" )
+                                )
+                            )
+                            [ TermVar
+                                ( B
+                                    ( NamedVar "x" )
+                                )
+                            , TermVar
+                                ( B
+                                    ( NamedVar "y" )
+                                )
+                            ]
+                        )
+                    )
+                )
+            )
+        ,
+            ( Marker "dummy_abbr_test_noun"
+            , Quantified Universally
+                ( Scope
+                    ( TermSymbol
+                        ( SymbolPredicate
+                            ( PredicateRelation
+                                ( Symbol "=" )
+                            )
+                        )
+                        [ TermVar
+                            ( B
+                                ( NamedVar "x" )
+                            )
+                        , TermVar
+                            ( B
+                                ( NamedVar "x" )
+                            )
+                        ]
+                    )
+                )
+            )
+        ,
+            ( Marker "dummy_abbr_test_adj"
+            , Quantified Universally
+                ( Scope
+                    ( Connected Implication
+                        ( Not
+                            ( Quantified Existentially
+                                ( Scope
+                                    ( TermSymbol
+                                        ( SymbolPredicate
+                                            ( PredicateRelation
+                                                ( Command "in" )
+                                            )
+                                        )
+                                        [ TermVar
+                                            ( B
+                                                ( NamedVar "y" )
+                                            )
+                                        , TermVar
+                                            ( F
+                                                ( TermVar
+                                                    ( B
+                                                        ( NamedVar "x" )
+                                                    )
+                                                )
+                                            )
+                                        ]
+                                    )
+                                )
+                            )
+                        )
+                        ( Not
+                            ( Quantified Existentially
+                                ( Scope
+                                    ( TermSymbol
+                                        ( SymbolPredicate
+                                            ( PredicateRelation
+                                                ( Command "in" )
+                                            )
+                                        )
+                                        [ TermVar
+                                            ( B
+                                                ( NamedVar "y" )
+                                            )
+                                        , TermVar
+                                            ( F
+                                                ( TermVar
+                                                    ( B
+                                                        ( NamedVar "x" )
+                                                    )
+                                                )
+                                            )
+                                        ]
+                                    )
+                                )
+                            )
+                        )
+                    )
+                )
+            )
+        ]
+    , taskConjectureLabel = Marker "abbr_test_notin"
+    , taskConjecture = Connected Implication
+        ( Not
+            ( TermSymbol
+                ( SymbolPredicate
+                    ( PredicateRelation
+                        ( Command "in" )
+                    )
+                )
+                [ TermVar
+                    ( NamedVar "x" )
+                , TermVar
+                    ( NamedVar "y" )
+                ]
+            )
+        )
+        ( Not
+            ( TermSymbol
+                ( SymbolPredicate
+                    ( PredicateRelation
+                        ( Command "in" )
+                    )
+                )
+                [ TermVar
+                    ( NamedVar "x" )
+                , TermVar
+                    ( NamedVar "y" )
+                ]
+            )
+        )
+    }
+, Task
+    { taskDirectness = Direct
+    , taskHypotheses =
+        [
+            ( Marker "abbr_test_notin"
+            , Quantified Universally
+                ( Scope
+                    ( Connected Implication
+                        ( Not
+                            ( TermSymbol
+                                ( SymbolPredicate
+                                    ( PredicateRelation
+                                        ( Command "in" )
+                                    )
+                                )
+                                [ TermVar
+                                    ( B
+                                        ( NamedVar "x" )
+                                    )
+                                , TermVar
+                                    ( B
+                                        ( NamedVar "y" )
+                                    )
+                                ]
+                            )
+                        )
+                        ( Not
+                            ( TermSymbol
+                                ( SymbolPredicate
+                                    ( PredicateRelation
+                                        ( Command "in" )
+                                    )
+                                )
+                                [ TermVar
+                                    ( B
+                                        ( NamedVar "x" )
+                                    )
+                                , TermVar
+                                    ( B
+                                        ( NamedVar "y" )
+                                    )
+                                ]
+                            )
+                        )
+                    )
+                )
+            )
+        ,
+            ( Marker "dummy_abbr_test_verb"
+            , Quantified Universally
+                ( Scope
+                    ( Connected Implication
+                        ( TermSymbol
+                            ( SymbolPredicate
+                                ( PredicateRelation
+                                    ( Symbol "=" )
+                                )
+                            )
+                            [ TermVar
+                                ( B
+                                    ( NamedVar "x" )
+                                )
+                            , TermVar
+                                ( B
+                                    ( NamedVar "y" )
+                                )
+                            ]
+                        )
+                        ( TermSymbol
+                            ( SymbolPredicate
+                                ( PredicateRelation
+                                    ( Symbol "=" )
+                                )
+                            )
+                            [ TermVar
+                                ( B
+                                    ( NamedVar "x" )
+                                )
+                            , TermVar
+                                ( B
+                                    ( NamedVar "y" )
+                                )
+                            ]
+                        )
+                    )
+                )
+            )
+        ,
+            ( Marker "dummy_abbr_test_noun"
+            , Quantified Universally
+                ( Scope
+                    ( TermSymbol
+                        ( SymbolPredicate
+                            ( PredicateRelation
+                                ( Symbol "=" )
+                            )
+                        )
+                        [ TermVar
+                            ( B
+                                ( NamedVar "x" )
+                            )
+                        , TermVar
+                            ( B
+                                ( NamedVar "x" )
+                            )
+                        ]
+                    )
+                )
+            )
+        ,
+            ( Marker "dummy_abbr_test_adj"
+            , Quantified Universally
+                ( Scope
+                    ( Connected Implication
+                        ( Not
+                            ( Quantified Existentially
+                                ( Scope
+                                    ( TermSymbol
+                                        ( SymbolPredicate
+                                            ( PredicateRelation
+                                                ( Command "in" )
+                                            )
+                                        )
+                                        [ TermVar
+                                            ( B
+                                                ( NamedVar "y" )
+                                            )
+                                        , TermVar
+                                            ( F
+                                                ( TermVar
+                                                    ( B
+                                                        ( NamedVar "x" )
+                                                    )
+                                                )
+                                            )
+                                        ]
+                                    )
+                                )
+                            )
+                        )
+                        ( Not
+                            ( Quantified Existentially
+                                ( Scope
+                                    ( TermSymbol
+                                        ( SymbolPredicate
+                                            ( PredicateRelation
+                                                ( Command "in" )
+                                            )
+                                        )
+                                        [ TermVar
+                                            ( B
+                                                ( NamedVar "y" )
+                                            )
+                                        , TermVar
+                                            ( F
+                                                ( TermVar
+                                                    ( B
+                                                        ( NamedVar "x" )
+                                                    )
+                                                )
+                                            )
+                                        ]
+                                    )
+                                )
+                            )
+                        )
+                    )
+                )
+            )
+        ]
+    , taskConjectureLabel = Marker "abbr_test_elementof_is_in"
+    , taskConjecture = Connected Implication
+        ( TermSymbol
+            ( SymbolPredicate
+                ( PredicateRelation
+                    ( Command "in" )
+                )
+            )
+            [ TermVar
+                ( NamedVar "x" )
+            , TermVar
+                ( NamedVar "y" )
+            ]
+        )
+        ( TermSymbol
+            ( SymbolPredicate
+                ( PredicateRelation
+                    ( Command "in" )
+                )
+            )
+            [ TermVar
+                ( NamedVar "x" )
+            , TermVar
+                ( NamedVar "y" )
+            ]
+        )
+    }
+, Task
+    { taskDirectness = Direct
+    , taskHypotheses =
+        [
+            ( Marker "abbr_test_elementof_is_in"
+            , Quantified Universally
+                ( Scope
+                    ( Connected Implication
+                        ( TermSymbol
+                            ( SymbolPredicate
+                                ( PredicateRelation
+                                    ( Command "in" )
+                                )
+                            )
+                            [ TermVar
+                                ( B
+                                    ( NamedVar "x" )
+                                )
+                            , TermVar
+                                ( B
+                                    ( NamedVar "y" )
+                                )
+                            ]
+                        )
+                        ( TermSymbol
+                            ( SymbolPredicate
+                                ( PredicateRelation
+                                    ( Command "in" )
+                                )
+                            )
+                            [ TermVar
+                                ( B
+                                    ( NamedVar "x" )
+                                )
+                            , TermVar
+                                ( B
+                                    ( NamedVar "y" )
+                                )
+                            ]
+                        )
+                    )
+                )
+            )
+        ,
+            ( Marker "abbr_test_notin"
+            , Quantified Universally
+                ( Scope
+                    ( Connected Implication
+                        ( Not
+                            ( TermSymbol
+                                ( SymbolPredicate
+                                    ( PredicateRelation
+                                        ( Command "in" )
+                                    )
+                                )
+                                [ TermVar
+                                    ( B
+                                        ( NamedVar "x" )
+                                    )
+                                , TermVar
+                                    ( B
+                                        ( NamedVar "y" )
+                                    )
+                                ]
+                            )
+                        )
+                        ( Not
+                            ( TermSymbol
+                                ( SymbolPredicate
+                                    ( PredicateRelation
+                                        ( Command "in" )
+                                    )
+                                )
+                                [ TermVar
+                                    ( B
+                                        ( NamedVar "x" )
+                                    )
+                                , TermVar
+                                    ( B
+                                        ( NamedVar "y" )
+                                    )
+                                ]
+                            )
+                        )
+                    )
+                )
+            )
+        ,
+            ( Marker "dummy_abbr_test_verb"
+            , Quantified Universally
+                ( Scope
+                    ( Connected Implication
+                        ( TermSymbol
+                            ( SymbolPredicate
+                                ( PredicateRelation
+                                    ( Symbol "=" )
+                                )
+                            )
+                            [ TermVar
+                                ( B
+                                    ( NamedVar "x" )
+                                )
+                            , TermVar
+                                ( B
+                                    ( NamedVar "y" )
+                                )
+                            ]
+                        )
+                        ( TermSymbol
+                            ( SymbolPredicate
+                                ( PredicateRelation
+                                    ( Symbol "=" )
+                                )
+                            )
+                            [ TermVar
+                                ( B
+                                    ( NamedVar "x" )
+                                )
+                            , TermVar
+                                ( B
+                                    ( NamedVar "y" )
+                                )
+                            ]
+                        )
+                    )
+                )
+            )
+        ,
+            ( Marker "dummy_abbr_test_noun"
+            , Quantified Universally
+                ( Scope
+                    ( TermSymbol
+                        ( SymbolPredicate
+                            ( PredicateRelation
+                                ( Symbol "=" )
+                            )
+                        )
+                        [ TermVar
+                            ( B
+                                ( NamedVar "x" )
+                            )
+                        , TermVar
+                            ( B
+                                ( NamedVar "x" )
+                            )
+                        ]
+                    )
+                )
+            )
+        ,
+            ( Marker "dummy_abbr_test_adj"
+            , Quantified Universally
+                ( Scope
+                    ( Connected Implication
+                        ( Not
+                            ( Quantified Existentially
+                                ( Scope
+                                    ( TermSymbol
+                                        ( SymbolPredicate
+                                            ( PredicateRelation
+                                                ( Command "in" )
+                                            )
+                                        )
+                                        [ TermVar
+                                            ( B
+                                                ( NamedVar "y" )
+                                            )
+                                        , TermVar
+                                            ( F
+                                                ( TermVar
+                                                    ( B
+                                                        ( NamedVar "x" )
+                                                    )
+                                                )
+                                            )
+                                        ]
+                                    )
+                                )
+                            )
+                        )
+                        ( Not
+                            ( Quantified Existentially
+                                ( Scope
+                                    ( TermSymbol
+                                        ( SymbolPredicate
+                                            ( PredicateRelation
+                                                ( Command "in" )
+                                            )
+                                        )
+                                        [ TermVar
+                                            ( B
+                                                ( NamedVar "y" )
+                                            )
+                                        , TermVar
+                                            ( F
+                                                ( TermVar
+                                                    ( B
+                                                        ( NamedVar "x" )
+                                                    )
+                                                )
+                                            )
+                                        ]
+                                    )
+                                )
+                            )
+                        )
+                    )
+                )
+            )
+        ]
+    , taskConjectureLabel = Marker "abbr_test_equals_is_eq"
+    , taskConjecture = Connected Implication
+        ( TermSymbol
+            ( SymbolPredicate
+                ( PredicateRelation
+                    ( Symbol "=" )
+                )
+            )
+            [ TermVar
+                ( NamedVar "x" )
+            , TermVar
+                ( NamedVar "y" )
+            ]
+        )
+        ( TermSymbol
+            ( SymbolPredicate
+                ( PredicateRelation
+                    ( Symbol "=" )
+                )
+            )
+            [ TermVar
+                ( NamedVar "x" )
+            , TermVar
+                ( NamedVar "y" )
+            ]
+        )
+    }
+]

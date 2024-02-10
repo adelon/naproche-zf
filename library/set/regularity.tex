@@ -1,0 +1,70 @@
+\import{set.tex}
+
+\section{Regularity}
+
+\begin{abbreviation}\label{elemminimal}
+    $a$ is an \in-minimal element of $A$ iff
+    $a\in A$ and $a\notmeets A$.
+\end{abbreviation}
+
+% We need to first state regularity in this slightly weirder form,
+% so that we can do \in-induction.
+\begin{lemma}%
+\label{regularity_aux}
+    For all $a, A$ such that $a\in A$
+    there exists $b\in A$ such that
+    $b\notmeets A$.
+\end{lemma}
+\begin{proof}[Proof by \in-induction on $a$]
+    \begin{byCase}
+        \caseOf{$a\notmeets b$.}
+            Straightforward.
+        \caseOf{$a\meets b$.}
+            Take $a'$ such that $a'\in a, b$.
+            Straightforward. % we apply the induction hypothesis to a'
+    \end{byCase}
+\end{proof}
+
+\begin{proposition}[Regularity]%
+\label{regularity}
+    Let $A$ be an inhabited set.
+    Then there exists a \in-minimal element of $A$.
+\end{proposition}
+\begin{proof}
+    Follows by \cref{regularity_aux,inhabited}.
+\end{proof}
+
+
+% Isabelle/ZF-style foundation for case analysis
+\begin{theorem}[Foundation]\label{foundation}
+    Let $A$ be a set.
+    Then $A = \emptyset$ or there exists $a\in A$
+    such that for all $x\in a$ we have $x\notin A$.
+\end{theorem}
+\begin{proof}
+    \begin{byCase}
+        \caseOf{$A = \emptyset$.}
+            Straightforward.
+        \caseOf{$A$ is inhabited.}
+            Take $a$ such that $a$ is a \in-minimal element of $A$.
+            Then for all $x\in a$ we have $x\notin A$.
+    \end{byCase}
+\end{proof}.
+
+\begin{proposition}\label{in_irrefl}
+    For all sets $A$ we have $A\not\in A$.
+\end{proposition}
+\begin{proof}[Proof by \in-induction]
+    Straightforward.
+\end{proof}
+
+\begin{proposition}\label{in_implies_neq}
+    If $a\in A$, then $a\neq A$.
+\end{proposition}
+
+\begin{proposition}\label{in_asymmetric}
+    For all sets $a, b$ such that $a\in b$ we have $b\notin a$.
+\end{proposition}
+\begin{proof}[Proof by \in-induction on $a$]
+    Straightforward.
+\end{proof}

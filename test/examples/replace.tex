@@ -1,0 +1,27 @@
+\begin{axiom}\label{cons}
+    $x\in \cons{y}{X}$ iff $x = y$ or $x\in X$.
+\end{axiom}
+
+\begin{definition}\label{times}
+    $A\times B = \{ (a,b) \mid a\in A, b\in B\}$.
+\end{definition}
+
+\begin{definition}\label{unit}
+    $\unit = \{\emptyset\}$.
+\end{definition}
+
+\begin{proposition}\label{pair_emptyset_in_times_unit}
+    $(\emptyset,\emptyset)\in \unit\times\unit$.
+\end{proposition}
+
+
+% Indirect definition of the Zermelo successor operation to test primitive replacement.
+\begin{definition}\label{suc}
+    $\suc{a} = \{ y \mid \exists x\in a. y = \{x\} \}$.
+\end{definition}
+
+
+% Dummy proposition to test unrolling of functional replacement in equations.
+\begin{proposition}\label{times_replacement_test}
+    $A\times B = \{ (a,b) \mid a\in A, b\in B\}$.
+\end{proposition}

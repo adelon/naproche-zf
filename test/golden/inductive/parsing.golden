@@ -1,0 +1,1076 @@
+[ BlockDefn
+    ( SourcePos
+        { sourceName = "test/examples/inductive.tex"
+        , sourceLine = Pos 3
+        , sourceColumn = Pos 1
+        }
+    )
+    ( Marker "subseteq" )
+    ( Defn []
+        ( DefnRel
+            ( NamedVar "A" )
+            ( Command "subseteq" )
+            ( NamedVar "B" )
+        )
+        ( StmtFormula
+            ( FormulaChain
+                ( ChainBase
+                    ( ExprVar
+                        ( NamedVar "A" ) :| []
+                    ) Positive
+                    ( RelationSymbol
+                        ( Symbol "=" )
+                    )
+                    ( ExprVar
+                        ( NamedVar "B" ) :| []
+                    )
+                )
+            )
+        )
+    )
+, BlockDefn
+    ( SourcePos
+        { sourceName = "test/examples/inductive.tex"
+        , sourceLine = Pos 7
+        , sourceColumn = Pos 1
+        }
+    )
+    ( Marker "pow" )
+    ( DefnOp
+        ( SymbolPattern
+            [ Just
+                ( Command "pow" )
+            , Just InvisibleBraceL
+            , Nothing
+            , Just InvisibleBraceR
+            ]
+            [ NamedVar "A" ]
+        )
+        ( ExprOp
+            [ Just
+                ( Command "emptyset" )
+            ] []
+        )
+    )
+, BlockDefn
+    ( SourcePos
+        { sourceName = "test/examples/inductive.tex"
+        , sourceLine = Pos 11
+        , sourceColumn = Pos 1
+        }
+    )
+    ( Marker "cons" )
+    ( DefnOp
+        ( SymbolPattern
+            [ Just
+                ( Command "cons" )
+            , Just InvisibleBraceL
+            , Nothing
+            , Just InvisibleBraceR
+            , Just InvisibleBraceL
+            , Nothing
+            , Just InvisibleBraceR
+            ]
+            [ NamedVar "a"
+            , NamedVar "B"
+            ]
+        )
+        ( ExprOp
+            [ Just
+                ( Command "emptyset" )
+            ] []
+        )
+    )
+, BlockDefn
+    ( SourcePos
+        { sourceName = "test/examples/inductive.tex"
+        , sourceLine = Pos 15
+        , sourceColumn = Pos 1
+        }
+    )
+    ( Marker "times" )
+    ( DefnOp
+        ( SymbolPattern
+            [ Nothing
+            , Just
+                ( Command "times" )
+            , Nothing
+            ]
+            [ NamedVar "A"
+            , NamedVar "B"
+            ]
+        )
+        ( ExprOp
+            [ Just
+                ( Command "emptyset" )
+            ] []
+        )
+    )
+, BlockDefn
+    ( SourcePos
+        { sourceName = "test/examples/inductive.tex"
+        , sourceLine = Pos 19
+        , sourceColumn = Pos 1
+        }
+    )
+    ( Marker "fld" )
+    ( DefnOp
+        ( SymbolPattern
+            [ Just
+                ( Command "fld" )
+            , Just InvisibleBraceL
+            , Nothing
+            , Just InvisibleBraceR
+            ]
+            [ NamedVar "R" ]
+        )
+        ( ExprOp
+            [ Just
+                ( Command "emptyset" )
+            ] []
+        )
+    )
+, BlockDefn
+    ( SourcePos
+        { sourceName = "test/examples/inductive.tex"
+        , sourceLine = Pos 23
+        , sourceColumn = Pos 1
+        }
+    )
+    ( Marker "preimg" )
+    ( DefnOp
+        ( SymbolPattern
+            [ Just
+                ( Command "preimg" )
+            , Just InvisibleBraceL
+            , Nothing
+            , Just InvisibleBraceR
+            , Just InvisibleBraceL
+            , Nothing
+            , Just InvisibleBraceR
+            ]
+            [ NamedVar "R"
+            , NamedVar "A"
+            ]
+        )
+        ( ExprOp
+            [ Just
+                ( Command "emptyset" )
+            ] []
+        )
+    )
+, BlockAxiom
+    ( SourcePos
+        { sourceName = "test/examples/inductive.tex"
+        , sourceLine = Pos 27
+        , sourceColumn = Pos 1
+        }
+    )
+    ( Marker "lmao" )
+    ( Axiom []
+        ( StmtFormula
+            ( FormulaChain
+                ( ChainBase
+                    ( ExprVar
+                        ( NamedVar "x" ) :| []
+                    ) Positive
+                    ( RelationSymbol
+                        ( Command "in" )
+                    )
+                    ( ExprOp
+                        [ Just
+                            ( Command "emptyset" )
+                        ] [] :| []
+                    )
+                )
+            )
+        )
+    )
+, BlockInductive
+    ( SourcePos
+        { sourceName = "test/examples/inductive.tex"
+        , sourceLine = Pos 31
+        , sourceColumn = Pos 1
+        }
+    )
+    ( Marker "fin" )
+    ( Inductive
+        { inductiveSymbolPattern = SymbolPattern
+            [ Just
+                ( Command "fin" )
+            , Just InvisibleBraceL
+            , Nothing
+            , Just InvisibleBraceR
+            ]
+            [ NamedVar "A" ]
+        , inductiveDomain = ExprOp
+            [ Just
+                ( Command "pow" )
+            , Just InvisibleBraceL
+            , Nothing
+            , Just InvisibleBraceR
+            ]
+            [ ExprVar
+                ( NamedVar "A" )
+            ]
+        , inductiveIntros = IntroRule
+            { introConditions = []
+            , introResult = FormulaChain
+                ( ChainBase
+                    ( ExprOp
+                        [ Just
+                            ( Command "emptyset" )
+                        ] [] :| []
+                    ) Positive
+                    ( RelationSymbol
+                        ( Command "in" )
+                    )
+                    ( ExprOp
+                        [ Just
+                            ( Command "fin" )
+                        , Just InvisibleBraceL
+                        , Nothing
+                        , Just InvisibleBraceR
+                        ]
+                        [ ExprVar
+                            ( NamedVar "A" )
+                        ] :| []
+                    )
+                )
+            } :|
+            [ IntroRule
+                { introConditions =
+                    [ FormulaChain
+                        ( ChainBase
+                            ( ExprVar
+                                ( NamedVar "a" ) :| []
+                            ) Positive
+                            ( RelationSymbol
+                                ( Command "in" )
+                            )
+                            ( ExprVar
+                                ( NamedVar "A" ) :| []
+                            )
+                        )
+                    , FormulaChain
+                        ( ChainBase
+                            ( ExprVar
+                                ( NamedVar "B" ) :| []
+                            ) Positive
+                            ( RelationSymbol
+                                ( Command "in" )
+                            )
+                            ( ExprOp
+                                [ Just
+                                    ( Command "fin" )
+                                , Just InvisibleBraceL
+                                , Nothing
+                                , Just InvisibleBraceR
+                                ]
+                                [ ExprVar
+                                    ( NamedVar "A" )
+                                ] :| []
+                            )
+                        )
+                    ]
+                , introResult = FormulaChain
+                    ( ChainBase
+                        ( ExprOp
+                            [ Just
+                                ( Command "cons" )
+                            , Just InvisibleBraceL
+                            , Nothing
+                            , Just InvisibleBraceR
+                            , Just InvisibleBraceL
+                            , Nothing
+                            , Just InvisibleBraceR
+                            ]
+                            [ ExprVar
+                                ( NamedVar "a" )
+                            , ExprVar
+                                ( NamedVar "B" )
+                            ] :| []
+                        ) Positive
+                        ( RelationSymbol
+                            ( Command "in" )
+                        )
+                        ( ExprOp
+                            [ Just
+                                ( Command "fin" )
+                            , Just InvisibleBraceL
+                            , Nothing
+                            , Just InvisibleBraceR
+                            ]
+                            [ ExprVar
+                                ( NamedVar "A" )
+                            ] :| []
+                        )
+                    )
+                }
+            ]
+        }
+    )
+, BlockLemma
+    ( SourcePos
+        { sourceName = "test/examples/inductive.tex"
+        , sourceLine = Pos 39
+        , sourceColumn = Pos 1
+        }
+    )
+    ( Marker "fin_mono" )
+    ( Lemma
+        [ AsmLetNoun
+            ( NamedVar "A" :|
+                [ NamedVar "B" ]
+            ) NounPhrase ( [] )
+            ( Noun
+                ( SgPl
+                    { sg =
+                        [ Just
+                            ( Word "set" )
+                        ]
+                    , pl =
+                        [ Just
+                            ( Word "sets" )
+                        ]
+                    }
+                ) []
+            ) ( Nothing ) ( [] ) ( Nothing )
+        , AsmSuppose
+            ( StmtFormula
+                ( FormulaChain
+                    ( ChainBase
+                        ( ExprVar
+                            ( NamedVar "A" ) :| []
+                        ) Positive
+                        ( RelationSymbol
+                            ( Command "subseteq" )
+                        )
+                        ( ExprVar
+                            ( NamedVar "B" ) :| []
+                        )
+                    )
+                )
+            )
+        ]
+        ( StmtFormula
+            ( FormulaChain
+                ( ChainBase
+                    ( ExprOp
+                        [ Just
+                            ( Command "fin" )
+                        , Just InvisibleBraceL
+                        , Nothing
+                        , Just InvisibleBraceR
+                        ]
+                        [ ExprVar
+                            ( NamedVar "A" )
+                        ] :| []
+                    ) Positive
+                    ( RelationSymbol
+                        ( Command "subseteq" )
+                    )
+                    ( ExprOp
+                        [ Just
+                            ( Command "fin" )
+                        , Just InvisibleBraceL
+                        , Nothing
+                        , Just InvisibleBraceR
+                        ]
+                        [ ExprVar
+                            ( NamedVar "B" )
+                        ] :| []
+                    )
+                )
+            )
+        )
+    )
+, BlockInductive
+    ( SourcePos
+        { sourceName = "test/examples/inductive.tex"
+        , sourceLine = Pos 45
+        , sourceColumn = Pos 1
+        }
+    )
+    ( Marker "tracl" )
+    ( Inductive
+        { inductiveSymbolPattern = SymbolPattern
+            [ Just
+                ( Command "tracl" )
+            , Just InvisibleBraceL
+            , Nothing
+            , Just InvisibleBraceR
+            ]
+            [ NamedVar "R" ]
+        , inductiveDomain = ExprOp
+            [ Nothing
+            , Just
+                ( Command "times" )
+            , Nothing
+            ]
+            [ ExprOp
+                [ Just
+                    ( Command "fld" )
+                , Just InvisibleBraceL
+                , Nothing
+                , Just InvisibleBraceR
+                ]
+                [ ExprVar
+                    ( NamedVar "R" )
+                ]
+            , ExprOp
+                [ Just
+                    ( Command "fld" )
+                , Just InvisibleBraceL
+                , Nothing
+                , Just InvisibleBraceR
+                ]
+                [ ExprVar
+                    ( NamedVar "R" )
+                ]
+            ]
+        , inductiveIntros = IntroRule
+            { introConditions =
+                [ FormulaChain
+                    ( ChainBase
+                        ( ExprVar
+                            ( NamedVar "w" ) :| []
+                        ) Positive
+                        ( RelationSymbol
+                            ( Command "in" )
+                        )
+                        ( ExprVar
+                            ( NamedVar "R" ) :| []
+                        )
+                    )
+                ]
+            , introResult = FormulaChain
+                ( ChainBase
+                    ( ExprVar
+                        ( NamedVar "w" ) :| []
+                    ) Positive
+                    ( RelationSymbol
+                        ( Command "in" )
+                    )
+                    ( ExprOp
+                        [ Just
+                            ( Command "tracl" )
+                        , Just InvisibleBraceL
+                        , Nothing
+                        , Just InvisibleBraceR
+                        ]
+                        [ ExprVar
+                            ( NamedVar "R" )
+                        ] :| []
+                    )
+                )
+            } :|
+            [ IntroRule
+                { introConditions =
+                    [ FormulaChain
+                        ( ChainBase
+                            ( ExprOp
+                                [ Just
+                                    ( Command "pair" )
+                                , Just InvisibleBraceL
+                                , Nothing
+                                , Just InvisibleBraceR
+                                , Just InvisibleBraceL
+                                , Nothing
+                                , Just InvisibleBraceR
+                                ]
+                                [ ExprVar
+                                    ( NamedVar "a" )
+                                , ExprVar
+                                    ( NamedVar "b" )
+                                ] :| []
+                            ) Positive
+                            ( RelationSymbol
+                                ( Command "in" )
+                            )
+                            ( ExprOp
+                                [ Just
+                                    ( Command "tracl" )
+                                , Just InvisibleBraceL
+                                , Nothing
+                                , Just InvisibleBraceR
+                                ]
+                                [ ExprVar
+                                    ( NamedVar "R" )
+                                ] :| []
+                            )
+                        )
+                    , FormulaChain
+                        ( ChainBase
+                            ( ExprOp
+                                [ Just
+                                    ( Command "pair" )
+                                , Just InvisibleBraceL
+                                , Nothing
+                                , Just InvisibleBraceR
+                                , Just InvisibleBraceL
+                                , Nothing
+                                , Just InvisibleBraceR
+                                ]
+                                [ ExprVar
+                                    ( NamedVar "b" )
+                                , ExprVar
+                                    ( NamedVar "c" )
+                                ] :| []
+                            ) Positive
+                            ( RelationSymbol
+                                ( Command "in" )
+                            )
+                            ( ExprVar
+                                ( NamedVar "R" ) :| []
+                            )
+                        )
+                    ]
+                , introResult = FormulaChain
+                    ( ChainBase
+                        ( ExprOp
+                            [ Just
+                                ( Command "pair" )
+                            , Just InvisibleBraceL
+                            , Nothing
+                            , Just InvisibleBraceR
+                            , Just InvisibleBraceL
+                            , Nothing
+                            , Just InvisibleBraceR
+                            ]
+                            [ ExprVar
+                                ( NamedVar "a" )
+                            , ExprVar
+                                ( NamedVar "c" )
+                            ] :| []
+                        ) Positive
+                        ( RelationSymbol
+                            ( Command "in" )
+                        )
+                        ( ExprOp
+                            [ Just
+                                ( Command "tracl" )
+                            , Just InvisibleBraceL
+                            , Nothing
+                            , Just InvisibleBraceR
+                            ]
+                            [ ExprVar
+                                ( NamedVar "R" )
+                            ] :| []
+                        )
+                    )
+                }
+            ]
+        }
+    )
+, BlockInductive
+    ( SourcePos
+        { sourceName = "test/examples/inductive.tex"
+        , sourceLine = Pos 53
+        , sourceColumn = Pos 1
+        }
+    )
+    ( Marker "quasirefltracl" )
+    ( Inductive
+        { inductiveSymbolPattern = SymbolPattern
+            [ Just
+                ( Command "qrefltracl" )
+            , Just InvisibleBraceL
+            , Nothing
+            , Just InvisibleBraceR
+            ]
+            [ NamedVar "R" ]
+        , inductiveDomain = ExprOp
+            [ Nothing
+            , Just
+                ( Command "times" )
+            , Nothing
+            ]
+            [ ExprOp
+                [ Just
+                    ( Command "fld" )
+                , Just InvisibleBraceL
+                , Nothing
+                , Just InvisibleBraceR
+                ]
+                [ ExprVar
+                    ( NamedVar "R" )
+                ]
+            , ExprOp
+                [ Just
+                    ( Command "fld" )
+                , Just InvisibleBraceL
+                , Nothing
+                , Just InvisibleBraceR
+                ]
+                [ ExprVar
+                    ( NamedVar "R" )
+                ]
+            ]
+        , inductiveIntros = IntroRule
+            { introConditions =
+                [ FormulaChain
+                    ( ChainBase
+                        ( ExprVar
+                            ( NamedVar "a" ) :| []
+                        ) Positive
+                        ( RelationSymbol
+                            ( Command "in" )
+                        )
+                        ( ExprOp
+                            [ Just
+                                ( Command "fld" )
+                            , Just InvisibleBraceL
+                            , Nothing
+                            , Just InvisibleBraceR
+                            ]
+                            [ ExprVar
+                                ( NamedVar "R" )
+                            ] :| []
+                        )
+                    )
+                ]
+            , introResult = FormulaChain
+                ( ChainBase
+                    ( ExprOp
+                        [ Just
+                            ( Command "pair" )
+                        , Just InvisibleBraceL
+                        , Nothing
+                        , Just InvisibleBraceR
+                        , Just InvisibleBraceL
+                        , Nothing
+                        , Just InvisibleBraceR
+                        ]
+                        [ ExprVar
+                            ( NamedVar "a" )
+                        , ExprVar
+                            ( NamedVar "a" )
+                        ] :| []
+                    ) Positive
+                    ( RelationSymbol
+                        ( Command "in" )
+                    )
+                    ( ExprOp
+                        [ Just
+                            ( Command "qrefltracl" )
+                        , Just InvisibleBraceL
+                        , Nothing
+                        , Just InvisibleBraceR
+                        ]
+                        [ ExprVar
+                            ( NamedVar "R" )
+                        ] :| []
+                    )
+                )
+            } :|
+            [ IntroRule
+                { introConditions =
+                    [ FormulaChain
+                        ( ChainBase
+                            ( ExprOp
+                                [ Just
+                                    ( Command "pair" )
+                                , Just InvisibleBraceL
+                                , Nothing
+                                , Just InvisibleBraceR
+                                , Just InvisibleBraceL
+                                , Nothing
+                                , Just InvisibleBraceR
+                                ]
+                                [ ExprVar
+                                    ( NamedVar "a" )
+                                , ExprVar
+                                    ( NamedVar "b" )
+                                ] :| []
+                            ) Positive
+                            ( RelationSymbol
+                                ( Command "in" )
+                            )
+                            ( ExprOp
+                                [ Just
+                                    ( Command "qrefltracl" )
+                                , Just InvisibleBraceL
+                                , Nothing
+                                , Just InvisibleBraceR
+                                ]
+                                [ ExprVar
+                                    ( NamedVar "R" )
+                                ] :| []
+                            )
+                        )
+                    , FormulaChain
+                        ( ChainBase
+                            ( ExprOp
+                                [ Just
+                                    ( Command "pair" )
+                                , Just InvisibleBraceL
+                                , Nothing
+                                , Just InvisibleBraceR
+                                , Just InvisibleBraceL
+                                , Nothing
+                                , Just InvisibleBraceR
+                                ]
+                                [ ExprVar
+                                    ( NamedVar "b" )
+                                , ExprVar
+                                    ( NamedVar "c" )
+                                ] :| []
+                            ) Positive
+                            ( RelationSymbol
+                                ( Command "in" )
+                            )
+                            ( ExprVar
+                                ( NamedVar "R" ) :| []
+                            )
+                        )
+                    ]
+                , introResult = FormulaChain
+                    ( ChainBase
+                        ( ExprOp
+                            [ Just
+                                ( Command "pair" )
+                            , Just InvisibleBraceL
+                            , Nothing
+                            , Just InvisibleBraceR
+                            , Just InvisibleBraceL
+                            , Nothing
+                            , Just InvisibleBraceR
+                            ]
+                            [ ExprVar
+                                ( NamedVar "a" )
+                            , ExprVar
+                                ( NamedVar "c" )
+                            ] :| []
+                        ) Positive
+                        ( RelationSymbol
+                            ( Command "in" )
+                        )
+                        ( ExprOp
+                            [ Just
+                                ( Command "qrefltracl" )
+                            , Just InvisibleBraceL
+                            , Nothing
+                            , Just InvisibleBraceR
+                            ]
+                            [ ExprVar
+                                ( NamedVar "R" )
+                            ] :| []
+                        )
+                    )
+                }
+            ]
+        }
+    )
+, BlockInductive
+    ( SourcePos
+        { sourceName = "test/examples/inductive.tex"
+        , sourceLine = Pos 61
+        , sourceColumn = Pos 1
+        }
+    )
+    ( Marker "refltracl" )
+    ( Inductive
+        { inductiveSymbolPattern = SymbolPattern
+            [ Just
+                ( Command "refltracl" )
+            , Just InvisibleBraceL
+            , Nothing
+            , Just InvisibleBraceR
+            , Just InvisibleBraceL
+            , Nothing
+            , Just InvisibleBraceR
+            ]
+            [ NamedVar "A"
+            , NamedVar "R"
+            ]
+        , inductiveDomain = ExprOp
+            [ Nothing
+            , Just
+                ( Command "times" )
+            , Nothing
+            ]
+            [ ExprVar
+                ( NamedVar "A" )
+            , ExprVar
+                ( NamedVar "A" )
+            ]
+        , inductiveIntros = IntroRule
+            { introConditions =
+                [ FormulaChain
+                    ( ChainBase
+                        ( ExprVar
+                            ( NamedVar "a" ) :| []
+                        ) Positive
+                        ( RelationSymbol
+                            ( Command "in" )
+                        )
+                        ( ExprVar
+                            ( NamedVar "A" ) :| []
+                        )
+                    )
+                ]
+            , introResult = FormulaChain
+                ( ChainBase
+                    ( ExprOp
+                        [ Just
+                            ( Command "pair" )
+                        , Just InvisibleBraceL
+                        , Nothing
+                        , Just InvisibleBraceR
+                        , Just InvisibleBraceL
+                        , Nothing
+                        , Just InvisibleBraceR
+                        ]
+                        [ ExprVar
+                            ( NamedVar "a" )
+                        , ExprVar
+                            ( NamedVar "a" )
+                        ] :| []
+                    ) Positive
+                    ( RelationSymbol
+                        ( Command "in" )
+                    )
+                    ( ExprOp
+                        [ Just
+                            ( Command "refltracl" )
+                        , Just InvisibleBraceL
+                        , Nothing
+                        , Just InvisibleBraceR
+                        , Just InvisibleBraceL
+                        , Nothing
+                        , Just InvisibleBraceR
+                        ]
+                        [ ExprVar
+                            ( NamedVar "A" )
+                        , ExprVar
+                            ( NamedVar "R" )
+                        ] :| []
+                    )
+                )
+            } :|
+            [ IntroRule
+                { introConditions =
+                    [ FormulaChain
+                        ( ChainBase
+                            ( ExprOp
+                                [ Just
+                                    ( Command "pair" )
+                                , Just InvisibleBraceL
+                                , Nothing
+                                , Just InvisibleBraceR
+                                , Just InvisibleBraceL
+                                , Nothing
+                                , Just InvisibleBraceR
+                                ]
+                                [ ExprVar
+                                    ( NamedVar "a" )
+                                , ExprVar
+                                    ( NamedVar "b" )
+                                ] :| []
+                            ) Positive
+                            ( RelationSymbol
+                                ( Command "in" )
+                            )
+                            ( ExprOp
+                                [ Just
+                                    ( Command "refltracl" )
+                                , Just InvisibleBraceL
+                                , Nothing
+                                , Just InvisibleBraceR
+                                , Just InvisibleBraceL
+                                , Nothing
+                                , Just InvisibleBraceR
+                                ]
+                                [ ExprVar
+                                    ( NamedVar "A" )
+                                , ExprVar
+                                    ( NamedVar "R" )
+                                ] :| []
+                            )
+                        )
+                    , FormulaChain
+                        ( ChainBase
+                            ( ExprOp
+                                [ Just
+                                    ( Command "pair" )
+                                , Just InvisibleBraceL
+                                , Nothing
+                                , Just InvisibleBraceR
+                                , Just InvisibleBraceL
+                                , Nothing
+                                , Just InvisibleBraceR
+                                ]
+                                [ ExprVar
+                                    ( NamedVar "b" )
+                                , ExprVar
+                                    ( NamedVar "c" )
+                                ] :| []
+                            ) Positive
+                            ( RelationSymbol
+                                ( Command "in" )
+                            )
+                            ( ExprVar
+                                ( NamedVar "R" ) :| []
+                            )
+                        )
+                    ]
+                , introResult = FormulaChain
+                    ( ChainBase
+                        ( ExprOp
+                            [ Just
+                                ( Command "pair" )
+                            , Just InvisibleBraceL
+                            , Nothing
+                            , Just InvisibleBraceR
+                            , Just InvisibleBraceL
+                            , Nothing
+                            , Just InvisibleBraceR
+                            ]
+                            [ ExprVar
+                                ( NamedVar "a" )
+                            , ExprVar
+                                ( NamedVar "c" )
+                            ] :| []
+                        ) Positive
+                        ( RelationSymbol
+                            ( Command "in" )
+                        )
+                        ( ExprOp
+                            [ Just
+                                ( Command "refltracl" )
+                            , Just InvisibleBraceL
+                            , Nothing
+                            , Just InvisibleBraceR
+                            , Just InvisibleBraceL
+                            , Nothing
+                            , Just InvisibleBraceR
+                            ]
+                            [ ExprVar
+                                ( NamedVar "A" )
+                            , ExprVar
+                                ( NamedVar "R" )
+                            ] :| []
+                        )
+                    )
+                }
+            ]
+        }
+    )
+, BlockInductive
+    ( SourcePos
+        { sourceName = "test/examples/inductive.tex"
+        , sourceLine = Pos 69
+        , sourceColumn = Pos 1
+        }
+    )
+    ( Marker "acc" )
+    ( Inductive
+        { inductiveSymbolPattern = SymbolPattern
+            [ Just
+                ( Command "acc" )
+            , Just InvisibleBraceL
+            , Nothing
+            , Just InvisibleBraceR
+            ]
+            [ NamedVar "R" ]
+        , inductiveDomain = ExprOp
+            [ Just
+                ( Command "fld" )
+            , Just InvisibleBraceL
+            , Nothing
+            , Just InvisibleBraceR
+            ]
+            [ ExprVar
+                ( NamedVar "R" )
+            ]
+        , inductiveIntros = IntroRule
+            { introConditions =
+                [ FormulaChain
+                    ( ChainBase
+                        ( ExprVar
+                            ( NamedVar "a" ) :| []
+                        ) Positive
+                        ( RelationSymbol
+                            ( Command "in" )
+                        )
+                        ( ExprOp
+                            [ Just
+                                ( Command "fld" )
+                            , Just InvisibleBraceL
+                            , Nothing
+                            , Just InvisibleBraceR
+                            ]
+                            [ ExprVar
+                                ( NamedVar "R" )
+                            ] :| []
+                        )
+                    )
+                , FormulaChain
+                    ( ChainBase
+                        ( ExprOp
+                            [ Just
+                                ( Command "preimg" )
+                            , Just InvisibleBraceL
+                            , Nothing
+                            , Just InvisibleBraceR
+                            , Just InvisibleBraceL
+                            , Nothing
+                            , Just InvisibleBraceR
+                            ]
+                            [ ExprVar
+                                ( NamedVar "R" )
+                            , ExprFiniteSet
+                                ( ExprVar
+                                    ( NamedVar "a" ) :| []
+                                )
+                            ] :| []
+                        ) Positive
+                        ( RelationSymbol
+                            ( Command "in" )
+                        )
+                        ( ExprOp
+                            [ Just
+                                ( Command "pow" )
+                            , Just InvisibleBraceL
+                            , Nothing
+                            , Just InvisibleBraceR
+                            ]
+                            [ ExprOp
+                                [ Just
+                                    ( Command "acc" )
+                                , Just InvisibleBraceL
+                                , Nothing
+                                , Just InvisibleBraceR
+                                ]
+                                [ ExprVar
+                                    ( NamedVar "R" )
+                                ]
+                            ] :| []
+                        )
+                    )
+                ]
+            , introResult = FormulaChain
+                ( ChainBase
+                    ( ExprVar
+                        ( NamedVar "a" ) :| []
+                    ) Positive
+                    ( RelationSymbol
+                        ( Command "in" )
+                    )
+                    ( ExprOp
+                        [ Just
+                            ( Command "acc" )
+                        , Just InvisibleBraceL
+                        , Nothing
+                        , Just InvisibleBraceR
+                        ]
+                        [ ExprVar
+                            ( NamedVar "R" )
+                        ] :| []
+                    )
+                )
+            } :| []
+        }
+    )
+]

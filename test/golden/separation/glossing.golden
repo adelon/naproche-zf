@@ -1,0 +1,40 @@
+[ BlockLemma
+    ( SourcePos
+        { sourceName = "test/examples/separation.tex"
+        , sourceLine = Pos 1
+        , sourceColumn = Pos 1
+        }
+    )
+    ( Marker "sep_test" )
+    ( Lemma []
+        ( TermSymbol
+            ( SymbolPredicate
+                ( PredicateRelation
+                    ( Symbol "=" )
+                )
+            )
+            [ TermVar
+                ( NamedVar "X" )
+            , TermSep
+                ( NamedVar "x" )
+                ( TermVar
+                    ( NamedVar "X" )
+                )
+                ( Scope
+                    ( TermSymbol
+                        ( SymbolPredicate
+                            ( PredicateRelation
+                                ( Symbol "=" )
+                            )
+                        )
+                        [ TermVar
+                            ( B () )
+                        , TermVar
+                            ( B () )
+                        ]
+                    )
+                )
+            ]
+        )
+    )
+]

@@ -1,0 +1,1081 @@
+\import{set.tex}
+\import{set/powerset.tex}
+\import{set/product.tex}
+
+\section{Relations}
+
+\begin{definition}\label{relation}
+    $R$ is a relation iff
+    for all $w\in R$ there exists $x, y$ such that $w = (x, y)$.
+\end{definition}
+
+\begin{definition}\label{comparable}
+    $a$ is comparable with $b$ in $R$ iff $a\mathrel{R}b$ or $b\mathrel{R}a$.
+\end{definition}
+
+\begin{proposition}\label{relext}
+    Let $R, S$ be relations.
+    Suppose for all $x,y$ we have $x\mathrel{R} y$ iff $x\mathrel{S} y$.
+    Then $R = S$.
+\end{proposition}
+\begin{proof}
+    Follows by set extensionality.
+\end{proof}
+
+\begin{abbreviation}\label{family_of_relations}
+    $F$ is a family of relations iff
+    every element of $F$ is a relation.
+\end{abbreviation}
+
+\begin{proposition}\label{unions_of_family_of_relations_is_relation}
+    Let $F$ be a family of relations.
+    Then $\unions{F}$ is a relation.
+\end{proposition}
+
+\begin{proposition}\label{inters_of_family_of_relations_is_relation}
+    Let $F$ be a family of relations.
+    Then $\inters{F}$ is a relation.
+\end{proposition}
+
+\begin{proposition}\label{union_relations_is_relation}
+    Let $R, S$ be relations.
+    Then $R\union S$ is a relation.
+\end{proposition}
+
+\begin{proposition}\label{union_relations_is_relation_type}
+    Suppose $R\subseteq A\times B$.
+    Suppose $S\subseteq C\times D$.
+    Then $R\union S\subseteq (A\union C)\times (B\union D)$.
+\end{proposition}
+\begin{proof}
+    Follows by \cref{subseteq,union_times_elim,union_iff,union_subseteq_union}.
+\end{proof}
+
+\begin{proposition}\label{inter_relations_is_relation}
+    Let $R, S$ be relations.
+    Then $R\inter S$ is a relation.
+\end{proposition}
+
+\begin{proposition}\label{setminus_relations_is_relation}
+    Let $R, S$ be relations.
+    Then $R\setminus S$ is a relation.
+\end{proposition}
+
+
+
+\subsection{Converse of a relation}
+
+\begin{definition}\label{converse_relation}
+    $\converse{R} = \{ z\mid \exists w\in R. \exists x, y. w = (x, y)\land z = (y, x)\}$.
+\end{definition}
+
+\begin{proposition}\label{converse_intro}
+    If $y\mathrel{R} x$, then $x\mathrel{\converse{R}} y$.
+\end{proposition}
+
+\begin{proposition}\label{converse_elim}
+    If $x\mathrel{\converse{R}} y$, then $y\mathrel{R} x$.
+\end{proposition}
+
+\begin{proposition}\label{converse_iff}
+    $x\mathrel{\converse{R}} y$ iff $y\mathrel{R} x$.
+\end{proposition}
+
+
+\begin{proposition}\label{converse_is_relation}
+    $\converse{R}$ is a relation.
+\end{proposition}
+
+
+\begin{proposition}\label{converse_converse_iff}
+    $x \mathrel{\converse{\converse{R}}} y$ iff $x\mathrel{R} y$.
+\end{proposition}
+
+% Only works if the starting set was a relation (i.e. only has pairs as elements).
+\begin{proposition}\label{converse_converse_eq}
+    Let $R$ be a relation.
+    Then $\converse{\converse{R}} = R$.
+\end{proposition}
+\begin{proof}
+    Follows by set extensionality.
+\end{proof}
+
+\begin{proposition}\label{converse_type}
+    Suppose $R\subseteq A\times B$.
+    Then $\converse{R}\subseteq B\times A$.
+\end{proposition}
+\begin{proof}
+    It suffices to show that every element of $\converse{R}$ is an element of $B\times A$
+        by \cref{subseteq}.
+    Fix $w\in\converse{R}$.
+    Take $x, y$ such that $w = (y, x)$ and $x\mathrel{R} y$ by \cref{converse_relation}.
+    Now $(x,y)\in A\times B$ by \cref{subseteq}.
+    Thus $x\in A$ and $y\in B$ by \cref{times_tuple_elim}.
+    Hence $(y,x)\in B\times A$ by \cref{times_tuple_intro}.
+\end{proof}
+
+\begin{proposition}\label{converse_times}
+    Then $\converse{B\times A} = A\times B$.
+\end{proposition}
+\begin{proof}
+    For all $w$ we have $w\in\converse{B\times A}$ iff $w\in A\times B$
+        by \cref{converse_relation,times,times_elem_is_tuple,times_tuple_elim}.
+    Follows by \hyperref[setext]{extensionality}.
+    %Follows by set extensionality.
+\end{proof}
+
+\begin{proposition}\label{converse_emptyset}
+    Then $\converse{\emptyset} = \emptyset$.
+\end{proposition}
+\begin{proof}
+    Follows by set extensionality.
+\end{proof}
+
+\begin{proposition}\label{converse_subseteq_intro}
+    Let $R$ be a relation.
+    If $R\subseteq S$, then $\converse{R}\subseteq\converse{S}$.
+\end{proposition}
+\begin{proof}
+    Follows by \cref{subseteq,converse_relation,relation}.
+\end{proof}
+
+\begin{proposition}\label{converse_subseteq_elim}
+    Let $R$ be a relation.
+    If $\converse{R}\subseteq\converse{S}$, then $R\subseteq S$.
+\end{proposition}
+\begin{proof}
+    Follows by \cref{subseteq,converse_relation,relation,converse_subseteq_intro,converse_converse_iff}.
+\end{proof}
+
+\begin{proposition}\label{converse_subseteq_iff}
+    Let $R$ be a relation.
+    $\converse{R}\subseteq\converse{S}$ iff $R\subseteq S$.
+\end{proposition}
+\begin{proof}
+    Follows by \cref{converse_subseteq_elim,converse_subseteq_intro}.
+\end{proof}
+
+\begin{proposition}\label{converse_union}
+    $\converse{(R\union S)} = \converse{R}\union\converse{S}$.
+\end{proposition}
+\begin{proof}
+    $\converse{(R\union S)}$ is a relation by \cref{converse_is_relation}.
+    $\converse{R}\union\converse{S}$ is a relation by \cref{converse_is_relation,union_relations_is_relation}.
+    For all $a,b$ we have $(a,b)\in\converse{(R\union S)}$ iff $(a,b)\in\converse{R}\union\converse{S}$
+        by \cref{union_iff,converse_iff}.
+    Follows by \hyperref[relext]{extensionality}.
+\end{proof}
+
+\begin{proposition}\label{converse_inter}
+    $\converse{(R\inter S)} = \converse{R}\inter\converse{S}$.
+\end{proposition}
+\begin{proof}
+    $\converse{(R\inter S)}$ is a relation by \cref{converse_is_relation}.
+    $\converse{R}\inter\converse{S}$ is a relation by \cref{converse_is_relation,inter_relations_is_relation}.
+    For all $a,b$ we have $(a,b)\in\converse{(R\inter S)}$ iff $(a,b)\in\converse{R}\inter\converse{S}$
+        by \cref{inter,converse_iff}.
+    Follows by \hyperref[relext]{extensionality}.
+\end{proof}
+
+\begin{proposition}\label{converse_setminus}
+    $\converse{(R\setminus S)} = \converse{R}\setminus\converse{S}$.
+\end{proposition}
+\begin{proof}
+    $\converse{(R\setminus S)}$ is a relation by \cref{converse_is_relation}.
+    $\converse{R}\setminus\converse{S}$ is a relation by \cref{converse_is_relation,setminus_relations_is_relation}.
+    For all $a,b$ we have $(a,b)\in\converse{(R\setminus S)}$ iff $(a,b)\in\converse{R}\setminus\converse{S}$.
+    Follows by \hyperref[relext]{extensionality}.
+\end{proof}
+
+
+
+\subsubsection{Domain of a relation}
+
+\begin{definition}\label{dom}
+    $\dom{R} = \{ x\mid \exists w\in R. \exists y. w = (x, y)\}$.
+\end{definition}
+
+\begin{proposition}\label{dom_iff}
+    $a\in\dom{R}$ iff there exists $b$ such that $a\mathrel{R} b$.
+\end{proposition}
+
+\begin{proposition}\label{dom_intro}
+    Suppose $a\mathrel{R} b$.
+    Then $a\in\dom{R}$.
+\end{proposition}
+\begin{proof}
+    Follows by \cref{dom_iff}.
+\end{proof}
+
+\begin{proposition}\label{dom_emptyset}
+    $\dom{\emptyset} = \emptyset$.
+\end{proposition}
+\begin{proof}
+    Follows by set extensionality.
+\end{proof}
+
+\begin{proposition}\label{dom_times}
+    $\dom{(A\times B)}\subseteq A$.
+\end{proposition}
+
+\begin{proposition}\label{dom_times_inhabited}
+    Suppose $b\in B$.
+    $\dom{(A\times B)} = A$.
+\end{proposition}
+\begin{proof}
+    Follows by set extensionality.
+\end{proof}
+
+\begin{proposition}\label{dom_cons}
+    $\dom{\cons{(a,b)}{R}} = \cons{a}{\dom{R}}$.
+\end{proposition}
+\begin{proof}
+    Follows by set extensionality.
+\end{proof}
+
+\begin{proposition}\label{dom_union}
+    $\dom{(A\union B)} = \dom{A}\union\dom{B}$.
+\end{proposition}
+\begin{proof}
+    Follows by set extensionality.
+\end{proof}
+
+\begin{proposition}\label{dom_inter}
+    $\dom{(A\inter B)}\subseteq \dom{A}\inter\dom{B}$.
+\end{proposition}
+\begin{proof}
+    Follows by \cref{subseteq,inter,dom_iff}.
+\end{proof}
+
+\begin{proposition}\label{dom_setminus}
+    $\dom{(A\setminus B)}\supseteq \dom{A}\setminus\dom{B}$.
+\end{proposition}
+
+% TODO (also needs to import set/cons)
+%\begin{proposition}\label{dom_remove_invariant}
+%    Suppose $a\mathrel{R}b$.
+%    Suppose $b\neq c$.
+%    Then $\dom{\remove{(a,b)}{R}} = \dom{R}$.
+%\end{proposition}
+
+\subsubsection{Range of a relation}
+
+\begin{definition}\label{ran}
+    $\ran{R} = \{ y\mid \exists w\in R. \exists x. w = (x, y)\}$.
+\end{definition}
+
+\begin{proposition}\label{ran_iff}
+    $b\in\ran{R}$ iff there exists $a$ such that $a\mathrel{R} b$.
+\end{proposition}
+
+\begin{proposition}\label{ran_intro}
+    Suppose $a\mathrel{R} b$.
+    Then $b\in\ran{R}$.
+\end{proposition}
+\begin{proof}
+    Follows by \cref{ran_iff}.
+\end{proof}
+
+\begin{proposition}\label{ran_emptyset}
+    $\ran{\emptyset} = \emptyset$.
+\end{proposition}
+\begin{proof}
+    Follows by set extensionality.
+\end{proof}
+
+\begin{proposition}\label{ran_times}
+    $\ran{(A\times B)}\subseteq B$.
+\end{proposition}
+
+\begin{proposition}\label{ran_times_inhabited}
+    Suppose $a\in A$.
+    $\ran{(A\times B)} = B$.
+\end{proposition}
+\begin{proof}
+    Follows by set extensionality.
+\end{proof}
+
+\begin{proposition}\label{ran_cons}
+    $\ran{(\cons{(a,b)}{R})} = \cons{b}{\ran{R}}$.
+\end{proposition}
+\begin{proof}
+    Follows by set extensionality.
+\end{proof}
+
+\begin{proposition}\label{ran_union}
+    $\ran{(A\union B)} = \ran{A}\union\ran{B}$.
+\end{proposition}
+\begin{proof}
+    Follows by set extensionality.
+\end{proof}
+
+\begin{proposition}\label{ran_inter}
+    $\ran{(A\inter B)}\subseteq \ran{A}\inter\ran{B}$.
+\end{proposition}
+\begin{proof}
+    Follows by \cref{subseteq,inter,ran_iff}.
+\end{proof}
+
+\begin{proposition}\label{ran_setminus}
+    $\ran{(A\setminus B)}\supseteq \ran{A}\setminus\ran{B}$.
+\end{proposition}
+\begin{proof}
+    Follows by \cref{subseteq,setminus,ran_iff}.
+\end{proof}
+
+\subsubsection{Domain and range of converse}
+
+\begin{proposition}\label{dom_converse}
+    $\dom{\converse{R}} = \ran{R}$.
+\end{proposition}
+\begin{proof}
+    Follows by set extensionality.
+\end{proof}
+
+\begin{proposition}\label{ran_converse}
+    $\ran{\converse{R}} = \dom{R}$.
+\end{proposition}
+\begin{proof}
+    Follows by set extensionality.
+\end{proof}
+
+
+\subsubsection{Field of a relation}
+
+% We ues fld for the label instead of field so that field stays available for the
+% algebraic structure.
+\begin{definition}\label{fld}
+    $\fld{R} = \dom{R}\union\ran{R}$.
+\end{definition}
+
+\begin{proposition}\label{fld_iff}
+    $c\in\fld{R}$ iff there exists $d$ such that $c\mathrel{R}d$ or $d\mathrel{R}c$.
+\end{proposition}
+\begin{proof}
+    Follows by \cref{fld,dom_iff,ran_iff,union_iff}.
+\end{proof}
+
+\begin{proposition}\label{fld_intro_left}
+    Suppose $(a,b)\in R$.
+    Then $a\in\fld{R}$.
+\end{proposition}
+\begin{proof}
+    Follows by \cref{fld,dom,union_iff}.
+\end{proof}
+
+\begin{proposition}\label{fld_intro_right}
+    Suppose $(a,b)\in R$.
+    Then $b\in\fld{R}$.
+\end{proposition}
+\begin{proof}
+    Follows by \cref{fld,ran,union_iff}.
+\end{proof}
+
+\begin{proposition}\label{dom_subseteq_fld}
+    Then $\dom{R}\subseteq\fld{R}$.
+\end{proposition}
+\begin{proof}
+    Follows by \cref{fld,union_upper_left}.
+\end{proof}
+
+\begin{proposition}\label{ran_subseteq_fld}
+    Then $\ran{R}\subseteq\fld{R}$.
+\end{proposition}
+\begin{proof}
+    Follows by \cref{fld,union_upper_right}.
+\end{proof}
+
+\begin{proposition}\label{fld_times}
+    $\fld{(A\times B)}\subseteq A\union B$.
+\end{proposition}
+\begin{proof}
+    Follows by \cref{fld,dom_times,ran_times,union_subseteq_union}.
+\end{proof}
+
+\begin{proposition}\label{relation_elem_times_fld}
+    Let $R$ be a relation.
+    Suppose $w\in R$.
+    Then $w\in\fld{R}\times\fld{R}$.
+\end{proposition}
+\begin{proof}
+    Take $a,b$ such that $w = (a, b)$ by \cref{relation}.
+    Then $a,b\in\fld{R}$ by \cref{fld_iff}.
+    Thus $(a,b)\in\fld{R}\times\fld{R}$ by \cref{times_tuple_intro}.
+\end{proof}
+
+\begin{proposition}\label{relation_subseteq_times_fld}
+    Let $R$ be a relation.
+    Then $R\subseteq\fld{R}\times\fld{R}$.
+\end{proposition}
+\begin{proof}
+    Follows by \cref{relation_elem_times_fld,subseteq}.
+\end{proof}
+
+\begin{proposition}\label{fld_universal}
+    $\fld{(A\times A)} = A$.
+\end{proposition}
+
+\begin{proposition}\label{fld_emptyset}
+    $\fld{\emptyset} = \emptyset$.
+\end{proposition}
+
+\begin{proposition}\label{fld_cons}
+    $\fld{(\cons{(a,b)}{R})} = \cons{a}{\cons{b}{\fld{R}}}$.
+\end{proposition}
+
+\begin{proposition}\label{fld_union}
+    $\fld{(A\union B)} = \fld{A}\union\fld{B}$.
+\end{proposition}
+\begin{proof}
+    \begin{align*}
+        \fld{(A\union B)}
+        &= \dom{(A\union B)}\union\ran{(A\union B)}
+            \explanation{by \cref{fld}}\\
+        &= (\dom{A}\union\dom{B})\union(\ran{A}\union\ran{B})
+            \explanation{by \cref{dom_union,ran_union}}\\
+        &= (\dom{A}\union\ran{A})\union(\dom{B}\union\ran{B})
+            \explanation{by \cref{union_comm,union_assoc}}\\
+        &= \fld{A}\union\fld{B}
+        \explanation{by \cref{fld}}
+    \end{align*}
+\end{proof}
+
+\begin{proposition}\label{fld_inter}
+    $\fld{(A\inter B)}\subseteq \fld{A}\inter\fld{B}$.
+\end{proposition}
+\begin{proof}
+    % LATER this is surprisingly slow because the ATP can generate lots of nested intersection terms.
+    Follows by \cref{subseteq,fld_iff,subseteq_inter_iff}.
+\end{proof}
+
+\begin{proposition}\label{fld_setminus}
+    $\fld{(A\setminus B)}\supseteq \fld{A}\setminus\fld{B}$.
+\end{proposition}
+\begin{proof}
+    Follows by \cref{setminus_subseteq,fld_iff,subseteq,setminus}.
+\end{proof}
+
+\begin{proposition}\label{fld_converse}
+    $\fld{\converse{R}} = \fld{R}$.
+\end{proposition}
+\begin{proof}
+    Follows by \cref{fld,dom_converse,ran_converse,union_comm}.
+\end{proof}
+
+
+\subsection{Image}
+
+\begin{definition}\label{img}
+    $\img{R}{A} = \{b\in\ran{R} \mid \exists a\in A. a\mathrel{R} b \}$.
+\end{definition}
+
+\begin{proposition}\label{img_elem_intro}
+    Suppose $a\in A$ and $a\mathrel{R} b$.
+    Then $b\in\img{R}{A}$.
+\end{proposition}
+\begin{proof}
+    Follows by \cref{img,ran}.
+\end{proof}
+
+\begin{proposition}\label{img_iff}
+    $b\in\img{R}{A}$ iff there exists $a\in A$ such that $a\mathrel{R} b$.
+\end{proposition}
+
+\begin{proposition}\label{img_subseteq}
+    Suppose $A\subseteq B$.
+    Then $\img{R}{A}\subseteq \img{R}{B}$.
+\end{proposition}
+\begin{proof}
+    Follows by \cref{subseteq,img_iff}.
+\end{proof}
+
+\begin{proposition}\label{img_subseteq_ran}
+    Then $\img{R}{A}\subseteq \ran{R}$.
+\end{proposition}
+
+\begin{proposition}\label{img_dom}
+    Then $\img{R}{\dom{R}} = \ran{R}$.
+\end{proposition}
+
+\begin{proposition}\label{img_union}
+    $\img{R}{A\union B} = \img{R}{A}\union\img{R}{B}$.
+\end{proposition}
+\begin{proof}
+    Follows by \cref{setext,union_iff,img_iff}.
+\end{proof}
+
+\begin{proposition}\label{img_inter}
+    % Equality does not hold in general
+    $\img{R}{A\inter B}\subseteq \img{R}{A}\inter\img{R}{B}$.
+\end{proposition}
+\begin{proof}
+    Follows by \cref{img_iff,subseteq,inter}.
+\end{proof}
+
+\begin{proposition}\label{img_setminus}
+    % Equality does not hold in general
+    $\img{R}{A\setminus B}\supseteq \img{R}{A}\setminus\img{R}{B}$.
+\end{proposition}
+\begin{proof}
+    Follows by \cref{img_iff,subseteq,setminus}.
+\end{proof}
+
+\begin{proposition}\label{img_singleton_iff}
+    $b\in \img{R}{\{a\}}$ iff $a\mathrel{R}b$.
+\end{proposition}
+
+\begin{proposition}\label{img_singleton_intro}
+    Suppose $b\in\img{R}{\{a\}}$.
+    Then $b\in\ran{R}$ and $(a,b)\in R$.
+\end{proposition}
+\begin{proof}
+    Follows by \cref{img_iff,singleton_iff,img_subseteq_ran,elem_subseteq}.
+\end{proof}
+
+\begin{proposition}\label{img_singleton}
+    $\img{R}{\{a\}} = \{b\in\ran{R}\mid (a,b)\in R \}$.
+\end{proposition}
+
+\begin{proposition}\label{img_emptyset}
+    $\img{R}{\emptyset} = \emptyset$.
+\end{proposition}
+\begin{proof}
+    Follows by set extensionality.
+\end{proof}
+
+\subsection{Preimage}
+
+\begin{definition}\label{preimg}
+    $\preimg{R}{B} = \{a\in\dom{R} \mid \exists b\in B. a\mathrel{R} b \}$.
+\end{definition}
+
+\begin{proposition}\label{preimg_iff}
+    $a\in\preimg{R}{B}$ iff there exists $b\in B$ such that $a\mathrel{R} b$.
+\end{proposition}
+
+\begin{proposition}\label{preim_eq_img_of_converse}
+    $\preimg{R}{B} = \img{\converse{R}}{B}$.
+\end{proposition}
+\begin{proof}
+    Follows by set extensionality.
+\end{proof}
+
+\begin{proposition}\label{preimg_subseteq}
+    Suppose $A\subseteq B$.
+    Then $\preimg{R}{A}\subseteq \preimg{R}{B}$.
+\end{proposition}
+
+\begin{proposition}\label{preimg_subseteq_dom}
+    Then $\preimg{R}{A}\subseteq \dom{R}$.
+\end{proposition}
+
+\begin{proposition}\label{preimg_union}
+    $\preimg{R}{A\union B} = \preimg{R}{A}\union\preimg{R}{B}$.
+\end{proposition}
+\begin{proof}
+    Follows by set extensionality.
+\end{proof}
+
+\begin{proposition}\label{preimg_inter}
+    % Equality does not hold in general
+    $\preimg{R}{A\inter B}\subseteq \preimg{R}{A}\inter\preimg{R}{B}$.
+\end{proposition}
+
+\begin{proposition}\label{preimg_setminus}
+    % Equality does not hold in general
+    $\preimg{R}{A\setminus B}\supseteq \preimg{R}{A}\setminus\preimg{R}{B}$.
+\end{proposition}
+
+\subsection{Upward and downward closure}
+
+\begin{definition}\label{upward_closure}
+    $\upward{R}{a} = \{b\in\ran{R} \mid a\mathrel{R}b \}$.
+\end{definition}
+
+\begin{definition}\label{downward_closure}
+    $\downward{R}{b} = \{a\in\dom{R} \mid a\mathrel{R}b \}$.
+\end{definition}
+
+\begin{proposition}\label{downward_closure_iff}
+    $a\in\downward{R}{b}$ iff $a\mathrel{R}b$.
+\end{proposition}
+
+\subsection{Relation (and later also function) composition}
+
+Composition ignores the non-relational parts of sets.
+Note that the order is flipped from usual relation composition.
+This lets us use the same symbol for composition of functions.
+
+\begin{definition}\label{circ}
+    $S\circ R = \{ (x,z)\mid x\in\dom{R}, z\in\ran{S}\mid \exists y.\  x\mathrel{R}y\mathrel{S}z \}$.
+\end{definition}
+
+\begin{proposition}\label{circ_is_relation}
+    $S\circ R$ is a relation.
+\end{proposition}
+
+\begin{proposition}\label{circ_elem_intro}
+    Suppose $x\mathrel{R} y\mathrel{S} z$.
+    Then $x\mathrel{(S\circ R)} z$.
+\end{proposition}
+\begin{proof}
+    $x\in\dom{R}$ and $z\in\ran{S}$.
+    Then $(x, z)\in S\circ R$ by \cref{circ}.
+\end{proof}
+
+\begin{proposition}\label{circ_elem_elim}
+    Suppose $x\mathrel{(S\circ R)} z$.
+    Then there exists $y$ such that $x\mathrel{R} y\mathrel{S} z$.
+\end{proposition}
+\begin{proof}
+    %$x\in\dom{R}$ and $z\in\ran{S}$.
+    There exists $y$ such that $x\mathrel{R} y\mathrel{S} z$ by \cref{circ,pair_eq_iff}.
+\end{proof}
+
+\begin{proposition}\label{circ_iff}
+    $x\mathrel{(S\circ R)} z$ iff there exists $y$ such that $x\mathrel{R} y\mathrel{S} z$.
+\end{proposition}
+
+\begin{proposition}\label{circ_assoc}
+    $(T\circ S)\circ R = T\circ (S\circ R)$.
+\end{proposition}
+\begin{proof}
+    For all $a, b$ we have
+        $(a,b)\in (T\circ S)\circ R$ iff $(a,b)\in T\circ (S\circ R)$
+        by \cref{circ_iff}.
+    Now $(T\circ S)\circ R$ is a relation and $T\circ (S\circ R)$ is a relation by
+        \cref{circ_is_relation}.
+    Follows by \hyperref[relext]{relation extensionality}.
+\end{proof}
+
+\begin{proposition}\label{circ_converse_intro_tuple}
+    Suppose $(a, c) \in\converse{R}\circ\converse{S}$.
+    Then $(a,c)\in \converse{(S\circ R)}$.
+\end{proposition}
+\begin{proof}
+    Take $b$ such that $a\mathrel{\converse{S}} b\mathrel{\converse{R}} c$.
+    Now $c\mathrel{R}b\mathrel{S} a$ by \cref{converse_iff}.
+    Hence $c\mathrel{(S\circ R)} a$.
+    Thus $a\mathrel{\converse{(S\circ R)}} c$.
+\end{proof}
+
+\begin{proposition}\label{circ_converse_elim}
+    Suppose $(a,c)\in \converse{(S\circ R)}$.
+    Then $(a, c) \in\converse{R}\circ\converse{S}$.
+\end{proposition}
+\begin{proof}
+    $c\mathrel{(S\circ R)} a$.
+    Take $b$ such that  $c\mathrel{R}b\mathrel{S} a$.
+    Now $a\mathrel{\converse{S}} b\mathrel{\converse{R}} c$.
+\end{proof}
+
+\begin{proposition}\label{circ_converse}
+    $\converse{(S\circ R)} = \converse{R}\circ\converse{S}$.
+\end{proposition}
+\begin{proof}
+    $\converse{(S\circ R)}$ is a relation.
+    $\converse{R}\circ\converse{S}$ is a relation.
+    For all $x, y $ we have $(x,y)\in \converse{(S\circ R)}$ iff $(x, y) \in\converse{R}\circ\converse{S}$.
+    Thus $\converse{(S\circ R)} = \converse{R}\circ\converse{S}$ by \cref{relext}.
+\end{proof}
+
+\subsection{Restriction}
+
+\begin{definition}%
+\label{restrl}
+    $\restrl{R}{X} = \{ w\in R \mid \exists x, y. x\in X \land w = (x, y) \}$.
+\end{definition}
+
+\begin{proposition}\label{restrl_iff}
+    $a \mathrel{\restrl{R}{X}} b$ iff $a\mathrel{R}b$ and $a\in X$.
+\end{proposition}
+
+\begin{proposition}\label{restrl_subseteq}
+    $\restrl{R}{X}\subseteq R$.
+\end{proposition}
+
+\begin{proposition}%
+\label{elem_dom_of_restrl_implies_elem_dom_and_restr}
+    Suppose $x\in \dom{\restrl{R}{X}}$.
+    Then $x\in \dom{R}, X$.
+\end{proposition}
+\begin{proof}
+    Take $y$ such that $x\in X$ and $(x, y)\in \restrl{R}{X}$.
+    Then $(x, y)\in R$. Thus $x\in\dom{R}$.
+\end{proof}
+
+\begin{proposition}%
+\label{elem_dom_and_restr_implies_elem_of_restr}
+    Suppose $x\in \dom{R}, X$.
+    Then $x\in \dom{\restrl{R}{X}}$.
+\end{proposition}
+\begin{proof}
+    Take $y$ such that $(x, y)\in R$ by \cref{dom_iff}.
+    Then $(x, y)\in \restrl{R}{X}$.
+    Thus $x\in\dom{\restrl{R}{X}}$.
+\end{proof}
+
+\begin{proposition}\label{restrl_eq_inter}
+    Suppose $R$ is a relation.
+    $\restrl{R}{X} = R\inter (X\times \ran{R})$.
+\end{proposition}
+\begin{proof}
+    For all $a$ we have $a\in R\inter (X\times \ran{R})$ iff $a\in \restrl{R}{X}$
+        by \cref{inter,restrl,ran_iff,times_elem_is_tuple,times_tuple_intro}.
+    Follows by \hyperref[setext]{extensionality}.
+\end{proof}
+
+\begin{corollary}%
+\label{dom_of_restrl_eq_inter}
+    Suppose $R$ is a relation.
+    $\dom{\restrl{R}{X}} = \dom{R}\inter X$.
+\end{corollary}
+\begin{proof}
+    Follows by set extensionality.
+\end{proof}
+
+\begin{proposition}\label{restrl_restrl}
+    Suppose $V\subseteq U$.
+    Then $\restrl{\restrl{R}{U}}{V} = \restrl{R}{V}$.
+\end{proposition}
+\begin{proof}
+    For all $w$ we have $w\in\restrl{\restrl{R}{U}}{V}$ iff $w\in\restrl{R}{V}$
+        by \cref{restrl,subseteq}.
+    Follows by \hyperref[setext]{extensionality}.
+\end{proof}
+
+\begin{proposition}\label{restrl_by_dom}
+    Let $R$ be a relation.
+    Then $\restrl{R}{\dom{R}} = R$.
+\end{proposition}
+\begin{proof}
+    For all $w$ we have $w\in\restrl{R}{\dom{R}}$ iff $w\in R$
+        by \cref{dom,restrl,relation}.
+    Follows by \hyperref[setext]{extensionality}.
+\end{proof}
+
+\begin{proposition}\label{restrl_dom}
+    Then $\dom{\restrl{R}{X}}\subseteq X$.
+\end{proposition}
+
+\begin{proposition}\label{restrl_ran_elim}
+    Suppose $X\subseteq\dom{R}$.
+    Let $b\in\ran{\restrl{R}{X}}$.
+    Then $b\in\img{R}{X}$.
+\end{proposition}
+\begin{proof}
+    Take $a\in X$ such that $(a, b)\in \restrl{R}{X}$
+        by \cref{dom,ran,restrl_dom,subseteq}.
+    Then $a\mathrel{R} b$ and $b\in\ran{R}$.
+    Thus $b\in\img{R}{X}$ by \cref{img}.
+\end{proof}
+
+\begin{proposition}\label{restrl_ran_intro}
+    Suppose $X\subseteq\dom{R}$.
+    Let $b\in\img{R}{X}$.
+    Then $b\in\ran{\restrl{R}{X}}$.
+\end{proposition}
+\begin{proof}
+    Follows by \cref{img,ran_intro,restrl_iff}.
+\end{proof}
+
+\begin{proposition}\label{restrl_ran}
+    Suppose $X\subseteq\dom{R}$.
+    Then $\ran{\restrl{R}{X}} = \img{R}{X}$.
+\end{proposition}
+\begin{proof}
+    Follows by set extensionality.
+\end{proof}
+
+\begin{proposition}\label{restrl_img}
+    Suppose $X\subseteq\dom{R}$.
+    Then $\img{\restrl{R}{X}}{A} = \img{R}{X\inter A}$.
+\end{proposition}
+\begin{proof}
+    For all $b$ we have $b\in\img{\restrl{R}{X}}{A}$ iff $b\in \img{R}{X\inter A}$
+        by \cref{restrl_iff,img_iff,inter}.
+    Follows by \hyperref[setext]{extensionality}.
+    %Follows by set extensionality.
+\end{proof}
+
+
+
+\subsection{Set of relations}
+
+% Also called "homogeneous relation" or "endorelation".
+\begin{abbreviation}\label{binary_relation_on}
+    $R$ is a binary relation on $X$ iff $R\subseteq X\times X$.
+\end{abbreviation}
+
+\begin{proposition}\label{relation_subseteq_intro_elem}
+    Let $R$ be a relation.
+    Suppose $\ran{R}\subseteq B$.
+    Suppose $\dom{R}\subseteq A$.
+    Suppose $w\in R$.
+    Then $w\in A\times B$.
+\end{proposition}
+\begin{proof}
+    Take $a, b$ such that $(a, b) = w$.
+    Then $a\in\dom{R}$ and $b\in\ran{R}$.
+    Thus $a\in A$ and $b\in B$.
+    Thus $(a, b)\in A\times B$.
+\end{proof}
+
+\begin{proposition}\label{relation_subseteq_intro}
+    Let $R$ be a relation.
+    Suppose $\ran{R}\subseteq B$.
+    Suppose $\dom{R}\subseteq A$.
+    Then $R\subseteq A\times B$.
+\end{proposition}
+
+\begin{proposition}\label{relation_subseteq_implies_dom_subseteq_elem}
+    Suppose $R\subseteq A\times B$.
+    Suppose $a\in\dom{R}$.
+    Then $a\in A$.
+\end{proposition}
+\begin{proof}
+    Take $w, b$ such that $w\in R$ and $w = (a, b)$.
+    Follows by \cref{dom,times_tuple_elim,elem_subseteq}.
+\end{proof}
+
+\begin{proposition}\label{relation_subseteq_implies_dom_subseteq}
+    Suppose $R\subseteq A\times B$.
+    Then $\dom{R}\subseteq A$.
+\end{proposition}
+\begin{proof}
+    Follows by \cref{subseteq,relation_subseteq_implies_dom_subseteq_elem}.
+\end{proof}
+
+\begin{proposition}\label{relation_subseteq_implies_ran_subseteq_elem}
+    Suppose $R\subseteq A\times B$.
+    Suppose $b\in\ran{R}$.
+    Then $b\in B$.
+\end{proposition}
+\begin{proof}
+    Take $w, a$ such that $w\in R$ and $w = (a, b)$.
+    Follows by \cref{ran,elem_subseteq,times_tuple_elim}.
+\end{proof}
+
+\begin{proposition}\label{relation_subseteq_implies_ran_subseteq}
+    Suppose $R\subseteq A\times B$.
+    Then $\ran{R}\subseteq B$.
+\end{proposition}
+\begin{proof}
+    Follows by \cref{subseteq,relation_subseteq_implies_ran_subseteq_elem}.
+\end{proof}
+
+\begin{definition}\label{rels}
+    $\rels{A}{B} = \pow{A\times B}$.
+\end{definition}
+
+\begin{proposition}\label{rels_intro}
+    Suppose $R\subseteq A\times B$.
+    Then $R\in\rels{A}{B}$.
+\end{proposition}
+
+\begin{proposition}\label{rels_intro_dom_and_ran}
+    Let $R$ be a relation.
+    Suppose $\dom{R}\subseteq A$.
+    Suppose $\ran{R}\subseteq B$.
+    Then $R\in\rels{A}{B}$.
+\end{proposition}
+\begin{proof}
+    $R\subseteq A\times B$.
+\end{proof}
+
+\begin{proposition}\label{rels_elim}
+    Suppose $R\in\rels{A}{B}$.
+    Then $R\subseteq A\times B$.
+\end{proposition}
+
+\begin{proposition}\label{rels_dom_subseteq}
+    Suppose $R\in\rels{A}{B}$.
+    Then $\dom{R}\subseteq A$.
+\end{proposition}
+\begin{proof}
+    Follows by \cref{rels_elim,relation_subseteq_implies_dom_subseteq}.
+\end{proof}
+
+\begin{proposition}\label{rels_ran_subseteq}
+    Suppose $R\in\rels{A}{B}$.
+    Then $\ran{R}\subseteq B$.
+\end{proposition}
+\begin{proof}
+    Follows by \cref{rels_elim,relation_subseteq_implies_ran_subseteq}.
+\end{proof}
+
+\begin{proposition}\label{rels_is_relation}
+    Let $R\in\rels{A}{B}$.
+    Then $R$ is a relation.
+\end{proposition}
+\begin{proof}
+    It suffices to show that for all $w\in R$ there exists $x, y$ such that $w = (x, y)$.
+    Fix $w\in R$.
+    Now $R\subseteq A\times B$ by \cref{rels_elim}.
+    Thus $w\in A\times B$.
+\end{proof}
+
+\begin{proposition}\label{rels_weaken_dom}
+    Let $R\in\rels{A}{B}$.
+    Suppose $A\subseteq C$.
+    Then $R\in\rels{C}{B}$.
+\end{proposition}
+\begin{proof}
+    $R\subseteq A\times B\subseteq C\times B$.
+    Thus $R\subseteq C\times B$.
+\end{proof}
+
+\begin{proposition}\label{rels_weaken_codom}
+    Let $R\in\rels{A}{B}$.
+    Suppose $B\subseteq D$.
+    Then $R\in\rels{A}{D}$.
+\end{proposition}
+\begin{proof}
+    $R\subseteq A\times B\subseteq A\times D$.
+    Thus $R\subseteq A\times D$.
+\end{proof}
+
+\begin{proposition}\label{rels_type}
+    Let $R\in\rels{A}{B}$.
+    Suppose $(a,b)\in R$.
+    Then $(a,b)\in A\times B$.
+\end{proposition}
+\begin{proof}
+    $R\subseteq A\times B$ by \cref{rels_elim}.
+\end{proof}
+
+\begin{proposition}\label{rels_type_dom}
+    Let $R\in\rels{A}{B}$.
+    Suppose $(a,b)\in R$.
+    Then $a\in A$.
+\end{proposition}
+\begin{proof}
+    $(a,b)\in A\times B$ by \cref{rels_type}.
+\end{proof}
+
+\begin{proposition}\label{rels_type_ran}
+    Let $R\in\rels{A}{B}$.
+    Suppose $(a,b)\in R$.
+    Then $b\in B$.
+\end{proposition}
+\begin{proof}
+    $(a,b)\in A\times B$ by \cref{rels_type}.
+\end{proof}
+
+\begin{proposition}\label{rels_restrict_dom}
+    Let $R\in\rels{A}{B}$.
+    Then $R\in\rels{\dom{R}}{B}$.
+\end{proposition}
+\begin{proof}
+    $R$ is a relation by \cref{rels_is_relation}.
+    $\dom{R}\subseteq \dom{R}$ by \cref{subseteq_refl}.
+    $\ran{R}\subseteq B$.
+    Follows by \cref{rels_intro_dom_and_ran}.
+\end{proof}
+
+\begin{proposition}\label{rels_restrict_ran}
+    Let $R\in\rels{A}{B}$.
+    Then $R\in\rels{A}{\ran{R}}$.
+\end{proposition}
+\begin{proof}
+    $R$ is a relation by \cref{rels_is_relation}.
+    $\dom{R}\subseteq A$.
+    $\ran{R}\subseteq \ran{R}$ by \cref{subseteq_refl}.
+    Follows by \cref{rels_intro_dom_and_ran}.
+\end{proof}
+
+\subsection{Identity relation}
+
+\begin{definition}\label{id}
+    $\identity{A} = \{(a,a)\mid a\in A\}$.
+\end{definition}
+
+\begin{proposition}\label{id_iff}
+    $a\mathrel{\identity{A}}b$ iff $a = b\in A$.
+\end{proposition}
+\begin{proof}
+    Follows by \cref{id,pair_eq_iff}.
+\end{proof}
+
+\begin{proposition}\label{id_elem_intro}
+    Suppose $a\in A$.
+    Then $(a, a) \in\identity{A}$.
+\end{proposition}
+\begin{proof}
+    Follows by \cref{id}.
+\end{proof}
+
+\begin{proposition}\label{id_elem_inspect}
+    Suppose $w\in\identity{A}$.
+    Then there exists $a\in A$ such that $w = (a, a)$.
+\end{proposition}
+\begin{proof}
+    Follows by \cref{id}.
+\end{proof}
+
+\begin{proposition}\label{id_is_relation}
+    $\identity{A}$ is a relation.
+\end{proposition}
+
+\begin{proposition}\label{id_dom}
+    $\dom{\identity{A}} = A$.
+\end{proposition}
+\begin{proof}
+    For every $a\in A$ we have $(a, a)\in \identity{A}$.
+    $\dom{\identity{A}} = A$ by set extensionality.
+\end{proof}
+
+\begin{proposition}\label{id_ran}
+    $\ran{\identity{A}} = A$.
+\end{proposition}
+\begin{proof}
+    For every $a$ we have $a\in \ran{\identity{A}}$ iff $a\in A$
+        by \cref{ran_iff,id_iff}.
+    For every $a\in A$ we have $(a, a)\in \identity{A}$.
+    $\ran{\identity{A}} = A$ by set extensionality.
+\end{proof}
+
+\begin{proposition}\label{id_img}
+    $\img{\identity{A}}{B} = A\inter B$.
+\end{proposition}
+\begin{proof}
+    Follows by set extensionality.
+\end{proof}
+
+\begin{proposition}\label{id_elem_rels}
+    $\identity{A}\in\rels{A}{A}$.
+\end{proposition}
+
+\subsection{Membership relation}
+
+\begin{definition}\label{memrel}
+    $\memrel{A} = \{(a, b)\mid a\in A, b\in A \mid a\in b\}$.
+\end{definition}
+
+\begin{proposition}\label{memrel_elem_intro}
+    Suppose $a, b\in A$.
+    Suppose $a\in b$.
+    Then $(a, b) \in\memrel{A}$.
+\end{proposition}
+
+\begin{proposition}\label{memrel_elem_inspect}
+    Suppose $w\in\memrel{A}$.
+    Then there exists $a, b\in A$ such that $w = (a, b)$ and $a\in b$.
+\end{proposition}
+\begin{proof}
+    Follows by \cref{memrel}.
+\end{proof}
+
+\begin{proposition}\label{memrel_is_relation}
+    $\memrel{A}$ is a relation.
+\end{proposition}
+
+\subsection{Subset relation}
+
+\begin{definition}\label{subseteqrel}
+    $\subseteqrel{A} = \{(a, b)\mid a\in A, b\in A \mid a\subseteq b\}$.
+\end{definition}
+
+\begin{proposition}\label{subseteqrel_is_relation}
+    $\subseteqrel{A}$ is a relation.
+\end{proposition}

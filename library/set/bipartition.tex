@@ -1,0 +1,72 @@
+% The theory of splitting sets into two (inhabited, disjoint) partitions.
+
+% See also "bisections" here: https://isarmathlib.org/Partitions_ZF.html
+
+\import{set.tex}
+\import{set/cons.tex}
+\import{set/powerset.tex}
+
+\subsection{Bipartitions}
+
+\begin{abbreviation}\label{bipartitions}
+    $C$ is partitioned by $A$ and $B$ iff $A,B\neq\emptyset$ and $A$ is disjoint from $B$ and $A\union B = C$.
+\end{abbreviation}
+
+\begin{definition}\label{bipartitions_of_a_set}
+    $\bipartitions{X} = \{ p\in\pow{X}\times\pow{X}\mid \text{$X$ is partitioned by $\fst{p}$ and $\snd{p}$}\}$.
+\end{definition}
+
+\begin{abbreviation}\label{is_a_bipartition_of}
+    $P$ is a bipartition of $X$ iff $P\in\bipartitions{X}$.
+\end{abbreviation}
+
+\begin{proposition}\label{bipartition_intro}
+    Suppose $C$ is partitioned by $A$ and $B$.
+    Then $(A, B)$ is a bipartition of $C$.
+\end{proposition}
+\begin{proof}
+    $(A,B)\in\pow{C}\times\pow{C}$.
+    $C$ is partitioned by $\fst{(A,B)}$ and $\snd{(A,B)}$.
+    Thus $(A, B)$ is a bipartition of $C$ by \cref{bipartitions_of_a_set}.
+\end{proof}
+
+\begin{proposition}\label{bipartition_elim}
+    Suppose $(A, B)$ is a bipartition of $C$.
+    Then $C$ is partitioned by $A$ and $B$.
+\end{proposition}
+\begin{proof}
+    $\fst{(A, B)} = A$.
+    $\snd{(A, B)} = B$.
+\end{proof}
+
+\begin{proposition}\label{bipartitions_emptyset}
+    $\bipartitions{\emptyset}$ is empty.
+\end{proposition}
+
+\begin{proposition}\label{union_eq_cons_implies_union_remove_eq}
+    Suppose $d\notin C$.
+    Suppose $A\union B = \cons{d}{C}$.
+    Suppose $A, B\neq \{d\}$.
+    Then $\remove{d}{A}\union \remove{d}{B} = C$.
+\end{proposition}
+\begin{proof}
+    Follows by set extensionality.
+\end{proof}
+
+\begin{proposition}\label{bipartitions_cons}
+    Suppose $d\notin C$.
+    Suppose $\cons{d}{C}$ is partitioned by $A$ and $B$.
+    Suppose $A, B\neq \{d\}$.
+    Then $C$ is partitioned by $\remove{d}{A}$ and $\remove{d}{B}$.
+\end{proposition}
+\begin{proof}
+    $\remove{d}{A},\remove{d}{B}\neq\emptyset$.
+    $\remove{d}{A}\union \remove{d}{B} = C$ by \cref{union_eq_cons_implies_union_remove_eq}.
+\end{proof}
+
+% TODO
+%\begin{proposition}\label{singleton_bipartition}
+%    Suppose $b\notin A$.
+%    Suppose $A$ and $\{b\}$ bipartition $\cons{b}{C}$.
+%    Then $A = C$.
+%\end{proposition}

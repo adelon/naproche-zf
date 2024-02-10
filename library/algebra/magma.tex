@@ -1,0 +1,100 @@
+\import{function.tex}
+
+\section{Magmas}
+
+\begin{struct}\label{magma}
+    A magma $A$ is a onesorted structure equipped with
+    \begin{enumerate}
+        \item $\mul$
+    \end{enumerate}
+    such that
+    \begin{enumerate}
+        \item\label{magma_welldef} for all $a, b\in \carrier[A]$ we have $\mul[A](a,b)\in \carrier[A]$.
+    \end{enumerate}
+\end{struct}
+
+\begin{abbreviation}\label{cdot}
+    $a\cdot b = \mul(a,b)$.
+\end{abbreviation}
+
+\begin{abbreviation}\label{idempotentelement}
+    $a$ is an idempotent element of $A$ iff
+    $a\in\carrier[A]$ and
+    $\mul[A](a,a) = a$.
+\end{abbreviation}
+
+
+\begin{definition}\label{idempotents}
+    $\idempotents{A} = \{a\in\carrier[A]\mid \mul[A](a,a) = a\}$.
+\end{definition}
+
+%\begin{definition}\label{rightinternalorbit}
+%    $\rightinternalorbit{a}{A} = \{\mul[A](a,a') \mid a'\in\carrier[A]\}$.
+%\end{definition}
+
+\begin{abbreviation}\label{commutes}
+    $a$ commutes with $b$ iff $a\cdot b = b\cdot a$.
+\end{abbreviation}
+
+\begin{definition}\label{submagma}
+    $A$ is a submagma of $B$ iff
+        $A$ is a magma and
+        $B$ is a magma and
+        $\carrier[A]\subseteq \carrier[B]$ and
+        $\mul[A]\subseteq \mul[B]$.
+\end{definition}
+
+\begin{proposition}\label{submagma_transitive}
+    Suppose $A$ is a submagma of $B$.
+    Suppose $B$ is a submagma of $C$.
+    Then $A$ is a submagma of $C$.
+\end{proposition}
+\begin{proof}
+    Follows by \cref{submagma,subseteq_transitive}.
+\end{proof}
+
+\begin{struct}\label{unitalmagma}
+    A unital magma $A$ is a magma equipped with
+    \begin{enumerate}
+        \item $\neutral$
+    \end{enumerate}
+    such that
+    \begin{enumerate}
+        \item\label{unitalmagma_type} $\neutral[A]\in \carrier[A]$.
+        \item\label{unitalmagma_right} for all $a\in \carrier[A]$ we have $\mul[A](a,\neutral[A]) = a$.
+        \item\label{unitalmagma_left} for all $a\in \carrier[A]$ we have $\mul[A](\neutral[A], a) = a$.
+    \end{enumerate}
+\end{struct}
+
+\begin{proposition}\label{unitalmagma_mul_neutral_neutral}
+    Let $A$ be a unital magma.
+    Then $\mul(\neutral,\neutral) = \neutral$.
+\end{proposition}
+
+\begin{proposition}\label{unitalmagma_neutral_unique}
+    Let $A$ be a unital magma.
+    Let $e$ be a set such that $e\in A$ and for all $x\in A$ we have $\mul(x, e) = x = \mul(e, x)$.
+    Then $e = \neutral$.
+\end{proposition}
+\begin{proof}
+    Follows by \cref{unitalmagma_type,unitalmagma_left}.
+\end{proof}
+
+
+
+\begin{definition}[Left orbit]\label{left_orbit}
+    $\LeftOrb{x}{A} = \{\mul[A](a,x) \mid a\in\carrier[A] \}$.
+\end{definition}
+
+\begin{proposition}\label{eq_left_orbit_witness}
+    Let $A$ be a magma.
+    Let $e,f\in\carrier[A]$.
+    Suppose $\LeftOrb{e}{A} = \LeftOrb{f}{A}$.
+    Let $x\in\carrier[A]$.
+    Then there exists $y\in\carrier[A]$ such that $x\cdot e = y\cdot f$.
+\end{proposition}
+\begin{proof}
+    We have $x\cdot e\in \LeftOrb{e}{A}$ by \cref{left_orbit}.
+    Thus $x\cdot e\in\LeftOrb{f}{A}$ by assumption.
+    Take $y\in\carrier[A]$ such that $x\cdot e = y\cdot f$ by \cref{left_orbit}.
+\end{proof}

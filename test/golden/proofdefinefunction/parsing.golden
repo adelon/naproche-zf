@@ -1,0 +1,184 @@
+[ BlockDefn
+    ( SourcePos
+        { sourceName = "test/examples/proofdefinefunction.tex"
+        , sourceLine = Pos 3
+        , sourceColumn = Pos 1
+        }
+    )
+    ( Marker "apply" )
+    ( DefnOp
+        ( SymbolPattern
+            [ Just
+                ( Command "apply" )
+            , Just InvisibleBraceL
+            , Nothing
+            , Just InvisibleBraceR
+            , Just InvisibleBraceL
+            , Nothing
+            , Just InvisibleBraceR
+            ]
+            [ NamedVar "f"
+            , NamedVar "x"
+            ]
+        )
+        ( ExprVar
+            ( NamedVar "x" )
+        )
+    )
+, BlockDefn
+    ( SourcePos
+        { sourceName = "test/examples/proofdefinefunction.tex"
+        , sourceLine = Pos 8
+        , sourceColumn = Pos 1
+        }
+    )
+    ( Marker "dom" )
+    ( DefnOp
+        ( SymbolPattern
+            [ Just
+                ( Command "dom" )
+            , Just InvisibleBraceL
+            , Nothing
+            , Just InvisibleBraceR
+            ]
+            [ NamedVar "f" ]
+        )
+        ( ExprVar
+            ( NamedVar "f" )
+        )
+    )
+, BlockDefn
+    ( SourcePos
+        { sourceName = "test/examples/proofdefinefunction.tex"
+        , sourceLine = Pos 13
+        , sourceColumn = Pos 1
+        }
+    )
+    ( Marker "rightunique" )
+    ( Defn []
+        ( DefnAdj Nothing
+            ( NamedVar "f" )
+            ( Adj
+                [ Just
+                    ( Word "right-unique" )
+                ] []
+            )
+        )
+        ( StmtFormula
+            ( FormulaChain
+                ( ChainBase
+                    ( ExprVar
+                        ( NamedVar "f" ) :| []
+                    ) Positive
+                    ( RelationSymbol
+                        ( Symbol "=" )
+                    )
+                    ( ExprVar
+                        ( NamedVar "f" ) :| []
+                    )
+                )
+            )
+        )
+    )
+, BlockDefn
+    ( SourcePos
+        { sourceName = "test/examples/proofdefinefunction.tex"
+        , sourceLine = Pos 18
+        , sourceColumn = Pos 1
+        }
+    )
+    ( Marker "relation" )
+    ( Defn []
+        ( DefnNoun
+            ( NamedVar "f" )
+            ( Noun
+                ( SgPl
+                    { sg =
+                        [ Just
+                            ( Word "relation" )
+                        ]
+                    , pl =
+                        [ Just
+                            ( Word "relations" )
+                        ]
+                    }
+                ) []
+            )
+        )
+        ( StmtFormula
+            ( FormulaChain
+                ( ChainBase
+                    ( ExprVar
+                        ( NamedVar "f" ) :| []
+                    ) Positive
+                    ( RelationSymbol
+                        ( Symbol "=" )
+                    )
+                    ( ExprVar
+                        ( NamedVar "f" ) :| []
+                    )
+                )
+            )
+        )
+    )
+, BlockLemma
+    ( SourcePos
+        { sourceName = "test/examples/proofdefinefunction.tex"
+        , sourceLine = Pos 22
+        , sourceColumn = Pos 1
+        }
+    )
+    ( Marker "definefunctiontest" )
+    ( Lemma []
+        ( StmtConnected Implication
+            ( StmtFormula
+                ( FormulaChain
+                    ( ChainBase
+                        ( ExprVar
+                            ( NamedVar "x" ) :| []
+                        ) Positive
+                        ( RelationSymbol
+                            ( Command "in" )
+                        )
+                        ( ExprVar
+                            ( NamedVar "y" ) :| []
+                        )
+                    )
+                )
+            )
+            ( StmtFormula
+                ( FormulaChain
+                    ( ChainBase
+                        ( ExprVar
+                            ( NamedVar "x" ) :| []
+                        ) Positive
+                        ( RelationSymbol
+                            ( Command "in" )
+                        )
+                        ( ExprVar
+                            ( NamedVar "y" ) :| []
+                        )
+                    )
+                )
+            )
+        )
+    )
+, BlockProof
+    ( SourcePos
+        { sourceName = "test/examples/proofdefinefunction.tex"
+        , sourceLine = Pos 25
+        , sourceColumn = Pos 1
+        }
+    )
+    ( DefineFunction
+        ( NamedVar "f" )
+        ( NamedVar "z" )
+        ( ExprVar
+            ( NamedVar "z" )
+        )
+        ( NamedVar "z" )
+        ( ExprVar
+            ( NamedVar "x" )
+        ) ( Qed JustificationEmpty )
+    )
+]

@@ -1,0 +1,135 @@
+[ BlockAxiom
+    ( SourcePos
+        { sourceName = "test/examples/finite-set-terms.tex"
+        , sourceLine = Pos 1
+        , sourceColumn = Pos 1
+        }
+    )
+    ( Marker "cons" )
+    ( Axiom []
+        ( Connected Equivalence
+            ( TermSymbol
+                ( SymbolPredicate
+                    ( PredicateRelation
+                        ( Command "in" )
+                    )
+                )
+                [ TermVar
+                    ( NamedVar "x" )
+                , TermSymbol
+                    ( SymbolMixfix
+                        [ Just
+                            ( Command "cons" )
+                        , Just InvisibleBraceL
+                        , Nothing
+                        , Just InvisibleBraceR
+                        , Just InvisibleBraceL
+                        , Nothing
+                        , Just InvisibleBraceR
+                        ]
+                    )
+                    [ TermVar
+                        ( NamedVar "y" )
+                    , TermVar
+                        ( NamedVar "X" )
+                    ]
+                ]
+            )
+            ( Connected Disjunction
+                ( TermSymbol
+                    ( SymbolPredicate
+                        ( PredicateRelation
+                            ( Symbol "=" )
+                        )
+                    )
+                    [ TermVar
+                        ( NamedVar "x" )
+                    , TermVar
+                        ( NamedVar "y" )
+                    ]
+                )
+                ( TermSymbol
+                    ( SymbolPredicate
+                        ( PredicateRelation
+                            ( Command "in" )
+                        )
+                    )
+                    [ TermVar
+                        ( NamedVar "x" )
+                    , TermVar
+                        ( NamedVar "X" )
+                    ]
+                )
+            )
+        )
+    )
+, BlockDefn
+    ( SourcePos
+        { sourceName = "test/examples/finite-set-terms.tex"
+        , sourceLine = Pos 5
+        , sourceColumn = Pos 1
+        }
+    )
+    ( Marker "unit" )
+    ( DefnOp
+        [ Just
+            ( Command "unit" )
+        ] []
+        ( TermSymbol
+            ( SymbolMixfix
+                [ Just
+                    ( Command "cons" )
+                , Just InvisibleBraceL
+                , Nothing
+                , Just InvisibleBraceR
+                , Just InvisibleBraceL
+                , Nothing
+                , Just InvisibleBraceR
+                ]
+            )
+            [ TermSymbol
+                ( SymbolMixfix
+                    [ Just
+                        ( Command "emptyset" )
+                    ]
+                ) []
+            , TermSymbol
+                ( SymbolMixfix
+                    [ Just
+                        ( Command "emptyset" )
+                    ]
+                ) []
+            ]
+        )
+    )
+, BlockLemma
+    ( SourcePos
+        { sourceName = "test/examples/finite-set-terms.tex"
+        , sourceLine = Pos 9
+        , sourceColumn = Pos 1
+        }
+    )
+    ( Marker "emptyset_in_unit" )
+    ( Lemma []
+        ( TermSymbol
+            ( SymbolPredicate
+                ( PredicateRelation
+                    ( Command "in" )
+                )
+            )
+            [ TermSymbol
+                ( SymbolMixfix
+                    [ Just
+                        ( Command "emptyset" )
+                    ]
+                ) []
+            , TermSymbol
+                ( SymbolMixfix
+                    [ Just
+                        ( Command "unit" )
+                    ]
+                ) []
+            ]
+        )
+    )
+]

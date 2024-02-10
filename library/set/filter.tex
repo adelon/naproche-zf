@@ -1,0 +1,97 @@
+\import{set.tex}
+\import{set/powerset.tex}
+
+\section{Filters}
+
+\begin{abbreviation}\label{upwardclosed}
+    $F$ is upward-closed in $S$ iff
+    for all $A, B$ such that $A\subseteq B\subseteq S$ and $A\in F$ we have $B\in F$.
+\end{abbreviation}
+
+\begin{definition}\label{filter}
+    $F$ is a filter on $S$ iff
+    $F$ is a family of subsets of $S$
+    and $S$ is inhabited
+    and $S\in F$
+    and $\emptyset\notin F$
+    and $F$ is closed under binary intersections
+    and $F$ is upward-closed in $S$.
+\end{definition}
+
+\begin{definition}\label{principalfilter}
+    $\principalfilter{S}{A} = \{X\in\pow{S}\mid A\subseteq X\}$.
+\end{definition}
+
+%\begin{proposition}\label{principalfilter_domain_inhabited}
+%    Suppose $F$ is a filter on $S$.
+%    Then $S$ is inhabited.
+%\end{proposition}
+
+\begin{proposition}\label{principalfilter_is_filter}
+    Suppose $A\subseteq S$.
+    Suppose $A$ is inhabited.
+    Then $\principalfilter{S}{A}$ is a filter on $S$.
+\end{proposition}
+\begin{proof}
+    $S$ is inhabited. % since $A$ is inhabited and $A\subseteq S$.
+    $\principalfilter{S}{A}$ is a family of subsets of $S$.
+    $S\in \principalfilter{S}{A}$.
+    $\emptyset\notin \principalfilter{S}{A}$.
+    $\principalfilter{S}{A}$ is closed under binary intersections.
+    $\principalfilter{S}{A}$ is upward-closed in $S$.
+    Follows by \cref{filter}.
+\end{proof}
+
+\begin{proposition}\label{principalfilter_elem_generator}
+    Suppose $A\subseteq S$.
+    $A\in\principalfilter{S}{A}$.
+\end{proposition}
+\begin{proof}
+    $A\in\pow{S}$.
+\end{proof}
+
+\begin{proposition}\label{principalfilter_notelem_implies_notsupseteq}
+    Let $X\in\pow{S}$.
+    Suppose $X\notin\principalfilter{S}{A}$.
+    Then $A\not\subseteq X$.
+\end{proposition}
+\begin{proof}
+\end{proof}
+
+\begin{definition}\label{maximalfilter}
+    $F$ is a maximal filter on $S$ iff
+    $F$ is a filter on $S$ and there exists no filter $F'$ on $S$ such that $F\subset F'$.
+\end{definition}
+
+\begin{proposition}\label{principalfilter_singleton_is_filter}
+    Suppose $a\in S$.
+    Then $\principalfilter{S}{\{a\}}$ is a filter on $S$.
+\end{proposition}
+\begin{proof}
+    $\{a\}\subseteq S$.
+    $\{a\}$ is inhabited.
+    Follows by \cref{principalfilter_is_filter}.
+\end{proof}
+
+\begin{proposition}\label{principalfilter_singleton_is_maximal_filter}
+    Suppose $a\in S$.
+    Then $\principalfilter{S}{\{a\}}$ is a maximal filter on $S$.
+\end{proposition}
+\begin{proof}
+    $\{a\}\subseteq S$.
+    $\{a\}$ is inhabited.
+    Thus $\principalfilter{S}{\{a\}}$ is a filter on $S$ by \cref{principalfilter_is_filter}.
+    It suffices to show that there exists no filter $F'$ on $S$ such that $\principalfilter{S}{\{a\}}\subset F'$.
+    Suppose not.
+    Take a filter $F'$ on $S$ such that $\principalfilter{S}{\{a\}}\subset F'$.
+    Take $X\in F'$ such that $X\notin \principalfilter{S}{\{a\}}$.
+    $X\in\pow{S}$.
+    Thus $\{a\}\not\subseteq X$ by \cref{principalfilter_notelem_implies_notsupseteq}.
+    Thus $a\notin X$.
+    $\{a\}\in F'$
+        % TODO clean
+        by \cref{principalfilter,elem_subseteq,union_intro_left,subset,union_absorb_subseteq_left,subseteq_refl,powerset_intro}.
+    Thus $\emptyset = X\inter \{a\}$.
+    Hence $\emptyset\in F'$ by \cref{filter}.
+    Follows by \hyperref[filter]{contradiction to the definition of a filter}.
+\end{proof}

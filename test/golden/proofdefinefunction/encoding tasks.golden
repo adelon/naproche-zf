@@ -1,0 +1,9 @@
+fof(definefunctiontest,conjecture,elem(fx,fy)=>elem(fx,fy)).
+fof(relation,axiom,![Xf]:(relation(Xf)<=>Xf=Xf)).
+fof(rightunique,axiom,![Xf]:(rightunique(Xf)<=>Xf=Xf)).
+fof(dom,axiom,![Xf]:dom(Xf)=Xf).
+fof(apply,axiom,![Xf,Xx]:apply(Xf,Xx)=Xx).
+fof(definefunctiontest1,axiom,relation(ff)).
+fof(definefunctiontest2,axiom,rightunique(ff)).
+fof(definefunctiontest3,axiom,![Xz]:(elem(Xz,fx)=>apply(ff,Xz)=Xz)).
+fof(definefunctiontest4,axiom,dom(ff)=fx).

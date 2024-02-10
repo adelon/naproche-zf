@@ -1,0 +1,81 @@
+\import{set.tex}
+\import{relation.tex}
+
+
+\subsection{Injective relations}
+
+% Injective relations are also called "left-unique"
+\begin{definition}\label{injective}
+    $R$ is injective iff for all $a,a',b$ such that $a, a'\mathrel{R} b$ we have $a = a'$.
+\end{definition}
+
+\begin{abbreviation}\label{leftunique}
+    $R$ is left-unique iff $R$ is injective.
+\end{abbreviation}
+
+\begin{proposition}\label{subseteq_of_injective_is_injective}
+    Suppose $S\subseteq R$.
+    Suppose $R$ is injective.
+    Then $S$ is injective.
+\end{proposition}
+
+\begin{proposition}\label{restrl_injective}
+    Suppose $R$ is injective.
+    Then $\restrl{R}{A}$ is injective.
+\end{proposition}
+\begin{proof}
+    $\restrl{R}{A}\subseteq R$.
+\end{proof}
+
+\begin{proposition}\label{circ_injective}
+    Suppose $R$ and $S$ are injective.
+    Then $S\circ R$ is injective.
+\end{proposition}
+
+\begin{proposition}\label{identity_injective}
+    Then $\identity{A}$ is injective.
+\end{proposition}
+
+\subsection{Right-unique relations}
+
+% also called "functional" or "univalent"
+\begin{definition}\label{rightunique}
+    $R$ is right-unique iff
+    for all $a,b,b'$ such that $a\mathrel{R} b, b'$ we have $b = b'$.
+\end{definition}
+
+\begin{abbreviation}\label{onetoone}
+    $R$ is one-to-one iff $R$ is right-unique and injective.
+\end{abbreviation}
+
+\begin{proposition}\label{subseteq_of_rightunique_is_rightunique}
+    Suppose $S\subseteq R$.
+    Suppose $R$ is right-unique.
+    Then $S$ is right-unique.
+\end{proposition}
+
+\begin{proposition}\label{circ_rightunique}
+    Suppose $R$ and $S$ are right-unique.
+    Then $S\circ R$ is right-unique.
+\end{proposition}
+
+
+
+\subsection{Left-total relations}
+
+\begin{definition}\label{lefttotal}
+    $R$ is left-total on $A$ iff
+    for all $a\in A$ there exists $b$ such that $a\mathrel{R} b$.
+\end{definition}
+
+
+\subsection{Right-total relations}
+
+\begin{definition}\label{righttotal}
+    $R$ is right-total on $B$ iff
+    for all $b\in B$ there exists $a$ such that $a\mathrel{R} b$.
+\end{definition}
+
+\begin{abbreviation}\label{surjective}
+    $R$ is surjective on $B$ iff $R$ is right-total on $B$.
+\end{abbreviation}

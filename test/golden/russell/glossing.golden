@@ -1,0 +1,155 @@
+[ BlockDefn
+    ( SourcePos
+        { sourceName = "test/examples/russell.tex"
+        , sourceLine = Pos 1
+        , sourceColumn = Pos 1
+        }
+    )
+    ( Marker "universal_set" )
+    ( DefnPredicate []
+        ( PredicateAdj
+            [ Just
+                ( Word "universal" )
+            ]
+        )
+        ( NamedVar "V" :| [] )
+        ( Quantified Universally
+            ( Scope
+                ( Connected Implication ( PropositionalConstant IsTop )
+                    ( TermSymbol
+                        ( SymbolPredicate
+                            ( PredicateRelation
+                                ( Command "in" )
+                            )
+                        )
+                        [ TermVar
+                            ( B
+                                ( NamedVar "x" )
+                            )
+                        , TermVar
+                            ( F
+                                ( TermVar
+                                    ( NamedVar "V" )
+                                )
+                            )
+                        ]
+                    )
+                )
+            )
+        )
+    )
+, BlockLemma
+    ( SourcePos
+        { sourceName = "test/examples/russell.tex"
+        , sourceLine = Pos 7
+        , sourceColumn = Pos 1
+        }
+    )
+    ( Marker "no_universal_set" )
+    ( Lemma []
+        ( Not
+            ( Quantified Existentially
+                ( Scope
+                    ( Connected Conjunction ( PropositionalConstant IsTop )
+                        ( TermSymbol
+                            ( SymbolPredicate
+                                ( PredicateAdj
+                                    [ Just
+                                        ( Word "universal" )
+                                    ]
+                                )
+                            )
+                            [ TermVar
+                                ( B
+                                    ( FreshVar 0 )
+                                )
+                            ]
+                        )
+                    )
+                )
+            )
+        )
+    )
+, BlockProof
+    ( SourcePos
+        { sourceName = "test/examples/russell.tex"
+        , sourceLine = Pos 10
+        , sourceColumn = Pos 1
+        }
+    )
+    ( ByContradiction
+        ( Take
+            ( NamedVar "V" :| [] )
+            ( Connected Conjunction ( PropositionalConstant IsTop )
+                ( TermSymbol
+                    ( SymbolPredicate
+                        ( PredicateAdj
+                            [ Just
+                                ( Word "universal" )
+                            ]
+                        )
+                    )
+                    [ TermVar
+                        ( NamedVar "V" )
+                    ]
+                )
+            ) JustificationEmpty
+            ( Define
+                ( NamedVar "R" )
+                ( TermSep
+                    ( NamedVar "x" )
+                    ( TermVar
+                        ( NamedVar "V" )
+                    )
+                    ( Scope
+                        ( Not
+                            ( TermSymbol
+                                ( SymbolPredicate
+                                    ( PredicateRelation
+                                        ( Command "in" )
+                                    )
+                                )
+                                [ TermVar
+                                    ( B () )
+                                , TermVar
+                                    ( B () )
+                                ]
+                            )
+                        )
+                    )
+                )
+                ( Have
+                    ( Connected Equivalence
+                        ( TermSymbol
+                            ( SymbolPredicate
+                                ( PredicateRelation
+                                    ( Command "in" )
+                                )
+                            )
+                            [ TermVar
+                                ( NamedVar "R" )
+                            , TermVar
+                                ( NamedVar "R" )
+                            ]
+                        )
+                        ( Not
+                            ( TermSymbol
+                                ( SymbolPredicate
+                                    ( PredicateRelation
+                                        ( Command "in" )
+                                    )
+                                )
+                                [ TermVar
+                                    ( NamedVar "R" )
+                                , TermVar
+                                    ( NamedVar "R" )
+                                ]
+                            )
+                        )
+                    ) JustificationEmpty
+                    ( Have ( PropositionalConstant IsBottom ) JustificationEmpty ( Qed JustificationEmpty ) )
+                )
+            )
+        )
+    )
+]

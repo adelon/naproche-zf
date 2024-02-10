@@ -1,0 +1,3 @@
+fof(indefinite_test_forall,conjecture,$true).
+------------------
+fof(indefinite_test_exists,conjecture,$true).
