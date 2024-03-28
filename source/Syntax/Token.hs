@@ -431,7 +431,7 @@ lexeme p = do
     pure (Located start t)
 
 space :: Lexer ()
-space = void (Char.char ' ' <|> Char.char '\n')
+space = void (Char.char ' ' <|> Char.char '\n' <|> Char.char '\r')
     <|> void (Char.string "\\ " <|> Char.string "\\\\" <|> Char.string "\\!" <|> Char.string "\\," <|> Char.string "\\:" <|> Char.string "\\;" <|> Char.string "\\;")
 
 whitespace :: Lexer ()
