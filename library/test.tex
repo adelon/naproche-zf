@@ -1,0 +1,54 @@
+\import{algebra/semigroup.tex}
+\section{monoid}
+
+\begin{struct}\label{monoid}
+    A monoid $A$ is a semigroup equipped with
+    \begin{enumerate}
+        \item $\neutral$
+    \end{enumerate}
+    such that
+    \begin{enumerate} %muss hier ein enumerate hin
+        \item\label{monoid_type} $\neutral[A]\in \carrier[A]$.
+        \item\label{monoid_right} for all $a\in \carrier[A]$ we have $\mul[A](a,\neutral[A]) = a$.
+        \item\label{monoid_left} for all $a\in \carrier[A]$ we have $\mul[A](\neutral[A], a) = a$.
+    \end{enumerate}
+\end{struct}
+
+
+\section{Group}
+
+\begin{struct}\label{group}
+    A group $A$ is a monoid such that
+    \begin{enumerate}
+        \item\label{group_inverse} for all $a \in \carrier[A]$ there exist $b \in \carrier[A]$ such that $\mul[A](a, b) =\neutral[A]$.
+    \end{enumerate} 
+\end{struct}    
+
+\begin{abbreviation}\label{cfourdot}
+    $a\cdot b = \mul(a,b)$.
+\end{abbreviation}
+
+\begin{lemma}\label{neutral_is_idempotent}
+    Let $G$ be a group. $\neutral[G]$ is a idempotent element of $G$.
+\end{lemma}
+
+\begin{proposition}\label{leftinverse_eq_rightinverse}
+    Let $G$ be a group and assume $a \in G$.
+    Then there exist $b\in G$ 
+    such that $a \cdot b = \neutral[G]$ and $b \cdot a = \neutral[G]$.
+\end{proposition}
+\begin{proof}
+    There exist $b \in G$ such that $a \cdot b = \neutral[G]$.
+    There exist $c \in G$ such that $b \cdot c = \neutral[G]$.
+    $a \cdot b = \neutral[G]$.
+    $(a \cdot b) \cdot c = (\neutral[G]) \cdot c$.
+    $(a \cdot b) \cdot c = a \cdot (b \cdot c)$.
+    $a \cdot \neutral[G] = \neutral[G] \cdot c$.
+    $c = c \cdot \neutral[G]$.
+    $c = \neutral[G] \cdot c$.
+    $a \cdot \neutral[G] = c \cdot \neutral[G]$.
+    $a \cdot \neutral[G] = c$ by \cref{monoid_right}.
+    $a = c$ by \cref{monoid_right}.
+    $b \cdot a = b \cdot c$.
+    $b \cdot a = \neutral[G]$.
+\end{proof}
