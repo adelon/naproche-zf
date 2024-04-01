@@ -5,7 +5,7 @@
         , sourceColumn = Pos 1
         }
     )
-    ( Marker "first_proposition" )
+    ( Marker "prop1" )
     ( Lemma []
         ( TermSymbol
             ( SymbolPredicate
@@ -27,7 +27,7 @@
         , sourceColumn = Pos 1
         }
     )
-    ( Marker "second_proposition" )
+    ( Marker "prop2" )
     ( Lemma []
         ( TermSymbol
             ( SymbolPredicate
@@ -49,7 +49,7 @@
         , sourceColumn = Pos 1
         }
     )
-    ( Marker "third_proposition" )
+    ( Marker "prop3" )
     ( Lemma []
         ( TermSymbol
             ( SymbolPredicate
@@ -73,7 +73,7 @@
     )
     ( Qed
         ( JustificationRef
-            ( Marker "first_proposition" :| [] )
+            ( Marker "prop1" :| [] )
         )
     )
 , BlockLemma
@@ -83,7 +83,7 @@
         , sourceColumn = Pos 1
         }
     )
-    ( Marker "fourth_proposition" )
+    ( Marker "prop4" )
     ( Lemma []
         ( TermSymbol
             ( SymbolPredicate
@@ -127,7 +127,7 @@
             )
         )
         ( JustificationRef
-            ( Marker "first_proposition" :| [] )
+            ( Marker "prop1" :| [] )
         ) ( Qed JustificationEmpty )
     )
 , BlockLemma
@@ -137,7 +137,7 @@
         , sourceColumn = Pos 1
         }
     )
-    ( Marker "fifth_proposition" )
+    ( Marker "prop5" )
     ( Lemma []
         ( TermSymbol
             ( SymbolPredicate
