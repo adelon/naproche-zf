@@ -1,7 +1,7 @@
 [ Task
     { taskDirectness = Direct
     , taskHypotheses = []
-    , taskConjectureLabel = Marker "first_proposition"
+    , taskConjectureLabel = Marker "prop1"
     , taskConjecture = TermSymbol
         ( SymbolPredicate
             ( PredicateRelation
@@ -18,7 +18,7 @@
     { taskDirectness = Direct
     , taskHypotheses =
         [
-            ( Marker "first_proposition"
+            ( Marker "prop1"
             , Quantified Universally
                 ( Scope
                     ( TermSymbol
@@ -40,7 +40,7 @@
                 )
             )
         ]
-    , taskConjectureLabel = Marker "second_proposition"
+    , taskConjectureLabel = Marker "prop2"
     , taskConjecture = TermSymbol
         ( SymbolPredicate
             ( PredicateRelation
@@ -57,7 +57,7 @@
     { taskDirectness = Direct
     , taskHypotheses =
         [
-            ( Marker "first_proposition"
+            ( Marker "prop1"
             , Quantified Universally
                 ( Scope
                     ( TermSymbol
@@ -79,7 +79,7 @@
                 )
             )
         ]
-    , taskConjectureLabel = Marker "third_proposition"
+    , taskConjectureLabel = Marker "prop3"
     , taskConjecture = TermSymbol
         ( SymbolPredicate
             ( PredicateRelation
@@ -96,7 +96,7 @@
     { taskDirectness = Direct
     , taskHypotheses =
         [
-            ( Marker "first_proposition"
+            ( Marker "prop1"
             , Quantified Universally
                 ( Scope
                     ( TermSymbol
@@ -118,7 +118,7 @@
                 )
             )
         ]
-    , taskConjectureLabel = Marker "fourth_proposition"
+    , taskConjectureLabel = Marker "prop4"
     , taskConjecture = Quantified Universally
         ( Scope
             ( TermSymbol
@@ -143,7 +143,7 @@
     { taskDirectness = Direct
     , taskHypotheses =
         [
-            ( Marker "third_proposition"
+            ( Marker "prop3"
             , Quantified Universally
                 ( Scope
                     ( TermSymbol
@@ -165,7 +165,7 @@
                 )
             )
         ,
-            ( Marker "second_proposition"
+            ( Marker "prop2"
             , Quantified Universally
                 ( Scope
                     ( TermSymbol
@@ -187,7 +187,7 @@
                 )
             )
         ,
-            ( Marker "first_proposition"
+            ( Marker "prop1"
             , Quantified Universally
                 ( Scope
                     ( TermSymbol
@@ -209,7 +209,7 @@
                 )
             )
         ,
-            ( Marker "fourth_proposition1"
+            ( Marker "prop41"
             , Quantified Universally
                 ( Scope
                     ( TermSymbol
@@ -231,7 +231,7 @@
                 )
             )
         ]
-    , taskConjectureLabel = Marker "fourth_proposition"
+    , taskConjectureLabel = Marker "prop4"
     , taskConjecture = TermSymbol
         ( SymbolPredicate
             ( PredicateRelation
@@ -248,7 +248,7 @@
     { taskDirectness = Direct
     , taskHypotheses =
         [
-            ( Marker "fourth_proposition"
+            ( Marker "prop4"
             , Quantified Universally
                 ( Scope
                     ( TermSymbol
@@ -270,7 +270,7 @@
                 )
             )
         ,
-            ( Marker "third_proposition"
+            ( Marker "prop3"
             , Quantified Universally
                 ( Scope
                     ( TermSymbol
@@ -292,7 +292,7 @@
                 )
             )
         ,
-            ( Marker "second_proposition"
+            ( Marker "prop2"
             , Quantified Universally
                 ( Scope
                     ( TermSymbol
@@ -314,7 +314,7 @@
                 )
             )
         ,
-            ( Marker "first_proposition"
+            ( Marker "prop1"
             , Quantified Universally
                 ( Scope
                     ( TermSymbol
@@ -336,7 +336,7 @@
                 )
             )
         ]
-    , taskConjectureLabel = Marker "fifth_proposition"
+    , taskConjectureLabel = Marker "prop5"
     , taskConjecture = TermSymbol
         ( SymbolPredicate
             ( PredicateRelation

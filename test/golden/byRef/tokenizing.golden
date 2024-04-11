@@ -1,5 +1,5 @@
 [ BeginEnv "proposition"
-, Label "first_proposition"
+, Label "prop1"
 , BeginEnv "math"
 , Variable "a"
 , Symbol "="
@@ -8,7 +8,7 @@
 , Symbol "."
 , EndEnv "proposition"
 , BeginEnv "proposition"
-, Label "second_proposition"
+, Label "prop2"
 , BeginEnv "math"
 , Variable "b"
 , Symbol "="
@@ -17,7 +17,7 @@
 , Symbol "."
 , EndEnv "proposition"
 , BeginEnv "proposition"
-, Label "third_proposition"
+, Label "prop3"
 , BeginEnv "math"
 , Variable "c"
 , Symbol "="
@@ -29,11 +29,11 @@
 , Word "follows"
 , Word "by"
 , Ref
-    ( "first_proposition" :| [] )
+    ( "prop1" :| [] )
 , Symbol "."
 , EndEnv "proof"
 , BeginEnv "proposition"
-, Label "fourth_proposition"
+, Label "prop4"
 , BeginEnv "math"
 , Variable "e"
 , Symbol "="
@@ -56,11 +56,11 @@
 , EndEnv "math"
 , Word "by"
 , Ref
-    ( "first_proposition" :| [] )
+    ( "prop1" :| [] )
 , Symbol "."
 , EndEnv "proof"
 , BeginEnv "proposition"
-, Label "fifth_proposition"
+, Label "prop5"
 , BeginEnv "math"
 , Variable "f"
 , Symbol "="

@@ -27,7 +27,7 @@ import Base hiding (many)
 
 import Control.Monad.Combinators
 import Control.Monad.State.Strict
-import Data.Char (isAsciiLower)
+import Data.Char (isAsciiLower, isDigit)
 import Data.List.NonEmpty qualified as NonEmpty
 import Data.Text qualified as Text
 import Prettyprinter (Pretty(..))
@@ -392,7 +392,10 @@ ref = lexeme do
         _ -> Char.char '}' *> pure (Ref ms)
 
 marker :: Lexer Text
-marker = takeWhile1P Nothing (\x -> isAsciiLower x || x == '_')
+marker = do
+    c <- satisfy isAsciiLower
+    cs <- takeWhileP Nothing (\x -> isAsciiLower x || isDigit x || x == '_')
+    pure (Text.cons c cs)
 
 -- | Parses the end of an environment.
 -- Commits only after having seen "\end{".
