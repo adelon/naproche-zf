@@ -1,5 +1,5 @@
 \import{set/suc.tex}
-
+\import{set.tex}
 
 \section{Natural numbers}
 
@@ -17,5 +17,41 @@
 \end{axiom}
 
 \begin{abbreviation}\label{naturalnumber}
-    $n$ is a natural number iff $n\in\naturals$.
+    $n$ is a natural number iff $n\in \naturals$.
 \end{abbreviation}
+
+\begin{lemma}\label{emptyset_in_naturals}
+    $\emptyset\in\naturals$.    
+\end{lemma}
+
+%\begin{abbreviation}\label{zero_is_emptyset}
+%    $0 = \emptyset$.
+%\end{abbreviation}
+
+%\begin{definition}\label{additionpair}
+%    $x$ is an Additionpair iff $x \in ((\naturals\times \naturals)\times \naturals)$. 
+%\end{definition}
+
+%\begin{lemma}\label{zero_is_in_naturals}
+%    Let $n\in \naturals$. $((n, \emptyset), n)$ is an Additionpair.
+%\end{lemma}
+
+%\begin{definition}\label{valid_additionpair}
+%    $x$ is a vaildaddition iff there exist $n \in \naturals$ we have $x = ((0, n), n)$.
+%\end{definition}
+
+
+
+\begin{axiom}\label{addpair_set}
+    $\addpair$ is a set.
+\end{axiom}
+
+
+
+
+\begin{axiom}\label{addition_naturals}
+    $x \in \addpair$ iff $x \in ((\naturals\times \naturals)\times \naturals)$ and there exist $n \in \naturals$ such that $x = ((n, \emptyset), n)$.
+\end{axiom} 
+
+
+
