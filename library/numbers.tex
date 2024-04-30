@@ -1,0 +1,140 @@
+\import{nat.tex}
+\import{order/order.tex}
+\import{relation.tex}
+
+\section{The real numbers}
+
+\begin{signature}
+    $\reals$ is a set.
+\end{signature}
+
+\begin{signature}
+    $x + y$ is a set.
+\end{signature}
+
+\begin{signature}
+    $x \times y$ is a set.
+\end{signature}
+
+\begin{axiom}\label{one_in_reals}
+    $1 \in \reals$.
+\end{axiom}
+
+\begin{axiom}\label{reals_axiom_order}
+    $\lt[\reals]$ is an order on $\reals$.
+    %$\reals$ is an ordered set.
+\end{axiom}
+
+\begin{axiom}\label{reals_axiom_strictorder}
+    $\lt[\reals]$ is a strict order.
+\end{axiom}
+
+\begin{axiom}\label{reals_axiom_dense}
+    For all $x,y \in \reals$ if $(x,y)\in \lt[\reals]$ then 
+    there exist $z \in \reals$ such that $(x,z) \in \lt[\reals]$ and $(z,y) \in \lt[\reals]$.
+    
+    %For all $X,Y \subseteq \reals$ if for all $x,y$ $x\in X$ and $y \in Y$ such that $x \lt[\reals] y$ 
+    %then there exist a $z \in \reals$ such that if $x \neq z$ and $y \neq z$ $x \lt[\reals] z$ and $z \lt[\reals] y$.
+\end{axiom}
+
+\begin{axiom}\label{reals_axiom_order_def}
+    $(x,y) \in \lt[\reals]$ iff there exist $z \in \reals$ such that $(\zero, z) \in \lt[\reals]$ and $x + z = y$.
+\end{axiom}
+
+\begin{lemma}\label{reals_one_bigger_than_zero}
+    $(\zero,1) \in \lt[\reals]$.
+\end{lemma}
+
+
+\begin{axiom}\label{reals_axiom_assoc}
+    For all $x,y,z \in \reals$ $(x + y) + z = x + (y + z)$ and $(x \times y) \times z = x \times (y \times z)$.
+\end{axiom}
+
+\begin{axiom}\label{reals_axiom_kommu}
+    For all $x,y \in \reals$ $x + y = y + x$ and $x \times y = y \times x$.
+\end{axiom}
+
+\begin{axiom}\label{reals_axiom_zero_in_reals}
+    $\zero \in \reals$.
+\end{axiom}
+
+%\begin{axiom}\label{reals_axiom_one_in_reals}
+%    $\one \in \reals$.
+%\end{axiom}
+    
+\begin{axiom}\label{reals_axiom_zero}
+    %There exist $\zero \in \reals$ such that 
+    For all $x \in \reals$ $x + \zero = x$. 
+\end{axiom}
+
+\begin{axiom}\label{reals_axiom_one}
+    %There exist $1 \in \reals$ such that 
+    For all $x \in \reals$ $1 \neq \zero$ and $x \times 1 = x$.
+\end{axiom}
+
+\begin{axiom}\label{reals_axiom_add_invers}
+    For all $x \in \reals$ there exist $y \in \reals$ such that $x + y = \zero$.
+\end{axiom}
+
+%TODO: Implementing Notion for negativ number such as -x.
+
+%\begin{abbreviation}\label{reals_notion_minus}
+%    $y = -x$ iff $x + y = \zero$.
+%\end{abbreviation}                         %This abbrevation result in a killed process.
+
+\begin{axiom}\label{reals_axiom_mul_invers}
+    For all $x \in \reals$ there exist $y \in \reals$ such that  $x \neq \zero$ and $x \times y = 1$.
+\end{axiom}
+
+\begin{axiom}\label{reals_axiom_disstro1}
+    For all $x,y,z \in \reals$ $x \times (y + z) = (x \times y) + (x \times z)$.
+\end{axiom}
+
+\begin{proposition}\label{reals_disstro2}
+    For all $x,y,z \in \reals$ $(y + z) \times x = (y \times x) + (z \times x)$.
+\end{proposition}
+
+\begin{proposition}\label{reals_reducion_on_addition}
+    For all $x,y,z \in \reals$ if $x + y = x + z$ then $y = z$.
+\end{proposition}
+
+\begin{signature}
+    $\invers$ is a set.
+\begin{signature}
+
+%TODO:
+%x \rless y in einer signatur hinzufügen und  dann axiom x+z = y und dann \rlt in def per iff
+%\inv{} für inverse benutzen. Per Signatur einfüheren und dann axiomatisch absicher
+%\cdot für multiklikation verwenden. 
+%< für die relation benutzen.
+
+%\begin{signature}
+%    $y^{\rightarrow}$ is a function.
+%\end{signature}
+
+%\begin{axiom}\label{notion_multi_invers}
+%    If $y \in \reals$ then $\invers{y} \in \reals$ and $y \times y^{\rightarrow} = 1$.
+%\end{axiom}
+
+%\begin{abbreviation}\label{notion_fraction}
+%    $\frac{x}{y} = x \times y^{\rightarrow}$.
+%\end{abbreviation}
+
+\begin{lemma}\label{order_reals_lemma1}
+    For all $x,y,z \in \reals$ such that $(\zero,x) \in \lt[\reals]$ 
+    if $(y,z) \in \lt[\reals]$ 
+    then $((y \times x), (z \times x)) \in \lt[\reals]$.
+\end{lemma}
+
+\begin{lemma}\label{order_reals_lemma2}
+    For all $x,y,z \in \reals$ such that $(\zero,x) \in \lt[\reals]$ 
+    if $(y,z) \in \lt[\reals]$ 
+    then $((x \times y), (x \times z)) \in \lt[\reals]$.
+\end{lemma}
+
+
+\begin{lemma}\label{order_reals_lemma3}
+    For all $x,y,z \in \reals$ such that $(x,\zero) \in \lt[\reals]$ 
+    if $(y,z) \in \lt[\reals]$ 
+    then $((x \times z), (x \times y)) \in \lt[\reals]$.
+\end{lemma}
