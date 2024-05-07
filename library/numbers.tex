@@ -4,6 +4,14 @@
 
 \section{The real numbers}
 
+%TODO: Implementing Notion for negativ number such as -x.
+
+%TODO:
+%\inv{} für inverse benutzen. Per Signatur einfüheren und dann axiomatisch absicher
+%\cdot für multiklikation verwenden. 
+%< für die relation benutzen.
+
+
 \begin{signature}
     $\reals$ is a set.
 \end{signature}
@@ -22,19 +30,31 @@
 
 \begin{axiom}\label{reals_axiom_order}
     $\lt[\reals]$ is an order on $\reals$.
-    %$\reals$ is an ordered set.
 \end{axiom}
 
 \begin{axiom}\label{reals_axiom_strictorder}
     $\lt[\reals]$ is a strict order.
 \end{axiom}
 
+\begin{abbreviation}\label{less_on_reals}
+    $x < y$ iff $(x,y) \in \lt[\reals]$.
+\end{abbreviation}
+
+\begin{abbreviation}\label{greater_on_reals}
+    $x > y$ iff $y < x$.
+\end{abbreviation}
+
+\begin{abbreviation}\label{lesseq_on_reals}
+    $x \leq y$ iff it is wrong that $x > y$.
+\end{abbreviation}
+
+\begin{abbreviation}\label{greatereq_on_reals}
+    $x \geq y$ iff it is wrong that $x < y$.
+\end{abbreviation}
+
 \begin{axiom}\label{reals_axiom_dense}
     For all $x,y \in \reals$ if $(x,y)\in \lt[\reals]$ then 
     there exist $z \in \reals$ such that $(x,z) \in \lt[\reals]$ and $(z,y) \in \lt[\reals]$.
-    
-    %For all $X,Y \subseteq \reals$ if for all $x,y$ $x\in X$ and $y \in Y$ such that $x \lt[\reals] y$ 
-    %then there exist a $z \in \reals$ such that if $x \neq z$ and $y \neq z$ $x \lt[\reals] z$ and $z \lt[\reals] y$.
 \end{axiom}
 
 \begin{axiom}\label{reals_axiom_order_def}
@@ -57,18 +77,12 @@
 \begin{axiom}\label{reals_axiom_zero_in_reals}
     $\zero \in \reals$.
 \end{axiom}
-
-%\begin{axiom}\label{reals_axiom_one_in_reals}
-%    $\one \in \reals$.
-%\end{axiom}
-    
+  
 \begin{axiom}\label{reals_axiom_zero}
-    %There exist $\zero \in \reals$ such that 
     For all $x \in \reals$ $x + \zero = x$. 
 \end{axiom}
 
 \begin{axiom}\label{reals_axiom_one}
-    %There exist $1 \in \reals$ such that 
     For all $x \in \reals$ $1 \neq \zero$ and $x \times 1 = x$.
 \end{axiom}
 
@@ -76,11 +90,6 @@
     For all $x \in \reals$ there exist $y \in \reals$ such that $x + y = \zero$.
 \end{axiom}
 
-%TODO: Implementing Notion for negativ number such as -x.
-
-%\begin{abbreviation}\label{reals_notion_minus}
-%    $y = -x$ iff $x + y = \zero$.
-%\end{abbreviation}                         %This abbrevation result in a killed process.
 
 \begin{axiom}\label{reals_axiom_mul_invers}
     For all $x \in \reals$ there exist $y \in \reals$ such that  $x \neq \zero$ and $x \times y = 1$.
@@ -98,27 +107,8 @@
     For all $x,y,z \in \reals$ if $x + y = x + z$ then $y = z$.
 \end{proposition}
 
-\begin{signature}
-    $\invers$ is a set.
-\begin{signature}
 
-%TODO:
-%x \rless y in einer signatur hinzufügen und  dann axiom x+z = y und dann \rlt in def per iff
-%\inv{} für inverse benutzen. Per Signatur einfüheren und dann axiomatisch absicher
-%\cdot für multiklikation verwenden. 
-%< für die relation benutzen.
 
-%\begin{signature}
-%    $y^{\rightarrow}$ is a function.
-%\end{signature}
-
-%\begin{axiom}\label{notion_multi_invers}
-%    If $y \in \reals$ then $\invers{y} \in \reals$ and $y \times y^{\rightarrow} = 1$.
-%\end{axiom}
-
-%\begin{abbreviation}\label{notion_fraction}
-%    $\frac{x}{y} = x \times y^{\rightarrow}$.
-%\end{abbreviation}
 
 \begin{lemma}\label{order_reals_lemma1}
     For all $x,y,z \in \reals$ such that $(\zero,x) \in \lt[\reals]$ 
@@ -137,4 +127,16 @@
     For all $x,y,z \in \reals$ such that $(x,\zero) \in \lt[\reals]$ 
     if $(y,z) \in \lt[\reals]$ 
     then $((x \times z), (x \times y)) \in \lt[\reals]$.
+\end{lemma}
+
+\begin{lemma}\label{a}
+    For all $x,y \in \reals$ if $x > y$ then $x \geq y$.
+\end{lemma}
+
+\begin{lemma}\label{aa}
+    For all $x,y \in \reals$ if $x < y$ then $x \leq y$.
+\end{lemma}
+
+\begin{lemma}\label{aaa}
+    For all $x,y \in \reals$ if $x \leq y \leq x$ then $x=y$.
 \end{lemma}

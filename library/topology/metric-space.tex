@@ -1,0 +1,80 @@
+\import{topology/topological-space.tex}
+\import{numbers.tex}
+\import{function.tex}
+
+\section{Metric Spaces}
+
+\begin{abbreviation}\label{metric}
+    $f$ is a metric iff $f$ is a function to $\reals$.
+\end{abbreviation}
+
+\begin{axiom}\label{metric_axioms}
+    $f$ is a metric iff $\dom{f} = A \times A$ and
+    for all $x,y,z \in A$ we have 
+        $f(x,x) = \zero$ and 
+        $f(x,y) = f(y,x)$ and
+        $f(x,y) \leq f(x,z) + f(z,y)$ and
+        if $x \neq y$ then $\zero < f(x,y)$.
+\end{axiom}
+
+\begin{definition}\label{open_ball}
+    $\openball{r}{x}{f} = \{z \in M \mid \text{ $f$ is a metric and $\dom{f} = M \times M$ and $f(x,z)<r$ } \}$.
+\end{definition}
+
+
+\begin{struct}\label{metric_space}  
+    A metric space $M$ is a onesorted structure equipped with
+    \begin{enumerate}
+        \item $\metric$
+    \end{enumerate}
+    such that
+    \begin{enumerate}
+        \item \label{metric_space_d}                        $\metric[M]$ is a function from $M \times M$ to $\reals$.
+        \item \label{metric_space_metric}                   $\metric[M]$ is a metric.
+        \item \label{metric_space_topology}                 $M$ is a topological space.
+        \item \label{metric_space_opens}                    for all $x \in M$ for all $r \in \reals$ $\openball{r}{x}{\metric[M]} \in \opens[M]$.
+    \end{enumerate}
+\end{struct}
+
+\begin{abbreviation}\label{descriptive_syntax_for_openball1}
+    $U$ is an open ball in $M$ of $x$ with radius $r$ iff $x \in M$ and $M$ is a metric space and $U = \openball{r}{x}{\metric[M]}$.
+\end{abbreviation}
+
+\begin{abbreviation}\label{descriptive_syntax_for_openball2}
+    $U$ is an open ball in $M$ iff there exist $x \in M$ such that there exist $r \in \reals$ such that $U$ is an open ball in $M$ of $x$ with radius $r$.
+\end{abbreviation}
+
+\begin{lemma}\label{union_of_open_balls_is_open}
+    Let $M$ be a metric space, let $U$ be an open ball in $M$, and let
+    $V$ be an open ball in $M$.
+    Then $U \union V$ is open in $M$.
+\end{lemma}
+
+
+
+%\begin{struct}\label{metric_space}  
+%    A metric space $M$ is a onesorted structure equipped with
+%    \begin{enumerate}
+%        \item $\metric$
+%    \end{enumerate}
+%    such that
+%    \begin{enumerate}
+%        \item \label{metric_space_d}                        $\metric[M]$ is a function from $M \times M$ to $\reals$.
+%        \item \label{metric_space_distence_of_a_point}      $\metric[M](x,x) = \zero$.
+%        \item \label{metric_space_positiv}                  for all $x,y \in M$ if $x \neq y$ then $\zero < \metric[M](x,y)$.
+%        \item \label{metric_space_symetrie}                 $\metric[M](x,y) = \metric[M](y,x)$.
+%        \item \label{metric_space_triangle_equation}        for all $x,y,z \in M$ $\metric[M](x,y) < \metric[M](x,z) + \metric[M](z,y)$ or $\metric[M](x,y) = \metric[M](x,z) + \metric[M](z,y)$.
+%        \item \label{metric_space_topology}                 $M$ is a topological space.
+%        \item \label{metric_space_opens}                    for all $x \in M$ for all $r \in \reals$ $\{z \in M \mid \metric[M](x,z) < r\} \in \opens$.
+%    \end{enumerate}
+%\end{struct}
+
+%\begin{definition}\label{open_ball}
+%    $\openball{r}{x}{M} = \{z \in M \mid \metric(x,z) < r\}$.
+%\end{definition}
+
+%\begin{proposition}\label{open_ball_is_open}
+%    Let $M$ be a metric space,let $r \in \reals $, let $x$ be an element of $M$.
+%    Then $\openball{r}{x}{M} \in \opens[M]$.
+%\end{proposition}
+
