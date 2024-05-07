@@ -53,16 +53,16 @@
 \end{abbreviation}
 
 \begin{axiom}\label{reals_axiom_dense}
-    For all $x,y \in \reals$ if $(x,y)\in \lt[\reals]$ then 
-    there exist $z \in \reals$ such that $(x,z) \in \lt[\reals]$ and $(z,y) \in \lt[\reals]$.
+    For all $x,y \in \reals$ if $x < y$ then 
+    there exist $z \in \reals$ such that $x < z$ and $z < y$.
 \end{axiom}
 
 \begin{axiom}\label{reals_axiom_order_def}
-    $(x,y) \in \lt[\reals]$ iff there exist $z \in \reals$ such that $(\zero, z) \in \lt[\reals]$ and $x + z = y$.
+    $x < y$ iff there exist $z \in \reals$ such that $\zero < z$ and $x + z = y$.
 \end{axiom}
 
 \begin{lemma}\label{reals_one_bigger_than_zero}
-    $(\zero,1) \in \lt[\reals]$.
+    $\zero < 1$.
 \end{lemma}
 
 
@@ -111,22 +111,22 @@
 
 
 \begin{lemma}\label{order_reals_lemma1}
-    For all $x,y,z \in \reals$ such that $(\zero,x) \in \lt[\reals]$ 
-    if $(y,z) \in \lt[\reals]$ 
-    then $((y \times x), (z \times x)) \in \lt[\reals]$.
+    For all $x,y,z \in \reals$ such that $\zero < x$ 
+    if $y < z$ 
+    then $(y \times x) < (z \times x)$.
 \end{lemma}
 
 \begin{lemma}\label{order_reals_lemma2}
-    For all $x,y,z \in \reals$ such that $(\zero,x) \in \lt[\reals]$ 
-    if $(y,z) \in \lt[\reals]$ 
-    then $((x \times y), (x \times z)) \in \lt[\reals]$.
+    For all $x,y,z \in \reals$ such that $\zero < x$ 
+    if $y < z$ 
+    then $(x \times y) < (x \times z)$.
 \end{lemma}
 
 
 \begin{lemma}\label{order_reals_lemma3}
-    For all $x,y,z \in \reals$ such that $(x,\zero) \in \lt[\reals]$ 
-    if $(y,z) \in \lt[\reals]$ 
-    then $((x \times z), (x \times y)) \in \lt[\reals]$.
+    For all $x,y,z \in \reals$ such that $x < \zero$ 
+    if $y < z$ 
+    then $(x \times z) < (x \times y)$.
 \end{lemma}
 
 \begin{lemma}\label{a}
