@@ -313,6 +313,8 @@ guessNounPlural item = SgPl item (pluralize item)
         pluralize :: LexicalPhrase -> LexicalPhrase
         pluralize = \case
             Just (Word w) : pat'@(Just w' : _) | isPreposition w' -> Just (Word (Text.snoc w 's')) : pat'
+            tok : Just (Word w) : pat'@(Just w' : _) | isPreposition w' -> tok : Just (Word (Text.snoc w 's')) : pat'
+            tok1 : tok2 : Just (Word w) : pat'@(Just w' : _) | isPreposition w' -> tok1 : tok2 : Just (Word (Text.snoc w 's')) : pat'
             [Just (Word w)] -> [Just (Word (Text.snoc w 's'))]
             [tok, Just (Word w)] -> [tok, Just (Word (Text.snoc w 's'))]
             [tok, tok', Just (Word w)] -> [tok, tok', Just (Word (Text.snoc w 's'))]
