@@ -269,7 +269,7 @@ data Term
 data Stmt
     = StmtFormula Formula -- ^ E.g.: /@We have \<Formula\>@/.
     | StmtVerbPhrase (NonEmpty Term) VerbPhrase -- ^ E.g.: /@\<Term\> and \<Term\> \<verb\>@/.
-    | StmtNoun Term (NounPhrase Maybe) -- ^ E.g.: /@\<Term\> is a(n) \<NP\>@/.
+    | StmtNoun (NonEmpty Term) (NounPhrase Maybe) -- ^ E.g.: /@\<Term\> is a(n) \<NP\>@/.
     | StmtStruct Term StructPhrase
     | StmtNeg Stmt -- ^ E.g.: /@It is not the case that \<Stmt\>@/.
     | StmtExists (NounPhrase []) -- ^ E.g.: /@There exists a(n) \<NP\>@/.

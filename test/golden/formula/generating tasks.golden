@@ -105,4 +105,115 @@
             )
         )
     }
+, Task
+    { taskDirectness = Direct
+    , taskHypotheses =
+        [
+            ( Marker "formula_test_exists"
+            , Quantified Existentially
+                ( Scope
+                    ( TermSymbol
+                        ( SymbolPredicate
+                            ( PredicateRelation
+                                ( Symbol "=" )
+                            )
+                        )
+                        [ TermVar
+                            ( B
+                                ( NamedVar "x" )
+                            )
+                        , TermVar
+                            ( B
+                                ( NamedVar "y" )
+                            )
+                        ]
+                    )
+                )
+            )
+        ,
+            ( Marker "formula_test_forall"
+            , Quantified Universally
+                ( Scope
+                    ( Connected Conjunction
+                        ( TermSymbol
+                            ( SymbolPredicate
+                                ( PredicateRelation
+                                    ( Symbol "=" )
+                                )
+                            )
+                            [ TermVar
+                                ( B
+                                    ( NamedVar "x" )
+                                )
+                            , TermVar
+                                ( B
+                                    ( NamedVar "x" )
+                                )
+                            ]
+                        )
+                        ( TermSymbol
+                            ( SymbolPredicate
+                                ( PredicateRelation
+                                    ( Symbol "=" )
+                                )
+                            )
+                            [ TermVar
+                                ( B
+                                    ( NamedVar "y" )
+                                )
+                            , TermVar
+                                ( B
+                                    ( NamedVar "y" )
+                                )
+                            ]
+                        )
+                    )
+                )
+            )
+        ]
+    , taskConjectureLabel = Marker "formula_test_not_exists"
+    , taskConjecture = Connected Equivalence
+        ( Quantified Existentially
+            ( Scope
+                ( TermSymbol
+                    ( SymbolPredicate
+                        ( PredicateRelation
+                            ( Symbol "=" )
+                        )
+                    )
+                    [ TermVar
+                        ( B
+                            ( NamedVar "x" )
+                        )
+                    , TermVar
+                        ( B
+                            ( NamedVar "y" )
+                        )
+                    ]
+                )
+            )
+        )
+        ( Not
+            ( Quantified Existentially
+                ( Scope
+                    ( TermSymbol
+                        ( SymbolPredicate
+                            ( PredicateRelation
+                                ( Command "neq" )
+                            )
+                        )
+                        [ TermVar
+                            ( B
+                                ( NamedVar "x" )
+                            )
+                        , TermVar
+                            ( B
+                                ( NamedVar "x" )
+                            )
+                        ]
+                    )
+                )
+            )
+        )
+    }
 ]

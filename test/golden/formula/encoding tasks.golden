@@ -2,3 +2,7 @@ fof(formula_test_forall,conjecture,![Xx,Xy]:(Xx=Xx&Xy=Xy)).
 ------------------
 fof(formula_test_exists,conjecture,?[Xx,Xy]:Xx=Xy).
 fof(formula_test_forall,axiom,![Xx,Xy]:(Xx=Xx&Xy=Xy)).
+------------------
+fof(formula_test_not_exists,conjecture,?[Xx,Xy]:Xx=Xy<=>~?[Xx]:Xx!=Xx).
+fof(formula_test_exists,axiom,?[Xx,Xy]:Xx=Xy).
+fof(formula_test_forall,axiom,![Xx,Xy]:(Xx=Xx&Xy=Xy)).

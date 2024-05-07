@@ -302,7 +302,7 @@
                 ( TermExpr
                     ( ExprVar
                         ( NamedVar "x" )
-                    )
+                    ) :| []
                 ) NounPhrase ( [] )
                 ( Noun
                     ( SgPl
@@ -362,6 +362,73 @@
                     ]
                 )
             )
+        )
+    )
+, BlockLemma
+    ( SourcePos
+        { sourceName = "test/examples/coord.tex"
+        , sourceLine = Pos 39
+        , sourceColumn = Pos 1
+        }
+    )
+    ( Marker "are_nouns" )
+    ( Lemma
+        [ AsmLetNoun
+            ( NamedVar "x" :|
+                [ NamedVar "y" ]
+            ) NounPhrase
+            (
+                [ AdjL
+                    [ Just
+                        ( Word "foo" )
+                    ] []
+                ]
+            )
+            ( Noun
+                ( SgPl
+                    { sg =
+                        [ Just
+                            ( Word "bar" )
+                        ]
+                    , pl =
+                        [ Just
+                            ( Word "bars" )
+                        ]
+                    }
+                ) []
+            ) ( Nothing ) ( [] ) ( Nothing )
+        ]
+        ( StmtNoun
+            ( TermExpr
+                ( ExprVar
+                    ( NamedVar "x" )
+                ) :|
+                [ TermExpr
+                    ( ExprVar
+                        ( NamedVar "y" )
+                    )
+                ]
+            ) NounPhrase
+            (
+                [ AdjL
+                    [ Just
+                        ( Word "foo" )
+                    ] []
+                ]
+            )
+            ( Noun
+                ( SgPl
+                    { sg =
+                        [ Just
+                            ( Word "bar" )
+                        ]
+                    , pl =
+                        [ Just
+                            ( Word "bars" )
+                        ]
+                    }
+                ) []
+            ) ( Nothing ) ( [] ) ( Nothing )
         )
     )
 ]

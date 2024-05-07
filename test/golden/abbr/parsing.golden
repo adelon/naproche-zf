@@ -126,7 +126,7 @@
             ( TermExpr
                 ( ExprVar
                     ( NamedVar "x" )
-                )
+                ) :| []
             ) NounPhrase ( [] )
             ( Noun
                 ( SgPl
@@ -305,7 +305,7 @@
                 ( TermExpr
                     ( ExprVar
                         ( NamedVar "x" )
-                    )
+                    ) :| []
                 ) NounPhrase ( [] )
                 ( Noun
                     ( SgPl

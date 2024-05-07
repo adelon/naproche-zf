@@ -21,7 +21,7 @@
                             ]
                         }
                     ) []
-                ) ( Nothing ) ( [] ) ( Nothing )
+                ) ( Nothing ) ( [] ) ( Nothing ) :| []
             ) NounPhrase ( [] )
             ( Noun
                 ( SgPl
@@ -61,7 +61,7 @@
                             ]
                         }
                     ) []
-                ) ( Nothing ) ( [] ) ( Nothing )
+                ) ( Nothing ) ( [] ) ( Nothing ) :| []
             ) NounPhrase ( [] )
             ( Noun
                 ( SgPl

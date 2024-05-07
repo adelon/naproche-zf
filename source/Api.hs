@@ -36,21 +36,22 @@ import Base
 import Checking
 import Checking.Cache
 import Encoding
+import Filter(filterTask)
 import Meaning (meaning, GlossError(..))
+import Megalodon qualified
 import Provers
 import Syntax.Abstract qualified as Raw
 import Syntax.Adapt (adaptChunks, scanChunk, ScannedLexicalItem)
+import Syntax.Chunk
 import Syntax.Concrete
 import Syntax.Import
-import Syntax.Chunk
 import Syntax.Internal qualified as Internal
 import Syntax.Lexicon (Lexicon, builtins)
+import Syntax.LexiconFile
 import Syntax.Token
 import TheoryGraph (TheoryGraph, Precedes(..))
 import TheoryGraph qualified
 import Tptp.UnsortedFirstOrder qualified as Tptp
-import Filter(filterTask)
-import Megalodon qualified
 
 import Control.Monad.Logger
 import Data.List (intercalate)
@@ -120,6 +121,8 @@ scan :: MonadIO io => FilePath -> io [ScannedLexicalItem]
 scan input = do
     tokenStream <- tokenize input
     let chunks = chunkify (unTokStream tokenStream)
+    -- TODO items <- liftIO parseLexiconFile
+    --pure ((concatMap scanChunk chunks) <> items)
     pure (concatMap scanChunk chunks)
 
 
