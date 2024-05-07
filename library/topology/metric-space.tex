@@ -4,22 +4,21 @@
 
 \section{Metric Spaces}
 
-\begin{abbreviation}\label{metric}
-    $f$ is a metric iff $f$ is a function to $\reals$.
-\end{abbreviation}
-
-\begin{axiom}\label{metric_axioms}
-    $f$ is a metric iff $\dom{f} = A \times A$ and
-    for all $x,y,z \in A$ we have 
+\begin{definition}\label{metric}
+    $f$ is a metric on $M$ iff $f$ is a function from $M \times M$ to $\reals$ and
+    for all $x,y,z \in M$ we have 
         $f(x,x) = \zero$ and 
         $f(x,y) = f(y,x)$ and
         $f(x,y) \leq f(x,z) + f(z,y)$ and
         if $x \neq y$ then $\zero < f(x,y)$.
-\end{axiom}
+\end{definition}
 
 \begin{definition}\label{open_ball}
-    $\openball{r}{x}{f} = \{z \in M \mid \text{ $f$ is a metric and $\dom{f} = M \times M$ and $f(x,z)<r$ } \}$.
+    $\openball{r}{x}{f} = \{z \in M \mid \text{ $f$ is a metric on $M$ and $f(x,z) < r$ } \}$.
 \end{definition}
+
+%TODO: \metric_opens{d} =  {hier die construction für topology}
+%TODO: Die induzierte topology definieren und dann in struct verwenden.
 
 
 \begin{struct}\label{metric_space}  
@@ -29,8 +28,7 @@
     \end{enumerate}
     such that
     \begin{enumerate}
-        \item \label{metric_space_d}                        $\metric[M]$ is a function from $M \times M$ to $\reals$.
-        \item \label{metric_space_metric}                   $\metric[M]$ is a metric.
+        \item \label{metric_space_metric}                   $\metric[M]$ is a metric on $M$.
         \item \label{metric_space_topology}                 $M$ is a topological space.
         \item \label{metric_space_opens}                    for all $x \in M$ for all $r \in \reals$ $\openball{r}{x}{\metric[M]} \in \opens[M]$.
     \end{enumerate}
@@ -45,10 +43,25 @@
 \end{abbreviation}
 
 \begin{lemma}\label{union_of_open_balls_is_open}
-    Let $M$ be a metric space, let $U$ be an open ball in $M$, and let
-    $V$ be an open ball in $M$.
-    Then $U \union V$ is open in $M$.
+    Let $M$ be a metric space.
+    For all $U,V \subseteq M$ if $U$ is an open ball in $M$ and $V$ is an open ball in $M$ then $U \union V$ is open in $M$.
 \end{lemma}
+
+
+%\begin{definition}\label{lenght_of_interval} %TODO: take minus if its implemented
+%    $\lenghtinterval{x}{y} = r$ 
+%\end{definition}
+
+
+
+
+
+\begin{lemma}\label{metric_implies_topology}
+    Let $M$ be a set, and let $f$ be a metric on $M$.
+    Then $M$ is a metric space.
+\end{lemma}
+
+
 
 
 

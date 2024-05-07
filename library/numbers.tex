@@ -10,7 +10,7 @@
 %\inv{} für inverse benutzen. Per Signatur einfüheren und dann axiomatisch absicher
 %\cdot für multiklikation verwenden. 
 %< für die relation benutzen.
-
+% sup und inf einfügen
 
 \begin{signature}
     $\reals$ is a set.
@@ -92,7 +92,7 @@
 
 
 \begin{axiom}\label{reals_axiom_mul_invers}
-    For all $x \in \reals$ there exist $y \in \reals$ such that  $x \neq \zero$ and $x \times y = 1$.
+    For all $x \in \reals$ such that $x \neq \zero$ there exist $y \in \reals$ such that $x \times y = 1$.
 \end{axiom}
 
 \begin{axiom}\label{reals_axiom_disstro1}
@@ -107,7 +107,10 @@
     For all $x,y,z \in \reals$ if $x + y = x + z$ then $y = z$.
 \end{proposition}
 
-
+\begin{axiom}\label{reals_axiom_dedekind_complete}
+    For all $X,Y,x,y$ such that $X,Y \subseteq \reals$ and $x \in X$ and $y \in Y$ and $x < y$ we have there exist $z \in \reals$
+    such that $x < z < y$.
+\end{axiom}
 
 
 \begin{lemma}\label{order_reals_lemma1}
@@ -129,14 +132,15 @@
     then $(x \times z) < (x \times y)$.
 \end{lemma}
 
-\begin{lemma}\label{a}
+\begin{lemma}\label{o4rder_reals_lemma}
     For all $x,y \in \reals$ if $x > y$ then $x \geq y$.
 \end{lemma}
 
-\begin{lemma}\label{aa}
+\begin{lemma}\label{order_reals_lemma5}
     For all $x,y \in \reals$ if $x < y$ then $x \leq y$.
 \end{lemma}
 
-\begin{lemma}\label{aaa}
+\begin{lemma}\label{order_reals_lemma6}
     For all $x,y \in \reals$ if $x \leq y \leq x$ then $x=y$.
 \end{lemma}
+
