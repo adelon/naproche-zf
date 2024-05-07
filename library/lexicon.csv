@@ -1,0 +1,5 @@
+reals,const,\reals
+rplus,infix.\rplus
+rmul,infix.\rmul
+rless,rel,\rless
+even,adj,even
