@@ -1,5 +1,6 @@
 reals,const,\reals
-rplus,infix.\rplus
-rmul,infix.\rmul
+rplus,infix,\rplus
+rminus,infix,\rminus
+rmul,infix,\rmul
+rfrac,infix,\rfrac
 rless,rel,\rless
-even,adj,even

@@ -80,10 +80,10 @@ builtins = Lexicon
 builtinMixfix :: Seq (HashMap FunctionSymbol (Associativity, Marker))
 builtinMixfix = Seq.fromList $ (HM.fromList <$>)
     [ []
-    , [binOp (Symbol "+") LeftAssoc "add", binOp (Command "union") LeftAssoc "union", binOp (Command "monus") LeftAssoc "monus"]
+    , [binOp (Symbol "+") LeftAssoc "add", binOp (Command "union") LeftAssoc "union", binOp (Symbol "-") LeftAssoc "minus", binOp (Command "rminus") LeftAssoc "rminus", binOp (Command "monus") LeftAssoc "monus"]
     , [binOp (Command "relcomp") LeftAssoc "relcomp"]
     , [binOp (Command "circ") LeftAssoc "circ"]
-    , [binOp (Command "mul") LeftAssoc "mul", binOp (Command "inter") LeftAssoc "inter"]
+    , [binOp (Command "mul") LeftAssoc "mul", binOp (Command "inter") LeftAssoc "inter", binOp (Command "rmul") LeftAssoc "rmul"]
     , [binOp (Command "setminus") LeftAssoc "setminus"]
     , [binOp (Command "times") RightAssoc "times"]
     , []
@@ -103,7 +103,8 @@ builtinMixfix = Seq.fromList $ (HM.fromList <$>)
 
 prefixOps :: [(FunctionSymbol, (Associativity, Marker))]
 prefixOps =
-    [ ([Just (Command "unions"), Just InvisibleBraceL, Nothing, Just InvisibleBraceR], (NonAssoc, "unions"))
+    [ ([Just (Command "rfrac"), Just InvisibleBraceL, Nothing, Just InvisibleBraceR, Just InvisibleBraceL, Nothing, Just InvisibleBraceR], (NonAssoc, "rfrac"))
+    , ([Just (Command "unions"), Just InvisibleBraceL, Nothing, Just InvisibleBraceR], (NonAssoc, "unions"))
     , ([Just (Command "cumul"), Just InvisibleBraceL, Nothing, Just InvisibleBraceR], (NonAssoc, "cumul"))
     , ([Just (Command "fst"), Just InvisibleBraceL, Nothing, Just InvisibleBraceR], (NonAssoc, "fst"))
     , ([Just (Command "snd"), Just InvisibleBraceL, Nothing, Just InvisibleBraceR], (NonAssoc, "snd"))
@@ -126,6 +127,7 @@ identifier cmd = ([Just (Command cmd)], (NonAssoc, Marker cmd))
 builtinRelationSymbols :: LexicalItems RelationSymbol
 builtinRelationSymbols = HM.fromList
     [ (Symbol "=", "eq")
+    , (Command "rless", "rless")
     , (Command "neq", "neq")
     , (Command "in", "elem")
     , (Command "notin", "notelem") -- Alternative to @\not\in@.

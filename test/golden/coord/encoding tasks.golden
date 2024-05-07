@@ -39,3 +39,15 @@ fof(nouns,axiom,![Xx,Xy]:((bar(Xx)&bar(Xy))=>Xx=Xx)).
 fof(baz,axiom,![Xx]:(baz(Xx)<=>Xx=Xx)).
 fof(foo,axiom,![Xx]:(foo(Xx)<=>Xx=Xx)).
 fof(bar,axiom,![Xx]:(bar(Xx)<=>Xx=Xx)).
+------------------
+fof(are_nouns,conjecture,bar(fx)&foo(fx)&bar(fy)&foo(fy)).
+fof(adjs,axiom,![Xx]:(foo(Xx)&baz(Xx))).
+fof(noun_verb,axiom,![Xx,Xy]:(Xx=Xy<=>(bar(Xx)&Xx=Xy))).
+fof(nouns_suchthat,axiom,![Xx,Xy]:((foo(Xx)&baz(Xy)&bar(Xx)&bar(Xy))=>Xx=Xx)).
+fof(adj_nouns,axiom,![Xx,Xy]:((bar(Xx)&foo(Xx)&bar(Xy)&foo(Xy))=>Xx=Xx)).
+fof(nouns,axiom,![Xx,Xy]:((bar(Xx)&bar(Xy))=>Xx=Xx)).
+fof(baz,axiom,![Xx]:(baz(Xx)<=>Xx=Xx)).
+fof(foo,axiom,![Xx]:(foo(Xx)<=>Xx=Xx)).
+fof(bar,axiom,![Xx]:(bar(Xx)<=>Xx=Xx)).
+fof(are_nouns1,axiom,bar(fy)&foo(fy)).
+fof(are_nouns2,axiom,bar(fx)&foo(fx)).

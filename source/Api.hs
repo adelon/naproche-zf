@@ -121,8 +121,9 @@ scan :: MonadIO io => FilePath -> io [ScannedLexicalItem]
 scan input = do
     tokenStream <- tokenize input
     let chunks = chunkify (unTokStream tokenStream)
-    items <- liftIO parseLexiconFile
-    pure ((concatMap scanChunk chunks) <> items)
+    -- TODO items <- liftIO parseLexiconFile
+    --pure ((concatMap scanChunk chunks) <> items)
+    pure (concatMap scanChunk chunks)
 
 
 -- | Parse a file. Throws a 'ParseException' when tokenizing, scanning, or

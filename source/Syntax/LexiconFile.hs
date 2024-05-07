@@ -12,14 +12,14 @@ import Text.Earley.Mixfix (Holey)
 import Text.Megaparsec hiding (Token, Label, label)
 import Text.Megaparsec.Char qualified as Char
 import UnliftIO.Directory
-
+import System.FilePath
 
 type LexiconFileParser = Parsec Void Text
 
 parseLexiconFile :: IO [ScannedLexicalItem]
 parseLexiconFile = do
     currentDir  <- getCurrentDirectory
-    let csvPath = (currentDir <> "lexicon.csv")
+    let csvPath = (currentDir </> "library" </> "lexicon.csv")
     csv <- Text.readFile csvPath
     case runParser lexiconFile csvPath csv of
         Left err -> fail (errorBundlePretty err)

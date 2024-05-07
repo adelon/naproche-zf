@@ -123,6 +123,7 @@ grammar lexicon@Lexicon{..} = mdo
     nounPl    <- rule $ nounOf lexicon pl term nounNames
     nounPlMay <- rule $ nounOf lexicon pl term nounName
 
+
     structNoun <- rule $ structNounOf lexicon sg var var
     structNounNameless <- rule $ fst <$> structNounOf lexicon sg var (pure Nameless)
 
@@ -180,19 +181,24 @@ grammar lexicon@Lexicon{..} = mdo
 
 -- Basic statements @stmt'@ are statements without any conjunctions or quantifiers.
 --
-    stmtVerbSg    <- rule $ StmtVerbPhrase <$> ((:| []) <$> term) <*> verbPhraseSg
+    let singletonTerm = (:| []) <$> term
+        nonemptyTerms = andList1 term
+    stmtVerbSg    <- rule $ StmtVerbPhrase <$> singletonTerm <*> verbPhraseSg
     stmtVerbPl    <-rule $ StmtVerbPhrase <$> andList1 term <*> verbPhrasePl
     stmtVerb      <- rule $ stmtVerbSg <|> stmtVerbPl
-    stmtNounIs    <- rule $ StmtNoun <$> term <* _is <* _an <*> nounPhrase
-    stmtNounIsNot <- rule $ StmtNeg <$> (StmtNoun <$> term <* _is <* _not <* _an <*> nounPhrase)
-    stmtNoun      <- rule $ stmtNounIs <|> stmtNounIsNot
+    stmtNounIs    <- rule $ StmtNoun <$> singletonTerm <* _is <* _an <*> nounPhrase
+    stmtNounAre   <- rule $ StmtNoun <$> (nonemptyTerms <* _are) <*> nounPhrasePlMay
+    stmtNounIsNot <- rule $ StmtNeg <$> (StmtNoun <$> singletonTerm <* _is <* _not <* _an <*> nounPhrase)
+    stmtNounAreNot <- rule $ StmtNeg <$> (StmtNoun <$> nonemptyTerms <* (_are *> _not) <*> nounPhrasePlMay)
+    stmtNoun      <- rule $ stmtNounIs <|> stmtNounIsNot <|> stmtNounAre <|> stmtNounAreNot
     stmtStruct    <- rule $ StmtStruct <$> (term <* _is <* _an) <*> structNounNameless
     stmtExists    <- rule $ StmtExists <$> (_exists *> _an *> nounPhrase')
     stmtExist     <- rule $ StmtExists <$> (_exist *> nounPhrasePl)
     stmtExistsNot <- rule $ StmtNeg . StmtExists <$> (_exists *> _no *> nounPhrase')
     stmtFormula   <- rule $ StmtFormula <$> math formula
+    stmtFormualNeg <- rule $ StmtNeg . StmtFormula <$> (_not *> math formula)
     stmtBot       <- rule $ StmtFormula (PropositionalConstant IsBottom) <$ _contradiction
-    stmt'         <- rule $ stmtVerb <|> stmtNoun <|> stmtStruct <|> stmtFormula <|> stmtBot
+    stmt'         <- rule $ stmtVerb <|> stmtNoun <|> stmtStruct <|> stmtFormula <|> stmtFormualNeg <|> stmtBot
     stmtOr  <- rule $ stmt'   <|> (StmtConnected Disjunction <$> stmt'   <* _or  <*> stmt)
     stmtAnd <- rule $ stmtOr  <|> (StmtConnected Conjunction <$> stmtOr  <* _and <*> stmt)
     stmtIff <- rule $ stmtAnd <|> (StmtConnected Equivalence <$> stmtAnd <* _iff <*> stmt)

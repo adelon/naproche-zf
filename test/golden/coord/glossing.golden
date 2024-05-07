@@ -434,4 +434,155 @@
             )
         )
     )
+, BlockLemma
+    ( SourcePos
+        { sourceName = "test/examples/coord.tex"
+        , sourceLine = Pos 39
+        , sourceColumn = Pos 1
+        }
+    )
+    ( Marker "are_nouns" )
+    ( Lemma
+        [ Asm
+            ( Connected Conjunction
+                ( TermSymbol
+                    ( SymbolPredicate
+                        ( PredicateNoun
+                            ( SgPl
+                                { sg =
+                                    [ Just
+                                        ( Word "bar" )
+                                    ]
+                                , pl =
+                                    [ Just
+                                        ( Word "bars" )
+                                    ]
+                                }
+                            )
+                        )
+                    )
+                    [ TermVar
+                        ( NamedVar "x" )
+                    ]
+                )
+                ( TermSymbol
+                    ( SymbolPredicate
+                        ( PredicateAdj
+                            [ Just
+                                ( Word "foo" )
+                            ]
+                        )
+                    )
+                    [ TermVar
+                        ( NamedVar "x" )
+                    ]
+                )
+            )
+        , Asm
+            ( Connected Conjunction
+                ( TermSymbol
+                    ( SymbolPredicate
+                        ( PredicateNoun
+                            ( SgPl
+                                { sg =
+                                    [ Just
+                                        ( Word "bar" )
+                                    ]
+                                , pl =
+                                    [ Just
+                                        ( Word "bars" )
+                                    ]
+                                }
+                            )
+                        )
+                    )
+                    [ TermVar
+                        ( NamedVar "y" )
+                    ]
+                )
+                ( TermSymbol
+                    ( SymbolPredicate
+                        ( PredicateAdj
+                            [ Just
+                                ( Word "foo" )
+                            ]
+                        )
+                    )
+                    [ TermVar
+                        ( NamedVar "y" )
+                    ]
+                )
+            )
+        ]
+        ( Connected Conjunction
+            ( Connected Conjunction
+                ( TermSymbol
+                    ( SymbolPredicate
+                        ( PredicateNoun
+                            ( SgPl
+                                { sg =
+                                    [ Just
+                                        ( Word "bar" )
+                                    ]
+                                , pl =
+                                    [ Just
+                                        ( Word "bars" )
+                                    ]
+                                }
+                            )
+                        )
+                    )
+                    [ TermVar
+                        ( NamedVar "x" )
+                    ]
+                )
+                ( TermSymbol
+                    ( SymbolPredicate
+                        ( PredicateAdj
+                            [ Just
+                                ( Word "foo" )
+                            ]
+                        )
+                    )
+                    [ TermVar
+                        ( NamedVar "x" )
+                    ]
+                )
+            )
+            ( Connected Conjunction
+                ( TermSymbol
+                    ( SymbolPredicate
+                        ( PredicateNoun
+                            ( SgPl
+                                { sg =
+                                    [ Just
+                                        ( Word "bar" )
+                                    ]
+                                , pl =
+                                    [ Just
+                                        ( Word "bars" )
+                                    ]
+                                }
+                            )
+                        )
+                    )
+                    [ TermVar
+                        ( NamedVar "y" )
+                    ]
+                )
+                ( TermSymbol
+                    ( SymbolPredicate
+                        ( PredicateAdj
+                            [ Just
+                                ( Word "foo" )
+                            ]
+                        )
+                    )
+                    [ TermVar
+                        ( NamedVar "y" )
+                    ]
+                )
+            )
+        )
+    )
 ]

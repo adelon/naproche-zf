@@ -389,13 +389,14 @@ glossStmt = \case
         vp' <- glossVP vp
         let phi = Sem.makeConjunction (vp' <$> toList ts')
         pure (compose quantifies phi)
-    Raw.StmtNoun t np -> do
-        (t', quantify) <- glossTerm t
+    Raw.StmtNoun ts np -> do
+        (ts', quantifies) <- NonEmpty.unzip <$> glossTerm `each` ts
         (np', maySuchThat) <- glossNPMaybe np
         let andSuchThat phi = case maySuchThat of
                 Just suchThat -> phi `Sem.And` suchThat
                 Nothing -> phi
-        pure (quantify (andSuchThat (np' t')))
+            psi = Sem.makeConjunction (andSuchThat . np' <$> toList ts')
+        pure (compose quantifies psi)
     Raw.StmtStruct t sp -> do
         (t', quantify) <- glossTerm t
         pure (quantify (Sem.TermSymbol (Sem.SymbolPredicate (Sem.PredicateNounStruct sp)) [t']))

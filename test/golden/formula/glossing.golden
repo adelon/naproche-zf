@@ -76,4 +76,58 @@
             )
         )
     )
+, BlockLemma
+    ( SourcePos
+        { sourceName = "test/examples/formula.tex"
+        , sourceLine = Pos 9
+        , sourceColumn = Pos 1
+        }
+    )
+    ( Marker "formula_test_not_exists" )
+    ( Lemma []
+        ( Connected Equivalence
+            ( Quantified Existentially
+                ( Scope
+                    ( TermSymbol
+                        ( SymbolPredicate
+                            ( PredicateRelation
+                                ( Symbol "=" )
+                            )
+                        )
+                        [ TermVar
+                            ( B
+                                ( NamedVar "x" )
+                            )
+                        , TermVar
+                            ( B
+                                ( NamedVar "y" )
+                            )
+                        ]
+                    )
+                )
+            )
+            ( Not
+                ( Quantified Existentially
+                    ( Scope
+                        ( TermSymbol
+                            ( SymbolPredicate
+                                ( PredicateRelation
+                                    ( Command "neq" )
+                                )
+                            )
+                            [ TermVar
+                                ( B
+                                    ( NamedVar "x" )
+                                )
+                            , TermVar
+                                ( B
+                                    ( NamedVar "x" )
+                                )
+                            ]
+                        )
+                    )
+                )
+            )
+        )
+    )
 ]
