@@ -1,6 +1,7 @@
 \import{topology/topological-space.tex}
 \import{numbers.tex}
 \import{function.tex}
+\import{set/powerset.tex}
 
 \section{Metric Spaces}
 
@@ -17,7 +18,46 @@
     $\openball{r}{x}{f} = \{z \in M \mid \text{ $f$ is a metric on $M$ and $f(x,z) < r$ } \}$.
 \end{definition}
 
-%TODO: \metric_opens{d} =  {hier die construction für topology}
+
+
+\begin{definition}\label{induced_topology}
+    $O$ is the induced topology of $d$ in $M$ iff 
+    $O \subseteq \pow{M}$ and
+    $d$ is a metric on $M$ and 
+    for all $x,r,A,B,C$ 
+        such that $x \in M$ and $r \in \reals$ and $A,B \in O$ and $C$ is a family of subsets of $O$
+        we have $\openball{r}{x}{d} \in O$ and $\unions{C} \in O$ and $A \inter B \in O$.
+\end{definition}
+
+%\begin{definition}
+%    $\projcetfirst{A} = \{a \mid \exists x \in X \text{there exist $x \i }  \}$
+%\end{definition}
+
+\begin{definition}\label{set_of_balls}
+    $\balls{d}{M} = \{ O \in \pow{M} \mid \text{there exists $x,r$ such that $r \in \reals$ and $x \in M$ we have $O = \openball{r}{x}{d}$ } \}$.
+\end{definition}
+
+
+\begin{definition}\label{toindsas}
+    $\metricopens{d}{M} = \{O \in \pow{M} \mid \text{
+        $d$ is a metric on $M$ and
+        for all $x,r,A,B,C$ 
+        such that $x \in M$ and $r \in \reals$ and $A,B \in O$ and $C$ is a family of subsets of $O$
+        we have $\openball{r}{x}{d} \in O$ and $\unions{C} \in O$ and $A \inter B \in O$.
+    }  \}$.
+    
+\end{definition}
+
+\begin{theorem}\label{metric_induce_a_topology}
+    
+
+
+\end{theorem}
+
+
+
+
+%TODO: \metric_opens{d} =  {hier die construction für topology} DONE.
 %TODO: Die induzierte topology definieren und dann in struct verwenden.
 
 
@@ -44,13 +84,14 @@
 
 \begin{lemma}\label{union_of_open_balls_is_open}
     Let $M$ be a metric space.
-    For all $U,V \subseteq M$ if $U$ is an open ball in $M$ and $V$ is an open ball in $M$ then $U \union V$ is open in $M$.
+    For all $U,V \subseteq M$ if $U$, $V$ are open balls in $M$ then $U \union V$ is open in $M$.
 \end{lemma}
 
 
 %\begin{definition}\label{lenght_of_interval} %TODO: take minus if its implemented
 %    $\lenghtinterval{x}{y} = r$ 
 %\end{definition}
+
 
 
 

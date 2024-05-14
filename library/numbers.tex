@@ -144,3 +144,52 @@
     For all $x,y \in \reals$ if $x \leq y \leq x$ then $x=y$.
 \end{lemma}
 
+\begin{axiom}\label{reals_axiom_minus}
+    For all $x \in \reals$ $x - x = \zero$.
+\end{axiom}
+
+\begin{lemma}\label{reals_minus}
+    Assume $x,y \in \reals$. If $x - y = \zero$ then $x=y$.
+\end{lemma}
+
+%\begin{definition}\label{reasl_supremum} %expaction "there exists" after \mid
+%    $\rsup{X} = \{z \mid \text{ $z \in \reals$ and for all $x,y$ such that $x \in X$ and $y,x \in \reals$ and $x < y$ we have $z \leq y$ }\}$.
+%\end{definition}
+
+\begin{definition}\label{upper_bound}
+    $x$ is an upper bound of $X$ iff for all $y \in X$ we have $x > y$.
+\end{definition}
+
+\begin{definition}\label{least_upper_bound}
+    $x$ is a least upper bound of $X$ iff $x$ is an upper bound of $X$ and for all $y$ such that $y$ is an upper bound of $X$ we have $x \leq y$.
+\end{definition}
+
+\begin{lemma}\label{supremum_unique}
+    %Let $x,y \in \reals$ and let $X$ be a subset of $\reals$.
+    If $x$ is a least upper bound of $X$ and $y$ is a least upper bound of $X$ then $x = y$.
+\end{lemma}
+
+\begin{definition}\label{supremum_reals}
+    $x$ is the supremum of $X$ iff $x$ is a least upper bound of $X$.
+\end{definition}
+
+
+
+
+\begin{definition}\label{lower_bound}
+    $x$ is an lower bound of $X$ iff for all $y \in X$ we have $x < y$.
+\end{definition}
+
+\begin{definition}\label{greatest_lower_bound}
+    $x$ is a greatest lower bound of $X$ iff $x$ is an lower bound of $X$ and for all $y$ such that $y$ is an lower bound of $X$ we have $x \geq y$.
+\end{definition}
+
+\begin{lemma}\label{infimum_unique}
+    %Let $x,y \in \reals$ and let $X$ be a subset of $\reals$.
+    If $x$ is a greatest lower bound of $X$ and $y$ is a greatest lower bound of $X$ then $x = y$.
+\end{lemma}
+
+\begin{definition}\label{infimum_reals}
+    $x$ is the supremum of $X$ iff $x$ is a greatest lower bound of $X$.
+\end{definition}
+
