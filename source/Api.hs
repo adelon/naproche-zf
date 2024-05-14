@@ -47,7 +47,6 @@ import Syntax.Concrete
 import Syntax.Import
 import Syntax.Internal qualified as Internal
 import Syntax.Lexicon (Lexicon, builtins)
-import Syntax.LexiconFile
 import Syntax.Token
 import TheoryGraph (TheoryGraph, Precedes(..))
 import TheoryGraph qualified
