@@ -164,7 +164,16 @@ instance Pretty Token where
 data Located a = Located
     { startPos :: !SourcePos
     , unLocated :: !a
+    , postWhitespace :: Whitespace
     } deriving (Show)
+
+data Whitespace = NoSpace | Space deriving (Show)
+
+collapseWhitespace :: [Whitespace] -> Whitespace
+collapseWhitespace = \case
+    Space : _ -> Space
+    NoSpace : ws -> collapseWhitespace ws
+    [] -> NoSpace
 
 instance Eq a  => Eq  (Located a) where (==) = (==) `on` unLocated
 instance Ord a => Ord (Located a) where compare = compare `on` unLocated
@@ -178,32 +187,32 @@ toks = whitespace *> goNormal id <* eof
             r <- optional tok
             case r of
                 Nothing -> pure (f [])
-                Just t@(Located _ (BeginEnv "math")) -> goMath (f . (t:))
-                Just t@(Located _ (BeginEnv "align*")) -> goMath (f . (t:))
+                Just t@Located{unLocated = BeginEnv "math"} -> goMath (f . (t:))
+                Just t@Located{unLocated = BeginEnv "align*"} -> goMath (f . (t:))
                 Just t -> goNormal (f . (t:))
         goText f = do
             r <- optional textToken
             case r of
                 Nothing -> pure (f [])
-                Just t@(Located _ (BeginEnv "math")) -> goMathInText (f . (t:))
-                Just t@(Located _ (EndEnv "text")) -> goMath (f . (t:))
-                Just t@(Located _ (EndEnv "explanation")) -> goMath (f . (t:))
+                Just t@Located{unLocated = BeginEnv "math"} -> goMathInText (f . (t:))
+                Just t@Located{unLocated = EndEnv "text"} -> goMath (f . (t:))
+                Just t@Located{unLocated = EndEnv "explanation"} -> goMath (f . (t:))
                 Just t -> goText (f . (t:))
         goMath f = do
             r <- optional mathToken
             case r of
                 Nothing -> pure (f [])
-                Just t@(Located _ (EndEnv "math")) -> goNormal (f . (t:))
-                Just t@(Located _ (EndEnv "align*")) -> goNormal (f . (t:))
-                Just t@(Located _ (BeginEnv "text")) -> goText (f . (t:))
-                Just t@(Located _ (BeginEnv "explanation")) -> goText (f . (t:))
+                Just t@Located{unLocated = EndEnv "math"} -> goNormal (f . (t:))
+                Just t@Located{unLocated = EndEnv "align*"} -> goNormal (f . (t:))
+                Just t@Located{unLocated = BeginEnv "text"} -> goText (f . (t:))
+                Just t@Located{unLocated = BeginEnv "explanation"} -> goText (f . (t:))
                 Just t -> goMath (f . (t:))
         goMathInText f = do
             r <- optional mathToken
             case r of
                 Nothing -> pure (f [])
-                Just t@(Located _ (EndEnv "math")) -> goText (f . (t:))
-                Just t@(Located _ (BeginEnv "text")) -> goText (f . (t:))
+                Just t@(Located{unLocated = EndEnv "math"}) -> goText (f . (t:))
+                Just t@(Located{unLocated = BeginEnv "text"}) -> goText (f . (t:))
                 Just t -> goMathInText (f . (t:))
 {-# INLINE toks #-}
 
@@ -430,12 +439,17 @@ lexeme :: Lexer a -> Lexer (Located a)
 lexeme p = do
     start <- getSourcePos
     t <- p
-    whitespace
-    pure (Located start t)
+    w <- whitespace
+    pure (Located start t w)
 
-space :: Lexer ()
-space = void (Char.char ' ' <|> Char.char '\n' <|> Char.char '\r')
-    <|> void (Char.string "\\ " <|> Char.string "\\\\" <|> Char.string "\\!" <|> Char.string "\\," <|> Char.string "\\:" <|> Char.string "\\;" <|> Char.string "\\;")
+space :: Lexer Whitespace
+space = Space <$ (Char.char ' ' <|> Char.char '\n' <|> Char.char '\r')
+    <|> Space <$ (Char.string "\\ " <|> Char.string "\\\\" <|> Char.string "\\!" <|> Char.string "\\," <|> Char.string "\\:" <|> Char.string "\\;" <|> Char.string "\\;")
 
-whitespace :: Lexer ()
-whitespace = Lexer.space (void (some space)) (Lexer.skipLineComment "%") empty
+whitespace :: Lexer Whitespace
+whitespace = do
+    ws <- many (spaces <|> comment)
+    pure (collapseWhitespace ws)
+    where
+        spaces = collapseWhitespace <$> some space
+        comment = NoSpace <$ Lexer.skipLineComment "%"
