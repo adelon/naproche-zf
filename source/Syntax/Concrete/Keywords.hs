@@ -203,7 +203,7 @@ _haveIntro = _thus <|> _particularly <|> _have
 _colon :: Prod r Text (Located Token) SourcePos
 _colon = symbol ":" ? ":"
 _pipe :: Prod r Text (Located Token) SourcePos
-_pipe = symbol "|" <|> command "mid" ? "\\mid"
+_pipe = (optional (command "middle") *> symbol "|") <|> command "mid" ? "\\mid"
 _comma :: Prod r Text (Located Token) SourcePos
 _comma = symbol "," ? ","
 _commaAnd :: Prod r Text (Located Token) SourcePos
@@ -219,4 +219,4 @@ _eq = symbol "=" ? "="
 _in :: Prod r Text (Located Token) SourcePos
 _in = symbol "∈" <|> command "in" ? "\\in"
 _subseteq :: Prod r Text (Located Token) SourcePos
-_subseteq = command "subseteq" ? ":"
+_subseteq = command "subseteq" ? "\\subseteq"

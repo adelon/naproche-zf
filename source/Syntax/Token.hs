@@ -228,7 +228,7 @@ mathToken =
 
 beginText :: Lexer (Located Token)
 beginText = lexeme do
-    Char.string "\\text{"
+    Char.string "\\text{" <|> Char.string "\\textbox{"
     setTextMode
     pure (BeginEnv "text")
 
@@ -249,14 +249,14 @@ textToken = word <|> symbol <|> begin <|> end <|> textEnd <|> mathBegin <|> alig
             setMathMode
             pure (EndEnv "text")
 
-        opening' = lexeme (brace <|> group <|> paren <|> bracket)
+        opening' = lexeme (group <|> optional (Char.string "\\left") *> (brace <|> paren <|> bracket))
             where
                 brace = VisibleBraceL <$ lexeme (Char.string "\\{")
                 group = InvisibleBraceL <$ lexeme (Char.char '{') <* modify' incrNesting
                 paren = ParenL <$ lexeme (Char.char '(')
                 bracket = BracketL <$ lexeme (Char.char '[')
 
-        closing' = lexeme (brace <|> group <|> paren <|> bracket)
+        closing' = lexeme (group <|> optional (Char.string "\\right") *> (brace <|> paren <|> bracket))
             where
                 brace = VisibleBraceR <$ lexeme (Char.string "\\}")
                 group = InvisibleBraceR <$ lexeme (Char.char '}') <* modify' decrNesting
