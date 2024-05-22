@@ -51,11 +51,23 @@
     Follows by \cref{filter_inter_in_iff}.
 \end{proof}
 
+\begin{proposition}\label{filter_in_iff_exists_subset}
+    Let $F$ be a filter on $S$.
+    Suppose $B\subseteq S$.
+    Then $B\in F$ iff there exists $A\subseteq B$ such that $A\in F$.
+\end{proposition}
+
+
 \subsection{Principal filters over a set}
 
 \begin{definition}\label{principalfilter}
     $\principalfilter{S}{A} = \{X\in\pow{S}\mid A\subseteq X\}$.
 \end{definition}
+
+\begin{proposition}\label{principalfilter_iff}
+    Suppose $A, B\subseteq S$.
+    Then $B\in\principalfilter{S}{A}$ iff $A\subseteq B$.
+\end{proposition}
 
 \begin{proposition}\label{principalfilter_is_filter}
     Suppose $A\subseteq S$.
