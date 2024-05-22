@@ -417,7 +417,7 @@ end = lexeme do
 
 -- | Parses an opening delimiter.
 opening :: Lexer (Located Token)
-opening = lexeme (paren <|> brace <|> group <|> bracket)
+opening = lexeme (group <|> optional (Char.string "\\left") *> (paren <|> brace <|> bracket))
     where
         brace = VisibleBraceL <$ lexeme (Char.string "\\{")
         group = InvisibleBraceL <$ lexeme (Char.char '{')
@@ -426,7 +426,7 @@ opening = lexeme (paren <|> brace <|> group <|> bracket)
 
 -- | Parses a closing delimiter.
 closing :: Lexer (Located Token)
-closing = lexeme (paren <|> brace <|> group <|> bracket)
+closing = lexeme (group <|> optional (Char.string "\\right") *> (paren <|> brace <|> bracket))
     where
         brace = VisibleBraceR <$ lexeme (Char.string "\\}")
         group = InvisibleBraceR <$ lexeme (Char.char '}')
