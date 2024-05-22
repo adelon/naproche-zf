@@ -38,6 +38,19 @@
     Follows by \cref{filter}.
 \end{proof}
 
+\begin{proposition}\label{filter_setminus_in}
+    Let $F$ be a filter on $S$.
+    Suppose $A\in F$.
+    Suppose $B\subseteq S$ and $S\setminus B\in F$.
+    Then $A\setminus B\in F$.
+\end{proposition}
+\begin{proof}
+    We have $A\subseteq S$.
+    Thus $A\setminus B = A\inter (S\setminus B)$ by \cref{setminus_eq_inter_complement}.
+    Now $S\setminus B\subseteq S$.
+    Follows by \cref{filter_inter_in_iff}.
+\end{proof}
+
 \subsection{Principal filters over a set}
 
 \begin{definition}\label{principalfilter}
@@ -72,8 +85,6 @@
     Suppose $X\notin\principalfilter{S}{A}$.
     Then $A\not\subseteq X$.
 \end{proposition}
-\begin{proof}
-\end{proof}
 
 \begin{definition}\label{maximalfilter}
     $F$ is a maximal filter on $S$ iff
