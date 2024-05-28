@@ -1,4 +1,6 @@
 \import{topology/topological-space.tex}
+\import{set.tex}
+\import{set/powerset.tex}
 
 \subsection{Topological basis}
 
@@ -44,7 +46,74 @@
     there exists $W\in B$ such that $x\in W\subseteq U, V$.
 \end{definition}
 
-\begin{definition}\label{genOpens}
-    $\genOpens{B}{X} = \{ U\in\pow{X} \mid for all $x\in U$ there exists $V\in B$
-    such that $x\in V\subseteq U$\}$.
+\begin{definition}\label{genopens}
+    $\genOpens{B}{X} = \{ U\in\pow{X} \mid \text{for all $x\in U$ there exists $V\in B$
+    such that $x\in V\subseteq U$} \}$.
 \end{definition}
+
+\begin{lemma}\label{emptyset_in_genopens}
+    Assume $B$ is a topological basis for $X$.
+    $\emptyset \in \genOpens{B}{X}$.
+\end{lemma}
+
+\begin{lemma}\label{all_is_in_genopens}
+    Assume $B$ is a topological basis for $X$.
+    $X \in \genOpens{B}{X}$.
+\end{lemma}
+\begin{proof}
+    $B$ covers $X$ by \cref{topological_prebasis_iff_covering_family,topological_basis}.
+    $\unions{B} \in \genOpens{B}{X}$.
+    $X \subseteq \unions{B}$.
+\end{proof}
+
+\begin{lemma}\label{union_in_genopens}
+    Assume $B$ is a topological basis for $X$.
+    For all $F\subseteq \genOpens{B}{X}$ we have $\unions{F}\in\genOpens{B}{X}$.
+\end{lemma}
+\begin{proof}
+    Omitted.
+\end{proof}
+
+
+
+
+\begin{lemma}\label{inters_in_genopens}
+    Assume $B$ is a topological basis for $X$.
+    %For all $A, C$ 
+    If $A\in \genOpens{B}{X}$ and $C\in \genOpens{B}{X}$ then $(A\inter C) \in \genOpens{B}{X}$.
+\end{lemma}
+\begin{proof}
+    
+    Show $(A \inter C) \in \pow{X}$.
+    \begin{subproof}
+        $(A \inter C) \subseteq X$ by assumption.
+    \end{subproof}
+    Therefore for all $A, C \in \genOpens{B}{X}$ we have $(A \inter C) \in \pow{X}$.
+    
+
+    Show for all $x\in (A\inter C)$ there exists $W \in B$
+    such that $x\in W$ and $W \subseteq (A\inter C)$.
+    \begin{subproof}
+        Fix $x \in (A\inter C)$.
+        There exist $V' \in B$ such that $x \in V'$ and $V' \subseteq A$ by assumption.  %TODO: Warum muss hier by assumtion hin?
+        There exist $V'' \in B$ such that $x \in V''$ and $V'' \subseteq C$ by assumption.
+        There exist $W \in B$ such that $x \in W$ and $W \subseteq v'$ and $W \subseteq V''$ by assumption.
+        
+        Show $W \subseteq (A\inter C)$.
+        \begin{subproof}
+            %$W \subseteq v'$ and $W \subseteq V''$.
+            For all $y \in W$ we have $y \in V'$ and $y \in V''$ by assumption.
+        \end{subproof}
+    \end{subproof}
+    %Therefore for all $A, C, x$ such that $A \in \genOpens{B}{X}$ and $C \in \genOpens{B}{X}$ and $x \in (A \inter C)$ we have there exists $W \in B$
+    %such that $x\in W$ and $W \subseteq (A\inter C)$.
+
+    $(A\inter C) \in \genOpens{B}{X}$ by assumption.
+    
+ 
+\end{proof}
+
+
+
+
+

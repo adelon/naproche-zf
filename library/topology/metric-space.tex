@@ -2,6 +2,7 @@
 \import{numbers.tex}
 \import{function.tex}
 \import{set/powerset.tex}
+\import{topology/basis.tex}
 
 \section{Metric Spaces}
 
@@ -20,38 +21,42 @@
 
 
 
-\begin{definition}\label{induced_topology}
-    $O$ is the induced topology of $d$ in $M$ iff 
-    $O \subseteq \pow{M}$ and
-    $d$ is a metric on $M$ and 
-    for all $x,r,A,B,C$ 
-        such that $x \in M$ and $r \in \reals$ and $A,B \in O$ and $C$ is a family of subsets of $O$
-        we have $\openball{r}{x}{d} \in O$ and $\unions{C} \in O$ and $A \inter B \in O$.
-\end{definition}
+%\begin{definition}\label{induced_topology}
+%    $O$ is the induced topology of $d$ in $M$ iff 
+%    $O \subseteq \pow{M}$ and
+%    $d$ is a metric on $M$ and 
+%    for all $x,r,A,B,C$ 
+%        such that $x \in M$ and $r \in \reals$ and $A,B \in O$ and $C$ is a family of subsets of $O$
+%        we have $\openball{r}{x}{d} \in O$ and $\unions{C} \in O$ and $A \inter B \in O$.
+%\end{definition}
 
 %\begin{definition}
 %    $\projcetfirst{A} = \{a \mid \exists x \in X \text{there exist $x \i }  \}$
 %\end{definition}
 
 \begin{definition}\label{set_of_balls}
-    $\balls{d}{M} = \{ O \in \pow{M} \mid \text{there exists $x,r$ such that $r \in \reals$ and $x \in M$ we have $O = \openball{r}{x}{d}$ } \}$.
+    $\balls{d}{M} = \{ O \in \pow{M} \mid \text{there exists $x,r$ such that $r \in \reals$ and $x \in M$ and $O = \openball{r}{x}{d}$ } \}$.
 \end{definition}
 
 
-\begin{definition}\label{toindsas}
-    $\metricopens{d}{M} = \{O \in \pow{M} \mid \text{
-        $d$ is a metric on $M$ and
-        for all $x,r,A,B,C$ 
-        such that $x \in M$ and $r \in \reals$ and $A,B \in O$ and $C$ is a family of subsets of $O$
-        we have $\openball{r}{x}{d} \in O$ and $\unions{C} \in O$ and $A \inter B \in O$.
-    }  \}$.
-    
+%\begin{definition}\label{toindsas}
+%    $\metricopens{d}{M} = \{O \in \pow{M} \mid \text{
+%        $d$ is a metric on $M$ and
+%        for all $x,r,A,B,C$ 
+%        such that $x \in M$ and $r \in \reals$ and $A,B \in O$ and $C$ is a family of subsets of $O$
+%        we have $\openball{r}{x}{d} \in O$ and $\unions{C} \in O$ and $A \inter B \in O$.
+%    }  \}$.
+%    
+%\end{definition}
+
+\begin{definition}\label{metricopens}
+    $\metricopens{d}{M} = \genOpens{\balls{d}{M}}{M}$.
 \end{definition}
 
-\begin{theorem}\label{metric_induce_a_topology}
-    
 
-
+\begin{theorem}
+    Let $d$ be a metric on $M$.
+    $M$ is a topological space.
 \end{theorem}
 
 
@@ -70,7 +75,7 @@
     \begin{enumerate}
         \item \label{metric_space_metric}                   $\metric[M]$ is a metric on $M$.
         \item \label{metric_space_topology}                 $M$ is a topological space.
-        \item \label{metric_space_opens}                    for all $x \in M$ for all $r \in \reals$ $\openball{r}{x}{\metric[M]} \in \opens[M]$.
+        \item \label{metric_space_opens}                    $\metricopens{ \metric[M] }{M} = \opens[M]$.
     \end{enumerate}
 \end{struct}
 
@@ -131,4 +136,17 @@
 %    Let $M$ be a metric space,let $r \in \reals $, let $x$ be an element of $M$.
 %    Then $\openball{r}{x}{M} \in \opens[M]$.
 %\end{proposition}
+
+
+
+
+
+
+%TODO:  - Basis indudiert topology lemma
+%       - Offe Bälle sind basis
+
+% Was danach kommen soll bleibt offen, vll buch oder in proof wiki
+% Trennungsaxiom, 
+
+% Notaionen aufräumen damit das gut gemercht werden kann.
 
