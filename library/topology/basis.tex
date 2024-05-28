@@ -47,8 +47,8 @@
 \end{definition}
 
 \begin{definition}\label{genopens}
-    $\genOpens{B}{X} = \{ U\in\pow{X} \mid \text{for all $x\in U$ there exists $V\in B$
-    such that $x\in V\subseteq U$} \}$.
+    $\genOpens{B}{X} = \left\{ U\in\pow{X} \middle| \textbox{for all $x\in U$ there exists $V\in B$
+    \\ such that $x\in V\subseteq U$}\right\}$.
 \end{definition}
 
 \begin{lemma}\label{emptyset_in_genopens}
@@ -75,32 +75,25 @@
 \end{proof}
 
 
-
-
 \begin{lemma}\label{inters_in_genopens}
     Assume $B$ is a topological basis for $X$.
-    Suppose $A, C\in \genOpens{B}{X}$.
-    
+    Assume $A, C\in \genOpens{B}{X}$.
     Then $(A\inter C) \in \genOpens{B}{X}$.
 \end{lemma}
 \begin{proof}
-    
-    Show $(A \inter C) \in \pow{X}$.
-    \begin{subproof}
-        Omitted.
-    \end{subproof}
-    
+
+    We have $(A \inter C) \in \pow{X}$ by \cref{genopens,inter_powerset}.
+
 
     Show for all $x\in (A\inter C)$ there exists $W \in B$
     such that $x\in W$ and $W \subseteq (A\inter C)$.
     \begin{subproof}
         Fix $x \in (A\inter C)$.
-        $x \in A,C$.
-        There exist $V' \in B$ such that $x \in V'$ and $V' \subseteq A$ by \cref{genopens}. 
-        There exist $V'' \in B$ such that $x \in V''$ and $V'' \subseteq C$ by \cref{genopens}.
-        $x \in (V' \inter V'')$.
-        There exist $W \in B$ such that $x \in W$ and $W \subseteq V'$ and $W \subseteq V''$.
-        
+        Then $x\in A,C$.
+        There exists $V'  \in B$ such that $x \in V' \subseteq A$ by \cref{genopens}.
+        There exists $V'' \in B$ such that $x \in V''\subseteq C$ by \cref{genopens}.
+        There exists $W \in B$ such that $x \in W$ and $W \subseteq V'$ and $W \subseteq V''$.
+
         Show $W \subseteq (A\inter C)$.
         \begin{subproof}
             %$W \subseteq v'$ and $W \subseteq V''$.
@@ -111,11 +104,4 @@
     %such that $x\in W$ and $W \subseteq (A\inter C)$.
 
     $(A\inter C) \in \genOpens{B}{X}$.
-    
- 
 \end{proof}
-
-
-
-
-

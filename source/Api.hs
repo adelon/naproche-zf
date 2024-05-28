@@ -94,7 +94,7 @@ findAndReadFile path = do
     homeDir     <- getHomeDirectory
     currentDir  <- getCurrentDirectory
     userLib     <- (?? (homeDir </> "formalizations"))   <$> lookupEnv "NAPROCHE_LIB"
-    srcLib      <- (?? (homeDir </> "code/zf/library"))  <$> lookupEnv "NAPROCHE_SCR_LIB"
+    srcLib      <- (?? (homeDir </> "code/naproche-zf/library"))  <$> lookupEnv "NAPROCHE_SCR_LIB"
 
     existsCurrent     <- doesFileExist (currentDir </> path)
     existsUserLib     <- doesFileExist (userLib </> path)

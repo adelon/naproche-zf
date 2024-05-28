@@ -26,10 +26,14 @@ scanChunk ltoks =
     let toks = unLocated <$> ltoks
         matchOrErr re env pos = match re toks ?? error ("could not find lexical pattern in " <> env <> " at " <> sourcePosPretty pos)
     in case ltoks of
-        Located pos (BeginEnv "definition") : _ -> matchOrErr definition "definition" pos
-        Located pos (BeginEnv "abbreviation") : _ -> matchOrErr abbreviation "abbreviation" pos
-        Located pos (BeginEnv "struct") :_ -> matchOrErr struct "struct definition" pos
-        Located pos (BeginEnv "inductive") :_ -> matchOrErr inductive "inductive definition" pos
+        Located{startPos = pos, unLocated = BeginEnv "definition"} : _ ->
+            matchOrErr definition "definition" (pos)
+        Located{startPos = pos, unLocated = BeginEnv "abbreviation"} : _ ->
+            matchOrErr abbreviation "abbreviation" pos
+        Located{startPos = pos, unLocated = (BeginEnv "struct")} :_ ->
+            matchOrErr struct "struct definition" pos
+        Located{startPos = pos, unLocated = (BeginEnv "inductive")} :_ ->
+            matchOrErr inductive "inductive definition" pos
         _ -> []
 
 adaptChunks :: [[Located Token]] -> Lexicon -> Lexicon

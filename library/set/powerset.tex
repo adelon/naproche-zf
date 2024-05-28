@@ -6,8 +6,7 @@
     The powerset of $X$ denotes $\pow{X}$.
 \end{abbreviation}
 
-\begin{axiom}%
-\label{pow_iff}
+\begin{axiom}\label{pow_iff}
     $B\in\pow{A}$ iff $B\subseteq A$.
 \end{axiom}
 
@@ -47,6 +46,17 @@
     Follows by \cref{pow_iff,unions_subseteq_of_powerset_is_subseteq}.
 \end{proof}
 
+
+\begin{proposition}\label{inter_powerset}
+    Let $A,B\in\pow{C}$.
+    Then $A\inter B\in\pow{C}$.
+\end{proposition}
+\begin{proof}
+    We have $A,B\subseteq C$ by \cref{pow_iff}.
+    $A\inter B\subseteq C$ by \cref{inter_subseteq}.
+    Follows by \cref{pow_iff}.
+\end{proof}
+
 \begin{proposition}\label{unions_powerset}
     $\unions{\pow{A}} = A$.
 \end{proposition}
@@ -76,7 +86,7 @@
 
 % LATER
 %\begin{proposition}\label{powerset_cons}
-%    Then $\pow{\cons{b}{A}} = \pow{A}\union \{\cons{b}{B}\mid B\in\pow{A}\}$.
+%    $\pow{\cons{b}{A}} = \pow{A}\union \{\cons{b}{B}\mid B\in\pow{A}\}$.
 %\end{proposition}
 
 \begin{proposition}\label{powerset_union_subseteq}

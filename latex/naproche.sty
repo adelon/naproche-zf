@@ -11,7 +11,8 @@
 % command for importing theories, no visible rendering
 \newcommand{\import}[1]{}
 \newcommand{\explanation}[1]{\quad\text{[#1]}}
-
+\usepackage{pbox}
+\newcommand{\textbox}[1]{\pbox{28em}{#1}}
 
 
 
@@ -87,6 +88,7 @@
 \newcommand{\fld}[1]{\fun{field}#1}
 \newcommand{\fst}[1]{\fun{fst}#1}
 \newcommand{\funs}[2]{\fun{Fun}(#1,#2)}
+\newcommand{\genOpens}[2]{\mathcal{O}_{#2}(#1)}
 \newcommand{\idempotents}[1]{\fun{Idempotent}(#1)}
 \newcommand{\identity}[1]{\fun{id}_{#1}}
 \newcommand{\img}[2]{#1^{\to}(#2)}

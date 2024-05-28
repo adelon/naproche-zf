@@ -3,6 +3,8 @@
 
 \section{Filters}
 
+\subsection{Definition and basic properties of filters}
+
 \begin{abbreviation}\label{upwardclosed}
     $F$ is upward-closed in $S$ iff
     for all $A, B$ such that $A\subseteq B\subseteq S$ and $A\in F$ we have $B\in F$.
@@ -11,21 +13,71 @@
 \begin{definition}\label{filter}
     $F$ is a filter on $S$ iff
     $F$ is a family of subsets of $S$
-    and $S$ is inhabited
     and $S\in F$
     and $\emptyset\notin F$
     and $F$ is closed under binary intersections
     and $F$ is upward-closed in $S$.
 \end{definition}
 
+\begin{proposition}\label{filter_ext_complement}
+    Let $F, G$ be filters on $S$.
+    Suppose for all $A\subseteq S$ we have $S\setminus A\in F$ iff $S\setminus A\in G$.
+    Then $F = G$.
+\end{proposition}
+\begin{proof}
+    Follows by set extensionality.
+\end{proof}
+
+\begin{proposition}\label{filter_inter_in_iff}
+    Let $F$ be a filter on $S$.
+    Suppose $A, B\subseteq S$.
+    Then $A\inter B\in F$ iff $A, B\in F$.
+\end{proposition}
+\begin{proof}
+    We have $A\inter B\subseteq A, B$.
+    Follows by \cref{filter}.
+\end{proof}
+
+\begin{proposition}\label{filter_setminus_in}
+    Let $F$ be a filter on $S$.
+    Suppose $A\in F$.
+    Suppose $B\subseteq S$ and $S\setminus B\in F$.
+    Then $A\setminus B\in F$.
+\end{proposition}
+\begin{proof}
+    We have $A\subseteq S$.
+    Thus $A\setminus B = A\inter (S\setminus B)$ by \cref{setminus_eq_inter_complement}.
+    Now $S\setminus B\subseteq S$.
+    Follows by \cref{filter_inter_in_iff}.
+\end{proof}
+
+\begin{proposition}\label{filter_in_iff_exists_subset}
+    Let $F$ be a filter on $S$.
+    Suppose $B\subseteq S$.
+    Then $B\in F$ iff there exists $A\subseteq B$ such that $A\in F$.
+\end{proposition}
+
+
+\subsection{Principal filters over a set}
+
 \begin{definition}\label{principalfilter}
     $\principalfilter{S}{A} = \{X\in\pow{S}\mid A\subseteq X\}$.
 \end{definition}
 
-%\begin{proposition}\label{principalfilter_domain_inhabited}
-%    Suppose $F$ is a filter on $S$.
-%    Then $S$ is inhabited.
-%\end{proposition}
+\begin{proposition}\label{principalfilter_iff}
+    Suppose $A, B\subseteq S$.
+    Then $B\in\principalfilter{S}{A}$ iff $A\subseteq B$.
+\end{proposition}
+
+\begin{proposition}\label{principalfilter_bottom}
+    Suppose $A\subseteq S$.
+    Then $A\in\principalfilter{S}{A}$.
+\end{proposition}
+
+\begin{proposition}\label{principalfilter_top}
+    Suppose $A\subseteq S$.
+    Then $S\in\principalfilter{S}{A}$.
+\end{proposition}
 
 \begin{proposition}\label{principalfilter_is_filter}
     Suppose $A\subseteq S$.
@@ -55,8 +107,6 @@
     Suppose $X\notin\principalfilter{S}{A}$.
     Then $A\not\subseteq X$.
 \end{proposition}
-\begin{proof}
-\end{proof}
 
 \begin{definition}\label{maximalfilter}
     $F$ is a maximal filter on $S$ iff
