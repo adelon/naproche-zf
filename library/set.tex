@@ -551,14 +551,6 @@ The $\operatorname{\textsf{cons}}$ operation is determined by the following axio
     Follows by set extensionality.
 \end{proof}
 
-\begin{proposition}\label{inter_subseteq_left}
-    $A\inter B\subseteq A$.
-\end{proposition}
-
-\begin{proposition}\label{inter_subseteq_right}
-    $A\inter B\subseteq B$.
-\end{proposition}
-
 \begin{proposition}\label{inter_emptyset}
     $A\inter\emptyset = \emptyset$.
 \end{proposition}
@@ -619,6 +611,11 @@ The $\operatorname{\textsf{cons}}$ operation is determined by the following axio
 \begin{proof}
     Follows by set extensionality.
 \end{proof}
+
+\begin{proposition}\label{inter_subseteq}
+    Suppose $A,B\subseteq C$.
+    Then $A\inter B\subseteq C$.
+\end{proposition}
 
 \begin{abbreviation}\label{closedunderinter}
     $T$ is closed under binary intersections

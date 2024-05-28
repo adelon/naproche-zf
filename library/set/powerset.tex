@@ -46,6 +46,17 @@
     Follows by \cref{pow_iff,unions_subseteq_of_powerset_is_subseteq}.
 \end{proof}
 
+
+\begin{proposition}\label{inter_powerset}
+    Let $A,B\in\pow{C}$.
+    Then $A\inter B\in\pow{C}$.
+\end{proposition}
+\begin{proof}
+    We have $A,B\subseteq C$ by \cref{pow_iff}.
+    $A\inter B\subseteq C$ by \cref{inter_subseteq}.
+    Follows by \cref{pow_iff}.
+\end{proof}
+
 \begin{proposition}\label{unions_powerset}
     $\unions{\pow{A}} = A$.
 \end{proposition}
