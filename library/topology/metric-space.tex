@@ -1,0 +1,152 @@
+\import{topology/topological-space.tex}
+\import{numbers.tex}
+\import{function.tex}
+\import{set/powerset.tex}
+\import{topology/basis.tex}
+
+\section{Metric Spaces}
+
+\begin{definition}\label{metric}
+    $f$ is a metric on $M$ iff $f$ is a function from $M \times M$ to $\reals$ and
+    for all $x,y,z \in M$ we have 
+        $f(x,x) = \zero$ and 
+        $f(x,y) = f(y,x)$ and
+        $f(x,y) \leq f(x,z) + f(z,y)$ and
+        if $x \neq y$ then $\zero < f(x,y)$.
+\end{definition}
+
+\begin{definition}\label{open_ball}
+    $\openball{r}{x}{f} = \{z \in M \mid \text{ $f$ is a metric on $M$ and $f(x,z) < r$ } \}$.
+\end{definition}
+
+
+
+%\begin{definition}\label{induced_topology}
+%    $O$ is the induced topology of $d$ in $M$ iff 
+%    $O \subseteq \pow{M}$ and
+%    $d$ is a metric on $M$ and 
+%    for all $x,r,A,B,C$ 
+%        such that $x \in M$ and $r \in \reals$ and $A,B \in O$ and $C$ is a family of subsets of $O$
+%        we have $\openball{r}{x}{d} \in O$ and $\unions{C} \in O$ and $A \inter B \in O$.
+%\end{definition}
+
+%\begin{definition}
+%    $\projcetfirst{A} = \{a \mid \exists x \in X \text{there exist $x \i }  \}$
+%\end{definition}
+
+\begin{definition}\label{set_of_balls}
+    $\balls{d}{M} = \{ O \in \pow{M} \mid \text{there exists $x,r$ such that $r \in \reals$ and $x \in M$ and $O = \openball{r}{x}{d}$ } \}$.
+\end{definition}
+
+
+%\begin{definition}\label{toindsas}
+%    $\metricopens{d}{M} = \{O \in \pow{M} \mid \text{
+%        $d$ is a metric on $M$ and
+%        for all $x,r,A,B,C$ 
+%        such that $x \in M$ and $r \in \reals$ and $A,B \in O$ and $C$ is a family of subsets of $O$
+%        we have $\openball{r}{x}{d} \in O$ and $\unions{C} \in O$ and $A \inter B \in O$.
+%    }  \}$.
+%    
+%\end{definition}
+
+\begin{definition}\label{metricopens}
+    $\metricopens{d}{M} = \genOpens{\balls{d}{M}}{M}$.
+\end{definition}
+
+
+\begin{theorem}
+    Let $d$ be a metric on $M$.
+    $M$ is a topological space.
+\end{theorem}
+
+
+
+
+%TODO: \metric_opens{d} =  {hier die construction für topology} DONE.
+%TODO: Die induzierte topology definieren und dann in struct verwenden.
+
+
+\begin{struct}\label{metric_space}  
+    A metric space $M$ is a onesorted structure equipped with
+    \begin{enumerate}
+        \item $\metric$
+    \end{enumerate}
+    such that
+    \begin{enumerate}
+        \item \label{metric_space_metric}                   $\metric[M]$ is a metric on $M$.
+        \item \label{metric_space_topology}                 $M$ is a topological space.
+        \item \label{metric_space_opens}                    $\metricopens{ \metric[M] }{M} = \opens[M]$.
+    \end{enumerate}
+\end{struct}
+
+\begin{abbreviation}\label{descriptive_syntax_for_openball1}
+    $U$ is an open ball in $M$ of $x$ with radius $r$ iff $x \in M$ and $M$ is a metric space and $U = \openball{r}{x}{\metric[M]}$.
+\end{abbreviation}
+
+\begin{abbreviation}\label{descriptive_syntax_for_openball2}
+    $U$ is an open ball in $M$ iff there exist $x \in M$ such that there exist $r \in \reals$ such that $U$ is an open ball in $M$ of $x$ with radius $r$.
+\end{abbreviation}
+
+\begin{lemma}\label{union_of_open_balls_is_open}
+    Let $M$ be a metric space.
+    For all $U,V \subseteq M$ if $U$, $V$ are open balls in $M$ then $U \union V$ is open in $M$.
+\end{lemma}
+
+
+%\begin{definition}\label{lenght_of_interval} %TODO: take minus if its implemented
+%    $\lenghtinterval{x}{y} = r$ 
+%\end{definition}
+
+
+
+
+
+
+\begin{lemma}\label{metric_implies_topology}
+    Let $M$ be a set, and let $f$ be a metric on $M$.
+    Then $M$ is a metric space.
+\end{lemma}
+
+
+
+
+
+%\begin{struct}\label{metric_space}  
+%    A metric space $M$ is a onesorted structure equipped with
+%    \begin{enumerate}
+%        \item $\metric$
+%    \end{enumerate}
+%    such that
+%    \begin{enumerate}
+%        \item \label{metric_space_d}                        $\metric[M]$ is a function from $M \times M$ to $\reals$.
+%        \item \label{metric_space_distence_of_a_point}      $\metric[M](x,x) = \zero$.
+%        \item \label{metric_space_positiv}                  for all $x,y \in M$ if $x \neq y$ then $\zero < \metric[M](x,y)$.
+%        \item \label{metric_space_symetrie}                 $\metric[M](x,y) = \metric[M](y,x)$.
+%        \item \label{metric_space_triangle_equation}        for all $x,y,z \in M$ $\metric[M](x,y) < \metric[M](x,z) + \metric[M](z,y)$ or $\metric[M](x,y) = \metric[M](x,z) + \metric[M](z,y)$.
+%        \item \label{metric_space_topology}                 $M$ is a topological space.
+%        \item \label{metric_space_opens}                    for all $x \in M$ for all $r \in \reals$ $\{z \in M \mid \metric[M](x,z) < r\} \in \opens$.
+%    \end{enumerate}
+%\end{struct}
+
+%\begin{definition}\label{open_ball}
+%    $\openball{r}{x}{M} = \{z \in M \mid \metric(x,z) < r\}$.
+%\end{definition}
+
+%\begin{proposition}\label{open_ball_is_open}
+%    Let $M$ be a metric space,let $r \in \reals $, let $x$ be an element of $M$.
+%    Then $\openball{r}{x}{M} \in \opens[M]$.
+%\end{proposition}
+
+
+
+
+
+
+%TODO:  - Basis indudiert topology lemma
+%       - Offe Bälle sind basis
+
+% Was danach kommen soll bleibt offen, vll buch oder in proof wiki
+% Trennungsaxiom, 
+
+% Notaionen aufräumen damit das gut gemercht werden kann.
+

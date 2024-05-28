@@ -1,0 +1,195 @@
+\import{nat.tex}
+\import{order/order.tex}
+\import{relation.tex}
+
+\section{The real numbers}
+
+%TODO: Implementing Notion for negativ number such as -x.
+
+%TODO:
+%\inv{} für inverse benutzen. Per Signatur einfüheren und dann axiomatisch absicher
+%\cdot für multiklikation verwenden. 
+%< für die relation benutzen.
+% sup und inf einfügen
+
+\begin{signature}
+    $\reals$ is a set.
+\end{signature}
+
+\begin{signature}
+    $x + y$ is a set.
+\end{signature}
+
+\begin{signature}
+    $x \times y$ is a set.
+\end{signature}
+
+\begin{axiom}\label{one_in_reals}
+    $1 \in \reals$.
+\end{axiom}
+
+\begin{axiom}\label{reals_axiom_order}
+    $\lt[\reals]$ is an order on $\reals$.
+\end{axiom}
+
+\begin{axiom}\label{reals_axiom_strictorder}
+    $\lt[\reals]$ is a strict order.
+\end{axiom}
+
+\begin{abbreviation}\label{less_on_reals}
+    $x < y$ iff $(x,y) \in \lt[\reals]$.
+\end{abbreviation}
+
+\begin{abbreviation}\label{greater_on_reals}
+    $x > y$ iff $y < x$.
+\end{abbreviation}
+
+\begin{abbreviation}\label{lesseq_on_reals}
+    $x \leq y$ iff it is wrong that $x > y$.
+\end{abbreviation}
+
+\begin{abbreviation}\label{greatereq_on_reals}
+    $x \geq y$ iff it is wrong that $x < y$.
+\end{abbreviation}
+
+\begin{axiom}\label{reals_axiom_dense}
+    For all $x,y \in \reals$ if $x < y$ then 
+    there exist $z \in \reals$ such that $x < z$ and $z < y$.
+\end{axiom}
+
+\begin{axiom}\label{reals_axiom_order_def}
+    $x < y$ iff there exist $z \in \reals$ such that $\zero < z$ and $x + z = y$.
+\end{axiom}
+
+\begin{lemma}\label{reals_one_bigger_than_zero}
+    $\zero < 1$.
+\end{lemma}
+
+
+\begin{axiom}\label{reals_axiom_assoc}
+    For all $x,y,z \in \reals$ $(x + y) + z = x + (y + z)$ and $(x \times y) \times z = x \times (y \times z)$.
+\end{axiom}
+
+\begin{axiom}\label{reals_axiom_kommu}
+    For all $x,y \in \reals$ $x + y = y + x$ and $x \times y = y \times x$.
+\end{axiom}
+
+\begin{axiom}\label{reals_axiom_zero_in_reals}
+    $\zero \in \reals$.
+\end{axiom}
+  
+\begin{axiom}\label{reals_axiom_zero}
+    For all $x \in \reals$ $x + \zero = x$. 
+\end{axiom}
+
+\begin{axiom}\label{reals_axiom_one}
+    For all $x \in \reals$ $1 \neq \zero$ and $x \times 1 = x$.
+\end{axiom}
+
+\begin{axiom}\label{reals_axiom_add_invers}
+    For all $x \in \reals$ there exist $y \in \reals$ such that $x + y = \zero$.
+\end{axiom}
+
+
+\begin{axiom}\label{reals_axiom_mul_invers}
+    For all $x \in \reals$ such that $x \neq \zero$ there exist $y \in \reals$ such that $x \times y = 1$.
+\end{axiom}
+
+\begin{axiom}\label{reals_axiom_disstro1}
+    For all $x,y,z \in \reals$ $x \times (y + z) = (x \times y) + (x \times z)$.
+\end{axiom}
+
+\begin{proposition}\label{reals_disstro2}
+    For all $x,y,z \in \reals$ $(y + z) \times x = (y \times x) + (z \times x)$.
+\end{proposition}
+
+\begin{proposition}\label{reals_reducion_on_addition}
+    For all $x,y,z \in \reals$ if $x + y = x + z$ then $y = z$.
+\end{proposition}
+
+\begin{axiom}\label{reals_axiom_dedekind_complete}
+    For all $X,Y,x,y$ such that $X,Y \subseteq \reals$ and $x \in X$ and $y \in Y$ and $x < y$ we have there exist $z \in \reals$
+    such that $x < z < y$.
+\end{axiom}
+
+
+\begin{lemma}\label{order_reals_lemma1}
+    For all $x,y,z \in \reals$ such that $\zero < x$ 
+    if $y < z$ 
+    then $(y \times x) < (z \times x)$.
+\end{lemma}
+
+\begin{lemma}\label{order_reals_lemma2}
+    For all $x,y,z \in \reals$ such that $\zero < x$ 
+    if $y < z$ 
+    then $(x \times y) < (x \times z)$.
+\end{lemma}
+
+
+\begin{lemma}\label{order_reals_lemma3}
+    For all $x,y,z \in \reals$ such that $x < \zero$ 
+    if $y < z$ 
+    then $(x \times z) < (x \times y)$.
+\end{lemma}
+
+\begin{lemma}\label{o4rder_reals_lemma}
+    For all $x,y \in \reals$ if $x > y$ then $x \geq y$.
+\end{lemma}
+
+\begin{lemma}\label{order_reals_lemma5}
+    For all $x,y \in \reals$ if $x < y$ then $x \leq y$.
+\end{lemma}
+
+\begin{lemma}\label{order_reals_lemma6}
+    For all $x,y \in \reals$ if $x \leq y \leq x$ then $x=y$.
+\end{lemma}
+
+\begin{axiom}\label{reals_axiom_minus}
+    For all $x \in \reals$ $x - x = \zero$.
+\end{axiom}
+
+\begin{lemma}\label{reals_minus}
+    Assume $x,y \in \reals$. If $x - y = \zero$ then $x=y$.
+\end{lemma}
+
+%\begin{definition}\label{reasl_supremum} %expaction "there exists" after \mid
+%    $\rsup{X} = \{z \mid \text{ $z \in \reals$ and for all $x,y$ such that $x \in X$ and $y,x \in \reals$ and $x < y$ we have $z \leq y$ }\}$.
+%\end{definition}
+
+\begin{definition}\label{upper_bound}
+    $x$ is an upper bound of $X$ iff for all $y \in X$ we have $x > y$.
+\end{definition}
+
+\begin{definition}\label{least_upper_bound}
+    $x$ is a least upper bound of $X$ iff $x$ is an upper bound of $X$ and for all $y$ such that $y$ is an upper bound of $X$ we have $x \leq y$.
+\end{definition}
+
+\begin{lemma}\label{supremum_unique}
+    %Let $x,y \in \reals$ and let $X$ be a subset of $\reals$.
+    If $x$ is a least upper bound of $X$ and $y$ is a least upper bound of $X$ then $x = y$.
+\end{lemma}
+
+\begin{definition}\label{supremum_reals}
+    $x$ is the supremum of $X$ iff $x$ is a least upper bound of $X$.
+\end{definition}
+
+
+
+
+\begin{definition}\label{lower_bound}
+    $x$ is an lower bound of $X$ iff for all $y \in X$ we have $x < y$.
+\end{definition}
+
+\begin{definition}\label{greatest_lower_bound}
+    $x$ is a greatest lower bound of $X$ iff $x$ is an lower bound of $X$ and for all $y$ such that $y$ is an lower bound of $X$ we have $x \geq y$.
+\end{definition}
+
+\begin{lemma}\label{infimum_unique}
+    %Let $x,y \in \reals$ and let $X$ be a subset of $\reals$.
+    If $x$ is a greatest lower bound of $X$ and $y$ is a greatest lower bound of $X$ then $x = y$.
+\end{lemma}
+
+\begin{definition}\label{infimum_reals}
+    $x$ is the supremum of $X$ iff $x$ is a greatest lower bound of $X$.
+\end{definition}
+

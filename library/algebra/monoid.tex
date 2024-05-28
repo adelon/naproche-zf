@@ -1,0 +1,19 @@
+\import{algebra/semigroup.tex}
+\section{Monoid}
+
+\begin{struct}\label{monoid}
+    A monoid $A$ is a semigroup equipped with
+    \begin{enumerate}
+        \item $\neutral$
+    \end{enumerate}
+    such that
+    \begin{enumerate}
+        \item\label{monoid_type} $\neutral[A]\in \carrier[A]$.
+        \item\label{monoid_right} for all $a\in \carrier[A]$ we have $\mul[A](a,\neutral[A]) = a$.
+        \item\label{monoid_left} for all $a\in \carrier[A]$ we have $\mul[A](\neutral[A], a) = a$.
+    \end{enumerate}
+\end{struct}
+
+\begin{corollary}\label{monoid_implies_semigroup}
+    Let $A$ be a monoid. Then $A$ is a semigroup.
+\end{corollary}

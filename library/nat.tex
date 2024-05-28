@@ -1,5 +1,5 @@
 \import{set/suc.tex}
-
+\import{set.tex}
 
 \section{Natural numbers}
 
@@ -17,5 +17,46 @@
 \end{axiom}
 
 \begin{abbreviation}\label{naturalnumber}
-    $n$ is a natural number iff $n\in\naturals$.
+    $n$ is a natural number iff $n\in \naturals$.
 \end{abbreviation}
+
+\begin{lemma}\label{emptyset_in_naturals}
+    $\emptyset\in\naturals$.    
+\end{lemma}
+
+\begin{signature}\label{addition_is_set}
+    $x+y$ is a set.
+\end{signature}
+
+\begin{axiom}\label{addition_on_naturals}
+    $x+y$ is a natural number iff $x$ is a natural number and $y$ is a natural number.
+\end{axiom}
+
+\begin{abbreviation}\label{zero_is_emptyset}
+    $\zero = \emptyset$.
+\end{abbreviation}
+
+\begin{axiom}\label{addition_axiom_1}
+    For all $x \in \naturals$ $x + \zero = \zero + x = x$.
+\end{axiom}
+
+\begin{axiom}\label{addition_axiom_2}
+    For all $x, y \in \naturals$ $x + \suc{y} = \suc{x} + y = \suc{x+y}$.
+\end{axiom}
+
+\begin{lemma}\label{naturals_is_equal_to_two_times_naturals}
+    $\{x+y \mid x \in \naturals, y \in \naturals \} = \naturals$.
+\end{lemma}
+
+
+
+
+
+
+
+
+
+
+
+
+
