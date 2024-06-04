@@ -56,6 +56,43 @@
     $\emptyset \in \genOpens{B}{X}$.
 \end{lemma}
 
+
+
+\begin{lemma}\label{union_in_genopens}
+    Assume $B$ is a topological basis for $X$.
+    Assume $F\subseteq \genOpens{B}{X}$.
+    Then $\unions{F}\in\genOpens{B}{X}$.
+\end{lemma}
+\begin{proof}
+    We have $\unions{F} \in \pow{X}$.
+
+    Show for all $x\in \unions{F}$ there exists $W \in B$
+    such that $x\in W$ and $W \subseteq \unions{F}$.
+    \begin{subproof}
+        Fix $x \in \unions{F}$.
+        There exists $V \in F$ such that $x \in V$ by \cref{unions_iff}.
+        $V \in \genOpens{B}{X}$.
+        There exists $W \in B$ such that $x \in W \subseteq V$.
+        Then $W \subseteq \unions{F}$.
+    \end{subproof}
+    Then $\unions{F}\in\genOpens{B}{X}$ by \cref{genopens}.
+\end{proof}
+
+\begin{lemma}\label{basis_is_in_genopens}
+    Assume $B$ is a topological basis for $X$.
+    $B \subseteq \genOpens{B}{X}$.
+\end{lemma}
+\begin{proof}
+    We show for all $V \in B$ $V \in \genOpens{B}{X}$.
+    \begin{subproof}
+        Fix $V \in B$.
+        For all $x \in V$ $x \in V \subseteq V$.
+        $V \subseteq X$ by \cref{topological_prebasis_iff_covering_family,topological_basis}.
+        $V \in \pow{X}$.
+        $V \in \genOpens{B}{X}$.
+    \end{subproof}
+\end{proof}
+
 \begin{lemma}\label{all_is_in_genopens}
     Assume $B$ is a topological basis for $X$.
     $X \in \genOpens{B}{X}$.
@@ -65,15 +102,6 @@
     $\unions{B} \in \genOpens{B}{X}$.
     $X \subseteq \unions{B}$.
 \end{proof}
-
-\begin{lemma}\label{union_in_genopens}
-    Assume $B$ is a topological basis for $X$.
-    For all $F\subseteq \genOpens{B}{X}$ we have $\unions{F}\in\genOpens{B}{X}$.
-\end{lemma}
-\begin{proof}
-    Omitted.
-\end{proof}
-
 
 \begin{lemma}\label{inters_in_genopens}
     Assume $B$ is a topological basis for $X$.
@@ -92,16 +120,13 @@
         Then $x\in A,C$.
         There exists $V'  \in B$ such that $x \in V' \subseteq A$ by \cref{genopens}.
         There exists $V'' \in B$ such that $x \in V''\subseteq C$ by \cref{genopens}.
-        There exists $W \in B$ such that $x \in W$ and $W \subseteq V'$ and $W \subseteq V''$.
+        There exists $W \in B$ such that $x \in W$ and $W \subseteq V'$ and $W \subseteq V''$ by \cref{topological_basis}.
 
         Show $W \subseteq (A\inter C)$.
         \begin{subproof}
-            %$W \subseteq v'$ and $W \subseteq V''$.
             For all $y \in W$ we have $y \in V'$ and $y \in V''$.
         \end{subproof}
     \end{subproof}
-    %Therefore for all $A, C, x$ such that $A \in \genOpens{B}{X}$ and $C \in \genOpens{B}{X}$ and $x \in (A \inter C)$ we have there exists $W \in B$
-    %such that $x\in W$ and $W \subseteq (A\inter C)$.
 
-    $(A\inter C) \in \genOpens{B}{X}$.
+    $(A\inter C) \in \genOpens{B}{X}$ by \cref{genopens}.
 \end{proof}
