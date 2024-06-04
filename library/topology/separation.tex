@@ -99,10 +99,6 @@
         For all $y \in \unions{V}$ we have $y \in \carrier[X] \setminus \{x\}$.
         Follows by set extensionality.
     \end{subproof}
-
-
-
-
     % Let $U_{y} \in \opens[X]$ such that $x \neq y \in X$.          Error: unexpected '{' expecting digit
     %For all $y$ there exists $U$ such that $x \neq y$ and $y \in U$ and $U \in \opens[X]$.
 
@@ -149,5 +145,13 @@
     Then $X$ is a \teeone-space.
 \end{proposition}
 \begin{proof}
-    Omitted. % TODO
+    We show that for all $x,y\in\carrier[X]$ such that $x\neq y$
+    there exist $U, V\in\opens[X]$ such that
+    $U\ni x\notin V$ and $V\ni y\notin U$.
+    \begin{subproof}
+        $X$ is hausdorff.
+        For all $x,y\in\carrier[X]$ such that $x\neq y$
+        there exist $U, V\in\opens[X]$ such that
+        $x\in U$ and $y\in V$ and $U$ is disjoint from $V$.
+    \end{subproof}
 \end{proof}
