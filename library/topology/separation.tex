@@ -73,10 +73,39 @@
 
 \begin{proposition}\label{teeone_implies_singletons_closed}
     Let $X$ be a \teeone-space.
-    Then for all $x\in\carrier[X]$ we have $\{x\}$ is closed in $X$.
+    Assume $x \in \carrier[X]$.
+    Then $\{x\}$ is closed in $X$.
+    %Then for all $x\in\carrier[X]$ we have $\{x\}$ is closed in $X$. Ambigus Phrase. if Omitted is ereased.
 \end{proposition}
 \begin{proof}
-    Omitted.
+    %Omitted.
+    %Fix $x \in X$.
+    Let $V = \{ U \in \opens[X] \mid x \notin U\}$.
+    For all $y \in \carrier[X]$ such that $x \neq y$ there exist $U \in \opens[X]$ such that $x \notin U \ni y$.
+    For all $y \in \carrier[X]$ such that $y \neq x$ there exists $U \in V$ such that $y \in U$.
+
+    $\unions{V} \in \opens[X]$.
+    For all $y \in \carrier[X]$ such that $x \neq y$ we have $y \in \unions{V}$.
+    We show that $\carrier[X] \setminus \{x\} = \unions{V}$.
+    \begin{subproof}
+        We show that for all $y \in \carrier[X] \setminus \{x\}$ we have $y \in \unions{V}$.
+        \begin{subproof}
+            Fix $y \in \carrier[X] \setminus \{x\}$.
+            $y \neq x$.
+            $y \in \carrier[X]$.
+            $y \in \unions{V}$.
+        \end{subproof}
+        For all $y \in \unions{V}$ we have $y \notin \{x\}$.
+        For all $y \in \unions{V}$ we have $y \in \carrier[X] \setminus \{x\}$.
+        Follows by set extensionality.
+    \end{subproof}
+
+
+
+
+    % Let $U_{y} \in \opens[X]$ such that $x \neq y \in X$.          Error: unexpected '{' expecting digit
+    %For all $y$ there exists $U$ such that $x \neq y$ and $y \in U$ and $U \in \opens[X]$.
+
     % TODO
     % Choose for every y distinct from x and open subset U_y containing y but not x.
     % The union U of all the U_y is open.
