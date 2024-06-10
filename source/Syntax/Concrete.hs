@@ -241,7 +241,7 @@ grammar lexicon@Lexicon{..} = mdo
     asmLetStruct    <- rule $ AsmLetStruct <$> (_let *> var <* _be <* _an) <*> structNounNameless
     asmLet          <- rule $ asmLetNoun <|> asmLetNouns <|> asmLetIn <|> asmLetEq <|> asmLetThe <|> asmLetStruct
     asmSuppose      <- rule $ AsmSuppose <$> (_suppose *> stmt)
-    asm             <- rule $ assumptionList (asmLet <|> asmSuppose) <* _dot
+    asm             <- rule $ andList1_ (asmLet <|> asmSuppose) <* _dot
     asms            <- rule $ concat <$> many asm
 
     axiom <- rule $ Axiom <$> asms <* optional _then <*> stmt <* _dot
@@ -406,7 +406,7 @@ andList1 item = ((:|) <$> item <*> many (_commaAnd *> item))
 
 -- | Like 'andList1', but drops the information about nonemptiness.
 andList1_ :: Prod r Text (Located Token) a -> Prod r Text (Located Token) [a]
-andList1_ item = toList <$> andList1 item
+andList1_ item = NonEmpty.toList <$> andList1 item
 
 
 commaList :: Prod r Text (Located Token) a -> Prod r Text (Located Token) (NonEmpty a)
@@ -420,9 +420,6 @@ commaList_ item = NonEmpty.toList <$> commaList item
 commaList2 :: Prod r Text (Located Token) a -> Prod r Text (Located Token) (NonEmpty a)
 commaList2 item = (:|) <$> item <* _comma <*> commaList_ item
 
-
-assumptionList :: Prod r Text (Located Token) a -> Prod r Text (Located Token) [a]
-assumptionList item = NonEmpty.toList <$> andList1 item
 
 enumerated :: Prod r Text (Located Token) a -> Prod r Text (Located Token) [a]
 enumerated p = NonEmpty.toList <$> enumerated1 p
