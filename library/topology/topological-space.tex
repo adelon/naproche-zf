@@ -217,12 +217,146 @@
 \end{proof}
 
 
+%Def: $\inters{A} = \{ x\in\unions{A}\mid \text{for all $a\in A$ we have $x\in a$} \}$.
+
+\begin{proposition}\label{subseteq_inters_iff_to_right} 
+    Let $A,F$ be sets.
+    Suppose $A \subseteq \inters{F}$.
+    Then for all $X \in F$ we have $A \subseteq X$.
+\end{proposition}
+
+
+\begin{proposition}\label{subseteq_of_all_then_subset_of_union}
+    Let $A,F$ be sets.
+    Suppose for all $X \in F$ we have $A \subseteq X$.
+    Then $A \subseteq \unions{F}$.
+\end{proposition}
+\begin{proof}
+    \begin{byCase}
+        \caseOf{$F$ is empty.} Trivial.
+        \caseOf{$F$ is inhabited.}
+        There exist $X \in F$ such that $X \subseteq \unions{F}$.
+        $A \subseteq X \subseteq \unions{F}$.
+    \end{byCase}
+\end{proof}
+
+\begin{proposition}\label{subseteq_inters_iff_to_left} 
+    Let $A,F$ be sets.
+    Suppose for all $X \in F$ we have $A \subseteq X$.
+    Then $A \subseteq \inters{F}$.
+\end{proposition}
+\begin{proof}
+    \begin{byCase}
+        \caseOf{$A = \emptyset$.}Trivial.
+        \caseOf{$A \neq \emptyset$.}
+        It suffices to show that for all $a \in A$ we have $a \in \inters{F}$. 
+        Fix $a \in A$.
+        For all $X \in F$ we have $a \in X$.
+        $A \subseteq \unions{F}$.
+        $a \in \unions{F}$.
+    \end{byCase}
+    
+    %It suffices to show that for all $a \in A$ we have $x \in \inters{F}$.  % This have been proven!!! But it shouldn't.
+    
+%    we show that there exist $Y \in F$ such that $a \in Y$.
+%    \begin{subproof}
+        
+%        \begin{byCase}
+%            \caseOf{$a = \emptyset$.}
+%            $\emptyset \subseteq \inters{F}$.
+%            $\emptyset \in \emptyset$.
+%            \caseOf{$a \neq \emptyset$.} Omitted.
+%        \end{byCase}
+
+        %cases by a = \emptyset
+        %case a \neq \emptyset
+%    \end{subproof}
+\end{proof}
+
+%------------------------ Only example -------------------------------------
+\begin{proposition}\label{subseteq_inters_iff_new} 
+    $A \subseteq \inters{F}$ iff for all $X \in F$ we have $A \subseteq X$.
+\end{proposition}
+%\begin{proof}
+%    We show that if $A \subseteq \inters{F}$ then for all $X \in F$ we have $A \subseteq X$.
+%    \begin{subproof}
+        %It suffices to show that for all $a,X$ such that $a \in A$ and $X \in F$ we have $a \in X$. 
+        %Fix $a \in A$. 
+        %Fix $X \in F$. %TODO: Missmatched Assume!
+
+%        It suffices to show that for all $a,X$ such that $a \in A$ and $X \in F$ we have $a \in X$.
+%        Follows by \cref{inters}.
+%    \end{subproof}
+%    We show that for all $X \in F$ such that $A \subseteq X$ we have $A \subseteq \inters{F}$.
+%    \begin{subproof}
+%        Omitted.
+%    \end{subproof}
+%\end{proof}
+
+\begin{proposition}\label{set_is_subseteq_to_closure_of_the_set}
+    $A \subseteq \closure{A}{X}$.
+\end{proposition}
+\begin{proof}
+    %$\closures{A}{X}$ is inhabited. %TODO: Inhabited why does "subseteq_inters_iff" has inhabited as assumtion??
+    For all $A' \in \closures{A}{X}$ we have $A \subseteq A'$.
+    Therefore $A \subseteq \inters{\closures{A}{X}}$.
+\end{proof}
+
+\begin{proposition}\label{complement_of_closure_of_complement_of_x_subseteq_x}
+    $(\carrier[X] \setminus \closure{(\carrier[X]\setminus A)}{X}) \subseteq A$.
+\end{proposition}
+\begin{proof}
+    It suffices to show that for all $x \in (\carrier[X] \setminus \closure{(\carrier[X]\setminus A)}{X})$ we have $x \in A$.
+    If $x \in \carrier[X]\setminus A$ then $x \in \closure{(\carrier[X]\setminus A)}{X}$.
+
+\end{proof}
+
 \begin{proposition}%[Complement of interior equals closure of complement]
 \label{complement_interior_eq_closure_complement}
+    Let $X$ be a topological space.
     $\carrier[X]\setminus\interior{A}{X} = \closure{(\carrier[X]\setminus A)}{X}$.
 \end{proposition}
 \begin{proof}
-    Omitted. % Use general De Morgan's Law in Pow|X|
+        We show that for all $x \in \carrier[X]\setminus\interior{A}{X}$ we have $x \in \closure{(\carrier[X]\setminus A)}{X}$.
+        \begin{subproof}
+            Fix $x \in \carrier[X]\setminus\interior{A}{X}$.
+            Suppose not. 
+            $x \notin \closure{(\carrier[X]\setminus A)}{X}$.
+            $x \in \carrier[X]$.
+            For all $x \in X$ such that $A \union B = X$ and $A \inter B = \emptyset$ we have $x \in A \implies x \notin B$.
+            For all $x \in X$ such that $A \union B = X$ and $A \inter B = \emptyset$ we have $x \notin A \implies x \in B$.
+            $(\carrier[X] \setminus \closure{(\carrier[X]\setminus A)}{X}) \inter \closure{(\carrier[X]\setminus A)}{X} = \emptyset$.
+            %$(\carrier[X] \setminus \closure{(\carrier[X]\setminus A)}{X}) \subseteq A$. %TODO:
+            $x \in A$.
+            $x \in A \inter (\carrier[X] \setminus \closure{(\carrier[X]\setminus A)}{X})$.
+            $\carrier[X] \setminus \closure{(\carrier[X]\setminus A)}{X} \in \opens[X]$. %TODO:
+            Contradiction.
+        \end{subproof}
+
+        $\carrier[X]\setminus\interior{A}{X} \subseteq \closure{(\carrier[X]\setminus A)}{X}$.
+
+        $\closure{(\carrier[X]\setminus A)}{X} \subseteq \carrier[X]\setminus\interior{A}{X}$. %TODO:
+
+    %We show that for all $x \in \carrier[X]\setminus\interior{A}{X}$ we have $x \in \closure{(\carrier[X]\setminus A)}{X}$.
+    %\begin{subproof}
+    %    Fix $x \in \carrier[X]\setminus\interior{A}{X}$.
+    %    \begin{byCase}
+    %        \caseOf{$x \in \carrier[X] \setminus A$.}
+    %        Trivial.
+    %        \caseOf{$x \in \carrier[X] \setminus A \inter \interior{A}{X}$.}
+    %        $\carrier[X] \setminus \closure{A}{X} \in \opens[X]$.
+    %        $\interior{A}{X} \in \opens[X]$.
+    %        Therefore $\carrier[X] \setminus \closure{A}{X} \inter \interior{A}{X} \in \opens[X]$.
+    %        %$\carrier[X] \setminus \closure{A}{X}$ is open.   TODO: is open throws an error!
+    %        %$\interior{A}{X}$ is open.
+    %        %Therefore $\carrier[X] \setminus \closure{A}{X} \inter \interior{A}{X}$ is open.
+    %
+    %    \end{byCase}
+    %\end{subproof}
+    %Suffices reduction by \cref :::::    reduction => goal.
+    
+
+    %Omitted. % Use general De Morgan's Law in Pow|X|
 \end{proof}
 
 \begin{definition}[Frontier]\label{frontier}

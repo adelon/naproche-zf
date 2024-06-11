@@ -75,11 +75,8 @@
     Let $X$ be a \teeone-space.
     Assume $x \in \carrier[X]$.
     Then $\{x\}$ is closed in $X$.
-    %Then for all $x\in\carrier[X]$ we have $\{x\}$ is closed in $X$. Ambigus Phrase. if Omitted is ereased.
 \end{proposition}
 \begin{proof}
-    %Omitted.
-    %Fix $x \in X$.
     Let $V = \{ U \in \opens[X] \mid x \notin U\}$.
     For all $y \in \carrier[X]$ such that $x \neq y$ there exist $U \in \opens[X]$ such that $x \notin U \ni y$.
     For all $y \in \carrier[X]$ such that $y \neq x$ there exists $U \in V$ such that $y \in U$.
@@ -99,13 +96,6 @@
         For all $y \in \unions{V}$ we have $y \in \carrier[X] \setminus \{x\}$.
         Follows by set extensionality.
     \end{subproof}
-    % Let $U_{y} \in \opens[X]$ such that $x \neq y \in X$.          Error: unexpected '{' expecting digit
-    %For all $y$ there exists $U$ such that $x \neq y$ and $y \in U$ and $U \in \opens[X]$.
-
-    % TODO
-    % Choose for every y distinct from x and open subset U_y containing y but not x.
-    % The union U of all the U_y is open.
-    % {x} is the complement of U in \carrier[X].
 \end{proof}
 %
 % Conversely, if \{x\} is open, then for any y distinct from x we can use
