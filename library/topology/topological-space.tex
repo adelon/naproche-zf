@@ -233,7 +233,11 @@
 \end{proposition}
 \begin{proof}
     \begin{byCase}
-        \caseOf{$F$ is empty.} Trivial.
+        \caseOf{$F$ is empty.} 
+        For all $X$ we have $X \notin F$.
+        If $X \in F$ and $A \in X$ then $A \in F$.
+        %There exist $X \in F$.
+        Contradiction by assumption.
         \caseOf{$F$ is inhabited.}
         There exist $X \in F$ such that $X \subseteq \unions{F}$.
         $A \subseteq X \subseteq \unions{F}$.
