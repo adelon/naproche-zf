@@ -161,11 +161,20 @@
 
 \begin{proposition}\label{carrier_is_closed}
     Let $X$ be a topological space.
-    Then $\emptyset$ is closed in $X$.
+    Then $\carrier[X]$ is closed in $X$.
 \end{proposition}
 \begin{proof}
     $\carrier[X]\setminus \carrier[X] = \emptyset$.
+    Follows by \cref{emptyset_open,is_closed_in}.
 \end{proof}
+
+\begin{proposition}\label{opens_minus_closed_is_open}
+    Let $X$ be a topological space.
+    Suppose $A, B \subseteq \carrier[X]$.
+    Suppose $A$ is open in $X$.
+    Suppose $B$ is closed in $X$.
+    Then $A \setminus B$ is open in $X$.
+\end{proposition}
 
 \begin{definition}[Closed sets]\label{closeds}
     $\closeds{X} = \{ A\in\pow{\carrier[X]}\mid\text{$A$ is closed in $X$}\}$.
@@ -216,9 +225,6 @@
     Follows by \cref{inters_singleton,closure}.
 \end{proof}
 
-
-%Def: $\inters{A} = \{ x\in\unions{A}\mid \text{for all $a\in A$ we have $x\in a$} \}$.
-
 \begin{proposition}\label{subseteq_inters_iff_to_right} 
     Let $A,F$ be sets.
     Suppose $A \subseteq \inters{F}$.
@@ -228,16 +234,17 @@
 
 \begin{proposition}\label{subseteq_of_all_then_subset_of_union}
     Let $A,F$ be sets.
+    Suppose $F$ is inhabited. %TODO: Remove!!
     Suppose for all $X \in F$ we have $A \subseteq X$.
     Then $A \subseteq \unions{F}$.
 \end{proposition}
 \begin{proof}
     \begin{byCase}
-        \caseOf{$F$ is empty.} 
-        For all $X$ we have $X \notin F$.
-        If $X \in F$ and $A \in X$ then $A \in F$.
-        %There exist $X \in F$.
-        Contradiction by assumption.
+        %\caseOf{$F$ is empty.} 
+           %For all $X$ we have $X \notin F$.
+        %If $X \in F$ and $A \in X$ then $A \in F$.
+        %Contradiction by assumption.
+        %Omitted.
         \caseOf{$F$ is inhabited.}
         There exist $X \in F$ such that $X \subseteq \unions{F}$.
         $A \subseteq X \subseteq \unions{F}$.
@@ -246,6 +253,7 @@
 
 \begin{proposition}\label{subseteq_inters_iff_to_left} 
     Let $A,F$ be sets.
+    Suppose $F$ is inhabited.    % TODO:Remove!!
     Suppose for all $X \in F$ we have $A \subseteq X$.
     Then $A \subseteq \inters{F}$.
 \end{proposition}
@@ -253,71 +261,157 @@
     \begin{byCase}
         \caseOf{$A = \emptyset$.}Trivial.
         \caseOf{$A \neq \emptyset$.}
+        $F$ is inhabited.
         It suffices to show that for all $a \in A$ we have $a \in \inters{F}$. 
         Fix $a \in A$.
         For all $X \in F$ we have $a \in X$.
         $A \subseteq \unions{F}$.
         $a \in \unions{F}$.
     \end{byCase}
-    
-    %It suffices to show that for all $a \in A$ we have $x \in \inters{F}$.  % This have been proven!!! But it shouldn't.
-    
-%    we show that there exist $Y \in F$ such that $a \in Y$.
-%    \begin{subproof}
-        
-%        \begin{byCase}
-%            \caseOf{$a = \emptyset$.}
-%            $\emptyset \subseteq \inters{F}$.
-%            $\emptyset \in \emptyset$.
-%            \caseOf{$a \neq \emptyset$.} Omitted.
-%        \end{byCase}
-
-        %cases by a = \emptyset
-        %case a \neq \emptyset
-%    \end{subproof}
 \end{proof}
 
-%------------------------ Only example -------------------------------------
 \begin{proposition}\label{subseteq_inters_iff_new} 
+    Suppose $F$ is inhabited.
     $A \subseteq \inters{F}$ iff for all $X \in F$ we have $A \subseteq X$.
 \end{proposition}
-%\begin{proof}
-%    We show that if $A \subseteq \inters{F}$ then for all $X \in F$ we have $A \subseteq X$.
-%    \begin{subproof}
-        %It suffices to show that for all $a,X$ such that $a \in A$ and $X \in F$ we have $a \in X$. 
-        %Fix $a \in A$. 
-        %Fix $X \in F$. %TODO: Missmatched Assume!
-
-%        It suffices to show that for all $a,X$ such that $a \in A$ and $X \in F$ we have $a \in X$.
-%        Follows by \cref{inters}.
-%    \end{subproof}
-%    We show that for all $X \in F$ such that $A \subseteq X$ we have $A \subseteq \inters{F}$.
-%    \begin{subproof}
-%        Omitted.
-%    \end{subproof}
-%\end{proof}
 
 \begin{proposition}\label{set_is_subseteq_to_closure_of_the_set}
+    Let $X$ be a topological space.
+    Suppose $A \subseteq \carrier[X]$.
     $A \subseteq \closure{A}{X}$.
 \end{proposition}
 \begin{proof}
-    %$\closures{A}{X}$ is inhabited. %TODO: Inhabited why does "subseteq_inters_iff" has inhabited as assumtion??
-    For all $A' \in \closures{A}{X}$ we have $A \subseteq A'$.
-    Therefore $A \subseteq \inters{\closures{A}{X}}$.
+    \begin{byCase}
+        \caseOf{$A = \emptyset$.} 
+        Trivial.
+        \caseOf{$A \neq \emptyset$.}
+        We show that $\carrier[X] \in \closures{A}{X}$.
+        \begin{subproof}
+            $\carrier[X]$ is closed in $X$.
+            $\carrier[X] \in \pow{\carrier[X]}$.
+        \end{subproof}
+        $\closures{A}{X}$ is inhabited.        
+        For all $A' \in \closures{A}{X}$ we have $A \subseteq A'$.
+        Therefore $A \subseteq \inters{\closures{A}{X}}$.
+    \end{byCase}
 \end{proof}
 
 \begin{proposition}\label{complement_of_closure_of_complement_of_x_subseteq_x}
+    Let $X$ be a topological space.
+    Suppose $A \subseteq \carrier[X]$.
     $(\carrier[X] \setminus \closure{(\carrier[X]\setminus A)}{X}) \subseteq A$.
 \end{proposition}
 \begin{proof}
     It suffices to show that for all $x \in (\carrier[X] \setminus \closure{(\carrier[X]\setminus A)}{X})$ we have $x \in A$.
     If $x \in \carrier[X]\setminus A$ then $x \in \closure{(\carrier[X]\setminus A)}{X}$.
-
 \end{proof}
 
-\begin{proposition}%[Complement of interior equals closure of complement]
-\label{complement_interior_eq_closure_complement}
+\begin{proposition}\label{complement_of_closed_is_open}
     Let $X$ be a topological space.
+    Suppose $A \subseteq \carrier[X]$.
+    Suppose $A$ is closed in $X$.
+    Then $\carrier[X] \setminus A$ is open in $X$.
+\end{proposition}
+
+\begin{proposition}\label{complement_of_open_is_closed}
+    Let $X$ be a topological space.
+    Suppose $A \subseteq \carrier[X]$.
+    Suppose $A$ is open in $X$.
+    Then $\carrier[X] \setminus A$ is closed in $X$.
+\end{proposition}
+
+\begin{proposition}\label{intersection_of_closed_is_closed}
+    Let $X$ be a topological space.
+    Suppose $A, B \subseteq \carrier[X]$.
+    Suppose $A$ are closed in $X$.
+    Suppose $B$ are closed in $X$.
+    Then $A \inter B$ is closed in $X$.
+\end{proposition}
+\begin{proof}
+    $\carrier[X] \setminus A, \carrier[X] \setminus B \in \opens[X]$.
+    $(\carrier[X] \setminus A) \union (\carrier[X] \setminus B) \in \opens[X]$.
+    $A \inter B = \carrier[X] \setminus ((\carrier[X] \setminus A) \union (\carrier[X] \setminus B))$.
+\end{proof}
+
+\begin{proposition}\label{union_of_closed_is_closed}
+    Let $X$ be a topological space.
+    Suppose $A, B \subseteq \carrier[X]$.
+    Suppose $A$ are closed in $X$.
+    Suppose $B$ are closed in $X$.
+    Then $A \union B$ is closed in $X$.
+\end{proposition}
+\begin{proof}
+    $\carrier[X] \setminus A, \carrier[X] \setminus B \in \opens[X]$.
+    $(\carrier[X] \setminus A) \inter (\carrier[X] \setminus B) \in \opens[X]$.
+    $A \union B = \carrier[X] \setminus ((\carrier[X] \setminus A) \inter (\carrier[X] \setminus B))$.
+\end{proof}
+
+\begin{proposition}\label{closed_minus_open_is_closed}
+    Let $X$ be a topological space.
+    Suppose $A, B \subseteq \carrier[X]$.
+    Suppose $A$ is open in $X$.
+    Suppose $B$ is closed in $X$.
+    Then $B \setminus A$ is closed in $X$.
+\end{proposition}
+
+
+
+\begin{proposition}\label{intersection_of_closed_is_closed_infinite}
+    Let $X$ be a topological space.
+    Suppose $F \subseteq \pow{\carrier[X]}$.
+    Suppose for all $A \in F$ we have $A$ is closed in $X$.
+    Suppose $F$ is inhabited.
+    Then $\inters{F}$ is closed in $X$.
+\end{proposition}
+\begin{proof}
+    Let $F' = \{Y \in \pow{\carrier[X]} \mid \text{there exists $C \in F$ such that $Y = \carrier[X] \setminus C$ }\} $.
+    For all $Y \in F'$ we have $Y$ is open in $X$.
+    $\unions{F'}$ is open in $X$.
+    $\unions{F'}, \inters{F} \subseteq \carrier[X]$.
+    We show that $\inters{F} = \carrier[X] \setminus (\unions{F'})$.
+    \begin{subproof}
+        We show that for all $a \in \inters{F}$ we have $a \in \carrier[X] \setminus (\unions{F'})$.
+        \begin{subproof}
+            Fix $a \in \inters{F}$.
+            $a \in \carrier[X]$.
+            For all $A \in F$ we have $a \in A$.
+            For all $A \in F$ we have $a \notin (\carrier[X] \setminus A)$.
+            Then $a \notin \unions{F'}$.
+            Therefore $a \in \carrier[X] \setminus (\unions{F'})$.
+        \end{subproof}
+
+        We show that for all $a \in \carrier[X] \setminus (\unions{F'})$ we have $a \in \inters{F}$.
+        \begin{subproof}
+            Fix $a \in \carrier[X] \setminus (\unions{F'})$.
+            \begin{byCase}
+                \caseOf{$a = \emptyset$.} 
+                    Omitted.
+                \caseOf{$a \neq \emptyset$.}
+                    $a \in \carrier[X]$.
+                    $a \notin \unions{F'}$.
+                    For all $A \in F'$ we have $a \notin A$.
+                    For all $A \in F'$ we have $a \in (\carrier[X] \setminus A)$.
+                    For all $A \in F'$ there exists $Y \in F$ such that $Y = (\carrier[X] \setminus A)$.
+                    For all $Y \in F $ there exists $A \in F'$ such that $a \in Y = (\carrier[X] \setminus A)$.
+                    For all $Y \in F$ we have $a \in Y$.
+                    $\inters{F}$ is inhabited.
+                    Therefore $a \in \inters{F}$.
+            \end{byCase}
+        \end{subproof}
+        Follows by set extensionality.
+    \end{subproof}
+    Follows by \cref{complement_of_open_is_closed}.
+\end{proof}
+
+\begin{proposition}\label{closure_is_closed}
+    Let $X$ be a topological space.
+    Suppose $A \subseteq \carrier[X]$.
+    Then $\closure{A}{X}$ is closed in $X$.
+\end{proposition}
+
+\begin{proposition}\label{complement_interior_eq_closure_complement}
+    Let $X$ be a topological space.
+    Suppose $A \subseteq \carrier[X]$.
     $\carrier[X]\setminus\interior{A}{X} = \closure{(\carrier[X]\setminus A)}{X}$.
 \end{proposition}
 \begin{proof}
@@ -327,47 +421,24 @@
             Suppose not. 
             $x \notin \closure{(\carrier[X]\setminus A)}{X}$.
             $x \in \carrier[X]$.
-            For all $x \in X$ such that $A \union B = X$ and $A \inter B = \emptyset$ we have $x \in A \implies x \notin B$.
-            For all $x \in X$ such that $A \union B = X$ and $A \inter B = \emptyset$ we have $x \notin A \implies x \in B$.
             $(\carrier[X] \setminus \closure{(\carrier[X]\setminus A)}{X}) \inter \closure{(\carrier[X]\setminus A)}{X} = \emptyset$.
-            %$(\carrier[X] \setminus \closure{(\carrier[X]\setminus A)}{X}) \subseteq A$. %TODO:
             $x \in A$.
             $x \in A \inter (\carrier[X] \setminus \closure{(\carrier[X]\setminus A)}{X})$.
-            $\carrier[X] \setminus \closure{(\carrier[X]\setminus A)}{X} \in \opens[X]$. %TODO:
+            $\carrier[X] \setminus \closure{(\carrier[X]\setminus A)}{X} \in \opens[X]$.
             Contradiction.
         \end{subproof}
-
         $\carrier[X]\setminus\interior{A}{X} \subseteq \closure{(\carrier[X]\setminus A)}{X}$.
-
-        $\closure{(\carrier[X]\setminus A)}{X} \subseteq \carrier[X]\setminus\interior{A}{X}$. %TODO:
-
-    %We show that for all $x \in \carrier[X]\setminus\interior{A}{X}$ we have $x \in \closure{(\carrier[X]\setminus A)}{X}$.
-    %\begin{subproof}
-    %    Fix $x \in \carrier[X]\setminus\interior{A}{X}$.
-    %    \begin{byCase}
-    %        \caseOf{$x \in \carrier[X] \setminus A$.}
-    %        Trivial.
-    %        \caseOf{$x \in \carrier[X] \setminus A \inter \interior{A}{X}$.}
-    %        $\carrier[X] \setminus \closure{A}{X} \in \opens[X]$.
-    %        $\interior{A}{X} \in \opens[X]$.
-    %        Therefore $\carrier[X] \setminus \closure{A}{X} \inter \interior{A}{X} \in \opens[X]$.
-    %        %$\carrier[X] \setminus \closure{A}{X}$ is open.   TODO: is open throws an error!
-    %        %$\interior{A}{X}$ is open.
-    %        %Therefore $\carrier[X] \setminus \closure{A}{X} \inter \interior{A}{X}$ is open.
-    %
-    %    \end{byCase}
-    %\end{subproof}
-    %Suffices reduction by \cref :::::    reduction => goal.
-    
-
-    %Omitted. % Use general De Morgan's Law in Pow|X|
+        $\closure{(\carrier[X]\setminus A)}{X} \subseteq \carrier[X]\setminus\interior{A}{X}$.
 \end{proof}
+
 
 \begin{definition}[Frontier]\label{frontier}
     $\frontier{A}{X} = \closure{A}{X}\setminus\interior{A}{X}$.
 \end{definition}
 
-
+\begin{proposition}\label{safe}   %TODO: Remove!!!
+    $x \neq x$.
+\end{proposition}
 
 \begin{proposition}%[Frontier as intersection of closures]
 \label{frontier_as_inter}
@@ -375,7 +446,7 @@
 \end{proposition}
 \begin{proof}
     % TODO
-    Omitted.
+    %Omitted.
     %$\frontier{A}{X} = \closure{A}{X}\setminus\interior{A}{X}$. % by frontier (definition)
     %$\closure{A}{X}\setminus\interior{A}{X} = \closure{A}{X}\inter(\carrier[X]\setminus\interior{A}{X})$. % by setminus_eq_inter_complement
     %$\closure{A}{X}\inter(\carrier[X]\setminus\interior{A}{X}) = \closure{A}{X} \inter \closure{(\carrier[X]\setminus A)}{X}$. % by complement_interior_eq_closure_complement
