@@ -380,13 +380,19 @@
             Therefore $a \in \carrier[X] \setminus (\unions{F'})$.
         \end{subproof}
 
+        
+
+
         We show that for all $a \in \carrier[X] \setminus (\unions{F'})$ we have $a \in \inters{F}$.
         \begin{subproof}
-            Fix $a \in \carrier[X] \setminus (\unions{F'})$.
             \begin{byCase}
-                \caseOf{$a = \emptyset$.} 
-                    Omitted.
-                \caseOf{$a \neq \emptyset$.}
+                \caseOf{$\inters{F} = \emptyset$.}
+                    $F$ is inhabited.
+                    Take $U$ such that $U \in F$.
+                    Let $F'' = F \setminus \{U\}$.
+                    There exist $U' \in F'$ such that $U' = \carrier[X] \setminus U$.
+                \caseOf{$\inters{F} \neq \emptyset$.}
+                    Fix $a \in \carrier[X] \setminus (\unions{F'})$.
                     $a \in \carrier[X]$.
                     $a \notin \unions{F'}$.
                     For all $A \in F'$ we have $a \notin A$.
@@ -408,6 +414,30 @@
     Suppose $A \subseteq \carrier[X]$.
     Then $\closure{A}{X}$ is closed in $X$.
 \end{proposition}
+\begin{proof}
+    \begin{byCase}
+        \caseOf{$\closure{A}{X} = \emptyset$.} 
+            Trivial.
+        \caseOf{$\closure{A}{X} \neq \emptyset$.}
+            $\closures{A}{X}$ is inhabited.
+            $\closures{A}{X} \subseteq \pow{\carrier[X]}$.
+            For all $B \in \closures{A}{X}$ we have $B$ is closed in $X$.
+            $\inters{\closures{A}{X}}$ is closed in $X$.
+    \end{byCase}
+\end{proof}
+
+\begin{definition}\label{set_of_closeds}
+    $\closeds[X] = \{ Y \in \pow{\carrier[X]} \mid \text{$Y$ is closed in $X$}\}$.
+\end{definition}
+
+\begin{proposition}\label{closure_is_minimal_closed_set}
+    Let $X$ be a topological space.
+    Suppose $A \subseteq \carrier[X]$.
+    For all $Y \in \closeds[X]$ such that $A \subseteq Y$ we have $\closure{A}{X} \subseteq Y$.  
+\end{proposition}
+\begin{proof}
+    Follows by \cref{closure,set_of_closeds,inters_subseteq_elem,closures}.
+\end{proof}
 
 \begin{proposition}\label{complement_interior_eq_closure_complement}
     Let $X$ be a topological space.
@@ -432,24 +462,45 @@
 \end{proof}
 
 
+
 \begin{definition}[Frontier]\label{frontier}
     $\frontier{A}{X} = \closure{A}{X}\setminus\interior{A}{X}$.
 \end{definition}
 
-\begin{proposition}\label{safe}   %TODO: Remove!!!
-    $x \neq x$.
+\begin{proposition}\label{closure_interior_frontier_is_in_carrier}
+    Let $X$ be a topological space.
+    Suppose $A \subseteq \carrier[X]$.
+    Then $\closure{A}{X}, \interior{A}{X}, \frontier{A}{X} \subseteq \carrier[X]$.
 \end{proposition}
 
-\begin{proposition}%[Frontier as intersection of closures]
-\label{frontier_as_inter}
+\begin{proposition}\label{frontier_is_closed}
+    Let $X$ be a topological space.
+    Suppose $A \subseteq \carrier[X]$.
+    Then $\frontier{A}{X}$ is closed in $X$.
+\end{proposition}
+\begin{proof}
+    $\closure{A}{X}\setminus\interior{A}{X}$ is closed in $X$ by \cref{closure_interior_frontier_is_in_carrier,closure_is_closed,interior_is_open,closed_minus_open_is_closed}.
+\end{proof}
+
+\begin{proposition}\label{setdifference_eq_intersection_with_complement}
+    Suppose $A,B \subseteq C$.
+    Then $A \setminus B = A \inter (C \setminus B)$.
+\end{proposition}
+
+
+
+\begin{proposition}\label{frontier_as_inter}
+    Let $X$ be a topological space.
+    Suppose $A \subseteq \carrier[X]$.
     $\frontier{A}{X} = \closure{A}{X} \inter \closure{(\carrier[X]\setminus A)}{X}$.
 \end{proposition}
 \begin{proof}
-    % TODO
-    %Omitted.
-    %$\frontier{A}{X} = \closure{A}{X}\setminus\interior{A}{X}$. % by frontier (definition)
-    %$\closure{A}{X}\setminus\interior{A}{X} = \closure{A}{X}\inter(\carrier[X]\setminus\interior{A}{X})$. % by setminus_eq_inter_complement
-    %$\closure{A}{X}\inter(\carrier[X]\setminus\interior{A}{X}) = \closure{A}{X} \inter \closure{(\carrier[X]\setminus A)}{X}$. % by complement_interior_eq_closure_complement
+    \begin{align*}
+          \frontier{A}{X} \\
+        &= \closure{A}{X}\setminus\interior{A}{X} \\
+        &= \closure{A}{X} \inter (\carrier[X] \setminus \interior{A}{X}) \explanation{by \cref{setdifference_eq_intersection_with_complement,closure_interior_frontier_is_in_carrier}}\\
+        &= \closure{A}{X} \inter \closure{(\carrier[X]\setminus A)}{X} \explanation{by \cref{complement_interior_eq_closure_complement}}
+    \end{align*}
 \end{proof}
 
 \begin{proposition}\label{frontier_of_emptyset}
