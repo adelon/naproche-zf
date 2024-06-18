@@ -21,7 +21,7 @@ closure :: [ExprOf VarSymbol] -> ExprOf VarSymbol -> Formula
 closure asms stmt = contraction (forallClosure mempty (makeConjunction asms `Implies` stmt))
 
 unAsm :: Asm -> Formula
-unAsm (Asm phi )= phi
+unAsm (Asm phi) = phi
 unAsm (AsmStruct x sp) = TermSymbol (SymbolPredicate (PredicateNounStruct sp)) [TermVar x]
 
 buildBlocks :: Lexicon -> [Block] -> Builder
