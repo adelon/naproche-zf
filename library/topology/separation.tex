@@ -145,3 +145,46 @@
         $x\in U$ and $y\in V$ and $U$ is disjoint from $V$.
     \end{subproof}
 \end{proof}
+
+\begin{definition}\label{regular}
+    $X$ is regular iff for all $C,p$ such that $p \in \carrier[X]$ and $p \notin C \in \closeds{X}$ we have there exists $U,C \in \opens[X]$ such that $p \in U$ and $C \subseteq V$ and $U \inter V = \emptyset$.
+\end{definition}
+
+\begin{definition}\label{regular_space}
+    $X$ is a regular space iff $X$ is a topological space and $X$ is regular.
+\end{definition}
+
+
+\begin{definition}\label{teethree}
+    $X$ is \teethree\ iff $X$ is regular and $X$ is \teezero\ .
+\end{definition}
+
+\begin{definition}\label{teethree_space}
+    $X$ is a \teethree-space iff $X$ is a topological space and $X$ is \teethree\ .
+\end{definition}
+
+\begin{proposition}\label{teethree_space_is_teetwo_space}
+    Let $X$ be a \teethree-space.
+    Then $X$ is a \teetwo-space.
+\end{proposition}
+\begin{proof}
+    For all $x,y \in \carrier[X]$ such that $x \neq y$ we have $x \notin \{y\}$.
+    It suffices to show that $X$ is hausdorff.
+    It suffices to show that for all $x \in \carrier[X]$ we have for all $y \in \carrier[X]$ such that $y \neq x$ we have there exist $U,V \in \opens[X]$ such that $x\in U$ and $y \in V$ and $U$ is disjoint from $V$.
+    Fix $x \in \carrier[X]$.
+    It suffices to show that for all $y \in \carrier[X]$ such that $y \neq x$ we have there exist $U,V \in \opens[X]$ such that $x\in U$ and $y \in V$ and $U$ is disjoint from $V$.
+    Fix $y \in \carrier[X]$.
+
+    %There exist $U' \in \opens[X]$ such that $x\in U'\not\ni y$ or $x\notin U'\ni y$ by \cref{}.
+    %There exist $C \in \closeds{X}$ such that $y \in C \not\ni X$.
+    We show that there exist $U,V,C$ such that $U,V \in \opens[X]$ and $C\in \closeds{X}$ and $x \in U$ and $y \in C \subseteq V$ and $U$ is disjoint from $V$.
+    \begin{subproof}
+        Omitted.
+    \end{subproof}
+    $y \in V$.
+    Follows by assumption.
+\end{proof}
+
+%    for all $x,y\in\carrier[X]$ such that $x\neq y$
+%    there exist $U, V\in\opens[X]$ such that
+%    $x\in U$ and $y\in V$ and $U$ is disjoint from $V$.

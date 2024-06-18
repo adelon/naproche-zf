@@ -239,17 +239,11 @@
     Then $A \subseteq \unions{F}$.
 \end{proposition}
 \begin{proof}
-    \begin{byCase}
-        %\caseOf{$F$ is empty.} 
-           %For all $X$ we have $X \notin F$.
-        %If $X \in F$ and $A \in X$ then $A \in F$.
-        %Contradiction by assumption.
-        %Omitted.
-        \caseOf{$F$ is inhabited.}
-        There exist $X \in F$ such that $X \subseteq \unions{F}$.
-        $A \subseteq X \subseteq \unions{F}$.
-    \end{byCase}
+    There exist $X \in F$ such that $X \subseteq \unions{F}$.
+    $A \subseteq X \subseteq \unions{F}$.
 \end{proof}
+
+
 
 \begin{proposition}\label{subseteq_inters_iff_to_left} 
     Let $A,F$ be sets.
@@ -379,10 +373,6 @@
             Then $a \notin \unions{F'}$.
             Therefore $a \in \carrier[X] \setminus (\unions{F'})$.
         \end{subproof}
-
-        
-
-
         We show that for all $a \in \carrier[X] \setminus (\unions{F'})$ we have $a \in \inters{F}$.
         \begin{subproof}
             \begin{byCase}
@@ -426,17 +416,15 @@
     \end{byCase}
 \end{proof}
 
-\begin{definition}\label{set_of_closeds}
-    $\closeds[X] = \{ Y \in \pow{\carrier[X]} \mid \text{$Y$ is closed in $X$}\}$.
-\end{definition}
+
 
 \begin{proposition}\label{closure_is_minimal_closed_set}
     Let $X$ be a topological space.
     Suppose $A \subseteq \carrier[X]$.
-    For all $Y \in \closeds[X]$ such that $A \subseteq Y$ we have $\closure{A}{X} \subseteq Y$.  
+    For all $Y \in \closeds{X}$ such that $A \subseteq Y$ we have $\closure{A}{X} \subseteq Y$.  
 \end{proposition}
 \begin{proof}
-    Follows by \cref{closure,set_of_closeds,inters_subseteq_elem,closures}.
+    Follows by \cref{closure,closeds,inters_subseteq_elem,closures}.
 \end{proof}
 
 \begin{proposition}\label{complement_interior_eq_closure_complement}
