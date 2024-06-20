@@ -382,7 +382,9 @@
                     Let $F'' = F \setminus \{U\}$.
                     There exist $U' \in F'$ such that $U' = \carrier[X] \setminus U$.
                 \caseOf{$\inters{F} \neq \emptyset$.}
+                    
                     Fix $a \in \carrier[X] \setminus (\unions{F'})$.
+                    $\inters{F}$ is inhabited.
                     $a \in \carrier[X]$.
                     $a \notin \unions{F'}$.
                     For all $A \in F'$ we have $a \notin A$.
@@ -390,7 +392,6 @@
                     For all $A \in F'$ there exists $Y \in F$ such that $Y = (\carrier[X] \setminus A)$.
                     For all $Y \in F $ there exists $A \in F'$ such that $a \in Y = (\carrier[X] \setminus A)$.
                     For all $Y \in F$ we have $a \in Y$.
-                    $\inters{F}$ is inhabited.
                     Therefore $a \in \inters{F}$.
             \end{byCase}
         \end{subproof}
@@ -427,26 +428,35 @@
     Follows by \cref{closure,closeds,inters_subseteq_elem,closures}.
 \end{proof}
 
+\begin{proposition}\label{interior_is_maximal}
+    Let $X$ be a topological space.
+    Suppose $A \subseteq \carrier[X]$.
+    For all $Y \in \opens[X]$ such that $Y \subseteq A$ we have $Y \subseteq \interior{A}{X}$.
+\end{proposition}
+
 \begin{proposition}\label{complement_interior_eq_closure_complement}
     Let $X$ be a topological space.
     Suppose $A \subseteq \carrier[X]$.
     $\carrier[X]\setminus\interior{A}{X} = \closure{(\carrier[X]\setminus A)}{X}$.
 \end{proposition}
 \begin{proof}
-        We show that for all $x \in \carrier[X]\setminus\interior{A}{X}$ we have $x \in \closure{(\carrier[X]\setminus A)}{X}$.
-        \begin{subproof}
-            Fix $x \in \carrier[X]\setminus\interior{A}{X}$.
-            Suppose not. 
-            $x \notin \closure{(\carrier[X]\setminus A)}{X}$.
-            $x \in \carrier[X]$.
-            $(\carrier[X] \setminus \closure{(\carrier[X]\setminus A)}{X}) \inter \closure{(\carrier[X]\setminus A)}{X} = \emptyset$.
-            $x \in A$.
-            $x \in A \inter (\carrier[X] \setminus \closure{(\carrier[X]\setminus A)}{X})$.
-            $\carrier[X] \setminus \closure{(\carrier[X]\setminus A)}{X} \in \opens[X]$.
-            Contradiction.
-        \end{subproof}
-        $\carrier[X]\setminus\interior{A}{X} \subseteq \closure{(\carrier[X]\setminus A)}{X}$.
-        $\closure{(\carrier[X]\setminus A)}{X} \subseteq \carrier[X]\setminus\interior{A}{X}$.
+    We show that for all $x \in \carrier[X]\setminus\interior{A}{X}$ we have $x \in \closure{(\carrier[X]\setminus A)}{X}$.
+    \begin{subproof}
+        
+        Fix $x \in \carrier[X]\setminus\interior{A}{X}$.
+        Suppose not. 
+        $x \notin \closure{(\carrier[X]\setminus A)}{X}$.
+        $x \in \carrier[X]$.
+        $(\carrier[X] \setminus \closure{(\carrier[X]\setminus A)}{X}) \inter \closure{(\carrier[X]\setminus A)}{X} = \emptyset$.
+        $x \in A$.
+        $x \in A \inter (\carrier[X] \setminus \closure{(\carrier[X]\setminus A)}{X})$.
+        $\carrier[X] \setminus \closure{(\carrier[X]\setminus A)}{X} \in \opens[X]$.
+        There exist $U \in \opens[X]$ such that $x \in U$ and $U\subseteq A$. 
+        $U \subseteq \interior{A}{X}$.
+        Contradiction.
+    \end{subproof}
+    $\carrier[X]\setminus\interior{A}{X} \subseteq \closure{(\carrier[X]\setminus A)}{X}$.
+    $\closure{(\carrier[X]\setminus A)}{X} \subseteq \carrier[X]\setminus\interior{A}{X}$.
 \end{proof}
 
 
