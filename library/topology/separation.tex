@@ -1,5 +1,5 @@
 \import{topology/topological-space.tex}
-
+\import{set.tex}
 
 % T0 separation
 \begin{definition}\label{is_kolmogorov}
@@ -146,28 +146,65 @@
     \end{subproof}
 \end{proof}
 
-\begin{definition}\label{regular}
+\begin{definition}\label{is_regular}
     $X$ is regular iff for all $C,p$ such that $p \in \carrier[X]$ and $p \notin C \in \closeds{X}$ we have there exists $U,C \in \opens[X]$ such that $p \in U$ and $C \subseteq V$ and $U \inter V = \emptyset$.
 \end{definition}
 
-\begin{definition}\label{regular_space}
+\begin{abbreviation}\label{regular_space}
     $X$ is a regular space iff $X$ is a topological space and $X$ is regular.
-\end{definition}
+\end{abbreviation}
 
 
-\begin{definition}\label{teethree}
+\begin{abbreviation}\label{teethree}
     $X$ is \teethree\ iff $X$ is regular and $X$ is \teezero\ .
-\end{definition}
+\end{abbreviation}
 
-\begin{definition}\label{teethree_space}
+\begin{abbreviation}\label{teethree_space}
     $X$ is a \teethree-space iff $X$ is a topological space and $X$ is \teethree\ .
-\end{definition}
+\end{abbreviation}
+
+\begin{proposition}\label{eqvilance_teethree_closed_neighbourhood_in_open}
+    Let $X$ be a topological space.
+    Suppose $X$ is inhabited.
+    $X$ is \teethree\ iff for all $U \in \opens[X]$ we have for all $x \in U$ we have there exist $N \in \neighbourhoods{x}{X}$ such that $N \subseteq U$ and $N$ is closed in $X$.    
+\end{proposition}
+\begin{proof}
+
+    We show that if $X$ is \teethree\ then for all $U \in \opens[X]$ we have for all $x \in U$ we have there exist $N \in \neighbourhoods{x}{X}$ such that $N \subseteq U$ and $N$ is closed in $X$.    
+    \begin{subproof}
+        Suppose $X$ is regular and kolmogorov.
+        Fix $U \in \opens[X]$.
+        Fix $x \in U$.
+        Let $C = \carrier[X] \setminus U$.
+        Then $C \in \closeds{X}$.
+        $x \notin C$.
+        $x \in \carrier[X]$.
+        There exists $A,B \in \opens[X]$ such that $x \in B$ and $C \subseteq A$ and $A \inter B = \emptyset$ by \cref{is_regular}.        
+        $B \subseteq (\carrier[X] \setminus A)$.
+        $(\carrier[X] \setminus A) \subseteq (\carrier[X] \setminus (\carrier[X] \setminus U))$.
+        $(\carrier[X] \setminus (\carrier[X] \setminus U)) = U$.
+        $x \in B \subseteq (\carrier[X] \setminus A) \subseteq U$.
+        Let $N = (\carrier[X] \setminus A)$.
+        Then $N \in \closeds{X}$ and $x \in N$ and $N \subseteq U$.
+        Particularly, $N \in \neighbourhoods{x}{X}$.
+    \end{subproof}
+    We show that if for all $U \in \opens[X]$ we have for all $x \in U$ we have there exist $N \in \neighbourhoods{x}{X}$ such that $N \subseteq U$ and $N$ is closed in $X$ then $X$ is \teethree\ .    
+    \begin{subproof}
+        Omitted.
+    \end{subproof}
+\end{proof}
+
+
+
 
 \begin{proposition}\label{teethree_space_is_teetwo_space}
     Let $X$ be a \teethree-space.
+    Suppose $X$ is inhabited.
     Then $X$ is a \teetwo-space.
 \end{proposition}
 \begin{proof}
+    Omitted.
+\end{proof}
     For all $x,y \in \carrier[X]$ such that $x \neq y$ we have $x \notin \{y\}$.
     It suffices to show that $X$ is hausdorff.
     It suffices to show that for all $x \in \carrier[X]$ we have for all $y \in \carrier[X]$ such that $y \neq x$ we have there exist $U,V \in \opens[X]$ such that $x\in U$ and $y \in V$ and $U$ is disjoint from $V$.
@@ -175,16 +212,48 @@
     It suffices to show that for all $y \in \carrier[X]$ such that $y \neq x$ we have there exist $U,V \in \opens[X]$ such that $x\in U$ and $y \in V$ and $U$ is disjoint from $V$.
     Fix $y \in \carrier[X]$.
 
-    %There exist $U' \in \opens[X]$ such that $x\in U'\not\ni y$ or $x\notin U'\ni y$ by \cref{}.
-    %There exist $C \in \closeds{X}$ such that $y \in C \not\ni X$.
+
     We show that there exist $U,V,C$ such that $U,V \in \opens[X]$ and $C\in \closeds{X}$ and $x \in U$ and $y \in C \subseteq V$ and $U$ is disjoint from $V$.
     \begin{subproof}
-        Omitted.
-    \end{subproof}
-    $y \in V$.
-    Follows by assumption.
-\end{proof}
+        There exist $C' \in \closeds{X}$ such that $x \in \carrier[X]$ and $x \notin C' \in \closeds{X}$ and there exists $U',V' \in \opens[X]$ such that $x \in U'$ and $C' \subseteq V'$ and $U' \inter V' = \emptyset$.
+        There exists $U',V' \in \opens[X]$ such that $x \in U'$ and $C' \subseteq V'$ and $U' \inter V' = \emptyset$.
+        $U'$ is disjoint from $V'$.
+        $x \in U'$.
+        $x \notin C' \subseteq V'$.
+        $U',V' \in \opens[X]$.
+        $C' \in \closeds{X}$.
+        We show that there exist $K \in \closeds{X}$ such that $x \notin K \ni y$.
+        \begin{subproof}
+            $X$ is Kolmogorov.
+            For all $x',y'\in\carrier[X]$ such that $x'\neq y'$ there exist $H\in\opens[X]$ such that $x'\in H\not\ni y'$ or $x'\notin H\ni y'$.
+            we show that there exist $H \in \opens[X]$ such that $x \notin H \ni y$ or $y \notin H \ni x$.
+            \begin{subproof}
+                Omitted.
+            \end{subproof}
+            $H \subseteq \carrier[X]$ by \cref{opens_type,subseteq}.
+            Since $\carrier[X] \ni x \notin H$ or $\carrier[X] \ni y \notin H$, we have there exist $c \in H$. 
+            Then $H \neq \carrier[X]$.
+            Since $y \in H$ or $x \in H$, we have $H \neq \emptyset$.
+            Let $K = \carrier[X] \setminus H$.
+            $K$ is inhabited.
+            $K \in \closeds{X}$ by \cref{complement_of_open_is_closed}.
+            $x \notin K \ni y$ or $y \notin K \ni x$.
+            \begin{byCase}
+                \caseOf{$y \in K$.} Trivial.
+                \caseOf{$y \notin K$.}
+                Then there exist $U'',V'' \in \opens[X]$ such that $x \in U''$ and $K \subseteq V''$ and $U'' \inter V'' = \emptyset$ by \cref{is_regular}.
+                Let $K' = \carrier[X] \setminus U''$.
+                $x \in K'$.
+                $K' \in \closeds{X}$.
+            \end{byCase}
 
-%    for all $x,y\in\carrier[X]$ such that $x\neq y$
-%    there exist $U, V\in\opens[X]$ such that
-%    $x\in U$ and $y\in V$ and $U$ is disjoint from $V$.
+
+        \end{subproof}
+
+        Follows by assumption.
+    \end{subproof}
+    $y \in V$ by assumption.
+    Follows by assumption.
+
+    
+%\end{proof}
