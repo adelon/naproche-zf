@@ -1,49 +1,52 @@
-\import{nat.tex}
 \import{order/order.tex}
 \import{relation.tex}
 
 \section{The real numbers}
-
-%TODO:
-%\inv{} für inverse benutzen. Per Signatur einfüheren und dann axiomatisch absicher
-%\cdot für multiklikation verwenden. 
-%< für die relation benutzen.
-% sup und inf einfügen
 
 \begin{signature}
     $\reals$ is a set.
 \end{signature}
 
 \begin{signature}
-    $x \add y$ is a set.
+    $x + y$ is a set.
 \end{signature}
 
 \begin{signature}
     $x \rmul y$ is a set.
 \end{signature}
 
+\subsection{Basic axioms of the reals}
+
+\begin{axiom}\label{reals_axiom_zero_in_reals}
+    $\zero \in \reals$.
+\end{axiom}
+
 \begin{axiom}\label{one_in_reals}
     $1 \in \reals$.
 \end{axiom}
 
-\begin{axiom}\label{reals_axiom_order}
-    $\lt[\reals]$ is an order on $\reals$.
+\begin{axiom}\label{zero_neq_one}
+    $\zero \neq 1$.
 \end{axiom}
 
-\begin{axiom}\label{reals_axiom_strictorder}
-    $\lt[\reals]$ is a strict order.
-\end{axiom}
+\begin{definition}\label{reals_definition_order_def}
+    $x < y$ iff there exist $z \in \reals$ such that $x + (z \rmul z) = y$.
+\end{definition}
+
+%\begin{axiom}\label{reals_axiom_order}
+%    $\lt[\reals]$ is an order on $\reals$.
+%\end{axiom}
+
+%\begin{abbreviation}\label{lesseq_on_reals}
+%    $x \leq y$ iff $(x,y) \in \lt[\reals]$.
+%\end{abbreviation}
 
 \begin{abbreviation}\label{less_on_reals}
-    $x < y$ iff $(x,y) \in \lt[\reals]$.
+    $x \leq y$ iff it is wrong that $y < x$.
 \end{abbreviation}
 
 \begin{abbreviation}\label{greater_on_reals}
-    $x > y$ iff $y < x$.
-\end{abbreviation}
-
-\begin{abbreviation}\label{lesseq_on_reals}
-    $x \leq y$ iff it is wrong that $x > y$.
+    $x > y$ iff $y \leq x$.
 \end{abbreviation}
 
 \begin{abbreviation}\label{greatereq_on_reals}
@@ -55,100 +58,165 @@
     there exist $z \in \reals$ such that $x < z$ and $z < y$.
 \end{axiom}
 
-\begin{axiom}\label{reals_axiom_order_def}
-    $x < y$ iff there exist $z \in \reals$ such that $\zero < z$ and $x \add z = y$.
-\end{axiom}
-
-\begin{lemma}\label{reals_one_bigger_than_zero}
-    $\zero < 1$.
-\end{lemma}
-
-
 \begin{axiom}\label{reals_axiom_assoc}
-    For all $x,y,z \in \reals$ $(x \add y) \add z = x \add (y \add z)$ and $(x \rmul y) \rmul z = x \rmul (y \rmul z)$.
+    For all $x,y,z \in \reals$ $(x + y) + z = x + (y + z)$ and $(x \rmul y) \rmul z = x \rmul (y \rmul z)$.
 \end{axiom}
 
 \begin{axiom}\label{reals_axiom_kommu}
-    For all $x,y \in \reals$ $x \add y = y \add x$ and $x \rmul y = y \rmul x$.
-\end{axiom}
-
-\begin{axiom}\label{reals_axiom_zero_in_reals}
-    $\zero \in \reals$.
+    For all $x,y \in \reals$ $x + y = y + x$ and $x \rmul y = y \rmul x$.
 \end{axiom}
   
 \begin{axiom}\label{reals_axiom_zero}
-    For all $x \in \reals$ $x \add \zero = x$. 
+    For all $x \in \reals$ $x + \zero = x$. 
 \end{axiom}
 
 \begin{axiom}\label{reals_axiom_one}
-    For all $x \in \reals$ $1 \neq \zero$ and $x \rmul 1 = x$.
+    For all $x \in \reals$ we have $x \rmul 1 = x$.
 \end{axiom}
 
 \begin{axiom}\label{reals_axiom_add_invers}
-    For all $x \in \reals$ there exist $y \in \reals$ such that $x \add y = \zero$.
+    For all $x \in \reals$ there exist $y \in \reals$ such that $x + y = \zero$.
 \end{axiom}
-
 
 \begin{axiom}\label{reals_axiom_mul_invers}
     For all $x \in \reals$ such that $x \neq \zero$ there exist $y \in \reals$ such that $x \rmul y = 1$.
 \end{axiom}
 
 \begin{axiom}\label{reals_axiom_disstro1}
-    For all $x,y,z \in \reals$ $x \rmul (y \add z) = (x \rmul y) \add (x \rmul z)$.
+    For all $x,y,z \in \reals$ $x \rmul (y + z) = (x \rmul y) + (x \rmul z)$.
 \end{axiom}
-
-\begin{proposition}\label{reals_disstro2}
-    For all $x,y,z \in \reals$ $(y \add z) \rmul x = (y \rmul x) \add (z \rmul x)$.
-\end{proposition}
-
-\begin{proposition}\label{reals_reducion_on_addition}
-    For all $x,y,z \in \reals$ if $x \add y = x \add z$ then $y = z$.
-\end{proposition}
 
 \begin{axiom}\label{reals_axiom_dedekind_complete}
     For all $X,Y,x,y$ such that $X,Y \subseteq \reals$ and $x \in X$ and $y \in Y$ and $x < y$ we have there exist $z \in \reals$
     such that $x < z < y$.
 \end{axiom}
 
+\begin{proposition}\label{reals_disstro2}
+    For all $x,y,z \in \reals$ $(y + z) \rmul x = (y \rmul x) + (z \rmul x)$.
+\end{proposition}
+\begin{proof}
+    Omitted.
+\end{proof}
+
+\begin{proposition}\label{reals_reducion_on_addition}
+    For all $x,y,z \in \reals$ if $x + y = x + z$ then $y = z$.
+\end{proposition}
+
+
+
+%\begin{signature}\label{invers_is_set}
+%    $\addInv{y}$ is a set.
+%\end{signature}
+
+%\begin{definition}\label{add_inverse}
+%    $\addInv{y} = \{ x \mid \exists k \in \reals. k + y = \zero \land x \in k\}$.
+%\end{definition}
+    
+
+%\begin{definition}\label{add_inverse_natural_language}
+%    $x$ is additiv inverse of $y$ iff $x = \addInv{y}$. 
+%\end{definition}
+
+%\begin{lemma}\label{rminus}
+%    $x \rminus \addInv{x} = \zero$.
+%\end{lemma}
+
+\begin{abbreviation}\label{is_positiv}
+    $x$ is positiv iff $x > \zero$.
+\end{abbreviation}
+
+\begin{lemma}\label{reals_add_of_positiv}
+    Let $x,y \in \reals$.
+    Suppose $x$ is positiv and $y$ is positiv.
+    Then $x + y$ is positiv.
+\end{lemma}
+\begin{proof}
+    Omitted.
+\end{proof}
+
+\begin{lemma}\label{reals_mul_of_positiv}
+    Let $x,y \in \reals$.
+    Suppose $x$ is positiv and $y$ is positiv.
+    Then $x \rmul y$ is positiv.
+\end{lemma}
+\begin{proof}
+    Omitted.
+\end{proof}
+
+
+
+\begin{lemma}\label{order_reals_lemma0}
+    For all $x \in \reals$ we have not $x < x$.
+\end{lemma}
+\begin{proof}
+    Omitted.
+\end{proof}
+
 
 \begin{lemma}\label{order_reals_lemma1}
-    For all $x,y,z \in \reals$ such that $\zero < x$ 
-    if $y < z$ 
-    then $(y \rmul x) < (z \rmul x)$.
+    Let $x,y,z \in \reals$.
+    Suppose $\zero < x$. 
+    Suppose $y < z$. 
+    Then $(y \rmul x) < (z \rmul x)$.
 \end{lemma}
+\begin{proof}
+    Omitted.
+    %There exist $k \in \reals$ such that $y + k = z$ and $k > \zero$ by \cref{reals_definition_order_def}.
+    %\begin{align*}
+    %    (z \rmul x) \\
+    %    &= ((y + k) \rmul x) \\
+    %    &= ((y \rmul x) + (k \rmul x)) \explanation{by \cref{reals_disstro2}}
+    %\end{align*} 
+    %Then $(k \rmul x) > \zero$. 
+    %Therefore $(z \rmul x) > (y \rmul x)$.
+\end{proof}
 
 \begin{lemma}\label{order_reals_lemma2}
-    For all $x,y,z \in \reals$ such that $\zero < x$ 
-    if $y < z$ 
-    then $(x \rmul y) < (x \rmul z)$.
+    Let $x,y,z \in \reals$.
+    Suppose $\zero < x$. 
+    Suppose $y < z$. 
+    Then $(x \rmul y) < (x \rmul z)$.
 \end{lemma}
+\begin{proof}
+    Omitted.
+\end{proof}
 
 
 \begin{lemma}\label{order_reals_lemma3}
-    For all $x,y,z \in \reals$ such that $x < \zero$ 
-    if $y < z$ 
-    then $(x \rmul z) < (x \rmul y)$.
+    Let $x,y,z \in \reals$.
+    Suppose $\zero < x$. 
+    Suppose $y < z$. 
+    Then $(x \rmul z) < (x \rmul y)$.
+\end{lemma}
+\begin{proof}
+    Omitted.
+\end{proof}
+
+\begin{lemma}\label{order_reals_lemma00}
+    For all $x,y \in \reals$ such that $x > y$ we have $x \geq y$.
 \end{lemma}
 
-\begin{lemma}\label{o4rder_reals_lemma}
-    For all $x,y \in \reals$ if $x > y$ then $x \geq y$.
-\end{lemma}
 
 \begin{lemma}\label{order_reals_lemma5}
-    For all $x,y \in \reals$ if $x < y$ then $x \leq y$.
+    For all $x,y \in \reals$ such that $x < y$ we have $x \leq y$.
 \end{lemma}
+\begin{proof}
+    Omitted.
+\end{proof}
 
 \begin{lemma}\label{order_reals_lemma6}
-    For all $x,y \in \reals$ if $x \leq y \leq x$ then $x=y$.
+    For all $x,y \in \reals$ such that $x \leq y \leq x$ we have $x=y$.
 \end{lemma}
-
-\begin{axiom}\label{reals_axiom_minus}
-    For all $x \in \reals$ $x \rmiuns x = \zero$.
-\end{axiom}
+\begin{proof}
+    Omitted.
+\end{proof}
 
 \begin{lemma}\label{reals_minus}
-    Assume $x,y \in \reals$. If $x \rmiuns y = \zero$ then $x=y$.
+    Assume $x,y \in \reals$. If $x \rminus y = \zero$ then $x=y$.
 \end{lemma}
+\begin{proof}
+    Omitted.
+\end{proof}
 
 \begin{definition}\label{upper_bound}
     $x$ is an upper bound of $X$ iff for all $y \in X$ we have $x > y$.
@@ -162,6 +230,9 @@
     %Let $x,y \in \reals$ and let $X$ be a subset of $\reals$.
     If $x$ is a least upper bound of $X$ and $y$ is a least upper bound of $X$ then $x = y$.
 \end{lemma}
+\begin{proof}
+    Omitted.
+\end{proof}
 
 \begin{definition}\label{supremum_reals}
     $x$ is the supremum of $X$ iff $x$ is a least upper bound of $X$.
@@ -181,8 +252,42 @@
 \begin{lemma}\label{infimum_unique}
     If $x$ is a greatest lower bound of $X$ and $y$ is a greatest lower bound of $X$ then $x = y$.
 \end{lemma}
+\begin{proof}
+    Omitted.
+\end{proof}
 
 \begin{definition}\label{infimum_reals}
     $x$ is the supremum of $X$ iff $x$ is a greatest lower bound of $X$.
 \end{definition}
 
+
+
+
+\section{The natural numbers}
+
+
+\begin{abbreviation}\label{def_suc}
+    $\successor{n} = n + 1$.
+\end{abbreviation}
+
+\begin{inductive}\label{naturals_definition_as_subset_of_reals}
+    Define $\nat \subseteq \reals$ inductively as follows.
+    \begin{enumerate}
+        \item $\zero \in \nat$.
+        \item If $n\in \nat$, then $\successor{n} \in \nat$. 
+    \end{enumerate}
+\end{inductive}
+
+\begin{lemma}\label{reals_order_suc}
+    $n < \successor{n}$.
+\end{lemma}
+
+%\begin{proposition}\label{safe}
+%    Contradiction.
+%\end{proposition}
+
+\section{The integers}
+
+%\begin{definition}
+%    $\integers = \{z \in \reals \mid z = \zero or \} $.
+%\end{definition}
