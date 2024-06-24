@@ -654,6 +654,9 @@ The $\operatorname{\textsf{cons}}$ operation is determined by the following axio
     Suppose $(A\inter B)\union C = A\inter (B\union C)$.
     Then $C\subseteq A$.
 \end{proposition}
+\begin{proof}
+    Follows by \cref{union_upper_right,union_upper_left,subseteq_union_iff,subseteq_antisymmetric,subseteq_inter_iff}.
+\end{proof}
 
 % From Isabelle/ZF equalities theory
 \begin{proposition}\label{union_inter_crazy}
