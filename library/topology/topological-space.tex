@@ -1,5 +1,6 @@
 \import{set.tex}
 \import{set/powerset.tex}
+\import{set/cons.tex}
 
 \section{Topological spaces}
 
@@ -67,7 +68,8 @@
     such that $a\in U\subseteq A$.
 \end{proposition}
 \begin{proof}
-    Take $U\in\interiors{A}{X}$ such that $a\in U$.
+    Omitted.
+    %Take $U\in\interiors{A}{X}$ such that $a\in U$.
 \end{proof}
 
 \begin{proposition}[Interior]\label{interior_elem_iff}
@@ -175,6 +177,9 @@
     Suppose $B$ is closed in $X$.
     Then $A \setminus B$ is open in $X$.
 \end{proposition}
+\begin{proof}
+    Follows by \cref{setminus_eq_emptyset_iff_subseteq,is_closed_in,opens_inter,inter_comm_left,setminus_union,inter_assoc,inter_setminus,inter_lower_left,inter_lower_right,setminus_subseteq,double_complement,setminus_setminus,setminus_eq_inter_complement,setminus_self,setminus_inter,union_comm,emptyset_subseteq,setminus_partition}.
+\end{proof}
 
 \begin{definition}[Closed sets]\label{closeds}
     $\closeds{X} = \{ A\in\pow{\carrier[X]}\mid\text{$A$ is closed in $X$}\}$.
@@ -297,7 +302,8 @@
 \end{proposition}
 \begin{proof}
     It suffices to show that for all $x \in (\carrier[X] \setminus \closure{(\carrier[X]\setminus A)}{X})$ we have $x \in A$.
-    If $x \in \carrier[X]\setminus A$ then $x \in \closure{(\carrier[X]\setminus A)}{X}$.
+    If $x \in \carrier[X]\setminus A$ then $x \in \closure{(\carrier[X]\setminus A)}{X}$ by \cref{set_is_subseteq_to_closure_of_the_set,setminus_subseteq,elem_subseteq,setminus}.
+    Follows by \cref{subseteq_setminus_cons_elim,cons_absorb,double_complement_union,union_as_unions,set_is_subseteq_to_closure_of_the_set,setminus_subseteq,setminus_intro,closure,setminus_elim_left}.
 \end{proof}
 
 \begin{proposition}\label{complement_of_closed_is_open}
@@ -381,6 +387,7 @@
                     Take $U$ such that $U \in F$.
                     Let $F'' = F \setminus \{U\}$.
                     There exist $U' \in F'$ such that $U' = \carrier[X] \setminus U$.
+                    Omitted.
                 \caseOf{$\inters{F} \neq \emptyset$.}
                     
                     Fix $a \in \carrier[X] \setminus (\unions{F'})$.
@@ -389,7 +396,7 @@
                     $a \notin \unions{F'}$.
                     For all $A \in F'$ we have $a \notin A$.
                     For all $A \in F'$ we have $a \in (\carrier[X] \setminus A)$.
-                    For all $A \in F'$ there exists $Y \in F$ such that $Y = (\carrier[X] \setminus A)$.
+                    For all $A \in F'$ there exists $Y \in F$ such that $Y = (\carrier[X] \setminus A)$ by \cref{setminus_setminus,inter_absorb_supseteq_left,pow_iff,subseteq}.
                     For all $Y \in F $ there exists $A \in F'$ such that $a \in Y = (\carrier[X] \setminus A)$.
                     For all $Y \in F$ we have $a \in Y$.
                     Therefore $a \in \inters{F}$.
@@ -521,4 +528,8 @@
 
 \begin{definition}\label{neighbourhoods}
     $\neighbourhoods{x}{X} = \{N\in\pow{\carrier[X]} \mid \exists U\in\opens[X]. x\in U\subseteq N\}$.
+\end{definition}
+
+\begin{definition}\label{neighbourhoods_set}
+    $\neighbourhoodsSet{x}{X} = \{N\in\pow{\carrier[X]} \mid \exists U\in\opens[X]. x\subseteq U\subseteq N\}$.
 \end{definition}

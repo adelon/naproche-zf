@@ -1,0 +1,29 @@
+\import{topology/topological-space.tex}
+\import{relation.tex}
+
+\begin{definition}\label{continuous}
+    $f$ is continuous iff for all $U \in \opens[Y]$ we have $\preimg{f}{U} \in \opens[X]$.
+\end{definition}
+
+\begin{proposition}\label{continuous_definition_by_closeds}
+    Let $X$ be a topological space.
+    Let $Y$ be a topological space.
+    Then $f$ is continuous iff for all $U \in \closeds{Y}$ we have $\preimg{f}{U} \in \closeds{X}$.
+\end{proposition}
+\begin{proof}
+    Omitted.
+    %We show that if $f$ is continuous then for all $U \in \closeds{Y}$ we have $\preimg{f}{U} \in \closeds{X}$.
+    %\begin{subproof}
+    %    Suppose $f$ is continuous.
+    %    Fix $U \in \closeds{Y}$.
+    %    $\carrier[Y] \setminus U$ is open in $Y$.
+    %    Then $\preimg{f}{(\carrier[Y] \setminus U)}$ is open in $X$.
+    %    Therefore $\carrier[X] \setminus \preimg{f}{(\carrier[Y] \setminus U)}$ is closed in $X$.
+    %    $\carrier[X] \setminus \preimg{f}{(\carrier[Y] \setminus U)} \subseteq \preimg{f}{U}$.
+    %    $\preimg{f}{U} \subseteq \carrier[X] \setminus \preimg{f}{(\carrier[Y] \setminus U)}$.
+    %\end{subproof}
+    %We show that if for all $U \in \closeds{Y}$ we have $\preimg{f}{U} \in \closeds{X}$ then $f$ is continuous.
+    %\begin{subproof}
+    %    Omitted.
+    %\end{subproof}
+\end{proof}
