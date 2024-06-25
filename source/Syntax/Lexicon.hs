@@ -109,6 +109,7 @@ prefixOps =
     , ([Just (Command "fst"), Just InvisibleBraceL, Nothing, Just InvisibleBraceR], (NonAssoc, "fst"))
     , ([Just (Command "snd"), Just InvisibleBraceL, Nothing, Just InvisibleBraceR], (NonAssoc, "snd"))
     , ([Just (Command "pow"), Just InvisibleBraceL, Nothing, Just InvisibleBraceR], (NonAssoc, "pow"))
+    , ([Just (Command "neg"), Just InvisibleBraceL, Nothing, Just InvisibleBraceR], (NonAssoc, "neg"))
     , (ConsSymbol, (NonAssoc, "cons"))
     , (PairSymbol, (NonAssoc, "pair"))
     -- NOTE Is now defined and hence no longer necessary , (ApplySymbol, (NonAssoc, "apply"))
