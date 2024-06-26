@@ -1,5 +1,6 @@
 \import{order/order.tex}
 \import{relation.tex}
+\import{set/suc.tex}
 
 \section{The real numbers}
 
@@ -15,6 +16,11 @@
     $x \rmul y$ is a set.
 \end{signature}
 
+%Structure TODO:
+% Take as may axioms as needed  - Tarski Axioms of reals
+%Implement Naturals -> Integer -> rationals -> reals 
+
+
 \subsection{Basic axioms of the reals}
 
 \begin{axiom}\label{reals_axiom_zero_in_reals}
@@ -28,6 +34,26 @@
 \begin{axiom}\label{zero_neq_one}
     $\zero \neq 1$.
 \end{axiom}
+
+\begin{inductive}\label{naturals_subset_reals}
+    Define $\naturals \subseteq \reals$ inductively as follows.
+    \begin{enumerate}
+        \item $\zero \in \naturals$.
+        \item If $n\in \naturals$, then $\successor{n} \in \naturals$. 
+    \end{enumerate}
+\end{inductive}
+
+%\begin{axiom}\label{negativ_is_set}
+%    $\negativ{x}$ is a set.
+%\end{axiom}
+
+%\begin{axiom}\label{negativ_of}
+%    $\negativ{x} \in \reals$ iff $x\in \reals$.
+%\end{axiom}
+%
+%\begin{axiom}\label{negativ_behavior}
+%    $x + \negativ{x} = \zero$.
+%\end{axiom}
 
 \begin{definition}\label{reals_definition_order_def}
     $x < y$ iff there exist $z \in \reals$ such that $x + (z \rmul z) = y$.
