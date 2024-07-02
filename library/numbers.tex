@@ -2,6 +2,7 @@
 \import{relation.tex}
 \import{set/suc.tex}
 
+
 \section{The real numbers}
 
 \begin{signature}
@@ -16,12 +17,47 @@
     $x \rmul y$ is a set.
 \end{signature}
 
+\begin{axiom}\label{reals_axiom_order}
+    $\lt[\reals]$ is an order on $\reals$.
+\end{axiom}
+
+\begin{abbreviation}\label{lesseq_on_reals}
+    $x \leq y$ iff $(x,y) \in \lt[\reals]$.
+\end{abbreviation}
+
+\begin{abbreviation}\label{less_on_reals}
+    $x < y$ iff it is wrong that $y \leq x$.
+\end{abbreviation}
+
+\begin{abbreviation}\label{greater_on_reals}
+    $x > y$ iff $y \leq x$.
+\end{abbreviation}
+
+\begin{abbreviation}\label{greatereq_on_reals}
+    $x \geq y$ iff it is wrong that $x < y$.
+\end{abbreviation}
+
+\begin{abbreviation}\label{is_positiv}
+    $x$ is positiv iff $x > \zero$.
+\end{abbreviation}
+
+
 %Structure TODO:
 % Take as may axioms as needed  - Tarski Axioms of reals
 %Implement Naturals -> Integer -> rationals -> reals 
 
 
-\subsection{Basic axioms of the reals}
+\subsection{Creation of natural numbers}
+
+\subsubsection{Defenition and axioms}
+
+\begin{abbreviation}\label{inductive_set}
+    $A$ is an inductive set iff $\emptyset\in A$ and for all $a\in A$ we have $\suc{a}\in A$.
+\end{abbreviation}
+
+\begin{abbreviation}\label{zero_is_emptyset}
+    $\zero = \emptyset$.
+\end{abbreviation}
 
 \begin{axiom}\label{reals_axiom_zero_in_reals}
     $\zero \in \reals$.
@@ -35,49 +71,101 @@
     $\zero \neq 1$.
 \end{axiom}
 
-\begin{inductive}\label{naturals_subset_reals}
-    Define $\naturals \subseteq \reals$ inductively as follows.
-    \begin{enumerate}
-        \item $\zero \in \naturals$.
-        \item If $n\in \naturals$, then $\successor{n} \in \naturals$. 
-    \end{enumerate}
-\end{inductive}
+\begin{axiom}\label{one_is_suc_zero}
+    $\suc{\zero} = 1$.
+\end{axiom}
 
-%\begin{axiom}\label{negativ_is_set}
-%    $\negativ{x}$ is a set.
-%\end{axiom}
-
-%\begin{axiom}\label{negativ_of}
-%    $\negativ{x} \in \reals$ iff $x\in \reals$.
-%\end{axiom}
-%
-%\begin{axiom}\label{negativ_behavior}
-%    $x + \negativ{x} = \zero$.
-%\end{axiom}
-
-\begin{definition}\label{reals_definition_order_def}
-    $x < y$ iff there exist $z \in \reals$ such that $x + (z \rmul z) = y$.
+\begin{definition}\label{naturals}
+    $\naturals = \{ x \in \reals \mid \exists y \in \reals. \suc{y} = x \lor x = \zero \}$.
 \end{definition}
 
-%\begin{axiom}\label{reals_axiom_order}
-%    $\lt[\reals]$ is an order on $\reals$.
-%\end{axiom}
+\begin{lemma}\label{naturals_subseteq_reals}
+    $\naturals \subseteq \reals$.
+\end{lemma}
 
-%\begin{abbreviation}\label{lesseq_on_reals}
-%    $x \leq y$ iff $(x,y) \in \lt[\reals]$.
-%\end{abbreviation}
+%\begin{inductive}\label{naturals_subset_reals}
+%    Define $\naturals \subseteq \reals$ inductively as follows.
+%    \begin{enumerate}
+%        \item $\zero \in \naturals$.
+%        \item If $n\in \naturals$, then $\suc{n} \in \naturals$.   %Naproche translate this to for all n \in R \suc{n} \in R we want something like the definition before. 
+%    \end{enumerate}
+%\end{inductive}
 
-\begin{abbreviation}\label{less_on_reals}
-    $x \leq y$ iff it is wrong that $y < x$.
+\begin{axiom}\label{suc_eq_plus_one}
+    For all $n \in \naturals$ we have $\suc{n} = n + 1$.
+\end{axiom}
+
+\begin{abbreviation}\label{is_a_natural_number}
+    $n$ is a natural number iff $n \in \naturals$.
 \end{abbreviation}
 
-\begin{abbreviation}\label{greater_on_reals}
-    $x > y$ iff $y \leq x$.
-\end{abbreviation}
+\begin{axiom}\label{naturals_addition_axiom_1}
+    For all $n \in \naturals$ $n + \zero = \zero + n = n$.
+\end{axiom}
 
-\begin{abbreviation}\label{greatereq_on_reals}
-    $x \geq y$ iff it is wrong that $x < y$.
-\end{abbreviation}
+\begin{axiom}\label{naturals_addition_axiom_2}
+    For all $n, m \in \naturals$ $n + \suc{m} = \suc{n} + m = \suc{n+m}$.
+\end{axiom}
+
+\begin{axiom}\label{naturals_mul_axiom_1}
+    For all $n \in \naturals$ we have $n \rmul \zero = \zero$.
+\end{axiom}
+
+\begin{axiom}\label{naturals_mul_axiom_2}
+    For all $n,m \in \naturals$ we have $\suc{n} \rmul m = (n \rmul m) + m$.
+\end{axiom}
+
+\begin{axiom}\label{addition_on_naturals}
+    If $x$ is a natural number and $y$ is a natural number then $x+y$ is a natural number.
+\end{axiom}
+
+
+\subsubsection{Properties and Facts natural numbers}
+
+\begin{proposition}\label{naturals_kommu}
+    For all $n,m \in \naturals$ we have $n + m = m + n$.
+\end{proposition}
+\begin{proof}
+    \begin{byCase}
+        \caseOf{$n = \emptyset$.} Trivial.
+        \caseOf{$m = \emptyset$.} Trivial.
+        \caseOf{$n \neq \emptyset \land m \neq \emptyset$.} Omitted.
+    \end{byCase}
+\end{proof}
+    
+
+
+\begin{lemma}\label{naturals_inductive_set}
+    $\naturals$ is an inductive set.
+\end{lemma}
+
+
+\begin{lemma}\label{naturals_smallest_inductive_set}
+    Let $A$ be an inductive set.
+    Then $\naturals\subseteq A$.
+\end{lemma}
+
+
+\begin{lemma}\label{naturals_is_equal_to_two_times_naturals}
+    $\{x+y \mid x \in \naturals, y \in \naturals \} = \naturals$.
+\end{lemma}
+\begin{proof}
+    Omitted.
+\end{proof}
+
+%\begin{lemma}\label{oeder_on_naturals}
+%    $\lt[\reals] \inter (\naturals \times \naturals)$ is an order on $\naturals$.
+%\end{lemma}
+
+
+
+
+
+
+\subsection{The Intergers}
+
+
+
 
 \begin{axiom}\label{reals_axiom_dense}
     For all $x,y \in \reals$ if $x < y$ then 
@@ -127,7 +215,9 @@
 \begin{proposition}\label{reals_reducion_on_addition}
     For all $x,y,z \in \reals$ if $x + y = x + z$ then $y = z$.
 \end{proposition}
-
+\begin{proof}
+    Omitted.
+\end{proof}
 
 
 %\begin{signature}\label{invers_is_set}
@@ -147,9 +237,7 @@
 %    $x \rminus \addInv{x} = \zero$.
 %\end{lemma}
 
-\begin{abbreviation}\label{is_positiv}
-    $x$ is positiv iff $x > \zero$.
-\end{abbreviation}
+
 
 \begin{lemma}\label{reals_add_of_positiv}
     Let $x,y \in \reals$.
@@ -221,7 +309,9 @@
 \begin{lemma}\label{order_reals_lemma00}
     For all $x,y \in \reals$ such that $x > y$ we have $x \geq y$.
 \end{lemma}
-
+\begin{proof}
+    Omitted.
+\end{proof}
 
 \begin{lemma}\label{order_reals_lemma5}
     For all $x,y \in \reals$ such that $x < y$ we have $x \leq y$.
@@ -289,24 +379,13 @@
 
 
 
-\section{The natural numbers}
 
 
-\begin{abbreviation}\label{def_suc}
-    $\successor{n} = n + 1$.
-\end{abbreviation}
 
-\begin{inductive}\label{naturals_definition_as_subset_of_reals}
-    Define $\nat \subseteq \reals$ inductively as follows.
-    \begin{enumerate}
-        \item $\zero \in \nat$.
-        \item If $n\in \nat$, then $\successor{n} \in \nat$. 
-    \end{enumerate}
-\end{inductive}
 
-\begin{lemma}\label{reals_order_suc}
-    $n < \successor{n}$.
-\end{lemma}
+
+
+
 
 %\begin{proposition}\label{safe}
 %    Contradiction.
