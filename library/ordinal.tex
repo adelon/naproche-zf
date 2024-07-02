@@ -3,7 +3,7 @@
 \import{set/powerset.tex}
 \import{set/regularity.tex}
 \import{set/suc.tex}
-\import{nat.tex}
+%\import{nat.tex}
 
 
 \section{Transitive sets}
@@ -584,55 +584,56 @@ Then $\alpha\subseteq\beta$.
     Follows by \cref{subseteq_antisymmetric}.
 \end{proof}
 
-
-\subsection{Natural numbers as ordinals}
-
-\begin{lemma}\label{nat_is_successor_ordinal}
-    Let $n\in\naturals$.
-    Suppose $n\neq \emptyset$.
-    Then $n$ is a successor ordinal.
-\end{lemma}
-\begin{proof}
-    Let $M = \{ m\in \naturals \mid\text{$m = \emptyset$ or $m$ is a successor ordinal}\}$.
-    $M$ is an inductive set by \cref{suc_ordinal,naturals_inductive_set,successor_ordinal,emptyset_is_ordinal}.
-    Now $M\subseteq \naturals\subseteq M$
-        by \cref{subseteq,naturals_smallest_inductive_set}.
-    Thus $M = \naturals$.
-    Follows by \cref{subseteq}.
-\end{proof}
-
-\begin{lemma}\label{nat_is_transitiveset}
-    $\naturals$ is \in-transitive.
-\end{lemma}
-\begin{proof}
-    Let $M = \{ m\in\naturals \mid \text{for all $n\in m$ we have $n\in\naturals$} \}$.
-    $\emptyset\in M$.
-    For all $n\in M$ we have $\suc{n}\in M$
-        by \cref{naturals_inductive_set,suc}.
-    Thus $M$ is an inductive set.
-    Now $M\subseteq \naturals\subseteq M$
-        by \cref{subseteq,naturals_smallest_inductive_set}.
-    Hence $\naturals = M$.
-\end{proof}
-
-\begin{lemma}\label{natural_number_is_ordinal}
-    Every natural number is an ordinal.
-\end{lemma}
-\begin{proof}
-    Follows by \cref{suc_ordinal,suc_neq_emptyset,naturals_inductive_set,nat_is_successor_ordinal,successor_ordinal,suc_ordinal_implies_ordinal}.
-\end{proof}
-
-\begin{lemma}\label{omega_is_an_ordinal}
-    $\naturals$ is an ordinal.
-\end{lemma}
-\begin{proof}
-    Follows by \cref{natural_number_is_ordinal,transitive_set_of_ordinals_is_ordinal,nat_is_transitiveset}.
-\end{proof}
-
-\begin{lemma}\label{omega_is_a_limit_ordinal}
-    $\naturals$ is a limit ordinal.
-\end{lemma}
-\begin{proof}
-    $\emptyset\precedes \naturals$.
-    If $n\in \naturals$, then $\suc{n}\in\naturals$.
-\end{proof}
+%
+%\subsection{Natural numbers as ordinals}
+%
+%\begin{lemma}\label{nat_is_successor_ordinal}
+%    Let $n\in\naturals$.
+%    Suppose $n\neq \emptyset$.
+%    Then $n$ is a successor ordinal.
+%\end{lemma}
+%\begin{proof}
+%    Let $M = \{ m\in \naturals \mid\text{$m = \emptyset$ or $m$ is a successor ordinal}\}$.
+%    $M$ is an inductive set by \cref{suc_ordinal,naturals_inductive_set,successor_ordinal,emptyset_is_ordinal}.
+%    Now $M\subseteq \naturals\subseteq M$
+%        by \cref{subseteq,naturals_smallest_inductive_set}.
+%    Thus $M = \naturals$.
+%    Follows by \cref{subseteq}.
+%\end{proof}
+%
+%\begin{lemma}\label{nat_is_transitiveset}
+%    $\naturals$ is \in-transitive.
+%\end{lemma}
+%\begin{proof}
+%    Let $M = \{ m\in\naturals \mid \text{for all $n\in m$ we have $n\in\naturals$} \}$.
+%    $\emptyset\in M$.
+%    For all $n\in M$ we have $\suc{n}\in M$
+%        by \cref{naturals_inductive_set,suc}.
+%    Thus $M$ is an inductive set.
+%    Now $M\subseteq \naturals\subseteq M$
+%        by \cref{subseteq,naturals_smallest_inductive_set}.
+%    Hence $\naturals = M$.
+%\end{proof}
+%
+%\begin{lemma}\label{natural_number_is_ordinal}
+%    Every natural number is an ordinal.
+%\end{lemma}
+%\begin{proof}
+%    Follows by \cref{suc_ordinal,suc_neq_emptyset,naturals_inductive_set,nat_is_successor_ordinal,successor_ordinal,suc_ordinal_implies_ordinal}.
+%\end{proof}
+%
+%\begin{lemma}\label{omega_is_an_ordinal}
+%    $\naturals$ is an ordinal.
+%\end{lemma}
+%\begin{proof}
+%    Follows by \cref{natural_number_is_ordinal,transitive_set_of_ordinals_is_ordinal,nat_is_transitiveset}.
+%\end{proof}
+%
+%\begin{lemma}\label{omega_is_a_limit_ordinal}
+%    $\naturals$ is a limit ordinal.
+%\end{lemma}
+%\begin{proof}
+%    $\emptyset\precedes \naturals$.
+%    If $n\in \naturals$, then $\suc{n}\in\naturals$.
+%\end{proof}
+%

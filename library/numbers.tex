@@ -1,6 +1,7 @@
 \import{order/order.tex}
 \import{relation.tex}
 \import{set/suc.tex}
+\import{ordinal.tex}
 
 
 \section{The real numbers}
@@ -75,24 +76,17 @@
     $\suc{\zero} = 1$.
 \end{axiom}
 
-\begin{definition}\label{naturals}
-    $\naturals = \{ x \in \reals \mid \exists y \in \reals. \suc{y} = x \lor x = \zero \}$.
-\end{definition}
-
-\begin{lemma}\label{naturals_subseteq_reals}
+\begin{axiom}\label{naturals_subseteq_reals}
     $\naturals \subseteq \reals$.
-\end{lemma}
+\end{axiom}
 
-%\begin{inductive}\label{naturals_subset_reals}
-%    Define $\naturals \subseteq \reals$ inductively as follows.
-%    \begin{enumerate}
-%        \item $\zero \in \naturals$.
-%        \item If $n\in \naturals$, then $\suc{n} \in \naturals$.   %Naproche translate this to for all n \in R \suc{n} \in R we want something like the definition before. 
-%    \end{enumerate}
-%\end{inductive}
+\begin{axiom}\label{naturals_inductive_set}
+    $\naturals$ is an inductive set.
+\end{axiom}
 
-\begin{axiom}\label{suc_eq_plus_one}
-    For all $n \in \naturals$ we have $\suc{n} = n + 1$.
+\begin{axiom}\label{naturals_smallest_inductive_set}
+    Let $A$ be an inductive set.
+    Then $\naturals\subseteq A$.
 \end{axiom}
 
 \begin{abbreviation}\label{is_a_natural_number}
@@ -119,32 +113,146 @@
     If $x$ is a natural number and $y$ is a natural number then $x+y$ is a natural number.
 \end{axiom}
 
+\subsubsection{Natural numbers as ordinals}
+
+
+\begin{lemma}\label{nat_is_successor_ordinal}
+    Let $n\in\naturals$.
+    Suppose $n\neq \emptyset$.
+    Then $n$ is a successor ordinal.
+\end{lemma}
+\begin{proof}
+    Let $M = \{ m\in \naturals \mid\text{$m = \emptyset$ or $m$ is a successor ordinal}\}$.
+    $M$ is an inductive set by \cref{suc_ordinal,naturals_inductive_set,successor_ordinal,emptyset_is_ordinal}.
+    Now $M\subseteq \naturals\subseteq M$
+        by \cref{subseteq,naturals_smallest_inductive_set}.
+    Thus $M = \naturals$.
+    Follows by \cref{subseteq}.
+\end{proof}
+
+\begin{lemma}\label{nat_is_transitiveset}
+    $\naturals$ is \in-transitive.
+\end{lemma}
+\begin{proof}
+    Let $M = \{ m\in\naturals \mid \text{for all $n\in m$ we have $n\in\naturals$} \}$.
+    $\emptyset\in M$.
+    For all $n\in M$ we have $\suc{n}\in M$
+        by \cref{naturals_inductive_set,suc}.
+    Thus $M$ is an inductive set.
+    Now $M\subseteq \naturals\subseteq M$
+        by \cref{subseteq,naturals_smallest_inductive_set}.
+    Hence $\naturals = M$.
+\end{proof}
+
+\begin{lemma}\label{natural_number_is_ordinal}
+    Every natural number is an ordinal.
+\end{lemma}
+\begin{proof}
+    Follows by \cref{suc_ordinal,suc_neq_emptyset,naturals_inductive_set,nat_is_successor_ordinal,successor_ordinal,suc_ordinal_implies_ordinal}.
+\end{proof}
+
+\begin{lemma}\label{omega_is_an_ordinal}
+    $\naturals$ is an ordinal.
+\end{lemma}
+\begin{proof}
+    Follows by \cref{natural_number_is_ordinal,transitive_set_of_ordinals_is_ordinal,nat_is_transitiveset}.
+\end{proof}
+
+\begin{lemma}\label{omega_is_a_limit_ordinal}
+    $\naturals$ is a limit ordinal.
+\end{lemma}
+\begin{proof}
+    $\emptyset\precedes \naturals$.
+    If $n\in \naturals$, then $\suc{n}\in\naturals$.
+\end{proof}
+
 
 \subsubsection{Properties and Facts natural numbers}
 
-\begin{proposition}\label{naturals_kommu}
-    For all $n,m \in \naturals$ we have $n + m = m + n$.
+\begin{theorem}\label{induction_principle}
+    Let $P$ be a set.
+    Suppose $P \subseteq \naturals$.
+    Suppose $\zero \in P$.
+    Suppose $\forall n \in P. \suc{n} \in P$.
+    Then $P = \naturals$.
+\end{theorem}
+\begin{proof}
+    Trivial.
+\end{proof}
+
+\begin{proposition}\label{existence_of_suc}
+    Let $n \in \naturals$.
+    Suppose $n \neq \zero$.
+    Then there exist $n' \in \naturals$ such that $\suc{n'} = n$.
 \end{proposition}
 \begin{proof}
-    \begin{byCase}
-        \caseOf{$n = \emptyset$.} Trivial.
-        \caseOf{$m = \emptyset$.} Trivial.
-        \caseOf{$n \neq \emptyset \land m \neq \emptyset$.} Omitted.
-    \end{byCase}
+    Follows by \cref{transitiveset,nat_is_transitiveset,suc_intro_self,successor_ordinal,nat_is_successor_ordinal}.
 \end{proof}
-    
+
+\begin{proposition}\label{suc_eq_plus_one}
+    Let $n \in \naturals$.
+    Then $\suc{n} = n + 1$.
+\end{proposition}
+\begin{proof}
+    Let $P = \{ n \in \naturals \mid n + 1 = 1 + n  \}$.
+    $\zero \in P$.
+    It suffices to show that if $m \in P$ then $\suc{m} \in P$.
+\end{proof}
+
+\begin{proposition}\label{naturals_1_kommu}
+    Let $n \in \naturals$.
+    Then $1 + n = n + 1$.
+\end{proposition}
+
+\begin{proposition}\label{naturals_add_kommu}
+    For all $n \in \naturals$ we have for all $m\in \naturals$ we have $n + m = m + n$.
+\end{proposition}
+\begin{proof}
+    Fix $n \in \naturals$.
+    Let $P = \{ m \in \naturals \mid m + n = n + m \}$.
+    It suffices to show that $P = \naturals$.
+    $P \subseteq \naturals$.
+    $\zero \in P$.
+    It suffices to show that if $m \in P$ then $\suc{m} \in P$.
+\end{proof}
+
+\begin{proposition}\label{naturals_add_assoc}
+    Suppose $n,m,k \in \naturals$.
+    Then $n + (m + k) = (n + m) + k$.
+\end{proposition}
+\begin{proof}
+    Let $P = \{ k \in \naturals \mid \text{for all $n',m' \in \naturals$ we have $n' + (m' + k) = (n' + m') + k$}\}$.
+    $P \subseteq \naturals$.
+    We show that $P = \naturals$.
+    \begin{subproof}
+        $\zero \in P$.
+        It suffices to show that for all $k \in P$ we have $\suc{k} \in P$.
+        Fix $k \in P$.
+        \begin{align*}
+            (n + m) + \suc{k} \\
+            &= \suc{(n+m) + k} \\
+            &= \suc{n + (m + k)} \\
+            &= n + \suc{(m + k)} \\
+            &= n + (m + \suc{k})
+        \end{align*}
+        For all $n,m \in \naturals$ we have $(n + m) + \suc{k} = n + (m + \suc{k})$.
+    \end{subproof}
+\end{proof}
+
+\begin{proposition}\label{naturals_rmul_one}
+    For all $n \in \naturals$ we have $n \rmul 1 = n$.
+\end{proposition}
 
 
-\begin{lemma}\label{naturals_inductive_set}
-    $\naturals$ is an inductive set.
-\end{lemma}
+\begin{proposition}\label{naturals_mul_kommu}
+    Let $n, m \in \naturals$.
+    Then $n \rmul m = m \rmul n$.
+\end{proposition}
 
-
-\begin{lemma}\label{naturals_smallest_inductive_set}
-    Let $A$ be an inductive set.
-    Then $\naturals\subseteq A$.
-\end{lemma}
-
+\begin{proposition}\label{naturals_rmul_assoc}
+    Suppose $n,m,k \in \naturals$.
+    Then $n \rmul (m \rmul k) = (n \rmul m) \rmul k$.
+\end{proposition}
 
 \begin{lemma}\label{naturals_is_equal_to_two_times_naturals}
     $\{x+y \mid x \in \naturals, y \in \naturals \} = \naturals$.
@@ -153,9 +261,6 @@
     Omitted.
 \end{proof}
 
-%\begin{lemma}\label{oeder_on_naturals}
-%    $\lt[\reals] \inter (\naturals \times \naturals)$ is an order on $\naturals$.
-%\end{lemma}
 
 
 
@@ -387,9 +492,9 @@
 
 
 
-%\begin{proposition}\label{safe}
-%    Contradiction.
-%\end{proposition}
+\begin{proposition}\label{safe}
+    Contradiction.
+\end{proposition}
 
 \section{The integers}
 
