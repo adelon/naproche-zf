@@ -102,7 +102,7 @@
 \end{axiom}
 
 \begin{axiom}\label{naturals_mul_axiom_1}
-    For all $n \in \naturals$ we have $n \rmul \zero = \zero$.
+    For all $n \in \naturals$ we have $n \rmul \zero = \zero = \zero \rmul n$.
 \end{axiom}
 
 \begin{axiom}\label{naturals_mul_axiom_2}
@@ -203,6 +203,9 @@
     Let $n \in \naturals$.
     Then $1 + n = n + 1$.
 \end{proposition}
+\begin{proof}
+    Follows by \cref{suc_eq_plus_one,naturals_addition_axiom_2,naturals_addition_axiom_1,naturals_inductive_set,one_is_suc_zero}.
+\end{proof}
 
 \begin{proposition}\label{naturals_add_kommu}
     For all $n \in \naturals$ we have for all $m\in \naturals$ we have $n + m = m + n$.
@@ -240,14 +243,75 @@
 \end{proof}
 
 \begin{proposition}\label{naturals_rmul_one}
-    For all $n \in \naturals$ we have $n \rmul 1 = n$.
+    For all $n \in \naturals$ we have $1 \rmul n = n$.
 \end{proposition}
+\begin{proof}
+    Fix $n \in \naturals$.
+    \begin{align*}
+        1 \rmul n  \\
+        &= \suc{\zero} \rmul n \\
+        &= (\zero \rmul n) + n \\
+        &= (\zero) + n \\
+        &= n
+    \end{align*}
+\end{proof}
+
+\begin{proposition}\label{naturals_add_remove_brakets}
+    Suppose $n,m,k \in \naturals$.
+    Then $(n + m) + k = n + m + k$.    
+\end{proposition}
+
+\begin{proposition}\label{natural_disstro}
+    Suppose $n,m,k \in \naturals$.
+    Then $n \rmul (m + k) = (n \rmul m) + (n \rmul k)$.
+\end{proposition}
+\begin{proof}
+    Let $P = \{n \in \naturals \mid \text{for all $m,k \in \naturals$ we have $n \rmul (m + k) = (n \rmul m) + (n \rmul k)$}\}$.
+    $\zero \in P$.
+    $P \subseteq \naturals$.
+    It suffices to show that for all $n \in P$ we have $\suc{n} \in P$.
+    Fix $n \in P$.
+    It suffices to show that for all $m \in \naturals$ we have $\suc{n} \rmul (m + k) = (\suc{n} \rmul m) + (\suc{n} \rmul k)$.
+    Fix $m \in \naturals$.
+    It suffices to show that for all $k \in \naturals$ we have $\suc{n} \rmul (m + k) = (\suc{n} \rmul m) + (\suc{n} \rmul k)$.
+    Fix $k \in \naturals$.
+    \begin{align*}
+        \suc{n} \rmul (m + k) \\
+        &= (n \rmul (m + k)) + (m + k) \\% \explanation{by \cref{naturals_mul_axiom_2}}\\
+        &= ((n \rmul m) + (n \rmul k)) + (m + k) \explanation{by assumption}\\
+        &= ((n \rmul m) + (n \rmul k)) + m + k \explanation{by \cref{naturals_add_remove_brakets,naturals_add_kommu}}\\
+        &= (((n \rmul m) + (n \rmul k)) + m) + k \explanation{by \cref{naturals_add_kommu,naturals_add_remove_brakets,naturals_add_assoc}}\\
+        &= (m + ((n \rmul m) + (n \rmul k))) + k \explanation{by \cref{naturals_add_kommu}}\\
+        &= ((m + (n \rmul m)) + (n \rmul k)) + k \explanation{by \cref{naturals_add_assoc}}\\
+        &= (((n \rmul m) + m) + (n \rmul k)) + k \explanation{by \cref{naturals_add_kommu}}\\
+        &= ((n \rmul m) + m) + ((n \rmul k) + k) \explanation{by \cref{naturals_add_assoc}}\\
+        &= (\suc{n} \rmul m) + (\suc{n} \rmul k) \explanation{by \cref{naturals_mul_axiom_2}}
+    \end{align*}
+\end{proof}
 
 
 \begin{proposition}\label{naturals_mul_kommu}
     Let $n, m \in \naturals$.
     Then $n \rmul m = m \rmul n$.
 \end{proposition}
+\begin{proof}
+    Let $P = \{n \in \naturals \mid \forall m \in \naturals. n \rmul m = m \rmul n\}$.
+    $\zero \in P$.
+    $P \subseteq \naturals$.
+    It suffices to show that for all $n \in P$ we have $\suc{n} \in P$.
+    Fix $n \in P$.
+    It suffices to show that for all $m \in \naturals$ we have $\suc{n} \rmul m = m \rmul \suc{n}$.
+    Fix $m \in \naturals$.
+    $n \rmul m = m \rmul n$.
+
+    \begin{align*}
+        \suc{n} \rmul m \\
+        &= (n \rmul m) + m \\
+        &= (m \rmul n) + m \\
+        &= m + (m \rmul n) \\
+        &= m \rmul \suc{n} \\
+    \end{align*}
+\end{proof}
 
 \begin{proposition}\label{naturals_rmul_assoc}
     Suppose $n,m,k \in \naturals$.
