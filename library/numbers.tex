@@ -113,6 +113,14 @@
     If $x$ is a natural number and $y$ is a natural number then $x+y$ is a natural number.
 \end{axiom}
 
+\begin{axiom}\label{naturals_rmul_is_closed_in_n}
+    For all $n,m \in \naturals$ we have $(n \rmul m) \in \naturals$.
+\end{axiom}
+
+\begin{axiom}\label{naturals_add_is_closed_in_n}
+    For all $n,m \in \naturals$ we have $(n + m) \in \naturals$.
+\end{axiom}
+
 \subsubsection{Natural numbers as ordinals}
 
 
@@ -226,23 +234,22 @@
 \begin{proof}
     Let $P = \{ k \in \naturals \mid \text{for all $n',m' \in \naturals$ we have $n' + (m' + k) = (n' + m') + k$}\}$.
     $P \subseteq \naturals$.
-    We show that $P = \naturals$.
-    \begin{subproof}
-        $\zero \in P$.
-        It suffices to show that for all $k \in P$ we have $\suc{k} \in P$.
-        Fix $k \in P$.
-        \begin{align*}
-            (n + m) + \suc{k} \\
-            &= \suc{(n+m) + k} \\
-            &= \suc{n + (m + k)} \\
-            &= n + \suc{(m + k)} \\
-            &= n + (m + \suc{k})
-        \end{align*}
-        For all $n,m \in \naturals$ we have $(n + m) + \suc{k} = n + (m + \suc{k})$.
-    \end{subproof}
+    $\zero \in P$.
+    It suffices to show that for all $k \in P$ we have $\suc{k} \in P$.
+    Fix $k \in P$.
+    It suffices to show that for all $n' \in \naturals$ we have for all $m' \in \naturals$ we have $n' + (m' + \suc{k}) = (n' + m') + \suc{k}$.
+    Fix $n' \in \naturals$.
+    Fix $m' \in \naturals$.
+    \begin{align*}
+        (n' + m') + \suc{k}    \\
+        &= \suc{(n' + m') + k}   \\
+        &= \suc{n' + (m' + k)} \\
+        &= n' + \suc{(m' + k)} \\
+        &= n' + (m' + \suc{k})
+    \end{align*}
 \end{proof}
 
-\begin{proposition}\label{naturals_rmul_one}
+\begin{proposition}\label{naturals_rmul_one_left}
     For all $n \in \naturals$ we have $1 \rmul n = n$.
 \end{proposition}
 \begin{proof}
@@ -258,7 +265,12 @@
 
 \begin{proposition}\label{naturals_add_remove_brakets}
     Suppose $n,m,k \in \naturals$.
-    Then $(n + m) + k = n + m + k$.    
+    Then $(n + m) + k = n + m + k = n + (m + k)$.    
+\end{proposition}
+
+\begin{proposition}\label{naturals_add_remove_brakets2}
+    Suppose $n,m,k,l \in \naturals$.
+    Then $(n + m) + (k + l)= n + m + k + l = n + (m + k) + l = (((n + m) + k) + l)$.    
 \end{proposition}
 
 \begin{proposition}\label{natural_disstro}
@@ -271,26 +283,43 @@
     $P \subseteq \naturals$.
     It suffices to show that for all $n \in P$ we have $\suc{n} \in P$.
     Fix $n \in P$.
-    It suffices to show that for all $m \in \naturals$ we have $\suc{n} \rmul (m + k) = (\suc{n} \rmul m) + (\suc{n} \rmul k)$.
-    Fix $m \in \naturals$.
-    It suffices to show that for all $k \in \naturals$ we have $\suc{n} \rmul (m + k) = (\suc{n} \rmul m) + (\suc{n} \rmul k)$.
-    Fix $k \in \naturals$.
+
+    It suffices to show that for all $m'$ such that $m' \in \naturals$ we have for all $k' \in \naturals$ we have $\suc{n} \rmul (m' + k') = (\suc{n} \rmul m') + (\suc{n} \rmul k')$.
+    Fix $m' \in \naturals$.
+    Fix $k' \in \naturals$.
+    $n \in \naturals$.
     \begin{align*}
-        \suc{n} \rmul (m + k) \\
-        &= (n \rmul (m + k)) + (m + k) \\% \explanation{by \cref{naturals_mul_axiom_2}}\\
-        &= ((n \rmul m) + (n \rmul k)) + (m + k) \explanation{by assumption}\\
-        &= ((n \rmul m) + (n \rmul k)) + m + k \explanation{by \cref{naturals_add_remove_brakets,naturals_add_kommu}}\\
-        &= (((n \rmul m) + (n \rmul k)) + m) + k \explanation{by \cref{naturals_add_kommu,naturals_add_remove_brakets,naturals_add_assoc}}\\
-        &= (m + ((n \rmul m) + (n \rmul k))) + k \explanation{by \cref{naturals_add_kommu}}\\
-        &= ((m + (n \rmul m)) + (n \rmul k)) + k \explanation{by \cref{naturals_add_assoc}}\\
-        &= (((n \rmul m) + m) + (n \rmul k)) + k \explanation{by \cref{naturals_add_kommu}}\\
-        &= ((n \rmul m) + m) + ((n \rmul k) + k) \explanation{by \cref{naturals_add_assoc}}\\
-        &= (\suc{n} \rmul m) + (\suc{n} \rmul k) \explanation{by \cref{naturals_mul_axiom_2}}
+        \suc{n} \rmul (m' + k') \\
+        &= (n \rmul (m' + k')) + (m' + k') \\% \explanation{by \cref{naturals_mul_axiom_2}}\\
+        &= ((n \rmul m') + (n \rmul k')) + (m' + k') \\%\explanation{by assumption}\\
+        &= ((n \rmul m') + (n \rmul k')) + m' + k'   \\%\explanation{by \cref{naturals_add_remove_brakets,naturals_add_kommu}}\\
+        &= (((n \rmul m') + (n \rmul k')) + m') + k' \\%\explanation{by \cref{naturals_add_kommu,naturals_add_remove_brakets,naturals_add_assoc}}\\
+        &= (m' + ((n \rmul m') + (n \rmul k'))) + k' \\%\explanation{by \cref{naturals_add_kommu}}\\
+        &= ((m' + (n \rmul m')) + (n \rmul k')) + k' \\%\explanation{by \cref{naturals_add_assoc}}\\
+        &= (((n \rmul m') + m') + (n \rmul k')) + k' \\%\explanation{by \cref{naturals_add_kommu}}\\
+        &= ((n \rmul m') + m') + ((n \rmul k') + k') \\%\explanation{by \cref{naturals_add_assoc}}\\
+        &= (\suc{n} \rmul m') + (\suc{n} \rmul k')   %\explanation{by \cref{naturals_mul_axiom_2}}
     \end{align*}
 \end{proof}
 
+\begin{proposition}\label{naturals_rmul_one_kommu}
+    For all $n \in \naturals$ we have $n \rmul 1 = n$.
+\end{proposition}
+\begin{proof}
+    Let $P = \{ n \in \naturals \mid n \rmul 1 = n\}$.
+    $1 \in P$.
+    It suffices to show that for all $n' \in P$ we have $\suc{n'} \in P$.
+    Fix $n' \in P$.
+    It suffices to show that $\suc{n'} \rmul 1 = \suc{n'}$.
+    \begin{align*}
+        \suc{n'} \rmul 1 \\
+        &=  n' \rmul 1 + 1 \\
+        &=  n' + 1 \\
+        &= \suc{n'}
+    \end{align*}
+\end{proof}
 
-\begin{proposition}\label{naturals_mul_kommu}
+\begin{proposition}\label{naturals_rmul_kommu}
     Let $n, m \in \naturals$.
     Then $n \rmul m = m \rmul n$.
 \end{proposition}
@@ -303,12 +332,13 @@
     It suffices to show that for all $m \in \naturals$ we have $\suc{n} \rmul m = m \rmul \suc{n}$.
     Fix $m \in \naturals$.
     $n \rmul m = m \rmul n$.
-
     \begin{align*}
         \suc{n} \rmul m \\
         &= (n \rmul m) + m \\
         &= (m \rmul n) + m \\
         &= m + (m \rmul n) \\
+        &= (m \rmul 1) + (m \rmul n) \\
+        &= m \rmul (1 + n) \\
         &= m \rmul \suc{n} \\
     \end{align*}
 \end{proof}
@@ -317,13 +347,32 @@
     Suppose $n,m,k \in \naturals$.
     Then $n \rmul (m \rmul k) = (n \rmul m) \rmul k$.
 \end{proposition}
+\begin{proof}
+    Let $P = \{ n \in \naturals \mid \text{for all $m,k \in \naturals$ we have $n \rmul (m \rmul k) = (n \rmul m) \rmul k$ }\}$.
+    $\zero \in P$.
+    It suffices to show that for all $n' \in P$ we have $ \suc{n'} \in P$.
+    Fix $n' \in P$.
+    It suffices to show that for all $m' \in \naturals$ we have for all $k' \in \naturals$ we have $\suc{n'} \rmul (m' \rmul k') = (\suc{n'} \rmul m') \rmul k'$.
+    Fix $m' \in \naturals$.
+    Fix $k' \in \naturals$.
+    \begin{align*}
+        \suc{n'} \rmul (m' \rmul k')                \\
+        &=(n' \rmul (m' \rmul k')) + (m' \rmul k')  \\
+        &=((n' \rmul m') \rmul k') + (m' \rmul k')  \\
+        &=(k' \rmul (n' \rmul m')) + (k' \rmul m')  \\
+        &=k' \rmul ((n' \rmul m') + m')             \\
+        &=k' \rmul (\suc{n'} \rmul m')              \\
+        &=(\suc{n'} \rmul m') \rmul k'              
+    \end{align*}
+\end{proof}
 
 \begin{lemma}\label{naturals_is_equal_to_two_times_naturals}
     $\{x+y \mid x \in \naturals, y \in \naturals \} = \naturals$.
 \end{lemma}
-\begin{proof}
-    Omitted.
-\end{proof}
+
+
+
+
 
 
 
