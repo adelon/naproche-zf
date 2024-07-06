@@ -95,6 +95,7 @@ builtinMixfix = Seq.fromList $ (HM.fromList <$>)
         builtinIdentifiers = identifier <$>
             [ "emptyset"
             , "naturals"
+            , "integers"
             , "rationals"
             , "reals"
             , "unit"

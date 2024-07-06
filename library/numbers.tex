@@ -371,19 +371,18 @@
 \end{lemma}
 
 
+\subsection{Axioms of the reals Part One}
+We seen before that we can proof the common behavior of the naturals.
+Since we now want to get furhter in a more efficient way, we introduce the basis axioms of the reals.
+Such that we can introduce the integers and raitionals as smooth as possible.
 
+\begin{axiom}\label{reals_rmul}
+    For all $n,m \in \reals$ we have $(n \rmul m) \in \reals$.
+\end{axiom}
 
-
-
-
-
-
-
-
-\subsection{The Intergers}
-
-
-
+\begin{axiom}\label{reals_add}
+    For all $n,m \in \reals$ we have $(n + m) \in \reals$.
+\end{axiom}
 
 \begin{axiom}\label{reals_axiom_dense}
     For all $x,y \in \reals$ if $x < y$ then 
@@ -423,19 +422,103 @@
     such that $x < z < y$.
 \end{axiom}
 
-\begin{proposition}\label{reals_disstro2}
+\begin{axiom}\label{reals_disstro2}
     For all $x,y,z \in \reals$ $(y + z) \rmul x = (y \rmul x) + (z \rmul x)$.
-\end{proposition}
+\end{axiom}
+
+
+\begin{axiom}\label{reals_reducion_on_addition}
+    For all $x,y,z \in \reals$ if $x + y = x + z$ then $y = z$.
+\end{axiom}
+
+
+
+
+
+
+
+\subsection{The Intergers}
+
+
+\begin{axiom}\label{neg}
+    For all $n \in \reals$ we have $\neg{n} \in \reals$ and $n + \neg{n} = \zero$.
+\end{axiom}
+
+\begin{axiom}\label{neg_of_zero}
+    $\neg{\zero} = \zero$.
+\end{axiom}
+
+\begin{definition}\label{minus}
+    $n - m = n + \neg{m}$.
+\end{definition}
+
+\begin{lemma}\label{minus_in_reals}
+    Suppose $n,m \in \reals$.
+    Then $n - m \in \reals$.
+\end{lemma}
 \begin{proof}
-    Omitted.
+    \begin{byCase}
+        \caseOf{$m = \zero$.} Trivial.%Follows by \cref{neg_of_zero,minus,neg,reals_add}.
+        \caseOf{$m \neq \zero$.} Trivial.% Follows by \cref{neg_of_zero,minus,neg,reals_add}.
+    \end{byCase}
 \end{proof}
 
-\begin{proposition}\label{reals_reducion_on_addition}
-    For all $x,y,z \in \reals$ if $x + y = x + z$ then $y = z$.
+\begin{proposition}\label{negation_of_negation_is_id}
+    For all $r \in \reals$ we have $\neg{\neg{r}} = r$.
 \end{proposition}
 \begin{proof}
-    Omitted.
+    Fix $r \in \reals$.
+    $r + \neg{r} = \zero$.
+    $\neg{r} + \neg{\neg{r}} = \zero$.
+    Follows by \cref{reals_reducion_on_addition,neg,reals_axiom_kommu}.
 \end{proof}
+
+\begin{definition}\label{integers}
+    $\integers = \{ z \in \reals \mid \exists n \in \naturals. z \in \naturals \lor  n + z = \zero\}$.
+\end{definition}
+
+\begin{lemma}\label{n_subset_z}
+    $\naturals \subseteq \integers$.
+\end{lemma}
+
+\begin{lemma}\label{neg_of_naturals_in_integers}
+    For all $n \in \naturals$ we have $\neg{n} \in \integers$.
+\end{lemma}
+
+\begin{lemma}\label{integers_eq_naturals_and_negativ_naturals}
+    $\integers = \{ z \in \reals \mid \exists n \in \naturals. n = z \lor \neg{n} = z\}$.
+\end{lemma}
+\begin{proof}
+    Let $P = \{ z \in \reals \mid \exists n \in \naturals. n = z \lor \neg{n} = z\}$.
+    \begin{byCase}
+        \caseOf{$\integers \subseteq P$.} Trivial.
+        \caseOf{$P \subseteq \integers$.} Trivial.
+    \end{byCase}
+\end{proof}
+
+
+
+
+\subsection{The Rationals}
+
+%\begin{definition}
+%    $\inv{x} 
+%\end{definition}
+%
+%\begin{axiom}
+%    For all $x,y \in \reals$ we have $\rfrac{x}{y} \in \reals$.
+%\end{axiom}
+%
+%\begin{definition}
+%    $\rationals = \{ q \in \reals \mid \exists z \in \integers. \exists n \in \integers. q = \rfrac{z}{n} \}$.
+%\end{definition}
+
+
+
+
+
+
+
 
 
 %\begin{signature}\label{invers_is_set}
@@ -608,9 +691,3 @@
 \begin{proposition}\label{safe}
     Contradiction.
 \end{proposition}
-
-\section{The integers}
-
-%\begin{definition}
-%    $\integers = \{z \in \reals \mid z = \zero or \} $.
-%\end{definition}
