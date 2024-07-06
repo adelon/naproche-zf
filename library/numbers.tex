@@ -431,7 +431,14 @@ Such that we can introduce the integers and raitionals as smooth as possible.
     For all $x,y,z \in \reals$ if $x + y = x + z$ then $y = z$.
 \end{axiom}
 
+\begin{axiom}\label{zero_less_one}
+    $\zero < 1$.
+\end{axiom}
 
+\begin{axiom}\label{reals_axiom_order_def}
+    Suppose $x,y,z,w \in \reals$.
+    If $x + y < z + w$ then $x < z \lor y < w$.
+\end{axiom}
 
 
 
@@ -501,42 +508,37 @@ Such that we can introduce the integers and raitionals as smooth as possible.
 
 \subsection{The Rationals}
 
-%\begin{definition}
-%    $\inv{x} 
-%\end{definition}
-%
-%\begin{axiom}
-%    For all $x,y \in \reals$ we have $\rfrac{x}{y} \in \reals$.
-%\end{axiom}
-%
-%\begin{definition}
-%    $\rationals = \{ q \in \reals \mid \exists z \in \integers. \exists n \in \integers. q = \rfrac{z}{n} \}$.
-%\end{definition}
+\begin{axiom}\label{invers_reals}
+    For all $q \in \reals$ we have $\inv{q} \rmul q = 1$.
+\end{axiom}
+
+\begin{abbreviation}\label{rfrac}
+    $\rfrac{x}{y} = x \rmul \inv{y}$.
+\end{abbreviation}
+
+\begin{abbreviation}\label{naturalsplus}
+    $\naturalsPlus = \naturals \setminus \{\zero\}$.
+\end{abbreviation}
+
+\begin{definition}\label{rationals}
+    $\rationals = \{ q \in \reals \mid \exists z \in \integers. \exists n \in \naturalsPlus. q = \rfrac{z}{n} \}$.
+\end{definition}
 
 
 
+\subsection{Order on the reals}
 
+\begin{lemma}\label{plus_one_order}
+    For all $r\in \reals$ we have $ r < r + 1$.
+\end{lemma}
+\begin{proof}
+    %Follows by \cref{reals_axiom_one,reals_axiom_order,reals_axiom_order_def,zero_less_one,reals}.
+\end{proof}
 
-
-
-
-
-%\begin{signature}\label{invers_is_set}
-%    $\addInv{y}$ is a set.
-%\end{signature}
-
-%\begin{definition}\label{add_inverse}
-%    $\addInv{y} = \{ x \mid \exists k \in \reals. k + y = \zero \land x \in k\}$.
-%\end{definition}
-    
-
-%\begin{definition}\label{add_inverse_natural_language}
-%    $x$ is additiv inverse of $y$ iff $x = \addInv{y}$. 
-%\end{definition}
-
-%\begin{lemma}\label{rminus}
-%    $x \rminus \addInv{x} = \zero$.
-%\end{lemma}
+\begin{lemma}\label{negation_and_order}
+    Suppose $r \in \reals$.
+    $r \leq \zero$ iff $\zero \leq \neg{r}$.
+\end{lemma}
 
 
 
@@ -546,7 +548,7 @@ Such that we can introduce the integers and raitionals as smooth as possible.
     Then $x + y$ is positiv.
 \end{lemma}
 \begin{proof}
-    Omitted.
+    
 \end{proof}
 
 \begin{lemma}\label{reals_mul_of_positiv}
@@ -688,6 +690,6 @@ Such that we can introduce the integers and raitionals as smooth as possible.
 
 
 
-\begin{proposition}\label{safe}
-    Contradiction.
-\end{proposition}
+%\begin{proposition}\label{safe}
+%    Contradiction.
+%\end{proposition}
