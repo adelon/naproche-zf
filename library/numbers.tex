@@ -18,34 +18,6 @@
     $x \rmul y$ is a set.
 \end{signature}
 
-\begin{axiom}\label{reals_axiom_order}
-    $\lt[\reals]$ is an order on $\reals$.
-\end{axiom}
-
-\begin{abbreviation}\label{lesseq_on_reals}
-    $x \leq y$ iff $(x,y) \in \lt[\reals]$.
-\end{abbreviation}
-
-\begin{abbreviation}\label{less_on_reals}
-    $x < y$ iff it is wrong that $y \leq x$.
-\end{abbreviation}
-
-\begin{abbreviation}\label{greater_on_reals}
-    $x > y$ iff $y \leq x$.
-\end{abbreviation}
-
-\begin{abbreviation}\label{greatereq_on_reals}
-    $x \geq y$ iff it is wrong that $x < y$.
-\end{abbreviation}
-
-\begin{abbreviation}\label{is_positiv}
-    $x$ is positiv iff $x > \zero$.
-\end{abbreviation}
-
-
-%Structure TODO:
-% Take as may axioms as needed  - Tarski Axioms of reals
-%Implement Naturals -> Integer -> rationals -> reals 
 
 
 \subsection{Creation of natural numbers}
@@ -384,14 +356,7 @@ Such that we can introduce the integers and raitionals as smooth as possible.
     For all $n,m \in \reals$ we have $(n + m) \in \reals$.
 \end{axiom}
 
-\begin{axiom}\label{reals_axiom_dense}
-    For all $x,y \in \reals$ if $x < y$ then 
-    there exist $z \in \reals$ such that $x < z$ and $z < y$.
-\end{axiom}
 
-\begin{axiom}\label{reals_axiom_assoc}
-    For all $x,y,z \in \reals$ $(x + y) + z = x + (y + z)$ and $(x \rmul y) \rmul z = x \rmul (y \rmul z)$.
-\end{axiom}
 
 \begin{axiom}\label{reals_axiom_kommu}
     For all $x,y \in \reals$ $x + y = y + x$ and $x \rmul y = y \rmul x$.
@@ -417,31 +382,72 @@ Such that we can introduce the integers and raitionals as smooth as possible.
     For all $x,y,z \in \reals$ $x \rmul (y + z) = (x \rmul y) + (x \rmul z)$.
 \end{axiom}
 
-\begin{axiom}\label{reals_axiom_dedekind_complete}
-    For all $X,Y,x,y$ such that $X,Y \subseteq \reals$ and $x \in X$ and $y \in Y$ and $x < y$ we have there exist $z \in \reals$
-    such that $x < z < y$.
-\end{axiom}
-
 \begin{axiom}\label{reals_disstro2}
     For all $x,y,z \in \reals$ $(y + z) \rmul x = (y \rmul x) + (z \rmul x)$.
 \end{axiom}
-
 
 \begin{axiom}\label{reals_reducion_on_addition}
     For all $x,y,z \in \reals$ if $x + y = x + z$ then $y = z$.
 \end{axiom}
 
-\begin{axiom}\label{zero_less_one}
+\begin{abbreviation}\label{rless}
+    $x < y$ iff $x \rless y$.
+\end{abbreviation}
+
+\begin{abbreviation}\label{less_on_reals}
+    $x \leq y$ iff it is wrong that $y < x$.
+\end{abbreviation}
+
+\begin{abbreviation}\label{greater_on_reals}
+    $x > y$ iff $y \leq x$.
+\end{abbreviation}
+
+\begin{abbreviation}\label{greatereq_on_reals}
+    $x \geq y$ iff it is wrong that $x < y$.
+\end{abbreviation}
+
+\begin{abbreviation}\label{is_positiv}
+    $x$ is positiv iff $x > \zero$.
+\end{abbreviation}
+
+
+
+
+
+\begin{axiom}\label{tarski1}
+    For all $x,y \in \reals$ we have if $x < y$ then $\lnot y < x$.
+\end{axiom}
+
+\begin{axiom}\label{tarski2}
+    For all $x,y \in \reals$ if $x < y$ then 
+    there exist $z \in \reals$ such that $x < z$ and $z < y$.
+\end{axiom}
+
+\begin{axiom}\label{tarski3}
+    For all $X,Y,x,y$ such that $X,Y \subseteq \reals$ and $x \in X$ and $y \in Y$ and $x < y$ we have there exist $z \in \reals$
+    such that $x < z < y$.
+\end{axiom}
+
+\begin{axiom}\label{tarski4}
+    For all $x,y,z \in \reals$ $(x + y) + z = x + (y + z)$ and $(x \rmul y) \rmul z = x \rmul (y \rmul z)$.
+\end{axiom}
+
+\begin{axiom}\label{tarski5}
+    For all $x,y \in \reals$ we have there exist $z \in \reals$ such that $x + z = y$.
+\end{axiom}
+
+
+\begin{axiom}\label{tarski8}
     $\zero < 1$.
 \end{axiom}
 
-\begin{axiom}\label{reals_axiom_order_def}
-    Suppose $x,y,z,w \in \reals$.
-    If $x + y < z + w$ then $x < z \lor y < w$.
+\begin{axiom}\label{labelordersossss}
+    For all $x,y \in \reals$ such that $x < y$ we have for all $z \in \reals$ $x + z < y + z$.
 \end{axiom}
 
-
-
+\begin{axiom}\label{nocheinschoeneslabel}
+    For all $x,y \in \reals$ such that $\zero < x,y$ we have $\zero < (x \rmul y)$. 
+\end{axiom}
 
 
 \subsection{The Intergers}
@@ -465,8 +471,8 @@ Such that we can introduce the integers and raitionals as smooth as possible.
 \end{lemma}
 \begin{proof}
     \begin{byCase}
-        \caseOf{$m = \zero$.} Trivial.%Follows by \cref{neg_of_zero,minus,neg,reals_add}.
-        \caseOf{$m \neq \zero$.} Trivial.% Follows by \cref{neg_of_zero,minus,neg,reals_add}.
+        \caseOf{$m = \zero$.} Trivial.
+        \caseOf{$m \neq \zero$.} Trivial.
     \end{byCase}
 \end{proof}
 
@@ -496,14 +502,29 @@ Such that we can introduce the integers and raitionals as smooth as possible.
     $\integers = \{ z \in \reals \mid \exists n \in \naturals. n = z \lor \neg{n} = z\}$.
 \end{lemma}
 \begin{proof}
-    Let $P = \{ z \in \reals \mid \exists n \in \naturals. n = z \lor \neg{n} = z\}$.
-    \begin{byCase}
-        \caseOf{$\integers \subseteq P$.} Trivial.
-        \caseOf{$P \subseteq \integers$.} Trivial.
-    \end{byCase}
+    Omitted.
 \end{proof}
 
+\begin{abbreviation}\label{positiv_real_number}
+    $r$ is a positiv real number iff $r > \zero$ and $r \in \reals$.
+\end{abbreviation}
 
+
+
+\begin{proposition}\label{integers_negativ_times_negativ_is_positiv}
+    Suppose $n,m \in \integers$.
+    Suppose $n < \zero$ and $m < \zero$.
+    Then $n \rmul m > \zero$.
+\end{proposition}
+\begin{proof}
+    Omitted.
+    %$n \neq \zero$ and $m \neq \zero$.
+    %For all $k \in \naturals$ we have $k = \zero \lor k > \zero$.
+    %There exists $n' \in \reals$ such that $n' + n = \zero$.
+    %There exists $m' \in \reals$ such that $m' + m = \zero$.
+\end{proof}
+
+%TODO: negativ * negativ = positiv.
 
 
 \subsection{The Rationals}
@@ -520,26 +541,56 @@ Such that we can introduce the integers and raitionals as smooth as possible.
     $\naturalsPlus = \naturals \setminus \{\zero\}$.
 \end{abbreviation}
 
-\begin{definition}\label{rationals}
+\begin{definition}\label{rationals} %TODO: Vielleicht ist hier die definition das alle inversen von den ganzenzahlen und die ganzenzahlen selbst die rationalen zahlen erzeugen
     $\rationals = \{ q \in \reals \mid \exists z \in \integers. \exists n \in \naturalsPlus. q = \rfrac{z}{n} \}$.
 \end{definition}
 
+\begin{abbreviation}\label{nominator}
+    $z$ is nominator of $q$ iff there exists $n \in \naturalsPlus$ such that $q = \rfrac{z}{n}$.
+\end{abbreviation}
+
+\begin{abbreviation}\label{denominator}
+    $n$ is denominator of $q$ iff there exists $z \in \integers$ such that $q = \rfrac{z}{n}$.
+\end{abbreviation}
+
+%\begin{proposition}\label{q_is_less_then_p_if_denominator_is_bigger_and_nominator_is_equal}
+%    Suppose $p,q \in \rationals$.
+%    Suppose $z \in \naturals$.
+%    Suppose $p$ is positiv.
+%    Suppose $q$ is positiv.
+%    Suppose $z$ is nominator of $p$.
+%    Suppose $z$ is nominator of $p$.
+%    Suppose $p'$ is denominator of $p$.
+%    Suppose $q'$ is denominator of $q$.
+%    Then $p \leq q$ iff $p' \geq q'$.
+%\end{proposition}
+
+
+%\begin{theorem}\label{one_divided_by_n_is_in_zero_to_one}
+%    For all $n \in \naturalsPlus$ we have $\zero < \rfrac{1}{n} \leq 1$.
+%\end{theorem}
+
+% TODO:  Was man noch so beweisen könnte: bruch kürzung, kehrbruch eigenschaften, bruch in bruch vereinfachung, 
 
 
 \subsection{Order on the reals}
+
+
 
 \begin{lemma}\label{plus_one_order}
     For all $r\in \reals$ we have $ r < r + 1$.
 \end{lemma}
 \begin{proof}
-    %Follows by \cref{reals_axiom_one,reals_axiom_order,reals_axiom_order_def,zero_less_one,reals}.
+    Omitted.
 \end{proof}
 
 \begin{lemma}\label{negation_and_order}
     Suppose $r \in \reals$.
     $r \leq \zero$ iff $\zero \leq \neg{r}$.
 \end{lemma}
-
+\begin{proof}
+    Omitted.
+\end{proof}
 
 
 \begin{lemma}\label{reals_add_of_positiv}
@@ -548,7 +599,7 @@ Such that we can introduce the integers and raitionals as smooth as possible.
     Then $x + y$ is positiv.
 \end{lemma}
 \begin{proof}
-    
+    Omitted.
 \end{proof}
 
 \begin{lemma}\label{reals_mul_of_positiv}
