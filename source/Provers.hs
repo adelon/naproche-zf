@@ -82,10 +82,10 @@ vampire path _verbosity timeLimit memoryLimit = Prover
         , "--time_limit", toSeconds timeLimit
         , "--memory_limit", toMegabytes memoryLimit
         ]
-    , proverSaysYes = ["% SZS output end Proof for"]
-    , proverSaysNo = ["% SZS status CounterSatisfiable for"]
-    , proverDoesNotKnow = ["% SZS status Timeout for"]
-    , proverWarnsContradiction = ["% SZS status ContradictoryAxioms for"]
+    , proverSaysYes = ["% SZS status Theorem"]
+    , proverSaysNo = ["% SZS status CounterSatisfiable"]
+    , proverDoesNotKnow = ["% SZS status Timeout"]
+    , proverWarnsContradiction = ["% SZS status ContradictoryAxioms"]
     }
 
 -- WIP: setting up a clausifier
@@ -96,8 +96,8 @@ iprover _verbosity timeLimit _memoryLimit = Prover
     , proverArgs =
         [ "--time_out_real " <> toSeconds timeLimit
         ]
-    , proverSaysYes = ["% SZS status Theorem for"]
-    , proverSaysNo = ["% SZS status CounterSatisfiable for"]
+    , proverSaysYes = ["% SZS status Theorem"]
+    , proverSaysNo = ["% SZS status CounterSatisfiable"]
     , proverDoesNotKnow = ["% SZS status Unknown"]
     , proverWarnsContradiction = []
     }
