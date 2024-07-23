@@ -34,6 +34,10 @@ and
 [E](https://wwwlehre.dhbw-stuttgart.de/~sschulz/E/E.html)
 to discharge proof tasks.
 
+You may also need to install `zlib` on certain operating systems.
+For example, on Ubuntu you can install the development version of
+`zlib` by running `sudo apt install zlib1g-dev`.
+
 #### Obtaining Vampire
 
 The default prover is Vampire and the included library is written against a specific release of Vampire.
@@ -99,8 +103,8 @@ When looking for imported files, the following list of base directories is consi
 
 - the current working directory in the command line
 - the user library directory, set with the environment variable `NAPROCHE_LIB`, defaulting to `~/formalizations`
-- the source code library directory, set with the environment variable `NAPROCHE_SCR_LIB`, defaulting to `~/code/zf/library`
-- the source code examples directory, set with the environment variable `NAPROCHE_SCR_EXAMPLES`, defaulting to `~/code/zf/examples`
+- the source code library directory, set with the environment variable `NAPROCHE_SCR_LIB`, defaulting to `~/code/naproche-zf/library`
+- the source code examples directory, set with the environment variable `NAPROCHE_SCR_EXAMPLES`, defaulting to `~/code/naproche-zf/examples`
 
 
 ### Running the tests
