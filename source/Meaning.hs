@@ -406,7 +406,7 @@ glossStmt = \case
         f' <- glossStmt f
         quantify <- glossQuantifier quantifier
         pure (quantify vars [constraints] f')
-    Raw.StmtExists np       -> do
+    Raw.StmtExists np -> do
         (vars, constraints) <- glossNPList np
         pure (Sem.makeExists vars constraints)
     Raw.SymbolicQuantified quant vs bound suchThat have -> do
