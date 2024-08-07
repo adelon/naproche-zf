@@ -1,0 +1,274 @@
+\import{topology/topological-space.tex}
+\import{topology/separation.tex}
+\import{topology/continuous.tex}
+\import{numbers.tex}
+\import{function.tex}
+\import{set.tex}
+\import{cardinal.tex}
+
+\section{Urysohns Lemma}
+%           In this section we want to proof Urysohns lemma. 
+%           We try to follow the proof of Klaus Jänich in his book. TODO: Book reference
+%           The Idea is to construct staircase functions as a chain.
+%           The limit of our chain turns out to be our desired continuous function from a topological space $X$ to $[0,1]$.
+%           With the property that \[f\mid_{A}=1 \land f\mid_{B}=0\] for \[A,B\] closed sets.
+
+%Chains of  sets.
+
+The first tept will be a formalisation of chain constructions.
+
+\subsection{Chains of sets}
+%           Assume $A,B$ are subsets of a topological space $X$.
+
+%           As Jänich propose we want a special property on chains of subsets.
+%           We need a rising chain of subsets $\mathfrak{A} = (A_{0}, ... ,A_{r})$ of $A$, i.e. 
+%           \begin{align}
+%               A = A_{0} \subset A_{1} \subset ... \subset A_{r} \subset X\setminus B 
+%           \end{align} 
+%           such that for all elements in this chain following holds, 
+%           $\overline{A_{i-1}}  \subset \interior{A_{i}}$. 
+%           In this case we call the chain legal.
+
+\begin{definition}\label{one_to_n_set}
+    $\seq{m}{n} = \{x \in \naturals \mid  m \leq x \leq n\}$.   
+\end{definition}
+
+\begin{definition}\label{cardinality}
+    $X$ has cardinality of $n$ iff
+    $n \in \naturals$ and there exists $b$ such that $b$ is a bijection from $\seq{1}{n}$ to $X$.
+\end{definition}
+
+
+
+\begin{struct}\label{sequence}
+    A sequence $X$ is a onesorted structure equipped with
+    \begin{enumerate}
+        \item $\index$
+        \item $\indexset$
+    \end{enumerate}
+    such that
+    \begin{enumerate}
+        \item\label{indexset_is_subset_naturals} $\indexset[X] \subseteq \naturals$.
+        \item\label{index_is_bijection} $\index[X]$ is a bijection from $\indexset[X]$ to $\carrier[X]$.
+    \end{enumerate}
+\end{struct}
+
+\begin{definition}\label{cahin_of_subsets}
+    $C$ is a chain of subsets iff
+    $C$ is a sequence and for all $n,m \in \indexset[C]$ such that $n < m$ we have $\index[C](n) \subseteq \index[C](m)$.
+\end{definition}
+
+\begin{definition}\label{chain_of_n_subsets}
+    $C$ is a chain of $n$ subsets iff
+    $C$ is a chain of subsets and $n \in \indexset[C]$ 
+    and for all $m \in \naturals$ such that $m \leq n$ we have $m \in \indexset[C]$.
+\end{definition}
+
+
+
+% TODO: The Notion above should be generalised to sequences since we need them as well for our limit
+% and also for the subproof of continuity of the limit.
+
+
+%     \begin{definition}\label{legal_chain}
+%         $C$ is a legal chain of subsets of $X$ iff 
+%         $C \subseteq \pow{X}$. %and 
+%         %there exist $f \in \funs{C}{\naturals}$ such that
+%         %for all $x,y \in C$ we have if $f(x) < f(y)$ then $x \subset y \land \closure{x} \subset \interior{y}$.
+%     \end{definition}
+
+% TODO: We need a notion for declarinf new properties to existing thing. 
+%
+% The following gives a example and a wish want would be nice to have:
+% "A (structure) is called (adjectiv of property), if"
+%
+% This should then be use als follows:
+% Let $X$ be a (adjectiv_1) ... (adjectiv_n) (structure_word). 
+% Which should be translated to fol like this:
+% ?[X]: is_structure(X) & is_adjectiv_1(X) & ... & is_adjectiv_n(X)
+% ---------------------------------------------------------------
+
+
+
+\subsection{staircase function}
+
+\begin{definition}\label{intervalclosed}
+    $\intervalclosed{a}{b} = \{x \in \reals \mid a \leq x \leq b\}$.
+\end{definition}
+
+
+\begin{struct}\label{staircase_function}
+    A staircase function $f$ is a onesorted structure equipped with
+    \begin{enumerate}
+        \item $\chain$
+    \end{enumerate}
+    such that
+    \begin{enumerate}
+        \item \label{staircase_is_function} $f$ is a function to $\intervalclosed{\zero}{1}$.
+        \item \label{staircase_domain} $\dom{f}$ is a topological space.
+        \item \label{staricase_def_chain} $C$ is a chain of subsets.
+        \item \label{staircase_chain_is_in_domain} for all $x \in C$ we have $x \subseteq \dom{f}$.
+        \item \label{staircase_behavoir_index_zero} $f(\index[C](1))= 1$. 
+        \item \label{staircase_behavoir_index_n} $f(\dom{f}\setminus \unions{C}) = \zero$.
+    \end{enumerate}
+\end{struct}
+
+\begin{definition}\label{legal_staircase}
+    $f$ is a legal staircase function iff
+    $f$ is a staircase function and 
+    for all $n,m \in \indexset[\chain[f]]$ such that $n \leq m$ we have $f(\index[\chain[f]](n)) \leq f(\index[\chain[f]](m))$.
+\end{definition}
+
+\begin{abbreviation}\label{urysohnspace}
+    $X$ is a urysohn space iff
+    $X$ is a topological space and
+    for all $A,B \in \closeds{X}$ such that $A \inter B = \emptyset$
+    we have there exist $A',B' \in \opens[X]$
+    such that  $A \subseteq A'$ and $B \subseteq B'$ and $A' \inter B' = \emptyset$.    
+\end{abbreviation}
+
+\begin{definition}\label{urysohnchain}
+    $C$ is a urysohnchain in $X$ of cardinality $k$ iff %<---- TODO: cardinality unused!
+    $C$ is a chain of subsets and
+    for all $A \in C$ we have $A \subseteq X$ and
+    for all $n,m \in \indexset[C]$ such that $n < m$ we have $\closure{\index[C](n)}{X} \subseteq \interior{\index[C](m)}{X}$.
+\end{definition}
+
+\begin{abbreviation}\label{infinte_sequence}
+    $S$ is a infinite sequence iff $S$ is a sequence and $\indexset[S]$ is infinite.
+\end{abbreviation}
+
+\begin{definition}\label{infinite_product}
+    $X$ is the infinite product of $Y$ iff
+    $X$ is a infinite sequence and for all $i \in \indexset[X]$ we have $\index[X](i) = Y$.
+\end{definition}
+
+\begin{definition}\label{refinmant}
+    $C$ is a refinmant of $C'$ iff for all $x \in C'$ we have $x \in C$ and 
+    for all $y \in C'$ such that $y \subset x$ we have there exist $c \in C$ such that $y \subset c \subset x$
+    and for all $g \in C$ such that $g \neq c$ we have not $y \subset g \subset x$.
+\end{definition}
+
+
+%                    The next thing we need to define is the uniform staircase function.
+%                    This function has it's domain in $X$ and maps to the closed interval $[0,1]$.
+%                    These functions should behave als follows,
+%                    \begin{align}
+%                        &f(A_{0}) = 1 &\text{consant} \\
+%                        &f(A_{k} \setminus A_{k+1}) = 1-\frac{k}{r} &\text{constant.}
+%                    \end{align} 
+
+%                    We then prove that for any given $r$ we find a repolished chain,
+%                    which contains the $A_{i}$ and this replished chain is also legal.
+%                     
+%                    The proof will be finished by taking the limit on $f_{n}$ with $f_{n}$ 
+%                    be a staircase function with $n$ many refinemants. 
+%                    This limit will be continuous and we would be done. 
+
+
+% TODO: Since we want to prove that $f$ is continus, we have to formalize that 
+% \reals with the usual topology is a topological space. 
+% -------------------------------------------------------------
+
+\begin{theorem}\label{urysohn}
+    Let $X$ be a urysohn space.
+    Suppose $A,B \subseteq \closeds{X}$.
+    Suppose $A \inter B$ is empty.
+    There exist $f$ such that $f \in \funs{X}{\intervalclosed{\zero}{1}}$ 
+    and $f(A) = 1$ and $f(B)= 0$ and $f$ is continuous.
+\end{theorem}
+\begin{proof}
+    We show that for all $n \in \naturals$ we have
+    if there exist $C$ such that $C$ is a urysohnchain in $X$ of cardinality $n$ 
+    then there exist $C'$  such that $C'$ is a urysohnchain in $X$ of cardinality $n+1$ 
+    and $C'$ is a refinmant of $C$.
+    \begin{subproof}
+        Omitted.
+    \end{subproof}
+
+    
+
+    Take $P$ such that $P$ is a infinite sequence and $\indexset[P] = \naturals$ and for all $i \in \indexset[P]$ we have $\index[P](i) = \pow{X}$.
+    
+    We show that there exist $\zeta$ such that $\zeta$ is a infinite sequence 
+    and for all $i \in \indexset[\zeta]$ we have 
+    $\index[\zeta](i)$ is a urysohnchain in $X$ of cardinality $i$
+    and $A \subseteq \index[\zeta](i)$
+    and $\index[\zeta](i) \subseteq (X \setminus B)$
+    and for all $j \in \indexset[\zeta]$ such that 
+    $j < i$ we have for all $x \in \index[\zeta](j)$ we have $x \in \index[\zeta](i)$.
+    \begin{subproof}
+        Omitted.
+    \end{subproof}
+  
+    
+
+
+    
+
+
+
+    We show that there exist $g \in \funs{X}{\intervalclosed{\zero}{1}}$ such that $g(A)=1$ and $g(X\setminus A) = \zero$.
+    \begin{subproof}
+        Omitted.
+    \end{subproof}
+    $g$ is a staircase function and $\chain[g] = C$.
+    $g$ is a legal staircase function.
+
+
+    We show that there exist $f$ such that $f \in \funs{X}{\intervalclosed{\zero}{1}}$ 
+    and $f(A) = 1$ and $f(B)= 0$ and $f$ is continuous.
+    \begin{subproof}
+        Omitted.
+    \end{subproof}
+
+
+    %We show that for all $n \in \nautrals$ we have $C_{n}$ a legal chain of subsets of $X$. 
+    %\begin{subproof}
+    %    Omitted.
+    %\end{subproof}
+
+    %Proof Sheme Idea:
+    % -We proof for n=1 that C_{n} is a chain and legal
+    % -Then by induction with P(n+1) is refinmant of P(n)
+    % -Therefore we have a increing refinmant of these Chains such that our limit could even apply
+    % ---------------------------------------------------------
+
+    %We show that there exist $f \in \funs{\naturals}{\funs{X}{\intervalclosed{0}{1}}}$ such that $f(n)$ is a staircase function. %TODO: Define Staircase function
+    %\begin{subproof}
+    %    Omitted.
+    %\end{subproof}
+
+
+    % Formalization idea of enumarted sequences:
+    % - Define a enumarted sequnecs as a set A with a bijection between A and E \in \pow{\naturals} 
+    % - This should give all finite and infinte enumarable sequences
+    % - Introduce a notion for the indexing of these enumarable sequences.
+    % - Then we can define the limit of a enumarted sequence of functions.
+    % ---------------------------------------------------------
+    %
+    % Here we need a limit definition for sequences of functions
+    %We show that there exist $F \in \funs{X}{\intervalclosed{0}{1}}$ such that $F = \limit{set of the staircase functions}$
+    %\begin{subproof}
+    %    Omitted.
+    %\end{subproof}
+    %
+    %We show that $F(A) = 1$.
+    %\begin{subproof}
+    %    Omitted.
+    %\end{subproof}
+    %
+    %We show that $F(B) = 0$.
+    %\begin{subproof}
+    %    Omitted.
+    %\end{subproof} 
+    %
+    %We show that $F$ is continuous.
+    %\begin{subproof}
+    %    Omitted.
+    %\end{subproof}
+\end{proof}
+
+%\begin{theorem}\label{safe}
+%    Contradiction.     
+%\end{theorem}

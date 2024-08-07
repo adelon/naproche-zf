@@ -18,7 +18,7 @@ import UnliftIO
 import UnliftIO.Directory
 import UnliftIO.Environment (lookupEnv)
 import System.FilePath.Posix
-
+import qualified Tptp.UnsortedFirstOrder as Syntax.Internal
 
 runCommandLine :: IO ()
 runCommandLine = do
@@ -69,23 +69,42 @@ run = do
                     WithDefaultProver -> Provers.vampire vampirePathPath
             let proverInstance = prover Provers.Silent (withTimeLimit opts) (withMemoryLimit opts)
             result <- verify proverInstance (inputPath opts)
-            liftIO case result of
-                VerificationSuccess -> (Text.putStrLn "Verification successful.")
-                VerificationFailure [] -> error "Empty verification fail"
-                VerificationFailure ((_, proverAnswer) : _) -> case proverAnswer of
-                    Yes ->
-                        skip
-                    No tptp -> do
-                        putStrLn "Verification failed: prover found countermodel"
-                        Text.hPutStrLn stderr tptp
-                    ContradictoryAxioms tptp -> do
-                        putStrLn "Verification failed: contradictory axioms"
-                        Text.hPutStrLn stderr tptp
-                    Uncertain tptp -> do
-                        putStrLn "Verification failed: out of resources"
-                        Text.hPutStrLn stderr tptp
-                    Error err ->
-                        Text.hPutStrLn stderr err
+            case withFailList opts of
+                WithoutFailList -> liftIO case result of
+                    VerificationSuccess -> putStrLn "Verification successful."
+                    VerificationFailure [] -> error "Empty verification fail"
+                    VerificationFailure ((_, proverAnswer) : _) -> case proverAnswer of
+                        Yes ->
+                            skip
+                        No tptp -> do
+                            putStrLn "Verification failed: prover found countermodel"
+                            Text.hPutStrLn stderr tptp
+                        ContradictoryAxioms tptp -> do
+                            putStrLn "Verification failed: contradictory axioms"
+                            Text.hPutStrLn stderr tptp
+                        Uncertain tptp -> do
+                            putStrLn "Verification failed: out of resources"
+                            Text.hPutStrLn stderr tptp
+                        Error err tptp task -> do
+                            putStr "Error at:"
+                            Text.putStrLn task
+                            Text.putStrLn err
+                            Text.putStrLn tptp
+                            
+                WithFailList -> liftIO case result of
+                    VerificationSuccess -> putStrLn "Verification successful."
+                    VerificationFailure [] -> error "Empty verification fail"
+                    VerificationFailure fails -> do
+                        putStrLn "Following task couldn't be solved by the ATP: "
+                        traverse_ showFailedTask fails
+                        Text.hPutStrLn stderr "Don't give up!"
+
+
+
+
+
+
+
 
 
 
@@ -104,6 +123,7 @@ parseOptions = do
     withVersion <- withVersionParser
     withMegalodon <- withMegalodonParser
     withDumpPremselTraining <- withDumpPremselTrainingParser
+    withFailList <- withFailListParser
     pure Options{..}
 
 withTimeLimitParser :: Parser Provers.TimeLimit
@@ -160,3 +180,7 @@ withDumpPremselTrainingParser = flag' WithDumpPremselTraining (long "premseldump
 withMegalodonParser :: Parser WithMegalodon
 withMegalodonParser = flag' WithMegalodon (long "megalodon" <> help "Export to Megalodon.")
     <|> pure WithoutMegalodon -- Default to using the cache.
+
+withFailListParser :: Parser WithFailList
+withFailListParser = flag' WithFailList (long "list_fails" <> help "Will list all unproven task with possible reason of failure.")
+    <|> pure WithoutFailList -- Default to using the cache.

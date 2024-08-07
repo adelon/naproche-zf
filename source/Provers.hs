@@ -110,7 +110,7 @@ data ProverAnswer
     | No Text
     | ContradictoryAxioms Text
     | Uncertain Text
-    | Error Text
+    | Error Text Text Text
     deriving (Show, Eq)
 
 nominalDiffTimeToText :: NominalDiffTime -> Text
@@ -163,4 +163,4 @@ recognizeAnswer Prover{..} task tptp answer answerErr =
         | saidNo -> No tptp
         | doesNotKnow -> Uncertain tptp
         | warned -> ContradictoryAxioms tptp
-        | otherwise -> Error (answer <> answerErr)
+        | otherwise -> Error (answer <> answerErr) tptp (Text.pack(show (taskConjectureLabel task)))

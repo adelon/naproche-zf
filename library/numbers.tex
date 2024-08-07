@@ -348,6 +348,9 @@ We seen before that we can proof the common behavior of the naturals.
 Since we now want to get furhter in a more efficient way, we introduce the basis axioms of the reals.
 Such that we can introduce the integers and raitionals as smooth as possible.
 
+
+
+The operations Multiplication and addition is closed in the reals
 \begin{axiom}\label{reals_rmul}
     For all $n,m \in \reals$ we have $(n \rmul m) \in \reals$.
 \end{axiom}
@@ -358,10 +361,16 @@ Such that we can introduce the integers and raitionals as smooth as possible.
 
 
 
+
+Commutivatiy of the standart operations
 \begin{axiom}\label{reals_axiom_kommu}
     For all $x,y \in \reals$ $x + y = y + x$ and $x \rmul y = y \rmul x$.
 \end{axiom}
   
+
+
+
+Existence of  one and Zero
 \begin{axiom}\label{reals_axiom_zero}
     For all $x \in \reals$ $x + \zero = x$. 
 \end{axiom}
@@ -370,6 +379,9 @@ Such that we can introduce the integers and raitionals as smooth as possible.
     For all $x \in \reals$ we have $x \rmul 1 = x$.
 \end{axiom}
 
+
+
+The Existence of Inverse of both operations
 \begin{axiom}\label{reals_axiom_add_invers}
     For all $x \in \reals$ there exist $y \in \reals$ such that $x + y = \zero$.
 \end{axiom}
@@ -378,6 +390,9 @@ Such that we can introduce the integers and raitionals as smooth as possible.
     For all $x \in \reals$ such that $x \neq \zero$ there exist $y \in \reals$ such that $x \rmul y = 1$.
 \end{axiom}
 
+
+
+Disstrubitiv Laws of the reals
 \begin{axiom}\label{reals_axiom_disstro1}
     For all $x,y,z \in \reals$ $x \rmul (y + z) = (x \rmul y) + (x \rmul z)$.
 \end{axiom}
@@ -386,10 +401,9 @@ Such that we can introduce the integers and raitionals as smooth as possible.
     For all $x,y,z \in \reals$ $(y + z) \rmul x = (y \rmul x) + (z \rmul x)$.
 \end{axiom}
 
-\begin{axiom}\label{reals_reducion_on_addition}
-    For all $x,y,z \in \reals$ if $x + y = x + z$ then $y = z$.
-\end{axiom}
 
+
+Definition of the order symbols
 \begin{abbreviation}\label{rless}
     $x < y$ iff $x \rless y$.
 \end{abbreviation}
@@ -406,48 +420,48 @@ Such that we can introduce the integers and raitionals as smooth as possible.
     $x \geq y$ iff it is wrong that $x < y$.
 \end{abbreviation}
 
+
+
+Laws of the order on the reals
 \begin{abbreviation}\label{is_positiv}
     $x$ is positiv iff $x > \zero$.
 \end{abbreviation}
 
-
-
-
-
-\begin{axiom}\label{tarski1}
+\begin{axiom}\label{reals_order}
     For all $x,y \in \reals$ we have if $x < y$ then $\lnot y < x$.
 \end{axiom}
 
-\begin{axiom}\label{tarski2}
+\begin{axiom}\label{reals_dense}
     For all $x,y \in \reals$ if $x < y$ then 
     there exist $z \in \reals$ such that $x < z$ and $z < y$.
 \end{axiom}
 
-\begin{axiom}\label{tarski3}
+\begin{axiom}\label{reals_is_eta_zero_set}
     For all $X,Y,x,y$ such that $X,Y \subseteq \reals$ and $x \in X$ and $y \in Y$ and $x < y$ we have there exist $z \in \reals$
     such that $x < z < y$.
 \end{axiom}
 
-\begin{axiom}\label{tarski4}
-    For all $x,y,z \in \reals$ $(x + y) + z = x + (y + z)$ and $(x \rmul y) \rmul z = x \rmul (y \rmul z)$.
-\end{axiom}
-
-\begin{axiom}\label{tarski5}
-    For all $x,y \in \reals$ we have there exist $z \in \reals$ such that $x + z = y$.
-\end{axiom}
-
-
-\begin{axiom}\label{tarski8}
+\begin{axiom}\label{reals_one_bigger_zero}
     $\zero < 1$.
 \end{axiom}
 
-\begin{axiom}\label{labelordersossss}
+\begin{axiom}\label{reals_order_behavior_with_addition}
     For all $x,y \in \reals$ such that $x < y$ we have for all $z \in \reals$ $x + z < y + z$.
 \end{axiom}
 
-\begin{axiom}\label{nocheinschoeneslabel}
+\begin{axiom}\label{reals_postiv_mul_is_positiv}
     For all $x,y \in \reals$ such that $\zero < x,y$ we have $\zero < (x \rmul y)$. 
 \end{axiom}
+
+\begin{axiom}\label{reals_postiv_mul_negativ_is_negativ}
+    For all $x,y \in \reals$ such that $x < \zero < y$ we have $(x \rmul y) < \zero$. 
+\end{axiom}
+
+\begin{axiom}\label{reals_negativ_mul_is_negativ}
+    For all $x,y \in \reals$ such that $x,y < \zero$ we have $\zero < (x \rmul y)$. 
+\end{axiom}
+
+
 
 
 \subsection{The Intergers}
@@ -480,10 +494,11 @@ Such that we can introduce the integers and raitionals as smooth as possible.
     For all $r \in \reals$ we have $\neg{\neg{r}} = r$.
 \end{proposition}
 \begin{proof}
-    Fix $r \in \reals$.
-    $r + \neg{r} = \zero$.
-    $\neg{r} + \neg{\neg{r}} = \zero$.
-    Follows by \cref{reals_reducion_on_addition,neg,reals_axiom_kommu}.
+    Omitted.
+%    Fix $r \in \reals$.
+%    $r + \neg{r} = \zero$.
+%    $\neg{r} + \neg{\neg{r}} = \zero$.
+%    Follows by \cref{neg,reals_axiom_kommu}.
 \end{proof}
 
 \begin{definition}\label{integers}
@@ -511,22 +526,6 @@ Such that we can introduce the integers and raitionals as smooth as possible.
 
 
 
-\begin{proposition}\label{integers_negativ_times_negativ_is_positiv}
-    Suppose $n,m \in \integers$.
-    Suppose $n < \zero$ and $m < \zero$.
-    Then $n \rmul m > \zero$.
-\end{proposition}
-\begin{proof}
-    Omitted.
-    %$n \neq \zero$ and $m \neq \zero$.
-    %For all $k \in \naturals$ we have $k = \zero \lor k > \zero$.
-    %There exists $n' \in \reals$ such that $n' + n = \zero$.
-    %There exists $m' \in \reals$ such that $m' + m = \zero$.
-\end{proof}
-
-%TODO: negativ * negativ = positiv.
-
-
 \subsection{The Rationals}
 
 \begin{axiom}\label{invers_reals}
@@ -542,7 +541,7 @@ Such that we can introduce the integers and raitionals as smooth as possible.
 \end{abbreviation}
 
 \begin{definition}\label{rationals} %TODO: Vielleicht ist hier die definition das alle inversen von den ganzenzahlen und die ganzenzahlen selbst die rationalen zahlen erzeugen
-    $\rationals = \{ q \in \reals \mid \exists z \in \integers. \exists n \in \naturalsPlus. q = \rfrac{z}{n} \}$.
+    $\rationals = \{ q \in \reals \mid \exists z \in \integers. \exists n \in (\integers \setminus \{\zero\}). q = \rfrac{z}{n} \}$.
 \end{definition}
 
 \begin{abbreviation}\label{nominator}
@@ -553,23 +552,41 @@ Such that we can introduce the integers and raitionals as smooth as possible.
     $n$ is denominator of $q$ iff there exists $z \in \integers$ such that $q = \rfrac{z}{n}$.
 \end{abbreviation}
 
-%\begin{proposition}\label{q_is_less_then_p_if_denominator_is_bigger_and_nominator_is_equal}
-%    Suppose $p,q \in \rationals$.
-%    Suppose $z \in \naturals$.
-%    Suppose $p$ is positiv.
-%    Suppose $q$ is positiv.
-%    Suppose $z$ is nominator of $p$.
-%    Suppose $z$ is nominator of $p$.
-%    Suppose $p'$ is denominator of $p$.
-%    Suppose $q'$ is denominator of $q$.
-%    Then $p \leq q$ iff $p' \geq q'$.
-%\end{proposition}
+\begin{theorem}\label{one_divided_by_n_is_in_zero_to_one}
+    For all $n \in \naturalsPlus$ we have $\zero < \rfrac{1}{n} \leq 1$.
+\end{theorem}
+\begin{proof}
+    Omitted.
+\end{proof}
+
+\begin{lemma}\label{fraction_kuerzung} %TODO: Englischen namen rausfinden
+    For all $n,m,k \in \reals$ we have $\rfrac{n \rmul k}{m \rmul k} = \rfrac{n}{m}$.
+\end{lemma}
+\begin{proof}
+    Omitted.
+\end{proof}
+
+\begin{lemma}\label{fraction_swap}
+    For all $n,m,k,l \in \reals$ we have $\rfrac{\rfrac{n}{m}}{\rfrac{k}{l}}=\rfrac{n \rmul l}{m \rmul k}$.
+\end{lemma}
+\begin{proof}
+    Omitted.
+\end{proof}
+
+\begin{definition}\label{divisor}
+    $g$ is a integral divisor of $a$ iff $g \in \naturals$ and there exist $b \in \integers$ such that $g \rmul b = a$.
+\end{definition}
 
 
-%\begin{theorem}\label{one_divided_by_n_is_in_zero_to_one}
-%    For all $n \in \naturalsPlus$ we have $\zero < \rfrac{1}{n} \leq 1$.
-%\end{theorem}
 
+
+%\begin{abbreviation}\label{gcd}
+%    $g$ is greatest common divisor of $\{a,b\}$ iff
+%    $g$ is a integral divisor of $a$ 
+%    and $g$ is a integral divisor of $b$ 
+%    and for all $g'$ such that $g'$ is a integral divisor of $a$
+%    and $g'$ is a integral divisor of $b$ we have $g' \leq g$.
+%\end{abbreviation}
 % TODO:  Was man noch so beweisen könnte: bruch kürzung, kehrbruch eigenschaften, bruch in bruch vereinfachung, 
 
 
@@ -652,7 +669,7 @@ Such that we can introduce the integers and raitionals as smooth as possible.
 
 \begin{lemma}\label{order_reals_lemma3}
     Let $x,y,z \in \reals$.
-    Suppose $\zero < x$. 
+    Suppose $\zero > x$. 
     Suppose $y < z$. 
     Then $(x \rmul z) < (x \rmul y)$.
 \end{lemma}
