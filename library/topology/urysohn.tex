@@ -33,10 +33,6 @@ The first tept will be a formalisation of chain constructions.
     $\seq{m}{n} = \{x \in \naturals \mid  m \leq x \leq n\}$.   
 \end{definition}
 
-\begin{definition}\label{cardinality}
-    $X$ has cardinality of $n$ iff
-    $n \in \naturals$ and there exists $b$ such that $b$ is a bijection from $\seq{1}{n}$ to $X$.
-\end{definition}
 
 
 
@@ -134,6 +130,13 @@ The first tept will be a formalisation of chain constructions.
     for all $n,m \in \indexset[C]$ such that $n < m$ we have $\closure{\index[C](n)}{X} \subseteq \interior{\index[C](m)}{X}$.
 \end{definition}
 
+\begin{definition}\label{urysohnchain_without_cardinality}
+    $C$ is a urysohnchain in $X$ iff
+    $C$ is a chain of subsets and
+    for all $A \in C$ we have $A \subseteq X$ and
+    for all $n,m \in \indexset[C]$ such that $n < m$ we have $\closure{\index[C](n)}{X} \subseteq \interior{\index[C](m)}{X}$.
+\end{definition}
+
 \begin{abbreviation}\label{infinte_sequence}
     $S$ is a infinite sequence iff $S$ is a sequence and $\indexset[S]$ is infinite.
 \end{abbreviation}
@@ -149,6 +152,26 @@ The first tept will be a formalisation of chain constructions.
     and for all $g \in C$ such that $g \neq c$ we have not $y \subset g \subset x$.
 \end{definition}
 
+\begin{abbreviation}\label{two}
+    $\two = \suc{1}$.
+\end{abbreviation}
+
+\begin{lemma}\label{two_in_reals}
+    $\two \in \reals$.
+\end{lemma}
+
+\begin{lemma}\label{two_in_naturals}
+    $\two \in \naturals$.
+\end{lemma}
+
+\begin{inductive}\label{power_of_two}
+    Define $\powerOfTwoSet \subseteq \naturals$.
+    \begin{enumerate}
+        \item  $\two \in \powerOfTwoSet$.
+        \item  If $n \in \powerOfTwoSet$, then $n \rmul \two \in \powerOfTwoSet$.
+    \end{enumerate}
+
+\end{inductive}
 
 %                    The next thing we need to define is the uniform staircase function.
 %                    This function has it's domain in $X$ and maps to the closed interval $[0,1]$.
@@ -185,6 +208,8 @@ The first tept will be a formalisation of chain constructions.
     \begin{subproof}
         Omitted.
     \end{subproof}
+
+    There exist $\eta$ such that $\eta$ is a urysohnchain in $X$ and $\eta =\{A, (x \setminus B)\}$.
 
     
 
@@ -269,6 +294,6 @@ The first tept will be a formalisation of chain constructions.
     %\end{subproof}
 \end{proof}
 
-%\begin{theorem}\label{safe}
-%    Contradiction.     
-%\end{theorem}
+\begin{theorem}\label{safe}
+    Contradiction.     
+\end{theorem}
