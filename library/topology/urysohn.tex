@@ -147,9 +147,9 @@ The first tept will be a formalisation of chain constructions.
 \end{definition}
 
 \begin{definition}\label{refinmant}
-    $C$ is a refinmant of $C'$ iff for all $x \in C'$ we have $x \in C$ and 
-    for all $y \in C'$ such that $y \subset x$ we have there exist $c \in C$ such that $y \subset c \subset x$
-    and for all $g \in C$ such that $g \neq c$ we have not $y \subset g \subset x$.
+    $C'$ is a refinmant of $C$ iff for all $x \in C$ we have $x \in C'$ and 
+    for all $y \in C$ such that $y \subset x$ we have there exist $c \in C'$ such that $y \subset c \subset x$
+    and for all $g \in C'$ such that $g \neq c$ we have not $y \subset g \subset x$.
 \end{definition}
 
 \begin{abbreviation}\label{two}
@@ -165,13 +165,130 @@ The first tept will be a formalisation of chain constructions.
 \end{lemma}
 
 \begin{inductive}\label{power_of_two}
-    Define $\powerOfTwoSet \subseteq \naturals$.
+    Define $\powerOfTwoSet \subseteq (\naturals \times \naturals)$.
     \begin{enumerate}
-        \item  $\two \in \powerOfTwoSet$.
-        \item  If $n \in \powerOfTwoSet$, then $n \rmul \two \in \powerOfTwoSet$.
+        \item  $(\zero, 1) \in \powerOfTwoSet$.
+        \item  If $(m,k) \in \powerOfTwoSet$, then $(m+1, k \rmul \two) \in \powerOfTwoSet$.
     \end{enumerate}
-
 \end{inductive}
+
+\begin{abbreviation}\label{pot}
+    $\pot = \powerOfTwoSet$.
+\end{abbreviation}
+
+\begin{lemma}\label{dom_pot}
+    $\dom{\pot} = \naturals$.
+\end{lemma}
+\begin{proof}
+    Omitted.
+\end{proof}
+
+\begin{lemma}\label{ran_pot}
+    $\ran{\pot} \subseteq \naturals$.
+\end{lemma}
+
+
+
+
+
+
+
+
+\begin{proposition}\label{urysohnchain_induction_begin}
+    Let $X$ be a urysohn space.
+    Suppose $A,B \in \closeds{X}$.
+    Suppose $A \inter B$ is empty.
+    Suppose $U = \{A,(X \setminus B)\}$.
+    Suppose $\indexset[U]= \{\zero, 1\}$.
+    Suppose $\index[U](\zero) = A$.
+    Suppose $\index[U](1) = (X \setminus B)$.
+    Then $U$ is a urysohnchain in $X$.
+\end{proposition}
+\begin{proof}
+    We show that $U$ is a sequence.
+    \begin{subproof}
+        Omitted.
+    \end{subproof}
+
+    We show that $A \subseteq (X \setminus B)$.
+    \begin{subproof}
+        Omitted.
+    \end{subproof}
+
+    We show that $U$ is a chain of subsets.
+    \begin{subproof}
+        For all $n \in \indexset[U]$ we have $n = \zero \lor n = 1$.
+        It suffices to show that for all $n \in \indexset[U]$ we have
+        for all $m \in \indexset[U]$ such that 
+        $n < m$ we have $\index[U](n) \subseteq \index[U](m)$.
+        Fix $n \in \indexset[U]$.
+        Fix $m \in \indexset[U]$.
+        \begin{byCase}
+            \caseOf{$n = 1$.} Trivial.
+            \caseOf{$n = \zero$.} 
+                \begin{byCase}
+                    \caseOf{$m = \zero$.} Trivial.
+                    \caseOf{$m = 1$.} Omitted.
+                \end{byCase}
+        \end{byCase}
+    \end{subproof}
+
+    $A \subseteq X$.
+    $(X \setminus B) \subseteq X$.
+    We show that for all $x \in U$ we have $x \subseteq X$.
+    \begin{subproof}
+        Omitted.
+    \end{subproof}
+
+    We show that $\closure{A}{X} \subseteq \interior{(X \setminus B)}{X}$.
+    \begin{subproof}
+        Omitted.
+    \end{subproof}
+    We show that for all $n,m \in \indexset[U]$ such that $n < m$ we have
+    $\closure{\index[U](n)}{X} \subseteq \interior{\index[U](m)}{X}$.
+    \begin{subproof}
+        Omitted.
+    \end{subproof}
+\end{proof}
+
+
+\begin{proposition}\label{t_four_propositon}
+    Let $X$ be a urysohn space.
+    Then for all $A,B \subseteq X$ such that $\closure{A}{X} \subseteq \interior{B}{X}$
+    we have there exists $C \subseteq X$ such that 
+    $\closure{A}{X} \subseteq \interior{C}{X} \subseteq \closure{C}{X} \subseteq \interior{B}{X}$.
+\end{proposition}
+\begin{proof}
+    Omitted.
+\end{proof}
+
+\begin{proposition}\label{urysohnchain_induction_step_existence}
+    Let $X$ be a urysohn space.
+    Suppose $U$ is a urysohnchain in $X$.
+    Then there exist $U'$ such that $U'$ is a refinmant of $U$ and $U'$ is a urysohnchain in $X$.
+\end{proposition}
+\begin{proof}
+    
+    
+    %\begin{definition}\label{refinmant}
+    %    $C'$ is a refinmant of $C$ iff for all $x \in C$ we have $x \in C'$ and 
+    %    for all $y \in C$ such that $y \subset x$ 
+    %    we have there exist $c \in C'$ such that $y \subset c \subset x$
+    %    and for all $g \in C'$ such that $g \neq c$ we have not $y \subset g \subset x$.
+    %\end{definition}
+    
+    
+
+
+\end{proof}
+
+
+
+
+
+
+
+
 
 %                    The next thing we need to define is the uniform staircase function.
 %                    This function has it's domain in $X$ and maps to the closed interval $[0,1]$.
@@ -195,7 +312,7 @@ The first tept will be a formalisation of chain constructions.
 
 \begin{theorem}\label{urysohn}
     Let $X$ be a urysohn space.
-    Suppose $A,B \subseteq \closeds{X}$.
+    Suppose $A,B \in \closeds{X}$.
     Suppose $A \inter B$ is empty.
     There exist $f$ such that $f \in \funs{X}{\intervalclosed{\zero}{1}}$ 
     and $f(A) = 1$ and $f(B)= 0$ and $f$ is continuous.
