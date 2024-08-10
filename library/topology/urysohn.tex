@@ -198,58 +198,80 @@ The first tept will be a formalisation of chain constructions.
     Let $X$ be a urysohn space.
     Suppose $A,B \in \closeds{X}$.
     Suppose $A \inter B$ is empty.
-    Suppose $U = \{A,(X \setminus B)\}$.
-    Suppose $\indexset[U]= \{\zero, 1\}$.
-    Suppose $\index[U](\zero) = A$.
-    Suppose $\index[U](1) = (X \setminus B)$.
+    Then there exist $U$
+    such that $\carrier[U] = \{A,(\carrier[X] \setminus B)\}$
+    and $\indexset[U]= \{\zero, 1\}$
+    and $\index[U](\zero) = A$
+    and $\index[U](1) = (\carrier[X] \setminus B)$.
+    %$U$ is a urysohnchain in $X$.
+\end{proposition}
+\begin{proof}
+
+    Omitted.
+
+    %   We show that $U$ is a sequence.
+    %   \begin{subproof}
+    %       Omitted.
+    %   \end{subproof}
+%   
+    %   We show that $A \subseteq (\carrier[X] \setminus B)$.
+    %   \begin{subproof}
+    %       Omitted.
+    %   \end{subproof}
+%   
+    %   We show that $U$ is a chain of subsets.
+    %   \begin{subproof}
+    %       For all $n \in \indexset[U]$ we have $n = \zero \lor n = 1$.
+    %       It suffices to show that for all $n \in \indexset[U]$ we have
+    %       for all $m \in \indexset[U]$ such that 
+    %       $n < m$ we have $\index[U](n) \subseteq \index[U](m)$.
+    %       Fix $n \in \indexset[U]$.
+    %       Fix $m \in \indexset[U]$.
+    %       \begin{byCase}
+    %           \caseOf{$n = 1$.} Trivial.
+    %           \caseOf{$n = \zero$.} 
+    %               \begin{byCase}
+    %                   \caseOf{$m = \zero$.} Trivial.
+    %                   \caseOf{$m = 1$.} Omitted.
+    %               \end{byCase}
+    %       \end{byCase}
+    %   \end{subproof}
+%   
+    %   $A \subseteq X$.
+    %   $(X \setminus B) \subseteq X$.
+    %   We show that for all $x \in U$ we have $x \subseteq X$.
+    %   \begin{subproof}
+    %       Omitted.
+    %   \end{subproof}
+%   
+    %   We show that $\closure{A}{X} \subseteq \interior{(X \setminus B)}{X}$.
+    %   \begin{subproof}
+    %       Omitted.
+    %   \end{subproof}
+    %   We show that for all $n,m \in \indexset[U]$ such that $n < m$ we have
+    %   $\closure{\index[U](n)}{X} \subseteq \interior{\index[U](m)}{X}$.
+    %   \begin{subproof}
+    %       Omitted.
+    %   \end{subproof}
+
+    
+\end{proof}
+
+\begin{proposition}\label{urysohnchain_induction_begin_step_two}
+    Let $X$ be a urysohn space.
+    Suppose $A,B \in \closeds{X}$.
+    Suppose $A \inter B$ is empty.
+    Suppose there exist $U$
+    such that $\carrier[U] = \{A,(\carrier[X] \setminus B)\}$
+    and $\indexset[U]= \{\zero, 1\}$
+    and $\index[U](\zero) = A$
+    and $\index[U](1) = (\carrier[X] \setminus B)$.
     Then $U$ is a urysohnchain in $X$.
 \end{proposition}
 \begin{proof}
-    We show that $U$ is a sequence.
-    \begin{subproof}
-        Omitted.
-    \end{subproof}
-
-    We show that $A \subseteq (X \setminus B)$.
-    \begin{subproof}
-        Omitted.
-    \end{subproof}
-
-    We show that $U$ is a chain of subsets.
-    \begin{subproof}
-        For all $n \in \indexset[U]$ we have $n = \zero \lor n = 1$.
-        It suffices to show that for all $n \in \indexset[U]$ we have
-        for all $m \in \indexset[U]$ such that 
-        $n < m$ we have $\index[U](n) \subseteq \index[U](m)$.
-        Fix $n \in \indexset[U]$.
-        Fix $m \in \indexset[U]$.
-        \begin{byCase}
-            \caseOf{$n = 1$.} Trivial.
-            \caseOf{$n = \zero$.} 
-                \begin{byCase}
-                    \caseOf{$m = \zero$.} Trivial.
-                    \caseOf{$m = 1$.} Omitted.
-                \end{byCase}
-        \end{byCase}
-    \end{subproof}
-
-    $A \subseteq X$.
-    $(X \setminus B) \subseteq X$.
-    We show that for all $x \in U$ we have $x \subseteq X$.
-    \begin{subproof}
-        Omitted.
-    \end{subproof}
-
-    We show that $\closure{A}{X} \subseteq \interior{(X \setminus B)}{X}$.
-    \begin{subproof}
-        Omitted.
-    \end{subproof}
-    We show that for all $n,m \in \indexset[U]$ such that $n < m$ we have
-    $\closure{\index[U](n)}{X} \subseteq \interior{\index[U](m)}{X}$.
-    \begin{subproof}
-        Omitted.
-    \end{subproof}
+    Omitted.
 \end{proof}
+
 
 
 \begin{proposition}\label{t_four_propositon}
@@ -295,134 +317,147 @@ The first tept will be a formalisation of chain constructions.
 \end{proof}
 
 
+\begin{proposition}\label{existence_of_staircase_function}
+    Let $X$ be a urysohn space.
+    Suppose $U$ is a urysohnchain in $X$ and $U$ has cardinality $k$.
+    Suppose $k \neq \zero$.
+    Then there exist $f$ such that $f \in \funs{\carrier[X]}{\intervalclosed{\zero}{1}}$ 
+    and for all $n \in \indexset[U]$ we have for all $x \in \index[U](n)$ 
+    we have $f(x) = \rfrac{n}{k}$.
+\end{proposition}
+\begin{proof}
+    Omitted.
+\end{proof}
+
+\begin{abbreviation}\label{refinment_abbreviation}
+    $x \refine y$ iff $x$ is a refinmant of $y$.
+\end{abbreviation}
 
 
 
-
-
-
-
-%                    The next thing we need to define is the uniform staircase function.
-%                    This function has it's domain in $X$ and maps to the closed interval $[0,1]$.
-%                    These functions should behave als follows,
-%                    \begin{align}
-%                        &f(A_{0}) = 1 &\text{consant} \\
-%                        &f(A_{k} \setminus A_{k+1}) = 1-\frac{k}{r} &\text{constant.}
-%                    \end{align} 
-
-%                    We then prove that for any given $r$ we find a repolished chain,
-%                    which contains the $A_{i}$ and this replished chain is also legal.
-%                     
-%                    The proof will be finished by taking the limit on $f_{n}$ with $f_{n}$ 
-%                    be a staircase function with $n$ many refinemants. 
-%                    This limit will be continuous and we would be done. 
-
-
-% TODO: Since we want to prove that $f$ is continus, we have to formalize that 
-% \reals with the usual topology is a topological space. 
-% -------------------------------------------------------------
 
 \begin{theorem}\label{urysohn}
     Let $X$ be a urysohn space.
     Suppose $A,B \in \closeds{X}$.
     Suppose $A \inter B$ is empty.
-    There exist $f$ such that $f \in \funs{X}{\intervalclosed{\zero}{1}}$ 
+    There exist $f$ such that $f \in \funs{\carrier[X]}{\intervalclosed{\zero}{1}}$ 
     and $f(A) = 1$ and $f(B)= 0$ and $f$ is continuous.
 \end{theorem}
 \begin{proof}
-    We show that for all $n \in \naturals$ we have
-    if there exist $C$ such that $C$ is a urysohnchain in $X$ of cardinality $n$ 
-    then there exist $C'$  such that $C'$ is a urysohnchain in $X$ of cardinality $n+1$ 
-    and $C'$ is a refinmant of $C$.
-    \begin{subproof}
-        Omitted.
-    \end{subproof}
 
-    There exist $\eta$ such that $\eta$ is a urysohnchain in $X$ and $\eta =\{A, (x \setminus B)\}$.
-
+    There exist $\eta$ such that $\carrier[\eta] = \{A, (\carrier[X] \setminus B)\}$ 
+    and $\indexset[\eta] = \{\zero, 1\}$ 
+    and $\index[\eta](\zero) = A$
+    and $\index[\eta](1) = (\carrier[X] \setminus B)$  by \cref{urysohnchain_induction_begin}.
     
-
-    Take $P$ such that $P$ is a infinite sequence and $\indexset[P] = \naturals$ and for all $i \in \indexset[P]$ we have $\index[P](i) = \pow{X}$.
-    
-    We show that there exist $\zeta$ such that $\zeta$ is a infinite sequence 
-    and for all $i \in \indexset[\zeta]$ we have 
-    $\index[\zeta](i)$ is a urysohnchain in $X$ of cardinality $i$
-    and $A \subseteq \index[\zeta](i)$
-    and $\index[\zeta](i) \subseteq (X \setminus B)$
-    and for all $j \in \indexset[\zeta]$ such that 
-    $j < i$ we have for all $x \in \index[\zeta](j)$ we have $x \in \index[\zeta](i)$.
+    We show that there exist $\zeta$ such that $\zeta$ is a sequence 
+    and $\indexset[\zeta] = \naturals$
+    and $\eta \in \carrier[\zeta]$ and $\index[\zeta](\eta) = \zero$
+    and for all $n \in \indexset[\zeta]$ we have $n+1 \in \indexset[\zeta]$ 
+    and $\index[\zeta](n+1)$ is a refinmant of $\index[\zeta](n)$.
     \begin{subproof}
-        Omitted.
-    \end{subproof}
-  
-    
+        %Let $P = \{ n \in \naturals \mid \exists \zeta. ((n = \zero \land \index[\zeta](n) = \eta \land \index[\zeta](n+1)$ is a refinmant of $\index[\zeta](n)) \lor (n \neq \zero \land \index[\zeta](n)$ is a urysohnchain in $X$ \land $\index[\zeta](n+1)$ is a refinmant of $\index[\zeta](n)))\}$.
+        %Let $C = \{ x \mid \text{$x$ is a uysohncahin in $X$}\}$.
+        Let $\alpha = \{x \in C \mid \exists y \in \alpha. x \refine y \lor x = \eta\}$.
+        Let $\beta = \{ (n,x) \mid n \in \naturals \mid \exists m \in \naturals. \exists y \in \alpha. (x \in \alpha) \land ((x \refine y \land m = n+1 )\lor ((n,x) = (\zero,\eta)))\}$.
 
-
-    
-
-
-
-    We show that there exist $g \in \funs{X}{\intervalclosed{\zero}{1}}$ such that $g(A)=1$ and $g(X\setminus A) = \zero$.
-    \begin{subproof}
-        Omitted.
-    \end{subproof}
-    $g$ is a staircase function and $\chain[g] = C$.
-    $g$ is a legal staircase function.
-
-
-    We show that there exist $f$ such that $f \in \funs{X}{\intervalclosed{\zero}{1}}$ 
-    and $f(A) = 1$ and $f(B)= 0$ and $f$ is continuous.
-    \begin{subproof}
-        Omitted.
+        % TODO: Proof that \beta is a function which would be used for the indexing.
+        
     \end{subproof}
 
 
-    %We show that for all $n \in \nautrals$ we have $C_{n}$ a legal chain of subsets of $X$. 
-    %\begin{subproof}
-    %    Omitted.
-    %\end{subproof}
-
-    %Proof Sheme Idea:
-    % -We proof for n=1 that C_{n} is a chain and legal
-    % -Then by induction with P(n+1) is refinmant of P(n)
-    % -Therefore we have a increing refinmant of these Chains such that our limit could even apply
-    % ---------------------------------------------------------
-
-    %We show that there exist $f \in \funs{\naturals}{\funs{X}{\intervalclosed{0}{1}}}$ such that $f(n)$ is a staircase function. %TODO: Define Staircase function
-    %\begin{subproof}
-    %    Omitted.
-    %\end{subproof}
 
 
-    % Formalization idea of enumarted sequences:
-    % - Define a enumarted sequnecs as a set A with a bijection between A and E \in \pow{\naturals} 
-    % - This should give all finite and infinte enumarable sequences
-    % - Introduce a notion for the indexing of these enumarable sequences.
-    % - Then we can define the limit of a enumarted sequence of functions.
-    % ---------------------------------------------------------
-    %
-    % Here we need a limit definition for sequences of functions
-    %We show that there exist $F \in \funs{X}{\intervalclosed{0}{1}}$ such that $F = \limit{set of the staircase functions}$
-    %\begin{subproof}
-    %    Omitted.
-    %\end{subproof}
-    %
-    %We show that $F(A) = 1$.
-    %\begin{subproof}
-    %    Omitted.
-    %\end{subproof}
-    %
-    %We show that $F(B) = 0$.
-    %\begin{subproof}
-    %    Omitted.
-    %\end{subproof} 
-    %
-    %We show that $F$ is continuous.
-    %\begin{subproof}
-    %    Omitted.
-    %\end{subproof}
+    %Suppose $\eta$ is a urysohnchain in $X$.
+    %Suppose $\carrier[\eta] =\{A, (X \setminus B)\}$
+    %and $\indexset[\eta] = \{\zero, 1\}$
+    %and $\index[\eta](\zero) = A$ 
+    %and $\index[\eta](1) = (X \setminus B)$.
+
+
+    %Then $\eta$ is a urysohnchain in $X$.
+
+    %   Take $P$ such that $P$ is a infinite sequence and $\indexset[P] = \naturals$ and for all $i \in \indexset[P]$ we have $\index[P](i) = \pow{X}$.
+    %   
+    %   We show that there exist $\zeta$ such that $\zeta$ is a infinite sequence 
+    %   and for all $i \in \indexset[\zeta]$ we have 
+    %   $\index[\zeta](i)$ is a urysohnchain in $X$ of cardinality $i$
+    %   and $A \subseteq \index[\zeta](i)$
+    %   and $\index[\zeta](i) \subseteq (X \setminus B)$
+    %   and for all $j \in \indexset[\zeta]$ such that 
+    %   $j < i$ we have for all $x \in \index[\zeta](j)$ we have $x \in \index[\zeta](i)$.
+    %   \begin{subproof}
+    %       Omitted.
+    %   \end{subproof}
+    %   
+    %   
+    %   
+    %   
+    %   
+    %   
+    %   
+    %   
+    %   We show that there exist $g \in \funs{X}{\intervalclosed{\zero}{1}}$ such that $g(A)=1$ and $g(X\setminus A) = \zero$.
+    %   \begin{subproof}
+    %       Omitted.
+    %   \end{subproof}
+    %   $g$ is a staircase function and $\chain[g] = C$.
+    %   $g$ is a legal staircase function.
+    %   
+    %   
+    %   We show that there exist $f$ such that $f \in \funs{X}{\intervalclosed{\zero}{1}}$ 
+    %   and $f(A) = 1$ and $f(B)= 0$ and $f$ is continuous.
+    %   \begin{subproof}
+    %       Omitted.
+    %   \end{subproof}
+
+
+    %   We show that for all $n \in \nautrals$ we have $C_{n}$ a legal chain of subsets of $X$. 
+    %   \begin{subproof}
+    %       Omitted.
+    %   \end{subproof}
+
+    %   Proof Sheme Idea:
+    %    -We proof for n=1 that C_{n} is a chain and legal
+    %    -Then by induction with P(n+1) is refinmant of P(n)
+    %    -Therefore we have a increing refinmant of these Chains such that our limit could even apply
+    %    ---------------------------------------------------------
+
+    %   We show that there exist $f \in \funs{\naturals}{\funs{X}{\intervalclosed{0}{1}}}$ such that $f(n)$ is a staircase function. %TODO: Define Staircase function
+    %   \begin{subproof}
+    %       Omitted.
+    %   \end{subproof}
+
+
+    %    Formalization idea of enumarted sequences:
+    %    - Define a enumarted sequnecs as a set A with a bijection between A and E \in \pow{\naturals} 
+    %    - This should give all finite and infinte enumarable sequences
+    %    - Introduce a notion for the indexing of these enumarable sequences.
+    %    - Then we can define the limit of a enumarted sequence of functions.
+    %    ---------------------------------------------------------
+    %   
+    %    Here we need a limit definition for sequences of functions
+    %   We show that there exist $F \in \funs{X}{\intervalclosed{0}{1}}$ such that $F = \limit{set of the staircase functions}$
+    %   \begin{subproof}
+    %       Omitted.
+    %   \end{subproof}
+    %   
+    %   We show that $F(A) = 1$.
+    %   \begin{subproof}
+    %       Omitted.
+    %   \end{subproof}
+    %   
+    %   We show that $F(B) = 0$.
+    %   \begin{subproof}
+    %       Omitted.
+    %   \end{subproof} 
+    %   
+    %   We show that $F$ is continuous.
+    %   \begin{subproof}
+    %       Omitted.
+    %   \end{subproof}
 \end{proof}
 
-\begin{theorem}\label{safe}
-    Contradiction.     
-\end{theorem}
+%\begin{theorem}\label{safe}
+%    Contradiction.     
+%\end{theorem}
