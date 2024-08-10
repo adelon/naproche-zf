@@ -262,12 +262,26 @@ The first tept will be a formalisation of chain constructions.
     Omitted.
 \end{proof}
 
+\begin{definition}\label{minimum}
+    $\min{X} = \{x \in X \mid \forall y \in X. x \leq y \}$.
+\end{definition}
+
+\begin{definition}\label{maximum}
+    $\max{X} = \{x \in X \mid \forall y \in X. x \geq y \}$.
+\end{definition}
+
 \begin{proposition}\label{urysohnchain_induction_step_existence}
     Let $X$ be a urysohn space.
     Suppose $U$ is a urysohnchain in $X$.
     Then there exist $U'$ such that $U'$ is a refinmant of $U$ and $U'$ is a urysohnchain in $X$.
 \end{proposition}
 \begin{proof}
+    % U  = ( A_{0}, A_{1}, A_{2}, ... , A_{n-1}, A_{n})
+    % U' = ( A_{0}, A'_{1}, A_{1}, A'_{2}, A_{2}, ...   A_{n-1}, A'_{n}, A_{n})
+
+    Let $m = \max{\indexset[U]}$.
+    For all $n \in (\indexset[U] \setminus \{m\})$ we have there exist $C \subseteq X$ 
+    such that $\closure{\index[U](n)}{X} \subseteq \interior{C}{X} \subseteq \closure{C}{X} \subseteq \interior{\index[U](n+1)}{X}$.
     
     
     %\begin{definition}\label{refinmant}
@@ -276,9 +290,7 @@ The first tept will be a formalisation of chain constructions.
     %    we have there exist $c \in C'$ such that $y \subset c \subset x$
     %    and for all $g \in C'$ such that $g \neq c$ we have not $y \subset g \subset x$.
     %\end{definition}
-    
-    
-
+    Omitted.
 
 \end{proof}
 
