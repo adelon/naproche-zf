@@ -5,6 +5,7 @@
 \import{function.tex}
 \import{set.tex}
 \import{cardinal.tex}
+\import{relation.tex}
 
 \section{Urysohns Lemma}
 %           In this section we want to proof Urysohns lemma. 
@@ -188,10 +189,20 @@ The first tept will be a formalisation of chain constructions.
 \end{lemma}
 
 
+\begin{axiom}\label{pot1}
+    $\pot \in \funs{\naturals}{\naturals}$.
+\end{axiom}
+
+\begin{axiom}\label{pot2} 
+    For all $n \in \naturals$ we have there exist $k\in \naturals$ such that $(n, k) \in \powerOfTwoSet$ and $\apply{\pot}{n}=k$.
+    %$\pot(n) = k$ iff there exist $x \in \powerOfTwoSet$ such that $x = (n,k)$.
+\end{axiom}
 
 
-
-
+%Without this abbreviation \pot cant be sed as a function in the standard sense
+\begin{abbreviation}\label{pot_as_function}
+    $\pot(n) = \apply{\pot}{n}$.
+\end{abbreviation}
 
 
 \begin{proposition}\label{urysohnchain_induction_begin}
@@ -356,15 +367,24 @@ The first tept will be a formalisation of chain constructions.
     and for all $n \in \indexset[\zeta]$ we have $n+1 \in \indexset[\zeta]$ 
     and $\index[\zeta](n+1)$ is a refinmant of $\index[\zeta](n)$.
     \begin{subproof}
-        %Let $P = \{ n \in \naturals \mid \exists \zeta. ((n = \zero \land \index[\zeta](n) = \eta \land \index[\zeta](n+1)$ is a refinmant of $\index[\zeta](n)) \lor (n \neq \zero \land \index[\zeta](n)$ is a urysohnchain in $X$ \land $\index[\zeta](n+1)$ is a refinmant of $\index[\zeta](n)))\}$.
-        %Let $C = \{ x \mid \text{$x$ is a uysohncahin in $X$}\}$.
-        Let $\alpha = \{x \in C \mid \exists y \in \alpha. x \refine y \lor x = \eta\}$.
-        Let $\beta = \{ (n,x) \mid n \in \naturals \mid \exists m \in \naturals. \exists y \in \alpha. (x \in \alpha) \land ((x \refine y \land m = n+1 )\lor ((n,x) = (\zero,\eta)))\}$.
-
-        % TODO: Proof that \beta is a function which would be used for the indexing.
-        
+            %Let $\alpha = \{x \in C \mid \exists y \in \alpha. x \refine y \lor x = \eta\}$.
+            %Let $\beta = \{ (n,x) \mid n \in \naturals \mid \exists m \in \naturals. \exists y \in \alpha. (x \in \alpha) \land ((x \refine y \land m = n+1 )\lor ((n,x) = (\zero,\eta)))\}$.
+            %
+            %    % TODO: Proof that \beta is a function which would be used for the indexing.
+            %For all $n \in \naturals$ we have there exist $x \in \alpha$ such that $(n,x) \in \beta$.
+            %$\dom{\beta} = \naturals$.
+            %$\ran{\beta} = \alpha$.
+            %$\beta \in \funs{\naturals}{\alpha}$.
+            %Take $\zeta$ such that $\carrier[\zeta] = \alpha$ and $\indexset[\zeta] = \naturals$ and $\index[\zeta] = \beta$.
+        Omitted.
     \end{subproof}
 
+    We show that for all $n \in \indexset[\zeta]$ we have $\index[\zeta](n)$ has cardinality $\pot(n)$.
+    \begin{subproof}
+        Trivial.
+    \end{subproof}
+
+    
 
 
 
