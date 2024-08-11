@@ -292,10 +292,10 @@ exportMegalodon file = do
 -- | This could be expandend with the dump case, with dump off just this and if dump is on it could show the number off the task. For quick use
 showFailedTask :: (a, ProverAnswer) -> IO()
 showFailedTask (_, Yes ) = Text.putStrLn ""
-showFailedTask (_, No tptp) = Text.putStrLn (Text.pack ("Prover found countermodel: " ++ Text.unpack(Text.unlines (take 1 (Text.splitOn "." tptp)))))
-showFailedTask (_, ContradictoryAxioms tptp) = Text.putStrLn (Text.pack ("Contradictory axioms: " ++ Text.unpack(Text.unlines (take 1 (Text.splitOn "." tptp)))))
-showFailedTask (_, Uncertain tptp) = Text.putStrLn (Text.pack ("Out of resources: " ++ Text.unpack(Text.unlines (take 1 (Text.splitOn "." tptp)))))
-showFailedTask (_, Error _ tptp _) = Text.putStrLn (Text.pack ("Error at: " ++ Text.unpack(Text.unlines (take 1 (Text.splitOn "." tptp)))))
+showFailedTask (_, No tptp) = Text.putStrLn (Text.pack ("\ESC[31mProver found countermodel: \ESC[0m" ++ Text.unpack(Text.unlines (take 1 (Text.splitOn "." tptp)))))
+showFailedTask (_, ContradictoryAxioms tptp) = Text.putStrLn (Text.pack ("\ESC[31mContradictory axioms: \ESC[0m" ++ Text.unpack(Text.unlines (take 1 (Text.splitOn "." tptp)))))
+showFailedTask (_, Uncertain tptp) = Text.putStrLn (Text.pack ("\ESC[31mOut of resources: \ESC[0m" ++ Text.unpack(Text.unlines (take 1 (Text.splitOn "." tptp)))))
+showFailedTask (_, Error _ tptp _) = Text.putStrLn (Text.pack ("\ESC[31mError at: \ESC[0m" ++ Text.unpack(Text.unlines (take 1 (Text.splitOn "." tptp)))))
 --showFailedTask (_, _) = Text.putStrLn "Error!"
 
 

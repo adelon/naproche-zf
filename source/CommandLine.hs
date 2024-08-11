@@ -87,15 +87,16 @@ run = do
                             Text.hPutStrLn stderr tptp
                         Error err tptp task -> do
                             putStr "Error at:"
+
                             Text.putStrLn task
                             Text.putStrLn err
                             Text.putStrLn tptp
                             
                 WithFailList -> liftIO case result of
-                    VerificationSuccess -> putStrLn "Verification successful."
+                    VerificationSuccess -> putStrLn "\ESC[32mVerification successful.\ESC[0m"
                     VerificationFailure [] -> error "Empty verification fail"
                     VerificationFailure fails -> do
-                        putStrLn "Following task couldn't be solved by the ATP: "
+                        putStrLn "\ESC[35mFollowing task couldn't be solved by the ATP: \ESC[0m"
                         traverse_ showFailedTask fails
                         Text.hPutStrLn stderr "Don't give up!"
 

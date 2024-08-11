@@ -36,7 +36,12 @@ The first tept will be a formalisation of chain constructions.
 
 
 
-
+%%-----------------------
+%   Idea:
+%   A sequence could be define as a family of sets, 
+%   together with the existence of an indexing function.
+%
+%%-----------------------
 \begin{struct}\label{sequence}
     A sequence $X$ is a onesorted structure equipped with
     \begin{enumerate}
@@ -148,8 +153,9 @@ The first tept will be a formalisation of chain constructions.
 \end{definition}
 
 \begin{definition}\label{refinmant}
-    $C'$ is a refinmant of $C$ iff for all $x \in C$ we have $x \in C'$ and 
-    for all $y \in C$ such that $y \subset x$ we have there exist $c \in C'$ such that $y \subset c \subset x$
+    $C'$ is a refinmant of $C$ iff $C'$ is a urysohnchain in $X$
+    and for all $x \in C$ we have $x \in C'$ 
+    and for all $y \in C$ such that $y \subset x$ we have there exist $c \in C'$ such that $y \subset c \subset x$
     and for all $g \in C'$ such that $g \neq c$ we have not $y \subset g \subset x$.
 \end{definition}
 
@@ -312,9 +318,9 @@ The first tept will be a formalisation of chain constructions.
     % U  = ( A_{0}, A_{1}, A_{2}, ... , A_{n-1}, A_{n})
     % U' = ( A_{0}, A'_{1}, A_{1}, A'_{2}, A_{2}, ...   A_{n-1}, A'_{n}, A_{n})
 
-    Let $m = \max{\indexset[U]}$.
-    For all $n \in (\indexset[U] \setminus \{m\})$ we have there exist $C \subseteq X$ 
-    such that $\closure{\index[U](n)}{X} \subseteq \interior{C}{X} \subseteq \closure{C}{X} \subseteq \interior{\index[U](n+1)}{X}$.
+    % Let $m = \max{\indexset[U]}$.
+    % For all $n \in (\indexset[U] \setminus \{m\})$ we have there exist $C \subseteq X$ 
+    % such that $\closure{\index[U](n)}{X} \subseteq \interior{C}{X} \subseteq \closure{C}{X} \subseteq \interior{\index[U](n+1)}{X}$.
     
     
     %\begin{definition}\label{refinmant}
@@ -343,6 +349,58 @@ The first tept will be a formalisation of chain constructions.
 \begin{abbreviation}\label{refinment_abbreviation}
     $x \refine y$ iff $x$ is a refinmant of $y$.
 \end{abbreviation}
+
+
+
+
+
+\begin{abbreviation}\label{sequence_of_functions}
+    $f$ is a sequence of functions iff $f$ is a sequence 
+    and for all $g \in \carrier[f]$ we have $g$ is a function.
+\end{abbreviation}
+
+\begin{abbreviation}\label{sequence_in_reals}
+    $s$ is a sequence of real numbers iff $s$ is a sequence 
+    and for all $r \in \carrier[s]$ we have $r \in \reals$.
+\end{abbreviation}
+
+
+
+\begin{axiom}\label{abs_behavior1}
+    If $x \geq \zero$ then $\abs{x} = x$.
+\end{axiom}
+
+\begin{axiom}\label{abs_behavior2}
+    If $x < \zero$ then $\abs{x} = \neg{x}$.
+\end{axiom}
+
+\begin{abbreviation}\label{converge}
+    $s$ converges iff $s$ is a sequence of real numbers 
+    and $\indexset[s]$ is infinite
+    and for all $\epsilon \in \reals$ such that $\epsilon > \zero$ we have
+    there exist $N \in \indexset[s]$ such that
+    for all $m \in \indexset[s]$ such that $m > N$ 
+    we have $\abs{\index[s](N) - \index[s](m)} < \epsilon$.
+\end{abbreviation}
+
+
+\begin{definition}\label{limit_of_sequence}
+    $x$ is the limit of $s$ iff $s$ is a sequence of real numbers
+    and $x \in \reals$ and 
+    for all $\epsilon \in \reals$ such that $\epsilon > \zero$
+    we have there exist $n \in \indexset[s]$ such that 
+    for all $m \in \indexset[s]$ such that $m > n$ 
+    we have $\abs{x - \index[s](n)} < \epsilon$.
+\end{definition}
+
+\begin{proposition}\label{existence_of_limit}
+    Let $s$ be a sequence of real numbers.
+    Then $s$ converges iff there exist $x \in \reals$ 
+    such that $x$ is the limit of $s$.
+\end{proposition}
+\begin{proof}
+    Omitted.
+\end{proof}
 
 
 
@@ -381,12 +439,65 @@ The first tept will be a formalisation of chain constructions.
 
     We show that for all $n \in \indexset[\zeta]$ we have $\index[\zeta](n)$ has cardinality $\pot(n)$.
     \begin{subproof}
-        Trivial.
+        Omitted.
+    \end{subproof}
+
+    For all $m \in \indexset[\zeta]$ we have $\pot(m) \neq \zero$.
+
+
+    %%------------- Maybe use Abstrect.hs line 368 "Local Function".
+
+    We show that for all $m \in \indexset[\zeta]$ we have there exist $f$ such that $f \in \funs{\carrier[X]}{\intervalclosed{\zero}{1}}$ 
+    and for all $n \in \indexset[\index[\zeta](m)]$ we have for all $x \in \index[\index[\zeta](m)](n)$ 
+    we have $f(x) = \rfrac{n}{\pot(m)}$.
+    \begin{subproof}
+        %   Fix $m \in \indexset[\zeta]$.
+        %   $\index[\zeta](m)$ is a urysohnchain in $X$.
+        %   
+        %   Follows by \cref{existence_of_staircase_function}.
+
+        Omitted.
     \end{subproof}
 
     
 
+    %The sequenc of the functions
+    Let $\gamma = \{
+        (n,f) \mid 
+        n \in \naturals \mid 
+        
+        \forall n' \in \indexset[\index[\zeta](n)].             
+        \forall x \in \carrier[X].      
+        
 
+        f \in \funs{\carrier[X]}{\intervalclosed{\zero}{1}} \land
+
+
+        % (n,f) \in \gamma  <=>   \phi(n,f)
+        % with \phi (n,f) :=        (x \in (A_k) \ (A_k-1))                 =>      f(x) = ( k / 2^n )        
+        %                       \/  (x \notin A_k for all k \in {1,..,n}    =>      f(x) = 1 
+
+            (       (n' = \zero)   
+            \land   (x \in \index[\index[\zeta](n)](n')) 
+            \land   (f(x)= \zero) ) 
+        
+        \lor
+        
+            (       (n' > \zero)    
+            \land   (x \in \index[\index[\zeta](n)](n'))
+            \land   (x \notin \index[\index[\zeta](n)](n'-1))
+            \land   (f(x) = \rfrac{n'}{\pot(n)}) )
+            
+        \lor
+
+            (       (x \notin  \index[\index[\zeta](n)](n'))
+            \land   (f(x) = 1) )
+        
+    \}$.
+    
+    
+    
+     
 
     %Suppose $\eta$ is a urysohnchain in $X$.
     %Suppose $\carrier[\eta] =\{A, (X \setminus B)\}$
