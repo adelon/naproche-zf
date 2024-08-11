@@ -410,7 +410,7 @@ The first tept will be a formalisation of chain constructions.
     Suppose $A,B \in \closeds{X}$.
     Suppose $A \inter B$ is empty.
     There exist $f$ such that $f \in \funs{\carrier[X]}{\intervalclosed{\zero}{1}}$ 
-    and $f(A) = 1$ and $f(B)= 0$ and $f$ is continuous.
+    and $f(A) = 0$ and $f(B)= 1$ and $f$ is continuous.
 \end{theorem}
 \begin{proof}
 
@@ -442,8 +442,10 @@ The first tept will be a formalisation of chain constructions.
         Omitted.
     \end{subproof}
 
-    For all $m \in \indexset[\zeta]$ we have $\pot(m) \neq \zero$.
-
+    We show that for all $m \in \indexset[\zeta]$ we have $\pot(m) \neq \zero$.
+    \begin{subproof}
+        Omitted.
+    \end{subproof}
 
     %%------------- Maybe use Abstrect.hs line 368 "Local Function".
 
@@ -495,9 +497,43 @@ The first tept will be a formalisation of chain constructions.
         
     \}$.
     
+    Let $\gamma(n) = \apply{\gamma}{n}$ for $n \in \naturals$.
     
+
+
+    We show that there exist $F$ such that 
+    $F \in \funs{\carrier[X]}{\intervalclosed{\zero}{1}}$ and
+    for all $x \in \carrier[X]$ we have 
+    there exist $k \in \intervalclosed{\zero}{1}$ 
+    such that $F(x) = k$ and 
+    for all $\epsilon \in \reals$ such that $\epsilon > \zero$
+    we have there exist $N \in \naturals$ such that 
+    for all $N' \in \naturals$ such that $N' > N$
+    we have $\abs{(k - \apply{\gamma(N')}{x})} \leq \epsilon$.
+    \begin{subproof}
+        Omitted.
+    \end{subproof}
+
     
-     
+    We show that $F \in \funs{\carrier[X]}{\intervalclosed{\zero}{1}}$.
+    \begin{subproof}
+        Omitted.
+    \end{subproof}
+
+    We show that $F(A) = 0$.
+    \begin{subproof}
+        Omitted.
+    \end{subproof}
+
+    We show that $F(B) = 1$.
+    \begin{subproof}
+        Omitted.
+    \end{subproof}
+
+    We show that $F$ is continuous.
+    \begin{subproof}
+        Omitted.
+    \end{subproof}
 
     %Suppose $\eta$ is a urysohnchain in $X$.
     %Suppose $\carrier[\eta] =\{A, (X \setminus B)\}$
