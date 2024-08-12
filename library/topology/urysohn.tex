@@ -461,8 +461,7 @@ The first tept will be a formalisation of chain constructions.
         Omitted.
     \end{subproof}
 
-    %%------------- Maybe use Abstrect.hs line 368 "Local Function".
-
+    
     We show that for all $m \in \indexset[\zeta]$ we have there exist $f$ such that $f \in \funs{\carrier[X]}{\intervalclosed{\zero}{1}}$ 
     and for all $n \in \indexset[\index[\zeta](m)]$ we have for all $x \in \index[\index[\zeta](m)](n)$ 
     we have $f(x) = \rfrac{n}{\pot(m)}$.
@@ -513,13 +512,7 @@ The first tept will be a formalisation of chain constructions.
     
     Let $\gamma(n) = \apply{\gamma}{n}$ for $n \in \naturals$.
 
-    %We show that there exist $\kappa$ such that $\kappa$ is the limit sequence of $\gamma$.
-    %\begin{subproof}
-    %    Omitted.
-    %\end{subproof}
-
-    %Let $\gamma(n)(x) = \apply{\gamma(n)}{x}$ for $x\in \carrier[X]$
-
+    
     We show that for all $n \in \naturals$ we have $\gamma(n)$ 
     is a function from $\carrier[X]$ to $\reals$.
     \begin{subproof}
@@ -552,49 +545,42 @@ The first tept will be a formalisation of chain constructions.
             Follows by \cref{two_in_naturals,function_apply_default,reals_axiom_zero_in_reals,dom_emptyset,notin_emptyset,funs_type_apply,neg,minus,abs_behavior1}.
         \end{subproof}
     \end{subproof}
-
-
-    %Let $S(x) = \{(n,x) \mid n \in naturals \mid x = (\gamma(n))(x)\}$.
-    
-    %Let $S(x)
-
-    %We show that there exist $F$ such that
-    %for all $x \in \carrier[X]$ we have $F(x)$ is
-
-
-    %We show that there exist $F$ such that 
-    %$F \in \funs{\carrier[X]}{\intervalclosed{\zero}{1}}$ and
-    %for all $x \in \carrier[X]$ we have 
-    %there exist $k \in \intervalclosed{\zero}{1}$ 
-    %such that $F(x) = k$ and 
-    %for all $\epsilon \in \reals$ such that $\epsilon > \zero$
-    %we have there exist $N \in \naturals$ such that 
-    %for all $N' \in \naturals$ such that $N' > N$
-    %we have $\abs{(k - \apply{\gamma(N')}{x})} \leq \epsilon$.
-    %\begin{subproof}
-    %    Omitted.
-    %\end{subproof}
     
 
     Let $G(x) = g(x)$ for $x \in \carrier[X]$.
     We have $\dom{G} = \carrier[X]$.
-
-    %For all $x \in \carrier[X]$ for all $n \in \naturals$ we have $g(x) \leq \apply{\gamma(n)}{x}$.
 
     We show that for all $x \in \dom{G}$ we have $G(x) \in \reals$.
     \begin{subproof}
         Fix $x \in \dom{G}$.
         It suffices to show that $g(x) \in \reals$.
 
-        %There exist $k \in \reals$ such that for all $\epsilon \in \reals$ such that $\epsilon > \zero$ we have there exist $N \in \naturals$ such that for all $N' \in \naturals$ such that $N' > N$ we have $\abs{\apply{\gamma(n)}{x} - k} < \epsilon$ and $g(x)= k$.
+        There exist $k \in \reals$ such that for all $\epsilon \in \reals$ such that $\epsilon > \zero$ we have there exist $N \in \naturals$ such that for all $N' \in \naturals$ such that $N' > N$ we have $\abs{\apply{\gamma(n)}{x} - k} < \epsilon$.
+        $g(x)= k$.
+        
 
-
+        Follows by \cref{apply,plus_one_order,ordinal_iff_suc_ordinal,natural_number_is_ordinal,subseteq,naturals_subseteq_reals,naturals_is_equal_to_two_times_naturals,reals_one_bigger_zero,one_in_reals,ordinal_prec_trichotomy,omega_is_an_ordinal,suc_intro_self,two_in_naturals,in_asymmetric,suc}.
 
     \end{subproof}
 
     We show that for all $x \in \dom{G}$ we have $\zero \leq G(x) \leq 1$.
     \begin{subproof}
-        Omitted.
+        Fix $x \in \dom{G}$.
+        Then $x \in \carrier[X]$.
+        \begin{byCase}
+            \caseOf{$x \in A$.} 
+                For all $n \in \naturals$ we have $\apply{\gamma(n)}{x} = 0$.
+
+
+            \caseOf{$x \notin A$.} 
+                \begin{byCase}
+                    \caseOf{$x \in B$.} 
+                        OFor all $n \in \naturals$ we have $\apply{\gamma(n)}{x} = 1$.
+
+                    \caseOf{$x \notin B$.}
+                        Omitted.
+                \end{byCase}
+        \end{byCase}
     \end{subproof}
 
 
