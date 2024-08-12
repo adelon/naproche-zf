@@ -43,10 +43,12 @@ run = do
     case withDump opts of
         WithoutDump -> skip
         WithDump dir -> do
+            liftIO (Text.putStrLn "\ESC[1;36mCreating Dumpfiles.\ESC[0m")
             let serials = [dir </> show n <.> "p" | n :: Int <- [1..]]
             tasks <- zip serials <$> encodeTasks (inputPath opts)
             createDirectoryIfMissing True dir
             forM_ tasks (uncurry dumpTask)
+            liftIO (Text.putStrLn "\ESC[35mDump ready.\ESC[0m")
     case (withParseOnly opts, withMegalodon opts) of
         (WithParseOnly, _) -> do
             ast <- parse (inputPath opts)
@@ -60,6 +62,7 @@ run = do
             -- A custom E executable can be configured using environment variables.
             -- If the environment variable is undefined we fall back to the
             -- a globally installed E executable.
+            liftIO (Text.putStrLn "\ESC[1;96mStart of verification.\ESC[0m")
             vampirePathPath <- (?? "vampire") <$> lookupEnv "NAPROCHE_VAMPIRE"
             eproverPath <- (?? "eprover") <$> lookupEnv "NAPROCHE_EPROVER"
             let prover = case withProver opts of

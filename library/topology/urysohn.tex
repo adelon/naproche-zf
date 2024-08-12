@@ -526,6 +526,11 @@ The first tept will be a formalisation of chain constructions.
         Omitted.
     \end{subproof}
 
+    We show that for all $n \in \naturals$ for all $x \in \carrier[X]$ we have $\apply{\gamma(n)}{x} \in \intervalclosed{\zero}{1}$. 
+    \begin{subproof}
+        Omitted.
+    \end{subproof}
+
 
 
     We show that there exist $g$ such that 
@@ -535,18 +540,7 @@ The first tept will be a formalisation of chain constructions.
     there exist $N \in \naturals$ such that
     for all $N' \in \naturals$ such that $N' > N$ we have
     $\abs{\apply{\gamma(n)}{x} - k} < \epsilon$ and $g(x)= k$.
-    \begin{subproof}
-
-        %Let $G(x) = \{k \in \carrier[X] \mid \forall \epsilon \in \realsplus. \exists N \in \naturals. \forall N' \in \naturals. (N' > N) \land (\abs{\apply{\gamma(n)}{x} - k} < \epsilon)\}$ for $x \in \carrier[X]$.        
-%
-        %We show that for all $x \in \carrier[X]$ we have $G(x)$ has cardinality $1$.
-        %\begin{subproof}
-        %    Omitted.
-        %\end{subproof}
-%
-        %Let $H(x) = \unions{G(x)}$ for $x \in \carrier[X]$.
-        %For all $x \in \carrier[X]$ we have $\{H(x)\} = G(x)$. 
-        
+    \begin{subproof}       
         We show that for all $x \in \carrier[X]$ we have
         there exist $k \in \reals$ such that
         for all $\epsilon \in \reals$ such that $\epsilon > \zero$ we have
@@ -554,10 +548,9 @@ The first tept will be a formalisation of chain constructions.
         for all $N' \in \naturals$ such that $N' > N$ we have
         $\abs{\apply{\gamma(n)}{x} - k} < \epsilon$.
         \begin{subproof}
-            Omitted.
+            Fix $x \in \carrier[X]$.
+            Follows by \cref{two_in_naturals,function_apply_default,reals_axiom_zero_in_reals,dom_emptyset,notin_emptyset,funs_type_apply,neg,minus,abs_behavior1}.
         \end{subproof}
-
-
     \end{subproof}
 
 
@@ -581,44 +574,53 @@ The first tept will be a formalisation of chain constructions.
     %\begin{subproof}
     %    Omitted.
     %\end{subproof}
-
-
     
-    We show that $F \in \funs{\carrier[X]}{\intervalclosed{\zero}{1}}$.
+
+    Let $G(x) = g(x)$ for $x \in \carrier[X]$.
+    We have $\dom{G} = \carrier[X]$.
+
+    %For all $x \in \carrier[X]$ for all $n \in \naturals$ we have $g(x) \leq \apply{\gamma(n)}{x}$.
+
+    We show that for all $x \in \dom{G}$ we have $G(x) \in \reals$.
+    \begin{subproof}
+        Fix $x \in \dom{G}$.
+        It suffices to show that $g(x) \in \reals$.
+
+        %There exist $k \in \reals$ such that for all $\epsilon \in \reals$ such that $\epsilon > \zero$ we have there exist $N \in \naturals$ such that for all $N' \in \naturals$ such that $N' > N$ we have $\abs{\apply{\gamma(n)}{x} - k} < \epsilon$ and $g(x)= k$.
+
+
+
+    \end{subproof}
+
+    We show that for all $x \in \dom{G}$ we have $\zero \leq G(x) \leq 1$.
+    \begin{subproof}
+        Omitted.
+    \end{subproof}
+
+
+    We show that $G \in \funs{\carrier[X]}{\intervalclosed{\zero}{1}}$.
     \begin{subproof}        
-        Omitted.
-        
-        %It suffices to show that $\dom{F} = \carrier[X]$ and 
-        %$F \in \rels{\carrier[X]}{\intervalclosed{\zero}{1}}$ and $F$ is right-unique.
-        %
-        %We show that $F \in \rels{\carrier[X]}{\intervalclosed{\zero}{1}}$.
-        %\begin{subproof}
-        %    It suffices to show that $F \in \pow{\carrier[X] \times \intervalclosed{\zero}{1}}$.
-        %    It suffices to show that for all $w \in F$ we have $w \in (\carrier[X] \times \intervalclosed{\zero}{1})$.
-%
-        %    Fix $w \in F$.
-%   
-        %    %Take $x$ such that there exist $k \in \intervalclosed{\zero}{1}$ such that $w = (x,k)$.
-%
-%
-        %\end{subproof}
-        %
-%
-%
-        %Trivial.
+        It suffices to show that $\ran{G} \subseteq \intervalclosed{\zero}{1}$ by \cref{fun_ran_iff,funs_intro,funs_weaken_codom}.
+        It suffices to show that for all $x \in \dom{G}$ we have $G(x) \in \intervalclosed{\zero}{1}$.
+        Fix $x \in \dom{G}$.
+        Then $x \in \carrier[X]$.
+        $g(x) = G(x)$.
+        We have $G(x) \in \reals$.
+        $\zero \leq G(x) \leq 1$.
+        We have $G(x) \in \intervalclosed{\zero}{1}$ .
     \end{subproof}
 
-    We show that $F(A) = \zero$.
+    We show that $G(A) = \zero$.
     \begin{subproof}
         Omitted.
     \end{subproof}
 
-    We show that $F(B) = 1$.
+    We show that $G(B) = 1$.
     \begin{subproof}
         Omitted.
     \end{subproof}
 
-    We show that $F$ is continuous.
+    We show that $G$ is continuous.
     \begin{subproof}
         Omitted.
     \end{subproof}
