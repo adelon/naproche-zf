@@ -98,6 +98,10 @@ The first tept will be a formalisation of chain constructions.
     $\intervalclosed{a}{b} = \{x \in \reals \mid a \leq x \leq b\}$.
 \end{definition}
 
+\begin{definition}\label{intervalopen}
+    $\intervalopen{a}{b} = \{ x \in \reals \mid a < x < b\}$.
+\end{definition}
+
 
 \begin{struct}\label{staircase_function}
     A staircase function $f$ is a onesorted structure equipped with
@@ -333,6 +337,34 @@ The first tept will be a formalisation of chain constructions.
 
 \end{proof}
 
+\begin{lemma}\label{fraction1}
+    Let $x \in \reals$.
+    Then for all $y \in \reals$ such that $x \neq y$ we have there exists $r \in \rationals$ such that $y < r < x$ or $x < r < y$.
+\end{lemma}
+\begin{proof}
+    Omitted.
+\end{proof}
+
+\begin{lemma}\label{frection2}
+    Suppose $a,b \in \reals$.
+    Suppose $a < b$.
+    Then $\intervalopen{a}{b}$ is infinite.
+\end{lemma}
+\begin{proof}
+    Omitted.
+\end{proof}
+
+\begin{lemma}\label{frection3}
+    Suppose $a,b \in \reals$.
+    Suppose $\zero < a < 1$.
+    Suppose $\zero < b < 1$.
+    % Here take exist n such that n/2^n is between a and b
+    T
+\end{lemma}
+\begin{proof}
+    Omitted.
+\end{proof}
+
 
 \begin{proposition}\label{existence_of_staircase_function}
     Let $X$ be a urysohn space.
@@ -489,8 +521,9 @@ The first tept will be a formalisation of chain constructions.
 
 
         % (n,f) \in \gamma  <=>   \phi(n,f)
-        % with \phi (n,f) :=        (x \in (A_k) \ (A_k-1))                 =>      f(x) = ( k / 2^n )        
-        %                       \/  (x \notin A_k for all k \in {1,..,n}    =>      f(x) = 1 
+        % with \phi (n,f) :=        
+        %    (x \in (A_k) \ (A_k-1)) ==> f(x) = ( k / 2^n )        
+        % \/ (x \notin A_k for all k \in {1,..,n} ==>  f(x) = 1 
 
             (       (n' = \zero)   
             \land   (x \in \index[\index[\zeta](n)](n')) 
@@ -556,7 +589,15 @@ The first tept will be a formalisation of chain constructions.
         It suffices to show that $g(x) \in \reals$.
 
         There exist $k \in \reals$ such that for all $\epsilon \in \reals$ such that $\epsilon > \zero$ we have there exist $N \in \naturals$ such that for all $N' \in \naturals$ such that $N' > N$ we have $\abs{\apply{\gamma(n)}{x} - k} < \epsilon$.
-        $g(x)= k$.
+
+        We show that for all $\epsilon \in \reals$ such that $\epsilon > \zero$ we have there exist $N \in \naturals$ such that for all $N' \in \naturals$ such that $N' > N$ we have $\abs{\apply{\gamma(n)}{x} - g(x)} < \epsilon$ and $g(x)= k$.
+        \begin{subproof}
+            Fix $\epsilon \in \reals$.
+            %Assume $\epsilon > \zero$.
+            %Take $N' \in \naturals$ such that $\epsilon > \rfrac{1}{\pot(N')}$.
+        \end{subproof}
+
+        
         
 
         Follows by \cref{apply,plus_one_order,ordinal_iff_suc_ordinal,natural_number_is_ordinal,subseteq,naturals_subseteq_reals,naturals_is_equal_to_two_times_naturals,reals_one_bigger_zero,one_in_reals,ordinal_prec_trichotomy,omega_is_an_ordinal,suc_intro_self,two_in_naturals,in_asymmetric,suc}.
@@ -569,13 +610,13 @@ The first tept will be a formalisation of chain constructions.
         Then $x \in \carrier[X]$.
         \begin{byCase}
             \caseOf{$x \in A$.} 
-                For all $n \in \naturals$ we have $\apply{\gamma(n)}{x} = 0$.
+                For all $n \in \naturals$ we have $\apply{\gamma(n)}{x} = \zero$.
 
 
             \caseOf{$x \notin A$.} 
                 \begin{byCase}
                     \caseOf{$x \in B$.} 
-                        OFor all $n \in \naturals$ we have $\apply{\gamma(n)}{x} = 1$.
+                        For all $n \in \naturals$ we have $\apply{\gamma(n)}{x} = 1$.
 
                     \caseOf{$x \notin B$.}
                         Omitted.
