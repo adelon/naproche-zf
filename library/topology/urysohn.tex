@@ -1,11 +1,17 @@
 \import{topology/topological-space.tex}
 \import{topology/separation.tex}
 \import{topology/continuous.tex}
+\import{topology/basis.tex}
 \import{numbers.tex}
 \import{function.tex}
 \import{set.tex}
 \import{cardinal.tex}
 \import{relation.tex}
+\import{relation/uniqueness.tex}
+\import{set/cons.tex}
+\import{set/powerset.tex}
+\import{set/fixpoint.tex}
+\import{set/product.tex}
 
 \section{Urysohns Lemma}
 %           In this section we want to proof Urysohns lemma. 
@@ -337,33 +343,8 @@ The first tept will be a formalisation of chain constructions.
 
 \end{proof}
 
-\begin{lemma}\label{fraction1}
-    Let $x \in \reals$.
-    Then for all $y \in \reals$ such that $x \neq y$ we have there exists $r \in \rationals$ such that $y < r < x$ or $x < r < y$.
-\end{lemma}
-\begin{proof}
-    Omitted.
-\end{proof}
 
-\begin{lemma}\label{frection2}
-    Suppose $a,b \in \reals$.
-    Suppose $a < b$.
-    Then $\intervalopen{a}{b}$ is infinite.
-\end{lemma}
-\begin{proof}
-    Omitted.
-\end{proof}
 
-\begin{lemma}\label{frection3}
-    Suppose $a,b \in \reals$.
-    Suppose $\zero < a < 1$.
-    Suppose $\zero < b < 1$.
-    % Here take exist n such that n/2^n is between a and b
-    T
-\end{lemma}
-\begin{proof}
-    Omitted.
-\end{proof}
 
 
 \begin{proposition}\label{existence_of_staircase_function}
@@ -449,6 +430,86 @@ The first tept will be a formalisation of chain constructions.
     $\realsplus = \reals \setminus \realsminus$.
 \end{abbreviation}
 
+\begin{proposition}\label{intervalclosed_subseteq_reals}
+    Suppose $a,b \in \reals$.
+    Suppose $a < b$.
+    Then $\intervalclosed{a}{b} \subseteq \reals$.
+\end{proposition}
+
+
+
+\begin{lemma}\label{fraction1}
+    Let $x \in \reals$.
+    Then for all $y \in \reals$ such that $x \neq y$ we have there exists $r \in \rationals$ such that $y < r < x$ or $x < r < y$.
+\end{lemma}
+\begin{proof}
+    Omitted.
+\end{proof}
+
+\begin{lemma}\label{frection2}
+    Suppose $a,b \in \reals$.
+    Suppose $a < b$.
+    Then $\intervalopen{a}{b}$ is infinite.
+\end{lemma}
+\begin{proof}
+    Omitted.
+\end{proof}
+
+\begin{lemma}\label{frection3}
+    Suppose $a \in \reals$.
+    Suppose $a < \zero$.
+    Then there exist $N \in \naturals$ such that for all $N' \in \naturals$ such that $N' > N$ we have $\zero < \rfrac{1}{\pot(N')} < a$. 
+\end{lemma}
+\begin{proof}
+    Omitted.
+\end{proof}
+
+\begin{proposition}\label{fraction4}
+    Suppose $a,b,\epsilon \in \reals$.
+    Suppose $\epsilon > \zero$.
+    $\abs{a - b} < \epsilon$ iff $b \in \intervalopen{(a - \epsilon)}{(a + \epsilon)}$.
+\end{proposition}
+\begin{proof}
+    Omitted.
+\end{proof}
+
+\begin{proposition}\label{fraction5}
+    Suppose $a,b,\epsilon \in \reals$.
+    Suppose $\epsilon > \zero$.
+    $b \in \intervalopen{(a - \epsilon)}{(a + \epsilon)}$ iff $a \in \intervalopen{(b - \epsilon)}{(b + \epsilon)}$.
+\end{proposition}
+\begin{proof}
+    Omitted.
+\end{proof}
+
+\begin{proposition}\label{fraction6}
+    Suppose $a,\epsilon \in \reals$.
+    Suppose $\epsilon > \zero$.
+    $\intervalopen{(a - \epsilon)}{(a + \epsilon)} = \{r \in \reals \mid (a - \epsilon) < r < (a + \epsilon)\} $.
+\end{proposition}
+
+\begin{abbreviation}\label{epsilonball}
+    $\epsBall{a}{\epsilon}  = \intervalopen{(a - \epsilon)}{(a + \epsilon)}$.
+\end{abbreviation}
+
+\begin{proposition}\label{fraction7}
+    Suppose $a,\epsilon \in \reals$.
+    Suppose $\epsilon > \zero$.
+    Then there exist $b \in \rationals$ such that $b \in \epsBall{a}{\epsilon}$.
+\end{proposition}
+\begin{proof}
+    Omitted.
+\end{proof}
+
+
+
+% Note this could maybe reslove some issues!!!!
+\begin{definition}\label{sequencetwo}
+   $Z$ is a sequencetwo iff  $Z = (N,f,B)$ and $N \subseteq \naturals$ and $f$ is a bijection from $N$ to $B$.
+\end{definition}
+
+
+
 
 \begin{theorem}\label{urysohn}
     Let $X$ be a urysohn space.
@@ -483,12 +544,19 @@ The first tept will be a formalisation of chain constructions.
         Omitted.
     \end{subproof}
 
+    For all $n \in \naturals$ we have $\index[\zeta](n)$ is a urysohnchain in $X$.
+
     We show that for all $n \in \indexset[\zeta]$ we have $\index[\zeta](n)$ has cardinality $\pot(n)$.
     \begin{subproof}
         Omitted.
     \end{subproof}
 
     We show that for all $m \in \indexset[\zeta]$ we have $\pot(m) \neq \zero$.
+    \begin{subproof}
+        Omitted.
+    \end{subproof}
+
+    We show that for all $m \in \naturals$ we have $\pot(m) \in \naturals$.
     \begin{subproof}
         Omitted.
     \end{subproof}
@@ -545,37 +613,56 @@ The first tept will be a formalisation of chain constructions.
     
     Let $\gamma(n) = \apply{\gamma}{n}$ for $n \in \naturals$.
 
-    
     We show that for all $n \in \naturals$ we have $\gamma(n)$ 
     is a function from $\carrier[X]$ to $\reals$.
     \begin{subproof}
         Omitted.
     \end{subproof}
 
-    We show that for all $n \in \naturals$ for all $x \in \carrier[X]$ we have $\apply{\gamma(n)}{x} \in \intervalclosed{\zero}{1}$. 
+    
+    We show that for all $n \in \naturals$ we have $\gamma(n)$ 
+    is a function from $\carrier[X]$ to $\intervalclosed{\zero}{1}$.
     \begin{subproof}
         Omitted.
     \end{subproof}
 
+    We show that $\gamma$ is a function from $\naturals$ to $\reals$.
+    \begin{subproof}
+        Omitted.
+    \end{subproof}
+
+    We show that  for all $x,k,n$ such that $n\in \naturals$ and $k \in \naturals$ and $x \in \index[\index[\zeta](n)](k)$ we have $\apply{\gamma(n)}{x} =  \rfrac{k}{\pot(n)}$.
+    \begin{subproof}
+        Omitted.
+    \end{subproof}
+
+    We show that for all $n \in \naturals$ for all $x \in \carrier[X]$ we have $\apply{\gamma(n)}{x} \in \intervalclosed{\zero}{1}$. 
+    \begin{subproof}
+        Fix $n \in \naturals$.
+        Fix $x \in \carrier[X]$.
+    \end{subproof}
 
 
-    We show that there exist $g$ such that 
-    for all $x \in \carrier[X]$ we have
-    there exist $k \in \reals$ such that
-    for all $\epsilon \in \reals$ such that $\epsilon > \zero$ we have
-    there exist $N \in \naturals$ such that
-    for all $N' \in \naturals$ such that $N' > N$ we have
-    $\abs{\apply{\gamma(n)}{x} - k} < \epsilon$ and $g(x)= k$.
+
+    We show that 
+    if $h$ is a function from $\naturals$ to $\reals$ and for all $n \in \naturals$ we have $h(n) \leq h(n+1)$ and there exist $B \in \reals$ such that $h(n) < B$ 
+    then there exist $k \in \reals$ such that for all $m \in \naturals$ we have $h(m) \leq k$ and for all $k' \in \reals$ such that $k' < k$ we have there exist $M \in \naturals$ such that $k' < h(M)$.
+    \begin{subproof}
+        Omitted.
+    \end{subproof} 
+
+
+
+    We show that there exist $g$ such that for all $x \in \carrier[X]$ we have there exist $k \in \reals$ such that  $g(x)= k$ and for all $\epsilon \in \reals$ such that $\epsilon > \zero$ we have there exist $N \in \naturals$ such that for all $N' \in \naturals$ such that $N' > N$ we have $\abs{\apply{\gamma(N')}{x} - k} < \epsilon$.
     \begin{subproof}       
-        We show that for all $x \in \carrier[X]$ we have
-        there exist $k \in \reals$ such that
-        for all $\epsilon \in \reals$ such that $\epsilon > \zero$ we have
-        there exist $N \in \naturals$ such that
-        for all $N' \in \naturals$ such that $N' > N$ we have
-        $\abs{\apply{\gamma(n)}{x} - k} < \epsilon$.
+        We show that for all $x \in \carrier[X]$ we have there exist $k \in \reals$ such that for all $\epsilon \in \reals$ such that $\epsilon > \zero$ we have there exist $N \in \naturals$ such that for all $N' \in \naturals$ such that $N' > N$ we have $\abs{\apply{\gamma(N')}{x} - k} < \epsilon$.
         \begin{subproof}
             Fix $x \in \carrier[X]$.
-            Follows by \cref{two_in_naturals,function_apply_default,reals_axiom_zero_in_reals,dom_emptyset,notin_emptyset,funs_type_apply,neg,minus,abs_behavior1}.
+            
+            
+            
+            % Contradiction by \cref{two_in_naturals,function_apply_default,reals_axiom_zero_in_reals,dom_emptyset,notin_emptyset,funs_type_apply,neg,minus,abs_behavior1}.
+            %Follows by \cref{two_in_naturals,function_apply_default,reals_axiom_zero_in_reals,dom_emptyset,notin_emptyset,funs_type_apply,neg,minus,abs_behavior1}.
         \end{subproof}
     \end{subproof}
     
@@ -588,20 +675,15 @@ The first tept will be a formalisation of chain constructions.
         Fix $x \in \dom{G}$.
         It suffices to show that $g(x) \in \reals$.
 
-        There exist $k \in \reals$ such that for all $\epsilon \in \reals$ such that $\epsilon > \zero$ we have there exist $N \in \naturals$ such that for all $N' \in \naturals$ such that $N' > N$ we have $\abs{\apply{\gamma(n)}{x} - k} < \epsilon$.
+        There exist $k \in \reals$ such that for all $\epsilon \in \reals$ such that $\epsilon > \zero$ we have there exist $N \in \naturals$ such that for all $N' \in \naturals$ such that $N' > N$ we have $\abs{\apply{\gamma(N')}{x} - k} < \epsilon$.
 
-        We show that for all $\epsilon \in \reals$ such that $\epsilon > \zero$ we have there exist $N \in \naturals$ such that for all $N' \in \naturals$ such that $N' > N$ we have $\abs{\apply{\gamma(n)}{x} - g(x)} < \epsilon$ and $g(x)= k$.
+        We show that for all $\epsilon \in \reals$ such that $\epsilon > \zero$ we have there exist $N \in \naturals$ such that for all $N' \in \naturals$ such that $N' > N$ we have $\abs{\apply{\gamma(N')}{x} - g(x)} < \epsilon$ and $g(x)= k$.
         \begin{subproof}
             Fix $\epsilon \in \reals$.
-            %Assume $\epsilon > \zero$.
-            %Take $N' \in \naturals$ such that $\epsilon > \rfrac{1}{\pot(N')}$.
+            
+
         \end{subproof}
-
-        
-        
-
         Follows by \cref{apply,plus_one_order,ordinal_iff_suc_ordinal,natural_number_is_ordinal,subseteq,naturals_subseteq_reals,naturals_is_equal_to_two_times_naturals,reals_one_bigger_zero,one_in_reals,ordinal_prec_trichotomy,omega_is_an_ordinal,suc_intro_self,two_in_naturals,in_asymmetric,suc}.
-
     \end{subproof}
 
     We show that for all $x \in \dom{G}$ we have $\zero \leq G(x) \leq 1$.
