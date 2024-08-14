@@ -503,10 +503,23 @@ The first tept will be a formalisation of chain constructions.
 
 
 
-% Note this could maybe reslove some issues!!!!
+ 
 \begin{definition}\label{sequencetwo}
    $Z$ is a sequencetwo iff  $Z = (N,f,B)$ and $N \subseteq \naturals$ and $f$ is a bijection from $N$ to $B$.
 \end{definition}
+
+\begin{proposition}\label{sequence_existence}
+    Suppose $N \subseteq \naturals$.
+    Suppose $M \subseteq \naturals$.
+    Suppose $N = M$.
+    Then there exist $Z,f$ such that $f$ is a bijection from $N$ to $M$ and $Z=(N,f,M)$ and $Z$ is a sequencetwo.
+\end{proposition}
+\begin{proof}
+    Let $f(x) = x$ for $x \in N$.
+    Let $Z=(N,f,M)$.
+\end{proof}
+%The proposition above and the definition prove false together with
+% ordinal_subseteq_unions, omega_is_an_ordinal, powerset_intro, in_irrefl
 
 
 
@@ -544,7 +557,7 @@ The first tept will be a formalisation of chain constructions.
         Omitted.
     \end{subproof}
 
-    For all $n \in \naturals$ we have $\index[\zeta](n)$ is a urysohnchain in $X$.
+    %For all $n \in \naturals$ we have $\index[\zeta](n)$ is a urysohnchain in $X$.
 
     We show that for all $n \in \indexset[\zeta]$ we have $\index[\zeta](n)$ has cardinality $\pot(n)$.
     \begin{subproof}
@@ -824,6 +837,6 @@ The first tept will be a formalisation of chain constructions.
     %   \end{subproof}
 \end{proof}
 
-%\begin{theorem}\label{safe}
-%    Contradiction.     
-%\end{theorem}
+\begin{theorem}\label{safe}
+    Contradiction.     
+\end{theorem}
