@@ -27,7 +27,7 @@ scanChunk ltoks =
         matchOrErr re env pos = match re toks ?? error ("could not find lexical pattern in " <> env <> " at " <> sourcePosPretty pos)
     in case ltoks of
         Located{startPos = pos, unLocated = BeginEnv "definition"} : _ ->
-            matchOrErr definition "definition" (pos)
+            matchOrErr definition "definition" pos
         Located{startPos = pos, unLocated = BeginEnv "abbreviation"} : _ ->
             matchOrErr abbreviation "abbreviation" pos
         Located{startPos = pos, unLocated = (BeginEnv "struct")} :_ ->
