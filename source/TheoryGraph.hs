@@ -67,12 +67,12 @@ member :: FilePath -> TheoryGraph -> Bool
 member n (TheoryGraph g) = Map.member n g
 
 
--- | Add a node to the TheoryGraph. This is a noop if the node is already present in the graph.
+-- | Add a node to the TheoryGraph.
 addNode :: FilePath -> TheoryGraph -> TheoryGraph
 addNode a (TheoryGraph g) = TheoryGraph (Map.insertWith Set.union a Set.empty g)
 
 
--- | Add an edge to the TheoryGraph. This is a noop if the edge is already present in the graph.
+-- | Add an edge to the TheoryGraph. This is a loop if the edge is already present in the graph.
 addPrecedes :: Precedes FilePath -> TheoryGraph -> TheoryGraph
 addPrecedes e@(Precedes _ a') (TheoryGraph g) = addNode a' (TheoryGraph (insertTail e g))
     where
@@ -85,7 +85,9 @@ addPrecedes e@(Precedes _ a') (TheoryGraph g) = addNode a' (TheoryGraph (insertT
 singleton :: FilePath -> TheoryGraph
 singleton a = TheoryGraph (Map.singleton a Set.empty)
 
-
+-- | Construct a graph, from a list of nodes and edges. 
+-- It takes all nodes a and add the pair (a, emptyset) to the Theorygraph,
+-- afterwards it add all edges between the nodes.
 makeTheoryGraph :: [Precedes FilePath] -> [FilePath] -> TheoryGraph
 makeTheoryGraph es as = List.foldl' (flip addPrecedes) (TheoryGraph trivial) es
     where
@@ -94,6 +96,8 @@ makeTheoryGraph es as = List.foldl' (flip addPrecedes) (TheoryGraph trivial) es
 {-# INLINE makeTheoryGraph #-}
 
 
+-- | Construct a graph, from a list @x:xs@,
+-- where @x@ is a pair of theorys @(a,b)@ with @a@ gets imported in @b@.
 fromList :: [Precedes FilePath] -> TheoryGraph
 fromList es = TheoryGraph (Map.fromListWith Set.union es')
     where
