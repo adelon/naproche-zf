@@ -1,0 +1,56 @@
+\import{topology/topological-space.tex}
+\import{topology/separation.tex}
+\import{topology/continuous.tex}
+\import{topology/basis.tex}
+\import{numbers.tex}
+\import{function.tex}
+\import{set.tex}
+\import{cardinal.tex}
+\import{relation.tex}
+\import{relation/uniqueness.tex}
+\import{set/cons.tex}
+\import{set/powerset.tex}
+\import{set/fixpoint.tex}
+\import{set/product.tex}
+
+\section{Urysohns Lemma}
+
+
+
+\begin{abbreviation}\label{urysohnspace}
+    $X$ is a urysohn space iff
+    $X$ is a topological space and
+    for all $A,B \in \closeds{X}$ such that $A \inter B = \emptyset$
+    we have there exist $A',B' \in \opens[X]$
+    such that  $A \subseteq A'$ and $B \subseteq B'$ and $A' \inter B' = \emptyset$.    
+\end{abbreviation}
+
+
+\begin{definition}\label{intervalclosed}
+    $\intervalclosed{a}{b} = \{x \in \reals \mid a \leq x \leq b\}$.
+\end{definition}
+
+
+
+
+\begin{theorem}\label{urysohn}
+    Let $X$ be a urysohn space.
+    Suppose $A,B \in \closeds{X}$.
+    Suppose $A \inter B$ is empty.
+    Suppose $\carrier[X]$ is inhabited.
+    There exist $f$ such that $f \in \funs{\carrier[X]}{\intervalclosed{\zero}{1}}$ 
+    and $f(A) = \zero$ and $f(B)= 1$ and $f$ is continuous.
+\end{theorem}
+\begin{proof}
+
+
+
+
+    
+    Contradiction.
+    
+\end{proof}
+
+\begin{theorem}\label{safe}
+    Contradiction.     
+\end{theorem}
