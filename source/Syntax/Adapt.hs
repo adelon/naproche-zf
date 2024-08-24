@@ -34,6 +34,8 @@ scanChunk ltoks =
             matchOrErr struct "struct definition" pos
         Located{startPos = pos, unLocated = (BeginEnv "inductive")} :_ ->
             matchOrErr inductive "inductive definition" pos
+        Located{startPos = pos, unLocated = (BeginEnv "signature")} :_ ->
+            matchOrErr signature "signature" pos
         _ -> []
 
 adaptChunks :: [[Located Token]] -> Lexicon -> Lexicon
@@ -82,6 +84,18 @@ abbreviation = do
     lexicalItem <- head
     few anySym
     sym (EndEnv "abbreviation")
+    skipUntilNextLexicalEnv
+    pure [lexicalItem m]
+
+signatureIntro ::  RE Token [ScannedLexicalItem]  --since signiture is a used word of haskell we have to name it diffrentliy 
+signatureIntro = do
+    sym (BeginEnv "signature")
+    few notEndOfLexicalEnvToken
+    m <- label
+    few anySym
+    lexicalItem <- head
+    few anySym
+    sym (EndEnv "signature")
     skipUntilNextLexicalEnv
     pure [lexicalItem m]
 

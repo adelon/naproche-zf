@@ -203,7 +203,9 @@ describeToken = \case
     EndEnv _ -> "end of environment"
     _ -> "delimiter"
 
-
+-- | gloss generates internal represantation of the LaTeX files.
+-- First the file will be parsed and therefore checkt for grammer.
+-- 'meaning' then transfer the raw parsed grammer to the internal semantics.
 gloss :: MonadIO io => FilePath -> io ([Internal.Block], Lexicon)
 gloss file = do
     (blocks, lexicon) <- parse file

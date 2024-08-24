@@ -108,7 +108,7 @@ _either = word "either" ? "either"
 _equipped :: Prod r Text (Located Token) SourcePos
 _equipped = (word "equipped" <|> word "together") <* word "with" ? "equipped with"
 _every :: Prod r Text (Located Token) SourcePos
-_every = (word "every") ? "every"
+_every = word "every" ? "every"
 _exist :: Prod r Text (Located Token) SourcePos
 _exist = word "there" <* word "exist" ? "there exist"
 _exists :: Prod r Text (Located Token) SourcePos
@@ -124,7 +124,7 @@ _for = word "for" ? "for"
 _forAll :: Prod r Text (Located Token) SourcePos
 _forAll = (word "for" <* word "all") <|> word "all" ? "all"
 _forEvery :: Prod r Text (Located Token) SourcePos
-_forEvery = (word "for" <* word "every") <|> (word "every") ? "for every"
+_forEvery = (word "for" <* word "every") <|> word "every" ? "for every"
 _have :: Prod r Text (Located Token) SourcePos
 _have = word "we" <* word "have" <* optional (word "that") ? "we have"
 _if :: Prod r Text (Located Token) SourcePos
@@ -220,3 +220,9 @@ _in :: Prod r Text (Located Token) SourcePos
 _in = symbol "∈" <|> command "in" ? "\\in"
 _subseteq :: Prod r Text (Located Token) SourcePos
 _subseteq = command "subseteq" ? "\\subseteq"
+_to :: Prod r Text (Located Token) SourcePos
+_to = command "to" ? "\\to"
+_mapsto :: Prod r Text (Located Token) SourcePos
+_mapsto = command "mapsto" ? "\\mapsto"
+_ampersand :: Prod r Text (Located Token) SourcePos
+_ampersand = symbol "&" ? "&"
