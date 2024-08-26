@@ -354,17 +354,36 @@ grammar lexicon@Lexicon{..} = mdo
     
 
 
+
+
+
     -- Define $f $\fromTo{X}{Y} such that,         
     -- Define function $f: X \to Y$,
     -- \begin{align}
     --      &x \mapsto 3*x      &,  
-    --      &x \mapsto 4*k+x    &, 
+    --      &x \mapsto 4*k    &,    \forall k \in \N. x \in \Set{k}
     -- \end{align}
     -- 
+
+    -- Follwing is the definition right now.
+    -- Define function $f: X \to Y$ such that,
+    -- \begin{cases}
+    --     1 & \text{if } x \in \mathbb{Q}\\
+    --     0 & \text{if } x \in \mathbb{R}\setminus\mathbb{Q}
+    --     3 & \text{else}     
+    -- \end{cases}
+
+    functionDefineCase <- rule $ (:[]) <$> ((,) <$> expr <*> (_ampersand *> formula))
     defineFunctionMathy <-  rule    $ DefineFunctionMathy 
                                     <$> (_define *> beginMath *> varSymbol)           -- Define $ f
-                                    <*> _colon *> varSymbol <*> _to *> varSymbol      -- : 'var' \to 'var'
-                                    <*> localFunctionDefinitionAlign 
+                                    <*> (_colon *> varSymbol)                           -- : 'var' \to 'var'
+                                    <*> (_to *> varSymbol <* endMath <* _suchThat) 
+                                    -- <*> (_suchThat  *> align (many1 ((_ampersand *> varSymbol <* _mapsto) <*> exprApp <*> (_ampersand *> formula))))
+                                    -- <*> (_suchThat  *> align (many1 (varSymbol <* exprApp <*  formula)))
+                                    <*> varSymbol <*> varSymbol <* symbol "="
+                                    <*> many1 functionDefineCase
+                                    <*> proof 
+
 
 
     proof            <- rule $ asum [byContradiction, byCases, bySetInduction, byOrdInduction, calc, subclaim, assume, fix, take, have, suffices, define, defineFunction, defineFunctionMathy, qed]
@@ -450,17 +469,6 @@ enumeratedMarked1 :: Prod r Text (Located Token) a -> Prod r Text (Located Token
 enumeratedMarked1 p = begin "enumerate" *> many1 ((,) <$> (command "item" *> label) <*> p) <* end "enumerate" <?> "\"\\begin{enumerate}\\item\\label{...}...\""
 
 
--- &x \mapsto 'someexpr'  &, for x
-localFunctionDefinitionAlign :: Prod r Text (Located Token) a -> Prod r Text (Located Token) (Marker, a)
-localFunctionDefinitionAlign p =    begin "align" *> many1 funDefExp <* end "align" 
-                                    <?> "\"\\begin{algin} &x \\mapsto x+2 , x \\in X \\ \\end{algin}\""
-
-
-funDefExp :: Prod r Text (Located Token) a -> Prod r Text (Located Token) [(Marker, a)]
-funDefExp p = NonEmpty.toList <$> ( _ampersand *> varSymbol <*> funDefExpRange <*> (_ampersand *> varSymbol <* _in) <*> varSymbol) -- the last var should be a expression
-
-funDefRange :: Prod r Text (Located Token) a -> Prod r Text (Located Token) (NonEmpty (Marker, a))
-funDefRange p = _mapsto *> varSymbol -- TODO: this Var has to be changed to a expression
 
 -- This function could be rewritten, so that it can be used directly in the grammar,
 -- instead of with specialized variants.
