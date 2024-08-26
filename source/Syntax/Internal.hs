@@ -436,6 +436,8 @@ data Proof
     | Define VarSymbol Term Proof
     | DefineFunction VarSymbol VarSymbol Term Term Proof
 
+    | DefineFunctionMathy VarSymbol VarSymbol VarSymbol VarSymbol [(Term, Formula)] Proof
+
 deriving instance Show Proof
 deriving instance Eq   Proof
 deriving instance Ord  Proof
