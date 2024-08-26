@@ -607,17 +607,15 @@ glossProof = \case
             else error "mismatched variables in function definition."
     
     Raw.DefineFunctionMathy funVar domVar ranVar funVar2 argVar definitions proof -> do
-        if funVar /= funVar2
-            then error "missmatched function names"
-            else Sem.DefineFunctionMathy funVar domVar ranVar argVar <*> glossLocalFunctionExprEach definitions <*> glossProof proof
+        if funVar == funVar2
+            then Sem.DefineFunctionMathy funVar domVar ranVar argVar <$> (glossLocalFunctionExprDef `each` definitions) <*> glossProof proof
+            else error "missmatched function names"
     Raw.Calc calc proof ->
         Sem.Calc <$> glossCalc calc <*> glossProof proof
 
-glossLocalFunctionExprEach :: NonEmpty [(Raw.Expr, Raw.Formula)]-> Gloss [(Sem.Term, Sem.Formula)]
-glossLocalFunctionExprEach def = pure ( glossLocalFunctionExpr `each` def )
 
-glossLocalFunctionExpr :: (Raw.Expr, Raw.Formula) -> Gloss (Sem.Term, Sem.Formula)
-glossLocalFunctionExpr (definingExpression, localDomain) = do
+glossLocalFunctionExprDef :: (Raw.Expr, Raw.Formula) -> Gloss (Sem.Term, Sem.Formula)
+glossLocalFunctionExprDef (definingExpression, localDomain) = do
     e <- glossExpr definingExpression
     d <- glossFormula localDomain
     pure (e,d)

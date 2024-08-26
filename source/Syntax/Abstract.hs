@@ -373,7 +373,7 @@ data Proof
     
     
     
-    | DefineFunctionMathy VarSymbol VarSymbol VarSymbol VarSymbol VarSymbol (NonEmpty [(Expr, Formula)]) Proof
+    | DefineFunctionMathy VarSymbol VarSymbol VarSymbol VarSymbol VarSymbol (NonEmpty (Expr, Formula)) Proof
     -- ^ Local function definition, but in this case we give the domain and target an the rules for $xs$ in some sub domains.
     -- 
     deriving (Show, Eq, Ord)

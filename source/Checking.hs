@@ -28,6 +28,7 @@ import Data.HashSet qualified as HS
 import Data.InsOrdMap (InsOrdMap)
 import Data.InsOrdMap qualified as InsOrdMap
 import Data.List qualified as List
+import Data.List.NonEmpty qualified as NonEmpty
 import Data.Set qualified as Set
 import Data.Text qualified as Text
 import Data.Text.IO qualified as Text
@@ -149,7 +150,7 @@ assume asms = traverse_ go asms
         go :: Asm -> Checking
         go = \case
             Asm phi -> do
-                phi' <-  (canonicalize phi)
+                phi' <- canonicalize phi
                 modify \st ->
                     st{ checkingAssumptions = phi' : checkingAssumptions st
                     , fixedVars = freeVars phi' <> fixedVars st
@@ -542,6 +543,42 @@ checkProof = \case
         checkCalc calc
         assume [Asm (calcResult calc)]
         checkProof continue
+    DefineFunctionMathy funVar domVar ranVar argVar definitions continue -> do
+        -- We have f: X \to Y and x \mapsto ...  
+        -- definition is a nonempty list of (expresssion e, formula phi)
+        -- such that f(x) =  e if phi(x)
+        -- since we do a case deduction in the definition there has to be a check that,
+        -- our domains in the case are a disjunct union of dom(f)
+        assume 
+            [Asm (TermOp DomSymbol [TermVar funVar] `Equals` TermVar domVar)
+            ,Asm (rightUniqueAdj (TermVar funVar))
+            ,Asm (relationNoun (TermVar funVar))]
+
+        goals <- gets checkingGoals
+        setGoals [makeForall [argVar] ((TermVar argVar `IsElementOf` TermVar domVar) `Iff` subdomainConjuctionLocalFunction argVar definitions )] -- check the disjunct union
+        tellTasks
+
+        assume [Asm (makeForall [argVar] ((TermVar argVar `IsElementOf` TermVar domVar) `Implies` (TermOp ApplySymbol [TermVar funVar, TermVar argVar] `IsElementOf` TermVar ranVar)))] -- function f from \dom(f) \to \ran(f)
+        assume (functionSubdomianExpression funVar argVar definitions) --behavior on the subdomians
+        setGoals goals
+        checkProof continue
+
+
+-- | Makes a conjunction of all the subdomain statments
+subdomainConjuctionLocalFunction :: VarSymbol -> NonEmpty (Term, Formula) -> Formula 
+subdomainConjuctionLocalFunction argVar defintions = 
+    let stmts = [snd x | x <- NonEmpty.toList defintions]
+    in TermVar argVar `IsElementOf` makeConjunction stmts
+
+
+functionSubdomianExpression :: VarSymbol -> VarSymbol -> NonEmpty (Term, Formula) -> [Asm]
+functionSubdomianExpression f a nxs = case nxs of
+    x:|xs -> singleFunctionSubdomianExpression f a x : functionSubdomianExpression f a (NonEmpty.fromList xs)
+    
+
+singleFunctionSubdomianExpression :: VarSymbol -> VarSymbol -> (Term, Formula) -> Asm
+singleFunctionSubdomianExpression funVar argVar x = Asm (makeForall [argVar] ((TermVar argVar `IsElementOf` snd x) `Implies` (TermOp ApplySymbol [TermVar funVar, TermVar argVar] `Equals` fst x)))
+
 
 checkCalc :: Calc -> Checking
 checkCalc calc = locally do

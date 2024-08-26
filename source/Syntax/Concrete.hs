@@ -373,7 +373,7 @@ grammar lexicon@Lexicon{..} = mdo
     --     3 & \text{else}     
     -- \end{cases}
 
-    functionDefineCase <- rule $ (:[]) <$> ((,) <$> expr <*> (_ampersand *> formula))
+    functionDefineCase <- rule $ (,) <$> expr <*> (_ampersand *> formula)
     defineFunctionMathy <-  rule    $ DefineFunctionMathy 
                                     <$> (_define *> beginMath *> varSymbol)           -- Define $ f
                                     <*> (_colon *> varSymbol)                           -- : 'var' \to 'var'

@@ -35,7 +35,7 @@ scanChunk ltoks =
         Located{startPos = pos, unLocated = (BeginEnv "inductive")} :_ ->
             matchOrErr inductive "inductive definition" pos
         Located{startPos = pos, unLocated = (BeginEnv "signature")} :_ ->
-            matchOrErr signature "signature" pos
+            matchOrErr signatureIntro "signature" pos
         _ -> []
 
 adaptChunks :: [[Located Token]] -> Lexicon -> Lexicon
