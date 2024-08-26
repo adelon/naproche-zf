@@ -543,7 +543,7 @@ checkProof = \case
         checkCalc calc
         assume [Asm (calcResult calc)]
         checkProof continue
-    DefineFunctionMathy funVar domVar ranVar argVar definitions continue -> do
+    DefineFunctionMathy funVar argVar domVar ranExpr definitions continue -> do
         -- We have f: X \to Y and x \mapsto ...  
         -- definition is a nonempty list of (expresssion e, formula phi)
         -- such that f(x) =  e if phi(x)
@@ -558,8 +558,8 @@ checkProof = \case
         setGoals [makeForall [argVar] ((TermVar argVar `IsElementOf` TermVar domVar) `Iff` subdomainConjuctionLocalFunction argVar definitions )] -- check the disjunct union
         tellTasks
 
-        assume [Asm (makeForall [argVar] ((TermVar argVar `IsElementOf` TermVar domVar) `Implies` (TermOp ApplySymbol [TermVar funVar, TermVar argVar] `IsElementOf` TermVar ranVar)))] -- function f from \dom(f) \to \ran(f)
-        assume (functionSubdomianExpression funVar argVar definitions) --behavior on the subdomians
+        assume [Asm (makeForall [argVar] ((TermVar argVar `IsElementOf` TermVar domVar) `Implies` (TermOp ApplySymbol [TermVar funVar, TermVar argVar] `IsElementOf` ranExpr)))] -- function f from \dom(f) \to \ran(f)
+        assume (functionSubdomianExpression funVar argVar (NonEmpty.toList definitions)) --behavior on the subdomians
         setGoals goals
         checkProof continue
 
@@ -571,9 +571,10 @@ subdomainConjuctionLocalFunction argVar defintions =
     in TermVar argVar `IsElementOf` makeConjunction stmts
 
 
-functionSubdomianExpression :: VarSymbol -> VarSymbol -> NonEmpty (Term, Formula) -> [Asm]
-functionSubdomianExpression f a nxs = case nxs of
-    x:|xs -> singleFunctionSubdomianExpression f a x : functionSubdomianExpression f a (NonEmpty.fromList xs)
+functionSubdomianExpression :: VarSymbol -> VarSymbol -> [(Term, Formula)] -> [Asm]
+functionSubdomianExpression f a (x:xs) = singleFunctionSubdomianExpression f a x : functionSubdomianExpression f a xs
+functionSubdomianExpression _ _ [] = []
+
     
 
 singleFunctionSubdomianExpression :: VarSymbol -> VarSymbol -> (Term, Formula) -> Asm

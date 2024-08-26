@@ -373,16 +373,16 @@ grammar lexicon@Lexicon{..} = mdo
     --     3 & \text{else}     
     -- \end{cases}
 
-    functionDefineCase <- rule $ (,) <$> expr <*> (_ampersand *> formula)
+    functionDefineCase <- rule $ (,) <$> (_ampersand *> (expr <|> exprVar )) <*> (_comma *> formula)
     defineFunctionMathy <-  rule    $ DefineFunctionMathy 
                                     <$> (_define *> beginMath *> varSymbol)           -- Define $ f
                                     <*> (_colon *> varSymbol)                           -- : 'var' \to 'var'
-                                    <*> (_to *> varSymbol <* endMath <* _suchThat) 
+                                    <*> (_to *> expr <* endMath <* _suchThat) 
                                     -- <*> (_suchThat  *> align (many1 ((_ampersand *> varSymbol <* _mapsto) <*> exprApp <*> (_ampersand *> formula))))
                                     -- <*> (_suchThat  *> align (many1 (varSymbol <* exprApp <*  formula)))
-                                    <*> varSymbol <*> varSymbol <* symbol "="
-                                    <*> many1 functionDefineCase
-                                    <*> proof 
+                                    <*> (beginMath *> varSymbol) <*> (paren varSymbol <* _eq <* endMath)
+                                    <*> cases (many1 functionDefineCase)
+                                    <*> proof
 
 
 
@@ -643,6 +643,9 @@ group body = token InvisibleBraceL *> body <* token InvisibleBraceR <?> "\"{...}
 
 align :: Prod r Text (Located Token) a -> Prod r Text (Located Token) a
 align body = begin "align*" *> body <* end "align*"
+
+cases :: Prod r Text (Located Token) a -> Prod r Text (Located Token) a
+cases body = begin "cases" *> body <* end "cases"
 
 
 maybeVarToken :: Located Token -> Maybe VarSymbol
