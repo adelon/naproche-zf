@@ -16,6 +16,22 @@
 \section{Urysohns Lemma}
 
 
+\begin{definition}\label{one_to_n_set}
+    $\seq{m}{n} = \{x \in \naturals \mid  m \leq x \leq n\}$.   
+\end{definition}
+
+\begin{struct}\label{sequence}
+    A sequence $X$ is a onesorted structure equipped with
+    \begin{enumerate}
+        \item $\index$
+        \item $\indexset$
+    \end{enumerate}
+    such that
+    \begin{enumerate}
+        \item\label{indexset_is_subset_naturals} $\indexset[X] \subseteq \naturals$.
+        \item\label{index_is_bijection} $\index[X]$ is a bijection from $\indexset[X]$ to $\carrier[X]$.
+    \end{enumerate}
+\end{struct}
 
 \begin{abbreviation}\label{urysohnspace}
     $X$ is a urysohn space iff
@@ -29,6 +45,7 @@
 \begin{definition}\label{intervalclosed}
     $\intervalclosed{a}{b} = \{x \in \reals \mid a \leq x \leq b\}$.
 \end{definition}
+
 
 
 
@@ -52,6 +69,8 @@
         % & x ,x \in X    <- will result in technicly ambigus parse
     \end{cases}
 
+
+    $U_1$
     Trivial.
     
     
