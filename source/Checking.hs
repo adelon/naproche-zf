@@ -564,11 +564,11 @@ checkProof = \case
         checkProof continue
 
 
--- | Makes a conjunction of all the subdomain statments
+-- | Makes a conjunction of all the subdomain statments <- this has to be checked!!!! TODO!!!!!!
 subdomainConjuctionLocalFunction :: VarSymbol -> NonEmpty (Term, Formula) -> Formula 
-subdomainConjuctionLocalFunction argVar defintions = 
+subdomainConjuctionLocalFunction _ defintions = 
     let stmts = [snd x | x <- NonEmpty.toList defintions]
-    in TermVar argVar `IsElementOf` makeConjunction stmts
+    in makeDisjunction stmts 
 
 
 functionSubdomianExpression :: VarSymbol -> VarSymbol -> [(Term, Formula)] -> [Asm]
