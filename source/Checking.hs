@@ -555,30 +555,41 @@ checkProof = \case
             ,Asm (relationNoun (TermVar funVar))]
 
         goals <- gets checkingGoals
-        setGoals [makeForall [argVar] ((TermVar argVar `IsElementOf` TermVar domVar) `Iff` subdomainConjuctionLocalFunction argVar definitions )] -- check the disjunct union
+        setGoals [makeForall [argVar] ((TermVar argVar `IsElementOf` TermVar domVar) `Iff` localFunctionGoal definitions)]
         tellTasks
 
         assume [Asm (makeForall [argVar] ((TermVar argVar `IsElementOf` TermVar domVar) `Implies` (TermOp ApplySymbol [TermVar funVar, TermVar argVar] `IsElementOf` ranExpr)))] -- function f from \dom(f) \to \ran(f)
-        assume (functionSubdomianExpression funVar argVar (NonEmpty.toList definitions)) --behavior on the subdomians
+        assume (functionSubdomianExpression funVar argVar domVar (NonEmpty.toList definitions)) --behavior on the subdomians
         setGoals goals
         checkProof continue
 
-
--- | Makes a conjunction of all the subdomain statments <- this has to be checked!!!! TODO!!!!!!
-subdomainConjuctionLocalFunction :: VarSymbol -> NonEmpty (Term, Formula) -> Formula 
-subdomainConjuctionLocalFunction _ defintions = 
-    let stmts = [snd x | x <- NonEmpty.toList defintions]
-    in makeDisjunction stmts 
+-- |Creats the Goal \forall x. x \in dom{f} \iff (phi_{1}(x) \xor (\phi_{2}(x) \xor (... \xor (\phi_{n}) ..)))
+--  where the phi_{i} are the subdomain statments
+localFunctionGoal :: NonEmpty (Term,Formula) -> Formula
+localFunctionGoal xs = makeXor $ map snd $ NonEmpty.toList xs
 
 
-functionSubdomianExpression :: VarSymbol -> VarSymbol -> [(Term, Formula)] -> [Asm]
-functionSubdomianExpression f a (x:xs) = singleFunctionSubdomianExpression f a x : functionSubdomianExpression f a xs
-functionSubdomianExpression _ _ [] = []
+-- We have our list of expr and forumlas, in this case normaly someone would write
+-- f(x) =  ....cases
+--      & (\frac{1}{k} \cdot x) &\text{if} x \in \[k, k+1\)
+--
+-- So therefore we have to check that all free varibels in lhs are free on rhs,
+-- since its an expression all varibals from the lhs has to be free on rhs. 
+--
+-- so we take (exp, frm) -> binding all free in exp 
+-- -> make forall [x, bound vars] x \in \dom(f) & frm => exp
 
+
+functionSubdomianExpression :: VarSymbol -> VarSymbol -> VarSymbol -> [(Term, Formula)] -> [Asm]
+functionSubdomianExpression f a d (x:xs) = singleFunctionSubdomianExpression f a d x : functionSubdomianExpression f a d xs
+functionSubdomianExpression _ _ _ [] = []
+
+singleFunctionSubdomianExpression :: VarSymbol -> VarSymbol -> VarSymbol -> (Term, Formula) -> Asm
+singleFunctionSubdomianExpression funVar argVar domVar (expr, frm) = let
+    boundVar = Set.toList (freeVars expr) in
+    let def = makeForall (argVar:boundVar) (((TermVar argVar `IsElementOf` TermVar domVar) `And` frm) `Implies` TermOp ApplySymbol [TermVar funVar, TermVar argVar] `Equals` expr)
+    in Asm def
     
-
-singleFunctionSubdomianExpression :: VarSymbol -> VarSymbol -> (Term, Formula) -> Asm
-singleFunctionSubdomianExpression funVar argVar x = Asm (makeForall [argVar] ((TermVar argVar `IsElementOf` snd x) `Implies` (TermOp ApplySymbol [TermVar funVar, TermVar argVar] `Equals` fst x)))
 
 
 checkCalc :: Calc -> Checking
