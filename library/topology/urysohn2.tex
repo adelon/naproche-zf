@@ -46,7 +46,13 @@
     $\intervalclosed{a}{b} = \{x \in \reals \mid a \leq x \leq b\}$.
 \end{definition}
 
-
+\begin{theorem}\label{urysohnsetinbeetween}
+    Let $X$ be a urysohn space.
+    Suppose $A,B \in \closeds{X}$.
+    Suppose $\closure{A}{X} \subseteq \interior{B}{X}$.
+    Suppose $\carrier[X]$ is inhabited.
+    There exist $U \subseteq \carrier[X]$ such that $U$ is closed in $X$ and $\closure{A}{X} \subseteq \interior{U}{X} \subseteq \closure{U}{X} \subseteq \interior{B}{X}$.
+\end{theorem}
 
 
 
@@ -60,6 +66,10 @@
 \end{theorem}
 \begin{proof}
 
+    Let $H = \carrier[X] \setminus B$.
+    Let $P = \{x \in \pow{X} \mid x = A \lor x = H \lor (x \in \pow{X} \land (\closure{A}{X} \subseteq \interior{U}{X} \subseteq \closure{U}{X} \subseteq \interior{H}{X}))\}$.
+
+
 
     Define $f : X \to \reals$ such that  $f(x) = $
     \begin{cases}
@@ -70,7 +80,7 @@
     \end{cases}
 
 
-    $U_1$
+    
     Trivial.
     
     
