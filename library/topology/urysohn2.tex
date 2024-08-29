@@ -68,18 +68,32 @@
 
     Let $H = \carrier[X] \setminus B$.
     Let $P = \{x \in \pow{X} \mid x = A \lor x = H \lor (x \in \pow{X} \land (\closure{A}{X} \subseteq \interior{U}{X} \subseteq \closure{U}{X} \subseteq \interior{H}{X}))\}$.
+    Let $\eta = \carrier[X]$.
 
-
-
-    Define $f : X \to \reals$ such that  $f(x) = $
+    
+    % Provable 
+    % vvv
+    Define $F : \eta \to \reals$ such that $F(x) =$
     \begin{cases}
-        &(x + k) &\text{if} x \in X \land k \in \naturals
-        & x &\text{if} x \neq \zero
-        & \zero & \text{if} x = \zero
-        % & x ,x \in X    <- will result in technicly ambigus parse
+        & \zero                 &\text{if} x \in  A\\
+        & \rfrac{1}{1+1}    &\text{if} x \in  (\carrier[X] \setminus (A \union B))\\
+        & 1                 &\text{if} x \in  B
     \end{cases}
 
+    %Define $f : \naturals \to \pow{P}$ such that $f(x)=$
+    %\begin{cases}
+    %    & \emptyset             & \text{if} x = \zero \\
+    %    & \{A, H\}             & \text{if} x = 1  \\
+    %    & G                     & \text{if} x \in (\naturals \setminus \{1, \zero\}) \land  G = \{g \in \pow{P} \mid g \in f(n-1) \lor (g \notin f(n-1) \land g \in P) \}
+    %\end{cases}
 
+    Let $D = \{d \mid d \in \rationals \mid \zero \leq d \leq 1\}$.
+    Take $R$ such that for all $q \in D$ we have for all $S \in P$ we have $q \mathrel{R} S$ iff 
+        $q = \zero \land S = A$ or $q = 1 \land S = H$ or 
+        for all $q_1, q_2, S_1, S_2$ 
+        such that $q_1 \leq q \leq q_2$ and $q_1 \mathrel{R} S_1$ and $q_2 \mathrel{R} S_2$ 
+        we have $\closure{S_1}{X} \subseteq \interior{S}{X} \subseteq \closure{S}{X} \subseteq \interior{S_2}{X}$ 
+        and $q \mathrel{R} S$.
     
     Trivial.
     

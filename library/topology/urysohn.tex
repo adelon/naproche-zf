@@ -100,6 +100,14 @@ The first tept will be a formalisation of chain constructions.
 
 \subsection{staircase function}
 
+\begin{definition}\label{minimum}
+    $\min{X} = \{x \in X \mid \forall y \in X. x \leq y \}$.
+\end{definition}
+
+\begin{definition}\label{maximum}
+    $\max{X} = \{x \in X \mid \forall y \in X. x \geq y \}$.
+\end{definition}
+
 \begin{definition}\label{intervalclosed}
     $\intervalclosed{a}{b} = \{x \in \reals \mid a \leq x \leq b\}$.
 \end{definition}
@@ -122,6 +130,9 @@ The first tept will be a formalisation of chain constructions.
         \item \label{staircase_chain_is_in_domain} for all $x \in C$ we have $x \subseteq \dom{f}$.
         \item \label{staircase_behavoir_index_zero} $f(\index[C](1))= 1$. 
         \item \label{staircase_behavoir_index_n} $f(\dom{f}\setminus \unions{C}) = \zero$.
+        \item \label{staircase_chain_indeset} There exist $n$ such that $\indexset[C] = \seq{\zero}{n}$.
+        \item \label{staircase_behavoir_index_arbetrray} for all $n \in \indexset[C]$ 
+            such that $n \neq \zero$ we have $f(\index[C](n) \setminus \index[C](n-1)) = \rfrac{n}{ \max{\indexset[C]} }$. 
     \end{enumerate}
 \end{struct}
 
@@ -311,13 +322,7 @@ The first tept will be a formalisation of chain constructions.
     Omitted.
 \end{proof}
 
-\begin{definition}\label{minimum}
-    $\min{X} = \{x \in X \mid \forall y \in X. x \leq y \}$.
-\end{definition}
 
-\begin{definition}\label{maximum}
-    $\max{X} = \{x \in X \mid \forall y \in X. x \geq y \}$.
-\end{definition}
 
 \begin{proposition}\label{urysohnchain_induction_step_existence}
     Let $X$ be a urysohn space.
@@ -562,6 +567,16 @@ The first tept will be a formalisation of chain constructions.
         Omitted.
     \end{subproof}
 
+    Let $\alpha = \carrier[X]$.
+    %Define $f : \alpha \to \naturals$ such that $f(x) =$
+    %\begin{cases}
+    %    & 1        & \text{if} x \in A \lor x \in B 
+    %    & k     & \text{if} \exists k \in \naturals 
+    %\end{cases}
+%
+    %We show that there exist $k \in \funs{\carrier[X]}{\reals}$ such that
+    %$k(x)$
+
     %For all $n \in \naturals$ we have $\index[\zeta](n)$ is a urysohnchain in $X$.
 
     We show that for all $n \in \indexset[\zeta]$ we have $\index[\zeta](n)$ has cardinality $\pot(n)$.
@@ -581,15 +596,19 @@ The first tept will be a formalisation of chain constructions.
 
     
     We show that for all $m \in \indexset[\zeta]$ we have there exist $f$ such that $f \in \funs{\carrier[X]}{\intervalclosed{\zero}{1}}$ 
-    and for all $n \in \indexset[\index[\zeta](m)]$ we have for all $x \in \index[\index[\zeta](m)](n)$ 
+    and for all $n \in \indexset[\index[\zeta](m)]$ we have for all $x \in \index[\index[\zeta](m)](n)$ such that $x \notin \index[\index[\zeta](m)](n-1)$ 
     we have $f(x) = \rfrac{n}{\pot(m)}$.
     \begin{subproof}
-        %   Fix $m \in \indexset[\zeta]$.
-        %   $\index[\zeta](m)$ is a urysohnchain in $X$.
-        %   
-        %   Follows by \cref{existence_of_staircase_function}.
+        Fix $m \in \indexset[\zeta]$.
+        $\index[\zeta](m)$ is a urysohnchain in $X$.
+        Define $o : \alpha \to \intervalclosed{\zero}{1}$ such that $o(x) =$
+        \begin{cases}
+            & 0  & \text{if} x \in A 
+            & 1 & \text{if} x \in B 
+            & \rfrac{n}{m} & \text{if} \exists n \in \naturals. x \in \index[\index[\zeta](m)](n) \land x \notin \index[\index[\zeta](m)](n-1)
+        \end{cases}
 
-        Omitted.
+        
     \end{subproof}
 
     
