@@ -231,6 +231,51 @@ The first tept will be a formalisation of chain constructions.
     $\pot(n) = \apply{\pot}{n}$.
 \end{abbreviation}
 
+%Take all points, besids one but then take all open sets not containing x but all other, so \{x\} has to be closed
+\begin{axiom}\label{hausdorff_implies_singltons_closed}
+    For all $X$ such that $X$ is Hausdorff we have
+    for all $x \in \carrier[X]$ we have $\{x\}$ is closed in $X$.
+\end{axiom}
+
+\begin{lemma}\label{urysohn_set_in_between}
+    Let $X$ be a urysohn space.
+    Suppose $A,B \in \closeds{X}$.
+    Suppose $A \subset B$.
+    %Suppose $B \union A \neq \carrier[X]$.
+    There exist $C \in \closeds{X}$
+    such that $A \subset C \subset B$ or $A, B \in \opens[X]$.
+\end{lemma}
+\begin{proof}
+    We have $B \setminus A$ is inhabited.
+    Take $x$ such that $x \in (B \setminus A)$.
+    Then $A \subset (A \union \{x\})$.
+    Let $C = \closure{A \union \{x\}}{X}$.
+    We have $(A \union \{x\}) \subseteq \closure{A \union \{x\}}{X}$.
+    Therefore $A \subset C$.
+    $A \subseteq B \subseteq \carrier[X]$.
+    $x \in B$.
+    Therefore $x \in \carrier[X]$.
+    $(A \union \{x\}) \subseteq \carrier[X]$.
+    We have $\closure{A \union \{x\}}{X}$ is closed in $X$ by \cref{closure_is_closed}.
+    Therefore $C$ is closed in $X$ by \cref{closure_is_closed}.
+    \begin{byCase}
+        \caseOf{$C = B$.}
+            %We have $\carrier[X] \setminus A$ is open in $X$.    
+            %We have $\carrier[X] \setminus B$ is open in $X$.
+            %$\{x\}$ is closed in $X$.% by \cref{hausdorff_implies_singltons_closed}.
+            %$A \union \{x\} = C$.
+            %$\carrier[X] \setminus (A \union \{x\}) = (\carrier[X] \setminus C)$.
+            %$\carrier[X] \setminus (A) = \{x\} \union (\carrier[X] \setminus C)$.
+
+
+            %Therefore $\{x\}$ is open in $X$.
+            Omitted.
+        \caseOf{$C \neq B$.}
+            Omitted.
+    \end{byCase}
+
+\end{proof}
+
 
 \begin{proposition}\label{urysohnchain_induction_begin}
     Let $X$ be a urysohn space.
@@ -600,15 +645,16 @@ The first tept will be a formalisation of chain constructions.
     we have $f(x) = \rfrac{n}{\pot(m)}$.
     \begin{subproof}
         Fix $m \in \indexset[\zeta]$.
-        $\index[\zeta](m)$ is a urysohnchain in $X$.
-        Define $o : \alpha \to \intervalclosed{\zero}{1}$ such that $o(x) =$
-        \begin{cases}
-            & 0  & \text{if} x \in A 
-            & 1 & \text{if} x \in B 
-            & \rfrac{n}{m} & \text{if} \exists n \in \naturals. x \in \index[\index[\zeta](m)](n) \land x \notin \index[\index[\zeta](m)](n-1)
-        \end{cases}
+        %$\index[\zeta](m)$ is a urysohnchain in $X$.
 
-        
+        %Define $o : \alpha \to \intervalclosed{\zero}{1}$ such that $o(x) =$
+        %\begin{cases}
+        %    & 0  & \text{if} x \in A 
+        %    & 1 & \text{if} x \in B 
+        %    & \rfrac{n}{m} & \text{if} \exists n \in \naturals. x \in \index[\index[\zeta](m)](n) \land x \notin \index[\index[\zeta](m)](n-1)
+        %\end{cases}
+%
+        Omitted.
     \end{subproof}
 
     
@@ -677,6 +723,7 @@ The first tept will be a formalisation of chain constructions.
     \begin{subproof}
         Fix $n \in \naturals$.
         Fix $x \in \carrier[X]$.
+        Omitted.
     \end{subproof}
 
 
@@ -696,11 +743,12 @@ The first tept will be a formalisation of chain constructions.
         \begin{subproof}
             Fix $x \in \carrier[X]$.
             
-            
+            Omitted.
             
             % Contradiction by \cref{two_in_naturals,function_apply_default,reals_axiom_zero_in_reals,dom_emptyset,notin_emptyset,funs_type_apply,neg,minus,abs_behavior1}.
             %Follows by \cref{two_in_naturals,function_apply_default,reals_axiom_zero_in_reals,dom_emptyset,notin_emptyset,funs_type_apply,neg,minus,abs_behavior1}.
         \end{subproof}
+        Omitted.
     \end{subproof}
     
 
@@ -709,51 +757,54 @@ The first tept will be a formalisation of chain constructions.
 
     We show that for all $x \in \dom{G}$ we have $G(x) \in \reals$.
     \begin{subproof}
-        Fix $x \in \dom{G}$.
-        It suffices to show that $g(x) \in \reals$.
-
-        There exist $k \in \reals$ such that for all $\epsilon \in \reals$ such that $\epsilon > \zero$ we have there exist $N \in \naturals$ such that for all $N' \in \naturals$ such that $N' > N$ we have $\abs{\apply{\gamma(N')}{x} - k} < \epsilon$.
-
-        We show that for all $\epsilon \in \reals$ such that $\epsilon > \zero$ we have there exist $N \in \naturals$ such that for all $N' \in \naturals$ such that $N' > N$ we have $\abs{\apply{\gamma(N')}{x} - g(x)} < \epsilon$ and $g(x)= k$.
-        \begin{subproof}
-            Fix $\epsilon \in \reals$.
-            
-
-        \end{subproof}
-        Follows by \cref{apply,plus_one_order,ordinal_iff_suc_ordinal,natural_number_is_ordinal,subseteq,naturals_subseteq_reals,naturals_is_equal_to_two_times_naturals,reals_one_bigger_zero,one_in_reals,ordinal_prec_trichotomy,omega_is_an_ordinal,suc_intro_self,two_in_naturals,in_asymmetric,suc}.
+        %Fix $x \in \dom{G}$.
+        %It suffices to show that $g(x) \in \reals$.
+%
+        %There exist $k \in \reals$ such that for all $\epsilon \in \reals$ such that $\epsilon > \zero$ we have there exist $N \in \naturals$ such that for all $N' \in \naturals$ such that $N' > N$ we have $\abs{\apply{\gamma(N')}{x} - k} < \epsilon$.
+%
+        %We show that for all $\epsilon \in \reals$ such that $\epsilon > \zero$ we have there exist $N \in \naturals$ such that for all $N' \in \naturals$ such that $N' > N$ we have $\abs{\apply{\gamma(N')}{x} - g(x)} < \epsilon$ and $g(x)= k$.
+        %\begin{subproof}
+        %    Fix $\epsilon \in \reals$.
+        %    
+%
+        %\end{subproof}
+        %Follows by \cref{apply,plus_one_order,ordinal_iff_suc_ordinal,natural_number_is_ordinal,subseteq,naturals_subseteq_reals,naturals_is_equal_to_two_times_naturals,reals_one_bigger_zero,one_in_reals,ordinal_prec_trichotomy,omega_is_an_ordinal,suc_intro_self,two_in_naturals,in_asymmetric,suc}.
+        Omitted.
     \end{subproof}
 
     We show that for all $x \in \dom{G}$ we have $\zero \leq G(x) \leq 1$.
     \begin{subproof}
-        Fix $x \in \dom{G}$.
-        Then $x \in \carrier[X]$.
-        \begin{byCase}
-            \caseOf{$x \in A$.} 
-                For all $n \in \naturals$ we have $\apply{\gamma(n)}{x} = \zero$.
-
-
-            \caseOf{$x \notin A$.} 
-                \begin{byCase}
-                    \caseOf{$x \in B$.} 
-                        For all $n \in \naturals$ we have $\apply{\gamma(n)}{x} = 1$.
-
-                    \caseOf{$x \notin B$.}
-                        Omitted.
-                \end{byCase}
-        \end{byCase}
+        %Fix $x \in \dom{G}$.
+        %Then $x \in \carrier[X]$.
+        %\begin{byCase}
+        %    \caseOf{$x \in A$.} 
+        %        For all $n \in \naturals$ we have $\apply{\gamma(n)}{x} = \zero$.
+%
+%
+        %    \caseOf{$x \notin A$.} 
+        %        \begin{byCase}
+        %            \caseOf{$x \in B$.} 
+        %                For all $n \in \naturals$ we have $\apply{\gamma(n)}{x} = 1$.
+%
+        %            \caseOf{$x \notin B$.}
+        %                Omitted.
+        %        \end{byCase}
+        %\end{byCase}
+        Omitted.
     \end{subproof}
 
 
     We show that $G \in \funs{\carrier[X]}{\intervalclosed{\zero}{1}}$.
     \begin{subproof}        
-        It suffices to show that $\ran{G} \subseteq \intervalclosed{\zero}{1}$ by \cref{fun_ran_iff,funs_intro,funs_weaken_codom}.
-        It suffices to show that for all $x \in \dom{G}$ we have $G(x) \in \intervalclosed{\zero}{1}$.
-        Fix $x \in \dom{G}$.
-        Then $x \in \carrier[X]$.
-        $g(x) = G(x)$.
-        We have $G(x) \in \reals$.
-        $\zero \leq G(x) \leq 1$.
-        We have $G(x) \in \intervalclosed{\zero}{1}$ .
+        %It suffices to show that $\ran{G} \subseteq \intervalclosed{\zero}{1}$ by \cref{fun_ran_iff,funs_intro,funs_weaken_codom}.
+        %It suffices to show that for all $x \in \dom{G}$ we have $G(x) \in \intervalclosed{\zero}{1}$.
+        %Fix $x \in \dom{G}$.
+        %Then $x \in \carrier[X]$.
+        %$g(x) = G(x)$.
+        %We have $G(x) \in \reals$.
+        %$\zero \leq G(x) \leq 1$.
+        %We have $G(x) \in \intervalclosed{\zero}{1}$ .
+        Omitted.
     \end{subproof}
 
     We show that $G(A) = \zero$.
@@ -860,7 +911,7 @@ The first tept will be a formalisation of chain constructions.
     %       Omitted.
     %   \end{subproof}
 \end{proof}
-
-\begin{theorem}\label{safe}
-    Contradiction.     
-\end{theorem}
+%
+%\begin{theorem}\label{safe}
+%    Contradiction.     
+%\end{theorem}
