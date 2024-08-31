@@ -15,23 +15,35 @@
 
 \section{Urysohns Lemma}
 
+\begin{definition}\label{minimum}
+    $\min{X} = \{x \in X \mid \forall y \in X. x \leq y \}$.
+\end{definition}
+
+
+\begin{definition}\label{maximum}
+    $\max{X} = \{x \in X \mid \forall y \in X. x \geq y \}$.
+\end{definition}
+
+
+\begin{definition}\label{intervalclosed}
+    $\intervalclosed{a}{b} = \{x \in \reals \mid a \leq x \leq b\}$.
+\end{definition}
+
+
+\begin{definition}\label{intervalopen}
+    $\intervalopen{a}{b} = \{ x \in \reals \mid a < x < b\}$.
+\end{definition}
+
 
 \begin{definition}\label{one_to_n_set}
     $\seq{m}{n} = \{x \in \naturals \mid  m \leq x \leq n\}$.   
 \end{definition}
 
-\begin{struct}\label{sequence}
-    A sequence $X$ is a onesorted structure equipped with
-    \begin{enumerate}
-        \item $\index$
-        \item $\indexset$
-    \end{enumerate}
-    such that
-    \begin{enumerate}
-        \item\label{indexset_is_subset_naturals} $\indexset[X] \subseteq \naturals$.
-        \item\label{index_is_bijection} $\index[X]$ is a bijection from $\indexset[X]$ to $\carrier[X]$.
-    \end{enumerate}
-\end{struct}
+
+\begin{definition}\label{sequence}
+    $X$ is a sequence iff $X$ is a function and $\dom{f} \subseteq \naturals$.
+\end{definition}
+
 
 \begin{abbreviation}\label{urysohnspace}
     $X$ is a urysohn space iff
@@ -42,9 +54,65 @@
 \end{abbreviation}
 
 
-\begin{definition}\label{intervalclosed}
-    $\intervalclosed{a}{b} = \{x \in \reals \mid a \leq x \leq b\}$.
+\begin{abbreviation}\label{at}
+    $\at{f}{n} = f(n)$.
+\end{abbreviation}
+
+
+\begin{definition}\label{chain_of_subsets}
+    $X$ is a chain of subsets in $Y$ iff $X$ is a sequence and for all $n \in \dom{X}$ we have $\at{X}{n} \subseteq \carrier[Y]$. 
 \end{definition}
+
+
+\begin{definition}\label{urysohnchain}%<-- zulässig
+    $X$ is a urysohnchain of $Y$ iff $X$ is a chain of subsets in $Y$ and for all $n,m \in \dom{X}$ such that $n < m$ we have $\closure{\at{X}{n}}{Y} \subseteq \interior{\at{X}{m}}{Y}$.
+\end{definition}
+
+
+\begin{definition}\label{finer} %<-- verfeinerung 
+    $X$ is finer then $Y$ in $U$ iff for all $n \in \dom{X}$ we have $\at{X}{n} \in \ran{Y}$ and for all $m \in \dom{X}$ such that $n < m$ we have there exist $k \in \dom{Y}$ such that $ \closure{\at{X}{n}}{U} \subseteq \interior{\at{Y}{k}}{U} \subseteq \closure{\at{Y}{k}}{U} \subseteq \interior{\at{X}{m}}{U}$.
+\end{definition}
+
+
+\begin{definition}\label{sequence_of_reals}
+    $X$ is a sequence of reals iff $\ran{X} \subseteq \reals$.
+\end{definition}
+
+
+\begin{axiom}\label{abs_behavior1}
+    If $x \geq \zero$ then $\abs{x} = x$.
+\end{axiom}
+
+\begin{axiom}\label{abs_behavior2}
+    If $x < \zero$ then $\abs{x} = \neg{x}$.
+\end{axiom}
+
+\begin{definition}\label{realsminus}
+    $\realsminus = \{r \in \reals \mid r < \zero\}$.
+\end{definition}
+
+\begin{definition}\label{realsplus}
+    $\realsplus = \reals \setminus \realsminus$.
+\end{definition}
+
+\begin{definition}\label{epsilon_ball}
+    $\epsBall{x}{\epsilon} = \intervalopen{x-\epsilon}{x+\epsilon}$.
+\end{definition}
+
+\begin{definition}\label{pointwise_convergence}
+    $X$ converge to $x$ iff for all $\epsilon \in \realsplus$ there exist $N \in \dom{X}$ such that for all $n \in \dom{X}$ such that $n > N$ we have $\at{X}{n} \in \epsBall{x}{\epsilon}$.
+\end{definition}
+
+
+
+
+
+
+
+
+
+
+
 
 \begin{theorem}\label{urysohnsetinbeetween}
     Let $X$ be a urysohn space.
@@ -53,7 +121,6 @@
     Suppose $\carrier[X]$ is inhabited.
     There exist $U \subseteq \carrier[X]$ such that $U$ is closed in $X$ and $\closure{A}{X} \subseteq \interior{U}{X} \subseteq \closure{U}{X} \subseteq \interior{B}{X}$.
 \end{theorem}
-
 
 
 \begin{theorem}\label{urysohn}
@@ -76,8 +143,8 @@
     Define $F : \eta \to \reals$ such that $F(x) =$
     \begin{cases}
         & \zero                 &\text{if} x \in  A\\
-        & \rfrac{1}{1+1}    &\text{if} x \in  (\carrier[X] \setminus (A \union B))\\
-        & 1                 &\text{if} x \in  B
+        & \rfrac{1}{1+1}        &\text{if} x \in  (\carrier[X] \setminus (A \union B))\\
+        & 1                     &\text{if} x \in  B
     \end{cases}
 
     %Define $f : \naturals \to \pow{P}$ such that $f(x)=$
@@ -87,19 +154,59 @@
     %    & G                     & \text{if} x \in (\naturals \setminus \{1, \zero\}) \land  G = \{g \in \pow{P} \mid g \in f(n-1) \lor (g \notin f(n-1) \land g \in P) \}
     %\end{cases}
 
-    Let $D = \{d \mid d \in \rationals \mid \zero \leq d \leq 1\}$.
-    Take $R$ such that for all $q \in D$ we have for all $S \in P$ we have $q \mathrel{R} S$ iff 
-        $q = \zero \land S = A$ or $q = 1 \land S = H$ or 
-        for all $q_1, q_2, S_1, S_2$ 
-        such that $q_1 \leq q \leq q_2$ and $q_1 \mathrel{R} S_1$ and $q_2 \mathrel{R} S_2$ 
-        we have $\closure{S_1}{X} \subseteq \interior{S}{X} \subseteq \closure{S}{X} \subseteq \interior{S_2}{X}$ 
-        and $q \mathrel{R} S$.
+    %Let $D = \{d \mid d \in \rationals \mid \zero \leq d \leq 1\}$.
+    %Take $R$ such that for all $q \in D$ we have for all $S \in P$ we have $q \mathrel{R} S$ iff 
+    %    $q = \zero \land S = A$ or $q = 1 \land S = H$ or 
+    %    for all $q_1, q_2, S_1, S_2$ 
+    %    such that $q_1 \leq q \leq q_2$ and $q_1 \mathrel{R} S_1$ and $q_2 \mathrel{R} S_2$ 
+    %    we have $\closure{S_1}{X} \subseteq \interior{S}{X} \subseteq \closure{S}{X} \subseteq \interior{S_2}{X}$ 
+    %    and $q \mathrel{R} S$.
     
-    Trivial.
     
+    
+    %Let $J = \{(n,f) \mid n denots the cardinality of a urysohn chain on which f is a staircase function\}$.
+%
+    %Let $N = \naturals$.
+    %Define $j : N \to \funs{\carrier[X]}{\eals}$ such that $j(n) =$
+    %\begin{cases}
+    %    & f     &\text{if} n \in N \land \exist w \in J. J=(n,f)
+    %\end{cases}
+
+
+
+
+
+
+
+
     
 \end{proof}
 
 \begin{theorem}\label{safe}
     Contradiction.     
 \end{theorem}
+
+
+
+
+%
+%Ideen:
+%Eine folge ist ein Funktion mit domain \subseteq Natürlichenzahlen. als predicat
+%
+%zulässig und verfeinerung von ketten als predicat definieren. 
+%
+%limits und punkt konvergenz als prädikat.
+%
+%
+%Vor dem Beweis vor dem eigentlichen Beweis.
+%die abgeleiteten Funktionen
+%
+%\derivedstiarcasefunction on A
+%
+%abbreviation: \at{f}{n} = f_{n}
+%
+%
+%TODO:
+%Reals ist ein topologischer Raum
+%
+
