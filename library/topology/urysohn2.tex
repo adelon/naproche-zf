@@ -104,8 +104,11 @@
 \end{definition}
 
 
-
-
+\begin{proposition}\label{iff_sequence}
+    Suppose $X$ is a function.
+    Suppose $\dom{X} \subseteq \naturals$.
+    Then $X$ is a sequence.
+\end{proposition}
 
 
 
@@ -121,6 +124,9 @@
     Suppose $\carrier[X]$ is inhabited.
     There exist $U \subseteq \carrier[X]$ such that $U$ is closed in $X$ and $\closure{A}{X} \subseteq \interior{U}{X} \subseteq \closure{U}{X} \subseteq \interior{B}{X}$.
 \end{theorem}
+\begin{proof}
+    Omitted.
+\end{proof}
 
 
 \begin{theorem}\label{urysohn}
@@ -132,48 +138,26 @@
     and $f(A) = \zero$ and $f(B)= 1$ and $f$ is continuous.
 \end{theorem}
 \begin{proof}
-
-    Let $H = \carrier[X] \setminus B$.
-    Let $P = \{x \in \pow{X} \mid x = A \lor x = H \lor (x \in \pow{X} \land (\closure{A}{X} \subseteq \interior{U}{X} \subseteq \closure{U}{X} \subseteq \interior{H}{X}))\}$.
-    Let $\eta = \carrier[X]$.
-
-    
-    % Provable 
-    % vvv
-    Define $F : \eta \to \reals$ such that $F(x) =$
+    Let $X' = \carrier[X]$.
+    Let $N = \{\zero, 1\}$.
+    $1 = \suc{\zero}$.
+    $1 \in \naturals$ and $\zero \in \naturals$.
+    $N \subseteq \naturals$.
+    Let $A' = (X' \setminus B)$.
+    $B \subseteq X'$ by \cref{powerset_elim,closeds}.
+    $A \subseteq X'$.
+    Therefore $A \subseteq A'$.
+    Define $U_0: N \to \{A, A'\}$ such that $U_0(n) =$
     \begin{cases}
-        & \zero                 &\text{if} x \in  A\\
-        & \rfrac{1}{1+1}        &\text{if} x \in  (\carrier[X] \setminus (A \union B))\\
-        & 1                     &\text{if} x \in  B
+        &A  &\text{if} n = \zero \\
+        &A' &\text{if} n = 1
     \end{cases}
-
-    %Define $f : \naturals \to \pow{P}$ such that $f(x)=$
-    %\begin{cases}
-    %    & \emptyset             & \text{if} x = \zero \\
-    %    & \{A, H\}             & \text{if} x = 1  \\
-    %    & G                     & \text{if} x \in (\naturals \setminus \{1, \zero\}) \land  G = \{g \in \pow{P} \mid g \in f(n-1) \lor (g \notin f(n-1) \land g \in P) \}
-    %\end{cases}
-
-    %Let $D = \{d \mid d \in \rationals \mid \zero \leq d \leq 1\}$.
-    %Take $R$ such that for all $q \in D$ we have for all $S \in P$ we have $q \mathrel{R} S$ iff 
-    %    $q = \zero \land S = A$ or $q = 1 \land S = H$ or 
-    %    for all $q_1, q_2, S_1, S_2$ 
-    %    such that $q_1 \leq q \leq q_2$ and $q_1 \mathrel{R} S_1$ and $q_2 \mathrel{R} S_2$ 
-    %    we have $\closure{S_1}{X} \subseteq \interior{S}{X} \subseteq \closure{S}{X} \subseteq \interior{S_2}{X}$ 
-    %    and $q \mathrel{R} S$.
-    
-    
-    
-    %Let $J = \{(n,f) \mid n denots the cardinality of a urysohn chain on which f is a staircase function\}$.
-%
-    %Let $N = \naturals$.
-    %Define $j : N \to \funs{\carrier[X]}{\eals}$ such that $j(n) =$
-    %\begin{cases}
-    %    & f     &\text{if} n \in N \land \exist w \in J. J=(n,f)
-    %\end{cases}
-
-
-
+    $U_0$ is a function.
+    $\dom{U_0} = N$.
+    $\dom{U_0} \subseteq \naturals$ by \cref{ran_converse}. 
+    $U_0$ is a sequence.
+    $U_0$ is a chain of subsets in $X'$.
+    $U_0$ is a urysohnchain of $X$.
 
 
 
