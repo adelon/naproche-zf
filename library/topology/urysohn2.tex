@@ -156,6 +156,7 @@
     $\dom{U_0} = N$.
     $\dom{U_0} \subseteq \naturals$ by \cref{ran_converse}. 
     $U_0$ is a sequence.
+    We have $1, \zero \in N$.
     We show that $U_0$ is a chain of subsets in $X$.
     \begin{subproof}
         We have $\dom{U_0} \subseteq \naturals$.
@@ -163,9 +164,24 @@
         We have $\dom{U_0} = \{\zero, 1\}$.
 
         It suffices to show that for all $n \in \dom{U_0}$ we have for all $m \in \dom{U_0}$ such that $m > n$ we have $\at{U_0}{n} \subseteq \at{U_0}{m}$.
+
+        Fix $n \in \dom{U_0}$.
+        Fix $m \in \dom{U_0}$.
+
+        \begin{byCase}
+            \caseOf{$n \neq \zero$.} 
+                Trivial.
+            \caseOf{$n = \zero$.} 
+                \begin{byCase}
+                    \caseOf{$m = \zero$.} 
+                        Trivial.
+                    \caseOf{$m \neq \zero$.}
+                        We have $A \subseteq A'$.
+                        We have $\at{U_0}{\zero} = A$ by assumption.
+                        We have $\at{U_0}{1}= A'$ by assumption.
+                \end{byCase}
+        \end{byCase}
         
-        It suffices to show that $\at{U_0}{\zero} \subseteq \at{U_0}{1}$.
-        Follows by \cref{one_in_reals,order_reals_lemma0,upair_elim,reals_one_bigger_zero,reals_order,reals_axiom_zero_in_reals,subseteq_refl,apply}.
     \end{subproof}
     $U_0$ is a urysohnchain of $X$.
 
