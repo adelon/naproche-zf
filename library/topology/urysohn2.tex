@@ -60,7 +60,7 @@
 
 
 \begin{definition}\label{chain_of_subsets}
-    $X$ is a chain of subsets in $Y$ iff $X$ is a sequence and for all $n \in \dom{X}$ we have $\at{X}{n} \subseteq \carrier[Y]$. 
+    $X$ is a chain of subsets in $Y$ iff $X$ is a sequence and for all $n \in \dom{X}$ we have $\at{X}{n} \subseteq \carrier[Y]$ and for all $m \in \dom{X}$ such that $m > n$ we have $\at{X}{n} \subseteq \at{X}{m}$. 
 \end{definition}
 
 
@@ -156,10 +156,20 @@
     $\dom{U_0} = N$.
     $\dom{U_0} \subseteq \naturals$ by \cref{ran_converse}. 
     $U_0$ is a sequence.
-    $U_0$ is a chain of subsets in $X'$.
+    We show that $U_0$ is a chain of subsets in $X$.
+    \begin{subproof}
+        We have $\dom{U_0} \subseteq \naturals$.
+        We have for all $n \in \dom{U_0}$ we have $\at{U_0}{n} \subseteq \carrier[X]$ by \cref{topological_prebasis_iff_covering_family,union_as_unions,union_absorb_subseteq_left,subset_transitive,setminus_subseteq}.
+        We have $\dom{U_0} = \{\zero, 1\}$.
+
+        It suffices to show that for all $n \in \dom{U_0}$ we have for all $m \in \dom{U_0}$ such that $m > n$ we have $\at{U_0}{n} \subseteq \at{U_0}{m}$.
+        
+        It suffices to show that $\at{U_0}{\zero} \subseteq \at{U_0}{1}$.
+        Follows by \cref{one_in_reals,order_reals_lemma0,upair_elim,reals_one_bigger_zero,reals_order,reals_axiom_zero_in_reals,subseteq_refl,apply}.
+    \end{subproof}
     $U_0$ is a urysohnchain of $X$.
 
-
+    %We are done with the first step, now we want to prove that we have U a sequence of these chain with U_0 the first chain.
 
 
 
@@ -169,9 +179,7 @@
 \begin{theorem}\label{safe}
     Contradiction.     
 \end{theorem}
-\begin{proof}
-    Follows by \cref{iff_sequence,codom_of_emptyset_can_be_anything,sequence,emptyset_is_function_on_emptyset,id_dom,in_irrefl,suc_subseteq_implies_in,emptyset_subseteq}. 
-\end{proof}
+
 
 
 
