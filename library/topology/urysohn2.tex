@@ -120,6 +120,18 @@
     Then $X$ is a sequence.
 \end{proposition}
 
+\begin{definition}\label{higher_urysohn_chain}
+    $U$ is a lifted urysohnchain of $X$ iff $U$ is a sequence and $\dom{U} = \naturals$ and for all $n \in \dom{U}$ we have $\at{U}{n}$ is a urysohnchain of $X$ and $\at{U}{\suc{n}}$ is a minimal finer extention of $\at{U}{n}$ in $X$.
+\end{definition}
+
+\begin{definition}\label{staircase}
+    $f$ is a staircase function adapted to $U$ in $X$ iff $U$ is a urysohnchain of $X$ and for all $x,n,m,k$ such that $k = \max{\dom{U}}$ and $n,m \in \dom{U}$ and $n$ follows $m$ in $\dom{U}$ and $x \in (\at{U}{m} \setminus \at{U}{n})$ we have $f(x)= \rfrac{m}{k}$.
+\end{definition}
+
+\begin{definition}\label{staircase_sequence}
+    $f$ is staircase sequence of $U$ iff $f$ is a sequence and $U$ is a lifted urysohnchain of $X$ and $\dom{U} = \dom{f}$ and for all $n \in \dom{U}$ we have $\at{f}{n}$ is a staircase function adapted to $\at{U}{n}$ in $U$.
+\end{definition}
+
 
 
 
@@ -137,6 +149,23 @@
 \begin{proof}
     Omitted.
 \end{proof}
+
+
+\begin{theorem}\label{induction_on_urysohnchains}
+    Let $X$ be a urysohn space.
+    Suppose $U_0$ is a sequence.
+    Suppose $U_0$ is a chain of subsets in $X$.
+    Suppose $U_0$ is a urysohnchain of $X$.
+    There exist $U$ such that $U$ is a sequence and $\dom{U} = \naturals$ and $\at{U}{\zero} = U_0$ and for all $n \in \dom{U}$ we have $\at{U}{n}$ is a urysohnchain of $X$ and $\at{U}{\suc{n}}$ is a minimal finer extention of $\at{U}{n}$ in $X$.
+\end{theorem}
+\begin{proof}
+    $U_0$ is a urysohnchain of $X$.
+    It suffices to show that for all $V$ such that $V$ is a urysohnchain of $X$ there exist $V'$ such that $V'$ is a urysohnchain of $X$ and $V'$ is a minimal finer extention of $V$ in $X$.
+    
+\end{proof}
+
+
+
 
 
 \begin{theorem}\label{urysohn}
@@ -215,19 +244,10 @@
 
     We show that there exist $U$ such that $U$ is a sequence and $\dom{U} = \naturals$ and $\at{U}{\zero} = U_0$ and for all $n \in \dom{U}$ we have $\at{U}{n}$ is a urysohnchain of $X$ and $\at{U}{\suc{n}}$ is a minimal finer extention of $\at{U}{n}$ in $X$.
     \begin{subproof}
-        $U_0$ is a urysohnchain of $X$.
-        We show that if $V$ is a urysohnchain of $X$ then there exist $V'$ such that $V'$ is a urysohnchain of $X$ and $V'$ is a minimal finer extention of $V$ in $X$.
-        \begin{subproof}
-            Omitted.
-        \end{subproof}
-        Let $N' = \naturals$.
-        Let $P = \{C \mid C \in \pow{\pow{X'}} \mid \text{$C$ is a urysohnchain of $X$}\}$.
-        Define $U : N' \to  P$ such that $U(n) =$
-        \begin{cases}
-            &U_0  &\text{if} n = \zero \\
-            &V     & \text{if}  \text{ $n = \suc{m}$ and $V$ is a minimal finer extention of $U(m)$ in $X$}.
-        \end{cases}
+        Follows by \cref{chain_of_subsets,urysohnchain,induction_on_urysohnchains}.
     \end{subproof}
+
+
 
     
 \end{proof}
