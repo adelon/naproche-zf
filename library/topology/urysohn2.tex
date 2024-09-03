@@ -68,11 +68,21 @@
     $X$ is a urysohnchain of $Y$ iff $X$ is a chain of subsets in $Y$ and for all $n,m \in \dom{X}$ such that $n < m$ we have $\closure{\at{X}{n}}{Y} \subseteq \interior{\at{X}{m}}{Y}$.
 \end{definition}
 
-
-\begin{definition}\label{finer} %<-- verfeinerung 
-    $X$ is finer then $Y$ in $U$ iff for all $n \in \dom{X}$ we have $\at{X}{n} \in \ran{Y}$ and for all $m \in \dom{X}$ such that $n < m$ we have there exist $k \in \dom{Y}$ such that $ \closure{\at{X}{n}}{U} \subseteq \interior{\at{Y}{k}}{U} \subseteq \closure{\at{Y}{k}}{U} \subseteq \interior{\at{X}{m}}{U}$.
+\begin{definition}\label{urysohn_finer_set}
+    $A$ is finer between $X$ to $Y$ in $U$ iff $\closure{X}{U} \subseteq \interior{A}{U}$ and $\closure{A}{U} \subseteq \interior{Y}{U}$.
 \end{definition}
 
+\begin{definition}\label{finer} %<-- verfeinerung 
+    $Y$ is finer then $X$ in $U$ iff for all $n \in \dom{X}$ we have $\at{X}{n} \in \ran{Y}$ and for all $m \in \dom{X}$ such that $n < m$ we have there exist $k \in \dom{Y}$ such that $\at{Y}{k}$ is finer between $\at{X}{n}$ to $\at{X}{m}$ in $U$.
+\end{definition}
+
+\begin{definition}\label{follower_index}
+    $y$ follows $x$ in $I$ iff $x < y$ and $x,y \in I$ and for all $i \in I$ such that $x < i$ we have $y \leq i$.
+\end{definition}
+
+\begin{definition}\label{finer_smallest_step}
+    $Y$ is a minimal finer extention of $X$ in $U$ iff $Y$ is finer then $X$ in $U$ and for all $x_1,x_2 \in \dom{X}$ such that $x_1$ follows $x_2$ in $\dom{X}$ we have there exist $y \in \dom{Y}$ such that $y$ follows $x_1$ in $\dom{X}$ and $x_2$ follows $y$ in $\dom{X}$.
+\end{definition}
 
 \begin{definition}\label{sequence_of_reals}
     $X$ is a sequence of reals iff $\ran{X} \subseteq \reals$.
@@ -179,15 +189,45 @@
                         We have $A \subseteq A'$.
                         We have $\at{U_0}{\zero} = A$ by assumption.
                         We have $\at{U_0}{1}= A'$ by assumption.
+                        Follows by \cref{powerset_elim,emptyset_subseteq,union_as_unions,union_absorb_subseteq_left,subseteq_pow_unions,ran_converse,subseteq,subseteq_antisymmetric,suc_subseteq_intro,apply,powerset_emptyset,emptyset_is_ordinal,notin_emptyset,ordinal_elem_connex,omega_is_an_ordinal,prec_is_ordinal}.
                 \end{byCase}
         \end{byCase}
-        
     \end{subproof}
-    $U_0$ is a urysohnchain of $X$.
 
+    We show that $U_0$ is a urysohnchain of $X$.
+    \begin{subproof}
+        It suffices to show that for all $n \in \dom{U_0}$ we have for all $m \in \dom{U_0}$ such that $n < m$ we have $\closure{\at{U_0}{n}}{X} \subseteq \interior{\at{U_0}{m}}{X}$.
+        Fix $n \in \dom{U_0}$.
+        Fix $m \in \dom{U_0}$.
+        \begin{byCase}
+            \caseOf{$n \neq \zero$.} 
+                Follows by \cref{ran_converse,upair_iff,one_in_reals,order_reals_lemma0,reals_axiom_zero_in_reals,reals_one_bigger_zero,reals_order}.
+            \caseOf{$n = \zero$.} 
+                \begin{byCase}
+                    \caseOf{$m = \zero$.} 
+                        Trivial.
+                    \caseOf{$m \neq \zero$.}
+                        Follows by \cref{setminus_emptyset,setdifference_eq_intersection_with_complement,setminus_self,interior_carrier,complement_interior_eq_closure_complement,subseteq_refl,closure_interior_frontier_is_in_carrier,emptyset_subseteq,closure_is_minimal_closed_set,inter_lower_right,inter_lower_left,subseteq_transitive,interior_of_open,is_closed_in,closeds,union_absorb_subseteq_right,ordinal_suc_subseteq,ordinal_empty_or_emptyset_elem,union_absorb_subseteq_left,union_emptyset,topological_prebasis_iff_covering_family,inhabited,notin_emptyset,subseteq,union_as_unions,natural_number_is_ordinal}.
+                \end{byCase}
+        \end{byCase}
+    \end{subproof}
     %We are done with the first step, now we want to prove that we have U a sequence of these chain with U_0 the first chain.
 
-
+    We show that there exist $U$ such that $U$ is a sequence and $\dom{U} = \naturals$ and $\at{U}{\zero} = U_0$ and for all $n \in \dom{U}$ we have $\at{U}{n}$ is a urysohnchain of $X$ and $\at{U}{\suc{n}}$ is a minimal finer extention of $\at{U}{n}$ in $X$.
+    \begin{subproof}
+        $U_0$ is a urysohnchain of $X$.
+        We show that if $V$ is a urysohnchain of $X$ then there exist $V'$ such that $V'$ is a urysohnchain of $X$ and $V'$ is a minimal finer extention of $V$ in $X$.
+        \begin{subproof}
+            Omitted.
+        \end{subproof}
+        Let $N' = \naturals$.
+        Let $P = \{C \mid C \in \pow{\pow{X'}} \mid \text{$C$ is a urysohnchain of $X$}\}$.
+        Define $U : N' \to  P$ such that $U(n) =$
+        \begin{cases}
+            &U_0  &\text{if} n = \zero \\
+            &V     & \text{if}  \text{ $n = \suc{m}$ and $V$ is a minimal finer extention of $U(m)$ in $X$}.
+        \end{cases}
+    \end{subproof}
 
     
 \end{proof}
