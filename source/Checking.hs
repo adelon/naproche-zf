@@ -558,8 +558,9 @@ checkProof = \case
         setGoals [makeForall [argVar] ((TermVar argVar `IsElementOf` TermVar domVar) `Iff` localFunctionGoal definitions)]
         tellTasks
 
+        fixed <- gets fixedVars
         assume [Asm (makeForall [argVar] ((TermVar argVar `IsElementOf` TermVar domVar) `Implies` (TermOp ApplySymbol [TermVar funVar, TermVar argVar] `IsElementOf` ranExpr)))] -- function f from \dom(f) \to \ran(f)
-        assume (functionSubdomianExpression funVar argVar domVar (NonEmpty.toList definitions)) --behavior on the subdomians
+        assume (functionSubdomianExpression funVar argVar domVar fixed (NonEmpty.toList definitions)) --behavior on the subdomians
         setGoals goals
         checkProof continue
 
@@ -573,21 +574,22 @@ localFunctionGoal xs = makeXor $ map snd $ NonEmpty.toList xs
 -- f(x) =  ....cases
 --      & (\frac{1}{k} \cdot x) &\text{if} x \in \[k, k+1\)
 --
--- So therefore we have to check that all free varibels in lhs are free on rhs,
--- since its an expression all varibals from the lhs has to be free on rhs. 
+-- since we have to bind all globaly free Varibels we generate following asumptions.
 --
--- so we take (exp, frm) -> binding all free in exp 
--- -> make forall [x, bound vars] x \in \dom(f) & frm => exp
+-- For    x \mapsto  expr(x,ys,cs) , if formula(x,ys)        ; here cs are just global constants
+--          ->   \forall x,ys: ( formula(x,ys) => expr(x,ys,cs))
+ 
 
+functionSubdomianExpression :: VarSymbol -> VarSymbol -> VarSymbol -> Set VarSymbol -> [(Term, Formula)] -> [Asm]
+functionSubdomianExpression f a d s (x:xs) = singleFunctionSubdomianExpression f a d s x : functionSubdomianExpression f a d s xs
+functionSubdomianExpression _ _ _ _ [] = []
 
-functionSubdomianExpression :: VarSymbol -> VarSymbol -> VarSymbol -> [(Term, Formula)] -> [Asm]
-functionSubdomianExpression f a d (x:xs) = singleFunctionSubdomianExpression f a d x : functionSubdomianExpression f a d xs
-functionSubdomianExpression _ _ _ [] = []
-
-singleFunctionSubdomianExpression :: VarSymbol -> VarSymbol -> VarSymbol -> (Term, Formula) -> Asm
-singleFunctionSubdomianExpression funVar argVar domVar (expr, frm) = let
-    boundVar = Set.toList (freeVars expr) in
-    let def = makeForall (argVar:boundVar) (((TermVar argVar `IsElementOf` TermVar domVar) `And` frm) `Implies` TermOp ApplySymbol [TermVar funVar, TermVar argVar] `Equals` expr)
+singleFunctionSubdomianExpression :: VarSymbol -> VarSymbol -> VarSymbol -> Set VarSymbol -> (Term, Formula) -> Asm
+singleFunctionSubdomianExpression funVar argVar domVar fixedV (expr, frm) = let
+    -- boundVar = Set.toList (freeVars expr) in
+    -- let def = makeForall (argVar:boundVar) (((TermVar argVar `IsElementOf` TermVar domVar) `And` frm) `Implies` TermOp ApplySymbol [TermVar funVar, TermVar argVar] `Equals` expr)
+    boundVar = fixedV in    
+    let def = forallClosure boundVar (((TermVar argVar `IsElementOf` TermVar domVar) `And` frm) `Implies` (TermOp ApplySymbol [TermVar funVar, TermVar argVar] `Equals` expr))
     in Asm def
     
 
