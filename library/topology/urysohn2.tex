@@ -104,11 +104,31 @@
     $\zero$ is an \in-minimal element of $\naturals$.
 \end{proposition}
 
-\begin{proposition}\label{seq_zero_to_n_isomorph_to_suc_n}
-    For all $n \in \naturals$ we have $\seq{\zero}{n}$ has cardinality $\suc{n}$.
+\begin{proposition}\label{naturals_leq}
+    For all $n \in \naturals$ we have $\zero \leq n$.
+\end{proposition}
+\begin{proof}
+    Omitted.
+\end{proof}
+
+\begin{proposition}\label{naturals_leq_on_suc}
+    For all $n,m \in \naturals$ such that $m < \suc{n}$ we have $m \leq n$.
+\end{proposition}
+\begin{proof}
+    Omitted.
+\end{proof}
+
+\begin{proposition}\label{x_in_seq_iff}
+    Suppose $n,m,x \in \naturals$.
+    $x \in \seq{n}{m}$ iff $n \leq x \leq m$.
+\end{proposition}
+
+\begin{proposition}\label{seq_zero_to_n_eq_to_suc_n}
+    For all $n \in \naturals$ we have $\seq{\zero}{n} = \suc{n}$.
 \end{proposition}
 \begin{proof} [Proof by \in-induction on $n$]
     Assume $n \in \naturals$.
+    $n \in \naturals$.
     For all $m \in n$ we have $m \in \naturals$.
     \begin{byCase}
         \caseOf{$n = \zero$.}
@@ -117,32 +137,35 @@
         \caseOf{$n \neq \zero$.}
             Take $k$ such that $k \in \naturals$ and $\suc{k} = n$.
             Then $k \in n$.
-            Therefore $\seq{\zero}{k}$ has cardinality $\suc{k}$.
-            Now $\seq{\zero}{k}$ has cardinality $n$.
-            Take $f$ such that $f$ is a bijection from $n$ to $\seq{\zero}{k}$.
-            We have $\suc{n} = n \union \{n\}$.
-            We show that $\seq{\zero}{n} = \seq{\zero}{k} \union \{\suc{k}\}$.
+            Therefore $\seq{\zero}{k} = \suc{k}$.
+            We show that $\seq{\zero}{n} = \seq{\zero}{k} \union \{n\}$.
             \begin{subproof}
-                We show that $\seq{\zero}{n} \subseteq \seq{\zero}{k} \union \{\suc{k}\}$.
+                We show that $\seq{\zero}{n} \subseteq \seq{\zero}{k} \union \{n\}$.
                 \begin{subproof}
-                    Omitted.
+                    It suffices to show that for all $x \in \seq{\zero}{n}$ we have $x \in \seq{\zero}{k} \union \{n\}$.
+                    $n \in \naturals$.
+                    $\zero \leq n$.
+                    $n \leq n$.
+                    We have $n \in \seq{\zero}{n}$.
+                    Therefore $\seq{\zero}{n}$ is inhabited.
+                    Take $x$ such that $x \in \seq{\zero}{n}$.
+                    Therefore $\zero \leq x \leq n$.
+                    $x = n$ or $x < n$.
+                    Then either $x = n$ or $x \leq k$.
+                    Therefore $x \in \seq{\zero}{k}$ or $x = n$.
+                    Follows by \cref{reals_order,natural_number_is_ordinal,ordinal_empty_or_emptyset_elem,naturals_leq_on_suc,reals_axiom_zero_in_reals,naturals_subseteq_reals,subseteq,union_intro_left,naturals_inductive_set,m_to_n_set,x_in_seq_iff,union_intro_right,singleton_intro}.
                 \end{subproof}
-                We show that $\seq{\zero}{k} \union \{\suc{k}\} \subseteq \seq{\zero}{n}$.
+                We show that $\seq{\zero}{k} \union \{n\} \subseteq \seq{\zero}{n}$.
                 \begin{subproof}
-                    Omitted.
+                    $k \leq n$ by \cref{naturals_subseteq_reals,suc_eq_plus_one,plus_one_order,subseteq}.
+                    $k \in n$.
+                    $\seq{\zero}{k} = k$ by \cref{}.
+                    We have $\seq{\zero}{k} \subseteq \seq{\zero}{n}$.
+                    $n \in \seq{\zero}{n}$.
                 \end{subproof}
-                %$\seq{\zero}{k} \subseteq \seq{\zero}{n}$.
+                Trivial.
             \end{subproof}
-            We have $\{n\} \notin n$.
-            We have $n \notmeets \{n\}$.
-            Let $X = \suc{n}$.
-            Let $Y = \seq{\zero}{n}$.
-            Define $F : X \to Y$ such that $F(x) =$
-            \begin{cases}
-                &f(x) &\text{if} x \in n\\
-                &\suc{k} &\text{if} x \in \{n\} 
-            \end{cases}
-
+            We have $\suc{n} = n \union \{n\}$.
     \end{byCase}
 
     %Assume $n$ is a natural number.
@@ -168,10 +191,10 @@
     %\end{subproof}
 \end{proof}
 
-%\begin{proposition}\label{seq_zero_to_n_isomorph_to_suc_n}
-%    For all $n \in \naturals$ we have $\seq{\zero}{n}$ has cardinality $\suc{n}$.
-%\end{proposition}
-%
+\begin{proposition}\label{seq_zero_to_n_isomorph_to_suc_n}
+    For all $n \in \naturals$ we have $\seq{\zero}{n}$ has cardinality $\suc{n}$.
+\end{proposition}
+
 \begin{proposition}\label{existence_normal_ordered_urysohn}
     Let $X$ be a urysohn space.
     Suppose $U$ is a urysohnchain of $X$.
