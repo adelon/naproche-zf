@@ -98,20 +98,68 @@
 \begin{proposition}\label{naturals_elem_in_transitive}
     If $n \in \naturals$ then $n$ is \in-transitive and every element of $n$ is \in-transitive. 
     %If $n$ is a natural number then $n$ is \in-transitive and every element of $n$ is \in-transitive. 
-    
 \end{proposition}
 
-\begin{proposition}\label{seq_zero_to_n_isomorph_to_n}
+\begin{proposition}\label{zero_is_in_minimal}
+    $\zero$ is an \in-minimal element of $\naturals$.
+\end{proposition}
+
+\begin{proposition}\label{seq_zero_to_n_isomorph_to_suc_n}
     For all $n \in \naturals$ we have $\seq{\zero}{n}$ has cardinality $\suc{n}$.
 \end{proposition}
 \begin{proof} [Proof by \in-induction on $n$]
     Assume $n \in \naturals$.
+    For all $m \in n$ we have $m \in \naturals$.
+    \begin{byCase}
+        \caseOf{$n = \zero$.}
+            It suffices to show that $1 = \seq{\zero}{\zero}$.
+            Follows by set extensionality.
+        \caseOf{$n \neq \zero$.}
+            Take $k$ such that $k \in \naturals$ and $\suc{k} = n$.
+            Then $k \in n$.
+            Therefore $\seq{\zero}{k}$ has cardinality $\suc{k}$.
+            Now $\seq{\zero}{k}$ has cardinality $n$.
+            Take $f$ such that $f$ is a bijection from $n$ to $\seq{\zero}{k}$.
+            We have $\suc{n} = n \union \{n\}$.
+            We show that $\seq{\zero}{n} = \seq{\zero}{k} \union \{\suc{k}\}$.
+            \begin{subproof}
+                We show that $\seq{\zero}{n} \subseteq \seq{\zero}{k} \union \{\suc{k}\}$.
+                \begin{subproof}
+                    Omitted.
+                \end{subproof}
+                We show that $\seq{\zero}{k} \union \{\suc{k}\} \subseteq \seq{\zero}{n}$.
+                \begin{subproof}
+                    Omitted.
+                \end{subproof}
+                %$\seq{\zero}{k} \subseteq \seq{\zero}{n}$.
+            \end{subproof}
+            We have $\{n\} \notin n$.
+            We have $n \notmeets \{n\}$.
+            Let $X = \suc{n}$.
+            Let $Y = \seq{\zero}{n}$.
+            Define $F : X \to Y$ such that $F(x) =$
+            \begin{cases}
+                &f(x) &\text{if} x \in n\\
+                &\suc{k} &\text{if} x \in \{n\} 
+            \end{cases}
+
+    \end{byCase}
+
     %Assume $n$ is a natural number.
     %We show that $\seq{\zero}{\zero}$ has cardinality $1$.
     %\begin{subproof}
     %    It suffices to show that $1 = \seq{\zero}{\zero}$.
     %    Follows by set extensionality.
     %\end{subproof}
+    %It suffices to show that if $n \neq \zero$ then $\seq{\zero}{n}$ has cardinality $\suc{n}$.
+    %We show that for all $m \in \naturals$ such that $m \neq \zero$ we have $\seq{\zero}{m}$ has cardinality $\suc{m}$.
+    %\begin{subproof}
+    %    Fix $m \in \naturals$.
+    %    Take $k$ such that $k \in \naturals$ and $\suc{k} = m$.
+    %    Then $k \in m$.
+    %\end{subproof}
+    
+    
     %For all $n \in \naturals$ we have either $n = \zero$ or there exist $m \in \naturals$ such that $n = \suc{m}$.
     %For all $n \in \naturals$ we have either $n = \zero$ or $\zero \in n$.
     %We show that if $\seq{\zero}{n}$ has cardinality $\suc{n}$ then $\seq{\zero}{\suc{n}}$ has cardinality $\suc{\suc{n}}$.
@@ -120,6 +168,10 @@
     %\end{subproof}
 \end{proof}
 
+%\begin{proposition}\label{seq_zero_to_n_isomorph_to_suc_n}
+%    For all $n \in \naturals$ we have $\seq{\zero}{n}$ has cardinality $\suc{n}$.
+%\end{proposition}
+%
 \begin{proposition}\label{existence_normal_ordered_urysohn}
     Let $X$ be a urysohn space.
     Suppose $U$ is a urysohnchain of $X$.
