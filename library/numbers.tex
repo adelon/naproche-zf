@@ -747,9 +747,49 @@ Laws of the order on the reals
     $x$ is the supremum of $X$ iff $x$ is a greatest lower bound of $X$.
 \end{definition}
 
+\begin{definition}\label{minimum}
+    $\min{X} = \{x \in X \mid \forall y \in X. x \leq y \}$.
+\end{definition}
 
 
+\begin{definition}\label{maximum}
+    $\max{X} = \{x \in X \mid \forall y \in X. x \geq y \}$.
+\end{definition}
 
+
+\begin{definition}\label{intervalclosed}
+    $\intervalclosed{a}{b} = \{x \in \reals \mid a \leq x \leq b\}$.
+\end{definition}
+
+
+\begin{definition}\label{intervalopen}
+    $\intervalopen{a}{b} = \{ x \in \reals \mid a < x < b\}$.
+\end{definition}
+
+
+\begin{definition}\label{m_to_n_set}
+    $\seq{m}{n} = \{x \in \naturals \mid  m \leq x \leq n\}$.   
+\end{definition}
+
+\begin{axiom}\label{abs_behavior1}
+    If $x \geq \zero$ then $\abs{x} = x$.
+\end{axiom}
+
+\begin{axiom}\label{abs_behavior2}
+    If $x < \zero$ then $\abs{x} = \neg{x}$.
+\end{axiom}
+
+\begin{definition}\label{realsminus}
+    $\realsminus = \{r \in \reals \mid r < \zero\}$.
+\end{definition}
+
+\begin{definition}\label{realsplus}
+    $\realsplus = \reals \setminus \realsminus$.
+\end{definition}
+
+\begin{definition}\label{epsilon_ball}
+    $\epsBall{x}{\epsilon} = \intervalopen{x-\epsilon}{x+\epsilon}$.
+\end{definition}
 
 
 

@@ -1,0 +1,26 @@
+\import{set.tex}
+\import{set/cons.tex}
+\import{set/powerset.tex}
+\import{set/fixpoint.tex}
+\import{set/product.tex}
+\import{topology/topological-space.tex}
+\import{topology/separation.tex}
+\import{topology/continuous.tex}
+\import{topology/basis.tex}
+\import{numbers.tex}
+\import{function.tex}
+
+
+\section{The canonical topology on $\mathbbR$}
+
+\begin{definition}\label{topological_basis_reals_eps_ball}
+    $\topoBasisReals = \{ \epsBall{x}{\epsilon} \mid x \in \reals, \epsilon \in \realsplus\}$.
+\end{definition}
+
+\begin{theorem}\label{reals_as_topo_space}
+    Suppose $\opens[\reals] = \genOpens{\topoBasisReals}{\reals}$.
+    Then $\reals$ is a topological space.
+\end{theorem}
+\begin{proof}
+    Omitted.
+\end{proof}

@@ -12,32 +12,11 @@
 \import{set/powerset.tex}
 \import{set/fixpoint.tex}
 \import{set/product.tex}
+\import{topology/real-topological-space.tex}
 
 \section{Urysohns Lemma}
 
-\begin{definition}\label{minimum}
-    $\min{X} = \{x \in X \mid \forall y \in X. x \leq y \}$.
-\end{definition}
 
-
-\begin{definition}\label{maximum}
-    $\max{X} = \{x \in X \mid \forall y \in X. x \geq y \}$.
-\end{definition}
-
-
-\begin{definition}\label{intervalclosed}
-    $\intervalclosed{a}{b} = \{x \in \reals \mid a \leq x \leq b\}$.
-\end{definition}
-
-
-\begin{definition}\label{intervalopen}
-    $\intervalopen{a}{b} = \{ x \in \reals \mid a < x < b\}$.
-\end{definition}
-
-
-\begin{definition}\label{one_to_n_set}
-    $\seq{m}{n} = \{x \in \naturals \mid  m \leq x \leq n\}$.   
-\end{definition}
 
 
 \begin{definition}\label{sequence}
@@ -89,26 +68,6 @@
 \end{definition}
 
 
-\begin{axiom}\label{abs_behavior1}
-    If $x \geq \zero$ then $\abs{x} = x$.
-\end{axiom}
-
-\begin{axiom}\label{abs_behavior2}
-    If $x < \zero$ then $\abs{x} = \neg{x}$.
-\end{axiom}
-
-\begin{definition}\label{realsminus}
-    $\realsminus = \{r \in \reals \mid r < \zero\}$.
-\end{definition}
-
-\begin{definition}\label{realsplus}
-    $\realsplus = \reals \setminus \realsminus$.
-\end{definition}
-
-\begin{definition}\label{epsilon_ball}
-    $\epsBall{x}{\epsilon} = \intervalopen{x-\epsilon}{x+\epsilon}$.
-\end{definition}
-
 \begin{definition}\label{pointwise_convergence}
     $X$ converge to $x$ iff for all $\epsilon \in \realsplus$ there exist $N \in \dom{X}$ such that for all $n \in \dom{X}$ such that $n > N$ we have $\at{X}{n} \in \epsBall{x}{\epsilon}$.
 \end{definition}
@@ -120,9 +79,60 @@
     Then $X$ is a sequence.
 \end{proposition}
 
-\begin{definition}\label{higher_urysohn_chain}
+\begin{definition}\label{lifted_urysohn_chain}
     $U$ is a lifted urysohnchain of $X$ iff $U$ is a sequence and $\dom{U} = \naturals$ and for all $n \in \dom{U}$ we have $\at{U}{n}$ is a urysohnchain of $X$ and $\at{U}{\suc{n}}$ is a minimal finer extention of $\at{U}{n}$ in $X$.
 \end{definition}
+
+\begin{definition}\label{normal_ordered_urysohnchain}
+    $U$ is normal ordered iff there exist $n \in \naturals$ such that $\dom{U} = \seq{\zero}{n}$.
+\end{definition}
+
+\begin{definition}\label{bijection_of_urysohnchains}
+    $f$ is consistent on $X$ to $Y$ iff $f$ is a bijection from $\dom{X}$ to $\dom{Y}$ and for all $n,m \in \dom{X}$ such that $n < m$ we have $f(n) < f(m)$.
+\end{definition}
+
+\begin{proposition}\label{naturals_in_transitive}
+    $\naturals$ is a \in-transitive set.
+\end{proposition}
+
+\begin{proposition}\label{naturals_elem_in_transitive}
+    If $n \in \naturals$ then $n$ is \in-transitive and every element of $n$ is \in-transitive. 
+    %If $n$ is a natural number then $n$ is \in-transitive and every element of $n$ is \in-transitive. 
+    
+\end{proposition}
+
+\begin{proposition}\label{seq_zero_to_n_isomorph_to_n}
+    For all $n \in \naturals$ we have $\seq{\zero}{n}$ has cardinality $\suc{n}$.
+\end{proposition}
+\begin{proof} [Proof by \in-induction on $n$]
+    Assume $n \in \naturals$.
+    %Assume $n$ is a natural number.
+    %We show that $\seq{\zero}{\zero}$ has cardinality $1$.
+    %\begin{subproof}
+    %    It suffices to show that $1 = \seq{\zero}{\zero}$.
+    %    Follows by set extensionality.
+    %\end{subproof}
+    %For all $n \in \naturals$ we have either $n = \zero$ or there exist $m \in \naturals$ such that $n = \suc{m}$.
+    %For all $n \in \naturals$ we have either $n = \zero$ or $\zero \in n$.
+    %We show that if $\seq{\zero}{n}$ has cardinality $\suc{n}$ then $\seq{\zero}{\suc{n}}$ has cardinality $\suc{\suc{n}}$.
+    %\begin{subproof}
+    %    Omitted.
+    %\end{subproof}
+\end{proof}
+
+\begin{proposition}\label{existence_normal_ordered_urysohn}
+    Let $X$ be a urysohn space.
+    Suppose $U$ is a urysohnchain of $X$.
+    Suppose $\dom{U}$ is finite.
+    Then there exist $V,f$ such that $V$ is a urysohnchain of $X$ and $f$ is consistent on $X$ to $Y$ and $V$ is normal ordered.
+\end{proposition}
+\begin{proof}
+    Take $k$ such that $\dom{U}$ has cardinality $k$ by \cref{ran_converse,cardinality,finite}.
+    There exist $F$ such that $F$ is a bijection from $\seq{\zero}{k}$ to $\dom{U}$.
+
+
+\end{proof}
+
 
 \begin{definition}\label{staircase}
     $f$ is a staircase function adapted to $U$ in $X$ iff $U$ is a urysohnchain of $X$ and for all $x,n,m,k$ such that $k = \max{\dom{U}}$ and $n,m \in \dom{U}$ and $n$ follows $m$ in $\dom{U}$ and $x \in (\at{U}{m} \setminus \at{U}{n})$ we have $f(x)= \rfrac{m}{k}$.
@@ -131,9 +141,6 @@
 \begin{definition}\label{staircase_sequence}
     $f$ is staircase sequence of $U$ iff $f$ is a sequence and $U$ is a lifted urysohnchain of $X$ and $\dom{U} = \dom{f}$ and for all $n \in \dom{U}$ we have $\at{f}{n}$ is a staircase function adapted to $\at{U}{n}$ in $U$.
 \end{definition}
-
-
-
 
 
 
@@ -159,9 +166,9 @@
     There exist $U$ such that $U$ is a sequence and $\dom{U} = \naturals$ and $\at{U}{\zero} = U_0$ and for all $n \in \dom{U}$ we have $\at{U}{n}$ is a urysohnchain of $X$ and $\at{U}{\suc{n}}$ is a minimal finer extention of $\at{U}{n}$ in $X$.
 \end{theorem}
 \begin{proof}
-    $U_0$ is a urysohnchain of $X$.
-    It suffices to show that for all $V$ such that $V$ is a urysohnchain of $X$ there exist $V'$ such that $V'$ is a urysohnchain of $X$ and $V'$ is a minimal finer extention of $V$ in $X$.
-    
+    %$U_0$ is a urysohnchain of $X$.
+    %It suffices to show that for all $V$ such that $V$ is a urysohnchain of $X$ there exist $V'$ such that $V'$ is a urysohnchain of $X$ and $V'$ is a minimal finer extention of $V$ in $X$.
+    Omitted.
 \end{proof}
 
 
@@ -246,6 +253,9 @@
     \begin{subproof}
         Follows by \cref{chain_of_subsets,urysohnchain,induction_on_urysohnchains}.
     \end{subproof}
+    Take $U$ such that $U$ is a lifted urysohnchain of $X$ and $\at{U}{\zero} = U_0$.
+
+
 
 
 
