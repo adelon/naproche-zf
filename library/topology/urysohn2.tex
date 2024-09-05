@@ -100,16 +100,128 @@
     %If $n$ is a natural number then $n$ is \in-transitive and every element of $n$ is \in-transitive. 
 \end{proposition}
 
+\begin{proposition}\label{natural_number_is_ordinal_for_all}
+    For all $n \in \naturals$ we have $n$ is a ordinal.
+\end{proposition}
+
 \begin{proposition}\label{zero_is_in_minimal}
     $\zero$ is an \in-minimal element of $\naturals$.
 \end{proposition}
 
-\begin{proposition}\label{naturals_leq}
-    For all $n \in \naturals$ we have $\zero \leq n$.
+\begin{proposition}\label{natural_rless_eq_precedes}
+    For all $n,m \in \naturals$ we have $n \precedes m$ iff $n \in m$.
+\end{proposition}
+
+\begin{proposition}\label{naturals_precedes_suc}
+    For all $n \in \naturals$ we have $n \precedes \suc{n}$.
+\end{proposition}
+
+\begin{proposition}\label{zero_is_empty}
+    There exists no $x$ such that $x \in \zero$.
+\end{proposition}
+
+\begin{proposition}\label{one_is_positiv}
+    $1$ is positiv.
+\end{proposition}
+
+\begin{proposition}\label{suc_of_positive_is_positive}
+    For all $n \in \naturals$ such that $n$ is positiv we have $\suc{n}$ is positiv.
+\end{proposition}
+
+\begin{proposition}\label{naturals_are_positiv_besides_zero}
+    For all $n \in \naturals$ such that $n \neq \zero$ we have $n$ is positiv.
+\end{proposition}
+\begin{proof}[Proof by \in-induction on $n$]
+    Assume $n \in \naturals$.
+    \begin{byCase}
+        \caseOf{$n = \zero$.} Trivial.
+        \caseOf{$n \neq \zero$.}
+            Take $k \in \naturals$ such that $\suc{k} = n$.
+    \end{byCase}
+\end{proof}
+
+
+
+\begin{proposition}\label{naturals_sum_eq_zero}
+    For all $n,m \in \naturals$ we have if $n+m = \zero$ then $n = m = \zero$.
 \end{proposition}
 \begin{proof}
     Omitted.
 \end{proof}
+
+\begin{proposition}\label{no_natural_between_n_and_suc_n}
+    For all $n,m \in \naturals$ we have not $n < m < \suc{n}$.
+\end{proposition}
+
+\begin{proposition}\label{naturals_rless_existence_of_lesser_natural}
+    For all $n \in \naturals$ we have for all $m \in \naturals$ such that $m < n$ there exist $k \in \naturals$ such that $m + k = n$.
+\end{proposition}
+\begin{proof}[Proof by \in-induction on $n$]
+    Assume $n \in \naturals$.
+    We show that $\naturals = (\{\zero, 1\} \union \{n \in \naturals \mid n > 1\})$.
+    \begin{subproof}
+        Trivial.
+    \end{subproof}
+    \begin{byCase}
+        \caseOf{$n = \zero$.} 
+            
+            We show that for all $m \in \naturals$ such that $m < n$ we have there exist $k \in \naturals$ such that $m + k = n$.
+            \begin{subproof}[Proof by \in-induction on $m$]
+                Assume $m \in \naturals$.
+                \begin{byCase}
+                    \caseOf{$m = \zero$.}
+                        Trivial.
+                    \caseOf{$m \neq \zero$.}
+                        Trivial.
+                \end{byCase}
+            \end{subproof}
+        \caseOf{$n = 1$.}
+            Fix $m$.
+            For all $l \in \naturals$ we have If $l < 1$ then $l = \zero$.
+            Then $\zero + 1 = 1$.
+        \caseOf{$n > 1$.} 
+            Take $l \in \naturals$ such that $\suc{l} = n$.
+            Omitted.
+    \end{byCase}
+\end{proof}
+
+
+\begin{proposition}\label{rless_eq_in_for_naturals}
+    For all $n,m \in \naturals$ such that $n < m$ we have $n \in m$. 
+\end{proposition}
+\begin{proof}
+    We show that for all $n \in \naturals$ we have for all $m \in \naturals$ such that $m < n$ we have $m \in n$.
+    \begin{subproof}[Proof by \in-induction on $n$]
+        Assume $n \in \naturals$.
+        We show that for all $m \in \naturals$ such that$m < n$ we have $m \in n$.
+        \begin{subproof}[Proof by \in-induction on $m$]
+            Assume $m \in \naturals$.
+            %\begin{byCase}
+            %    
+            %\end{byCase}
+        \end{subproof}
+    \end{subproof}
+    
+    %Fix $n \in \naturals$.
+
+    %\begin{byCase}
+    %    \caseOf{$n = \zero$.}
+    %        For all $k \in \naturals$ we have $k = \zero$ or $\zero < k$.
+    %        
+    %    \caseOf{$n \neq \zero$.}
+    %        Fix $m \in \naturals$.
+    %        It suffices to show that $m \in n$.
+    %\end{byCase}
+    
+\end{proof}
+
+
+
+\begin{proposition}\label{naturals_leq}
+    For all $n \in \naturals$ we have $\zero \leq n$.
+\end{proposition}
+
+
 
 \begin{proposition}\label{naturals_leq_on_suc}
     For all $n,m \in \naturals$ such that $m < \suc{n}$ we have $m \leq n$.
@@ -157,11 +269,27 @@
                 \end{subproof}
                 We show that $\seq{\zero}{k} \union \{n\} \subseteq \seq{\zero}{n}$.
                 \begin{subproof}
+                    It suffices to show that for all $x \in \seq{\zero}{k} \union \{n\}$ we have $x \in \seq{\zero}{n}$.
                     $k \leq n$ by \cref{naturals_subseteq_reals,suc_eq_plus_one,plus_one_order,subseteq}.
                     $k \in n$.
-                    $\seq{\zero}{k} = k$ by \cref{}.
-                    We have $\seq{\zero}{k} \subseteq \seq{\zero}{n}$.
-                    $n \in \seq{\zero}{n}$.
+                    $\seq{\zero}{k} = \suc{k}$ by assumption.            
+                    $n \in \naturals$.
+                    $\zero \leq n$.
+                    $n \leq n$.
+                    We have $n \in \seq{\zero}{n}$.
+                    Therefore $\seq{\zero}{n}$ is inhabited.
+                    Take $x$ such that $x \in \seq{\zero}{n}$.
+                    Therefore $\zero \leq x \leq n$.
+                    $x = n$ or $x < n$.
+                    Then either $x = n$ or $x \leq k$.
+                    Therefore $x \in \seq{\zero}{k}$ or $x = n$.
+                    Fix $x$.
+                    \begin{byCase}
+                        \caseOf{$x \in \seq{\zero}{k}$.}
+                            Trivial.
+                        \caseOf{$x = n$.}
+                            It suffices to show that $n \in \seq{\zero}{n}$.
+                    \end{byCase}
                 \end{subproof}
                 Trivial.
             \end{subproof}
