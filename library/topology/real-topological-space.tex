@@ -17,10 +17,73 @@
     $\topoBasisReals = \{ \epsBall{x}{\epsilon} \mid x \in \reals, \epsilon \in \realsplus\}$.
 \end{definition}
 
-\begin{theorem}\label{reals_as_topo_space}
-    Suppose $\opens[\reals] = \genOpens{\topoBasisReals}{\reals}$.
-    Then $\reals$ is a topological space.
+\begin{axiom}\label{reals_carrier_reals}
+    $\carrier[\reals] = \reals$.
+\end{axiom}
+
+\begin{theorem}\label{topological_basis_reals_is_prebasis}
+    $\topoBasisReals$ is a topological prebasis for $\reals$.
 \end{theorem}
 \begin{proof}
-    Omitted.
+    We show that $\unions{\topoBasisReals} \subseteq \reals$.
+    \begin{subproof}
+        It suffices to show that for all $x \in \unions{\topoBasisReals}$ we have $x \in \reals$.
+        Fix $x \in \unions{\topoBasisReals}$.
+    \end{subproof}
+    We show that $\reals \subseteq \unions{\topoBasisReals}$.
+    \begin{subproof}
+        It suffices to show that for all $x \in \reals$ we have $x \in \unions{\topoBasisReals}$.
+        Fix $x \in \reals$.
+    \end{subproof}
 \end{proof}
+
+\begin{theorem}\label{topological_basis_reals_is_basis}
+    $\topoBasisReals$ is a topological basis for $\reals$.
+\end{theorem}
+\begin{proof}
+    $\topoBasisReals$ is a topological prebasis for $\reals$ by \cref{topological_basis_reals_is_prebasis}.
+    Let $B = \topoBasisReals$.
+    It suffices to show that for all $U \in B$ we have for all $V \in B$ we have for all $x$ such that $x \in U, V$ there exists $W\in B$ such that $x\in W\subseteq U, V$.
+    Fix $U \in B$.
+    Fix $V \in B$.
+    Fix $x \in U, V$.
+\end{proof}
+
+\begin{axiom}\label{topological_space_reals}
+    $\opens[\reals] = \genOpens{\topoBasisReals}{\reals}$.
+\end{axiom}
+
+\begin{theorem}\label{reals_is_topological_space}
+    $\reals$ is a topological space.
+\end{theorem}
+\begin{proof}
+    $\topoBasisReals$ is a topological basis for $\reals$.
+    Let $B = \topoBasisReals$.
+    We show that $\opens[\reals]$ is a family of subsets of $\carrier[\reals]$.
+    \begin{subproof}
+        It suffices to show that for all $A \in \opens[\reals]$ we have $A \subseteq \reals$.
+        Fix $A \in \opens[\reals]$.
+        Follows by \cref{powerset_elim,topological_space_reals,genopens}.
+    \end{subproof}
+    We show that $\reals \in\opens[\reals]$.
+    \begin{subproof}
+        $B$ covers $\reals$ by \cref{topological_prebasis_iff_covering_family,topological_basis}.
+        $\unions{B} \in \genOpens{B}{\reals}$.
+        $\reals \subseteq \unions{B}$.
+    \end{subproof}
+    We show that for all $A, B\in \opens[\reals]$ we have $A\inter B\in\opens[\reals]$.
+    \begin{subproof}
+        Follows by \cref{topological_space_reals,inters_in_genopens}.
+    \end{subproof}
+    We show that for all $F\subseteq \opens[\reals]$ we have $\unions{F}\in\opens[\reals]$.
+    \begin{subproof}
+        Follows by \cref{topological_space_reals,union_in_genopens}.
+    \end{subproof}
+    $\carrier[\reals] = \reals$.
+    Follows by \cref{topological_space}.
+\end{proof}
+
+\begin{proposition}\label{open_interval_is_open}
+    Suppose $a,b \in \reals$.
+    Then $\intervalopen{a}{b} \in \opens[\reals]$.
+\end{proposition}

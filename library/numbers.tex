@@ -245,12 +245,31 @@
     Then $(n + m) + (k + l)= n + m + k + l = n + (m + k) + l = (((n + m) + k) + l)$.    
 \end{proposition}
 
+%\begin{proposition}\label{natural_disstro_oneline}
+%    Suppose $n,m,k \in \naturals$.
+%    Then $n \rmul (m + k) = (n \rmul m) + (n \rmul k)$.
+%\end{proposition}
+%\begin{proof}
+%    Let $P = \{n \in \naturals \mid \forall m,k \in \naturals .  n \rmul (m + k) = (n \rmul m) + (n \rmul k)\}$.
+%    $\zero \in P$.
+%    $P \subseteq \naturals$.
+%    It suffices to show that for all $n \in P$ we have $\suc{n} \in P$.
+%    Fix $n \in P$.
+%    It suffices to show that for all $m'$ such that $m' \in \naturals$ we have for all $k' \in \naturals$ we have $\suc{n} \rmul (m' + k') = (\suc{n} \rmul m') + (\suc{n} \rmul k')$.
+%    Fix $m' \in \naturals$.
+%    Fix $k' \in \naturals$.
+%    $n \in \naturals$.
+%    $ \suc{n} \rmul (m' + k') = (n \rmul (m' + k')) + (m' + k') = ((n \rmul m') + (n \rmul k')) + (m' + k')  = ((n \rmul m') + (n \rmul k')) + m' + k'    = (((n \rmul m') + (n \rmul k')) + m') + k'  = (m' + ((n \rmul m') + (n \rmul k'))) + k'  = ((m' + (n \rmul m')) + (n \rmul k')) + k'  = (((n \rmul m') + m') + (n \rmul k')) + k'  = ((n \rmul m') + m') + ((n \rmul k') + k')  = (\suc{n} \rmul m') + (\suc{n} \rmul k')$.
+%\end{proof}
+
 \begin{proposition}\label{natural_disstro}
     Suppose $n,m,k \in \naturals$.
     Then $n \rmul (m + k) = (n \rmul m) + (n \rmul k)$.
 \end{proposition}
 \begin{proof}
+   %Let $P = \{n \in \naturals \mid \forall m,k \in \naturals . n \rmul (m + k) = (n \rmul m) + (n \rmul k)\}$.
     Let $P = \{n \in \naturals \mid \text{for all $m,k \in \naturals$ we have $n \rmul (m + k) = (n \rmul m) + (n \rmul k)$}\}$.
+
     $\zero \in P$.
     $P \subseteq \naturals$.
     It suffices to show that for all $n \in P$ we have $\suc{n} \in P$.

@@ -152,16 +152,23 @@
 \begin{proposition}\label{no_natural_between_n_and_suc_n}
     For all $n,m \in \naturals$ we have not $n < m < \suc{n}$.
 \end{proposition}
+\begin{proof}
+    Omitted.
+\end{proof}
+
+\begin{proposition}\label{naturals_is_zero_one_or_greater}
+    $\naturals = \{n \in \naturals \mid n > 1 \lor n = 1 \lor n = \zero\}$.
+\end{proposition}
+\begin{proof}
+    Omitted.
+\end{proof}
 
 \begin{proposition}\label{naturals_rless_existence_of_lesser_natural}
     For all $n \in \naturals$ we have for all $m \in \naturals$ such that $m < n$ there exist $k \in \naturals$ such that $m + k = n$.
 \end{proposition}
 \begin{proof}[Proof by \in-induction on $n$]
     Assume $n \in \naturals$.
-    We show that $\naturals = (\{\zero, 1\} \union \{n \in \naturals \mid n > 1\})$.
-    \begin{subproof}
-        Trivial.
-    \end{subproof}
+    
     \begin{byCase}
         \caseOf{$n = \zero$.} 
             
@@ -196,9 +203,17 @@
         We show that for all $m \in \naturals$ such that$m < n$ we have $m \in n$.
         \begin{subproof}[Proof by \in-induction on $m$]
             Assume $m \in \naturals$.
-            %\begin{byCase}
-            %    
-            %\end{byCase}
+            \begin{byCase}
+                \caseOf{$\suc{m}=n$.}
+                \caseOf{$\suc{m}\neq n$.}  
+                      \begin{byCase}
+                        \caseOf{$n = \zero$.}
+                        \caseOf{$n \neq \zero$.}
+                            Take $l \in \naturals$ such that $\suc{l} = n$.
+                            Omitted.
+
+                      \end{byCase}
+            \end{byCase}
         \end{subproof}
     \end{subproof}
     
@@ -323,17 +338,51 @@
     For all $n \in \naturals$ we have $\seq{\zero}{n}$ has cardinality $\suc{n}$.
 \end{proposition}
 
+\begin{proposition}\label{bijection_naturals_order}
+    For all $M \subseteq \naturals$ such that $M$ is inhabited we have there exist $f,k$ such that $f$ is a bijection from $\seq{\zero}{k}$ to $M$ and $M$ has cardinality $\suc{k}$ and for all $n,m \in \seq{\zero}{k}$ such that $n < m$ we have $f(n) < f(m)$.
+\end{proposition}
+\begin{proof}
+    Omitted.
+\end{proof}
+
 \begin{proposition}\label{existence_normal_ordered_urysohn}
     Let $X$ be a urysohn space.
     Suppose $U$ is a urysohnchain of $X$.
     Suppose $\dom{U}$ is finite.
-    Then there exist $V,f$ such that $V$ is a urysohnchain of $X$ and $f$ is consistent on $X$ to $Y$ and $V$ is normal ordered.
+    Suppose $U$ is inhabited.
+    Then there exist $V,f$ such that $V$ is a urysohnchain of $X$ and $f$ is consistent on $U$ to $V$ and $V$ is normal ordered.
 \end{proposition}
 \begin{proof}
-    Take $k$ such that $\dom{U}$ has cardinality $k$ by \cref{ran_converse,cardinality,finite}.
-    There exist $F$ such that $F$ is a bijection from $\seq{\zero}{k}$ to $\dom{U}$.
-
-
+    Take $n$ such that $\dom{U}$ has cardinality $n$ by \cref{ran_converse,cardinality,finite}.
+    \begin{byCase}
+        \caseOf{$n = \zero$.} 
+            Omitted.
+        \caseOf{$n \neq \zero$.}
+            Take $k$ such that $k \in \naturals$ and $\suc{k}=n$. 
+            We have $\dom{U} \subseteq \naturals$.
+            $\dom{U}$ is inhabited.
+            We show that there exist $F$ such that $F$ is a bijection from $\seq{\zero}{k}$ to $\dom{U}$ and for all $n',m' \in \seq{\zero}{k}$ such that $n' < m'$ we have $F(n') < F(m')$.
+            \begin{subproof}
+                Omitted.
+            \end{subproof}
+            Let $N = \seq{\zero}{k}$.
+            Let $M = \pow{X}$.
+            Define $V : N \to M$ such that $V(n)=$
+            \begin{cases}
+                &\at{U}{F(n)} & \text{if} n \in N
+            \end{cases}
+            $\dom{V} = \seq{\zero}{k}$.
+            We show that $V$ is a urysohnchain of $X$.
+            \begin{subproof}
+                Trivial.
+            \end{subproof}
+            We show that $F$ is consistent on $U$ to $V$.
+            \begin{subproof}
+                Trivial.
+            \end{subproof}
+            $V$ is normal ordered.
+    \end{byCase}
+    
 \end{proof}
 
 
