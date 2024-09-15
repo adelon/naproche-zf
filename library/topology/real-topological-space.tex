@@ -21,6 +21,123 @@
     $\carrier[\reals] = \reals$.
 \end{axiom}
 
+\begin{lemma}\label{intervals_are_connected_in_reals}
+    Suppose $a,b \in \reals$.
+    Then for all $c \in \reals$ such that $a < c < b$ we have $c \in \intervalopen{a}{b}$.
+\end{lemma}
+
+\begin{lemma}\label{epsball_are_subset_reals_elem}
+    Suppose $x \in \reals$.
+    Suppose $\epsilon \in \realsplus$.
+    Then for all $y \in \epsBall{x}{\epsilon}$ we have $y \in \reals$.
+\end{lemma}
+
+\begin{lemma}\label{intervalopen_iff}
+    Suppose $a,b,c \in \reals$.
+    Suppose $a < b$.
+    $c \in \intervalopen{a}{b}$ iff $a < c < b$.
+\end{lemma}
+
+\begin{lemma}\label{epsball_are_subseteq_reals_set}
+    Suppose $x \in \reals$.
+    Suppose $\epsilon \in \realsplus$.
+    Then $\epsBall{x}{\epsilon} \subseteq \reals$.
+\end{lemma}
+
+\begin{lemma}\label{epsball_are_subset_reals_set}
+    Suppose $x \in \reals$.
+    Suppose $\epsilon \in \realsplus$.
+    Then $\epsBall{x}{\epsilon} \subset \reals$.
+\end{lemma}
+
+\begin{lemma}\label{reals_order_minus_positiv}
+    Suppose $x,y \in \reals$.
+    Suppose $\zero < y$.
+    $x - y < x$.
+\end{lemma}
+
+\begin{lemma}\label{realsplus_bigger_zero}
+    For all $x \in \realsplus$ we have $\zero < x$.
+\end{lemma}
+
+\begin{lemma}\label{realsplus_in_reals}
+    For all $x \in \realsplus$ we have $x \in \reals$.
+\end{lemma}
+
+\begin{lemma}\label{epsball_are_inhabited}
+    Suppose $x \in \reals$.
+    Suppose $\epsilon \in \realsplus$.
+    Then $\epsBall{x}{\epsilon}$ is inhabited.
+\end{lemma}
+\begin{proof}
+    $x < x + \epsilon$.
+    $x - \epsilon < x$.
+    $x \in \epsBall{x}{\epsilon}$.
+\end{proof}
+
+\begin{lemma}\label{reals_elem_inbetween}
+    For all $a,b \in \reals$ such that $a < b$ we have there exists $c \in \reals$ such that $a < c < b$.
+\end{lemma}
+
+\begin{lemma}\label{epsball_equal_openinterval}
+    Suppose $x \in \reals$.
+    Suppose $\epsilon \in \realsplus$.
+    Then $\epsBall{x}{\epsilon} = \intervalopen{x - \epsilon}{x + \epsilon}$.
+\end{lemma}
+
+\begin{lemma}\label{minus_behavior1}
+    For all $x \in \reals$ we have $x - x = \zero$.
+\end{lemma}
+
+\begin{lemma}\label{minus_behavior2}
+    For all $x \in \reals$ we have $x + \neg{x} = \zero$.
+\end{lemma}
+
+\begin{lemma}\label{minus_behavior3}
+    For all $x \in \reals$ we have $\neg{x} = \zero - x$.
+\end{lemma}
+
+\begin{lemma}\label{reals_order_is_addition_with_positiv_number}
+    For all $x,y \in \reals$ such that $x < y$ we have there exists $z \in \realsplus$ such that $x + z = y$.
+\end{lemma}
+\begin{proof}
+    %Fix $x,y \in \reals$.
+\end{proof}
+
+\begin{lemma}\label{reals_order_is_transitive}
+    For all $x,y,z \in \reals$ such that $x < y$ and $y < z$ we have $x < z$.
+\end{lemma}
+
+\begin{lemma}\label{reals_order_plus_minus}
+    Suppose $a,b \in \reals$.
+    Suppose $\zero < b$.
+    Then $(a-b) < (a+b)$.
+\end{lemma}
+\begin{proof}
+    We show that $a < (a+b)$.
+    \begin{subproof}
+        Trivial.
+    \end{subproof}
+    We show that $(a-b) < a$.
+    \begin{subproof}
+        Trivial.
+    \end{subproof}
+\end{proof}
+
+\begin{lemma}\label{epsball_are_connected_in_reals}
+    Suppose $x \in \reals$.
+    Suppose $\epsilon \in \realsplus$.
+    Then for all $c \in \reals$ such that $(x - \epsilon) < c < (x + \epsilon)$ we have $c \in \epsBall{x}{\epsilon}$.
+\end{lemma}
+\begin{proof}
+    $x - \epsilon \in \reals$.
+    $x + \epsilon \in \reals$.
+   
+    It suffices to show that for all $c$ such that $c \in \reals \land (x - \epsilon) < c < (x + \epsilon)$ we have $c \in \epsBall{x}{\epsilon}$.
+    %Fix $c$ such that $c \in \reals \land (x - \epsilon) < c < (x + \epsilon)$.
+    %Suppose $(x - \epsilon) < c < (x + \epsilon)$.
+\end{proof}
+
 \begin{theorem}\label{topological_basis_reals_is_prebasis}
     $\topoBasisReals$ is a topological prebasis for $\reals$.
 \end{theorem}
@@ -29,11 +146,21 @@
     \begin{subproof}
         It suffices to show that for all $x \in \unions{\topoBasisReals}$ we have $x \in \reals$.
         Fix $x \in \unions{\topoBasisReals}$.
+        \begin{byCase}
+            \caseOf{$x = \emptyset$.}
+                Trivial.
+            \caseOf{$x \neq \emptyset$.}
+                There exists $U \in \topoBasisReals$ such that $x \in \topoBasisReals$.
+                Take $U \in \topoBasisReals$ such that $x \in \topoBasisReals$.
+
+        \end{byCase}
     \end{subproof}
     We show that $\reals \subseteq \unions{\topoBasisReals}$.
     \begin{subproof}
         It suffices to show that for all $x \in \reals$ we have $x \in \unions{\topoBasisReals}$.
         Fix $x \in \reals$.
+        $\epsBall{x}{1} \in \topoBasisReals$.
+        Therefore $x \in \unions{\topoBasisReals}$.
     \end{subproof}
 \end{proof}
 
@@ -46,7 +173,15 @@
     It suffices to show that for all $U \in B$ we have for all $V \in B$ we have for all $x$ such that $x \in U, V$ there exists $W\in B$ such that $x\in W\subseteq U, V$.
     Fix $U \in B$.
     Fix $V \in B$.
-    Fix $x \in U, V$.
+    It suffices to show that for all $x \in U \inter V$ there exists $W\in B$ such that $x\in W\subseteq U, V$.
+    Fix $x \in U \inter V$.
+    \begin{byCase}
+        \caseOf{$U \inter V = \emptyset$.}
+            Trivial.
+        \caseOf{$U \inter V \neq \emptyset$.}
+            Then $U \inter V$ is inhabited.
+            %It suffices to show that 
+    \end{byCase}
 \end{proof}
 
 \begin{axiom}\label{topological_space_reals}
@@ -87,3 +222,7 @@
     Suppose $a,b \in \reals$.
     Then $\intervalopen{a}{b} \in \opens[\reals]$.
 \end{proposition}
+
+\begin{lemma}\label{safetwo}
+    Contradiction.
+\end{lemma}
