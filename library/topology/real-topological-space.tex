@@ -70,7 +70,7 @@
     Then $\epsBall{x}{\epsilon}$ is inhabited.
 \end{lemma}
 \begin{proof}
-    $x < x + \epsilon$.
+    $x < x + \epsilon$ by \cref{reals_order_behavior_with_addition,realsplus,reals_axiom_zero_in_reals,reals_axiom_kommu,reals_axiom_zero}.
     $x - \epsilon < x$.
     $x \in \epsBall{x}{\epsilon}$.
 \end{proof}
@@ -104,12 +104,8 @@
     Omitted.
 \end{proof}
 
-\begin{lemma}\label{reals_order_is_transitive}
-    For all $x,y,z \in \reals$ such that $x < y$ and $y < z$ we have $x < z$.
-\end{lemma}
-\begin{proof}
-    Omitted.
-\end{proof}
+
+
 
 \begin{lemma}\label{reals_order_plus_minus}
     Suppose $a,b \in \reals$.
@@ -207,12 +203,16 @@ For all $x,\delta$ such that $x \in \reals \land \delta \in \realsplus$ we have 
     Then there exists $a,b \in \reals$ such that $a < b$ and $\intervalopen{a}{b} = \epsBall{x}{\epsilon}$.
 \end{lemma}
 
+\begin{lemma}\label{one_in_realsplus}
+    $1 \in \realsplus$.
+\end{lemma}
+
 \begin{lemma}\label{reals_existence_addition_reverse}
     For all $\delta \in \reals$ there exists $\epsilon \in \reals$ such that $\epsilon + \epsilon = \delta$.
 \end{lemma}
 \begin{proof}
     Fix $\delta \in \reals$.
-    Follows by \cref{reals_disstro2,reals_axiom_disstro1,reals_rmul,suc_eq_plus_one,reals_axiom_mul_invers,suc,suc_neq_emptyset,realsplus_in_reals_plus,naturals_addition_axiom_2,naturals_1_kommu,reals_axiom_zero,naturals_inductive_set,one_is_suc_zero,realsplus,reals_one_bigger_zero,one_in_reals,reals_axiom_one,minus_in_reals}.
+    Follows by \cref{one_in_realsplus,reals_disstro2,reals_axiom_disstro1,reals_rmul,suc_eq_plus_one,reals_axiom_mul_invers,suc,suc_neq_emptyset,realsplus_in_reals_plus,naturals_addition_axiom_2,naturals_1_kommu,reals_axiom_zero,naturals_inductive_set,one_is_suc_zero,realsplus,reals_one_bigger_zero,one_in_reals,reals_axiom_one,minus_in_reals}.
 \end{proof}
 
 \begin{lemma}\label{reals_addition_minus_behavior1}
@@ -260,7 +260,7 @@ For all $x,\delta$ such that $x \in \reals \land \delta \in \realsplus$ we have 
     \end{subproof}
     We show that $\epsBall{x}{\epsilon} \subseteq \intervalopen{a}{b}$.
     \begin{subproof}
-        It suffices to show that for all $y \in \epsBall{x}{\epsilon}$ we have $y \in \intervalopen{a}{b}$.
+        It suffices to show that for all $y \in \epsBall{x}{\epsilon}$ we have $y \in \intervalopen{a}{b}$ by \cref{subseteq}.
         Fix $y \in \epsBall{x}{\epsilon}$.
     \end{subproof}
 
@@ -270,7 +270,8 @@ For all $x,\delta$ such that $x \in \reals \land \delta \in \realsplus$ we have 
     Suppose $a,b,x,y \in \reals$.
     Suppose $a < b$.
     Suppose $x < y$.
-    If $a \leq x < y \leq b$ then $\intervalopen{a}{b} \inter \intervalopen{x}{y} = \intervalopen{x}{y}$.
+    Suppose $a \leq x < y \leq b$.
+    Then $\intervalopen{a}{b} \inter \intervalopen{x}{y} = \intervalopen{x}{y}$.
 \end{lemma}
 \begin{proof}
     Omitted.
@@ -280,7 +281,8 @@ For all $x,\delta$ such that $x \in \reals \land \delta \in \realsplus$ we have 
     Suppose $a,b,x,y \in \reals$.
     Suppose $a < b$.
     Suppose $x < y$.
-    If $a = x$ and $b \leq y$ then $\intervalopen{a}{b} \inter \intervalopen{x}{y} = \intervalopen{a}{b}$.
+    Suppose $a = x$ and $b \leq y$.
+    Then $\intervalopen{a}{b} \inter \intervalopen{x}{y} = \intervalopen{a}{b}$.
 \end{lemma}
 \begin{proof}
     Omitted.
@@ -290,7 +292,8 @@ For all $x,\delta$ such that $x \in \reals \land \delta \in \realsplus$ we have 
     Suppose $a,b,x,y \in \reals$.
     Suppose $a < b$.
     Suppose $x < y$.
-    If $a \leq x$ and $b = y$ then $\intervalopen{a}{b} \inter \intervalopen{x}{y} = \intervalopen{x}{y}$.
+    Suppose $a \leq x$ and $b = y$.
+    Then $\intervalopen{a}{b} \inter \intervalopen{x}{y} = \intervalopen{x}{y}$.
 \end{lemma}
 \begin{proof}
     Omitted.

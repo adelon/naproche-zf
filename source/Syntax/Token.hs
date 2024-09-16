@@ -189,7 +189,7 @@ toks = whitespace *> goNormal id <* eof
                 Nothing -> pure (f [])
                 Just t@Located{unLocated = BeginEnv "math"} -> goMath (f . (t:))
                 Just t@Located{unLocated = BeginEnv "align*"} -> goMath (f . (t:))
-                Just t@Located{unLocated = BeginEnv "cases"} -> goMath (f . (t:))
+                --Just t@Located{unLocated = BeginEnv "cases"} -> goMath (f . (t:))
                 Just t -> goNormal (f . (t:))
         goText f = do
             r <- optional textToken
@@ -205,7 +205,7 @@ toks = whitespace *> goNormal id <* eof
                 Nothing -> pure (f [])
                 Just t@Located{unLocated = EndEnv "math"} -> goNormal (f . (t:))
                 Just t@Located{unLocated = EndEnv "align*"} -> goNormal (f . (t:))
-                Just t@Located{unLocated = EndEnv "cases"} -> goNormal (f . (t:))
+                --Just t@Located{unLocated = EndEnv "cases"} -> goNormal (f . (t:))
                 Just t@Located{unLocated = BeginEnv "text"} -> goText (f . (t:))
                 Just t@Located{unLocated = BeginEnv "explanation"} -> goText (f . (t:))
                 Just t -> goMath (f . (t:))
@@ -282,7 +282,7 @@ alignBegin = guardM isTextMode *> lexeme do
 casesBegin :: Lexer (Located Token)
 casesBegin = guardM isTextMode *> lexeme do
     Char.string "\\begin{cases}"
-    setMathMode
+    --setMathMode
     pure (BeginEnv "cases")
 
 -- | Parses a single end math token.
@@ -301,7 +301,7 @@ alignEnd = guardM isMathMode *> lexeme do
 casesEnd :: Lexer (Located Token)
 casesEnd = guardM isMathMode *> lexeme do
     Char.string "\\end{cases}"
-    setTextMode
+    --setTextMode
     pure (EndEnv "cases")
 
 
