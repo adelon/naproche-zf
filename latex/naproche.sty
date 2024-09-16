@@ -40,6 +40,7 @@
 \newtheorem{remark}[theoremcount]{Remark}
 \newtheorem{signature}[theoremcount]{Signature}
 \newtheorem{theorem}[theoremcount]{Theorem}
+\newtheorem{inductive}[theoremcount]{Inductive}
 
 % Theorem environments without numbering.
 \newtheorem*{quotedaxiom}{Axiom}
@@ -139,9 +140,22 @@
 \newcommand{\rationals}{\mathcal{Q}}
 \newcommand{\rminus}{-_{\mathcal{R}}}
 \newcommand{\seq}[2]{\{#1, ... ,#2\}}
-\newcommand{\indexx}[2]{index_{#1}(#2)}
-\newcommand{\indexset}[2]{#1}
-
+\newcommand{\indexx}[2][]{index_{#1}(#2)}
+\newcommand{\indexxset}[1]{#1}
+\newcommand{\topoBasisReals}{\mathbb{B}_{\mathcal{R}}}
+\newcommand{\intervalopen}[2]{(#1, #2)}
+\newcommand{\intervalclosed}[2]{[#1, #2]}
+\newcommand{\epsBall}[2]{\mathcal{B}_{#1,#2}}
+\newcommand{\realsplus}{\reals_{+}}
+\newcommand{\rless}{<}
+\newcommand{\two}{2}
+\newcommand{\powerOfTwoSet}{\mathbb{P}_{2^{}}}
+\newcommand{\pot}{\powerOfTwoSet}
+\newcommand{\chain}[1]{#1}
+\newcommand{\refine}{\text{ finer than }}
+\newcommand{\abs}[1]{\left\lvert#1\right\rvert}
+\newcommand{\realsminus}{\reals_{-}}
+\newcommand{\at}[2]{#1(#2)}
 
 
 \newcommand\restrl[2]{{% we make the whole thing an ordinary symbol

@@ -51,13 +51,14 @@ The first tept will be a formalisation of chain constructions.
 \begin{struct}\label{sequence}
     A sequence $X$ is a onesorted structure equipped with
     \begin{enumerate}
-        \item $\index$
-        \item $\indexset$
+        \item $\indexx$
+        \item $\indexxset$
+        
     \end{enumerate}
     such that
     \begin{enumerate}
-        \item\label{indexset_is_subset_naturals} $\indexset[X] \subseteq \naturals$.
-        \item\label{index_is_bijection} $\index[X]$ is a bijection from $\indexset[X]$ to $\carrier[X]$.
+        \item\label{indexset_is_subset_naturals} $\indexxset[X] \subseteq \naturals$.
+        \item\label{index_is_bijection} $\indexx[X]$ is a bijection from $\indexxset[X]$ to $\carrier[X]$.
     \end{enumerate}
 \end{struct}
 
@@ -68,13 +69,13 @@ The first tept will be a formalisation of chain constructions.
 
 \begin{definition}\label{cahin_of_subsets}
     $C$ is a chain of subsets iff
-    $C$ is a sequence and for all $n,m \in \indexset[C]$ such that $n < m$ we have $\index[C](n) \subseteq \index[C](m)$.
+    $C$ is a sequence and for all $n,m \in \indexxset[C]$ such that $n < m$ we have $\indexx[C](n) \subseteq \indexx[C](m)$.
 \end{definition}
 
 \begin{definition}\label{chain_of_n_subsets}
     $C$ is a chain of $n$ subsets iff
-    $C$ is a chain of subsets and $n \in \indexset[C]$ 
-    and for all $m \in \naturals$ such that $m \leq n$ we have $m \in \indexset[C]$.
+    $C$ is a chain of subsets and $n \in \indexxset[C]$ 
+    and for all $m \in \naturals$ such that $m \leq n$ we have $m \in \indexxset[C]$.
 \end{definition}
 
 
@@ -133,18 +134,18 @@ The first tept will be a formalisation of chain constructions.
         \item \label{staircase_domain} $\dom{f}$ is a topological space.
         \item \label{staricase_def_chain} $C$ is a chain of subsets.
         \item \label{staircase_chain_is_in_domain} for all $x \in C$ we have $x \subseteq \dom{f}$.
-        \item \label{staircase_behavoir_index_zero} $f(\index[C](1))= 1$. 
+        \item \label{staircase_behavoir_index_zero} $f(\indexx[C](1))= 1$. 
         \item \label{staircase_behavoir_index_n} $f(\dom{f}\setminus \unions{C}) = \zero$.
-        \item \label{staircase_chain_indeset} There exist $n$ such that $\indexset[C] = \seq{\zero}{n}$.
-        \item \label{staircase_behavoir_index_arbetrray} for all $n \in \indexset[C]$ 
-            such that $n \neq \zero$ we have $f(\index[C](n) \setminus \index[C](n-1)) = \rfrac{n}{ \max{\indexset[C]} }$. 
+        \item \label{staircase_chain_indeset} There exist $n$ such that $\indexxset[C] = \seq{\zero}{n}$.
+        \item \label{staircase_behavoir_index_arbetrray} for all $n \in \indexxset[C]$ 
+            such that $n \neq \zero$ we have $f(\indexx[C](n) \setminus \indexx[C](n-1)) = \rfrac{n}{ \max{\indexxset[C]} }$. 
     \end{enumerate}
 \end{struct}
 
 \begin{definition}\label{legal_staircase}
     $f$ is a legal staircase function iff
     $f$ is a staircase function and 
-    for all $n,m \in \indexset[\chain[f]]$ such that $n \leq m$ we have $f(\index[\chain[f]](n)) \leq f(\index[\chain[f]](m))$.
+    for all $n,m \in \indexxset[\chain[f]]$ such that $n \leq m$ we have $f(\indexx[\chain[f]](n)) \leq f(\indexx[\chain[f]](m))$.
 \end{definition}
 
 \begin{abbreviation}\label{urysohnspace}
@@ -159,23 +160,23 @@ The first tept will be a formalisation of chain constructions.
     $C$ is a urysohnchain in $X$ of cardinality $k$ iff %<---- TODO: cardinality unused!
     $C$ is a chain of subsets and
     for all $A \in C$ we have $A \subseteq X$ and
-    for all $n,m \in \indexset[C]$ such that $n < m$ we have $\closure{\index[C](n)}{X} \subseteq \interior{\index[C](m)}{X}$.
+    for all $n,m \in \indexxset[C]$ such that $n < m$ we have $\closure{\indexx[C](n)}{X} \subseteq \interior{\indexx[C](m)}{X}$.
 \end{definition}
 
 \begin{definition}\label{urysohnchain_without_cardinality}
     $C$ is a urysohnchain in $X$ iff
     $C$ is a chain of subsets and
     for all $A \in C$ we have $A \subseteq X$ and
-    for all $n,m \in \indexset[C]$ such that $n < m$ we have $\closure{\index[C](n)}{X} \subseteq \interior{\index[C](m)}{X}$.
+    for all $n,m \in \indexxset[C]$ such that $n < m$ we have $\closure{\indexx[C](n)}{X} \subseteq \interior{\indexx[C](m)}{X}$.
 \end{definition}
 
 \begin{abbreviation}\label{infinte_sequence}
-    $S$ is a infinite sequence iff $S$ is a sequence and $\indexset[S]$ is infinite.
+    $S$ is a infinite sequence iff $S$ is a sequence and $\indexxset[S]$ is infinite.
 \end{abbreviation}
 
 \begin{definition}\label{infinite_product}
     $X$ is the infinite product of $Y$ iff
-    $X$ is a infinite sequence and for all $i \in \indexset[X]$ we have $\index[X](i) = Y$.
+    $X$ is a infinite sequence and for all $i \in \indexxset[X]$ we have $\indexx[X](i) = Y$.
 \end{definition}
 
 \begin{definition}\label{refinmant}
@@ -289,9 +290,9 @@ The first tept will be a formalisation of chain constructions.
     Suppose $A \inter B$ is empty.
     Then there exist $U$
     such that $\carrier[U] = \{A,(\carrier[X] \setminus B)\}$
-    and $\indexset[U]= \{\zero, 1\}$
-    and $\index[U](\zero) = A$
-    and $\index[U](1) = (\carrier[X] \setminus B)$.
+    and $\indexxset[U]= \{\zero, 1\}$
+    and $\indexx[U](\zero) = A$
+    and $\indexx[U](1) = (\carrier[X] \setminus B)$.
     %$U$ is a urysohnchain in $X$.
 \end{proposition}
 \begin{proof}
@@ -310,12 +311,12 @@ The first tept will be a formalisation of chain constructions.
 %   
     %   We show that $U$ is a chain of subsets.
     %   \begin{subproof}
-    %       For all $n \in \indexset[U]$ we have $n = \zero \lor n = 1$.
-    %       It suffices to show that for all $n \in \indexset[U]$ we have
-    %       for all $m \in \indexset[U]$ such that 
-    %       $n < m$ we have $\index[U](n) \subseteq \index[U](m)$.
-    %       Fix $n \in \indexset[U]$.
-    %       Fix $m \in \indexset[U]$.
+    %       For all $n \in \indexxset[U]$ we have $n = \zero \lor n = 1$.
+    %       It suffices to show that for all $n \in \indexxset[U]$ we have
+    %       for all $m \in \indexxset[U]$ such that 
+    %       $n < m$ we have $\indexx[U](n) \subseteq \indexx[U](m)$.
+    %       Fix $n \in \indexxset[U]$.
+    %       Fix $m \in \indexxset[U]$.
     %       \begin{byCase}
     %           \caseOf{$n = 1$.} Trivial.
     %           \caseOf{$n = \zero$.} 
@@ -337,8 +338,8 @@ The first tept will be a formalisation of chain constructions.
     %   \begin{subproof}
     %       Omitted.
     %   \end{subproof}
-    %   We show that for all $n,m \in \indexset[U]$ such that $n < m$ we have
-    %   $\closure{\index[U](n)}{X} \subseteq \interior{\index[U](m)}{X}$.
+    %   We show that for all $n,m \in \indexxset[U]$ such that $n < m$ we have
+    %   $\closure{\indexx[U](n)}{X} \subseteq \interior{\indexx[U](m)}{X}$.
     %   \begin{subproof}
     %       Omitted.
     %   \end{subproof}
@@ -352,9 +353,9 @@ The first tept will be a formalisation of chain constructions.
     Suppose $A \inter B$ is empty.
     Suppose there exist $U$
     such that $\carrier[U] = \{A,(\carrier[X] \setminus B)\}$
-    and $\indexset[U]= \{\zero, 1\}$
-    and $\index[U](\zero) = A$
-    and $\index[U](1) = (\carrier[X] \setminus B)$.
+    and $\indexxset[U]= \{\zero, 1\}$
+    and $\indexx[U](\zero) = A$
+    and $\indexx[U](1) = (\carrier[X] \setminus B)$.
     Then $U$ is a urysohnchain in $X$.
 \end{proposition}
 \begin{proof}
@@ -384,9 +385,9 @@ The first tept will be a formalisation of chain constructions.
     % U  = ( A_{0}, A_{1}, A_{2}, ... , A_{n-1}, A_{n})
     % U' = ( A_{0}, A'_{1}, A_{1}, A'_{2}, A_{2}, ...   A_{n-1}, A'_{n}, A_{n})
 
-    % Let $m = \max{\indexset[U]}$.
-    % For all $n \in (\indexset[U] \setminus \{m\})$ we have there exist $C \subseteq X$ 
-    % such that $\closure{\index[U](n)}{X} \subseteq \interior{C}{X} \subseteq \closure{C}{X} \subseteq \interior{\index[U](n+1)}{X}$.
+    % Let $m = \max{\indexxset[U]}$.
+    % For all $n \in (\indexxset[U] \setminus \{m\})$ we have there exist $C \subseteq X$ 
+    % such that $\closure{\indexx[U](n)}{X} \subseteq \interior{C}{X} \subseteq \closure{C}{X} \subseteq \interior{\indexx[U](n+1)}{X}$.
     
     
     %\begin{definition}\label{refinmant}
@@ -408,7 +409,7 @@ The first tept will be a formalisation of chain constructions.
     Suppose $U$ is a urysohnchain in $X$ and $U$ has cardinality $k$.
     Suppose $k \neq \zero$.
     Then there exist $f$ such that $f \in \funs{\carrier[X]}{\intervalclosed{\zero}{1}}$ 
-    and for all $n \in \indexset[U]$ we have for all $x \in \index[U](n)$ 
+    and for all $n \in \indexxset[U]$ we have for all $x \in \indexx[U](n)$ 
     we have $f(x) = \rfrac{n}{k}$.
 \end{proposition}
 \begin{proof}
@@ -445,11 +446,11 @@ The first tept will be a formalisation of chain constructions.
 
 \begin{abbreviation}\label{converge}
     $s$ converges iff $s$ is a sequence of real numbers 
-    and $\indexset[s]$ is infinite
+    and $\indexxset[s]$ is infinite
     and for all $\epsilon \in \reals$ such that $\epsilon > \zero$ we have
-    there exist $N \in \indexset[s]$ such that
-    for all $m \in \indexset[s]$ such that $m > N$ 
-    we have $\abs{\index[s](N) - \index[s](m)} < \epsilon$.
+    there exist $N \in \indexxset[s]$ such that
+    for all $m \in \indexxset[s]$ such that $m > N$ 
+    we have $\abs{\indexx[s](N) - \indexx[s](m)} < \epsilon$.
 \end{abbreviation}
 
 
@@ -457,9 +458,9 @@ The first tept will be a formalisation of chain constructions.
     $x$ is the limit of $s$ iff $s$ is a sequence of real numbers
     and $x \in \reals$ and 
     for all $\epsilon \in \reals$ such that $\epsilon > \zero$
-    we have there exist $n \in \indexset[s]$ such that 
-    for all $m \in \indexset[s]$ such that $m > n$ 
-    we have $\abs{x - \index[s](n)} < \epsilon$.
+    we have there exist $n \in \indexxset[s]$ such that 
+    for all $m \in \indexxset[s]$ such that $m > n$ 
+    we have $\abs{x - \indexx[s](n)} < \epsilon$.
 \end{definition}
 
 \begin{proposition}\label{existence_of_limit}
@@ -473,9 +474,9 @@ The first tept will be a formalisation of chain constructions.
 
 \begin{definition}\label{limit_sequence}
     $x$ is the limit sequence of $f$ iff
-    $x$ is a sequence and $\indexset[x] = \dom{f}$ and
-    for all $n \in \indexset[x]$ we have
-    $\index[x](n) = f(n)$.
+    $x$ is a sequence and $\indexxset[x] = \dom{f}$ and
+    for all $n \in \indexxset[x]$ we have
+    $\indexx[x](n) = f(n)$.
 \end{definition}
 
 \begin{definition}\label{realsminus}
@@ -596,15 +597,15 @@ The first tept will be a formalisation of chain constructions.
 \begin{proof}
     
     There exist $\eta$ such that $\carrier[\eta] = \{A, (\carrier[X] \setminus B)\}$ 
-    and $\indexset[\eta] = \{\zero, 1\}$ 
-    and $\index[\eta](\zero) = A$
-    and $\index[\eta](1) = (\carrier[X] \setminus B)$  by \cref{urysohnchain_induction_begin}.
+    and $\indexxset[\eta] = \{\zero, 1\}$ 
+    and $\indexx[\eta](\zero) = A$
+    and $\indexx[\eta](1) = (\carrier[X] \setminus B)$  by \cref{urysohnchain_induction_begin}.
     
     We show that there exist $\zeta$ such that $\zeta$ is a sequence 
-    and $\indexset[\zeta] = \naturals$
-    and $\eta \in \carrier[\zeta]$ and $\index[\zeta](\eta) = \zero$
-    and for all $n \in \indexset[\zeta]$ we have $n+1 \in \indexset[\zeta]$ 
-    and $\index[\zeta](n+1)$ is a refinmant of $\index[\zeta](n)$.
+    and $\indexxset[\zeta] = \naturals$
+    and $\eta \in \carrier[\zeta]$ and $\indexx[\zeta](\eta) = \zero$
+    and for all $n \in \indexxset[\zeta]$ we have $n+1 \in \indexxset[\zeta]$ 
+    and $\indexx[\zeta](n+1)$ is a refinmant of $\indexx[\zeta](n)$.
     \begin{subproof}
             %Let $\alpha = \{x \in C \mid \exists y \in \alpha. x \refine y \lor x = \eta\}$.
             %Let $\beta = \{ (n,x) \mid n \in \naturals \mid \exists m \in \naturals. \exists y \in \alpha. (x \in \alpha) \land ((x \refine y \land m = n+1 )\lor ((n,x) = (\zero,\eta)))\}$.
@@ -614,7 +615,7 @@ The first tept will be a formalisation of chain constructions.
             %$\dom{\beta} = \naturals$.
             %$\ran{\beta} = \alpha$.
             %$\beta \in \funs{\naturals}{\alpha}$.
-            %Take $\zeta$ such that $\carrier[\zeta] = \alpha$ and $\indexset[\zeta] = \naturals$ and $\index[\zeta] = \beta$.
+            %Take $\zeta$ such that $\carrier[\zeta] = \alpha$ and $\indexxset[\zeta] = \naturals$ and $\indexx[\zeta] = \beta$.
         Omitted.
     \end{subproof}
 
@@ -628,14 +629,14 @@ The first tept will be a formalisation of chain constructions.
     %We show that there exist $k \in \funs{\carrier[X]}{\reals}$ such that
     %$k(x)$
 
-    %For all $n \in \naturals$ we have $\index[\zeta](n)$ is a urysohnchain in $X$.
+    %For all $n \in \naturals$ we have $\indexx[\zeta](n)$ is a urysohnchain in $X$.
 
-    We show that for all $n \in \indexset[\zeta]$ we have $\index[\zeta](n)$ has cardinality $\pot(n)$.
+    We show that for all $n \in \indexxset[\zeta]$ we have $\indexx[\zeta](n)$ has cardinality $\pot(n)$.
     \begin{subproof}
         Omitted.
     \end{subproof}
 
-    We show that for all $m \in \indexset[\zeta]$ we have $\pot(m) \neq \zero$.
+    We show that for all $m \in \indexxset[\zeta]$ we have $\pot(m) \neq \zero$.
     \begin{subproof}
         Omitted.
     \end{subproof}
@@ -646,212 +647,212 @@ The first tept will be a formalisation of chain constructions.
     \end{subproof}
 
     
-    We show that for all $m \in \indexset[\zeta]$ we have there exist $f$ such that $f \in \funs{\carrier[X]}{\intervalclosed{\zero}{1}}$ 
-    and for all $n \in \indexset[\index[\zeta](m)]$ we have for all $x \in \index[\index[\zeta](m)](n)$ such that $x \notin \index[\index[\zeta](m)](n-1)$ 
-    we have $f(x) = \rfrac{n}{\pot(m)}$.
-    \begin{subproof}
-        Fix $m \in \indexset[\zeta]$.
-        %$\index[\zeta](m)$ is a urysohnchain in $X$.
-
-        %Define $o : \alpha \to \intervalclosed{\zero}{1}$ such that $o(x) =$
-        %\begin{cases}
-        %    & 0  & \text{if} x \in A 
-        %    & 1 & \text{if} x \in B 
-        %    & \rfrac{n}{m} & \text{if} \exists n \in \naturals. x \in \index[\index[\zeta](m)](n) \land x \notin \index[\index[\zeta](m)](n-1)
-        %\end{cases}
+%    We show that for all $m \in \indexxset[\zeta]$ we have there exist $f$ such that $f \in \funs{\carrier[X]}{\intervalclosed{\zero}{1}}$ 
+%    and for all $n \in \indexxset[\indexx[\zeta](m)]$ we have for all $x \in \indexx[\indexx[\zeta](m)](n)$ such that $x \notin \indexx[\indexx[\zeta](m)](n-1)$ 
+%    we have $f(x) = \rfrac{n}{\pot(m)}$.
+%    \begin{subproof}
+%        Fix $m \in \indexxset[\zeta]$.
+%        %$\indexx[\zeta](m)$ is a urysohnchain in $X$.
 %
-        Omitted.
-    \end{subproof}
-
-    
-
-    %The sequenc of the functions
-    Let $\gamma = \{
-        (n,f) \mid 
-        n \in \naturals \mid 
-        
-        \forall n' \in \indexset[\index[\zeta](n)].             
-        \forall x \in \carrier[X].      
-        
-
-        f \in \funs{\carrier[X]}{\intervalclosed{\zero}{1}} \land
-
-
-        % (n,f) \in \gamma  <=>   \phi(n,f)
-        % with \phi (n,f) :=        
-        %    (x \in (A_k) \ (A_k-1)) ==> f(x) = ( k / 2^n )        
-        % \/ (x \notin A_k for all k \in {1,..,n} ==>  f(x) = 1 
-
-            (       (n' = \zero)   
-            \land   (x \in \index[\index[\zeta](n)](n')) 
-            \land   (f(x)= \zero) ) 
-        
-        \lor
-        
-            (       (n' > \zero)    
-            \land   (x \in \index[\index[\zeta](n)](n'))
-            \land   (x \notin \index[\index[\zeta](n)](n'-1))
-            \land   (f(x) = \rfrac{n'}{\pot(n)}) )
-            
-        \lor
-
-            (       (x \notin  \index[\index[\zeta](n)](n'))
-            \land   (f(x) = 1) )
-        
-    \}$.
-    
-    Let $\gamma(n) = \apply{\gamma}{n}$ for $n \in \naturals$.
-
-    We show that for all $n \in \naturals$ we have $\gamma(n)$ 
-    is a function from $\carrier[X]$ to $\reals$.
-    \begin{subproof}
-        Omitted.
-    \end{subproof}
-
-    
-    We show that for all $n \in \naturals$ we have $\gamma(n)$ 
-    is a function from $\carrier[X]$ to $\intervalclosed{\zero}{1}$.
-    \begin{subproof}
-        Omitted.
-    \end{subproof}
-
-    We show that $\gamma$ is a function from $\naturals$ to $\reals$.
-    \begin{subproof}
-        Omitted.
-    \end{subproof}
-
-    We show that  for all $x,k,n$ such that $n\in \naturals$ and $k \in \naturals$ and $x \in \index[\index[\zeta](n)](k)$ we have $\apply{\gamma(n)}{x} =  \rfrac{k}{\pot(n)}$.
-    \begin{subproof}
-        Omitted.
-    \end{subproof}
-
-    We show that for all $n \in \naturals$ for all $x \in \carrier[X]$ we have $\apply{\gamma(n)}{x} \in \intervalclosed{\zero}{1}$. 
-    \begin{subproof}
-        Fix $n \in \naturals$.
-        Fix $x \in \carrier[X]$.
-        Omitted.
-    \end{subproof}
-
-
-
-    We show that 
-    if $h$ is a function from $\naturals$ to $\reals$ and for all $n \in \naturals$ we have $h(n) \leq h(n+1)$ and there exist $B \in \reals$ such that $h(n) < B$ 
-    then there exist $k \in \reals$ such that for all $m \in \naturals$ we have $h(m) \leq k$ and for all $k' \in \reals$ such that $k' < k$ we have there exist $M \in \naturals$ such that $k' < h(M)$.
-    \begin{subproof}
-        Omitted.
-    \end{subproof} 
-
-
-
-    We show that there exist $g$ such that for all $x \in \carrier[X]$ we have there exist $k \in \reals$ such that  $g(x)= k$ and for all $\epsilon \in \reals$ such that $\epsilon > \zero$ we have there exist $N \in \naturals$ such that for all $N' \in \naturals$ such that $N' > N$ we have $\abs{\apply{\gamma(N')}{x} - k} < \epsilon$.
-    \begin{subproof}       
-        We show that for all $x \in \carrier[X]$ we have there exist $k \in \reals$ such that for all $\epsilon \in \reals$ such that $\epsilon > \zero$ we have there exist $N \in \naturals$ such that for all $N' \in \naturals$ such that $N' > N$ we have $\abs{\apply{\gamma(N')}{x} - k} < \epsilon$.
-        \begin{subproof}
-            Fix $x \in \carrier[X]$.
-            
-            Omitted.
-            
-            % Contradiction by \cref{two_in_naturals,function_apply_default,reals_axiom_zero_in_reals,dom_emptyset,notin_emptyset,funs_type_apply,neg,minus,abs_behavior1}.
-            %Follows by \cref{two_in_naturals,function_apply_default,reals_axiom_zero_in_reals,dom_emptyset,notin_emptyset,funs_type_apply,neg,minus,abs_behavior1}.
-        \end{subproof}
-        Omitted.
-    \end{subproof}
-    
-
-    Let $G(x) = g(x)$ for $x \in \carrier[X]$.
-    We have $\dom{G} = \carrier[X]$.
-
-    We show that for all $x \in \dom{G}$ we have $G(x) \in \reals$.
-    \begin{subproof}
-        %Fix $x \in \dom{G}$.
-        %It suffices to show that $g(x) \in \reals$.
+%        %Define $o : \alpha \to \intervalclosed{\zero}{1}$ such that $o(x) =$
+%        %\begin{cases}
+%        %    & 0  & \text{if} x \in A 
+%        %    & 1 & \text{if} x \in B 
+%        %    & \rfrac{n}{m} & \text{if} \exists n \in \naturals. x \in \indexx[\indexx[\zeta](m)](n) \land x \notin \indexx[\indexx[\zeta](m)](n-1)
+%        %\end{cases}
+%%
+%        Omitted.
+%    \end{subproof}
 %
-        %There exist $k \in \reals$ such that for all $\epsilon \in \reals$ such that $\epsilon > \zero$ we have there exist $N \in \naturals$ such that for all $N' \in \naturals$ such that $N' > N$ we have $\abs{\apply{\gamma(N')}{x} - k} < \epsilon$.
+%    
 %
-        %We show that for all $\epsilon \in \reals$ such that $\epsilon > \zero$ we have there exist $N \in \naturals$ such that for all $N' \in \naturals$ such that $N' > N$ we have $\abs{\apply{\gamma(N')}{x} - g(x)} < \epsilon$ and $g(x)= k$.
-        %\begin{subproof}
-        %    Fix $\epsilon \in \reals$.
-        %    
+%    %The sequenc of the functions
+%    Let $\gamma = \{
+%        (n,f) \mid 
+%        n \in \naturals \mid 
+%        
+%        \forall n' \in \indexxset[\indexx[\zeta](n)].             
+%        \forall x \in \carrier[X].      
+%        
 %
-        %\end{subproof}
-        %Follows by \cref{apply,plus_one_order,ordinal_iff_suc_ordinal,natural_number_is_ordinal,subseteq,naturals_subseteq_reals,naturals_is_equal_to_two_times_naturals,reals_one_bigger_zero,one_in_reals,ordinal_prec_trichotomy,omega_is_an_ordinal,suc_intro_self,two_in_naturals,in_asymmetric,suc}.
-        Omitted.
-    \end{subproof}
-
-    We show that for all $x \in \dom{G}$ we have $\zero \leq G(x) \leq 1$.
-    \begin{subproof}
-        %Fix $x \in \dom{G}$.
-        %Then $x \in \carrier[X]$.
-        %\begin{byCase}
-        %    \caseOf{$x \in A$.} 
-        %        For all $n \in \naturals$ we have $\apply{\gamma(n)}{x} = \zero$.
+%        f \in \funs{\carrier[X]}{\intervalclosed{\zero}{1}} \land
 %
 %
-        %    \caseOf{$x \notin A$.} 
-        %        \begin{byCase}
-        %            \caseOf{$x \in B$.} 
-        %                For all $n \in \naturals$ we have $\apply{\gamma(n)}{x} = 1$.
+%        % (n,f) \in \gamma  <=>   \phi(n,f)
+%        % with \phi (n,f) :=        
+%        %    (x \in (A_k) \ (A_k-1)) ==> f(x) = ( k / 2^n )        
+%        % \/ (x \notin A_k for all k \in {1,..,n} ==>  f(x) = 1 
 %
-        %            \caseOf{$x \notin B$.}
-        %                Omitted.
-        %        \end{byCase}
-        %\end{byCase}
-        Omitted.
-    \end{subproof}
-
-
-    We show that $G \in \funs{\carrier[X]}{\intervalclosed{\zero}{1}}$.
-    \begin{subproof}        
-        %It suffices to show that $\ran{G} \subseteq \intervalclosed{\zero}{1}$ by \cref{fun_ran_iff,funs_intro,funs_weaken_codom}.
-        %It suffices to show that for all $x \in \dom{G}$ we have $G(x) \in \intervalclosed{\zero}{1}$.
-        %Fix $x \in \dom{G}$.
-        %Then $x \in \carrier[X]$.
-        %$g(x) = G(x)$.
-        %We have $G(x) \in \reals$.
-        %$\zero \leq G(x) \leq 1$.
-        %We have $G(x) \in \intervalclosed{\zero}{1}$ .
-        Omitted.
-    \end{subproof}
-
-    We show that $G(A) = \zero$.
-    \begin{subproof}
-        Omitted.
-    \end{subproof}
-
-    We show that $G(B) = 1$.
-    \begin{subproof}
-        Omitted.
-    \end{subproof}
-
-    We show that $G$ is continuous.
-    \begin{subproof}
-        Omitted.
-    \end{subproof}
-
-    %Suppose $\eta$ is a urysohnchain in $X$.
-    %Suppose $\carrier[\eta] =\{A, (X \setminus B)\}$
-    %and $\indexset[\eta] = \{\zero, 1\}$
-    %and $\index[\eta](\zero) = A$ 
-    %and $\index[\eta](1) = (X \setminus B)$.
-
-
-    %Then $\eta$ is a urysohnchain in $X$.
-
-    %   Take $P$ such that $P$ is a infinite sequence and $\indexset[P] = \naturals$ and for all $i \in \indexset[P]$ we have $\index[P](i) = \pow{X}$.
-    %   
-    %   We show that there exist $\zeta$ such that $\zeta$ is a infinite sequence 
-    %   and for all $i \in \indexset[\zeta]$ we have 
-    %   $\index[\zeta](i)$ is a urysohnchain in $X$ of cardinality $i$
-    %   and $A \subseteq \index[\zeta](i)$
-    %   and $\index[\zeta](i) \subseteq (X \setminus B)$
-    %   and for all $j \in \indexset[\zeta]$ such that 
-    %   $j < i$ we have for all $x \in \index[\zeta](j)$ we have $x \in \index[\zeta](i)$.
-    %   \begin{subproof}
-    %       Omitted.
-    %   \end{subproof}
-    %   
-    %   
-    %   
+%            (       (n' = \zero)   
+%            \land   (x \in \indexx[\indexx[\zeta](n)](n')) 
+%            \land   (f(x)= \zero) ) 
+%        
+%        \lor
+%        
+%            (       (n' > \zero)    
+%            \land   (x \in \indexx[\indexx[\zeta](n)](n'))
+%            \land   (x \notin \indexx[\indexx[\zeta](n)](n'-1))
+%            \land   (f(x) = \rfrac{n'}{\pot(n)}) )
+%            
+%        \lor
+%
+%            (       (x \notin  \indexx[\indexx[\zeta](n)](n'))
+%            \land   (f(x) = 1) )
+%        
+%    \}$.
+%    
+%    Let $\gamma(n) = \apply{\gamma}{n}$ for $n \in \naturals$.
+%
+%    We show that for all $n \in \naturals$ we have $\gamma(n)$ 
+%    is a function from $\carrier[X]$ to $\reals$.
+%    \begin{subproof}
+%        Omitted.
+%    \end{subproof}
+%
+%    
+%    We show that for all $n \in \naturals$ we have $\gamma(n)$ 
+%    is a function from $\carrier[X]$ to $\intervalclosed{\zero}{1}$.
+%    \begin{subproof}
+%        Omitted.
+%    \end{subproof}
+%
+%    We show that $\gamma$ is a function from $\naturals$ to $\reals$.
+%    \begin{subproof}
+%        Omitted.
+%    \end{subproof}
+%
+%    We show that  for all $x,k,n$ such that $n\in \naturals$ and $k \in \naturals$ and $x \in \indexx[\indexx[\zeta](n)](k)$ we have $\apply{\gamma(n)}{x} =  \rfrac{k}{\pot(n)}$.
+%    \begin{subproof}
+%        Omitted.
+%    \end{subproof}
+%
+%    We show that for all $n \in \naturals$ for all $x \in \carrier[X]$ we have $\apply{\gamma(n)}{x} \in \intervalclosed{\zero}{1}$. 
+%    \begin{subproof}
+%        Fix $n \in \naturals$.
+%        Fix $x \in \carrier[X]$.
+%        Omitted.
+%    \end{subproof}
+%
+%
+%
+%    We show that 
+%    if $h$ is a function from $\naturals$ to $\reals$ and for all $n \in \naturals$ we have $h(n) \leq h(n+1)$ and there exist $B \in \reals$ such that $h(n) < B$ 
+%    then there exist $k \in \reals$ such that for all $m \in \naturals$ we have $h(m) \leq k$ and for all $k' \in \reals$ such that $k' < k$ we have there exist $M \in \naturals$ such that $k' < h(M)$.
+%    \begin{subproof}
+%        Omitted.
+%    \end{subproof} 
+%
+%
+%
+%    We show that there exist $g$ such that for all $x \in \carrier[X]$ we have there exist $k \in \reals$ such that  $g(x)= k$ and for all $\epsilon \in \reals$ such that $\epsilon > \zero$ we have there exist $N \in \naturals$ such that for all $N' \in \naturals$ such that $N' > N$ we have $\abs{\apply{\gamma(N')}{x} - k} < \epsilon$.
+%    \begin{subproof}       
+%        We show that for all $x \in \carrier[X]$ we have there exist $k \in \reals$ such that for all $\epsilon \in \reals$ such that $\epsilon > \zero$ we have there exist $N \in \naturals$ such that for all $N' \in \naturals$ such that $N' > N$ we have $\abs{\apply{\gamma(N')}{x} - k} < \epsilon$.
+%        \begin{subproof}
+%            Fix $x \in \carrier[X]$.
+%            
+%            Omitted.
+%            
+%            % Contradiction by \cref{two_in_naturals,function_apply_default,reals_axiom_zero_in_reals,dom_emptyset,notin_emptyset,funs_type_apply,neg,minus,abs_behavior1}.
+%            %Follows by \cref{two_in_naturals,function_apply_default,reals_axiom_zero_in_reals,dom_emptyset,notin_emptyset,funs_type_apply,neg,minus,abs_behavior1}.
+%        \end{subproof}
+%        Omitted.
+%    \end{subproof}
+%    
+%
+%    Let $G(x) = g(x)$ for $x \in \carrier[X]$.
+%    We have $\dom{G} = \carrier[X]$.
+%
+%    We show that for all $x \in \dom{G}$ we have $G(x) \in \reals$.
+%    \begin{subproof}
+%        %Fix $x \in \dom{G}$.
+%        %It suffices to show that $g(x) \in \reals$.
+%%
+%        %There exist $k \in \reals$ such that for all $\epsilon \in \reals$ such that $\epsilon > \zero$ we have there exist $N \in \naturals$ such that for all $N' \in \naturals$ such that $N' > N$ we have $\abs{\apply{\gamma(N')}{x} - k} < \epsilon$.
+%%
+%        %We show that for all $\epsilon \in \reals$ such that $\epsilon > \zero$ we have there exist $N \in \naturals$ such that for all $N' \in \naturals$ such that $N' > N$ we have $\abs{\apply{\gamma(N')}{x} - g(x)} < \epsilon$ and $g(x)= k$.
+%        %\begin{subproof}
+%        %    Fix $\epsilon \in \reals$.
+%        %    
+%%
+%        %\end{subproof}
+%        %Follows by \cref{apply,plus_one_order,ordinal_iff_suc_ordinal,natural_number_is_ordinal,subseteq,naturals_subseteq_reals,naturals_is_equal_to_two_times_naturals,reals_one_bigger_zero,one_in_reals,ordinal_prec_trichotomy,omega_is_an_ordinal,suc_intro_self,two_in_naturals,in_asymmetric,suc}.
+%        Omitted.
+%    \end{subproof}
+%
+%    We show that for all $x \in \dom{G}$ we have $\zero \leq G(x) \leq 1$.
+%    \begin{subproof}
+%        %Fix $x \in \dom{G}$.
+%        %Then $x \in \carrier[X]$.
+%        %\begin{byCase}
+%        %    \caseOf{$x \in A$.} 
+%        %        For all $n \in \naturals$ we have $\apply{\gamma(n)}{x} = \zero$.
+%%
+%%
+%        %    \caseOf{$x \notin A$.} 
+%        %        \begin{byCase}
+%        %            \caseOf{$x \in B$.} 
+%        %                For all $n \in \naturals$ we have $\apply{\gamma(n)}{x} = 1$.
+%%
+%        %            \caseOf{$x \notin B$.}
+%        %                Omitted.
+%        %        \end{byCase}
+%        %\end{byCase}
+%        Omitted.
+%    \end{subproof}
+%
+%
+%    We show that $G \in \funs{\carrier[X]}{\intervalclosed{\zero}{1}}$.
+%    \begin{subproof}        
+%        %It suffices to show that $\ran{G} \subseteq \intervalclosed{\zero}{1}$ by \cref{fun_ran_iff,funs_intro,funs_weaken_codom}.
+%        %It suffices to show that for all $x \in \dom{G}$ we have $G(x) \in \intervalclosed{\zero}{1}$.
+%        %Fix $x \in \dom{G}$.
+%        %Then $x \in \carrier[X]$.
+%        %$g(x) = G(x)$.
+%        %We have $G(x) \in \reals$.
+%        %$\zero \leq G(x) \leq 1$.
+%        %We have $G(x) \in \intervalclosed{\zero}{1}$ .
+%        Omitted.
+%    \end{subproof}
+%
+%    We show that $G(A) = \zero$.
+%    \begin{subproof}
+%        Omitted.
+%    \end{subproof}
+%
+%    We show that $G(B) = 1$.
+%    \begin{subproof}
+%        Omitted.
+%    \end{subproof}
+%
+%    We show that $G$ is continuous.
+%    \begin{subproof}
+%        Omitted.
+%    \end{subproof}
+%
+%    %Suppose $\eta$ is a urysohnchain in $X$.
+%    %Suppose $\carrier[\eta] =\{A, (X \setminus B)\}$
+%    %and $\indexxset[\eta] = \{\zero, 1\}$
+%    %and $\indexx[\eta](\zero) = A$ 
+%    %and $\indexx[\eta](1) = (X \setminus B)$.
+%
+%
+%    %Then $\eta$ is a urysohnchain in $X$.
+%
+%    %   Take $P$ such that $P$ is a infinite sequence and $\indexxset[P] = \naturals$ and for all $i \in \indexxset[P]$ we have $\indexx[P](i) = \pow{X}$.
+%    %   
+%    %   We show that there exist $\zeta$ such that $\zeta$ is a infinite sequence 
+%    %   and for all $i \in \indexxset[\zeta]$ we have 
+%    %   $\indexx[\zeta](i)$ is a urysohnchain in $X$ of cardinality $i$
+%    %   and $A \subseteq \indexx[\zeta](i)$
+%    %   and $\indexx[\zeta](i) \subseteq (X \setminus B)$
+%    %   and for all $j \in \indexxset[\zeta]$ such that 
+%    %   $j < i$ we have for all $x \in \indexx[\zeta](j)$ we have $x \in \indexx[\zeta](i)$.
+%    %   \begin{subproof}
+%    %       Omitted.
+%    %   \end{subproof}
+%    %   
+%    %   
+%    %   
     %   
     %   
     %   

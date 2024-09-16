@@ -11,7 +11,7 @@
 \import{function.tex}
 
 
-\section{The canonical topology on $\mathbbR$}
+\section{The canonical topology on $\mathbb{R}$}
 
 \begin{definition}\label{topological_basis_reals_eps_ball}
     $\topoBasisReals = \{ \epsBall{x}{\epsilon} \mid x \in \reals, \epsilon \in \realsplus\}$.
@@ -101,12 +101,15 @@
     For all $x,y \in \reals$ such that $x < y$ we have there exists $z \in \realsplus$ such that $x + z = y$.
 \end{lemma}
 \begin{proof}
-    %Fix $x,y \in \reals$.
+    Omitted.
 \end{proof}
 
 \begin{lemma}\label{reals_order_is_transitive}
     For all $x,y,z \in \reals$ such that $x < y$ and $y < z$ we have $x < z$.
 \end{lemma}
+\begin{proof}
+    Omitted.
+\end{proof}
 
 \begin{lemma}\label{reals_order_plus_minus}
     Suppose $a,b \in \reals$.
@@ -134,16 +137,9 @@
     $x + \epsilon \in \reals$.
 
 
-    %It suffices to show that for all $c$ such that $c \rless x$ we have $c \in \epsBall{x}{\epsilon}$.
-    %Fix $c$ such that $c \rless x$.
-%
-    %It suffices to show that for all $c$ such that $c < x$ we have $c \in \epsBall{x}{\epsilon}$.
-    %Fix $c$ such that $c < x$.
-
-
     It suffices to show that for all $c$ such that $c \in \reals \land (x - \epsilon) \rless c \rless (x + \epsilon)$ we have $c \in \epsBall{x}{\epsilon}$.
     Fix $c$ such that $(c \in \reals) \land (x - \epsilon) \rless c \rless (x + \epsilon)$.
-    %Suppose $(x - \epsilon) < c < (x + \epsilon)$.
+    $(x - \epsilon) < c < (x + \epsilon)$.
 \end{proof}
 
 \begin{theorem}\label{topological_basis_reals_is_prebasis}
@@ -158,9 +154,9 @@
             \caseOf{$x = \emptyset$.}
                 Trivial.
             \caseOf{$x \neq \emptyset$.}
-                There exists $U \in \topoBasisReals$ such that $x \in \topoBasisReals$.
-                Take $U \in \topoBasisReals$ such that $x \in \topoBasisReals$.
-
+                %There exists $U \in \topoBasisReals$ such that $x \in U$.
+                Take $U \in \topoBasisReals$ such that $x \in U$.
+                Follows by \cref{epsball_are_subseteq_reals_set,topological_basis_reals_eps_ball,epsilon_ball,minus,subseteq}.
         \end{byCase}
     \end{subproof}
     We show that $\reals \subseteq \unions{\topoBasisReals}$.
@@ -168,9 +164,62 @@
         It suffices to show that for all $x \in \reals$ we have $x \in \unions{\topoBasisReals}$.
         Fix $x \in \reals$.
         $\epsBall{x}{1} \in \topoBasisReals$.
-        Therefore $x \in \unions{\topoBasisReals}$.
+        Therefore $x \in \unions{\topoBasisReals}$ by \cref{one_in_reals,reals_one_bigger_zero,unions_intro,realsplus,plus_one_order,reals_order_minus_positiv,epsball_are_connected_in_reals}.
     \end{subproof}
 \end{proof}
+
+%\begin{lemma}\label{intervl_intersection_is_interval}
+%    Suppose $a,b,a',b' \in \reals$.
+%    Suppose there exist $x \in \reals$ such that $x \in \intervalopen{a}{b} \inter \intervalopen{a'}{b'}$.
+%    Then there exists $q,p \in \reals$ such that $q < p$ and $\intervalopen{q}{p} \subseteq \intervalopen{a}{b} \inter \intervalopen{a'}{b'}$.
+%\end{lemma}
+%
+
+\begin{lemma}\label{reals_order_total}
+    For all $x,y \in \reals$ we have either $x < y$ or $x \geq y$. 
+\end{lemma}
+\begin{proof}
+    It suffices to show that for all $x \in \reals$ we have for all $y \in \reals$ we have either $x < y$ or $x \geq y$. 
+    Fix $x \in \reals$.
+    Fix $y \in \reals$.
+    Omitted.
+\end{proof}
+
+\begin{lemma}\label{topo_basis_reals_eps_iff}
+    $X \in \topoBasisReals$ iff there exists $x_0, \delta$ such that $x_0 \in \reals$ and $\delta \in \realsplus$ and $\epsBall{x_0}{\delta} = X$.
+\end{lemma}
+
+\begin{lemma}\label{topo_basis_reals_intro}
+For all $x,\delta$ such that $x \in \reals \land \delta \in \realsplus$ we have $\epsBall{x}{\delta} \in \topoBasisReals$.
+\end{lemma}
+
+\begin{lemma}\label{realspuls_in_reals_plus}
+    For all $x,y$ such that $x \in \reals$ and $y \in \realsplus$ we have $x + y \in \reals$.
+\end{lemma}
+
+\begin{lemma}\label{realspuls_in_reals_minus}
+    For all $x,y$ such that $x \in \reals$ and $y \in \realsplus$ we have $x - y \in \reals$.
+\end{lemma}
+
+\begin{lemma}\label{eps_ball_implies_open_interval}
+    Suppose $x \in \reals$.
+    Suppose $\epsilon \in \realsplus$. 
+    Then there exists $a,b \in \reals$ such that $a < b$ and $\intervalopen{a}{b} = \epsBall{x}{\epsilon}$.
+\end{lemma}
+
+\begin{lemma}\label{open_interval_eq_eps_ball}
+    Suppose $a,b \in \reals$.
+    Suppose $a < b$.
+    Then there exist $x,\epsilon$ such that $x \in \reals$ and $\epsilon \in \realsplus$ and $\intervalopen{a}{b} = \epsBall{x}{\epsilon}$.
+\end{lemma}
+\begin{proof}
+    Let $\delta = (b-a)$.
+    $\delta$ is positiv by \cref{minus_}.
+    There exists $\epsilon \in \reals$ such that $\epsilon + \epsilon = \delta$.
+
+\end{proof}
+
+
 
 \begin{theorem}\label{topological_basis_reals_is_basis}
     $\topoBasisReals$ is a topological basis for $\reals$.
@@ -188,7 +237,45 @@
             Trivial.
         \caseOf{$U \inter V \neq \emptyset$.}
             Then $U \inter V$ is inhabited.
-            %It suffices to show that 
+            $x \in \reals$ by \cref{inter_lower_left,subseteq,topological_prebasis_iff_covering_family,omega_is_an_ordinal,naturals_subseteq_reals,subset_transitive,suc_subseteq_elim,ordinal_suc_subseteq}.
+            There exists $x_1, \alpha$ such that $x_1 \in \reals$ and $\alpha \in \realsplus$ and $\epsBall{x_1}{\alpha} = U$.
+            There exists $x_2, \beta$ such that $x_2 \in \reals$ and $\beta \in \realsplus$ and $\epsBall{x_2}{\beta} = V$.
+            Then $ (x_1 - \alpha) < x < (x_1 + \alpha)$.
+            Then $ (x_2 - \beta) < x < (x_2 + \beta)$.
+            We show that if there exists $\delta \in \realsplus$ such that $\epsBall{x}{\delta} \subseteq U \inter V$ then there exists $W\in B$ such that $x\in W\subseteq U, V$.
+            \begin{subproof}
+                Suppose there exists $\delta \in \realsplus$ such that $\epsBall{x}{\delta} \subseteq U \inter V$.
+                $x \in \epsBall{x}{\delta}$.
+                $\epsBall{x}{\delta} \subseteq U$.
+                $\epsBall{x}{\delta} \subseteq V$.
+                $\epsBall{x}{\delta} \in B$.
+            \end{subproof}
+            It suffices to show that there exists $\delta \in \realsplus$ such that $\epsBall{x}{\delta} \subseteq U \inter V$.
+
+
+            %It suffices to show that there exists $x_0, \delta$ such that $x_0 \in \reals$ and $\delta \in \realsplus$ and $\epsBall{x_0}{\delta} \subseteq u \inter V$.
+            %There exists $x_1, \alpha$ such that $x_1 \in \reals$ and $\alpha \in \realsplus$ and $\epsBall{x_1}{\alpha} = U$.
+            %There exists $x_2, \beta$ such that $x_2 \in \reals$ and $\beta \in \realsplus$ and $\epsBall{x_2}{\beta} = V$.
+            %Then $ (x_1 - \alpha) < x < (x_1 + \alpha)$.
+            %Then $ (x_2 - \beta) < x < (x_2 + \beta)$.
+            %\begin{byCase}
+            %    \caseOf{$x_1 = x_2$.}
+            %        Take $\gamma \in \realsplus$ such that either $\gamma = \alpha \land \gamma \leq \beta$ or $\gamma \leq \alpha \land \gamma = \beta$.
+            %    \caseOf{$x_1 < x_2$.}
+            %    \caseOf{$x_1 > x_2$.}
+            %\end{byCase}
+            %%Take $m$ such that $m \in \min{\{(x_1 + \alpha), (x_2 + \beta)\}}$.
+            %Take $n$ such that $n \in \max{\{(x_1 - \alpha), (x_2 - \beta)\}}$.
+            %Then $m < x < n$.
+            %We show that there exists $x_1 \in \reals$ such that $x_1 \in U \inter V$ and $x_1 < x$.
+            %\begin{subproof}
+            %    Suppose not.
+            %    Then For all $y \in U \inter V$ we have $x \leq y$.
+            %\end{subproof}
+            %We show that there exists $x_2 \in \reals$ such that $x_2 \in U \inter V$ and $x_2 > x$.
+            %\begin{subproof}
+            %    Trivial.
+            %\end{subproof}
     \end{byCase}
 \end{proof}
 
@@ -230,7 +317,3 @@
     Suppose $a,b \in \reals$.
     Then $\intervalopen{a}{b} \in \opens[\reals]$.
 \end{proposition}
-
-\begin{lemma}\label{safetwo}
-    Contradiction.
-\end{lemma}
