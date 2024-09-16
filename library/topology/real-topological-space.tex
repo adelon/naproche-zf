@@ -461,3 +461,147 @@ For all $x,\delta$ such that $x \in \reals \land \delta \in \realsplus$ we have 
     Suppose $a,b \in \reals$.
     Then $\intervalopen{a}{b} \in \opens[\reals]$.
 \end{proposition}
+\begin{proof}
+    If $a > b$ then $\intervalopen{a}{b} = \emptyset$.
+    If $a = b$ then $\intervalopen{a}{b} = \emptyset$.
+    It suffices to show that if $a < b$ then $\intervalopen{a}{b} \in \opens[\reals]$.
+    Suppose $a \rless b$.
+    Take $x, \epsilon$ such that $x \in \reals$ and $\epsilon \in \realsplus$ and $\intervalopen{a}{b} = \epsBall{x}{\epsilon}$.
+    It suffices to show that $\epsBall{x}{\epsilon} \in \opens[\reals]$.
+    $\topoBasisReals$ is a topological basis for $\reals$.
+    $\epsBall{x}{\epsilon} \in \topoBasisReals$.
+    $\topoBasisReals \subseteq \opens[\reals]$ by \cref{basis_is_in_genopens,topological_space_reals,topological_basis_reals_is_basis}.
+\end{proof}
+
+\begin{lemma}\label{reals_minus_to_realsplus}
+    Suppose $a,b \in \reals$.
+    Suppose $a < b$.
+    Then $(b - a) \in \realsplus$.
+\end{lemma}
+
+\begin{lemma}\label{existence_of_epsilon_upper_border}
+    Suppose $a,b \in \reals$.
+    Suppose $a < b$.
+    Then there exists $\epsilon \in \realsplus$ such that $b \notin \epsBall{a}{\epsilon}$. 
+\end{lemma}
+\begin{proof}
+    Let $\epsilon = b - a$.
+    Then $\epsilon \in \realsplus$.
+    It suffices to show that $b \notin \epsBall{a}{\epsilon}$ by \cref{epsilon_ball,reals_addition_minus_behavior2,realsplus,minus,intervalopen,order_reals_lemma0}.
+    Suppose not.
+    Then $ b \in \epsBall{a}{\epsilon}$.
+    Therefore $ (a - \epsilon) < b < (a + \epsilon)$.
+    $b = (a + \epsilon)$.
+    Contradiction.
+\end{proof}
+
+\begin{lemma}\label{existence_of_epsilon_lower_border}
+    Suppose $a,b \in \reals$.
+    Suppose $a > b$.
+    Then there exists $\epsilon \in \realsplus$ such that $b \notin \epsBall{a}{\epsilon}$. 
+\end{lemma}
+\begin{proof}
+    Let $\epsilon = a - b$.
+    Then $\epsilon \in \realsplus$.
+    It suffices to show that $b \notin \epsBall{a}{\epsilon}$ by \cref{epsilon_ball,reals_addition_minus_behavior2,realsplus,minus,intervalopen,order_reals_lemma0}.
+    Suppose not.
+    Then $ b \in \epsBall{a}{\epsilon}$.
+    Therefore $ (a - \epsilon) < b < (a + \epsilon)$.
+    $b = (a - \epsilon)$.
+    Contradiction.
+\end{proof}
+
+\begin{proposition}\label{openinterval_infinite_left_in_opens}
+    Suppose $a \in \reals$.
+    Then $\intervalopenInfiniteLeft{a} \in \opens[\reals]$.
+\end{proposition}
+\begin{proof}
+    Let $E = \{ B \in \pow{\reals} \mid \exists x \in \intervalopenInfiniteLeft{a} . \exists \delta \in \realsplus . B = \epsBall{x}{\delta} \land a \notin \epsBall{x}{\delta}  \}$.
+    We show that for all $x \in \intervalopenInfiniteLeft{a}$ we have there exists $e \in E$ such that $x \in e$.
+    \begin{subproof}
+        Fix $x \in \intervalopenInfiniteLeft{a}$.
+        Then $x < a$.
+        Take $\delta' \in \realsplus$ such that $a \notin \epsBall{x}{\delta'}$.
+        $x \in \epsBall{x}{\delta'}$ by \cref{intervalopen,epsilon_ball,reals_addition_minus_behavior1,reals_order_minus_positiv,minus,reals_add,realsplus,intervalopen_infinite_left}.
+        $a \notin \epsBall{x}{\delta'}$.
+        $\epsBall{x}{\delta'} \in E$.
+    \end{subproof}
+    $E \subseteq \topoBasisReals$.
+    We show that $\unions{E} = \intervalopenInfiniteLeft{a}$.
+    \begin{subproof}
+        We show that $\unions{E} \subseteq \intervalopenInfiniteLeft{a}$.
+        \begin{subproof}
+            It suffices to show that for all $x \in \unions{E}$ we have $x \in \intervalopenInfiniteLeft{a}$.
+            Fix $x \in \unions{E}$.
+            Take $e \in E$ such that $x \in e$.
+            $x \in \reals$.
+            Take $x',\delta'$ such that $x' \in \reals$ and $\delta' \in \realsplus$ and $e = \epsBall{x'}{\delta'}$ by \cref{epsilon_ball,minus,topo_basis_reals_eps_iff,setminus,setminus_emptyset,elem_subseteq}.
+            $\epsBall{x'}{\delta'} \in E$.
+            We show that for all $y \in e$ we have $y < a$.
+            \begin{subproof}
+                Fix $y \in e$.
+                Then $y \in \epsBall{x'}{\delta'}$.
+                $e = \epsBall{x'}{\delta'}$.
+                There exists $x'' \in \intervalopenInfiniteLeft{a}$ such that there exists $\delta'' \in \realsplus$ such that $e = \epsBall{x''}{\delta''}$ and $a \notin \epsBall{x''}{\delta''}$.
+                Take $x'',\delta''$ such that $x'' \in \intervalopenInfiniteLeft{a}$ and $\delta'' \in \realsplus$ and $e = \epsBall{x''}{\delta''}$ and $a \notin \epsBall{x''}{\delta''}$.
+                Suppose not.
+                Take $y' \in e$ such that $y' > a$. 
+                $x'' < a$.
+                $(x'' - \delta'') < y' < (x'' + \delta'')$.
+                $(x'' - \delta'') < x'' < (x'' + \delta'')$.
+                Then $x'' < a < y'$.
+                Therefore $(x'' - \delta'') < a < (x'' + \delta'')$ by \cref{realspuls_in_reals_minus,intervalopen_infinite_left,reals_order_is_transitive,reals_add,realsplus_in_reals,powerset_elim,subseteq}.
+                Then $a \in e$ by \cref{epsball_are_connected_in_reals,intervalopen_infinite_left,neq_witness}.
+                Contradiction.
+            \end{subproof}
+            $x < a$.
+            Then $x \in \intervalopenInfiniteLeft{a}$.
+        \end{subproof}
+        We show that $\intervalopenInfiniteLeft{a} \subseteq \unions{E}$.
+        \begin{subproof}
+            Trivial.
+        \end{subproof}
+    \end{subproof}
+    $\unions{E} \in \opens[\reals]$.
+\end{proof}
+
+\begin{lemma}\label{continuous_on_basis_implies_continuous_endo}
+    Suppose $X$ is a topological space.
+    Suppose $B$ is a topological basis for $X$.
+    Suppose $f$ is a function from $X$ to $X$.
+    $f$ is continuous iff for all $b \in B$ we have $\preimg{f}{b} \in \opens[X]$.
+\end{lemma}
+\begin{proof}
+    Omitted.
+\end{proof}
+
+\begin{proposition}\label{openinterval_infinite_right_in_opens}
+    Suppose $a \in \reals$.
+    Then $\intervalopenInfiniteRight{a} \in \opens[\reals]$.
+\end{proposition}
+\begin{proof}
+    Let $I = \{\neg{b} \mid b \in \intervalopenInfiniteRight{a} \}$.
+    Let $f(x) = \neg{x}$ for $x \in \reals$.
+    $f$ is a function from $\reals$ to $\reals$.
+    We show that $f$ is continuous.
+    \begin{subproof}
+        It suffices to show that for all $b \in \topoBasisReals$ we have $\preimg{f}{b} \in \opens[\reals]$.
+        Fix $b \in \topoBasisReals$.
+        Take $x, \epsilon$ such that $x \in \reals$ and $\epsilon \in \realsplus$ and $b = \epsBall{x}{\epsilon}$.
+        Let $y = \neg{x}$.
+        It suffices to show that $\preimg{f}{b} \in \topoBasisReals$ by \cref{topological_space_reals,topological_basis_reals_is_basis,basis_is_in_genopens,cons_remove,cons_subseteq_iff}.
+        It suffices to show that $\epsBall{y}{\epsilon} = \preimg{f}{\epsBall{x}{\epsilon}}$.
+        Follows by set extensionality.
+    \end{subproof}
+    $\intervalopenInfiniteLeft{a} \in \opens[\reals]$.
+    We show that $\preimg{f}{\intervalopenInfiniteLeft{a}} = \intervalopenInfiniteRight{a}$.
+    \begin{subproof}
+        Omitted.
+    \end{subproof}
+    Then $\intervalopenInfiniteRight{a} \in \opens[\reals]$ by \cref{continuous,preim_eq_img_of_converse,openinterval_infinite_left_in_opens}.
+\end{proof}
+
+\begin{proposition}\label{closedinterval_is_closed}
+    Suppose $a,b \in \reals$.
+    Then $\intervalclosed{a}{b} \in \closeds{\reals}$.
+\end{proposition}
