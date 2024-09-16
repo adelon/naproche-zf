@@ -193,7 +193,7 @@
 For all $x,\delta$ such that $x \in \reals \land \delta \in \realsplus$ we have $\epsBall{x}{\delta} \in \topoBasisReals$.
 \end{lemma}
 
-\begin{lemma}\label{realspuls_in_reals_plus}
+\begin{lemma}\label{realsplus_in_reals_plus}
     For all $x,y$ such that $x \in \reals$ and $y \in \realsplus$ we have $x + y \in \reals$.
 \end{lemma}
 
@@ -207,6 +207,36 @@ For all $x,\delta$ such that $x \in \reals \land \delta \in \realsplus$ we have 
     Then there exists $a,b \in \reals$ such that $a < b$ and $\intervalopen{a}{b} = \epsBall{x}{\epsilon}$.
 \end{lemma}
 
+\begin{lemma}\label{reals_existence_addition_reverse}
+    For all $\delta \in \reals$ there exists $\epsilon \in \reals$ such that $\epsilon + \epsilon = \delta$.
+\end{lemma}
+\begin{proof}
+    Fix $\delta \in \reals$.
+    Follows by \cref{reals_disstro2,reals_axiom_disstro1,reals_rmul,suc_eq_plus_one,reals_axiom_mul_invers,suc,suc_neq_emptyset,realsplus_in_reals_plus,naturals_addition_axiom_2,naturals_1_kommu,reals_axiom_zero,naturals_inductive_set,one_is_suc_zero,realsplus,reals_one_bigger_zero,one_in_reals,reals_axiom_one,minus_in_reals}.
+\end{proof}
+
+\begin{lemma}\label{reals_addition_minus_behavior1}
+    For all $a,b,c \in \reals$ such that $a = b + c$ we have $b = a - c$.
+\end{lemma}
+\begin{proof}
+    It suffices to show that for all $a \in \reals$ for all $b \in \reals$ for all $c \in \reals$ if $a = b + c$ then $b = a - c$.
+    Fix $a \in \reals$.
+    Fix $b \in \reals$.
+    Fix $c \in \reals$.
+    Suppose $a = b + c$.
+    Then $a + \neg{c} = b + c + \neg{c}$.
+    Therefore $a - c = b + c + \neg{c}$.
+    $a - c = (b + c) - c$.
+    $(b + c) - c = (b + c) + \neg{c}$.
+    $(b + c) + \neg{c} = b + (c + \neg{c})$.
+    $b + (c + \neg{c}) = b + (\zero)$.
+    $a - c = b$.
+\end{proof}
+
+\begin{lemma}\label{reals_addition_minus_behavior2}
+    For all $a,b,c \in \reals$ such that $a = b - c$ we have $b = c + a$.
+\end{lemma}
+
 \begin{lemma}\label{open_interval_eq_eps_ball}
     Suppose $a,b \in \reals$.
     Suppose $a < b$.
@@ -214,11 +244,71 @@ For all $x,\delta$ such that $x \in \reals \land \delta \in \realsplus$ we have 
 \end{lemma}
 \begin{proof}
     Let $\delta = (b-a)$.
-    $\delta$ is positiv by \cref{minus_}.
+    $\delta$ is positiv by \cref{minus_in_reals,minus_behavior3,reals_axiom_zero_in_reals,reals_order_behavior_with_addition,minus_behavior1,minus}.
     There exists $\epsilon \in \reals$ such that $\epsilon + \epsilon = \delta$.
+    Let $x = a + \epsilon$.
+    $a + \delta = b$.
+    $a + \epsilon + \epsilon = b$. 
+    $x + \epsilon = b$.
+    $\epsilon \in \realsplus$ by \cref{reals_order_behavior_with_addition,reals_axiom_kommu,reals_axiom_zero,reals_order_is_transitive,reals_add,minus_behavior1,minus_behavior3,minus,reals_order_total,reals_axiom_zero_in_reals,realsplus}.
+    $a = x - \epsilon$.
+    $b = x + \epsilon$.
+    We show that $\intervalopen{a}{b} \subseteq \epsBall{x}{\epsilon}$.
+    \begin{subproof}
+        It suffices to show that for all $y \in \intervalopen{a}{b}$ we have $y \in \epsBall{x}{\epsilon}$.
+        Fix $y \in \intervalopen{a}{b}$.
+    \end{subproof}
+    We show that $\epsBall{x}{\epsilon} \subseteq \intervalopen{a}{b}$.
+    \begin{subproof}
+        It suffices to show that for all $y \in \epsBall{x}{\epsilon}$ we have $y \in \intervalopen{a}{b}$.
+        Fix $y \in \epsBall{x}{\epsilon}$.
+    \end{subproof}
 
 \end{proof}
 
+\begin{lemma}\label{intersection_openinterval_inclusion_of_border}
+    Suppose $a,b,x,y \in \reals$.
+    Suppose $a < b$.
+    Suppose $x < y$.
+    If $a \leq x < y \leq b$ then $\intervalopen{a}{b} \inter \intervalopen{x}{y} = \intervalopen{x}{y}$.
+\end{lemma}
+\begin{proof}
+    Omitted.
+\end{proof}
+
+\begin{lemma}\label{intersection_openinterval_lower_border_eq}
+    Suppose $a,b,x,y \in \reals$.
+    Suppose $a < b$.
+    Suppose $x < y$.
+    If $a = x$ and $b \leq y$ then $\intervalopen{a}{b} \inter \intervalopen{x}{y} = \intervalopen{a}{b}$.
+\end{lemma}
+\begin{proof}
+    Omitted.
+\end{proof}
+
+\begin{lemma}\label{intersection_openinterval_upper_border_eq}
+    Suppose $a,b,x,y \in \reals$.
+    Suppose $a < b$.
+    Suppose $x < y$.
+    If $a \leq x$ and $b = y$ then $\intervalopen{a}{b} \inter \intervalopen{x}{y} = \intervalopen{x}{y}$.
+\end{lemma}
+\begin{proof}
+    Omitted.
+\end{proof}
+
+\begin{lemma}\label{intersection_openinterval_none_border_eq}
+    Suppose $a,b,x,y \in \reals$.
+    Suppose $a < b$.
+    Suppose $x < y$.
+    If $a \leq x < b \leq y$ then $\intervalopen{a}{b} \inter \intervalopen{x}{y} = \intervalopen{x}{b}$.
+\end{lemma}
+\begin{proof}
+    Omitted.
+\end{proof}
+
+\begin{lemma}\label{reals_order_total2}
+    For all $a,b \in \reals$ we have $a < b \lor a > b \lor a = b$.
+\end{lemma}
 
 
 \begin{theorem}\label{topological_basis_reals_is_basis}
@@ -242,15 +332,69 @@ For all $x,\delta$ such that $x \in \reals \land \delta \in \realsplus$ we have 
             There exists $x_2, \beta$ such that $x_2 \in \reals$ and $\beta \in \realsplus$ and $\epsBall{x_2}{\beta} = V$.
             Then $ (x_1 - \alpha) < x < (x_1 + \alpha)$.
             Then $ (x_2 - \beta) < x < (x_2 + \beta)$.
-            We show that if there exists $\delta \in \realsplus$ such that $\epsBall{x}{\delta} \subseteq U \inter V$ then there exists $W\in B$ such that $x\in W\subseteq U, V$.
-            \begin{subproof}
-                Suppose there exists $\delta \in \realsplus$ such that $\epsBall{x}{\delta} \subseteq U \inter V$.
-                $x \in \epsBall{x}{\delta}$.
-                $\epsBall{x}{\delta} \subseteq U$.
-                $\epsBall{x}{\delta} \subseteq V$.
-                $\epsBall{x}{\delta} \in B$.
+            Let $a = (x_1 - \alpha)$.
+            Let $b = (x_1 + \alpha)$.
+            Let $c = (x_2 - \beta)$.
+            Let $d = (x_2 + \beta)$.
+            We have $a < b$ and $a < x$ and $x < b$.
+            We have $c < d$ and $c < x$ and $x < d$.
+            We have $a \in \reals$.
+            We have $b \in \reals$.
+            We have $c \in \reals$.
+            We have $d \in \reals$.
+            We show that there exist $a',b'\in \reals$ such that $\intervalopen{a}{b} \inter \intervalopen{c}{d} = \intervalopen{a'}{b'}$.
+            \begin{subproof} 
+                \begin{byCase}
+                    \caseOf{$a < c$.}
+                        \begin{byCase}
+                            \caseOf{$b < d$.}
+                                Follows by \cref{intersection_openinterval_inclusion_of_border,intersection_openinterval_lower_border_eq,intersection_openinterval_none_border_eq,intersection_openinterval_upper_border_eq,reals_order_is_transitive,realsplus_in_reals_plus,realspuls_in_reals_minus}.
+                            \caseOf{$b = d$.}
+                                Follows by \cref{intersection_openinterval_inclusion_of_border,intersection_openinterval_lower_border_eq,intersection_openinterval_none_border_eq,intersection_openinterval_upper_border_eq,reals_order_is_transitive,realsplus_in_reals_plus,realspuls_in_reals_minus}.
+                            \caseOf{$b > d$.}
+                                Follows by \cref{intersection_openinterval_inclusion_of_border,intersection_openinterval_lower_border_eq,intersection_openinterval_none_border_eq,intersection_openinterval_upper_border_eq,reals_order_is_transitive,realsplus_in_reals_plus,realspuls_in_reals_minus}.
+                        \end{byCase}
+                    \caseOf{$a = c$.}
+                        \begin{byCase}
+                            \caseOf{$b < d$.}
+                                Follows by \cref{intersection_openinterval_inclusion_of_border,intersection_openinterval_lower_border_eq,intersection_openinterval_none_border_eq,intersection_openinterval_upper_border_eq,reals_order_is_transitive,realsplus_in_reals_plus,realspuls_in_reals_minus}.
+                            \caseOf{$b = d$.}
+                                Follows by \cref{intersection_openinterval_inclusion_of_border,intersection_openinterval_lower_border_eq,intersection_openinterval_none_border_eq,intersection_openinterval_upper_border_eq,reals_order_is_transitive,realsplus_in_reals_plus,realspuls_in_reals_minus}.
+                            \caseOf{$b > d$.}
+                                Follows by \cref{intersection_openinterval_inclusion_of_border,intersection_openinterval_lower_border_eq,intersection_openinterval_none_border_eq,intersection_openinterval_upper_border_eq,reals_order_is_transitive,realsplus_in_reals_plus,realspuls_in_reals_minus}.
+                        \end{byCase}
+                    \caseOf{$a > c$.}
+                        \begin{byCase}
+                            \caseOf{$b < d$.}
+                                Follows by \cref{intersection_openinterval_inclusion_of_border,intersection_openinterval_lower_border_eq,intersection_openinterval_none_border_eq,intersection_openinterval_upper_border_eq,reals_order_is_transitive,realsplus_in_reals_plus,realspuls_in_reals_minus,reals_add,minus_in_reals,realsplus,inter_comm,epsilon_ball}.
+                            \caseOf{$b = d$.}
+                                Follows by \cref{intersection_openinterval_inclusion_of_border,intersection_openinterval_lower_border_eq,intersection_openinterval_none_border_eq,intersection_openinterval_upper_border_eq,reals_order_is_transitive,realsplus_in_reals_plus,realspuls_in_reals_minus,reals_add,minus_in_reals,realsplus,inter_comm,epsilon_ball}.
+                            \caseOf{$b > d$.}
+                                Follows by \cref{intersection_openinterval_inclusion_of_border,intersection_openinterval_lower_border_eq,intersection_openinterval_none_border_eq,intersection_openinterval_upper_border_eq,reals_order_is_transitive,realsplus_in_reals_plus,realspuls_in_reals_minus,reals_add,minus_in_reals,realsplus,inter_comm,epsilon_ball}.
+                        \end{byCase}
+                \end{byCase}
             \end{subproof}
-            It suffices to show that there exists $\delta \in \realsplus$ such that $\epsBall{x}{\delta} \subseteq U \inter V$.
+
+            Take $a',b'\in \reals$ such that $\intervalopen{a}{b} \inter \intervalopen{c}{d} = \intervalopen{a'}{b'}$.
+            We have $a',b' \in \reals$ by assumption.
+            We have $a' < b'$ by \cref{id_img,epsilon_ball,minus,intervalopen,reals_order_is_transitive}.
+            Then there exist $x',\epsilon'$ such that $x' \in \reals$ and $\epsilon' \in \realsplus$ and $\intervalopen{a'}{b'} = \epsBall{x'}{\epsilon'}$.
+            Then $x \in \epsBall{x'}{\epsilon'}$.
+
+            Follows by \cref{inter_lower_left,inter_lower_right,epsilon_ball,topological_basis_reals_eps_ball}.
+            %Then $(x_1 - \alpha) < (x_2 + \beta)$.
+
+            %Therefore $U \inter V = \intervalopen{}{(x_2 + \beta)}$.
+
+            %We show that if there exists $\delta \in \realsplus$ such that $\epsBall{x}{\delta} \subseteq U \inter V$ then there exists $W\in B$ such that $x\in W\subseteq U, V$.
+            %\begin{subproof}
+            %    Suppose there exists $\delta \in \realsplus$ such that $\epsBall{x}{\delta} \subseteq U \inter V$.
+            %    $x \in \epsBall{x}{\delta}$.
+            %    $\epsBall{x}{\delta} \subseteq U$.
+            %    $\epsBall{x}{\delta} \subseteq V$.
+            %    $\epsBall{x}{\delta} \in B$.
+            %\end{subproof}
+            %It suffices to show that there exists $\delta \in \realsplus$ such that $\epsBall{x}{\delta} \subseteq U \inter V$.
 
 
             %It suffices to show that there exists $x_0, \delta$ such that $x_0 \in \reals$ and $\delta \in \realsplus$ and $\epsBall{x_0}{\delta} \subseteq u \inter V$.
