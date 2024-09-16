@@ -132,9 +132,17 @@
 \begin{proof}
     $x - \epsilon \in \reals$.
     $x + \epsilon \in \reals$.
-   
-    It suffices to show that for all $c$ such that $c \in \reals \land (x - \epsilon) < c < (x + \epsilon)$ we have $c \in \epsBall{x}{\epsilon}$.
-    %Fix $c$ such that $c \in \reals \land (x - \epsilon) < c < (x + \epsilon)$.
+
+
+    %It suffices to show that for all $c$ such that $c \rless x$ we have $c \in \epsBall{x}{\epsilon}$.
+    %Fix $c$ such that $c \rless x$.
+%
+    %It suffices to show that for all $c$ such that $c < x$ we have $c \in \epsBall{x}{\epsilon}$.
+    %Fix $c$ such that $c < x$.
+
+
+    It suffices to show that for all $c$ such that $c \in \reals \land (x - \epsilon) \rless c \rless (x + \epsilon)$ we have $c \in \epsBall{x}{\epsilon}$.
+    Fix $c$ such that $(c \in \reals) \land (x - \epsilon) \rless c \rless (x + \epsilon)$.
     %Suppose $(x - \epsilon) < c < (x + \epsilon)$.
 \end{proof}
 
