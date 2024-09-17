@@ -382,7 +382,7 @@ For all $x,\delta$ such that $x \in \reals \land \delta \in \realsplus$ we have 
             We have $a',b' \in \reals$ by assumption.
             We have $a' < b'$ by \cref{id_img,epsilon_ball,minus,intervalopen,reals_order_is_transitive}.
             Then there exist $x',\epsilon'$ such that $x' \in \reals$ and $\epsilon' \in \realsplus$ and $\intervalopen{a'}{b'} = \epsBall{x'}{\epsilon'}$.
-            Then $x \in \epsBall{x'}{\epsilon'}$.
+            Then $x \in \epsBall{x'}{\epsilon'}$ by \cref{epsilon_ball}.
 
             Follows by \cref{inter_lower_left,inter_lower_right,epsilon_ball,topological_basis_reals_eps_ball}.
             %Then $(x_1 - \alpha) < (x_2 + \beta)$.
@@ -536,7 +536,7 @@ For all $x,\delta$ such that $x \in \reals \land \delta \in \realsplus$ we have 
         \begin{subproof}
             It suffices to show that for all $x \in \unions{E}$ we have $x \in \intervalopenInfiniteLeft{a}$.
             Fix $x \in \unions{E}$.
-            Take $e \in E$ such that $x \in e$.
+            Take $e \in E$ such that $x \in e$ by \cref{unions_iff}.
             $x \in \reals$.
             Take $x',\delta'$ such that $x' \in \reals$ and $\delta' \in \realsplus$ and $e = \epsBall{x'}{\delta'}$ by \cref{epsilon_ball,minus,topo_basis_reals_eps_iff,setminus,setminus_emptyset,elem_subseteq}.
             $\epsBall{x'}{\delta'} \in E$.
@@ -550,8 +550,8 @@ For all $x,\delta$ such that $x \in \reals \land \delta \in \realsplus$ we have 
                 Suppose not.
                 Take $y' \in e$ such that $y' > a$. 
                 $x'' < a$.
-                $(x'' - \delta'') < y' < (x'' + \delta'')$.
-                $(x'' - \delta'') < x'' < (x'' + \delta'')$.
+                $(x'' - \delta'') < y' < (x'' + \delta'')$ by \cref{minus,intervalopen,epsilon_ball,realsplus,reals_add,reals_addition_minus_behavior1,reals_order_minus_positiv}.
+                $(x'' - \delta'') < x'' < (x'' + \delta'')$ by \cref{minus,intervalopen,epsilon_ball,realsplus,reals_add,reals_addition_minus_behavior1,reals_order_minus_positiv}.
                 Then $x'' < a < y'$.
                 Therefore $(x'' - \delta'') < a < (x'' + \delta'')$ by \cref{realspuls_in_reals_minus,intervalopen_infinite_left,reals_order_is_transitive,reals_add,realsplus_in_reals,powerset_elim,subseteq}.
                 Then $a \in e$ by \cref{epsball_are_connected_in_reals,intervalopen_infinite_left,neq_witness}.
@@ -565,7 +565,7 @@ For all $x,\delta$ such that $x \in \reals \land \delta \in \realsplus$ we have 
             Trivial.
         \end{subproof}
     \end{subproof}
-    $\unions{E} \in \opens[\reals]$.
+    $\unions{E} \in \opens[\reals]$ by \cref{opens_unions,reals_is_topological_space,basis_is_in_genopens,topological_space_reals,topological_basis_reals_is_basis,subset_transitive}.
 \end{proof}
 
 \begin{lemma}\label{continuous_on_basis_implies_continuous_endo}
@@ -600,7 +600,7 @@ For all $x,\delta$ such that $x \in \reals \land \delta \in \realsplus$ we have 
         \begin{subproof}
             It suffices to show that for all $x \in \unions{E}$ we have $x \in \intervalopenInfiniteRight{a}$.
             Fix $x \in \unions{E}$.
-            Take $e \in E$ such that $x \in e$.
+            Take $e \in E$ such that $x \in e$ by \cref{unions_iff}.
             $x \in \reals$.
             Take $x',\delta'$ such that $x' \in \reals$ and $\delta' \in \realsplus$ and $e = \epsBall{x'}{\delta'}$ by \cref{epsilon_ball,minus,topo_basis_reals_eps_iff,setminus,setminus_emptyset,elem_subseteq}.
             $\epsBall{x'}{\delta'} \in E$.
@@ -612,10 +612,10 @@ For all $x,\delta$ such that $x \in \reals \land \delta \in \realsplus$ we have 
                 There exists $x'' \in \intervalopenInfiniteRight{a}$ such that there exists $\delta'' \in \realsplus$ such that $e = \epsBall{x''}{\delta''}$ and $a \notin \epsBall{x''}{\delta''}$.
                 Take $x'',\delta''$ such that $x'' \in \intervalopenInfiniteRight{a}$ and $\delta'' \in \realsplus$ and $e = \epsBall{x''}{\delta''}$ and $a \notin \epsBall{x''}{\delta''}$.
                 Suppose not.
-                Take $y' \in e$ such that $y' < a$. 
+                Take $y' \in e$ such that $y' < a$ by \cref{reals_order_total,intervalopen,eps_ball_implies_open_interval}. 
                 $x'' > a$.
-                $(x'' - \delta'') < y' < (x'' + \delta'')$.
-                $(x'' - \delta'') < x'' < (x'' + \delta'')$.
+                $(x'' - \delta'') < y' < (x'' + \delta'')$ by \cref{minus,intervalopen,intervalclosed,epsilon_ball,realsplus,reals_add,reals_addition_minus_behavior1,reals_order_minus_positiv}.
+                $(x'' - \delta'') < x'' < (x'' + \delta'')$ by \cref{minus,intervalopen,intervalclosed,epsilon_ball,realsplus,reals_add,reals_addition_minus_behavior1,reals_order_minus_positiv}.
                 Then $x'' > a > y'$.
                 Therefore $(x'' - \delta'') > a > (x'' + \delta'')$ by \cref{realspuls_in_reals_minus,intervalopen_infinite_right,reals_order_is_transitive,reals_add,realsplus_in_reals,powerset_elim,subseteq,epsball_are_connected_in_reals,subseteq}.
                 Then $a \in e$ by \cref{reals_order_is_transitive,reals_order_total,reals_add,realsplus,epsball_are_connected_in_reals,intervalopen_infinite_right,neq_witness}.
@@ -689,6 +689,7 @@ For all $x,\delta$ such that $x \in \reals \land \delta \in \realsplus$ we have 
     We show that for all $x \in \reals$ we have $x \in (\intervalopenInfiniteLeft{a} \union \intervalopenInfiniteRight{b} \union \intervalclosed{a}{b})$.
     \begin{subproof}
         Fix $x \in \reals$.
+        Follows by \cref{union_intro_left,intervalopen_infinite_left,reals_order_total,reals_order_total2,union_iff,intervalopen_infinite_right,union_assoc,union_intro_right,intervalclosed}.
     \end{subproof}
 \end{proof}
 
@@ -697,7 +698,7 @@ For all $x,\delta$ such that $x \in \reals \land \delta \in \realsplus$ we have 
     Then $\reals = \intervalopenInfiniteLeft{a} \union \intervalclosedInfiniteRight{a}$.
 \end{lemma}
 \begin{proof}
-    It suffices to show that for all $x \in \reals$ we have either $x \in \intervalopenInfiniteLeft{a}$ or $x \in \intervalclosedInfiniteRight{a}$.
+    It suffices to show that for all $x \in \reals$ we have either $x \in \intervalopenInfiniteLeft{a}$ or $x \in \intervalclosedInfiniteRight{a}$ by \cref{intervalopen_infinite_left,union_intro_left,neq_witness,intervalclosed_infinite_right,union_intro_right,union_iff}.
     Trivial.
 \end{proof}
 
@@ -714,6 +715,9 @@ For all $x,\delta$ such that $x \in \reals \land \delta \in \realsplus$ we have 
     Suppose $a \in \reals$.
     Then $\intervalopenInfiniteRight{a} \inter \intervalclosedInfiniteLeft{a} = \emptyset$.
 \end{lemma}
+\begin{proof}
+    Follows by \cref{reals_order_total,inter_lower_left,intervalopen_infinite_right,order_reals_lemma6,inter_lower_right,foundation,subseteq,intervalclosed_infinite_left}.
+\end{proof}
 
 \begin{lemma}\label{intersection_of_open_closed__infinite_intervals_open_left}
     Suppose $a \in \reals$.
@@ -725,7 +729,7 @@ For all $x,\delta$ such that $x \in \reals \land \delta \in \realsplus$ we have 
     Then $\intervalclosedInfiniteRight{a} \in \closeds{\reals}$.
 \end{proposition}
 \begin{proof}
-    $\intervalclosedInfiniteRight{a} = \reals \setminus \intervalopenInfiniteLeft{a}$.
+    $\intervalclosedInfiniteRight{a} = \reals \setminus \intervalopenInfiniteLeft{a}$ by \cref{intersection_of_open_closed__infinite_intervals_open_left,reals_as_union_of_open_closed_intervals2,setminus_inter,double_relative_complement,subseteq_union_setminus,subseteq_setminus,setminus_union,setminus_disjoint,setminus_partition,setminus_subseteq,setminus_emptyset,setminus_self,setminus_setminus,double_complement_union}.
 \end{proof}
 
 \begin{proposition}\label{closedinterval_infinite_left_in_closeds}
@@ -747,15 +751,17 @@ For all $x,\delta$ such that $x \in \reals \land \delta \in \realsplus$ we have 
         We show that for all $x \in \reals \setminus (\intervalopenInfiniteLeft{a} \union \intervalopenInfiniteRight{b})$ we have $x \in (\reals \setminus \intervalopenInfiniteLeft{a}) \inter (\reals \setminus \intervalopenInfiniteRight{b})$.
         \begin{subproof}
             Fix $x \in \reals \setminus (\intervalopenInfiniteLeft{a} \union \intervalopenInfiniteRight{b})$.
-            Then $x \in \reals \setminus \intervalopenInfiniteLeft{a}$.
-            Then $x \in \reals \setminus \intervalopenInfiniteRight{b}$.
+            Then $x \in \reals \setminus \intervalopenInfiniteLeft{a}$ by \cref{setminus,double_complement_union}.
+            Then $x \in \reals \setminus \intervalopenInfiniteRight{b}$ by \cref{union_upper_left,subseteq,union_comm,subseteq_implies_setminus_supseteq}.
+            Follows by \cref{inter_intro}.
         \end{subproof}
         We show that for all $x \in (\reals \setminus \intervalopenInfiniteLeft{a}) \inter (\reals \setminus \intervalopenInfiniteRight{b})$ we have $x \in \reals \setminus (\intervalopenInfiniteLeft{a} \union \intervalopenInfiniteRight{b})$.
         \begin{subproof}
             Fix $x \in (\reals \setminus \intervalopenInfiniteLeft{a}) \inter (\reals \setminus \intervalopenInfiniteRight{b})$.
-            Then $x \in (\reals \setminus \intervalopenInfiniteLeft{a})$.
-            Then $x \in (\reals \setminus \intervalopenInfiniteRight{b})$.
+            Then $x \in (\reals \setminus \intervalopenInfiniteLeft{a})$ by \cref{setminus_setminus,setminus}.
+            Then $x \in (\reals \setminus \intervalopenInfiniteRight{b})$ by \cref{inter_lower_right,elem_subseteq,setminus_setminus}.
         \end{subproof}
+        Follows by \cref{setminus_union}.
     \end{subproof}
     We show that $\reals \setminus \intervalopenInfiniteLeft{a} = \intervalclosedInfiniteRight{a}$.
     \begin{subproof}
