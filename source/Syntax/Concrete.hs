@@ -374,7 +374,7 @@ grammar lexicon@Lexicon{..} = mdo
     -- \end{cases}
 
     functionDefineCase <- rule $ (,) <$> (optional _ampersand *> expr) <*> (_ampersand *> text _if *> formula)
-    defineFunctionMathy <-  rule    $ DefineFunctionMathy 
+    defineFunctionLocal <-  rule    $ DefineFunctionLocal 
                                     <$> (_define *> beginMath *> varSymbol)           -- Define $ f
                                     <*> (_colon *> varSymbol)                           -- : 'var' \to 'var'
                                     <*> (_to *> expr <* endMath <* _suchThat) 
@@ -386,7 +386,7 @@ grammar lexicon@Lexicon{..} = mdo
 
 
 
-    proof            <- rule $ asum [byContradiction, byCases, bySetInduction, byOrdInduction, calc, subclaim, assume, fix, take, have, suffices, define, defineFunction, defineFunctionMathy, qed]
+    proof            <- rule $ asum [byContradiction, byCases, bySetInduction, byOrdInduction, calc, subclaim, assume, fix, take, have, suffices, define, defineFunction, defineFunctionLocal, qed]
 
 
     blockAxiom  <- rule $ uncurry3 BlockAxiom     <$> envPos  "axiom" axiom

@@ -543,7 +543,7 @@ checkProof = \case
         checkCalc calc
         assume [Asm (calcResult calc)]
         checkProof continue
-    DefineFunctionMathy funVar argVar domVar ranExpr definitions continue -> do
+    DefineFunctionLocal funVar argVar domVar ranExpr definitions continue -> do
         -- We have f: X \to Y and x \mapsto ...  
         -- definition is a nonempty list of (expresssion e, formula phi)
         -- such that f(x) =  e if phi(x)

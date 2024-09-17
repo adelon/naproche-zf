@@ -606,9 +606,9 @@ glossProof = \case
             then Sem.DefineFunction funVar argVar <$> glossExpr valueExpr <*> glossExpr domExpr <*> glossProof proof
             else error "mismatched variables in function definition."
     
-    Raw.DefineFunctionMathy funVar domVar ranExpr funVar2 argVar definitions proof -> do
+    Raw.DefineFunctionLocal funVar domVar ranExpr funVar2 argVar definitions proof -> do
         if funVar == funVar2
-            then Sem.DefineFunctionMathy funVar argVar domVar <$> glossExpr ranExpr <*> (glossLocalFunctionExprDef `each` definitions) <*> glossProof proof
+            then Sem.DefineFunctionLocal funVar argVar domVar <$> glossExpr ranExpr <*> (glossLocalFunctionExprDef `each` definitions) <*> glossProof proof
             else error "missmatched function names"
     Raw.Calc calc proof ->
         Sem.Calc <$> glossCalc calc <*> glossProof proof

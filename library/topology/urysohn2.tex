@@ -13,6 +13,7 @@
 \import{set/fixpoint.tex}
 \import{set/product.tex}
 \import{topology/real-topological-space.tex}
+\import{set/equinumerosity.tex}
 
 \section{Urysohns Lemma}
 
@@ -251,6 +252,7 @@
 
 
 
+
 \begin{proposition}\label{naturals_leq_on_suc}
     For all $n,m \in \naturals$ such that $m < \suc{n}$ we have $m \leq n$.
 \end{proposition}
@@ -358,6 +360,218 @@
     Omitted.
 \end{proof}
 
+\begin{lemma}\label{naturals_suc_injective}
+    Suppose $n,m \in \naturals$.
+    $n = m$ iff $\suc{n} = \suc{m}$.
+\end{lemma}
+
+\begin{lemma}\label{naturals_rless_implies_not_eq}
+    Suppose $n,m \in \naturals$.
+    Suppose $n < m$.
+    Then $n \neq m$.
+\end{lemma}
+
+\begin{lemma}\label{cardinality_of_singleton}
+    For all $x$ such that $x \neq \emptyset$ we have $\{x\}$ has cardinality $1$.
+\end{lemma}
+\begin{proof}
+    Omitted.
+    %Fix $x$.
+    %Suppose $x \neq \emptyset$.
+    %Let $X = \{x\}$.
+    %$\seq{\zero}{\zero}=1$.
+    %$\seq{\zero}{\zero}$ has cardinality $1$.
+    %$X \setminus \{x\} = \emptyset$.
+    %$1 = \{\emptyset\}$.
+    %Let $F = \{(x,\emptyset)\}$.
+    %$F$ is a relation.
+    %$\dom{F} = X$.
+    %$\emptyset \in \ran{F}$.
+    %for all $x \in 1$ we have $x = \emptyset$.
+    %$\ran{F} = 1$.
+    %$F$ is injective.
+    %$F \in \surj{X}{1}$.
+    %$F$ is a bijection from $X$ to $1$.
+\end{proof}
+
+\begin{lemma}\label{cardinality_n_plus_1}
+    For all $n \in \naturals$ we have $n+1$ has cardinality $n+1$.
+\end{lemma}
+\begin{proof}
+    Omitted.
+\end{proof}
+
+\begin{lemma}\label{cardinality_n_m_plus}
+    For all $n,m \in \naturals$ we have $n+m$ has cardinality $n+m$.
+\end{lemma}
+\begin{proof}
+    Omitted.
+\end{proof}
+
+\begin{lemma}\label{cardinality_plus_disjoint}
+    Suppose $X \inter Y = \emptyset$.
+    Suppose $X$ is finite.
+    Suppose $Y$ is finite.
+    Suppose $X$ has cardinality $n$.
+    Suppose $Y$ has cardinality $m$.
+    Then $X \union Y$ has cardinality $m+n$.
+\end{lemma}
+\begin{proof}
+    Omitted.
+\end{proof}
+
+
+
+
+\begin{lemma}\label{injective_functions_is_bijection_if_bijection_there_is_other_bijection_1}
+    Suppose $f$ is a bijection from $X$ to $Y$.
+    Suppose $g$ is a function from $X$ to $Y$.
+    Suppose $g$ is injective.
+    Suppose $X$ is finite and $Y$ is finite. 
+    For all $n \in \naturals$ such that $Y$ has cardinality $n$ we have $g$ is a bijection from $X$ to $Y$.
+\end{lemma}
+\begin{proof}[Proof by \in-induction on $n$]
+    Assume $n \in \naturals$.
+    Suppose $Y$ has cardinality $n$.
+    $X$ has cardinality $n$ by \cref{bijection_converse_is_bijection,bijection_circ,regularity,cardinality,foundation,empty_eq,notin_emptyset}.
+    \begin{byCase}
+        \caseOf{$n = \zero$.} 
+            Follows by \cref{converse_converse_eq,injective_converse_is_function,converse_is_relation,dom_converse,id_is_function_to,id_ran,ran_circ_exact,circ,ran_converse,emptyset_is_function_on_emptyset,bijective_converse_are_funs,relext,function_member_elim,bijection_is_function,cardinality,bijections_dom,in_irrefl,codom_of_emptyset_can_be_anything,converse_emptyset,funs_elim,neq_witness,id}.
+        \caseOf{$n \neq \zero$.}
+            %Take $n' \in n$ such that $n = \suc{n'}$.
+            %$n' \in \naturals$.
+            %$n' + 1 = n$.
+            %Take $y$ such that $y \in Y$ by \cref{funs_type_apply,apply,bijections_to_funs,cardinality,foundation}. 
+            %Let $Y' = Y \setminus \{y\}$.
+            %$Y' \subseteq Y$.
+            %$Y'$ is finite.
+            %There exist $m \in \naturals$ such that $Y'$ has cardinality $m$.
+            %Take $m \in \naturals$ such that $Y'$ has cardinality $m$.
+            %Then $Y'$ has cardinality $n'$.
+            %Let $x' = \apply{\converse{f}}{y'}$. 
+            %$x' \in X$.
+            %Let $X' = X \setminus \{x'\}$.
+            %$X' \subseteq X$.
+            %$X'$ is finite.
+            %There exist $m' \in \naturals$ such that $X'$ has cardinality $m'$.
+            %Take $m' \in \naturals$ such that $X''$ has cardinality $m'$.
+            %Then $X'$ has cardinality $n'$.
+            %Let $f'(z)=f(z)$ for $z \in X'$.
+            %$\dom{f'} = X'$.
+            %$\ran{f'} = Y'$.
+            %$f'$ is a bijection from $X'$ to $Y'$.
+            %Let $g'(z) = g(z)$ for $z \in X'$.
+            %Then $g'$ is injective.
+            %Then $g'$ is a bijection from $X'$ to $Y'$ by \cref{rels,id_elem_rels,times_empty_right,powerset_emptyset,double_complement_union,unions_cons,union_eq_cons,union_as_unions,unions_pow,cons_absorb,setminus_self,bijections_dom,ran_converse,id_apply,apply,unions_emptyset,img_emptyset,zero_is_empty}.
+            %Define $G : X \to Y$ such that $G(z)=
+            %\begin{cases}
+            %    g'(z) & \text{if} z \in X' \\
+            %    y' & \text{if} z = x'
+            %\end{cases}$
+            %$G = g$.
+            %Follows by \cref{double_relative_complement,fun_to_surj,bijections,funs_surj_iff,bijections_to_funs,neq_witness,surj,funs_elim,setminus_self,cons_subseteq_iff,cardinality,ordinal_empty_or_emptyset_elem,naturals_inductive_set,natural_number_is_ordinal_for_all,foundation,inter_eq_left_implies_subseteq,inter_emptyset,cons_subseteq_intro,emptyset_subseteq}.
+            Omitted.
+    \end{byCase}
+    %$\converse{f}$ is a bijection from $Y$ to $X$.
+    %Let $h = g \circ \converse{f}$.
+    %It suffices to show that $\ran{g} = Y$ by \cref{fun_to_surj,dom_converse,bijections}.
+    %It suffices to show that for all $y \in Y$ we have there exist $x \in X$ such that $g(x)=y$ by \cref{funs_ran,subseteq_antisymmetric,fun_ran_iff,apply,funs_elim,ran_converse,subseteq}.
+%
+    %Fix $y \in Y$.
+    %Take $x \in X$ such that $\apply{\converse{f}}{y} = x$.
+
+\end{proof}
+
+\begin{lemma}\label{injective_functions_is_bijection_if_bijection_there_is_other_bijection}
+    Suppose $f$ is a bijection from $X$ to $Y$.
+    Suppose $g$ is a function from $X$ to $Y$.
+    Suppose $g$ is injective.
+    Suppose $Y$ is finite. 
+    Then $g$ is a bijection from $X$ to $Y$.
+\end{lemma}
+\begin{proof}
+    There exist $n \in \naturals$ such that $Y$ has cardinality $n$ by \cref{cardinality,injective_functions_is_bijection_if_bijection_there_is_other_bijection_1,finite}.
+    Follows by \cref{injective_functions_is_bijection_if_bijection_there_is_other_bijection_1,cardinality,equinum_tran,equinum_sym,equinum,finite}.
+\end{proof}
+
+
+
+\begin{lemma}\label{naturals_bijection_implies_eq}
+    Suppose $n,m \in \naturals$.
+    Suppose $f$ is a bijection from $n$ to $m$.
+    Then $n = m$.
+\end{lemma}
+\begin{proof}
+    $n$ is finite.
+    $m$ is finite.
+    Suppose not.
+    Then $n < m$ or $m < n$.
+    \begin{byCase}
+        \caseOf{$n < m$.}
+            Then $n \in m$.
+            There exist $x \in m$ such that $x \notin n$.
+            $\identity{n}$ is a function from $n$ to $m$.
+            $\identity{n}$ is injective.
+            $\apply{\identity{n}}{n} = n$ by \cref{id_ran,ran_of_surj,bijections,injective_functions_is_bijection_if_bijection_there_is_other_bijection}.
+            Follows by \cref{inhabited,regularity,function_apply_default,apply,id_dom,in_irrefl,function_member_elim,bijections_dom,zero_is_empty,bijection_is_function,foundation,bijections,ran_of_surj,dom_converse,converse_emptyset,dom_emptyset}.
+        \caseOf{$m < n$.}
+            Then $m \in n$.
+            There exist $x \in n$ such that $x \notin m$.
+            $\converse{f}$ is a bijection from $m$ to $n$.
+            $\identity{m}$ is a function from $m$ to $n$.
+            $\identity{m}$ is injective.
+            $\apply{\identity{m}}{m} = m$ by \cref{id_ran,ran_of_surj,bijections,injective_functions_is_bijection_if_bijection_there_is_other_bijection}.
+            Follows by \cref{inhabited,regularity,function_apply_default,apply,id_dom,in_irrefl,function_member_elim,bijections_dom,zero_is_empty,bijection_is_function,foundation,bijections,ran_of_surj,dom_converse,converse_emptyset,dom_emptyset}.
+    \end{byCase}
+\end{proof}
+
+\begin{lemma}\label{naturals_eq_iff_bijection}
+    Suppose $n,m \in \naturals$.
+    $n = m$ iff there exist $f$ such that $f$ is a bijection from $n$ to $m$.
+\end{lemma}
+\begin{proof}
+    We show that if $n = m$ then there exist $f$ such that $f$ is a bijection from $n$ to $m$.
+    \begin{subproof}
+        Trivial.
+    \end{subproof}
+    We show that for all $k \in \naturals$ we have if there exist $f$ such that $f$ is a bijection from $k$ to $m$ then $k = m$.
+    \begin{subproof}%[Proof by \in-induction on $k$]
+        %Assume $k \in \naturals$.
+        %\begin{byCase}
+        %    \caseOf{$k = \zero$.} 
+        %        Trivial.
+        %    \caseOf{$k \neq \zero$.}
+        %        \begin{byCase}
+        %            \caseOf{$m = \zero$.}
+        %                Trivial.
+        %            \caseOf{$m \neq \zero$.}
+        %                Take $k' \in \naturals$ such that $\suc{k'} = k$.
+        %                Then $k' \in k$.
+        %                Take $m' \in \naturals$ such that $m = \suc{m'}$.
+        %                Then $m' \in m$.
+        %                
+        %        \end{byCase}
+        %\end{byCase}
+    \end{subproof}
+\end{proof}
+
+\begin{lemma}\label{seq_from_zero_suc_cardinality_eq_upper_border}
+    Suppose $n,m \in \naturals$.
+    Suppose $\seq{\zero}{n}$ has cardinality $\suc{m}$.
+    Then $n = m$.
+\end{lemma}
+\begin{proof}
+    We have $\seq{\zero}{n} = \suc{n}$.
+    Take $f$ such that $f$ is a bijection from $\seq{\zero}{n}$ to $\suc{m}$.
+    Therefore $n=m$ by \cref{suc_injective,naturals_inductive_set,cardinality,naturals_eq_iff_bijection}.
+\end{proof}
+
+\begin{lemma}\label{seq_from_zero_cardinality_eq_upper_border_set_eq}
+    Suppose $n,m \in \naturals$.
+    Suppose $\seq{\zero}{n}$ has cardinality $\suc{m}$.
+    Then $\seq{\zero}{n} = \seq{\zero}{m}$.
+\end{lemma}
+
 \begin{proposition}\label{existence_normal_ordered_urysohn}
     Let $X$ be a urysohn space.
     Suppose $U$ is a urysohnchain of $X$.
@@ -384,23 +598,24 @@
                 Take $f$ such that there exist $k'$ such that $f$ is a bijection from $\seq{\zero}{k'}$ to $\dom{U}$ and $\dom{U}$ has cardinality $\suc{k'}$ and for all $n',m' \in \seq{\zero}{k'}$ such that $n' < m'$ we have $f(n') < f(m')$.
                 Take $k'$ such that $f$ is a bijection from $\seq{\zero}{k'}$ to $\dom{U}$ and $\dom{U}$ has cardinality $\suc{k'}$ and for all $n',m' \in \seq{\zero}{k'}$ such that $n' < m'$ we have $f(n') < f(m')$.
                 $\seq{\zero}{k'}$ has cardinality $\suc{k}$ by \cref{omega_is_an_ordinal,suc,ordinal_transitivity,bijection_converse_is_bijection,seq_zero_to_n_eq_to_suc_n,cardinality,bijections_dom,bijection_circ}.
-                We show that $\seq{\zero}{k'} = \seq{\zero}{k}$.
-                \begin{subproof}
-                    We show that $\seq{\zero}{k'} \subseteq \seq{\zero}{k}$.
-                    \begin{subproof}
-                        It suffices to show that for all $y \in \seq{\zero}{k'}$ we have $y \in \seq{\zero}{k}$.
-                        Fix $y \in \seq{\emptyset}{k'}$.
-                        Then $y \leq k'$.
-                        Therefore $y \in k'$ or $y = k'$ by \cref{omega_is_an_ordinal,suc_intro_self,ordinal_transitivity,cardinality,rless_eq_in_for_naturals,m_to_n_set}.
-                        %Then $\seq{\emptyset}{k'} \in \suc{k}$.
-                        Therefore $y \in \suc{k}$.
-                        Therefore $y \in \seq{\emptyset}{k}$.
-                    \end{subproof}
-                    We show that for all $y \in \seq{\zero}{k}$ we have $y \in \seq{\zero}{k'}$.
-                    \begin{subproof}
-                        Fix $y \in \seq{\emptyset}{k}$.
-                    \end{subproof}
-                \end{subproof}
+                $\seq{\zero}{k'} = \seq{\zero}{k}$ by \cref{omega_is_an_ordinal,seq_from_zero_cardinality_eq_upper_border_set_eq,suc_subseteq_implies_in,suc_subseteq_elim,ordinal_suc_subseteq,cardinality}.
+                %We show that $\seq{\zero}{k'} = \seq{\zero}{k}$.
+                %\begin{subproof}
+                %    We show that $\seq{\zero}{k'} \subseteq \seq{\zero}{k}$.
+                %    \begin{subproof}
+                %        It suffices to show that for all $y \in \seq{\zero}{k'}$ we have $y \in \seq{\zero}{k}$.
+                %        Fix $y \in \seq{\emptyset}{k'}$.
+                %        Then $y \leq k'$.
+                %        Therefore $y \in k'$ or $y = k'$ by \cref{omega_is_an_ordinal,suc_intro_self,ordinal_transitivity,cardinality,rless_eq_in_for_naturals,m_to_n_set}.
+                %        
+                %        Therefore $y \in \suc{k}$.
+                %        Therefore $y \in \seq{\emptyset}{k}$.
+                %    \end{subproof}
+                %    We show that for all $y \in \seq{\zero}{k}$ we have $y \in \seq{\zero}{k'}$.
+                %    \begin{subproof}
+                %        Fix $y \in \seq{\emptyset}{k}$.
+                %    \end{subproof}
+                %\end{subproof}
             \end{subproof}
             Take $F$ such that $F$ is a bijection from $\seq{\zero}{k}$ to $\dom{U}$ and for all $n',m' \in \seq{\zero}{k}$ such that $n' < m'$ we have $F(n') < F(m')$.
             Let $N = \seq{\zero}{k}$.
@@ -452,7 +667,9 @@
     $f$ is staircase sequence of $U$ iff $f$ is a sequence and $U$ is a lifted urysohnchain of $X$ and $\dom{U} = \dom{f}$ and for all $n \in \dom{U}$ we have $\at{f}{n}$ is a staircase function adapted to $\at{U}{n}$ in $U$.
 \end{definition}
 
-
+\begin{definition}
+    
+\end{definition}
 
 
 
@@ -565,8 +782,15 @@
     \end{subproof}
     Take $U$ such that $U$ is a lifted urysohnchain of $X$ and $\at{U}{\zero} = U_0$.
 
+    We show that there exist $S$ such that $S$ is staircase sequence of $U$.
+    \begin{subproof}
+        Omitted.
+    \end{subproof}
+    Take $S$ such that $S$ is staircase sequence of $U$.
 
+    For all $x \in \carrier[X]$ we have there exist $r,R$ such that $r \in \reals$ and $R$ is a sequence of reals and $\dom{R} = \naturals$ and $R$ converge to $r$ and for all $n \in \naturals$ we have $\at{R}{n} = \apply{\at{S}{n}}{x}$.
 
+    We show that for all $x \in \carrier[X]$ there exists $r \in \intervalclosed{a}{b}$ such that for .
 
 
     
