@@ -664,14 +664,28 @@
 \end{definition}
 
 \begin{definition}\label{staircase_sequence}
-    $f$ is staircase sequence of $U$ iff $f$ is a sequence and $U$ is a lifted urysohnchain of $X$ and $\dom{U} = \dom{f}$ and for all $n \in \dom{U}$ we have $\at{f}{n}$ is a staircase function adapted to $\at{U}{n}$ in $U$.
+    $S$ is staircase sequence of $U$ iff $S$ is a sequence and $U$ is a lifted urysohnchain of $X$ and $\dom{U} = \dom{S}$ and for all $n \in \dom{U}$ we have $\at{S}{n}$ is a staircase function adapted to $\at{U}{n}$ in $U$.
 \end{definition}
 
-\begin{definition}
-    
+\begin{definition}\label{staircase_limit_point}
+    $x$ is the staircase limit of $S$ with $y$ iff $x \in \reals$ and for all $\epsilon \in \realsplus$ there exist $n_0 \in \naturals$ such that for all $n \in \naturals$ such that $n_0 \rless n$ we have $\apply{\at{S}{n}}{y} \in \epsBall{x}{\epsilon}$.
 \end{definition}
 
+\begin{definition}\label{staircase_limit_function}
+    $f$ is a limit function of a staircase $S$ iff $S$ is staircase sequence of $U$ and $U$ is a lifted urysohnchain of $X$ and $\dom{f} = \carrier[X]$ and for all $x \in \dom{f}$ we have $f(x)$ is the staircase limit of $S$ with $x$ and $f$ is a function from $\carrier[X]$ to $\reals$.
+\end{definition}
 
+%\begin{definition}\label{staircase_limit_function}
+%    $f$ is a limit function of staircase $S$ iff $S$ is staircase sequence of $U$ and $U$ is a lifted urysohnchain of $X$ and $\dom{f} = \carrier[X]$ and for all $x \in \dom{f}$ we have $f(x)$ is the staircase limit of $S$ with $x$ and $f$ is a function from $\carrier[X]$ to $\reals$.
+%\end{definition}
+%
+%\begin{proposition}\label{staircase_limit_is_continuous}
+%    Suppose $X$ is a urysohnspace.
+%    Suppose $U$ is a lifted urysohnchain of $X$.
+%    Suppose $S$ is staircase sequence of $U$.
+%    Suppose $f$ is the limit function of a staircase $S$.
+%    Then $f$ is continuous.
+%\end{proposition}
 
 \begin{theorem}\label{urysohnsetinbeetween}
     Let $X$ be a urysohn space.
@@ -788,10 +802,10 @@
     \end{subproof}
     Take $S$ such that $S$ is staircase sequence of $U$.
 
-    For all $x \in \carrier[X]$ we have there exist $r,R$ such that $r \in \reals$ and $R$ is a sequence of reals and $\dom{R} = \naturals$ and $R$ converge to $r$ and for all $n \in \naturals$ we have $\at{R}{n} = \apply{\at{S}{n}}{x}$.
-
-    We show that for all $x \in \carrier[X]$ there exists $r \in \intervalclosed{a}{b}$ such that for .
-
+    %For all $x \in \carrier[X]$ we have there exist $r,R$ such that $r \in \reals$ and $R$ is a sequence of reals and $\dom{R} = \naturals$ and $R$ converge to $r$ and for all $n \in \naturals$ we have $\at{R}{n} = \apply{\at{S}{n}}{x}$.
+%
+    %We show that for all $x \in \carrier[X]$ there exists $r \in \intervalclosed{a}{b}$ such that for .
+%
 
     
 \end{proof}
