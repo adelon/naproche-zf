@@ -40,7 +40,7 @@
 
 
 \begin{definition}\label{chain_of_subsets}
-    $X$ is a chain of subsets in $Y$ iff $X$ is a sequence and for all $n \in \dom{X}$ we have $\at{X}{n} \subseteq \carrier[Y]$ and for all $m \in \dom{X}$ such that $m > n$ we have $\at{X}{n} \subseteq \at{X}{m}$. 
+    $X$ is a chain of subsets in $Y$ iff $X$ is a sequence and for all $n \in \dom{X}$ we have $\at{X}{n} \subseteq \carrier[Y]$ and for all $m \in \dom{X}$ such that $n < m$ we have $\at{X}{n} \subseteq \at{X}{m}$. 
 \end{definition}
 
 
@@ -49,11 +49,11 @@
 \end{definition}
 
 \begin{definition}\label{urysohn_finer_set}
-    $A$ is finer between $X$ to $Y$ in $U$ iff $\closure{X}{U} \subseteq \interior{A}{U}$ and $\closure{A}{U} \subseteq \interior{Y}{U}$.
+    $A$ is finer between $B$ to $C$ in $X$ iff $\closure{B}{X} \subseteq \interior{A}{X}$ and $\closure{A}{X} \subseteq \interior{C}{X}$.
 \end{definition}
 
 \begin{definition}\label{finer} %<-- verfeinerung 
-    $Y$ is finer then $X$ in $U$ iff for all $n \in \dom{X}$ we have $\at{X}{n} \in \ran{Y}$ and for all $m \in \dom{X}$ such that $n < m$ we have there exist $k \in \dom{Y}$ such that $\at{Y}{k}$ is finer between $\at{X}{n}$ to $\at{X}{m}$ in $U$.
+    $A$ is finer then $B$ in $X$ iff for all $n \in \dom{B}$ we have $\at{B}{n} \in \ran{A}$ and for all $m \in \dom{B}$ such that $n < m$ we have there exist $k \in \dom{A}$ such that $\at{A}{k}$ is finer between $\at{B}{n}$ to $\at{B}{m}$ in $X$.
 \end{definition}
 
 \begin{definition}\label{follower_index}
@@ -91,6 +91,46 @@
 \begin{definition}\label{bijection_of_urysohnchains}
     $f$ is consistent on $X$ to $Y$ iff $f$ is a bijection from $\dom{X}$ to $\dom{Y}$ and for all $n,m \in \dom{X}$ such that $n < m$ we have $f(n) < f(m)$.
 \end{definition}
+
+
+%\begin{definition}\label{staircase}
+%    $f$ is a staircase function adapted to $U$ in $X$ iff $U$ is a urysohnchain of $X$ and $f$ is a function from $\carrier[X]$ to $\reals$ and there exist $k \in \naturals$ such that $k = \max{\dom{U}}$ and for all $x,y \in \carrier[X]$ such that $y \in \carrier[X] \setminus \at{U}{k}$ and $x \in \at{U}{k}$ we have $f(y) = 1$ and there exist $n,m \in \dom{U}$ such that $n$ follows $m$ in $\dom{U}$ and $x \in (\at{U}{m} \setminus \at{U}{n})$ and $f(x)= \rfrac{m}{k}$.
+%\end{definition}
+
+
+\begin{definition}\label{staircase_step_value1}
+    $a$ is the staircase step value at $y$ of $U$ in $X$ iff there exist $n,m \in \dom{U}$ such that $n$ follows $m$ in $\dom{U}$ and $y \in \closure{\at{U}{n}}{X} \setminus \closure{\at{U}{m}}{X}$ and $a = \rfrac{n}{\max{\dom{U}}}$.
+\end{definition}
+
+\begin{definition}\label{staircase_step_value2}
+    $a$ is the staircase step valuetwo at $y$ of $U$ in $X$ iff either if $y \in (\carrier[X] \setminus \closure{\at{U}{\max{\dom{U}}}}{X})$ then $a = 1$ or $a$ is the staircase step valuethree at $y$ of $U$ in $X$.
+\end{definition}
+
+\begin{definition}\label{staircase_step_value3}
+    $a$ is the staircase step valuethree at $y$ of $U$ in $X$ iff if $y \in \closure{\at{U}{\min{\dom{U}}}}{X}$ then $f(z) = \zero$.
+\end{definition}
+
+
+\begin{definition}\label{staircase2}
+    $f$ is a staircase function adapted to $U$ in $X$ iff $U$ is a urysohnchain of $X$ and $f$ is a function from $\carrier[X]$ to $\reals$ and for all $y \in \carrier[X]$ we have either $f(y)$ is the staircase step value at $y$ of $U$ in $X$ or $f(y)$ is the staircase step valuetwo at $y$ of $U$ in $X$.
+\end{definition}
+
+\begin{definition}\label{staircase_sequence}
+    $S$ is staircase sequence of $U$ in $X$ iff $S$ is a sequence and $U$ is a lifted urysohnchain of $X$ and $\dom{U} = \dom{S}$ and for all $n \in \dom{U}$ we have $\at{S}{n}$ is a staircase function adapted to $\at{U}{n}$ in $X$.
+\end{definition}
+
+\begin{definition}\label{staircase_limit_point}
+    $x$ is the staircase limit of $S$ with $y$ iff $x \in \reals$ and for all $\epsilon \in \realsplus$ there exist $n_0 \in \naturals$ such that for all $n \in \naturals$ such that $n_0 \rless n$ we have $\apply{\at{S}{n}}{y} \in \epsBall{x}{\epsilon}$.
+\end{definition}
+
+%\begin{definition}\label{staircase_limit_function}
+%    $f$ is a limit function of a staircase $S$ iff $S$ is staircase sequence of $U$ and $U$ is a lifted urysohnchain of $X$ and $\dom{f} = \carrier[X]$ and for all $x \in \dom{f}$ we have $f(x)$ is the staircase limit of $S$ with $x$ and $f$ is a function from $\carrier[X]$ to $\reals$.
+%\end{definition}
+%
+\begin{definition}\label{staircase_limit_function}
+    $f$ is the limit function of staircase $S$ together with $U$ and $X$ iff $S$ is staircase sequence of $U$ in $X$ and $U$ is a lifted urysohnchain of $X$ and $\dom{f} = \carrier[X]$ and for all $x \in \dom{f}$ we have $f(x)$ is the staircase limit of $S$ with $x$ and $f$ is a function from $\carrier[X]$ to $\reals$.
+\end{definition}
+
 
 \begin{proposition}\label{naturals_in_transitive}
     $\naturals$ is a \in-transitive set.
@@ -659,33 +699,26 @@
 \end{proof}
 
 
-\begin{definition}\label{staircase}
-    $f$ is a staircase function adapted to $U$ in $X$ iff $U$ is a urysohnchain of $X$ and for all $x,n,m,k$ such that $k = \max{\dom{U}}$ and $n,m \in \dom{U}$ and $n$ follows $m$ in $\dom{U}$ and $x \in (\at{U}{m} \setminus \at{U}{n})$ we have $f(x)= \rfrac{m}{k}$.
-\end{definition}
+\begin{proposition}\label{staircase_ran_in_zero_to_one}
+    Let $X$ be a urysohn space.
+    Suppose $U$ is a urysohnchain of $X$.
+    Suppose $f$ is a staircase function adapted to $U$ in $X$.
+    Then $\ran{f} \subseteq \intervalclosed{\zero}{1}$.
+\end{proposition}
+\begin{proof}
+    Omitted.
+\end{proof}
 
-\begin{definition}\label{staircase_sequence}
-    $S$ is staircase sequence of $U$ iff $S$ is a sequence and $U$ is a lifted urysohnchain of $X$ and $\dom{U} = \dom{S}$ and for all $n \in \dom{U}$ we have $\at{S}{n}$ is a staircase function adapted to $\at{U}{n}$ in $U$.
-\end{definition}
-
-\begin{definition}\label{staircase_limit_point}
-    $x$ is the staircase limit of $S$ with $y$ iff $x \in \reals$ and for all $\epsilon \in \realsplus$ there exist $n_0 \in \naturals$ such that for all $n \in \naturals$ such that $n_0 \rless n$ we have $\apply{\at{S}{n}}{y} \in \epsBall{x}{\epsilon}$.
-\end{definition}
-
-\begin{definition}\label{staircase_limit_function}
-    $f$ is a limit function of a staircase $S$ iff $S$ is staircase sequence of $U$ and $U$ is a lifted urysohnchain of $X$ and $\dom{f} = \carrier[X]$ and for all $x \in \dom{f}$ we have $f(x)$ is the staircase limit of $S$ with $x$ and $f$ is a function from $\carrier[X]$ to $\reals$.
-\end{definition}
-
-%\begin{definition}\label{staircase_limit_function}
-%    $f$ is a limit function of staircase $S$ iff $S$ is staircase sequence of $U$ and $U$ is a lifted urysohnchain of $X$ and $\dom{f} = \carrier[X]$ and for all $x \in \dom{f}$ we have $f(x)$ is the staircase limit of $S$ with $x$ and $f$ is a function from $\carrier[X]$ to $\reals$.
-%\end{definition}
-%
-%\begin{proposition}\label{staircase_limit_is_continuous}
-%    Suppose $X$ is a urysohnspace.
-%    Suppose $U$ is a lifted urysohnchain of $X$.
-%    Suppose $S$ is staircase sequence of $U$.
-%    Suppose $f$ is the limit function of a staircase $S$.
-%    Then $f$ is continuous.
-%\end{proposition}
+\begin{proposition}\label{staircase_limit_is_continuous}
+    Let $X$ be a urysohn space.
+    Suppose $U$ is a lifted urysohnchain of $X$.
+    Suppose $S$ is staircase sequence of $U$ in $X$.
+    Suppose $f$ is the limit function of staircase $S$ together with $U$ and $X$.
+    Then $f$ is continuous.
+\end{proposition}
+\begin{proof}
+    Omitted.
+\end{proof}
 
 \begin{theorem}\label{urysohnsetinbeetween}
     Let $X$ be a urysohn space.
@@ -712,8 +745,26 @@
     Omitted.
 \end{proof}
 
+\begin{lemma}\label{fractions_between_zero_one}
+    Suppose $n,m \in \naturals$.
+    Suppose $m > n$.
+    Then $\zero \leq \rfrac{n}{m} \leq 1$.
+\end{lemma}
+\begin{proof}
+    Omitted.
+\end{proof}
 
+\begin{lemma}\label{intervalclosed_border_is_elem}
+    Suppose $a,b \in \reals$.
+    Suppose $a < b$.
+    Then $a,b \in \intervalclosed{a}{b}$.  
+\end{lemma}
 
+\begin{lemma}\label{urysohnchain_subseteqrel}
+    Let $X$ be a urysohn space.
+    Suppose $U$ is a urysohnchain of $X$.
+    Then for all $n,m \in \dom{U}$ such that $n < m$ we have $\at{U}{n} \subseteq \at{U}{m}$.
+\end{lemma}
 
 
 \begin{theorem}\label{urysohn}
@@ -721,8 +772,8 @@
     Suppose $A,B \in \closeds{X}$.
     Suppose $A \inter B$ is empty.
     Suppose $\carrier[X]$ is inhabited.
-    There exist $f$ such that $f \in \funs{\carrier[X]}{\intervalclosed{\zero}{1}}$ 
-    and $f(A) = \zero$ and $f(B)= 1$ and $f$ is continuous.
+    There exist $f$ such that $f \in \funs{\carrier[X]}{\intervalclosed{\zero}{1}}$ and $f$ is continuous
+    and for all $a,b$ such that $a \in A$ and $b \in B$ we have $f(a)= \zero$ and $f(b) = 1$.
 \end{theorem}
 \begin{proof}
     Let $X' = \carrier[X]$.
@@ -796,46 +847,133 @@
     \end{subproof}
     Take $U$ such that $U$ is a lifted urysohnchain of $X$ and $\at{U}{\zero} = U_0$.
 
-    We show that there exist $S$ such that $S$ is staircase sequence of $U$.
+    We show that there exist $S$ such that $S$ is staircase sequence of $U$ in $X$.
     \begin{subproof}
         Omitted.
     \end{subproof}
-    Take $S$ such that $S$ is staircase sequence of $U$.
+    Take $S$ such that $S$ is staircase sequence of $U$ in $X$.
 
     %For all $x \in \carrier[X]$ we have there exist $r,R$ such that $r \in \reals$ and $R$ is a sequence of reals and $\dom{R} = \naturals$ and $R$ converge to $r$ and for all $n \in \naturals$ we have $\at{R}{n} = \apply{\at{S}{n}}{x}$.
 %
     %We show that for all $x \in \carrier[X]$ there exists $r \in \intervalclosed{a}{b}$ such that for .
-%
+    We show that there exist $f$ such that $f$ is the limit function of staircase $S$ together with $U$ and $X$.
+    \begin{subproof}
+        Omitted.
+    \end{subproof}
+    Take $f$ such that $f$ is the limit function of staircase $S$ together with $U$ and $X$.
+    Then $f$ is continuous.
+    We show that $\dom{f} = \carrier[X]$.
+    \begin{subproof}
+        Trivial.
+    \end{subproof}
+    $f$ is a function.
+    We show that $\ran{f} \subseteq \intervalclosed{\zero}{1}$.
+    \begin{subproof}
+        It suffices to show that $f$ is a function to $\intervalclosed{\zero}{1}$.
+        It suffices to show that for all $x \in \dom{f}$ we have $f(x) \in \intervalclosed{\zero}{1}$.
+        Fix $x \in \dom{f}$.
+        $f(x)$ is the staircase limit of $S$ with $x$.
+        Therefore $f(x) \in \reals$.
+        
+        We show that for all $n \in \naturals$ we have $\apply{\at{S}{n}}{x} \in \intervalclosed{\zero}{1}$.
+        \begin{subproof}
+            Fix $n \in \naturals$.
+            Let $g = \at{S}{n}$.
+            Let $U' = \at{U}{n}$.
+            $\at{S}{n}$ is a staircase function adapted to $\at{U}{n}$ in $X$.
+            $g$ is a staircase function adapted to $U'$ in $X$.
+            $U'$ is a urysohnchain of $X$.
+            $g$ is a function from $\carrier[X]$ to $\reals$.
+            It suffices to show that $\ran{g} \subseteq \intervalclosed{\zero}{1}$ by \cref{function_apply_default,reals_axiom_zero_in_reals,intervalclosed,one_is_positiv,function_apply_elim,inter,inter_absorb_supseteq_left,ran_iff,funs_is_relation,funs_is_function,staircase2}.
+            It suffices to show that for all $x \in \dom{g}$ we have $g(x) \in \intervalclosed{\zero}{1}$.
+            Fix $x\in \dom{g}$.
+            Then $x \in \carrier[X]$.
+            \begin{byCase}
+                \caseOf{$x \in (\carrier[X] \setminus \closure{\at{U'}{\max{\dom{U'}}}}{X})$.}
+                    Therefore $x \notin \closure{\at{U'}{\max{\dom{U'}}}}{X}$.
+                    Therefore $x \notin \closure{\at{U'}{\min{\dom{U'}}}}{X}$.
+                    Therefore $x \notin  (\closure{\at{U'}{\max{\dom{U'}}}}{X}\setminus \closure{\at{U'}{\min{\dom{U'}}}}{X})$.
+                    Then $g(x) = 1$ .
+                \caseOf{$x \in \closure{\at{U'}{\max{\dom{U'}}}}{X}$.}
+                    \begin{byCase}
+                        \caseOf{$x \in \closure{\at{U'}{\min{\dom{U'}}}}{X}$.}
+                            $g(x) = \zero$.
+                        \caseOf{$x \in  (\closure{\at{U'}{\max{\dom{U'}}}}{X}\setminus \closure{\at{U'}{\min{\dom{U'}}}}{X})$.}
+                            Then $g(x)$ is the staircase step value at $x$ of $U'$ in $X$.
+                    \end{byCase}
+            \end{byCase}
 
-    
+            
+
+            %$\at{S}{n}$ is a staircase function adapted to $\at{U}{n}$ in $X$.
+            %$\at{U}{n}$ is a urysohnchain of $X$.
+            %$\at{S}{n}$ is a function from $\carrier[X]$ to $\reals$.
+            %there exist $k \in \naturals$ such that $k = \max{\dom{\at{U}{n}}}$.
+            %Take $k \in \naturals$ such that $k = \max{\dom{\at{U}{n}}}$.
+            %\begin{byCase}
+            %    \caseOf{$x \in \carrier[X] \setminus \at{\at{U}{n}}{k}$.}
+            %        $1 \in \intervalclosed{\zero}{1}$.
+            %        We show that for all $y \in (\carrier[X] \setminus \at{\at{U}{n}}{k})$ we have $\apply{\at{S}{n}}{y} = 1$.
+            %        \begin{subproof}
+            %            Omitted.
+            %        \end{subproof}
+            %        Then $\apply{\at{S}{n}}{x} = 1$.
+            %    \caseOf{$x \notin \carrier[X] \setminus \at{\at{U}{n}}{k}$.}
+            %        %There exist $n',m' \in \dom{\at{U}{n}}$ such that $n'$ follows $m'$ in $\dom{\at{U}{n}}$ and $x \in (\at{\at{U}{n}}{n'} \setminus \at{\at{U}{n}}{m'})$.
+            %        Take $n',m' \in \dom{\at{U}{n}}$ such that $n'$ follows $m'$ in $\dom{\at{U}{n}}$ and $x \in (\at{\at{U}{n}}{n'} \setminus \at{\at{U}{n}}{m'})$.
+            %        Then  $\apply{\at{S}{n}}{x} = \rfrac{m'}{k'}$.
+            %        It suffices to show that $\rfrac{m'}{k'} \in \intervalclosed{\zero}{1}$.
+            %        $\zero \leq m' \leq k$.
+            %\end{byCase}
+            %%It suffices to show that $\zero \leq \apply{\at{S}{n}}{x} \leq 1$.
+            %%It suffices to show that $\ran{\at{S}{n}} \subseteq \intervalclosed{\zero}{1}$.
+        \end{subproof}
+
+        Suppose not.
+        Then $f(x) < \zero$ or $f(x) > 1$ by \cref{reals_order_total,reals_axiom_zero_in_reals,intervalclosed,one_is_positiv,one_in_reals}.
+        For all $\epsilon \in \realsplus$ we have there exist $m \in \naturals$ such that $\apply{\at{S}{m}}{x} \in \epsBall{f(x)}{\epsilon}$ by \cref{plus_one_order,naturals_is_equal_to_two_times_naturals,subseteq,naturals_subseteq_reals,staircase_limit_point}.
+        \begin{byCase}
+            \caseOf{$f(x) < \zero$.}
+                Let $\delta = \zero - f(x)$.
+                $\delta \in \realsplus$.
+                It suffices to show that for all $n \in \naturals$ we have $\apply{\at{S}{n}}{x} \notin \epsBall{f(x)}{\delta}$.
+                Fix $n \in \naturals$.
+                $\at{S}{n}$ is a staircase function adapted to $\at{U}{n}$ in $X$.
+                For all $y \in \epsBall{f(x)}{\delta}$ we have $y < \zero$ by \cref{epsilon_ball,minus_behavior1,minus_behavior3,minus,apply,intervalopen}.
+                It suffices to show that $\apply{\at{S}{n}}{x} \in \intervalclosed{\zero}{1}$.
+                Trivial.
+            \caseOf{$f(x) > 1$.}
+                Let $\delta = f(x) - 1$.
+                $\delta \in \realsplus$.
+                It suffices to show that for all $n \in \naturals$ we have $\apply{\at{S}{n}}{x} \notin \epsBall{f(x)}{\delta}$.
+                Fix $n \in \naturals$.
+                $\at{S}{n}$ is a staircase function adapted to $\at{U}{n}$ in $X$.
+                For all $y \in \epsBall{f(x)}{\delta}$ we have $y > 1$ by \cref{epsilon_ball,reals_addition_minus_behavior2,minus_in_reals,apply,reals_addition_minus_behavior1,minus,reals_add,realsplus_in_reals,one_in_reals,reals_axiom_kommu,intervalopen}.
+                It suffices to show that $\apply{\at{S}{n}}{x} \in \intervalclosed{\zero}{1}$.
+                Trivial.
+        \end{byCase}
+
+    \end{subproof}
+    Therefore $f \in \funs{\carrier[X]}{\intervalclosed{\zero}{1}}$ by \cref{staircase_limit_function,surj_to_fun,fun_to_surj,neq_witness,inters_of_ordinals_elem,times_tuple_elim,img_singleton_iff,foundation,subseteq_emptyset_iff,inter_eq_left_implies_subseteq,inter_emptyset,funs_intro,fun_ran_iff,not_in_subseteq}.
+
+    We show that for all $a \in A$ we have $f(a) = \zero$.
+    \begin{subproof}
+        Omitted.
+    \end{subproof}
+    We show that for all $b \in B$ we have $f(b) = 1$.
+    \begin{subproof}
+        Omitted.
+    \end{subproof}
+
+
 \end{proof}
 
-\begin{theorem}\label{safe}
-    Contradiction.     
-\end{theorem}
+%\begin{theorem}\label{safe}
+%    Contradiction.     
+%\end{theorem}
 
 
 
 
 
-%
-%Ideen:
-%Eine folge ist ein Funktion mit domain \subseteq Natürlichenzahlen. als predicat
-%
-%zulässig und verfeinerung von ketten als predicat definieren. 
-%
-%limits und punkt konvergenz als prädikat.
-%
-%
-%Vor dem Beweis vor dem eigentlichen Beweis.
-%die abgeleiteten Funktionen
-%
-%\derivedstiarcasefunction on A
-%
-%abbreviation: \at{f}{n} = f_{n}
-%
-%
-%TODO:
-%Reals ist ein topologischer Raum
-%
 

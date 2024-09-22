@@ -36,7 +36,7 @@ The first tept will be a formalisation of chain constructions.
 %           $\overline{A_{i-1}}  \subset \interior{A_{i}}$. 
 %           In this case we call the chain legal.
 
-\begin{definition}\label{one_to_n_set}
+\begin{definition}\label{urysohnone_one_to_n_set}
     $\seq{m}{n} = \{x \in \naturals \mid  m \leq x \leq n\}$.   
 \end{definition}
 
@@ -48,7 +48,7 @@ The first tept will be a formalisation of chain constructions.
 %   together with the existence of an indexing function.
 %
 %%-----------------------
-\begin{struct}\label{sequence}
+\begin{struct}\label{urysohnone_sequence}
     A sequence $X$ is a onesorted structure equipped with
     \begin{enumerate}
         \item $\indexx$
@@ -57,8 +57,8 @@ The first tept will be a formalisation of chain constructions.
     \end{enumerate}
     such that
     \begin{enumerate}
-        \item\label{indexset_is_subset_naturals} $\indexxset[X] \subseteq \naturals$.
-        \item\label{index_is_bijection} $\indexx[X]$ is a bijection from $\indexxset[X]$ to $\carrier[X]$.
+        \item\label{urysohnone_indexset_is_subset_naturals} $\indexxset[X] \subseteq \naturals$.
+        \item\label{urysohnone_index_is_bijection} $\indexx[X]$ is a bijection from $\indexxset[X]$ to $\carrier[X]$.
     \end{enumerate}
 \end{struct}
 
@@ -67,12 +67,12 @@ The first tept will be a formalisation of chain constructions.
 
 
 
-\begin{definition}\label{cahin_of_subsets}
+\begin{definition}\label{urysohnone_cahin_of_subsets}
     $C$ is a chain of subsets iff
     $C$ is a sequence and for all $n,m \in \indexxset[C]$ such that $n < m$ we have $\indexx[C](n) \subseteq \indexx[C](m)$.
 \end{definition}
 
-\begin{definition}\label{chain_of_n_subsets}
+\begin{definition}\label{urysohnone_chain_of_n_subsets}
     $C$ is a chain of $n$ subsets iff
     $C$ is a chain of subsets and $n \in \indexxset[C]$ 
     and for all $m \in \naturals$ such that $m \leq n$ we have $m \in \indexxset[C]$.
@@ -84,7 +84,7 @@ The first tept will be a formalisation of chain constructions.
 % and also for the subproof of continuity of the limit.
 
 
-%     \begin{definition}\label{legal_chain}
+%     \begin{definition}\label{urysohnone_legal_chain}
 %         $C$ is a legal chain of subsets of $X$ iff 
 %         $C \subseteq \pow{X}$. %and 
 %         %there exist $f \in \funs{C}{\naturals}$ such that
@@ -106,49 +106,49 @@ The first tept will be a formalisation of chain constructions.
 
 \subsection{staircase function}
 
-\begin{definition}\label{minimum}
+\begin{definition}\label{urysohnone_minimum}
     $\min{X} = \{x \in X \mid \forall y \in X. x \leq y \}$.
 \end{definition}
 
-\begin{definition}\label{maximum}
+\begin{definition}\label{urysohnone_maximum}
     $\max{X} = \{x \in X \mid \forall y \in X. x \geq y \}$.
 \end{definition}
 
-\begin{definition}\label{intervalclosed}
+\begin{definition}\label{urysohnone_intervalclosed}
     $\intervalclosed{a}{b} = \{x \in \reals \mid a \leq x \leq b\}$.
 \end{definition}
 
-\begin{definition}\label{intervalopen}
+\begin{definition}\label{urysohnone_intervalopen}
     $\intervalopen{a}{b} = \{ x \in \reals \mid a < x < b\}$.
 \end{definition}
 
 
-\begin{struct}\label{staircase_function}
+\begin{struct}\label{urysohnone_staircase_function}
     A staircase function $f$ is a onesorted structure equipped with
     \begin{enumerate}
         \item $\chain$
     \end{enumerate}
     such that
     \begin{enumerate}
-        \item \label{staircase_is_function} $f$ is a function to $\intervalclosed{\zero}{1}$.
-        \item \label{staircase_domain} $\dom{f}$ is a topological space.
-        \item \label{staricase_def_chain} $C$ is a chain of subsets.
-        \item \label{staircase_chain_is_in_domain} for all $x \in C$ we have $x \subseteq \dom{f}$.
-        \item \label{staircase_behavoir_index_zero} $f(\indexx[C](1))= 1$. 
-        \item \label{staircase_behavoir_index_n} $f(\dom{f}\setminus \unions{C}) = \zero$.
-        \item \label{staircase_chain_indeset} There exist $n$ such that $\indexxset[C] = \seq{\zero}{n}$.
-        \item \label{staircase_behavoir_index_arbetrray} for all $n \in \indexxset[C]$ 
+        \item \label{urysohnone_staircase_is_function} $f$ is a function to $\intervalclosed{\zero}{1}$.
+        \item \label{urysohnone_staircase_domain} $\dom{f}$ is a topological space.
+        \item \label{urysohnone_staricase_def_chain} $C$ is a chain of subsets.
+        \item \label{urysohnone_staircase_chain_is_in_domain} for all $x \in C$ we have $x \subseteq \dom{f}$.
+        \item \label{urysohnone_staircase_behavoir_index_zero} $f(\indexx[C](1))= 1$. 
+        \item \label{urysohnone_staircase_behavoir_index_n} $f(\dom{f}\setminus \unions{C}) = \zero$.
+        \item \label{urysohnone_staircase_chain_indeset} There exist $n$ such that $\indexxset[C] = \seq{\zero}{n}$.
+        \item \label{urysohnone_staircase_behavoir_index_arbetrray} for all $n \in \indexxset[C]$ 
             such that $n \neq \zero$ we have $f(\indexx[C](n) \setminus \indexx[C](n-1)) = \rfrac{n}{ \max{\indexxset[C]} }$. 
     \end{enumerate}
 \end{struct}
 
-\begin{definition}\label{legal_staircase}
+\begin{definition}\label{urysohnone_legal_staircase}
     $f$ is a legal staircase function iff
     $f$ is a staircase function and 
     for all $n,m \in \indexxset[\chain[f]]$ such that $n \leq m$ we have $f(\indexx[\chain[f]](n)) \leq f(\indexx[\chain[f]](m))$.
 \end{definition}
 
-\begin{abbreviation}\label{urysohnspace}
+\begin{abbreviation}\label{urysohnone_urysohnspace}
     $X$ is a urysohn space iff
     $X$ is a topological space and
     for all $A,B \in \closeds{X}$ such that $A \inter B = \emptyset$
@@ -156,49 +156,49 @@ The first tept will be a formalisation of chain constructions.
     such that  $A \subseteq A'$ and $B \subseteq B'$ and $A' \inter B' = \emptyset$.    
 \end{abbreviation}
 
-\begin{definition}\label{urysohnchain}
+\begin{definition}\label{urysohnone_urysohnchain}
     $C$ is a urysohnchain in $X$ of cardinality $k$ iff %<---- TODO: cardinality unused!
     $C$ is a chain of subsets and
     for all $A \in C$ we have $A \subseteq X$ and
     for all $n,m \in \indexxset[C]$ such that $n < m$ we have $\closure{\indexx[C](n)}{X} \subseteq \interior{\indexx[C](m)}{X}$.
 \end{definition}
 
-\begin{definition}\label{urysohnchain_without_cardinality}
+\begin{definition}\label{urysohnone_urysohnchain_without_cardinality}
     $C$ is a urysohnchain in $X$ iff
     $C$ is a chain of subsets and
     for all $A \in C$ we have $A \subseteq X$ and
     for all $n,m \in \indexxset[C]$ such that $n < m$ we have $\closure{\indexx[C](n)}{X} \subseteq \interior{\indexx[C](m)}{X}$.
 \end{definition}
 
-\begin{abbreviation}\label{infinte_sequence}
+\begin{abbreviation}\label{urysohnone_infinte_sequence}
     $S$ is a infinite sequence iff $S$ is a sequence and $\indexxset[S]$ is infinite.
 \end{abbreviation}
 
-\begin{definition}\label{infinite_product}
+\begin{definition}\label{urysohnone_infinite_product}
     $X$ is the infinite product of $Y$ iff
     $X$ is a infinite sequence and for all $i \in \indexxset[X]$ we have $\indexx[X](i) = Y$.
 \end{definition}
 
-\begin{definition}\label{refinmant}
+\begin{definition}\label{urysohnone_refinmant}
     $C'$ is a refinmant of $C$ iff $C'$ is a urysohnchain in $X$
     and for all $x \in C$ we have $x \in C'$ 
     and for all $y \in C$ such that $y \subset x$ we have there exist $c \in C'$ such that $y \subset c \subset x$
     and for all $g \in C'$ such that $g \neq c$ we have not $y \subset g \subset x$.
 \end{definition}
 
-\begin{abbreviation}\label{two}
+\begin{abbreviation}\label{urysohnone_two}
     $\two = \suc{1}$.
 \end{abbreviation}
 
-\begin{lemma}\label{two_in_reals}
+\begin{lemma}\label{urysohnone_two_in_reals}
     $\two \in \reals$.
 \end{lemma}
 
-\begin{lemma}\label{two_in_naturals}
+\begin{lemma}\label{urysohnone_two_in_naturals}
     $\two \in \naturals$.
 \end{lemma}
 
-\begin{inductive}\label{power_of_two}
+\begin{inductive}\label{urysohnone_power_of_two}
     Define $\powerOfTwoSet \subseteq (\naturals \times \naturals)$.
     \begin{enumerate}
         \item  $(\zero, 1) \in \powerOfTwoSet$.
@@ -206,45 +206,45 @@ The first tept will be a formalisation of chain constructions.
     \end{enumerate}
 \end{inductive}
 
-\begin{abbreviation}\label{pot}
+\begin{abbreviation}\label{urysohnone_pot}
     $\pot = \powerOfTwoSet$.
 \end{abbreviation}
 
-\begin{lemma}\label{dom_pot}
+\begin{lemma}\label{urysohnone_dom_pot}
     $\dom{\pot} = \naturals$.
 \end{lemma}
 \begin{proof}
     Omitted.
 \end{proof}
 
-\begin{lemma}\label{ran_pot}
+\begin{lemma}\label{urysohnone_ran_pot}
     $\ran{\pot} \subseteq \naturals$.
 \end{lemma}
 
 
-\begin{axiom}\label{pot1}
+\begin{axiom}\label{urysohnone_pot1}
     $\pot \in \funs{\naturals}{\naturals}$.
 \end{axiom}
 
-\begin{axiom}\label{pot2} 
+\begin{axiom}\label{urysohnone_pot2} 
     For all $n \in \naturals$ we have there exist $k\in \naturals$ such that $(n, k) \in \powerOfTwoSet$ and $\apply{\pot}{n}=k$.
     %$\pot(n) = k$ iff there exist $x \in \powerOfTwoSet$ such that $x = (n,k)$.
 \end{axiom}
 
 
 %Without this abbreviation \pot cant be sed as a function in the standard sense
-\begin{abbreviation}\label{pot_as_function}
+\begin{abbreviation}\label{urysohnone_pot_as_function}
     $\pot(n) = \apply{\pot}{n}$.
 \end{abbreviation}
 
 %Take all points, besids one but then take all open sets not containing x but all other, so \{x\} has to be closed
-\begin{axiom}\label{hausdorff_implies_singltons_closed}
+\begin{axiom}\label{urysohnone_hausdorff_implies_singltons_closed}
     For all $X$ such that $X$ is Hausdorff we have
     for all $x \in \carrier[X]$ we have $\{x\}$ is closed in $X$.
 \end{axiom}
 
 
-\begin{lemma}\label{urysohn_set_in_between}
+\begin{lemma}\label{urysohnone_urysohn_set_in_between}
     Let $X$ be a urysohn space.
     Suppose $A,B \in \closeds{X}$.
     Suppose $A \subset B$.
@@ -284,7 +284,7 @@ The first tept will be a formalisation of chain constructions.
 \end{proof}
 
 
-\begin{proposition}\label{urysohnchain_induction_begin}
+\begin{proposition}\label{urysohnone_urysohnchain_induction_begin}
     Let $X$ be a urysohn space.
     Suppose $A,B \in \closeds{X}$.
     Suppose $A \inter B$ is empty.
@@ -347,7 +347,7 @@ The first tept will be a formalisation of chain constructions.
     
 \end{proof}
 
-\begin{proposition}\label{urysohnchain_induction_begin_step_two}
+\begin{proposition}\label{urysohnone_urysohnchain_induction_begin_step_two}
     Let $X$ be a urysohn space.
     Suppose $A,B \in \closeds{X}$.
     Suppose $A \inter B$ is empty.
@@ -364,7 +364,7 @@ The first tept will be a formalisation of chain constructions.
 
 
 
-\begin{proposition}\label{t_four_propositon}
+\begin{proposition}\label{urysohnone_t_four_propositon}
     Let $X$ be a urysohn space.
     Then for all $A,B \subseteq X$ such that $\closure{A}{X} \subseteq \interior{B}{X}$
     we have there exists $C \subseteq X$ such that 
@@ -376,7 +376,7 @@ The first tept will be a formalisation of chain constructions.
 
 
 
-\begin{proposition}\label{urysohnchain_induction_step_existence}
+\begin{proposition}\label{urysohnone_urysohnchain_induction_step_existence}
     Let $X$ be a urysohn space.
     Suppose $U$ is a urysohnchain in $X$.
     Then there exist $U'$ such that $U'$ is a refinmant of $U$ and $U'$ is a urysohnchain in $X$.
@@ -390,7 +390,7 @@ The first tept will be a formalisation of chain constructions.
     % such that $\closure{\indexx[U](n)}{X} \subseteq \interior{C}{X} \subseteq \closure{C}{X} \subseteq \interior{\indexx[U](n+1)}{X}$.
     
     
-    %\begin{definition}\label{refinmant}
+    %\begin{definition}\label{urysohnone_refinmant}
     %    $C'$ is a refinmant of $C$ iff for all $x \in C$ we have $x \in C'$ and 
     %    for all $y \in C$ such that $y \subset x$ 
     %    we have there exist $c \in C'$ such that $y \subset c \subset x$
@@ -404,7 +404,7 @@ The first tept will be a formalisation of chain constructions.
 
 
 
-\begin{proposition}\label{existence_of_staircase_function}
+\begin{proposition}\label{urysohnone_existence_of_staircase_function}
     Let $X$ be a urysohn space.
     Suppose $U$ is a urysohnchain in $X$ and $U$ has cardinality $k$.
     Suppose $k \neq \zero$.
@@ -416,7 +416,7 @@ The first tept will be a formalisation of chain constructions.
     Omitted.
 \end{proof}
 
-\begin{abbreviation}\label{refinment_abbreviation}
+\begin{abbreviation}\label{urysohnone_refinment_abbreviation}
     $x \refine y$ iff $x$ is a refinmant of $y$.
 \end{abbreviation}
 
@@ -424,27 +424,27 @@ The first tept will be a formalisation of chain constructions.
 
 
 
-\begin{abbreviation}\label{sequence_of_functions}
+\begin{abbreviation}\label{urysohnone_sequence_of_functions}
     $f$ is a sequence of functions iff $f$ is a sequence 
     and for all $g \in \carrier[f]$ we have $g$ is a function.
 \end{abbreviation}
 
-\begin{abbreviation}\label{sequence_in_reals}
+\begin{abbreviation}\label{urysohnone_sequence_in_reals}
     $s$ is a sequence of real numbers iff $s$ is a sequence 
     and for all $r \in \carrier[s]$ we have $r \in \reals$.
 \end{abbreviation}
 
 
 
-\begin{axiom}\label{abs_behavior1}
+\begin{axiom}\label{urysohnone_abs_behavior1}
     If $x \geq \zero$ then $\abs{x} = x$.
 \end{axiom}
 
-\begin{axiom}\label{abs_behavior2}
+\begin{axiom}\label{urysohnone_abs_behavior2}
     If $x < \zero$ then $\abs{x} = \neg{x}$.
 \end{axiom}
 
-\begin{abbreviation}\label{converge}
+\begin{abbreviation}\label{urysohnone_converge}
     $s$ converges iff $s$ is a sequence of real numbers 
     and $\indexxset[s]$ is infinite
     and for all $\epsilon \in \reals$ such that $\epsilon > \zero$ we have
@@ -454,7 +454,7 @@ The first tept will be a formalisation of chain constructions.
 \end{abbreviation}
 
 
-\begin{definition}\label{limit_of_sequence}
+\begin{definition}\label{urysohnone_limit_of_sequence}
     $x$ is the limit of $s$ iff $s$ is a sequence of real numbers
     and $x \in \reals$ and 
     for all $\epsilon \in \reals$ such that $\epsilon > \zero$
@@ -463,7 +463,7 @@ The first tept will be a formalisation of chain constructions.
     we have $\abs{x - \indexx[s](n)} < \epsilon$.
 \end{definition}
 
-\begin{proposition}\label{existence_of_limit}
+\begin{proposition}\label{urysohnone_existence_of_limit}
     Let $s$ be a sequence of real numbers.
     Then $s$ converges iff there exist $x \in \reals$ 
     such that $x$ is the limit of $s$.
@@ -472,22 +472,22 @@ The first tept will be a formalisation of chain constructions.
     Omitted.
 \end{proof}
 
-\begin{definition}\label{limit_sequence}
+\begin{definition}\label{urysohnone_limit_sequence}
     $x$ is the limit sequence of $f$ iff
     $x$ is a sequence and $\indexxset[x] = \dom{f}$ and
     for all $n \in \indexxset[x]$ we have
     $\indexx[x](n) = f(n)$.
 \end{definition}
 
-\begin{definition}\label{realsminus}
+\begin{definition}\label{urysohnone_realsminus}
     $\realsminus = \{r \in \reals \mid r < \zero\}$.
 \end{definition}
 
-\begin{abbreviation}\label{realsplus}
+\begin{abbreviation}\label{urysohnone_realsplus}
     $\realsplus = \reals \setminus \realsminus$.
 \end{abbreviation}
 
-\begin{proposition}\label{intervalclosed_subseteq_reals}
+\begin{proposition}\label{urysohnone_intervalclosed_subseteq_reals}
     Suppose $a,b \in \reals$.
     Suppose $a < b$.
     Then $\intervalclosed{a}{b} \subseteq \reals$.
@@ -495,7 +495,7 @@ The first tept will be a formalisation of chain constructions.
 
 
 
-\begin{lemma}\label{fraction1}
+\begin{lemma}\label{urysohnone_fraction1}
     Let $x \in \reals$.
     Then for all $y \in \reals$ such that $x \neq y$ we have there exists $r \in \rationals$ such that $y < r < x$ or $x < r < y$.
 \end{lemma}
@@ -503,7 +503,7 @@ The first tept will be a formalisation of chain constructions.
     Omitted.
 \end{proof}
 
-\begin{lemma}\label{frection2}
+\begin{lemma}\label{urysohnone_frection2}
     Suppose $a,b \in \reals$.
     Suppose $a < b$.
     Then $\intervalopen{a}{b}$ is infinite.
@@ -512,7 +512,7 @@ The first tept will be a formalisation of chain constructions.
     Omitted.
 \end{proof}
 
-\begin{lemma}\label{frection3}
+\begin{lemma}\label{urysohnone_frection3}
     Suppose $a \in \reals$.
     Suppose $a < \zero$.
     Then there exist $N \in \naturals$ such that for all $N' \in \naturals$ such that $N' > N$ we have $\zero < \rfrac{1}{\pot(N')} < a$. 
@@ -521,7 +521,7 @@ The first tept will be a formalisation of chain constructions.
     Omitted.
 \end{proof}
 
-\begin{proposition}\label{fraction4}
+\begin{proposition}\label{urysohnone_fraction4}
     Suppose $a,b,\epsilon \in \reals$.
     Suppose $\epsilon > \zero$.
     $\abs{a - b} < \epsilon$ iff $b \in \intervalopen{(a - \epsilon)}{(a + \epsilon)}$.
@@ -530,7 +530,7 @@ The first tept will be a formalisation of chain constructions.
     Omitted.
 \end{proof}
 
-\begin{proposition}\label{fraction5}
+\begin{proposition}\label{urysohnone_fraction5}
     Suppose $a,b,\epsilon \in \reals$.
     Suppose $\epsilon > \zero$.
     $b \in \intervalopen{(a - \epsilon)}{(a + \epsilon)}$ iff $a \in \intervalopen{(b - \epsilon)}{(b + \epsilon)}$.
@@ -539,17 +539,17 @@ The first tept will be a formalisation of chain constructions.
     Omitted.
 \end{proof}
 
-\begin{proposition}\label{fraction6}
+\begin{proposition}\label{urysohnone_fraction6}
     Suppose $a,\epsilon \in \reals$.
     Suppose $\epsilon > \zero$.
     $\intervalopen{(a - \epsilon)}{(a + \epsilon)} = \{r \in \reals \mid (a - \epsilon) < r < (a + \epsilon)\} $.
 \end{proposition}
 
-\begin{abbreviation}\label{epsilonball}
+\begin{abbreviation}\label{urysohnone_epsilonball}
     $\epsBall{a}{\epsilon}  = \intervalopen{(a - \epsilon)}{(a + \epsilon)}$.
 \end{abbreviation}
 
-\begin{proposition}\label{fraction7}
+\begin{proposition}\label{urysohnone_fraction7}
     Suppose $a,\epsilon \in \reals$.
     Suppose $\epsilon > \zero$.
     Then there exist $b \in \rationals$ such that $b \in \epsBall{a}{\epsilon}$.
@@ -561,11 +561,11 @@ The first tept will be a formalisation of chain constructions.
 
 
  
-%\begin{definition}\label{sequencetwo}
+%\begin{definition}\label{urysohnone_sequencetwo}
 %   $Z$ is a sequencetwo iff  $Z = (N,f,B)$ and $N \subseteq \naturals$ and $f$ is a bijection from $N$ to $B$.
 %\end{definition}
 %
-%\begin{proposition}\label{sequence_existence}
+%\begin{proposition}\label{urysohnone_sequence_existence}
 %    Suppose $N \subseteq \naturals$.
 %    Suppose $M \subseteq \naturals$.
 %    Suppose $N = M$.
@@ -586,7 +586,7 @@ The first tept will be a formalisation of chain constructions.
 
 
 
-\begin{theorem}\label{urysohn}
+\begin{theorem}\label{urysohnone_urysohn1}
     Let $X$ be a urysohn space.
     Suppose $A,B \in \closeds{X}$.
     Suppose $A \inter B$ is empty.
@@ -599,7 +599,7 @@ The first tept will be a formalisation of chain constructions.
     There exist $\eta$ such that $\carrier[\eta] = \{A, (\carrier[X] \setminus B)\}$ 
     and $\indexxset[\eta] = \{\zero, 1\}$ 
     and $\indexx[\eta](\zero) = A$
-    and $\indexx[\eta](1) = (\carrier[X] \setminus B)$  by \cref{urysohnchain_induction_begin}.
+    and $\indexx[\eta](1) = (\carrier[X] \setminus B)$  by \cref{urysohnone_urysohnchain_induction_begin}.
     
     We show that there exist $\zeta$ such that $\zeta$ is a sequence 
     and $\indexxset[\zeta] = \naturals$
@@ -919,6 +919,6 @@ The first tept will be a formalisation of chain constructions.
     %   \end{subproof}
 \end{proof}
 %
-%\begin{theorem}\label{safe}
+%\begin{theorem}\label{urysohnone_safe}
 %    Contradiction.     
 %\end{theorem}
