@@ -15,7 +15,7 @@
 \import{topology/real-topological-space.tex}
 \import{set/equinumerosity.tex}
 
-\section{Urysohns Lemma}
+\section{Urysohns Lemma}\label{form_sec_urysohn}
 
 
 
@@ -891,15 +891,25 @@
             \begin{byCase}
                 \caseOf{$x \in (\carrier[X] \setminus \closure{\at{U'}{\max{\dom{U'}}}}{X})$.}
                     Therefore $x \notin \closure{\at{U'}{\max{\dom{U'}}}}{X}$.
-                    Therefore $x \notin \closure{\at{U'}{\min{\dom{U'}}}}{X}$.
+                    We show that $x \notin \closure{\at{U'}{\min{\dom{U'}}}}{X}$.
+                    \begin{subproof}
+                        Omitted.
+                    \end{subproof}
                     Therefore $x \notin  (\closure{\at{U'}{\max{\dom{U'}}}}{X}\setminus \closure{\at{U'}{\min{\dom{U'}}}}{X})$.
-                    Then $g(x) = 1$ .
+                    We show that $g(x) = 1$.
+                    \begin{subproof}
+                        Omitted.
+                    \end{subproof}
                 \caseOf{$x \in \closure{\at{U'}{\max{\dom{U'}}}}{X}$.}
                     \begin{byCase}
                         \caseOf{$x \in \closure{\at{U'}{\min{\dom{U'}}}}{X}$.}
-                            $g(x) = \zero$.
+                            We show that $g(x) = \zero$.
+                            \begin{subproof}
+                                Omitted.
+                            \end{subproof}
                         \caseOf{$x \in  (\closure{\at{U'}{\max{\dom{U'}}}}{X}\setminus \closure{\at{U'}{\min{\dom{U'}}}}{X})$.}
                             Then $g(x)$ is the staircase step value at $x$ of $U'$ in $X$.
+                            Omitted.
                     \end{byCase}
             \end{byCase}
 
