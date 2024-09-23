@@ -27,13 +27,15 @@ scanChunk ltoks =
         matchOrErr re env pos = match re toks ?? error ("could not find lexical pattern in " <> env <> " at " <> sourcePosPretty pos)
     in case ltoks of
         Located{startPos = pos, unLocated = BeginEnv "definition"} : _ ->
-            matchOrErr definition "definition" (pos)
+            matchOrErr definition "definition" pos
         Located{startPos = pos, unLocated = BeginEnv "abbreviation"} : _ ->
             matchOrErr abbreviation "abbreviation" pos
         Located{startPos = pos, unLocated = (BeginEnv "struct")} :_ ->
             matchOrErr struct "struct definition" pos
         Located{startPos = pos, unLocated = (BeginEnv "inductive")} :_ ->
             matchOrErr inductive "inductive definition" pos
+        --Located{startPos = pos, unLocated = (BeginEnv "signature")} :_ ->
+        --    matchOrErr signatureIntro "signature" pos
         _ -> []
 
 adaptChunks :: [[Located Token]] -> Lexicon -> Lexicon
@@ -82,6 +84,18 @@ abbreviation = do
     lexicalItem <- head
     few anySym
     sym (EndEnv "abbreviation")
+    skipUntilNextLexicalEnv
+    pure [lexicalItem m]
+
+signatureIntro ::  RE Token [ScannedLexicalItem]  --since signiture is a used word of haskell we have to name it diffrentliy 
+signatureIntro = do
+    sym (BeginEnv "signature")
+    few notEndOfLexicalEnvToken
+    m <- label
+    few anySym
+    lexicalItem <- head
+    few anySym
+    sym (EndEnv "signature")
     skipUntilNextLexicalEnv
     pure [lexicalItem m]
 

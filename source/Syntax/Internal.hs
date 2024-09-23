@@ -324,6 +324,16 @@ makeDisjunction = \case
     [] -> Bottom
     es -> List.foldl1' Or es
 
+makeIff :: [ExprOf a] -> ExprOf a
+makeIff = \case
+    [] -> Bottom
+    es -> List.foldl1' Iff es
+    
+makeXor :: [ExprOf a] -> ExprOf a
+makeXor = \case
+    [] -> Bottom
+    es -> List.foldl1' Xor es
+
 finiteSet :: NonEmpty (ExprOf a) -> ExprOf a
 finiteSet = foldr cons EmptySet
     where
@@ -435,6 +445,8 @@ data Proof
     --
     | Define VarSymbol Term Proof
     | DefineFunction VarSymbol VarSymbol Term Term Proof
+
+    | DefineFunctionLocal VarSymbol VarSymbol VarSymbol Term (NonEmpty (Term, Formula)) Proof
 
 deriving instance Show Proof
 deriving instance Eq   Proof

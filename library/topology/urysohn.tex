@@ -1,0 +1,924 @@
+\import{topology/topological-space.tex}
+\import{topology/separation.tex}
+\import{topology/continuous.tex}
+\import{topology/basis.tex}
+\import{numbers.tex}
+\import{function.tex}
+\import{set.tex}
+\import{cardinal.tex}
+\import{relation.tex}
+\import{relation/uniqueness.tex}
+\import{set/cons.tex}
+\import{set/powerset.tex}
+\import{set/fixpoint.tex}
+\import{set/product.tex}
+
+\section{Urysohns Lemma Part 1 with struct}\label{form_sec_urysohn1}
+%           In this section we want to proof Urysohns lemma. 
+%           We try to follow the proof of Klaus Jänich in his book. TODO: Book reference
+%           The Idea is to construct staircase functions as a chain.
+%           The limit of our chain turns out to be our desired continuous function from a topological space $X$ to $[0,1]$.
+%           With the property that \[f\mid_{A}=1 \land f\mid_{B}=0\] for \[A,B\] closed sets.
+
+%Chains of  sets.
+
+This is the first attempt to prove Urysohns Lemma with the usage of struct. 
+
+\subsection{Chains of sets}
+%           Assume $A,B$ are subsets of a topological space $X$.
+
+%           As Jänich propose we want a special property on chains of subsets.
+%           We need a rising chain of subsets $\mathfrak{A} = (A_{0}, ... ,A_{r})$ of $A$, i.e. 
+%           \begin{align}
+%               A = A_{0} \subset A_{1} \subset ... \subset A_{r} \subset X\setminus B 
+%           \end{align} 
+%           such that for all elements in this chain following holds, 
+%           $\overline{A_{i-1}}  \subset \interior{A_{i}}$. 
+%           In this case we call the chain legal.
+
+\begin{definition}\label{urysohnone_one_to_n_set}
+    $\seq{m}{n} = \{x \in \naturals \mid  m \leq x \leq n\}$.   
+\end{definition}
+
+
+
+%%-----------------------
+%   Idea:
+%   A sequence could be define as a family of sets, 
+%   together with the existence of an indexing function.
+%
+%%-----------------------
+\begin{struct}\label{urysohnone_sequence}
+    A sequence $X$ is a onesorted structure equipped with
+    \begin{enumerate}
+        \item $\indexx$
+        \item $\indexxset$
+        
+    \end{enumerate}
+    such that
+    \begin{enumerate}
+        \item\label{urysohnone_indexset_is_subset_naturals} $\indexxset[X] \subseteq \naturals$.
+        \item\label{urysohnone_index_is_bijection} $\indexx[X]$ is a bijection from $\indexxset[X]$ to $\carrier[X]$.
+    \end{enumerate}
+\end{struct}
+
+% Eine folge ist ein Funktion mit domain \subseteq Ordinal zahlen 
+
+
+
+
+\begin{definition}\label{urysohnone_cahin_of_subsets}
+    $C$ is a chain of subsets iff
+    $C$ is a sequence and for all $n,m \in \indexxset[C]$ such that $n < m$ we have $\indexx[C](n) \subseteq \indexx[C](m)$.
+\end{definition}
+
+\begin{definition}\label{urysohnone_chain_of_n_subsets}
+    $C$ is a chain of $n$ subsets iff
+    $C$ is a chain of subsets and $n \in \indexxset[C]$ 
+    and for all $m \in \naturals$ such that $m \leq n$ we have $m \in \indexxset[C]$.
+\end{definition}
+
+
+
+% TODO: The Notion above should be generalised to sequences since we need them as well for our limit
+% and also for the subproof of continuity of the limit.
+
+
+%     \begin{definition}\label{urysohnone_legal_chain}
+%         $C$ is a legal chain of subsets of $X$ iff 
+%         $C \subseteq \pow{X}$. %and 
+%         %there exist $f \in \funs{C}{\naturals}$ such that
+%         %for all $x,y \in C$ we have if $f(x) < f(y)$ then $x \subset y \land \closure{x} \subset \interior{y}$.
+%     \end{definition}
+
+% TODO: We need a notion for declarinf new properties to existing thing. 
+%
+% The following gives a example and a wish want would be nice to have:
+% "A (structure) is called (adjectiv of property), if"
+%
+% This should then be use als follows:
+% Let $X$ be a (adjectiv_1) ... (adjectiv_n) (structure_word). 
+% Which should be translated to fol like this:
+% ?[X]: is_structure(X) & is_adjectiv_1(X) & ... & is_adjectiv_n(X)
+% ---------------------------------------------------------------
+
+
+
+\subsection{staircase function}
+
+\begin{definition}\label{urysohnone_minimum}
+    $\min{X} = \{x \in X \mid \forall y \in X. x \leq y \}$.
+\end{definition}
+
+\begin{definition}\label{urysohnone_maximum}
+    $\max{X} = \{x \in X \mid \forall y \in X. x \geq y \}$.
+\end{definition}
+
+\begin{definition}\label{urysohnone_intervalclosed}
+    $\intervalclosed{a}{b} = \{x \in \reals \mid a \leq x \leq b\}$.
+\end{definition}
+
+\begin{definition}\label{urysohnone_intervalopen}
+    $\intervalopen{a}{b} = \{ x \in \reals \mid a < x < b\}$.
+\end{definition}
+
+
+\begin{struct}\label{urysohnone_staircase_function}
+    A staircase function $f$ is a onesorted structure equipped with
+    \begin{enumerate}
+        \item $\chain$
+    \end{enumerate}
+    such that
+    \begin{enumerate}
+        \item \label{urysohnone_staircase_is_function} $f$ is a function to $\intervalclosed{\zero}{1}$.
+        \item \label{urysohnone_staircase_domain} $\dom{f}$ is a topological space.
+        \item \label{urysohnone_staricase_def_chain} $C$ is a chain of subsets.
+        \item \label{urysohnone_staircase_chain_is_in_domain} for all $x \in C$ we have $x \subseteq \dom{f}$.
+        \item \label{urysohnone_staircase_behavoir_index_zero} $f(\indexx[C](1))= 1$. 
+        \item \label{urysohnone_staircase_behavoir_index_n} $f(\dom{f}\setminus \unions{C}) = \zero$.
+        \item \label{urysohnone_staircase_chain_indeset} There exist $n$ such that $\indexxset[C] = \seq{\zero}{n}$.
+        \item \label{urysohnone_staircase_behavoir_index_arbetrray} for all $n \in \indexxset[C]$ 
+            such that $n \neq \zero$ we have $f(\indexx[C](n) \setminus \indexx[C](n-1)) = \rfrac{n}{ \max{\indexxset[C]} }$. 
+    \end{enumerate}
+\end{struct}
+
+\begin{definition}\label{urysohnone_legal_staircase}
+    $f$ is a legal staircase function iff
+    $f$ is a staircase function and 
+    for all $n,m \in \indexxset[\chain[f]]$ such that $n \leq m$ we have $f(\indexx[\chain[f]](n)) \leq f(\indexx[\chain[f]](m))$.
+\end{definition}
+
+\begin{abbreviation}\label{urysohnone_urysohnspace}
+    $X$ is a urysohn space iff
+    $X$ is a topological space and
+    for all $A,B \in \closeds{X}$ such that $A \inter B = \emptyset$
+    we have there exist $A',B' \in \opens[X]$
+    such that  $A \subseteq A'$ and $B \subseteq B'$ and $A' \inter B' = \emptyset$.    
+\end{abbreviation}
+
+\begin{definition}\label{urysohnone_urysohnchain}
+    $C$ is a urysohnchain in $X$ of cardinality $k$ iff %<---- TODO: cardinality unused!
+    $C$ is a chain of subsets and
+    for all $A \in C$ we have $A \subseteq X$ and
+    for all $n,m \in \indexxset[C]$ such that $n < m$ we have $\closure{\indexx[C](n)}{X} \subseteq \interior{\indexx[C](m)}{X}$.
+\end{definition}
+
+\begin{definition}\label{urysohnone_urysohnchain_without_cardinality}
+    $C$ is a urysohnchain in $X$ iff
+    $C$ is a chain of subsets and
+    for all $A \in C$ we have $A \subseteq X$ and
+    for all $n,m \in \indexxset[C]$ such that $n < m$ we have $\closure{\indexx[C](n)}{X} \subseteq \interior{\indexx[C](m)}{X}$.
+\end{definition}
+
+\begin{abbreviation}\label{urysohnone_infinte_sequence}
+    $S$ is a infinite sequence iff $S$ is a sequence and $\indexxset[S]$ is infinite.
+\end{abbreviation}
+
+\begin{definition}\label{urysohnone_infinite_product}
+    $X$ is the infinite product of $Y$ iff
+    $X$ is a infinite sequence and for all $i \in \indexxset[X]$ we have $\indexx[X](i) = Y$.
+\end{definition}
+
+\begin{definition}\label{urysohnone_refinmant}
+    $C'$ is a refinmant of $C$ iff $C'$ is a urysohnchain in $X$
+    and for all $x \in C$ we have $x \in C'$ 
+    and for all $y \in C$ such that $y \subset x$ we have there exist $c \in C'$ such that $y \subset c \subset x$
+    and for all $g \in C'$ such that $g \neq c$ we have not $y \subset g \subset x$.
+\end{definition}
+
+\begin{abbreviation}\label{urysohnone_two}
+    $\two = \suc{1}$.
+\end{abbreviation}
+
+\begin{lemma}\label{urysohnone_two_in_reals}
+    $\two \in \reals$.
+\end{lemma}
+
+\begin{lemma}\label{urysohnone_two_in_naturals}
+    $\two \in \naturals$.
+\end{lemma}
+
+\begin{inductive}\label{urysohnone_power_of_two}
+    Define $\powerOfTwoSet \subseteq (\naturals \times \naturals)$.
+    \begin{enumerate}
+        \item  $(\zero, 1) \in \powerOfTwoSet$.
+        \item  If $(m,k) \in \powerOfTwoSet$, then $(m+1, k \rmul \two) \in \powerOfTwoSet$.
+    \end{enumerate}
+\end{inductive}
+
+\begin{abbreviation}\label{urysohnone_pot}
+    $\pot = \powerOfTwoSet$.
+\end{abbreviation}
+
+\begin{lemma}\label{urysohnone_dom_pot}
+    $\dom{\pot} = \naturals$.
+\end{lemma}
+\begin{proof}
+    Omitted.
+\end{proof}
+
+\begin{lemma}\label{urysohnone_ran_pot}
+    $\ran{\pot} \subseteq \naturals$.
+\end{lemma}
+
+
+\begin{axiom}\label{urysohnone_pot1}
+    $\pot \in \funs{\naturals}{\naturals}$.
+\end{axiom}
+
+\begin{axiom}\label{urysohnone_pot2} 
+    For all $n \in \naturals$ we have there exist $k\in \naturals$ such that $(n, k) \in \powerOfTwoSet$ and $\apply{\pot}{n}=k$.
+    %$\pot(n) = k$ iff there exist $x \in \powerOfTwoSet$ such that $x = (n,k)$.
+\end{axiom}
+
+
+%Without this abbreviation \pot cant be sed as a function in the standard sense
+\begin{abbreviation}\label{urysohnone_pot_as_function}
+    $\pot(n) = \apply{\pot}{n}$.
+\end{abbreviation}
+
+%Take all points, besids one but then take all open sets not containing x but all other, so \{x\} has to be closed
+\begin{axiom}\label{urysohnone_hausdorff_implies_singltons_closed}
+    For all $X$ such that $X$ is Hausdorff we have
+    for all $x \in \carrier[X]$ we have $\{x\}$ is closed in $X$.
+\end{axiom}
+
+
+\begin{lemma}\label{urysohnone_urysohn_set_in_between}
+    Let $X$ be a urysohn space.
+    Suppose $A,B \in \closeds{X}$.
+    Suppose $A \subset B$.
+    %Suppose $B \union A \neq \carrier[X]$.
+    There exist $C \in \closeds{X}$
+    such that $A \subset C \subset B$ or $A, B \in \opens[X]$.
+\end{lemma}
+\begin{proof}
+    We have $B \setminus A$ is inhabited.
+    Take $x$ such that $x \in (B \setminus A)$.
+    Then $A \subset (A \union \{x\})$.
+    Let $C = \closure{A \union \{x\}}{X}$.
+    We have $(A \union \{x\}) \subseteq \closure{A \union \{x\}}{X}$.
+    Therefore $A \subset C$.
+    $A \subseteq B \subseteq \carrier[X]$.
+    $x \in B$.
+    Therefore $x \in \carrier[X]$.
+    $(A \union \{x\}) \subseteq \carrier[X]$.
+    We have $\closure{A \union \{x\}}{X}$ is closed in $X$ by \cref{closure_is_closed}.
+    Therefore $C$ is closed in $X$ by \cref{closure_is_closed}.
+    \begin{byCase}
+        \caseOf{$C = B$.}
+            %We have $\carrier[X] \setminus A$ is open in $X$.    
+            %We have $\carrier[X] \setminus B$ is open in $X$.
+            %$\{x\}$ is closed in $X$.% by \cref{hausdorff_implies_singltons_closed}.
+            %$A \union \{x\} = C$.
+            %$\carrier[X] \setminus (A \union \{x\}) = (\carrier[X] \setminus C)$.
+            %$\carrier[X] \setminus (A) = \{x\} \union (\carrier[X] \setminus C)$.
+
+
+            %Therefore $\{x\}$ is open in $X$.
+            Omitted.
+        \caseOf{$C \neq B$.}
+            Omitted.
+    \end{byCase}
+
+\end{proof}
+
+
+\begin{proposition}\label{urysohnone_urysohnchain_induction_begin}
+    Let $X$ be a urysohn space.
+    Suppose $A,B \in \closeds{X}$.
+    Suppose $A \inter B$ is empty.
+    Then there exist $U$
+    such that $\carrier[U] = \{A,(\carrier[X] \setminus B)\}$
+    and $\indexxset[U]= \{\zero, 1\}$
+    and $\indexx[U](\zero) = A$
+    and $\indexx[U](1) = (\carrier[X] \setminus B)$.
+    %$U$ is a urysohnchain in $X$.
+\end{proposition}
+\begin{proof}
+
+    Omitted.
+
+    %   We show that $U$ is a sequence.
+    %   \begin{subproof}
+    %       Omitted.
+    %   \end{subproof}
+%   
+    %   We show that $A \subseteq (\carrier[X] \setminus B)$.
+    %   \begin{subproof}
+    %       Omitted.
+    %   \end{subproof}
+%   
+    %   We show that $U$ is a chain of subsets.
+    %   \begin{subproof}
+    %       For all $n \in \indexxset[U]$ we have $n = \zero \lor n = 1$.
+    %       It suffices to show that for all $n \in \indexxset[U]$ we have
+    %       for all $m \in \indexxset[U]$ such that 
+    %       $n < m$ we have $\indexx[U](n) \subseteq \indexx[U](m)$.
+    %       Fix $n \in \indexxset[U]$.
+    %       Fix $m \in \indexxset[U]$.
+    %       \begin{byCase}
+    %           \caseOf{$n = 1$.} Trivial.
+    %           \caseOf{$n = \zero$.} 
+    %               \begin{byCase}
+    %                   \caseOf{$m = \zero$.} Trivial.
+    %                   \caseOf{$m = 1$.} Omitted.
+    %               \end{byCase}
+    %       \end{byCase}
+    %   \end{subproof}
+%   
+    %   $A \subseteq X$.
+    %   $(X \setminus B) \subseteq X$.
+    %   We show that for all $x \in U$ we have $x \subseteq X$.
+    %   \begin{subproof}
+    %       Omitted.
+    %   \end{subproof}
+%   
+    %   We show that $\closure{A}{X} \subseteq \interior{(X \setminus B)}{X}$.
+    %   \begin{subproof}
+    %       Omitted.
+    %   \end{subproof}
+    %   We show that for all $n,m \in \indexxset[U]$ such that $n < m$ we have
+    %   $\closure{\indexx[U](n)}{X} \subseteq \interior{\indexx[U](m)}{X}$.
+    %   \begin{subproof}
+    %       Omitted.
+    %   \end{subproof}
+
+    
+\end{proof}
+
+\begin{proposition}\label{urysohnone_urysohnchain_induction_begin_step_two}
+    Let $X$ be a urysohn space.
+    Suppose $A,B \in \closeds{X}$.
+    Suppose $A \inter B$ is empty.
+    Suppose there exist $U$
+    such that $\carrier[U] = \{A,(\carrier[X] \setminus B)\}$
+    and $\indexxset[U]= \{\zero, 1\}$
+    and $\indexx[U](\zero) = A$
+    and $\indexx[U](1) = (\carrier[X] \setminus B)$.
+    Then $U$ is a urysohnchain in $X$.
+\end{proposition}
+\begin{proof}
+    Omitted.
+\end{proof}
+
+
+
+\begin{proposition}\label{urysohnone_t_four_propositon}
+    Let $X$ be a urysohn space.
+    Then for all $A,B \subseteq X$ such that $\closure{A}{X} \subseteq \interior{B}{X}$
+    we have there exists $C \subseteq X$ such that 
+    $\closure{A}{X} \subseteq \interior{C}{X} \subseteq \closure{C}{X} \subseteq \interior{B}{X}$.
+\end{proposition}
+\begin{proof}
+    Omitted.
+\end{proof}
+
+
+
+\begin{proposition}\label{urysohnone_urysohnchain_induction_step_existence}
+    Let $X$ be a urysohn space.
+    Suppose $U$ is a urysohnchain in $X$.
+    Then there exist $U'$ such that $U'$ is a refinmant of $U$ and $U'$ is a urysohnchain in $X$.
+\end{proposition}
+\begin{proof}
+    % U  = ( A_{0}, A_{1}, A_{2}, ... , A_{n-1}, A_{n})
+    % U' = ( A_{0}, A'_{1}, A_{1}, A'_{2}, A_{2}, ...   A_{n-1}, A'_{n}, A_{n})
+
+    % Let $m = \max{\indexxset[U]}$.
+    % For all $n \in (\indexxset[U] \setminus \{m\})$ we have there exist $C \subseteq X$ 
+    % such that $\closure{\indexx[U](n)}{X} \subseteq \interior{C}{X} \subseteq \closure{C}{X} \subseteq \interior{\indexx[U](n+1)}{X}$.
+    
+    
+    %\begin{definition}\label{urysohnone_refinmant}
+    %    $C'$ is a refinmant of $C$ iff for all $x \in C$ we have $x \in C'$ and 
+    %    for all $y \in C$ such that $y \subset x$ 
+    %    we have there exist $c \in C'$ such that $y \subset c \subset x$
+    %    and for all $g \in C'$ such that $g \neq c$ we have not $y \subset g \subset x$.
+    %\end{definition}
+    Omitted.
+
+\end{proof}
+
+
+
+
+
+\begin{proposition}\label{urysohnone_existence_of_staircase_function}
+    Let $X$ be a urysohn space.
+    Suppose $U$ is a urysohnchain in $X$ and $U$ has cardinality $k$.
+    Suppose $k \neq \zero$.
+    Then there exist $f$ such that $f \in \funs{\carrier[X]}{\intervalclosed{\zero}{1}}$ 
+    and for all $n \in \indexxset[U]$ we have for all $x \in \indexx[U](n)$ 
+    we have $f(x) = \rfrac{n}{k}$.
+\end{proposition}
+\begin{proof}
+    Omitted.
+\end{proof}
+
+\begin{abbreviation}\label{urysohnone_refinment_abbreviation}
+    $x \refine y$ iff $x$ is a refinmant of $y$.
+\end{abbreviation}
+
+
+
+
+
+\begin{abbreviation}\label{urysohnone_sequence_of_functions}
+    $f$ is a sequence of functions iff $f$ is a sequence 
+    and for all $g \in \carrier[f]$ we have $g$ is a function.
+\end{abbreviation}
+
+\begin{abbreviation}\label{urysohnone_sequence_in_reals}
+    $s$ is a sequence of real numbers iff $s$ is a sequence 
+    and for all $r \in \carrier[s]$ we have $r \in \reals$.
+\end{abbreviation}
+
+
+
+\begin{axiom}\label{urysohnone_abs_behavior1}
+    If $x \geq \zero$ then $\abs{x} = x$.
+\end{axiom}
+
+\begin{axiom}\label{urysohnone_abs_behavior2}
+    If $x < \zero$ then $\abs{x} = \neg{x}$.
+\end{axiom}
+
+\begin{abbreviation}\label{urysohnone_converge}
+    $s$ converges iff $s$ is a sequence of real numbers 
+    and $\indexxset[s]$ is infinite
+    and for all $\epsilon \in \reals$ such that $\epsilon > \zero$ we have
+    there exist $N \in \indexxset[s]$ such that
+    for all $m \in \indexxset[s]$ such that $m > N$ 
+    we have $\abs{\indexx[s](N) - \indexx[s](m)} < \epsilon$.
+\end{abbreviation}
+
+
+\begin{definition}\label{urysohnone_limit_of_sequence}
+    $x$ is the limit of $s$ iff $s$ is a sequence of real numbers
+    and $x \in \reals$ and 
+    for all $\epsilon \in \reals$ such that $\epsilon > \zero$
+    we have there exist $n \in \indexxset[s]$ such that 
+    for all $m \in \indexxset[s]$ such that $m > n$ 
+    we have $\abs{x - \indexx[s](n)} < \epsilon$.
+\end{definition}
+
+\begin{proposition}\label{urysohnone_existence_of_limit}
+    Let $s$ be a sequence of real numbers.
+    Then $s$ converges iff there exist $x \in \reals$ 
+    such that $x$ is the limit of $s$.
+\end{proposition}
+\begin{proof}
+    Omitted.
+\end{proof}
+
+\begin{definition}\label{urysohnone_limit_sequence}
+    $x$ is the limit sequence of $f$ iff
+    $x$ is a sequence and $\indexxset[x] = \dom{f}$ and
+    for all $n \in \indexxset[x]$ we have
+    $\indexx[x](n) = f(n)$.
+\end{definition}
+
+\begin{definition}\label{urysohnone_realsminus}
+    $\realsminus = \{r \in \reals \mid r < \zero\}$.
+\end{definition}
+
+\begin{abbreviation}\label{urysohnone_realsplus}
+    $\realsplus = \reals \setminus \realsminus$.
+\end{abbreviation}
+
+\begin{proposition}\label{urysohnone_intervalclosed_subseteq_reals}
+    Suppose $a,b \in \reals$.
+    Suppose $a < b$.
+    Then $\intervalclosed{a}{b} \subseteq \reals$.
+\end{proposition}
+
+
+
+\begin{lemma}\label{urysohnone_fraction1}
+    Let $x \in \reals$.
+    Then for all $y \in \reals$ such that $x \neq y$ we have there exists $r \in \rationals$ such that $y < r < x$ or $x < r < y$.
+\end{lemma}
+\begin{proof}
+    Omitted.
+\end{proof}
+
+\begin{lemma}\label{urysohnone_frection2}
+    Suppose $a,b \in \reals$.
+    Suppose $a < b$.
+    Then $\intervalopen{a}{b}$ is infinite.
+\end{lemma}
+\begin{proof}
+    Omitted.
+\end{proof}
+
+\begin{lemma}\label{urysohnone_frection3}
+    Suppose $a \in \reals$.
+    Suppose $a < \zero$.
+    Then there exist $N \in \naturals$ such that for all $N' \in \naturals$ such that $N' > N$ we have $\zero < \rfrac{1}{\pot(N')} < a$. 
+\end{lemma}
+\begin{proof}
+    Omitted.
+\end{proof}
+
+\begin{proposition}\label{urysohnone_fraction4}
+    Suppose $a,b,\epsilon \in \reals$.
+    Suppose $\epsilon > \zero$.
+    $\abs{a - b} < \epsilon$ iff $b \in \intervalopen{(a - \epsilon)}{(a + \epsilon)}$.
+\end{proposition}
+\begin{proof}
+    Omitted.
+\end{proof}
+
+\begin{proposition}\label{urysohnone_fraction5}
+    Suppose $a,b,\epsilon \in \reals$.
+    Suppose $\epsilon > \zero$.
+    $b \in \intervalopen{(a - \epsilon)}{(a + \epsilon)}$ iff $a \in \intervalopen{(b - \epsilon)}{(b + \epsilon)}$.
+\end{proposition}
+\begin{proof}
+    Omitted.
+\end{proof}
+
+\begin{proposition}\label{urysohnone_fraction6}
+    Suppose $a,\epsilon \in \reals$.
+    Suppose $\epsilon > \zero$.
+    $\intervalopen{(a - \epsilon)}{(a + \epsilon)} = \{r \in \reals \mid (a - \epsilon) < r < (a + \epsilon)\} $.
+\end{proposition}
+
+\begin{abbreviation}\label{urysohnone_epsilonball}
+    $\epsBall{a}{\epsilon}  = \intervalopen{(a - \epsilon)}{(a + \epsilon)}$.
+\end{abbreviation}
+
+\begin{proposition}\label{urysohnone_fraction7}
+    Suppose $a,\epsilon \in \reals$.
+    Suppose $\epsilon > \zero$.
+    Then there exist $b \in \rationals$ such that $b \in \epsBall{a}{\epsilon}$.
+\end{proposition}
+\begin{proof}
+    Omitted.
+\end{proof}
+
+
+
+ 
+%\begin{definition}\label{urysohnone_sequencetwo}
+%   $Z$ is a sequencetwo iff  $Z = (N,f,B)$ and $N \subseteq \naturals$ and $f$ is a bijection from $N$ to $B$.
+%\end{definition}
+%
+%\begin{proposition}\label{urysohnone_sequence_existence}
+%    Suppose $N \subseteq \naturals$.
+%    Suppose $M \subseteq \naturals$.
+%    Suppose $N = M$.
+%    Then there exist $Z,f$ such that $f$ is a bijection from $N$ to $M$ and $Z=(N,f,M)$ and $Z$ is a sequencetwo.
+%\end{proposition}
+%\begin{proof}
+%    Let $f(x) = x$ for $x \in N$.
+%    Let $Z=(N,f,M)$.
+%\end{proof}
+%The proposition above and the definition prove false together with
+% ordinal_subseteq_unions, omega_is_an_ordinal, powerset_intro, in_irrefl
+
+
+
+
+
+
+
+
+
+\begin{theorem}\label{urysohnone_urysohn1}
+    Let $X$ be a urysohn space.
+    Suppose $A,B \in \closeds{X}$.
+    Suppose $A \inter B$ is empty.
+    Suppose $\carrier[X]$ is inhabited.
+    There exist $f$ such that $f \in \funs{\carrier[X]}{\intervalclosed{\zero}{1}}$ 
+    and $f(A) = \zero$ and $f(B)= 1$ and $f$ is continuous.
+\end{theorem}
+\begin{proof}
+    
+    There exist $\eta$ such that $\carrier[\eta] = \{A, (\carrier[X] \setminus B)\}$ 
+    and $\indexxset[\eta] = \{\zero, 1\}$ 
+    and $\indexx[\eta](\zero) = A$
+    and $\indexx[\eta](1) = (\carrier[X] \setminus B)$  by \cref{urysohnone_urysohnchain_induction_begin}.
+    
+    We show that there exist $\zeta$ such that $\zeta$ is a sequence 
+    and $\indexxset[\zeta] = \naturals$
+    and $\eta \in \carrier[\zeta]$ and $\indexx[\zeta](\eta) = \zero$
+    and for all $n \in \indexxset[\zeta]$ we have $n+1 \in \indexxset[\zeta]$ 
+    and $\indexx[\zeta](n+1)$ is a refinmant of $\indexx[\zeta](n)$.
+    \begin{subproof}
+            %Let $\alpha = \{x \in C \mid \exists y \in \alpha. x \refine y \lor x = \eta\}$.
+            %Let $\beta = \{ (n,x) \mid n \in \naturals \mid \exists m \in \naturals. \exists y \in \alpha. (x \in \alpha) \land ((x \refine y \land m = n+1 )\lor ((n,x) = (\zero,\eta)))\}$.
+            %
+            %    % TODO: Proof that \beta is a function which would be used for the indexing.
+            %For all $n \in \naturals$ we have there exist $x \in \alpha$ such that $(n,x) \in \beta$.
+            %$\dom{\beta} = \naturals$.
+            %$\ran{\beta} = \alpha$.
+            %$\beta \in \funs{\naturals}{\alpha}$.
+            %Take $\zeta$ such that $\carrier[\zeta] = \alpha$ and $\indexxset[\zeta] = \naturals$ and $\indexx[\zeta] = \beta$.
+        Omitted.
+    \end{subproof}
+
+    Let $\alpha = \carrier[X]$.
+    %Define $f : \alpha \to \naturals$ such that $f(x) =$
+    %\begin{cases}
+    %    & 1        & \text{if} x \in A \lor x \in B 
+    %    & k     & \text{if} \exists k \in \naturals 
+    %\end{cases}
+%
+    %We show that there exist $k \in \funs{\carrier[X]}{\reals}$ such that
+    %$k(x)$
+
+    %For all $n \in \naturals$ we have $\indexx[\zeta](n)$ is a urysohnchain in $X$.
+
+    We show that for all $n \in \indexxset[\zeta]$ we have $\indexx[\zeta](n)$ has cardinality $\pot(n)$.
+    \begin{subproof}
+        Omitted.
+    \end{subproof}
+
+    We show that for all $m \in \indexxset[\zeta]$ we have $\pot(m) \neq \zero$.
+    \begin{subproof}
+        Omitted.
+    \end{subproof}
+
+    We show that for all $m \in \naturals$ we have $\pot(m) \in \naturals$.
+    \begin{subproof}
+        Omitted.
+    \end{subproof}
+
+    
+%    We show that for all $m \in \indexxset[\zeta]$ we have there exist $f$ such that $f \in \funs{\carrier[X]}{\intervalclosed{\zero}{1}}$ 
+%    and for all $n \in \indexxset[\indexx[\zeta](m)]$ we have for all $x \in \indexx[\indexx[\zeta](m)](n)$ such that $x \notin \indexx[\indexx[\zeta](m)](n-1)$ 
+%    we have $f(x) = \rfrac{n}{\pot(m)}$.
+%    \begin{subproof}
+%        Fix $m \in \indexxset[\zeta]$.
+%        %$\indexx[\zeta](m)$ is a urysohnchain in $X$.
+%
+%        %Define $o : \alpha \to \intervalclosed{\zero}{1}$ such that $o(x) =$
+%        %\begin{cases}
+%        %    & 0  & \text{if} x \in A 
+%        %    & 1 & \text{if} x \in B 
+%        %    & \rfrac{n}{m} & \text{if} \exists n \in \naturals. x \in \indexx[\indexx[\zeta](m)](n) \land x \notin \indexx[\indexx[\zeta](m)](n-1)
+%        %\end{cases}
+%%
+%        Omitted.
+%    \end{subproof}
+%
+%    
+%
+%    %The sequenc of the functions
+%    Let $\gamma = \{
+%        (n,f) \mid 
+%        n \in \naturals \mid 
+%        
+%        \forall n' \in \indexxset[\indexx[\zeta](n)].             
+%        \forall x \in \carrier[X].      
+%        
+%
+%        f \in \funs{\carrier[X]}{\intervalclosed{\zero}{1}} \land
+%
+%
+%        % (n,f) \in \gamma  <=>   \phi(n,f)
+%        % with \phi (n,f) :=        
+%        %    (x \in (A_k) \ (A_k-1)) ==> f(x) = ( k / 2^n )        
+%        % \/ (x \notin A_k for all k \in {1,..,n} ==>  f(x) = 1 
+%
+%            (       (n' = \zero)   
+%            \land   (x \in \indexx[\indexx[\zeta](n)](n')) 
+%            \land   (f(x)= \zero) ) 
+%        
+%        \lor
+%        
+%            (       (n' > \zero)    
+%            \land   (x \in \indexx[\indexx[\zeta](n)](n'))
+%            \land   (x \notin \indexx[\indexx[\zeta](n)](n'-1))
+%            \land   (f(x) = \rfrac{n'}{\pot(n)}) )
+%            
+%        \lor
+%
+%            (       (x \notin  \indexx[\indexx[\zeta](n)](n'))
+%            \land   (f(x) = 1) )
+%        
+%    \}$.
+%    
+%    Let $\gamma(n) = \apply{\gamma}{n}$ for $n \in \naturals$.
+%
+%    We show that for all $n \in \naturals$ we have $\gamma(n)$ 
+%    is a function from $\carrier[X]$ to $\reals$.
+%    \begin{subproof}
+%        Omitted.
+%    \end{subproof}
+%
+%    
+%    We show that for all $n \in \naturals$ we have $\gamma(n)$ 
+%    is a function from $\carrier[X]$ to $\intervalclosed{\zero}{1}$.
+%    \begin{subproof}
+%        Omitted.
+%    \end{subproof}
+%
+%    We show that $\gamma$ is a function from $\naturals$ to $\reals$.
+%    \begin{subproof}
+%        Omitted.
+%    \end{subproof}
+%
+%    We show that  for all $x,k,n$ such that $n\in \naturals$ and $k \in \naturals$ and $x \in \indexx[\indexx[\zeta](n)](k)$ we have $\apply{\gamma(n)}{x} =  \rfrac{k}{\pot(n)}$.
+%    \begin{subproof}
+%        Omitted.
+%    \end{subproof}
+%
+%    We show that for all $n \in \naturals$ for all $x \in \carrier[X]$ we have $\apply{\gamma(n)}{x} \in \intervalclosed{\zero}{1}$. 
+%    \begin{subproof}
+%        Fix $n \in \naturals$.
+%        Fix $x \in \carrier[X]$.
+%        Omitted.
+%    \end{subproof}
+%
+%
+%
+%    We show that 
+%    if $h$ is a function from $\naturals$ to $\reals$ and for all $n \in \naturals$ we have $h(n) \leq h(n+1)$ and there exist $B \in \reals$ such that $h(n) < B$ 
+%    then there exist $k \in \reals$ such that for all $m \in \naturals$ we have $h(m) \leq k$ and for all $k' \in \reals$ such that $k' < k$ we have there exist $M \in \naturals$ such that $k' < h(M)$.
+%    \begin{subproof}
+%        Omitted.
+%    \end{subproof} 
+%
+%
+%
+%    We show that there exist $g$ such that for all $x \in \carrier[X]$ we have there exist $k \in \reals$ such that  $g(x)= k$ and for all $\epsilon \in \reals$ such that $\epsilon > \zero$ we have there exist $N \in \naturals$ such that for all $N' \in \naturals$ such that $N' > N$ we have $\abs{\apply{\gamma(N')}{x} - k} < \epsilon$.
+%    \begin{subproof}       
+%        We show that for all $x \in \carrier[X]$ we have there exist $k \in \reals$ such that for all $\epsilon \in \reals$ such that $\epsilon > \zero$ we have there exist $N \in \naturals$ such that for all $N' \in \naturals$ such that $N' > N$ we have $\abs{\apply{\gamma(N')}{x} - k} < \epsilon$.
+%        \begin{subproof}
+%            Fix $x \in \carrier[X]$.
+%            
+%            Omitted.
+%            
+%            % Contradiction by \cref{two_in_naturals,function_apply_default,reals_axiom_zero_in_reals,dom_emptyset,notin_emptyset,funs_type_apply,neg,minus,abs_behavior1}.
+%            %Follows by \cref{two_in_naturals,function_apply_default,reals_axiom_zero_in_reals,dom_emptyset,notin_emptyset,funs_type_apply,neg,minus,abs_behavior1}.
+%        \end{subproof}
+%        Omitted.
+%    \end{subproof}
+%    
+%
+%    Let $G(x) = g(x)$ for $x \in \carrier[X]$.
+%    We have $\dom{G} = \carrier[X]$.
+%
+%    We show that for all $x \in \dom{G}$ we have $G(x) \in \reals$.
+%    \begin{subproof}
+%        %Fix $x \in \dom{G}$.
+%        %It suffices to show that $g(x) \in \reals$.
+%%
+%        %There exist $k \in \reals$ such that for all $\epsilon \in \reals$ such that $\epsilon > \zero$ we have there exist $N \in \naturals$ such that for all $N' \in \naturals$ such that $N' > N$ we have $\abs{\apply{\gamma(N')}{x} - k} < \epsilon$.
+%%
+%        %We show that for all $\epsilon \in \reals$ such that $\epsilon > \zero$ we have there exist $N \in \naturals$ such that for all $N' \in \naturals$ such that $N' > N$ we have $\abs{\apply{\gamma(N')}{x} - g(x)} < \epsilon$ and $g(x)= k$.
+%        %\begin{subproof}
+%        %    Fix $\epsilon \in \reals$.
+%        %    
+%%
+%        %\end{subproof}
+%        %Follows by \cref{apply,plus_one_order,ordinal_iff_suc_ordinal,natural_number_is_ordinal,subseteq,naturals_subseteq_reals,naturals_is_equal_to_two_times_naturals,reals_one_bigger_zero,one_in_reals,ordinal_prec_trichotomy,omega_is_an_ordinal,suc_intro_self,two_in_naturals,in_asymmetric,suc}.
+%        Omitted.
+%    \end{subproof}
+%
+%    We show that for all $x \in \dom{G}$ we have $\zero \leq G(x) \leq 1$.
+%    \begin{subproof}
+%        %Fix $x \in \dom{G}$.
+%        %Then $x \in \carrier[X]$.
+%        %\begin{byCase}
+%        %    \caseOf{$x \in A$.} 
+%        %        For all $n \in \naturals$ we have $\apply{\gamma(n)}{x} = \zero$.
+%%
+%%
+%        %    \caseOf{$x \notin A$.} 
+%        %        \begin{byCase}
+%        %            \caseOf{$x \in B$.} 
+%        %                For all $n \in \naturals$ we have $\apply{\gamma(n)}{x} = 1$.
+%%
+%        %            \caseOf{$x \notin B$.}
+%        %                Omitted.
+%        %        \end{byCase}
+%        %\end{byCase}
+%        Omitted.
+%    \end{subproof}
+%
+%
+%    We show that $G \in \funs{\carrier[X]}{\intervalclosed{\zero}{1}}$.
+%    \begin{subproof}        
+%        %It suffices to show that $\ran{G} \subseteq \intervalclosed{\zero}{1}$ by \cref{fun_ran_iff,funs_intro,funs_weaken_codom}.
+%        %It suffices to show that for all $x \in \dom{G}$ we have $G(x) \in \intervalclosed{\zero}{1}$.
+%        %Fix $x \in \dom{G}$.
+%        %Then $x \in \carrier[X]$.
+%        %$g(x) = G(x)$.
+%        %We have $G(x) \in \reals$.
+%        %$\zero \leq G(x) \leq 1$.
+%        %We have $G(x) \in \intervalclosed{\zero}{1}$ .
+%        Omitted.
+%    \end{subproof}
+%
+%    We show that $G(A) = \zero$.
+%    \begin{subproof}
+%        Omitted.
+%    \end{subproof}
+%
+%    We show that $G(B) = 1$.
+%    \begin{subproof}
+%        Omitted.
+%    \end{subproof}
+%
+%    We show that $G$ is continuous.
+%    \begin{subproof}
+%        Omitted.
+%    \end{subproof}
+%
+%    %Suppose $\eta$ is a urysohnchain in $X$.
+%    %Suppose $\carrier[\eta] =\{A, (X \setminus B)\}$
+%    %and $\indexxset[\eta] = \{\zero, 1\}$
+%    %and $\indexx[\eta](\zero) = A$ 
+%    %and $\indexx[\eta](1) = (X \setminus B)$.
+%
+%
+%    %Then $\eta$ is a urysohnchain in $X$.
+%
+%    %   Take $P$ such that $P$ is a infinite sequence and $\indexxset[P] = \naturals$ and for all $i \in \indexxset[P]$ we have $\indexx[P](i) = \pow{X}$.
+%    %   
+%    %   We show that there exist $\zeta$ such that $\zeta$ is a infinite sequence 
+%    %   and for all $i \in \indexxset[\zeta]$ we have 
+%    %   $\indexx[\zeta](i)$ is a urysohnchain in $X$ of cardinality $i$
+%    %   and $A \subseteq \indexx[\zeta](i)$
+%    %   and $\indexx[\zeta](i) \subseteq (X \setminus B)$
+%    %   and for all $j \in \indexxset[\zeta]$ such that 
+%    %   $j < i$ we have for all $x \in \indexx[\zeta](j)$ we have $x \in \indexx[\zeta](i)$.
+%    %   \begin{subproof}
+%    %       Omitted.
+%    %   \end{subproof}
+%    %   
+%    %   
+%    %   
+    %   
+    %   
+    %   
+    %   
+    %   
+    %   We show that there exist $g \in \funs{X}{\intervalclosed{\zero}{1}}$ such that $g(A)=1$ and $g(X\setminus A) = \zero$.
+    %   \begin{subproof}
+    %       Omitted.
+    %   \end{subproof}
+    %   $g$ is a staircase function and $\chain[g] = C$.
+    %   $g$ is a legal staircase function.
+    %   
+    %   
+    %   We show that there exist $f$ such that $f \in \funs{X}{\intervalclosed{\zero}{1}}$ 
+    %   and $f(A) = 1$ and $f(B)= 0$ and $f$ is continuous.
+    %   \begin{subproof}
+    %       Omitted.
+    %   \end{subproof}
+
+
+    %   We show that for all $n \in \nautrals$ we have $C_{n}$ a legal chain of subsets of $X$. 
+    %   \begin{subproof}
+    %       Omitted.
+    %   \end{subproof}
+
+    %   Proof Sheme Idea:
+    %    -We proof for n=1 that C_{n} is a chain and legal
+    %    -Then by induction with P(n+1) is refinmant of P(n)
+    %    -Therefore we have a increing refinmant of these Chains such that our limit could even apply
+    %    ---------------------------------------------------------
+
+    %   We show that there exist $f \in \funs{\naturals}{\funs{X}{\intervalclosed{0}{1}}}$ such that $f(n)$ is a staircase function. %TODO: Define Staircase function
+    %   \begin{subproof}
+    %       Omitted.
+    %   \end{subproof}
+
+
+    %    Formalization idea of enumarted sequences:
+    %    - Define a enumarted sequnecs as a set A with a bijection between A and E \in \pow{\naturals} 
+    %    - This should give all finite and infinte enumarable sequences
+    %    - Introduce a notion for the indexing of these enumarable sequences.
+    %    - Then we can define the limit of a enumarted sequence of functions.
+    %    ---------------------------------------------------------
+    %   
+    %    Here we need a limit definition for sequences of functions
+    %   We show that there exist $F \in \funs{X}{\intervalclosed{0}{1}}$ such that $F = \limit{set of the staircase functions}$
+    %   \begin{subproof}
+    %       Omitted.
+    %   \end{subproof}
+    %   
+    %   We show that $F(A) = 1$.
+    %   \begin{subproof}
+    %       Omitted.
+    %   \end{subproof}
+    %   
+    %   We show that $F(B) = 0$.
+    %   \begin{subproof}
+    %       Omitted.
+    %   \end{subproof} 
+    %   
+    %   We show that $F$ is continuous.
+    %   \begin{subproof}
+    %       Omitted.
+    %   \end{subproof}
+\end{proof}
+%
+%\begin{theorem}\label{urysohnone_safe}
+%    Contradiction.     
+%\end{theorem}

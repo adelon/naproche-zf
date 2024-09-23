@@ -189,6 +189,7 @@ toks = whitespace *> goNormal id <* eof
                 Nothing -> pure (f [])
                 Just t@Located{unLocated = BeginEnv "math"} -> goMath (f . (t:))
                 Just t@Located{unLocated = BeginEnv "align*"} -> goMath (f . (t:))
+                --Just t@Located{unLocated = BeginEnv "cases"} -> goMath (f . (t:))
                 Just t -> goNormal (f . (t:))
         goText f = do
             r <- optional textToken
@@ -204,6 +205,7 @@ toks = whitespace *> goNormal id <* eof
                 Nothing -> pure (f [])
                 Just t@Located{unLocated = EndEnv "math"} -> goNormal (f . (t:))
                 Just t@Located{unLocated = EndEnv "align*"} -> goNormal (f . (t:))
+                --Just t@Located{unLocated = EndEnv "cases"} -> goNormal (f . (t:))
                 Just t@Located{unLocated = BeginEnv "text"} -> goText (f . (t:))
                 Just t@Located{unLocated = BeginEnv "explanation"} -> goText (f . (t:))
                 Just t -> goMath (f . (t:))
@@ -219,12 +221,12 @@ toks = whitespace *> goNormal id <* eof
 -- | Parses a single normal mode token.
 tok :: Lexer (Located Token)
 tok =
-    word <|> var <|> symbol <|> mathBegin <|> alignBegin <|> begin <|> end <|> opening <|> closing <|> label <|> ref <|> command
+    word <|> var <|> symbol <|> mathBegin <|> alignBegin <|> casesBegin <|> begin <|> end <|> opening <|> closing <|> label <|> ref <|> command
 
 -- | Parses a single math mode token.
 mathToken :: Lexer (Located Token)
 mathToken =
-    var <|> symbol <|> number <|> begin <|> alignEnd <|> end <|> opening <|> closing <|> beginText <|> beginExplanation <|> mathEnd <|> command
+    var <|> symbol <|> number <|> begin <|> alignEnd <|> casesEnd <|> end <|> opening <|> closing <|> beginText <|> beginExplanation <|> mathEnd <|> command
 
 beginText :: Lexer (Located Token)
 beginText = lexeme do
@@ -277,6 +279,11 @@ alignBegin = guardM isTextMode *> lexeme do
     setMathMode
     pure (BeginEnv "align*")
 
+casesBegin :: Lexer (Located Token)
+casesBegin = guardM isTextMode *> lexeme do
+    Char.string "\\begin{cases}"
+    --setMathMode
+    pure (BeginEnv "cases")
 
 -- | Parses a single end math token.
 mathEnd :: Lexer (Located Token)
@@ -290,6 +297,12 @@ alignEnd = guardM isMathMode *> lexeme do
     Char.string "\\end{align*}"
     setTextMode
     pure (EndEnv "align*")
+
+casesEnd :: Lexer (Located Token)
+casesEnd = guardM isMathMode *> lexeme do
+    Char.string "\\end{cases}"
+    --setTextMode
+    pure (EndEnv "cases")
 
 
 -- | Parses a word. Words are returned casefolded, since we want to ignore their case later on.

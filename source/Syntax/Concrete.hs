@@ -351,8 +351,42 @@ grammar lexicon@Lexicon{..} = mdo
 
     define           <- rule $ Define <$> (_let *> beginMath *> varSymbol <* _eq) <*> expr <* endMath <* _dot <*> proof
     defineFunction   <- rule $ DefineFunction <$> (_let *> beginMath *> varSymbol) <*> paren varSymbol <* _eq <*>  expr <* endMath <* _for <* beginMath <*> varSymbol <* _in <*> expr <* endMath <* _dot <*> proof
+    
 
-    proof            <- rule $ asum [byContradiction, byCases, bySetInduction, byOrdInduction, calc, subclaim, assume, fix, take, have, suffices, define, defineFunction, qed]
+
+
+
+
+    -- Define $f $\fromTo{X}{Y} such that,         
+    -- Define function $f: X \to Y$,
+    -- \begin{align}
+    --      &x \mapsto 3*x      &,  
+    --      &x \mapsto 4*k    &,    \forall k \in \N. x \in \Set{k}
+    -- \end{align}
+    -- 
+
+    -- Follwing is the definition right now.
+    -- Define function $f: X \to Y$ such that,
+    -- \begin{cases}
+    --     1 & \text{if } x \in \mathbb{Q}\\
+    --     0 & \text{if } x \in \mathbb{R}\setminus\mathbb{Q}
+    --     3 & \text{else}     
+    -- \end{cases}
+
+    functionDefineCase <- rule $ (,) <$> (optional _ampersand *> expr) <*> (_ampersand *> text _if *> formula)
+    defineFunctionLocal <-  rule    $ DefineFunctionLocal 
+                                    <$> (_define *> beginMath *> varSymbol)           -- Define $ f
+                                    <*> (_colon *> varSymbol)                           -- : 'var' \to 'var'
+                                    <*> (_to *> expr <* endMath <* _suchThat) 
+                                    -- <*> (_suchThat  *> align (many1 ((_ampersand *> varSymbol <* _mapsto) <*> exprApp <*> (_ampersand *> formula))))
+                                    -- <*> (_suchThat  *> align (many1 (varSymbol <* exprApp <*  formula)))
+                                    <*> (beginMath *> varSymbol) <*> (paren varSymbol <* _eq )
+                                    <*> cases (many1 functionDefineCase) <* endMath <* optional _dot 
+                                    <*> proof
+
+
+
+    proof            <- rule $ asum [byContradiction, byCases, bySetInduction, byOrdInduction, calc, subclaim, assume, fix, take, have, suffices, define, defineFunction, defineFunctionLocal, qed]
 
 
     blockAxiom  <- rule $ uncurry3 BlockAxiom     <$> envPos  "axiom" axiom
@@ -433,7 +467,6 @@ enumeratedMarked p = NonEmpty.toList <$> enumeratedMarked1 p
 
 enumeratedMarked1 :: Prod r Text (Located Token) a -> Prod r Text (Located Token) (NonEmpty (Marker, a))
 enumeratedMarked1 p = begin "enumerate" *> many1 ((,) <$> (command "item" *> label) <*> p) <* end "enumerate" <?> "\"\\begin{enumerate}\\item\\label{...}...\""
-
 
 
 
@@ -610,6 +643,9 @@ group body = token InvisibleBraceL *> body <* token InvisibleBraceR <?> "\"{...}
 
 align :: Prod r Text (Located Token) a -> Prod r Text (Located Token) a
 align body = begin "align*" *> body <* end "align*"
+
+cases :: Prod r Text (Located Token) a -> Prod r Text (Located Token) a
+cases body = begin "cases" *> body <* end "cases"
 
 
 maybeVarToken :: Located Token -> Maybe VarSymbol

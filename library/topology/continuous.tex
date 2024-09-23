@@ -1,5 +1,9 @@
 \import{topology/topological-space.tex}
 \import{relation.tex}
+\import{function.tex}
+\import{set.tex}
+
+\subsection{Continuous}\label{form_sec_continuous}
 
 \begin{definition}\label{continuous}
     $f$ is continuous iff for all $U \in \opens[Y]$ we have $\preimg{f}{U} \in \opens[X]$.
@@ -8,18 +12,25 @@
 \begin{proposition}\label{continuous_definition_by_closeds}
     Let $X$ be a topological space.
     Let $Y$ be a topological space.
+    Let $f \in \funs{X}{Y}$.
     Then $f$ is continuous iff for all $U \in \closeds{Y}$ we have $\preimg{f}{U} \in \closeds{X}$.
 \end{proposition}
 \begin{proof}
     Omitted.
-    %We show that if $f$ is continuous then for all $U \in \closeds{Y}$ we have $\preimg{f}{U} \in \closeds{X}$.
+    %We show that if $f$ is continuous then for all $U \in \closeds{Y}$ such that $U \neq \emptyset$ we have $\preimg{f}{U} \in \closeds{X}$.
     %\begin{subproof}
     %    Suppose $f$ is continuous.
     %    Fix $U \in \closeds{Y}$.
     %    $\carrier[Y] \setminus U$ is open in $Y$.
     %    Then $\preimg{f}{(\carrier[Y] \setminus U)}$ is open in $X$.
     %    Therefore $\carrier[X] \setminus \preimg{f}{(\carrier[Y] \setminus U)}$ is closed in $X$.
-    %    $\carrier[X] \setminus \preimg{f}{(\carrier[Y] \setminus U)} \subseteq \preimg{f}{U}$.
+    %    We show that $\carrier[X] \setminus \preimg{f}{(\carrier[Y] \setminus U)} \subseteq \preimg{f}{U}$.
+    %    \begin{subproof}
+    %        It suffices to show that for all $x \in \carrier[X] \setminus \preimg{f}{(\carrier[Y] \setminus U)}$ we have $x \in \preimg{f}{U}$.
+    %        Fix $x \in \carrier[X] \setminus \preimg{f}{(\carrier[Y] \setminus U)}$.
+    %        Take $y \in \carrier[Y]$ such that $f(x)=y$.
+    %        It suffices to show that $y \in U$.
+    %    \end{subproof}
     %    $\preimg{f}{U} \subseteq \carrier[X] \setminus \preimg{f}{(\carrier[Y] \setminus U)}$.
     %\end{subproof}
     %We show that if for all $U \in \closeds{Y}$ we have $\preimg{f}{U} \in \closeds{X}$ then $f$ is continuous.
@@ -27,3 +38,4 @@
     %    Omitted.
     %\end{subproof}
 \end{proof}
+

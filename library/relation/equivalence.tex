@@ -219,54 +219,59 @@
 \end{proof}
 
 
-%
-%\begin{definition}\label{equivalence_from_partition}
-%    $\equivfrompartition{P} = \{(a, b)\mid a\in A, b\in A\mid \exists C\in P.\ a, b\in C\}$.
-%\end{definition}
-%
-%\begin{proposition}\label{equivalence_from_partition_intro}
-%    Let $P$ be a partition of $A$.
-%    Let $a,b\in A$.
-%    Suppose $a,b\in C\in P$.
-%    Then $a\mathrel{\equivfrompartition{P}} b$.
-%\end{proposition}
-%
-%\begin{proposition}\label{equivalence_from_partition_reflexive}
-%    Let $P$ be a partition of $A$.
-%    $\equivfrompartition{P}$ is reflexive on $A$.
-%\end{proposition}
-%
-%\begin{proposition}\label{equivalence_from_partition_symmetric}
-%    Let $P$ be a partition.
-%    $\equivfrompartition{P}$ is symmetric.
-%\end{proposition}
-%\begin{proof}
-%    Follows by \cref{symmetric,equivalence_from_partition,notin_emptyset}.
-%\end{proof}
-%
-%\begin{proposition}\label{equivalence_from_partition_transitive}
-%    Let $P$ be a partition.
-%    $\equivfrompartition{P}$ is transitive.
-%\end{proposition}
-%
-%\begin{proposition}\label{equivalence_from_partition_is_equivalence}
-%    Let $P$ be a partition of $A$.
-%    $\equivfrompartition{P}$ is an equivalence on $A$.
-%\end{proposition}
-%
-%\begin{proposition}\label{equivalence_from_quotient}
-%    Let $E$ be an equivalence on $A$.
-%    Then $\equivfrompartition{\quotient{A}{E}} = E$.
-%\end{proposition}
-%\begin{proof}
-%    Follows by set extensionality.
-%\end{proof}
-%
-%\begin{proposition}\label{partition_eq_quotient_by_equivalence_from_partition}
-%    Let $P$ be a partition of $A$.
-%    Then $\quotient{A}{\equivfrompartition{P}} = P$.
-%\end{proposition}
-%\begin{proof}
-%    Follows by set extensionality.
-%\end{proof}
-%
+
+\begin{definition}\label{equivalence_from_partition}
+    $\equivfrompartition{P}{A} = \{(a, b)\mid a\in A, b\in A\mid \exists C\in P.\ a, b\in C\}$.
+\end{definition}
+
+\begin{proposition}\label{equivalence_from_partition_intro}
+    Let $P$ be a partition of $A$.
+    Let $a,b\in A$.
+    Suppose $a,b\in C\in P$.
+    Then $a\mathrel{\equivfrompartition{P}{A}} b$.
+\end{proposition}
+
+\begin{proposition}\label{equivalence_from_partition_reflexive}
+    Let $P$ be a partition of $A$.
+    $\equivfrompartition{P}{A}$ is reflexive on $A$.
+\end{proposition}
+
+\begin{proposition}\label{equivalence_from_partition_symmetric}
+    Let $P$ be a partition.
+    $\equivfrompartition{P}{A}$ is symmetric.
+\end{proposition}
+\begin{proof}
+    Omitted.
+\end{proof}
+
+\begin{proposition}\label{equivalence_from_partition_transitive}
+    Let $P$ be a partition.
+    $\equivfrompartition{P}{A}$ is transitive.
+\end{proposition}
+\begin{proof}
+    Omitted.
+\end{proof}
+
+\begin{proposition}\label{equivalence_from_partition_is_equivalence}
+    Let $P$ be a partition of $A$.
+    $\equivfrompartition{P}{A}$ is an equivalence on $A$.
+\end{proposition}
+\begin{proof}
+    Omitted.
+\end{proof}
+
+\begin{proposition}\label{equivalence_from_quotient}
+    Let $E$ be an equivalence on $A$.
+    Then $\equivfrompartition{\quotient{A}{E}}{A} = E$.
+\end{proposition}
+\begin{proof}
+    Omitted.
+\end{proof}
+
+\begin{proposition}\label{partition_eq_quotient_by_equivalence_from_partition}
+    Let $P$ be a partition of $A$.
+    Then $\quotient{A}{\equivfrompartition{P}{A}} = P$.
+\end{proposition}
+\begin{proof}
+    Omitted.
+\end{proof}

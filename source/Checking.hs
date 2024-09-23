@@ -28,6 +28,7 @@ import Data.HashSet qualified as HS
 import Data.InsOrdMap (InsOrdMap)
 import Data.InsOrdMap qualified as InsOrdMap
 import Data.List qualified as List
+import Data.List.NonEmpty qualified as NonEmpty
 import Data.Set qualified as Set
 import Data.Text qualified as Text
 import Data.Text.IO qualified as Text
@@ -149,7 +150,7 @@ assume asms = traverse_ go asms
         go :: Asm -> Checking
         go = \case
             Asm phi -> do
-                phi' <-  (canonicalize phi)
+                phi' <- canonicalize phi
                 modify \st ->
                     st{ checkingAssumptions = phi' : checkingAssumptions st
                     , fixedVars = freeVars phi' <> fixedVars st
@@ -542,6 +543,56 @@ checkProof = \case
         checkCalc calc
         assume [Asm (calcResult calc)]
         checkProof continue
+    DefineFunctionLocal funVar argVar domVar ranExpr definitions continue -> do
+        -- We have f: X \to Y and x \mapsto ...  
+        -- definition is a nonempty list of (expresssion e, formula phi)
+        -- such that f(x) =  e if phi(x)
+        -- since we do a case deduction in the definition there has to be a check that,
+        -- our domains in the case are a disjunct union of dom(f)
+        assume 
+            [Asm (TermOp DomSymbol [TermVar funVar] `Equals` TermVar domVar)
+            ,Asm (rightUniqueAdj (TermVar funVar))
+            ,Asm (relationNoun (TermVar funVar))]
+
+        goals <- gets checkingGoals
+        setGoals [makeForall [argVar] ((TermVar argVar `IsElementOf` TermVar domVar) `Iff` localFunctionGoal definitions)]
+        tellTasks
+
+        fixed <- gets fixedVars
+        assume [Asm (makeForall [argVar] ((TermVar argVar `IsElementOf` TermVar domVar) `Implies` (TermOp ApplySymbol [TermVar funVar, TermVar argVar] `IsElementOf` ranExpr)))] -- function f from \dom(f) \to \ran(f)
+        assume (functionSubdomianExpression funVar argVar domVar fixed (NonEmpty.toList definitions)) --behavior on the subdomians
+        setGoals goals
+        checkProof continue
+
+-- |Creats the Goal \forall x. x \in dom{f} \iff (phi_{1}(x) \xor (\phi_{2}(x) \xor (... \xor (\phi_{n}) ..)))
+--  where the phi_{i} are the subdomain statments
+localFunctionGoal :: NonEmpty (Term,Formula) -> Formula
+localFunctionGoal xs = makeXor $ map snd $ NonEmpty.toList xs
+
+
+-- We have our list of expr and forumlas, in this case normaly someone would write
+-- f(x) =  ....cases
+--      & (\frac{1}{k} \cdot x) &\text{if} x \in \[k, k+1\)
+--
+-- since we have to bind all globaly free Varibels we generate following asumptions.
+--
+-- For    x \mapsto  expr(x,ys,cs) , if formula(x,ys)        ; here cs are just global constants
+--          ->   \forall x,ys: ( formula(x,ys) => expr(x,ys,cs))
+ 
+
+functionSubdomianExpression :: VarSymbol -> VarSymbol -> VarSymbol -> Set VarSymbol -> [(Term, Formula)] -> [Asm]
+functionSubdomianExpression f a d s (x:xs) = singleFunctionSubdomianExpression f a d s x : functionSubdomianExpression f a d s xs
+functionSubdomianExpression _ _ _ _ [] = []
+
+singleFunctionSubdomianExpression :: VarSymbol -> VarSymbol -> VarSymbol -> Set VarSymbol -> (Term, Formula) -> Asm
+singleFunctionSubdomianExpression funVar argVar domVar fixedV (expr, frm) = let
+    -- boundVar = Set.toList (freeVars expr) in
+    -- let def = makeForall (argVar:boundVar) (((TermVar argVar `IsElementOf` TermVar domVar) `And` frm) `Implies` TermOp ApplySymbol [TermVar funVar, TermVar argVar] `Equals` expr)
+    boundVar = fixedV in    
+    let def = forallClosure boundVar (((TermVar argVar `IsElementOf` TermVar domVar) `And` frm) `Implies` (TermOp ApplySymbol [TermVar funVar, TermVar argVar] `Equals` expr))
+    in Asm def
+    
+
 
 checkCalc :: Calc -> Checking
 checkCalc calc = locally do
