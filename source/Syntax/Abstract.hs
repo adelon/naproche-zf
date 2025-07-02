@@ -369,6 +369,13 @@ data Proof
     -- ^ Local function definition, e.g. /@Let $f(x) = e$ for $x\\in d$@/.
     -- The first 'VarSymbol' is the newly defined symbol, the second one is the argument.
     -- The first 'Expr' is the value, the final variable and expr specify a bound (the domain of the function).
+    
+    
+    
+    
+    | DefineFunctionLocal VarSymbol VarSymbol Expr VarSymbol VarSymbol (NonEmpty (Expr, Formula)) Proof
+    -- ^ Local function definition, but in this case we give the domain and target an the rules for $xs$ in some sub domains.
+    -- 
     deriving (Show, Eq, Ord)
 
 -- | An inline justification.

@@ -40,6 +40,7 @@
 \newtheorem{remark}[theoremcount]{Remark}
 \newtheorem{signature}[theoremcount]{Signature}
 \newtheorem{theorem}[theoremcount]{Theorem}
+\newtheorem{inductive}[theoremcount]{Inductive}
 
 % Theorem environments without numbering.
 \newtheorem*{quotedaxiom}{Axiom}
@@ -100,6 +101,7 @@
 \newcommand{\memrel}[1]{{\in_{#1}}}
 \newcommand{\monusNat}{-_{\naturals}}
 \newcommand{\naturals}{\mathcal{N}}
+\newcommand{\naturalsPlus}{\mathcal{N}_{+}}
 \newcommand{\notmeets}{\mathrel{\not\meets}}
 \newcommand{\pow}[1]{\fun{Pow}(#1)}
 \newcommand{\precedes}{<}
@@ -132,6 +134,30 @@
 \newcommand{\integers}{\mathcal{Z}}
 \newcommand{\zero}{0}
 \newcommand{\one}{1}
+\newcommand{\rmul}{\cdot}
+\newcommand{\inv}[1]{#1^{-1}}
+\newcommand{\rfrac}[2]{\frac{#1}{#2}}
+\newcommand{\rationals}{\mathcal{Q}}
+\newcommand{\rminus}{-_{\mathcal{R}}}
+\newcommand{\seq}[2]{\{#1, ... ,#2\}}
+\newcommand{\indexx}[2][]{index_{#1}(#2)}
+\newcommand{\indexxset}[1]{#1}
+\newcommand{\topoBasisReals}{\mathbb{B}_{\mathcal{R}}}
+\newcommand{\intervalopen}[2]{(#1, #2)}
+\newcommand{\intervalclosed}[2]{[#1, #2]}
+\newcommand{\epsBall}[2]{\mathcal{B}_{#1,#2}}
+\newcommand{\realsplus}{\reals_{+}}
+\newcommand{\rless}{<}
+\newcommand{\two}{2}
+\newcommand{\powerOfTwoSet}{\mathbb{P}_{2^{}}}
+\newcommand{\pot}{\powerOfTwoSet}
+\newcommand{\chain}[1]{#1}
+\newcommand{\refine}{\text{ finer than }}
+\newcommand{\abs}[1]{\left\lvert#1\right\rvert}
+\newcommand{\realsminus}{\reals_{-}}
+\newcommand{\at}[2]{#1(#2)}
+\newcommand{\intervalopenInfiniteLeft}[1]{(-\infty, #1)}
+\newcommand{\intervalopenInfiniteRight}[1]{(#1, \infty)}
 
 
 \newcommand\restrl[2]{{% we make the whole thing an ordinary symbol
@@ -165,6 +191,7 @@
 \newcommand{\closure}[2]{\fun{cl}_{#2}{#1}}
 \newcommand{\frontier}[2]{\fun{fr}_{#2}{#1}}
 \newcommand{\neighbourhoods}[2]{\textsf{N}_{#2}{#1}}
+\newcommand{\neighbourhoodsSet}[2]{\textsf{N}_{SET #2}{#1}}
 \newcommand{\disconnections}[1]{\fun{Disconnections}{#1}}
 
 \newcommand{\teezero}{\ensuremath{T_0}} % Kolmogorov

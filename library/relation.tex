@@ -422,6 +422,9 @@
 \begin{proposition}\label{fld_cons}
     $\fld{(\cons{(a,b)}{R})} = \cons{a}{\cons{b}{\fld{R}}}$.
 \end{proposition}
+\begin{proof}
+    Follows by set extensionality.
+\end{proof}
 
 \begin{proposition}\label{fld_union}
     $\fld{(A\union B)} = \fld{A}\union\fld{B}$.
@@ -630,6 +633,7 @@ This lets us use the same symbol for composition of functions.
 \begin{proof}
     %$x\in\dom{R}$ and $z\in\ran{S}$.
     There exists $y$ such that $x\mathrel{R} y\mathrel{S} z$ by \cref{circ,pair_eq_iff}.
+    Follows by assumption.
 \end{proof}
 
 \begin{proposition}\label{circ_iff}

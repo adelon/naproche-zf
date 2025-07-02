@@ -1,16 +1,10 @@
-\import{nat.tex}
 \import{order/order.tex}
 \import{relation.tex}
+\import{set/suc.tex}
+\import{ordinal.tex}
 
-\section{The real numbers}
 
-%TODO: Implementing Notion for negativ number such as -x.
-
-%TODO:
-%\inv{} für inverse benutzen. Per Signatur einfüheren und dann axiomatisch absicher
-%\cdot für multiklikation verwenden. 
-%< für die relation benutzen.
-% sup und inf einfügen
+\section{The numbers}\label{form_sec_numbers}
 
 \begin{signature}
     $\reals$ is a set.
@@ -21,140 +15,719 @@
 \end{signature}
 
 \begin{signature}
-    $x \times y$ is a set.
+    $x \rmul y$ is a set.
 \end{signature}
+
+
+
+\subsection{Creation of natural numbers}
+
+\subsubsection{Defenition and axioms}
+
+\begin{abbreviation}\label{inductive_set}
+    $A$ is an inductive set iff $\emptyset\in A$ and for all $a\in A$ we have $\suc{a}\in A$.
+\end{abbreviation}
+
+\begin{abbreviation}\label{zero_is_emptyset}
+    $\zero = \emptyset$.
+\end{abbreviation}
+
+\begin{axiom}\label{reals_axiom_zero_in_reals}
+    $\zero \in \reals$.
+\end{axiom}
 
 \begin{axiom}\label{one_in_reals}
     $1 \in \reals$.
 \end{axiom}
 
-\begin{axiom}\label{reals_axiom_order}
-    $\lt[\reals]$ is an order on $\reals$.
+\begin{axiom}\label{zero_neq_one}
+    $\zero \neq 1$.
 \end{axiom}
 
-\begin{axiom}\label{reals_axiom_strictorder}
-    $\lt[\reals]$ is a strict order.
+\begin{axiom}\label{one_is_suc_zero}
+    $\suc{\zero} = 1$.
 \end{axiom}
+
+\begin{axiom}\label{naturals_subseteq_reals}
+    $\naturals \subseteq \reals$.
+\end{axiom}
+
+\begin{axiom}\label{naturals_inductive_set}
+    $\naturals$ is an inductive set.
+\end{axiom}
+
+\begin{axiom}\label{naturals_smallest_inductive_set}
+    Let $A$ be an inductive set.
+    Then $\naturals\subseteq A$.
+\end{axiom}
+
+\begin{abbreviation}\label{is_a_natural_number}
+    $n$ is a natural number iff $n \in \naturals$.
+\end{abbreviation}
+
+\begin{axiom}\label{naturals_addition_axiom_1}
+    For all $n \in \naturals$ $n + \zero = \zero + n = n$.
+\end{axiom}
+
+\begin{axiom}\label{naturals_addition_axiom_2}
+    For all $n, m \in \naturals$ $n + \suc{m} = \suc{n} + m = \suc{n+m}$.
+\end{axiom}
+
+\begin{axiom}\label{naturals_mul_axiom_1}
+    For all $n \in \naturals$ we have $n \rmul \zero = \zero = \zero \rmul n$.
+\end{axiom}
+
+\begin{axiom}\label{naturals_mul_axiom_2}
+    For all $n,m \in \naturals$ we have $\suc{n} \rmul m = (n \rmul m) + m$.
+\end{axiom}
+
+\begin{axiom}\label{addition_on_naturals}
+    If $x$ is a natural number and $y$ is a natural number then $x+y$ is a natural number.
+\end{axiom}
+
+\begin{axiom}\label{naturals_rmul_is_closed_in_n}
+    For all $n,m \in \naturals$ we have $(n \rmul m) \in \naturals$.
+\end{axiom}
+
+\begin{axiom}\label{naturals_add_is_closed_in_n}
+    For all $n,m \in \naturals$ we have $(n + m) \in \naturals$.
+\end{axiom}
+
+\subsubsection{Natural numbers as ordinals}
+
+
+\begin{lemma}\label{nat_is_successor_ordinal}
+    Let $n\in\naturals$.
+    Suppose $n\neq \emptyset$.
+    Then $n$ is a successor ordinal.
+\end{lemma}
+\begin{proof}
+    Let $M = \{ m\in \naturals \mid\text{$m = \emptyset$ or $m$ is a successor ordinal}\}$.
+    $M$ is an inductive set by \cref{suc_ordinal,naturals_inductive_set,successor_ordinal,emptyset_is_ordinal}.
+    Now $M\subseteq \naturals\subseteq M$
+        by \cref{subseteq,naturals_smallest_inductive_set}.
+    Thus $M = \naturals$.
+    Follows by \cref{subseteq}.
+\end{proof}
+
+\begin{lemma}\label{nat_is_transitiveset}
+    $\naturals$ is \in-transitive.
+\end{lemma}
+\begin{proof}
+    Let $M = \{ m\in\naturals \mid \text{for all $n\in m$ we have $n\in\naturals$} \}$.
+    $\emptyset\in M$.
+    For all $n\in M$ we have $\suc{n}\in M$
+        by \cref{naturals_inductive_set,suc}.
+    Thus $M$ is an inductive set.
+    Now $M\subseteq \naturals\subseteq M$
+        by \cref{subseteq,naturals_smallest_inductive_set}.
+    Hence $\naturals = M$.
+\end{proof}
+
+\begin{lemma}\label{natural_number_is_ordinal}
+    Every natural number is an ordinal.
+\end{lemma}
+\begin{proof}
+    Follows by \cref{suc_ordinal,suc_neq_emptyset,naturals_inductive_set,nat_is_successor_ordinal,successor_ordinal,suc_ordinal_implies_ordinal}.
+\end{proof}
+
+\begin{lemma}\label{omega_is_an_ordinal}
+    $\naturals$ is an ordinal.
+\end{lemma}
+\begin{proof}
+    Follows by \cref{natural_number_is_ordinal,transitive_set_of_ordinals_is_ordinal,nat_is_transitiveset}.
+\end{proof}
+
+\begin{lemma}\label{omega_is_a_limit_ordinal}
+    $\naturals$ is a limit ordinal.
+\end{lemma}
+\begin{proof}
+    $\emptyset\precedes \naturals$.
+    If $n\in \naturals$, then $\suc{n}\in\naturals$.
+\end{proof}
+
+
+\subsubsection{Properties and Facts natural numbers}
+
+\begin{theorem}\label{induction_principle}
+    Let $P$ be a set.
+    Suppose $P \subseteq \naturals$.
+    Suppose $\zero \in P$.
+    Suppose $\forall n \in P. \suc{n} \in P$.
+    Then $P = \naturals$.
+\end{theorem}
+\begin{proof}
+    Trivial.
+\end{proof}
+
+\begin{proposition}\label{existence_of_suc}
+    Let $n \in \naturals$.
+    Suppose $n \neq \zero$.
+    Then there exist $n' \in \naturals$ such that $\suc{n'} = n$.
+\end{proposition}
+\begin{proof}
+    Follows by \cref{transitiveset,nat_is_transitiveset,suc_intro_self,successor_ordinal,nat_is_successor_ordinal}.
+\end{proof}
+
+\begin{proposition}\label{suc_eq_plus_one}
+    Let $n \in \naturals$.
+    Then $\suc{n} = n + 1$.
+\end{proposition}
+\begin{proof}
+    Let $P = \{ n \in \naturals \mid n + 1 = 1 + n  \}$.
+    $\zero \in P$.
+    It suffices to show that if $m \in P$ then $\suc{m} \in P$.
+\end{proof}
+
+\begin{proposition}\label{naturals_1_kommu}
+    Let $n \in \naturals$.
+    Then $1 + n = n + 1$.
+\end{proposition}
+\begin{proof}
+    Follows by \cref{suc_eq_plus_one,naturals_addition_axiom_2,naturals_addition_axiom_1,naturals_inductive_set,one_is_suc_zero}.
+\end{proof}
+
+\begin{proposition}\label{naturals_add_kommu}
+    For all $n \in \naturals$ we have for all $m\in \naturals$ we have $n + m = m + n$.
+\end{proposition}
+\begin{proof}
+    Fix $n \in \naturals$.
+    Let $P = \{ m \in \naturals \mid m + n = n + m \}$.
+    It suffices to show that $P = \naturals$.
+    $P \subseteq \naturals$.
+    $\zero \in P$.
+    It suffices to show that if $m \in P$ then $\suc{m} \in P$.
+\end{proof}
+
+\begin{proposition}\label{naturals_add_assoc}
+    Suppose $n,m,k \in \naturals$.
+    Then $n + (m + k) = (n + m) + k$.
+\end{proposition}
+\begin{proof}
+    Let $P = \{ k \in \naturals \mid \text{for all $n',m' \in \naturals$ we have $n' + (m' + k) = (n' + m') + k$}\}$.
+    $P \subseteq \naturals$.
+    $\zero \in P$.
+    It suffices to show that for all $k \in P$ we have $\suc{k} \in P$.
+    Fix $k \in P$.
+    It suffices to show that for all $n' \in \naturals$ we have for all $m' \in \naturals$ we have $n' + (m' + \suc{k}) = (n' + m') + \suc{k}$.
+    Fix $n' \in \naturals$.
+    Fix $m' \in \naturals$.
+    \begin{align*}
+        (n' + m') + \suc{k}    \\
+        &= \suc{(n' + m') + k}   \\
+        &= \suc{n' + (m' + k)} \\
+        &= n' + \suc{(m' + k)} \\
+        &= n' + (m' + \suc{k})
+    \end{align*}
+\end{proof}
+
+\begin{proposition}\label{naturals_rmul_one_left}
+    For all $n \in \naturals$ we have $1 \rmul n = n$.
+\end{proposition}
+\begin{proof}
+    Fix $n \in \naturals$.
+    \begin{align*}
+        1 \rmul n  \\
+        &= \suc{\zero} \rmul n \\
+        &= (\zero \rmul n) + n \\
+        &= (\zero) + n \\
+        &= n
+    \end{align*}
+\end{proof}
+
+\begin{proposition}\label{naturals_add_remove_brakets}
+    Suppose $n,m,k \in \naturals$.
+    Then $(n + m) + k = n + m + k = n + (m + k)$.    
+\end{proposition}
+
+\begin{proposition}\label{naturals_add_remove_brakets2}
+    Suppose $n,m,k,l \in \naturals$.
+    Then $(n + m) + (k + l)= n + m + k + l = n + (m + k) + l = (((n + m) + k) + l)$.    
+\end{proposition}
+
+%\begin{proposition}\label{natural_disstro_oneline}
+%    Suppose $n,m,k \in \naturals$.
+%    Then $n \rmul (m + k) = (n \rmul m) + (n \rmul k)$.
+%\end{proposition}
+%\begin{proof}
+%    Let $P = \{n \in \naturals \mid \forall m,k \in \naturals .  n \rmul (m + k) = (n \rmul m) + (n \rmul k)\}$.
+%    $\zero \in P$.
+%    $P \subseteq \naturals$.
+%    It suffices to show that for all $n \in P$ we have $\suc{n} \in P$.
+%    Fix $n \in P$.
+%    It suffices to show that for all $m'$ such that $m' \in \naturals$ we have for all $k' \in \naturals$ we have $\suc{n} \rmul (m' + k') = (\suc{n} \rmul m') + (\suc{n} \rmul k')$.
+%    Fix $m' \in \naturals$.
+%    Fix $k' \in \naturals$.
+%    $n \in \naturals$.
+%    $ \suc{n} \rmul (m' + k') = (n \rmul (m' + k')) + (m' + k') = ((n \rmul m') + (n \rmul k')) + (m' + k')  = ((n \rmul m') + (n \rmul k')) + m' + k'    = (((n \rmul m') + (n \rmul k')) + m') + k'  = (m' + ((n \rmul m') + (n \rmul k'))) + k'  = ((m' + (n \rmul m')) + (n \rmul k')) + k'  = (((n \rmul m') + m') + (n \rmul k')) + k'  = ((n \rmul m') + m') + ((n \rmul k') + k')  = (\suc{n} \rmul m') + (\suc{n} \rmul k')$.
+%\end{proof}
+
+\begin{proposition}\label{natural_disstro}
+    Suppose $n,m,k \in \naturals$.
+    Then $n \rmul (m + k) = (n \rmul m) + (n \rmul k)$.
+\end{proposition}
+\begin{proof}
+   %Let $P = \{n \in \naturals \mid \forall m,k \in \naturals . n \rmul (m + k) = (n \rmul m) + (n \rmul k)\}$.
+    Let $P = \{n \in \naturals \mid \text{for all $m,k \in \naturals$ we have $n \rmul (m + k) = (n \rmul m) + (n \rmul k)$}\}$.
+
+    $\zero \in P$.
+    $P \subseteq \naturals$.
+    It suffices to show that for all $n \in P$ we have $\suc{n} \in P$.
+    Fix $n \in P$.
+
+    It suffices to show that for all $m'$ such that $m' \in \naturals$ we have for all $k' \in \naturals$ we have $\suc{n} \rmul (m' + k') = (\suc{n} \rmul m') + (\suc{n} \rmul k')$.
+    Fix $m' \in \naturals$.
+    Fix $k' \in \naturals$.
+    $n \in \naturals$.
+    \begin{align*}
+        \suc{n} \rmul (m' + k') \\
+        &= (n \rmul (m' + k')) + (m' + k') \\% \explanation{by \cref{naturals_mul_axiom_2}}\\
+        &= ((n \rmul m') + (n \rmul k')) + (m' + k') \\%\explanation{by assumption}\\
+        &= ((n \rmul m') + (n \rmul k')) + m' + k'   \\%\explanation{by \cref{naturals_add_remove_brakets,naturals_add_kommu}}\\
+        &= (((n \rmul m') + (n \rmul k')) + m') + k' \\%\explanation{by \cref{naturals_add_kommu,naturals_add_remove_brakets,naturals_add_assoc}}\\
+        &= (m' + ((n \rmul m') + (n \rmul k'))) + k' \\%\explanation{by \cref{naturals_add_kommu}}\\
+        &= ((m' + (n \rmul m')) + (n \rmul k')) + k' \\%\explanation{by \cref{naturals_add_assoc}}\\
+        &= (((n \rmul m') + m') + (n \rmul k')) + k' \\%\explanation{by \cref{naturals_add_kommu}}\\
+        &= ((n \rmul m') + m') + ((n \rmul k') + k') \\%\explanation{by \cref{naturals_add_assoc}}\\
+        &= (\suc{n} \rmul m') + (\suc{n} \rmul k')   %\explanation{by \cref{naturals_mul_axiom_2}}
+    \end{align*}
+\end{proof}
+
+\begin{proposition}\label{naturals_rmul_one_kommu}
+    For all $n \in \naturals$ we have $n \rmul 1 = n$.
+\end{proposition}
+\begin{proof}
+    Let $P = \{ n \in \naturals \mid n \rmul 1 = n\}$.
+    $1 \in P$.
+    It suffices to show that for all $n' \in P$ we have $\suc{n'} \in P$.
+    Fix $n' \in P$.
+    It suffices to show that $\suc{n'} \rmul 1 = \suc{n'}$.
+    \begin{align*}
+        \suc{n'} \rmul 1 \\
+        &=  n' \rmul 1 + 1 \\
+        &=  n' + 1 \\
+        &= \suc{n'}
+    \end{align*}
+\end{proof}
+
+\begin{proposition}\label{naturals_rmul_kommu}
+    Let $n, m \in \naturals$.
+    Then $n \rmul m = m \rmul n$.
+\end{proposition}
+\begin{proof}
+    Let $P = \{n \in \naturals \mid \forall m \in \naturals. n \rmul m = m \rmul n\}$.
+    $\zero \in P$.
+    $P \subseteq \naturals$.
+    It suffices to show that for all $n \in P$ we have $\suc{n} \in P$.
+    Fix $n \in P$.
+    It suffices to show that for all $m \in \naturals$ we have $\suc{n} \rmul m = m \rmul \suc{n}$.
+    Fix $m \in \naturals$.
+    $n \rmul m = m \rmul n$.
+    \begin{align*}
+        \suc{n} \rmul m \\
+        &= (n \rmul m) + m \\
+        &= (m \rmul n) + m \\
+        &= m + (m \rmul n) \\
+        &= (m \rmul 1) + (m \rmul n) \\
+        &= m \rmul (1 + n) \\
+        &= m \rmul \suc{n} \\
+    \end{align*}
+\end{proof}
+
+\begin{proposition}\label{naturals_rmul_assoc}
+    Suppose $n,m,k \in \naturals$.
+    Then $n \rmul (m \rmul k) = (n \rmul m) \rmul k$.
+\end{proposition}
+\begin{proof}
+    Let $P = \{ n \in \naturals \mid \text{for all $m,k \in \naturals$ we have $n \rmul (m \rmul k) = (n \rmul m) \rmul k$ }\}$.
+    $\zero \in P$.
+    It suffices to show that for all $n' \in P$ we have $ \suc{n'} \in P$.
+    Fix $n' \in P$.
+    It suffices to show that for all $m' \in \naturals$ we have for all $k' \in \naturals$ we have $\suc{n'} \rmul (m' \rmul k') = (\suc{n'} \rmul m') \rmul k'$.
+    Fix $m' \in \naturals$.
+    Fix $k' \in \naturals$.
+    \begin{align*}
+        \suc{n'} \rmul (m' \rmul k')                \\
+        &=(n' \rmul (m' \rmul k')) + (m' \rmul k')  \\
+        &=((n' \rmul m') \rmul k') + (m' \rmul k')  \\
+        &=(k' \rmul (n' \rmul m')) + (k' \rmul m')  \\
+        &=k' \rmul ((n' \rmul m') + m')             \\
+        &=k' \rmul (\suc{n'} \rmul m')              \\
+        &=(\suc{n'} \rmul m') \rmul k'              
+    \end{align*}
+\end{proof}
+
+\begin{lemma}\label{naturals_is_equal_to_two_times_naturals}
+    $\{x+y \mid x \in \naturals, y \in \naturals \} = \naturals$.
+\end{lemma}
+
+
+\subsection{Axioms of the reals Part One}
+We seen before that we can proof the common behavior of the naturals.
+Since we now want to get furhter in a more efficient way, we introduce the basis axioms of the reals.
+Such that we can introduce the integers and raitionals as smooth as possible.
+
+
+
+The operations Multiplication and addition is closed in the reals
+\begin{axiom}\label{reals_rmul}
+    For all $n,m \in \reals$ we have $(n \rmul m) \in \reals$.
+\end{axiom}
+
+\begin{axiom}\label{reals_add}
+    For all $n,m \in \reals$ we have $(n + m) \in \reals$.
+\end{axiom}
+
+
+
+
+Commutivatiy of the standart operations
+\begin{axiom}\label{reals_axiom_kommu}
+    For all $x,y \in \reals$ $x + y = y + x$ and $x \rmul y = y \rmul x$.
+\end{axiom}
+  
+\begin{axiom}\label{reals_axiom_assoc}
+    For all $x,y,z \in \reals$ we have $(x + y) + z = x + (y + z)$.
+\end{axiom}
+
+
+Existence of  one and Zero
+\begin{axiom}\label{reals_axiom_zero}
+    For all $x \in \reals$ $x + \zero = x$. 
+\end{axiom}
+
+\begin{axiom}\label{reals_axiom_one}
+    For all $x \in \reals$ we have $x \rmul 1 = x$.
+\end{axiom}
+
+
+
+The Existence of Inverse of both operations
+\begin{axiom}\label{reals_axiom_add_invers}
+    For all $x \in \reals$ there exist $y \in \reals$ such that $x + y = \zero$.
+\end{axiom}
+
+\begin{axiom}\label{reals_axiom_mul_invers}
+    For all $x \in \reals$ such that $x \neq \zero$ there exist $y \in \reals$ such that $x \rmul y = 1$.
+\end{axiom}
+
+
+
+Disstrubitiv Laws of the reals
+\begin{axiom}\label{reals_axiom_disstro1}
+    For all $x,y,z \in \reals$ $x \rmul (y + z) = (x \rmul y) + (x \rmul z)$.
+\end{axiom}
+
+\begin{axiom}\label{reals_disstro2}
+    For all $x,y,z \in \reals$ $(y + z) \rmul x = (y \rmul x) + (z \rmul x)$.
+\end{axiom}
+
+
+
+Definition of the order symbols
+\begin{abbreviation}\label{rless}
+    $x < y$ iff $x \rless y$.
+\end{abbreviation}
 
 \begin{abbreviation}\label{less_on_reals}
-    $x < y$ iff $(x,y) \in \lt[\reals]$.
+    $x \leq y$ iff $x < y \lor x = y$.
 \end{abbreviation}
 
 \begin{abbreviation}\label{greater_on_reals}
     $x > y$ iff $y < x$.
 \end{abbreviation}
 
-\begin{abbreviation}\label{lesseq_on_reals}
-    $x \leq y$ iff it is wrong that $x > y$.
-\end{abbreviation}
-
 \begin{abbreviation}\label{greatereq_on_reals}
-    $x \geq y$ iff it is wrong that $x < y$.
+    $x \geq y$ iff $y \leq x$.
 \end{abbreviation}
 
-\begin{axiom}\label{reals_axiom_dense}
+
+
+Laws of the order on the reals
+\begin{abbreviation}\label{is_positiv}
+    $x$ is positiv iff $x > \zero$.
+\end{abbreviation}
+
+\begin{axiom}\label{reals_order}
+    For all $x,y \in \reals$ we have if $x < y$ then $\lnot y < x$.
+\end{axiom}
+
+\begin{axiom}\label{reals_dense}
     For all $x,y \in \reals$ if $x < y$ then 
     there exist $z \in \reals$ such that $x < z$ and $z < y$.
 \end{axiom}
 
-\begin{axiom}\label{reals_axiom_order_def}
-    $x < y$ iff there exist $z \in \reals$ such that $\zero < z$ and $x + z = y$.
-\end{axiom}
-
-\begin{lemma}\label{reals_one_bigger_than_zero}
-    $\zero < 1$.
-\end{lemma}
-
-
-\begin{axiom}\label{reals_axiom_assoc}
-    For all $x,y,z \in \reals$ $(x + y) + z = x + (y + z)$ and $(x \times y) \times z = x \times (y \times z)$.
-\end{axiom}
-
-\begin{axiom}\label{reals_axiom_kommu}
-    For all $x,y \in \reals$ $x + y = y + x$ and $x \times y = y \times x$.
-\end{axiom}
-
-\begin{axiom}\label{reals_axiom_zero_in_reals}
-    $\zero \in \reals$.
-\end{axiom}
-  
-\begin{axiom}\label{reals_axiom_zero}
-    For all $x \in \reals$ $x + \zero = x$. 
-\end{axiom}
-
-\begin{axiom}\label{reals_axiom_one}
-    For all $x \in \reals$ $1 \neq \zero$ and $x \times 1 = x$.
-\end{axiom}
-
-\begin{axiom}\label{reals_axiom_add_invers}
-    For all $x \in \reals$ there exist $y \in \reals$ such that $x + y = \zero$.
-\end{axiom}
-
-
-\begin{axiom}\label{reals_axiom_mul_invers}
-    For all $x \in \reals$ such that $x \neq \zero$ there exist $y \in \reals$ such that $x \times y = 1$.
-\end{axiom}
-
-\begin{axiom}\label{reals_axiom_disstro1}
-    For all $x,y,z \in \reals$ $x \times (y + z) = (x \times y) + (x \times z)$.
-\end{axiom}
-
-\begin{proposition}\label{reals_disstro2}
-    For all $x,y,z \in \reals$ $(y + z) \times x = (y \times x) + (z \times x)$.
-\end{proposition}
-
-\begin{proposition}\label{reals_reducion_on_addition}
-    For all $x,y,z \in \reals$ if $x + y = x + z$ then $y = z$.
-\end{proposition}
-
-\begin{axiom}\label{reals_axiom_dedekind_complete}
+\begin{axiom}\label{reals_is_eta_zero_set}
     For all $X,Y,x,y$ such that $X,Y \subseteq \reals$ and $x \in X$ and $y \in Y$ and $x < y$ we have there exist $z \in \reals$
     such that $x < z < y$.
 \end{axiom}
 
+\begin{axiom}\label{reals_one_bigger_zero}
+    $\zero < 1$.
+\end{axiom}
+
+\begin{axiom}\label{reals_order_behavior_with_addition}
+    For all $x,y \in \reals$ such that $x < y$ we have for all $z \in \reals$ $x + z < y + z$.
+\end{axiom}
+
+\begin{axiom}\label{reals_postiv_mul_is_positiv}
+    For all $x,y \in \reals$ such that $\zero < x,y$ we have $\zero < (x \rmul y)$. 
+\end{axiom}
+
+\begin{axiom}\label{reals_postiv_mul_negativ_is_negativ}
+    For all $x,y \in \reals$ such that $x < \zero < y$ we have $(x \rmul y) < \zero$. 
+\end{axiom}
+
+\begin{axiom}\label{reals_negativ_mul_is_negativ}
+    For all $x,y \in \reals$ such that $x,y < \zero$ we have $\zero < (x \rmul y)$. 
+\end{axiom}
+
+
+
+
+\subsection{The Intergers}
+
+
+\begin{axiom}\label{neg}
+    For all $n \in \reals$ we have $\neg{n} \in \reals$ and $n + \neg{n} = \zero$.
+\end{axiom}
+
+\begin{axiom}\label{neg_of_zero}
+    $\neg{\zero} = \zero$.
+\end{axiom}
+
+\begin{definition}\label{minus}
+    $n - m = n + \neg{m}$.
+\end{definition}
+
+\begin{lemma}\label{minus_in_reals}
+    Suppose $n,m \in \reals$.
+    Then $n - m \in \reals$.
+\end{lemma}
+\begin{proof}
+    \begin{byCase}
+        \caseOf{$m = \zero$.} Trivial.
+        \caseOf{$m \neq \zero$.} Trivial.
+    \end{byCase}
+\end{proof}
+
+\begin{proposition}\label{negation_of_negation_is_id}
+    For all $r \in \reals$ we have $\neg{\neg{r}} = r$.
+\end{proposition}
+\begin{proof}
+    Omitted.
+%    Fix $r \in \reals$.
+%    $r + \neg{r} = \zero$.
+%    $\neg{r} + \neg{\neg{r}} = \zero$.
+%    Follows by \cref{neg,reals_axiom_kommu}.
+\end{proof}
+
+\begin{definition}\label{integers}
+    $\integers = \{ z \in \reals \mid \exists n \in \naturals. z \in \naturals \lor  n + z = \zero\}$.
+\end{definition}
+
+\begin{lemma}\label{n_subset_z}
+    $\naturals \subseteq \integers$.
+\end{lemma}
+
+\begin{lemma}\label{neg_of_naturals_in_integers}
+    For all $n \in \naturals$ we have $\neg{n} \in \integers$.
+\end{lemma}
+
+\begin{lemma}\label{integers_eq_naturals_and_negativ_naturals}
+    $\integers = \{ z \in \reals \mid \exists n \in \naturals. n = z \lor \neg{n} = z\}$.
+\end{lemma}
+\begin{proof}
+    Omitted.
+\end{proof}
+
+\begin{abbreviation}\label{positiv_real_number}
+    $r$ is a positiv real number iff $r > \zero$ and $r \in \reals$.
+\end{abbreviation}
+
+
+
+\subsection{The Rationals}
+
+\begin{axiom}\label{invers_reals}
+    For all $q \in \reals$ we have $\inv{q} \rmul q = 1$.
+\end{axiom}
+
+\begin{abbreviation}\label{rfrac}
+    $\rfrac{x}{y} = x \rmul \inv{y}$.
+\end{abbreviation}
+
+\begin{abbreviation}\label{naturalsplus}
+    $\naturalsPlus = \naturals \setminus \{\zero\}$.
+\end{abbreviation}
+
+\begin{definition}\label{rationals} %TODO: Vielleicht ist hier die definition das alle inversen von den ganzenzahlen und die ganzenzahlen selbst die rationalen zahlen erzeugen
+    $\rationals = \{ q \in \reals \mid \exists z \in \integers. \exists n \in (\integers \setminus \{\zero\}). q = \rfrac{z}{n} \}$.
+\end{definition}
+
+\begin{abbreviation}\label{nominator}
+    $z$ is nominator of $q$ iff there exists $n \in \naturalsPlus$ such that $q = \rfrac{z}{n}$.
+\end{abbreviation}
+
+\begin{abbreviation}\label{denominator}
+    $n$ is denominator of $q$ iff there exists $z \in \integers$ such that $q = \rfrac{z}{n}$.
+\end{abbreviation}
+
+\begin{theorem}\label{one_divided_by_n_is_in_zero_to_one}
+    For all $n \in \naturalsPlus$ we have $\zero < \rfrac{1}{n} \leq 1$.
+\end{theorem}
+\begin{proof}
+    Omitted.
+\end{proof}
+
+\begin{lemma}\label{fraction_kuerzung} %TODO: Englischen namen rausfinden
+    For all $n,m,k \in \reals$ we have $\rfrac{n \rmul k}{m \rmul k} = \rfrac{n}{m}$.
+\end{lemma}
+\begin{proof}
+    Omitted.
+\end{proof}
+
+\begin{lemma}\label{fraction_swap}
+    For all $n,m,k,l \in \reals$ we have $\rfrac{\rfrac{n}{m}}{\rfrac{k}{l}}=\rfrac{n \rmul l}{m \rmul k}$.
+\end{lemma}
+\begin{proof}
+    Omitted.
+\end{proof}
+
+\begin{definition}\label{divisor}
+    $g$ is a integral divisor of $a$ iff $g \in \naturals$ and there exist $b \in \integers$ such that $g \rmul b = a$.
+\end{definition}
+
+
+
+
+%\begin{abbreviation}\label{gcd}
+%    $g$ is greatest common divisor of $\{a,b\}$ iff
+%    $g$ is a integral divisor of $a$ 
+%    and $g$ is a integral divisor of $b$ 
+%    and for all $g'$ such that $g'$ is a integral divisor of $a$
+%    and $g'$ is a integral divisor of $b$ we have $g' \leq g$.
+%\end{abbreviation}
+% TODO:  Was man noch so beweisen könnte: bruch kürzung, kehrbruch eigenschaften, bruch in bruch vereinfachung, 
+
+
+\subsection{Order on the reals}
+
+\begin{axiom}\label{reals_order_is_transitive}
+    For all $x,y,z \in \reals$ such that $x < y$ and $y < z$ we have $x < z$.
+\end{axiom}
+
+
+\begin{lemma}\label{plus_one_order}
+    For all $r\in \reals$ we have $ r < r + 1$.
+\end{lemma}
+\begin{proof}
+    Omitted.
+\end{proof}
+
+\begin{lemma}\label{negation_and_order}
+    Suppose $r \in \reals$.
+    $r \leq \zero$ iff $\zero \leq \neg{r}$.
+\end{lemma}
+\begin{proof}
+    Omitted.
+\end{proof}
+
+
+\begin{lemma}\label{reals_add_of_positiv}
+    Let $x,y \in \reals$.
+    Suppose $x$ is positiv and $y$ is positiv.
+    Then $x + y$ is positiv.
+\end{lemma}
+\begin{proof}
+    Omitted.
+\end{proof}
+
+\begin{lemma}\label{reals_mul_of_positiv}
+    Let $x,y \in \reals$.
+    Suppose $x$ is positiv and $y$ is positiv.
+    Then $x \rmul y$ is positiv.
+\end{lemma}
+\begin{proof}
+    Omitted.
+\end{proof}
+
+
+
+\begin{lemma}\label{order_reals_lemma0}
+    For all $x \in \reals$ we have not $x < x$.
+\end{lemma}
+\begin{proof}
+    Omitted.
+\end{proof}
+
 
 \begin{lemma}\label{order_reals_lemma1}
-    For all $x,y,z \in \reals$ such that $\zero < x$ 
-    if $y < z$ 
-    then $(y \times x) < (z \times x)$.
+    Let $x,y,z \in \reals$.
+    Suppose $\zero < x$. 
+    Suppose $y < z$. 
+    Then $(y \rmul x) < (z \rmul x)$.
 \end{lemma}
+\begin{proof}
+    Omitted.
+    %There exist $k \in \reals$ such that $y + k = z$ and $k > \zero$ by \cref{reals_definition_order_def}.
+    %\begin{align*}
+    %    (z \rmul x) \\
+    %    &= ((y + k) \rmul x) \\
+    %    &= ((y \rmul x) + (k \rmul x)) \explanation{by \cref{reals_disstro2}}
+    %\end{align*} 
+    %Then $(k \rmul x) > \zero$. 
+    %Therefore $(z \rmul x) > (y \rmul x)$.
+\end{proof}
 
 \begin{lemma}\label{order_reals_lemma2}
-    For all $x,y,z \in \reals$ such that $\zero < x$ 
-    if $y < z$ 
-    then $(x \times y) < (x \times z)$.
+    Let $x,y,z \in \reals$.
+    Suppose $\zero < x$. 
+    Suppose $y < z$. 
+    Then $(x \rmul y) < (x \rmul z)$.
 \end{lemma}
+\begin{proof}
+    Omitted.
+\end{proof}
 
 
 \begin{lemma}\label{order_reals_lemma3}
-    For all $x,y,z \in \reals$ such that $x < \zero$ 
-    if $y < z$ 
-    then $(x \times z) < (x \times y)$.
+    Let $x,y,z \in \reals$.
+    Suppose $\zero > x$. 
+    Suppose $y < z$. 
+    Then $(x \rmul z) < (x \rmul y)$.
 \end{lemma}
+\begin{proof}
+    Omitted.
+\end{proof}
 
-\begin{lemma}\label{o4rder_reals_lemma}
-    For all $x,y \in \reals$ if $x > y$ then $x \geq y$.
+\begin{lemma}\label{order_reals_lemma00}
+    For all $x,y \in \reals$ such that $x > y$ we have $x \geq y$.
 \end{lemma}
+\begin{proof}
+    Omitted.
+\end{proof}
 
 \begin{lemma}\label{order_reals_lemma5}
-    For all $x,y \in \reals$ if $x < y$ then $x \leq y$.
+    For all $x,y \in \reals$ such that $x < y$ we have $x \leq y$.
 \end{lemma}
+\begin{proof}
+    Omitted.
+\end{proof}
 
 \begin{lemma}\label{order_reals_lemma6}
-    For all $x,y \in \reals$ if $x \leq y \leq x$ then $x=y$.
+    For all $x,y \in \reals$ such that $x \leq y \leq x$ we have $x=y$.
 \end{lemma}
-
-\begin{axiom}\label{reals_axiom_minus}
-    For all $x \in \reals$ $x - x = \zero$.
-\end{axiom}
+\begin{proof}
+    Omitted.
+\end{proof}
 
 \begin{lemma}\label{reals_minus}
     Assume $x,y \in \reals$. If $x - y = \zero$ then $x=y$.
 \end{lemma}
-
-%\begin{definition}\label{reasl_supremum} %expaction "there exists" after \mid
-%    $\rsup{X} = \{z \mid \text{ $z \in \reals$ and for all $x,y$ such that $x \in X$ and $y,x \in \reals$ and $x < y$ we have $z \leq y$ }\}$.
-%\end{definition}
+\begin{proof}
+    Omitted.
+\end{proof}
 
 \begin{definition}\label{upper_bound}
     $x$ is an upper bound of $X$ iff for all $y \in X$ we have $x > y$.
@@ -168,6 +741,9 @@
     %Let $x,y \in \reals$ and let $X$ be a subset of $\reals$.
     If $x$ is a least upper bound of $X$ and $y$ is a least upper bound of $X$ then $x = y$.
 \end{lemma}
+\begin{proof}
+    Omitted.
+\end{proof}
 
 \begin{definition}\label{supremum_reals}
     $x$ is the supremum of $X$ iff $x$ is a least upper bound of $X$.
@@ -185,11 +761,83 @@
 \end{definition}
 
 \begin{lemma}\label{infimum_unique}
-    %Let $x,y \in \reals$ and let $X$ be a subset of $\reals$.
     If $x$ is a greatest lower bound of $X$ and $y$ is a greatest lower bound of $X$ then $x = y$.
 \end{lemma}
+\begin{proof}
+    Omitted.
+\end{proof}
 
 \begin{definition}\label{infimum_reals}
     $x$ is the supremum of $X$ iff $x$ is a greatest lower bound of $X$.
 \end{definition}
 
+\begin{definition}\label{minimum}
+    $\min{X} = \{x \in X \mid \forall y \in X. x \leq y \}$.
+\end{definition}
+
+
+\begin{definition}\label{maximum}
+    $\max{X} = \{x \in X \mid \forall y \in X. x \geq y \}$.
+\end{definition}
+
+
+\begin{definition}\label{intervalclosed}
+    $\intervalclosed{a}{b} = \{x \in \reals \mid a \leq x \leq b\}$.
+\end{definition}
+
+
+\begin{definition}\label{intervalopen}
+    $\intervalopen{a}{b} = \{ x \in \reals \mid a < x < b\}$.
+\end{definition}
+
+\begin{definition}\label{intervalopen_infinite_left}
+    $\intervalopenInfiniteLeft{b} = \{ x \in \reals \mid x < b\}$.
+\end{definition}
+
+\begin{definition}\label{intervalopen_infinite_right}
+    $\intervalopenInfiniteRight{a} = \{ x \in \reals \mid x > a\}$.
+\end{definition}
+
+\begin{definition}\label{intervalclosed_infinite_left}
+    $\intervalclosedInfiniteLeft{b} = \{ x \in \reals \mid x \leq b\}$.
+\end{definition}
+
+\begin{definition}\label{intervalclosed_infinite_right}
+    $\intervalclosedInfiniteRight{a} = \{ x \in \reals \mid x \geq a\}$.
+\end{definition}
+
+
+\begin{definition}\label{m_to_n_set}
+    $\seq{m}{n} = \{x \in \naturals \mid  m \leq x \leq n\}$.   
+\end{definition}
+
+\begin{axiom}\label{abs_behavior1}
+    If $x \geq \zero$ then $\abs{x} = x$.
+\end{axiom}
+
+\begin{axiom}\label{abs_behavior2}
+    If $x < \zero$ then $\abs{x} = \neg{x}$.
+\end{axiom}
+
+\begin{definition}\label{realsminus}
+    $\realsminus = \{r \in \reals \mid r < \zero\}$.
+\end{definition}
+
+\begin{definition}\label{realsplus}
+    $\realsplus = \{r \in \reals \mid r > \zero\}$.
+\end{definition}
+
+\begin{definition}\label{epsilon_ball}
+    $\epsBall{x}{\epsilon} = \intervalopen{x-\epsilon}{x+\epsilon}$.
+\end{definition}
+
+
+
+
+
+
+
+
+%\begin{proposition}\label{safe}
+%    Contradiction.
+%\end{proposition}
