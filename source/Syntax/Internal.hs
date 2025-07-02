@@ -158,6 +158,7 @@ annotateWith = go
         go :: (Ord a) => Set a -> HashMap StructSymbol a -> ExprOf a -> ExprOf a
         go labels ops = \case
             TermSymbolStruct symb Nothing ->
+                -- TODO error if symbol is not instantiated, but only in theorems?
                 TermSymbolStruct symb (TermVar <$> HM.lookup symb ops)
             e@TermSymbolStruct{} ->
                 e
