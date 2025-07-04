@@ -101,6 +101,8 @@
     $B$ covers $X$ by \cref{topological_prebasis_iff_covering_family,topological_basis}.
     $\unions{B} \in \genOpens{B}{X}$.
     $X \subseteq \unions{B}$.
+    For all $x\in X$ there exists $V\in B$ such that $x\in V\subseteq X$.
+    Follows by \cref{powerset_top,genopens}.
 \end{proof}
 
 \begin{lemma}\label{inters_in_genopens}
@@ -112,17 +114,16 @@
 
     We have $(A \inter C) \in \pow{X}$ by \cref{genopens,inter_powerset}.
 
-
-    Show for all $x\in (A\inter C)$ there exists $W \in B$
-    such that $x\in W$ and $W \subseteq (A\inter C)$.
+    Show for all $x\in A\inter C$ there exists $W \in B$
+    such that $x\in W$ and $W \subseteq A\inter C$.
     \begin{subproof}
-        Fix $x \in (A\inter C)$.
+        Fix $x \in A\inter C$.
         Then $x\in A,C$.
         There exists $V'  \in B$ such that $x \in V' \subseteq A$ by \cref{genopens}.
         There exists $V'' \in B$ such that $x \in V''\subseteq C$ by \cref{genopens}.
-        There exists $W \in B$ such that $x \in W$ and $W \subseteq V'$ and $W \subseteq V''$ by \cref{topological_basis}.
+        There exists $W \in B$ such that $x \in W  \subseteq V', V''$ by \cref{topological_basis}.
 
-        Show $W \subseteq (A\inter C)$.
+        Show $W \subseteq A\inter C$.
         \begin{subproof}
             For all $y \in W$ we have $y \in V'$ and $y \in V''$.
         \end{subproof}
