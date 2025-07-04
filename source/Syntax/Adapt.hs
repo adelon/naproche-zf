@@ -27,16 +27,14 @@ scanChunk ltoks =
     in case ltoks of
         Located{startPos = pos, unLocated = BeginEnv "definition"} : _ ->
             matchOrErr definition "definition" pos
-        Located{startPos = pos, unLocated = BeginEnv "signature"} : _ ->
-            matchOrErr signaturePredicate "signature" pos
+        -- TODO Located{startPos = pos, unLocated = BeginEnv "signature"} : _ ->
+        --    matchOrErr signatureExtension "signature" pos
         Located{startPos = pos, unLocated = BeginEnv "abbreviation"} : _ ->
             matchOrErr abbreviation "abbreviation" pos
         Located{startPos = pos, unLocated = (BeginEnv "struct")} :_ ->
             matchOrErr struct "struct definition" pos
         Located{startPos = pos, unLocated = (BeginEnv "inductive")} :_ ->
             matchOrErr inductive "inductive definition" pos
-        --Located{startPos = pos, unLocated = (BeginEnv "signature")} :_ ->
-        --    matchOrErr signatureIntro "signature" pos
         _ -> []
 
 adaptChunks :: [[Located Token]] -> Lexicon -> Lexicon
@@ -88,15 +86,27 @@ abbreviation = do
     skipUntilNextLexicalEnv
     pure [lexicalItem m]
 
-signaturePredicate ::  RE Token [ScannedLexicalItem]
-signaturePredicate = do
+signatureExtension ::  RE Token [ScannedLexicalItem]
+signatureExtension = do
     sym (BeginEnv "signature")
+    few notEndOfLexicalEnvToken
+    m <- label
+    few anySym
+    lexicalItem <- head
+    few anySym
+    sym (EndEnv "signature")
+    skipUntilNextLexicalEnv
+    pure [lexicalItem m]
+
+signatureExtensionAtom ::  RE Token [ScannedLexicalItem]
+signatureExtensionAtom = do
+    sym (BeginEnv "signatureatom")
     few notEndOfLexicalEnvToken
     m <- label
     few anySym
     lexicalItem <- sigPred
     few anySym
-    sym (EndEnv "signature")
+    sym (EndEnv "signatureatom")
     skipUntilNextLexicalEnv
     pure [lexicalItem m]
 
