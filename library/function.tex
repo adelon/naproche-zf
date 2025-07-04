@@ -118,7 +118,7 @@
 \end{proof}
 
 \begin{definition}\label{funs}
-    $\funs{A}{B} = \{ f\in\rels{A}{B}\mid \text{$A = \dom{f}$ and $f$ is right-unique}\}$.
+    $\funs{A}{B} = \{ f\in\rels{A}{B}\mid \text{$A\subseteq \dom{f}$ and $f$ is right-unique}\}$.
 \end{definition}
 
 \begin{abbreviation}\label{function_from_to}
@@ -159,7 +159,7 @@
 
 \begin{proposition}\label{funs_elim}
     Let $f\in\funs{A}{B}$.
-    Then $f$ is a function to $B$ such that $A = \dom{f}$.
+    Then $f$ is a function to $B$ such that $A\subseteq \dom{f}$.
 \end{proposition}
 \begin{proof}
     $f$ is a function by \cref{funs_is_function}. % and in particular, a relation.
@@ -187,7 +187,8 @@
     Then $f(a)\in B$.
 \end{proposition}
 \begin{proof}
-    $(a,f(a)) \in f$ by \cref{funs_elim,function_apply_iff}.
+    $a\in\dom{f}$ by \cref{funs_elim,subseteq}.
+    $(a,f(a)) \in f$ by \cref{function_apply_iff}.
     Thus $f(a)\in B$ by \cref{funs,rels_type_ran}.
 \end{proof}
 
@@ -197,7 +198,8 @@
     Then there exists $b\in B$ such that $(a,b)\in f$.
 \end{proposition}
 \begin{proof}
-    $(a,f(a)) \in f$ by \cref{funs_elim,function_apply_iff}.
+    $a\in\dom{f}$ by \cref{funs_elim,subseteq}.
+    $(a,f(a)) \in f$ by \cref{function_apply_iff}.
     $f(a)\in B$ by \cref{funs_type_apply}.
 \end{proof}
 
@@ -426,6 +428,20 @@
     Follows by \hyperref[setext]{extensionality}.
 \end{proof}
 
+\begin{proposition}\label{funs_circ}
+    Let $f\in\funs{A}{B}$.
+    Let $g\in\funs{B}{C}$.
+    Then $g\circ f\in\funs{A}{C}$.
+\end{proposition}
+\begin{proof}
+    $\dom{f} = A$ by \cref{funs}.
+    $\dom{g} = B$ by \cref{funs}.
+    $g$ is composable with $f$.
+    Omitted. % TODO
+\end{proof}
+
+\subsection{Function restriction}
+
 \begin{proposition}\label{restrl_of_function_is_function}
     Let $f$ be a function.
     Let $A$ be a set.
@@ -472,6 +488,15 @@
 \begin{definition}\label{inj}
     $\inj{A}{B} = \{f\in\funs{A}{B}\mid \text{for all $x,y\in A$ such that $f(x)=f(y)$ we have $x = y$}\}$.
 \end{definition}
+
+\begin{proposition}\label{inj_circ}
+    Let $f\in\inj{A}{B}$.
+    Let $g\in\inj{B}{C}$.
+    Then $g\circ f\in\surj{A}{C}$.
+\end{proposition}
+\begin{proof}
+    Omitted. % TODO
+\end{proof}
 
 \subsection{Surjections}
 
@@ -596,6 +621,7 @@
 \end{proposition}
 \begin{proof}
     $g\circ f\in\surj{A}{C}$ by \cref{bijections,surjections_circ}.
+
     $g\circ f$ is an injection.
 \end{proof}
 
