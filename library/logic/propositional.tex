@@ -1,0 +1,35 @@
+\import{set.tex}
+\import{nat.tex}
+
+
+\begin{datatype}
+The set $\propform$ is generated as follows.
+\begin{enumerate}
+    \item if $n\in\naturals$, then $\propvar{n}\in\propform$
+    \item $\propbot\in\propform$
+    \item if $p, q\in\propform$, then $p\propto q\in\propform$
+\end{enumerate}
+\end{datatype}
+
+\begin{abbreviation}
+    $\propnot p = p\propto\propbot$.
+\end{abbreviation}
+
+\begin{inductive}
+    \begin{enumerate}
+        \item (Detachment) If $\deducible{p}$ and $\deducible{p\propto q}$, then $\deducible{q}$
+        \item (Implosion) $\deducible{p\propto q\propto p}$
+        \item (Chain) $\deducible{(p\propto q\propto r)\propto(p\propto q)\propto(p\propto r)}$
+        \item (Negation) $\propnot\propnot p\to p$
+    \end{enumerate}
+\end{inductive}
+
+\begin{lemma}
+    Suppose $\deducible{q}$.
+    Then $\deducible{p\propto q}$.
+\end{lemma}
+
+\begin{primrec}
+    Recursively define a predicate $\propeval{-}{-}$ on $\propform$ as follows.
+    % TODO continue...
+\end{primrec}
