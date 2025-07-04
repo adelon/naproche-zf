@@ -19,6 +19,7 @@ import Prelude as Export hiding
 
 import Control.Applicative as Export hiding (some)
 import Control.Applicative qualified as Applicative
+import Control.Monad
 import Control.Monad.IO.Class as Export
 import Control.Monad.State
 import Data.Containers.ListUtils as Export (nubOrd) -- Faster than `nub`.
