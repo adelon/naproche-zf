@@ -20,7 +20,6 @@ import Text.Earley.Mixfix (Associativity(..))
 import Text.Regex.Applicative
 import Text.Megaparsec.Pos
 
-
 scanChunk :: [Located Token] -> [ScannedLexicalItem]
 scanChunk ltoks =
     let toks = unLocated <$> ltoks
@@ -28,6 +27,8 @@ scanChunk ltoks =
     in case ltoks of
         Located{startPos = pos, unLocated = BeginEnv "definition"} : _ ->
             matchOrErr definition "definition" pos
+        Located{startPos = pos, unLocated = BeginEnv "signature"} : _ ->
+            matchOrErr signaturePredicate "signature" pos
         Located{startPos = pos, unLocated = BeginEnv "abbreviation"} : _ ->
             matchOrErr abbreviation "abbreviation" pos
         Located{startPos = pos, unLocated = (BeginEnv "struct")} :_ ->
@@ -87,13 +88,13 @@ abbreviation = do
     skipUntilNextLexicalEnv
     pure [lexicalItem m]
 
-signatureIntro ::  RE Token [ScannedLexicalItem]  --since signiture is a used word of haskell we have to name it diffrentliy 
-signatureIntro = do
+signaturePredicate ::  RE Token [ScannedLexicalItem]
+signaturePredicate = do
     sym (BeginEnv "signature")
     few notEndOfLexicalEnvToken
     m <- label
     few anySym
-    lexicalItem <- head
+    lexicalItem <- sigPred
     few anySym
     sym (EndEnv "signature")
     skipUntilNextLexicalEnv
@@ -116,6 +117,11 @@ head = ScanNoun <$> noun
     <|> ScanRelationSymbol <$> relationSymbol
     <|> ScanFunctionSymbol <$> functionSymbol
     <|> ScanPrefixPredicate <$> prefixPredicate
+
+sigPred :: RE Token (Marker -> ScannedLexicalItem)
+sigPred = ScanNoun . toLexicalPhrase <$> (var *> can *> be *> an *> pat <* iff)
+    <|> ScanAdj . toLexicalPhrase <$> (var *> can *> be *> pat <* iff)
+    -- <|> ScanVerbInfinitive . toLexicalPhrase <$> (var *> can *> pat <* iff)
 
 inductive :: RE Token [ScannedLexicalItem]
 inductive = do
@@ -257,6 +263,14 @@ an = void (sym (Word "a"))
 is :: RE Token ()
 is = void (sym (Word "is") <|> sym (Word "denotes"))
 {-# INLINE is #-}
+
+can :: RE Token ()
+can = void (sym (Word "can"))
+{-# INLINE can #-}
+
+be :: RE Token ()
+be = void (sym (Word "be"))
+{-# INLINE be #-}
 
 the :: RE Token ()
 the = void (sym (Word "the"))
