@@ -429,7 +429,8 @@ The $\operatorname{\textsf{cons}}$ operation is determined by the following axio
     Suppose $A\union B = \emptyset$. Then $A = \emptyset$.
 \end{proposition}
 \begin{proof}
-    Follows by set extensionality.
+    We have $A\subseteq\emptyset$ by \cref{union_upper_left}.
+    Follows by \cref{subseteq_emptyset_iff}.
 \end{proof}
 
 \begin{proposition}%
@@ -437,7 +438,8 @@ The $\operatorname{\textsf{cons}}$ operation is determined by the following axio
     Suppose $A\union B = \emptyset$. Then $B = \emptyset$.
 \end{proposition}
 \begin{proof}
-    Follows by set extensionality.
+    We have $B\subseteq\emptyset$ by \cref{union_upper_right}.
+    Follows by \cref{subseteq_emptyset_iff}.
 \end{proof}
 
 \begin{proposition}%
@@ -951,8 +953,8 @@ There are primitive projections $\fst{}$ and $\snd{}$ that satisfy the following
 \begin{proof}
     Take $a, b$ such that $c = (a, b)$ and $a\in A$
         by \cref{times}.
-    $a = \fst{c}$
-        by \cref{fst_eq}.
+    Follows by \cref{fst_eq}.
+    %$a = \fst{c}$ by \cref{fst_eq}.
 \end{proof}
 
 \begin{proposition}\label{snd_type}
@@ -961,8 +963,8 @@ There are primitive projections $\fst{}$ and $\snd{}$ that satisfy the following
 \begin{proof}
     Take $a, b$ such that $c = (a, b)$ and $b\in B$
         by \cref{times}.
-    $b = \snd{c}$
-        by \cref{snd_eq}.
+    Follows by \cref{snd_eq}.
+    %$b = \snd{c}$ by \cref{snd_eq}.
 \end{proof}
 
 \begin{proposition}\label{times_elem_is_tuple}
