@@ -385,6 +385,11 @@ The $\operatorname{\textsf{cons}}$ operation is determined by the following axio
     Follows by set extensionality.
 \end{proof}
 
+\begin{proposition}\label{union_subsets_is_subset}
+    Suppose $A\subseteq C$ and $B\subseteq C$.
+    Then $A\union B\subseteq C$.
+\end{proposition}
+
 \begin{proposition}\label{subseteq_union_iff}
     $A\union B\subseteq C$ iff $A\subseteq C$ and $B\subseteq C$.
 \end{proposition}
@@ -626,7 +631,7 @@ The $\operatorname{\textsf{cons}}$ operation is determined by the following axio
 
 \begin{proposition}[Binary intersection over binary union]%
 \label{inter_distrib_union}
-    $x\inter (y\union z) = (x\inter y)\union (x\inter z)$.
+    $A\inter (B\union C) = (A\inter B)\union (A\inter C)$.
 \end{proposition}
 \begin{proof}
     Follows by set extensionality.
@@ -643,10 +648,13 @@ The $\operatorname{\textsf{cons}}$ operation is determined by the following axio
 % Halmos, Naive Set Theory, page 16
 \begin{proposition}\label{union_inter_assoc_intro}
     Suppose $C\subseteq A$.
-    Then $(A\inter B)\union C = A\inter (B\union C)$.
+    Then $A\inter (B\union C) = (A\inter B)\union C$.
 \end{proposition}
 \begin{proof}
-    Follows by set extensionality.
+    \begin{align*}
+        A\inter (B\union C) &= (A\inter B)\union (A\inter C) \explanation{by \cref{inter_distrib_union}}\\
+        &= (A\inter B)\union C \explanation{by \cref{inter_absorb_supseteq_left}}
+    \end{align*}
 \end{proof}
 
 % Halmos, Naive Set Theory, page 16
