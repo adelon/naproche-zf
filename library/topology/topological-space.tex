@@ -230,7 +230,7 @@
     Follows by \cref{inters_singleton,closure}.
 \end{proof}
 
-\begin{proposition}\label{subseteq_inters_iff_to_right} 
+\begin{proposition}\label{subseteq_inters_iff_to_right}
     Let $A,F$ be sets.
     Suppose $A \subseteq \inters{F}$.
     Then for all $X \in F$ we have $A \subseteq X$.
@@ -250,7 +250,7 @@
 
 
 
-\begin{proposition}\label{subseteq_inters_iff_to_left} 
+\begin{proposition}\label{subseteq_inters_iff_to_left}
     Let $A,F$ be sets.
     Suppose $F$ is inhabited.    % TODO:Remove!!
     Suppose for all $X \in F$ we have $A \subseteq X$.
@@ -261,7 +261,7 @@
         \caseOf{$A = \emptyset$.}Trivial.
         \caseOf{$A \neq \emptyset$.}
         $F$ is inhabited.
-        It suffices to show that for all $a \in A$ we have $a \in \inters{F}$. 
+        It suffices to show that for all $a \in A$ we have $a \in \inters{F}$.
         Fix $a \in A$.
         For all $X \in F$ we have $a \in X$.
         $A \subseteq \unions{F}$.
@@ -269,7 +269,7 @@
     \end{byCase}
 \end{proof}
 
-\begin{proposition}\label{subseteq_inters_iff_new} 
+\begin{proposition}\label{subseteq_inters_iff_new}
     Suppose $F$ is inhabited.
     $A \subseteq \inters{F}$ iff for all $X \in F$ we have $A \subseteq X$.
 \end{proposition}
@@ -281,7 +281,7 @@
 \end{proposition}
 \begin{proof}
     \begin{byCase}
-        \caseOf{$A = \emptyset$.} 
+        \caseOf{$A = \emptyset$.}
         Trivial.
         \caseOf{$A \neq \emptyset$.}
         We show that $\carrier[X] \in \closures{A}{X}$.
@@ -289,7 +289,7 @@
             $\carrier[X]$ is closed in $X$.
             $\carrier[X] \in \pow{\carrier[X]}$.
         \end{subproof}
-        $\closures{A}{X}$ is inhabited.        
+        $\closures{A}{X}$ is inhabited.
         For all $A' \in \closures{A}{X}$ we have $A \subseteq A'$.
         Therefore $A \subseteq \inters{\closures{A}{X}}$.
     \end{byCase}
@@ -389,7 +389,7 @@
                     There exist $U' \in F'$ such that $U' = \carrier[X] \setminus U$.
                     Omitted.
                 \caseOf{$\inters{F} \neq \emptyset$.}
-                    
+
                     Fix $a \in \carrier[X] \setminus (\unions{F'})$.
                     $\inters{F}$ is inhabited.
                     $a \in \carrier[X]$.
@@ -414,7 +414,7 @@
 \end{proposition}
 \begin{proof}
     \begin{byCase}
-        \caseOf{$\closure{A}{X} = \emptyset$.} 
+        \caseOf{$\closure{A}{X} = \emptyset$.}
             Trivial.
         \caseOf{$\closure{A}{X} \neq \emptyset$.}
             $\closures{A}{X}$ is inhabited.
@@ -429,7 +429,7 @@
 \begin{proposition}\label{closure_is_minimal_closed_set}
     Let $X$ be a topological space.
     Suppose $A \subseteq \carrier[X]$.
-    For all $Y \in \closeds{X}$ such that $A \subseteq Y$ we have $\closure{A}{X} \subseteq Y$.  
+    For all $Y \in \closeds{X}$ such that $A \subseteq Y$ we have $\closure{A}{X} \subseteq Y$.
 \end{proposition}
 \begin{proof}
     Follows by \cref{closure,closeds,inters_subseteq_elem,closures}.
@@ -449,21 +449,20 @@
 \begin{proof}
     We show that for all $x \in \carrier[X]\setminus\interior{A}{X}$ we have $x \in \closure{(\carrier[X]\setminus A)}{X}$.
     \begin{subproof}
-        
         Fix $x \in \carrier[X]\setminus\interior{A}{X}$.
-        Suppose not. 
+        Suppose not.
         $x \notin \closure{(\carrier[X]\setminus A)}{X}$.
         $x \in \carrier[X]$.
         $(\carrier[X] \setminus \closure{(\carrier[X]\setminus A)}{X}) \inter \closure{(\carrier[X]\setminus A)}{X} = \emptyset$.
         $x \in A$.
         $x \in A \inter (\carrier[X] \setminus \closure{(\carrier[X]\setminus A)}{X})$.
         $\carrier[X] \setminus \closure{(\carrier[X]\setminus A)}{X} \in \opens[X]$.
-        There exist $U \in \opens[X]$ such that $x \in U$ and $U\subseteq A$. 
+        There exist $U \in \opens[X]$ such that $x \in U$ and $U\subseteq A$.
         $U \subseteq \interior{A}{X}$.
         Contradiction.
     \end{subproof}
     $\carrier[X]\setminus\interior{A}{X} \subseteq \closure{(\carrier[X]\setminus A)}{X}$.
-    $\closure{(\carrier[X]\setminus A)}{X} \subseteq \carrier[X]\setminus\interior{A}{X}$.
+    $\closure{(\carrier[X]\setminus A)}{X} \subseteq \carrier[X]\setminus\interior{A}{X}$. % SLOW by \cref{setminus_subseteq,interior_is_open,complement_of_open_elem_closeds,subseteq_implies_setminus_supseteq,closure_is_minimal_closed_set}.
 \end{proof}
 
 
