@@ -107,24 +107,27 @@ which applies it to goals of the form “$A = B$” and  “$A \neq B$”.
 
 \subsection{The empty set}
 
-\begin{axiom}%
-\label{notin_emptyset}
+\begin{axiom}\label{emptyset}
     For all $a$ we have $a\notin\emptyset$.
 \end{axiom}
 
-\begin{definition}\label{inhabited}
+\begin{abbreviation}\label{inhabited}
     $A$ is inhabited iff
     there exists $a$ such that $a\in A$.
-\end{definition}
-
-\begin{abbreviation}\label{empty}
-    $A$ is empty iff $A$ is not inhabited.
 \end{abbreviation}
 
-%\begin{proposition}%
-%\label{inhabited_iff_nonempty}
-%    $A$ is inhabited iff $A$ is not empty.
+\begin{abbreviation}\label{empty}
+    $A$ is empty iff for all $x$ we have $x\notin A$.
+\end{abbreviation}
+
+\begin{proposition}\label{nonempty_inhabited}
+    Suppose $A\neq\emptyset$. Then $A$ is inhabited.
+\end{proposition}
+
+%\begin{proposition}\label{empty_iff_emptyset}
+%    $A$ is empty iff $A = \emptyset$.
 %\end{proposition}
+
 
 \begin{proposition}%
 \label{empty_eq}
@@ -133,7 +136,6 @@ which applies it to goals of the form “$A = B$” and  “$A \neq B$”.
 
 \begin{proposition}\label{emptyset_subseteq}
     For all $a$ we have $\emptyset \subseteq a$.
-    % LATER $\emptyset$ is a subset of every set.
 \end{proposition}
 
 \begin{proposition}%
@@ -349,6 +351,7 @@ The $\operatorname{\textsf{cons}}$ operation is determined by the following axio
     If $c\in B$, then $c\in A\union B$.
 \end{proposition}
 
+% TODO SLOW
 \begin{proposition}\label{union_as_unions}
     $\unions{\{x,y\}} = x\union y$.
 \end{proposition}
@@ -586,8 +589,7 @@ The $\operatorname{\textsf{cons}}$ operation is determined by the following axio
     Suppose $A\inter B = A$. Then $A\subseteq B$.
 \end{proposition}
 
-\begin{proposition}%
-\label{subseteq_inter_iff}
+\begin{proposition}\label{subseteq_inter_iff}
     $C\subseteq A\inter B$ iff $C\subseteq A$ and $C\subseteq B$.
 \end{proposition}
 
@@ -944,7 +946,7 @@ There are primitive projections $\fst{}$ and $\snd{}$ that satisfy the following
     $X\times Y$ is empty iff $X$ is empty or $Y$ is empty.
 \end{proposition}
 \begin{proof}
-    Follows by \cref{inhabited,times}.
+    Follows by \cref{times}.
 \end{proof}
 
 \begin{proposition}\label{fst_type}

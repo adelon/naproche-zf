@@ -31,7 +31,7 @@
     Then there exists a \in-minimal element of $A$.
 \end{proposition}
 \begin{proof}
-    Follows by \cref{regularity_aux,inhabited}.
+    Follows by \cref{regularity_aux}.
 \end{proof}
 
 
@@ -44,10 +44,11 @@
 \begin{proof}
     \begin{byCase}
         \caseOf{$A = \emptyset$.}
-            Straightforward.
-        \caseOf{$A$ is inhabited.}
-            Take $a$ such that $a$ is a \in-minimal element of $A$.
+            Follows by assumption.
+        \caseOf{$A \neq\emptyset$.}
+            Take $a$ such that $a$ is a \in-minimal element of $A$ by \cref{nonempty_inhabited,regularity}.
             Then for all $x\in a$ we have $x\notin A$.
+            Follows by assumption.
     \end{byCase}
 \end{proof}.
 

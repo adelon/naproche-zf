@@ -30,7 +30,7 @@
     $X$ is a topological space and
     for all $A,B \in \closeds{X}$ such that $A \inter B = \emptyset$
     we have there exist $A',B' \in \opens[X]$
-    such that  $A \subseteq A'$ and $B \subseteq B'$ and $A' \inter B' = \emptyset$.    
+    such that  $A \subseteq A'$ and $B \subseteq B'$ and $A' \inter B' = \emptyset$.
 \end{abbreviation}
 
 
@@ -40,7 +40,7 @@
 
 
 \begin{definition}\label{chain_of_subsets}
-    $X$ is a chain of subsets in $Y$ iff $X$ is a sequence and for all $n \in \dom{X}$ we have $\at{X}{n} \subseteq \carrier[Y]$ and for all $m \in \dom{X}$ such that $n < m$ we have $\at{X}{n} \subseteq \at{X}{m}$. 
+    $X$ is a chain of subsets in $Y$ iff $X$ is a sequence and for all $n \in \dom{X}$ we have $\at{X}{n} \subseteq \carrier[Y]$ and for all $m \in \dom{X}$ such that $n < m$ we have $\at{X}{n} \subseteq \at{X}{m}$.
 \end{definition}
 
 
@@ -52,7 +52,7 @@
     $A$ is finer between $B$ to $C$ in $X$ iff $\closure{B}{X} \subseteq \interior{A}{X}$ and $\closure{A}{X} \subseteq \interior{C}{X}$.
 \end{definition}
 
-\begin{definition}\label{finer} %<-- verfeinerung 
+\begin{definition}\label{finer} %<-- verfeinerung
     $A$ is finer then $B$ in $X$ iff for all $n \in \dom{B}$ we have $\at{B}{n} \in \ran{A}$ and for all $m \in \dom{B}$ such that $n < m$ we have there exist $k \in \dom{A}$ such that $\at{A}{k}$ is finer between $\at{B}{n}$ to $\at{B}{m}$ in $X$.
 \end{definition}
 
@@ -140,8 +140,8 @@
 \end{proof}
 
 \begin{proposition}\label{naturals_elem_in_transitive}
-    If $n \in \naturals$ then $n$ is \in-transitive and every element of $n$ is \in-transitive. 
-    %If $n$ is a natural number then $n$ is \in-transitive and every element of $n$ is \in-transitive. 
+    If $n \in \naturals$ then $n$ is \in-transitive and every element of $n$ is \in-transitive.
+    %If $n$ is a natural number then $n$ is \in-transitive and every element of $n$ is \in-transitive.
 \end{proposition}
 
 \begin{proposition}\label{natural_number_is_ordinal_for_all}
@@ -222,10 +222,10 @@
 \end{proposition}
 \begin{proof}[Proof by \in-induction on $n$]
     Assume $n \in \naturals$.
-    
+
     \begin{byCase}
-        \caseOf{$n = \zero$.} 
-            
+        \caseOf{$n = \zero$.}
+
             We show that for all $m \in \naturals$ such that $m < n$ we have there exist $k \in \naturals$ such that $m + k = n$.
             \begin{subproof}[Proof by \in-induction on $m$]
                 Assume $m \in \naturals$.
@@ -240,7 +240,7 @@
             Fix $m$.
             For all $l \in \naturals$ we have if $l < 1$ then $l = \zero$.
             Then $\zero + 1 = 1$.
-        \caseOf{$n > 1$.} 
+        \caseOf{$n > 1$.}
             Take $l \in \naturals$ such that $\suc{l} = n$.
             Omitted.
     \end{byCase}
@@ -248,7 +248,7 @@
 
 
 \begin{proposition}\label{rless_eq_in_for_naturals}
-    For all $n,m \in \naturals$ such that $n < m$ we have $n \in m$. 
+    For all $n,m \in \naturals$ such that $n < m$ we have $n \in m$.
 \end{proposition}
 \begin{proof}
     We show that for all $n \in \naturals$ we have for all $m \in \naturals$ such that $m < n$ we have $m \in n$.
@@ -259,7 +259,7 @@
             Assume $m \in \naturals$.
             \begin{byCase}
                 \caseOf{$\suc{m}=n$.}
-                \caseOf{$\suc{m}\neq n$.}  
+                \caseOf{$\suc{m}\neq n$.}
                       \begin{byCase}
                         \caseOf{$n = \zero$.}
                         \caseOf{$n \neq \zero$.}
@@ -270,18 +270,18 @@
             \end{byCase}
         \end{subproof}
     \end{subproof}
-    
+
     %Fix $n \in \naturals$.
 
     %\begin{byCase}
     %    \caseOf{$n = \zero$.}
     %        For all $k \in \naturals$ we have $k = \zero$ or $\zero < k$.
-    %        
+    %
     %    \caseOf{$n \neq \zero$.}
     %        Fix $m \in \naturals$.
     %        It suffices to show that $m \in n$.
     %\end{byCase}
-    
+
 \end{proof}
 
 
@@ -342,7 +342,7 @@
                     It suffices to show that for all $x \in \seq{\zero}{k} \union \{n\}$ we have $x \in \seq{\zero}{n}$.
                     $k \leq n$ by \cref{naturals_subseteq_reals,suc_eq_plus_one,plus_one_order,subseteq}.
                     $k \in n$.
-                    $\seq{\zero}{k} = \suc{k}$ by assumption.            
+                    $\seq{\zero}{k} = \suc{k}$ by assumption.
                     $n \in \naturals$.
                     $\zero \leq n$.
                     $n \leq n$.
@@ -379,8 +379,8 @@
     %    Take $k$ such that $k \in \naturals$ and $\suc{k} = m$.
     %    Then $k \in m$.
     %\end{subproof}
-    
-    
+
+
     %For all $n \in \naturals$ we have either $n = \zero$ or there exist $m \in \naturals$ such that $n = \suc{m}$.
     %For all $n \in \naturals$ we have either $n = \zero$ or $\zero \in n$.
     %We show that if $\seq{\zero}{n}$ has cardinality $\suc{n}$ then $\seq{\zero}{\suc{n}}$ has cardinality $\suc{\suc{n}}$.
@@ -467,7 +467,7 @@
     Suppose $f$ is a bijection from $X$ to $Y$.
     Suppose $g$ is a function from $X$ to $Y$.
     Suppose $g$ is injective.
-    Suppose $X$ is finite and $Y$ is finite. 
+    Suppose $X$ is finite and $Y$ is finite.
     For all $n \in \naturals$ such that $Y$ has cardinality $n$ we have $g$ is a bijection from $X$ to $Y$.
 \end{lemma}
 \begin{proof}[Proof by \in-induction on $n$]
@@ -475,20 +475,20 @@
     Suppose $Y$ has cardinality $n$.
     $X$ has cardinality $n$ by \cref{bijection_converse_is_bijection,bijection_circ,regularity,cardinality,foundation,empty_eq,notin_emptyset}.
     \begin{byCase}
-        \caseOf{$n = \zero$.} 
+        \caseOf{$n = \zero$.}
             Follows by \cref{converse_converse_eq,injective_converse_is_function,converse_is_relation,dom_converse,id_is_function_to,id_ran,ran_circ_exact,circ,ran_converse,emptyset_is_function_on_emptyset,bijective_converse_are_funs,relext,function_member_elim,bijection_is_function,cardinality,bijections_dom,in_irrefl,codom_of_emptyset_can_be_anything,converse_emptyset,funs_elim,neq_witness,id}.
         \caseOf{$n \neq \zero$.}
             %Take $n' \in n$ such that $n = \suc{n'}$.
             %$n' \in \naturals$.
             %$n' + 1 = n$.
-            %Take $y$ such that $y \in Y$ by \cref{funs_type_apply,apply,bijections_to_funs,cardinality,foundation}. 
+            %Take $y$ such that $y \in Y$ by \cref{funs_type_apply,apply,bijections_to_funs,cardinality,foundation}.
             %Let $Y' = Y \setminus \{y\}$.
             %$Y' \subseteq Y$.
             %$Y'$ is finite.
             %There exist $m \in \naturals$ such that $Y'$ has cardinality $m$.
             %Take $m \in \naturals$ such that $Y'$ has cardinality $m$.
             %Then $Y'$ has cardinality $n'$.
-            %Let $x' = \apply{\converse{f}}{y'}$. 
+            %Let $x' = \apply{\converse{f}}{y'}$.
             %$x' \in X$.
             %Let $X' = X \setminus \{x'\}$.
             %$X' \subseteq X$.
@@ -526,7 +526,7 @@
     Suppose $f$ is a bijection from $X$ to $Y$.
     Suppose $g$ is a function from $X$ to $Y$.
     Suppose $g$ is injective.
-    Suppose $Y$ is finite. 
+    Suppose $Y$ is finite.
     Then $g$ is a bijection from $X$ to $Y$.
 \end{lemma}
 \begin{proof}
@@ -553,7 +553,7 @@
             $\identity{n}$ is a function from $n$ to $m$.
             $\identity{n}$ is injective.
             $\apply{\identity{n}}{n} = n$ by \cref{id_ran,ran_of_surj,bijections,injective_functions_is_bijection_if_bijection_there_is_other_bijection}.
-            Follows by \cref{inhabited,regularity,function_apply_default,apply,id_dom,in_irrefl,function_member_elim,bijections_dom,zero_is_empty,bijection_is_function,foundation,bijections,ran_of_surj,dom_converse,converse_emptyset,dom_emptyset}.
+            Follows by \cref{regularity,function_apply_default,apply,id_dom,in_irrefl,function_member_elim,bijections_dom,zero_is_empty,bijection_is_function,foundation,bijections,ran_of_surj,dom_converse,converse_emptyset,dom_emptyset}.
         \caseOf{$m < n$.}
             Then $m \in n$.
             There exist $x \in n$ such that $x \notin m$.
@@ -561,7 +561,7 @@
             $\identity{m}$ is a function from $m$ to $n$.
             $\identity{m}$ is injective.
             $\apply{\identity{m}}{m} = m$ by \cref{id_ran,ran_of_surj,bijections,injective_functions_is_bijection_if_bijection_there_is_other_bijection}.
-            Follows by \cref{inhabited,regularity,function_apply_default,apply,id_dom,in_irrefl,function_member_elim,bijections_dom,zero_is_empty,bijection_is_function,foundation,bijections,ran_of_surj,dom_converse,converse_emptyset,dom_emptyset}.
+            Follows by \cref{regularity,function_apply_default,apply,id_dom,in_irrefl,function_member_elim,bijections_dom,zero_is_empty,bijection_is_function,foundation,bijections,ran_of_surj,dom_converse,converse_emptyset,dom_emptyset}.
     \end{byCase}
 \end{proof}
 
@@ -578,7 +578,7 @@
     \begin{subproof}%[Proof by \in-induction on $k$]
         %Assume $k \in \naturals$.
         %\begin{byCase}
-        %    \caseOf{$k = \zero$.} 
+        %    \caseOf{$k = \zero$.}
         %        Trivial.
         %    \caseOf{$k \neq \zero$.}
         %        \begin{byCase}
@@ -589,7 +589,7 @@
         %                Then $k' \in k$.
         %                Take $m' \in \naturals$ such that $m = \suc{m'}$.
         %                Then $m' \in m$.
-        %                
+        %
         %        \end{byCase}
         %\end{byCase}
     \end{subproof}
@@ -622,12 +622,12 @@
 \begin{proof}
     Take $n$ such that $\dom{U}$ has cardinality $n$ by \cref{ran_converse,cardinality,finite}.
     \begin{byCase}
-        \caseOf{$n = \zero$.} 
+        \caseOf{$n = \zero$.}
             Omitted.
         \caseOf{$n \neq \zero$.}
-            Take $k$ such that $k \in \naturals$ and $\suc{k}=n$. 
+            Take $k$ such that $k \in \naturals$ and $\suc{k}=n$.
             We have $\dom{U} \subseteq \naturals$.
-            $\dom{U}$ is inhabited by \cref{downward_closure,downward_closure_iff,rightunique,function_member_elim,inhabited,chain_of_subsets,urysohnchain,sequence}.
+            $\dom{U}$ is inhabited by \cref{downward_closure,downward_closure_iff,rightunique,function_member_elim,chain_of_subsets,urysohnchain,sequence}.
             $\dom{U}$ has cardinality $\suc{k}$.
             We show that there exist $F$ such that $F$ is a bijection from $\seq{\zero}{k}$ to $\dom{U}$ and for all $n',m' \in \seq{\zero}{k}$ such that $n' < m'$ we have $F(n') < F(m')$.
             \begin{subproof}
@@ -647,7 +647,7 @@
                 %        Fix $y \in \seq{\emptyset}{k'}$.
                 %        Then $y \leq k'$.
                 %        Therefore $y \in k'$ or $y = k'$ by \cref{omega_is_an_ordinal,suc_intro_self,ordinal_transitivity,cardinality,rless_eq_in_for_naturals,m_to_n_set}.
-                %        
+                %
                 %        Therefore $y \in \suc{k}$.
                 %        Therefore $y \in \seq{\emptyset}{k}$.
                 %    \end{subproof}
@@ -695,7 +695,7 @@
             \end{subproof}
             $V$ is normal ordered.
     \end{byCase}
-    
+
 \end{proof}
 
 
@@ -757,7 +757,7 @@
 \begin{lemma}\label{intervalclosed_border_is_elem}
     Suppose $a,b \in \reals$.
     Suppose $a < b$.
-    Then $a,b \in \intervalclosed{a}{b}$.  
+    Then $a,b \in \intervalclosed{a}{b}$.
 \end{lemma}
 
 \begin{lemma}\label{urysohnchain_subseteqrel}
@@ -792,7 +792,7 @@
     \end{cases}$
     $U_0$ is a function.
     $\dom{U_0} = N$.
-    $\dom{U_0} \subseteq \naturals$ by \cref{ran_converse}. 
+    $\dom{U_0} \subseteq \naturals$ by \cref{ran_converse}.
     $U_0$ is a sequence.
     We have $1, \zero \in N$.
     We show that $U_0$ is a chain of subsets in $X$.
@@ -807,11 +807,11 @@
         Fix $m \in \dom{U_0}$.
 
         \begin{byCase}
-            \caseOf{$n \neq \zero$.} 
+            \caseOf{$n \neq \zero$.}
                 Trivial.
-            \caseOf{$n = \zero$.} 
+            \caseOf{$n = \zero$.}
                 \begin{byCase}
-                    \caseOf{$m = \zero$.} 
+                    \caseOf{$m = \zero$.}
                         Trivial.
                     \caseOf{$m \neq \zero$.}
                         We have $A \subseteq A'$.
@@ -828,14 +828,14 @@
         Fix $n \in \dom{U_0}$.
         Fix $m \in \dom{U_0}$.
         \begin{byCase}
-            \caseOf{$n \neq \zero$.} 
+            \caseOf{$n \neq \zero$.}
                 Follows by \cref{ran_converse,upair_iff,one_in_reals,order_reals_lemma0,reals_axiom_zero_in_reals,reals_one_bigger_zero,reals_order}.
-            \caseOf{$n = \zero$.} 
+            \caseOf{$n = \zero$.}
                 \begin{byCase}
-                    \caseOf{$m = \zero$.} 
+                    \caseOf{$m = \zero$.}
                         Trivial.
                     \caseOf{$m \neq \zero$.}
-                        Follows by \cref{setminus_emptyset,setdifference_eq_intersection_with_complement,setminus_self,interior_carrier,complement_interior_eq_closure_complement,subseteq_refl,closure_interior_frontier_is_in_carrier,emptyset_subseteq,closure_is_minimal_closed_set,inter_lower_right,inter_lower_left,subseteq_transitive,interior_of_open,is_closed_in,closeds,union_absorb_subseteq_right,ordinal_suc_subseteq,ordinal_empty_or_emptyset_elem,union_absorb_subseteq_left,union_emptyset,topological_prebasis_iff_covering_family,inhabited,notin_emptyset,subseteq,union_as_unions,natural_number_is_ordinal}.
+                        Follows by \cref{setminus_emptyset,setdifference_eq_intersection_with_complement,setminus_self,interior_carrier,complement_interior_eq_closure_complement,subseteq_refl,closure_interior_frontier_is_in_carrier,emptyset_subseteq,closure_is_minimal_closed_set,inter_lower_right,inter_lower_left,subseteq_transitive,interior_of_open,is_closed_in,closeds,union_absorb_subseteq_right,ordinal_suc_subseteq,ordinal_empty_or_emptyset_elem,union_absorb_subseteq_left,union_emptyset,topological_prebasis_iff_covering_family,notin_emptyset,subseteq,union_as_unions,natural_number_is_ordinal}.
                 \end{byCase}
         \end{byCase}
     \end{subproof}
@@ -874,7 +874,7 @@
         Fix $x \in \dom{f}$.
         $f(x)$ is the staircase limit of $S$ with $x$.
         Therefore $f(x) \in \reals$.
-        
+
         We show that for all $n \in \naturals$ we have $\apply{\at{S}{n}}{x} \in \intervalclosed{\zero}{1}$.
         \begin{subproof}
             Fix $n \in \naturals$.
@@ -913,7 +913,7 @@
                     \end{byCase}
             \end{byCase}
 
-            
+
 
             %$\at{S}{n}$ is a staircase function adapted to $\at{U}{n}$ in $X$.
             %$\at{U}{n}$ is a urysohnchain of $X$.
@@ -979,11 +979,5 @@
 \end{proof}
 
 %\begin{theorem}\label{safe}
-%    Contradiction.     
+%    Contradiction.
 %\end{theorem}
-
-
-
-
-
-
