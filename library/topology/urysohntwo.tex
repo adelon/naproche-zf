@@ -164,7 +164,7 @@
     There exists no $x$ such that $x \in \zero$.
 \end{proposition}
 \begin{proof}
-    Follows by \cref{notin_emptyset}.
+    Follows by \cref{emptyset}.
 \end{proof}
 
 \begin{proposition}\label{one_is_positiv}
@@ -473,7 +473,7 @@
 \begin{proof}[Proof by \in-induction on $n$]
     Assume $n \in \naturals$.
     Suppose $Y$ has cardinality $n$.
-    $X$ has cardinality $n$ by \cref{bijection_converse_is_bijection,bijection_circ,regularity,cardinality,foundation,empty_eq,notin_emptyset}.
+    $X$ has cardinality $n$ by \cref{bijection_converse_is_bijection,bijection_circ,regularity,cardinality,foundation,empty_eq,emptyset}.
     \begin{byCase}
         \caseOf{$n = \zero$.}
             Follows by \cref{converse_converse_eq,injective_converse_is_function,converse_is_relation,dom_converse,id_is_function_to,id_ran,ran_circ_exact,circ,ran_converse,emptyset_is_function_on_emptyset,bijective_converse_are_funs,relext,function_member_elim,bijection_is_function,cardinality,bijections_dom,in_irrefl,codom_of_emptyset_can_be_anything,converse_emptyset,funs_elim,neq_witness,id}.
@@ -817,7 +817,7 @@
                         We have $A \subseteq A'$.
                         We have $\at{U_0}{\zero} = A$ by assumption.
                         We have $\at{U_0}{1}= A'$ by assumption.
-                        Follows by \cref{powerset_elim,emptyset_subseteq,union_as_unions,union_absorb_subseteq_left,subseteq_pow_unions,ran_converse,subseteq,subseteq_antisymmetric,suc_subseteq_intro,apply,powerset_emptyset,emptyset_is_ordinal,notin_emptyset,ordinal_elem_connex,omega_is_an_ordinal,prec_is_ordinal}.
+                        Follows by \cref{powerset_elim,emptyset_subseteq,union_as_unions,union_absorb_subseteq_left,subseteq_pow_unions,ran_converse,subseteq,subseteq_antisymmetric,suc_subseteq_intro,apply,powerset_emptyset,emptyset_is_ordinal,emptyset,ordinal_elem_connex,omega_is_an_ordinal,prec_is_ordinal}.
                 \end{byCase}
         \end{byCase}
     \end{subproof}
@@ -835,7 +835,7 @@
                     \caseOf{$m = \zero$.}
                         Trivial.
                     \caseOf{$m \neq \zero$.}
-                        Follows by \cref{setminus_emptyset,setdifference_eq_intersection_with_complement,setminus_self,interior_carrier,complement_interior_eq_closure_complement,subseteq_refl,closure_interior_frontier_is_in_carrier,emptyset_subseteq,closure_is_minimal_closed_set,inter_lower_right,inter_lower_left,subseteq_transitive,interior_of_open,is_closed_in,closeds,union_absorb_subseteq_right,ordinal_suc_subseteq,ordinal_empty_or_emptyset_elem,union_absorb_subseteq_left,union_emptyset,topological_prebasis_iff_covering_family,notin_emptyset,subseteq,union_as_unions,natural_number_is_ordinal}.
+                        Follows by \cref{setminus_emptyset,setdifference_eq_intersection_with_complement,setminus_self,interior_carrier,complement_interior_eq_closure_complement,subseteq_refl,closure_interior_frontier_is_in_carrier,emptyset_subseteq,closure_is_minimal_closed_set,inter_lower_right,inter_lower_left,subseteq_transitive,interior_of_open,is_closed_in,closeds,union_absorb_subseteq_right,ordinal_suc_subseteq,ordinal_empty_or_emptyset_elem,union_absorb_subseteq_left,union_emptyset,topological_prebasis_iff_covering_family,emptyset,subseteq,union_as_unions,natural_number_is_ordinal}.
                 \end{byCase}
         \end{byCase}
     \end{subproof}

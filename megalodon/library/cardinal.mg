@@ -36,7 +36,7 @@ Admitted.
 Theorem subset_witness : (forall A B,(((subset A B)->(exists b,(((elem b B)/\(notelem b A))))))).
 Admitted.
 Definition family_of_subsets := fun x0 x1 : set => (forall A,(((elem A x0)->(subseteq A x1)))).
-Fact notin_emptyset : (forall a,((notelem a (emptyset)))).
+Fact emptyset : (forall a,((notelem a (emptyset)))).
 Admitted.
 Definition inhabited := fun A: set => (exists a,((elem a A))).
 Definition empty := fun x0 : set => ~((inhabited x0)).
