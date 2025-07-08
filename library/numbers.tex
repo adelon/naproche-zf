@@ -93,8 +93,8 @@
     For all $n,m \in \naturals$ we have $(n + m) \in \naturals$.
 \end{axiom}
 
-\subsubsection{Natural numbers as ordinals}
 
+\subsubsection{Natural numbers as ordinals}
 
 \begin{lemma}\label{nat_is_successor_ordinal}
     Let $n\in\naturals$.
@@ -187,7 +187,7 @@
     Follows by \cref{suc_eq_plus_one,naturals_addition_axiom_2,naturals_addition_axiom_1,naturals_inductive_set,one_is_suc_zero}.
 \end{proof}
 
-\begin{proposition}\label{naturals_add_kommu}
+\begin{proposition}\label{naturals_add_comm}
     For all $n \in \naturals$ we have for all $m\in \naturals$ we have $n + m = m + n$.
 \end{proposition}
 \begin{proof}
@@ -235,17 +235,17 @@
     \end{align*}
 \end{proof}
 
-\begin{proposition}\label{naturals_add_remove_brakets}
+\begin{proposition}\label{naturals_add_remove_parens}
     Suppose $n,m,k \in \naturals$.
-    Then $(n + m) + k = n + m + k = n + (m + k)$.    
+    Then $(n + m) + k = n + m + k = n + (m + k)$.
 \end{proposition}
 
-\begin{proposition}\label{naturals_add_remove_brakets2}
+\begin{proposition}\label{naturals_add_remove_parens2}
     Suppose $n,m,k,l \in \naturals$.
-    Then $(n + m) + (k + l)= n + m + k + l = n + (m + k) + l = (((n + m) + k) + l)$.    
+    Then $(n + m) + (k + l)= n + m + k + l = n + (m + k) + l = (((n + m) + k) + l)$.
 \end{proposition}
 
-%\begin{proposition}\label{natural_disstro_oneline}
+%\begin{proposition}\label{natural_distrib_oneline}
 %    Suppose $n,m,k \in \naturals$.
 %    Then $n \rmul (m + k) = (n \rmul m) + (n \rmul k)$.
 %\end{proposition}
@@ -262,7 +262,7 @@
 %    $ \suc{n} \rmul (m' + k') = (n \rmul (m' + k')) + (m' + k') = ((n \rmul m') + (n \rmul k')) + (m' + k')  = ((n \rmul m') + (n \rmul k')) + m' + k'    = (((n \rmul m') + (n \rmul k')) + m') + k'  = (m' + ((n \rmul m') + (n \rmul k'))) + k'  = ((m' + (n \rmul m')) + (n \rmul k')) + k'  = (((n \rmul m') + m') + (n \rmul k')) + k'  = ((n \rmul m') + m') + ((n \rmul k') + k')  = (\suc{n} \rmul m') + (\suc{n} \rmul k')$.
 %\end{proof}
 
-\begin{proposition}\label{natural_disstro}
+\begin{proposition}\label{natural_distrib}
     Suppose $n,m,k \in \naturals$.
     Then $n \rmul (m + k) = (n \rmul m) + (n \rmul k)$.
 \end{proposition}
@@ -283,11 +283,11 @@
         \suc{n} \rmul (m' + k') \\
         &= (n \rmul (m' + k')) + (m' + k') \\% \explanation{by \cref{naturals_mul_axiom_2}}\\
         &= ((n \rmul m') + (n \rmul k')) + (m' + k') \\%\explanation{by assumption}\\
-        &= ((n \rmul m') + (n \rmul k')) + m' + k'   \\%\explanation{by \cref{naturals_add_remove_brakets,naturals_add_kommu}}\\
-        &= (((n \rmul m') + (n \rmul k')) + m') + k' \\%\explanation{by \cref{naturals_add_kommu,naturals_add_remove_brakets,naturals_add_assoc}}\\
-        &= (m' + ((n \rmul m') + (n \rmul k'))) + k' \\%\explanation{by \cref{naturals_add_kommu}}\\
+        &= ((n \rmul m') + (n \rmul k')) + m' + k'   \\%\explanation{by \cref{naturals_add_remove_parens,naturals_add_comm}}\\
+        &= (((n \rmul m') + (n \rmul k')) + m') + k' \\%\explanation{by \cref{naturals_add_comm,naturals_add_remove_parens,naturals_add_assoc}}\\
+        &= (m' + ((n \rmul m') + (n \rmul k'))) + k' \\%\explanation{by \cref{naturals_add_comm}}\\
         &= ((m' + (n \rmul m')) + (n \rmul k')) + k' \\%\explanation{by \cref{naturals_add_assoc}}\\
-        &= (((n \rmul m') + m') + (n \rmul k')) + k' \\%\explanation{by \cref{naturals_add_kommu}}\\
+        &= (((n \rmul m') + m') + (n \rmul k')) + k' \\%\explanation{by \cref{naturals_add_comm}}\\
         &= ((n \rmul m') + m') + ((n \rmul k') + k') \\%\explanation{by \cref{naturals_add_assoc}}\\
         &= (\suc{n} \rmul m') + (\suc{n} \rmul k')   %\explanation{by \cref{naturals_mul_axiom_2}}
     \end{align*}
@@ -353,7 +353,7 @@
         &=(k' \rmul (n' \rmul m')) + (k' \rmul m')  \\
         &=k' \rmul ((n' \rmul m') + m')             \\
         &=k' \rmul (\suc{n'} \rmul m')              \\
-        &=(\suc{n'} \rmul m') \rmul k'              
+        &=(\suc{n'} \rmul m') \rmul k'
     \end{align*}
 \end{proof}
 
@@ -385,7 +385,7 @@ Commutivatiy of the standart operations
 \begin{axiom}\label{reals_axiom_kommu}
     For all $x,y \in \reals$ $x + y = y + x$ and $x \rmul y = y \rmul x$.
 \end{axiom}
-  
+
 \begin{axiom}\label{reals_axiom_assoc}
     For all $x,y,z \in \reals$ we have $(x + y) + z = x + (y + z)$.
 \end{axiom}
@@ -393,7 +393,7 @@ Commutivatiy of the standart operations
 
 Existence of  one and Zero
 \begin{axiom}\label{reals_axiom_zero}
-    For all $x \in \reals$ $x + \zero = x$. 
+    For all $x \in \reals$ $x + \zero = x$.
 \end{axiom}
 
 \begin{axiom}\label{reals_axiom_one}
@@ -453,7 +453,7 @@ Laws of the order on the reals
 \end{axiom}
 
 \begin{axiom}\label{reals_dense}
-    For all $x,y \in \reals$ if $x < y$ then 
+    For all $x,y \in \reals$ if $x < y$ then
     there exist $z \in \reals$ such that $x < z$ and $z < y$.
 \end{axiom}
 
@@ -471,15 +471,15 @@ Laws of the order on the reals
 \end{axiom}
 
 \begin{axiom}\label{reals_postiv_mul_is_positiv}
-    For all $x,y \in \reals$ such that $\zero < x,y$ we have $\zero < (x \rmul y)$. 
+    For all $x,y \in \reals$ such that $\zero < x,y$ we have $\zero < (x \rmul y)$.
 \end{axiom}
 
 \begin{axiom}\label{reals_postiv_mul_negativ_is_negativ}
-    For all $x,y \in \reals$ such that $x < \zero < y$ we have $(x \rmul y) < \zero$. 
+    For all $x,y \in \reals$ such that $x < \zero < y$ we have $(x \rmul y) < \zero$.
 \end{axiom}
 
 \begin{axiom}\label{reals_negativ_mul_is_negativ}
-    For all $x,y \in \reals$ such that $x,y < \zero$ we have $\zero < (x \rmul y)$. 
+    For all $x,y \in \reals$ such that $x,y < \zero$ we have $\zero < (x \rmul y)$.
 \end{axiom}
 
 
@@ -603,12 +603,12 @@ Laws of the order on the reals
 
 %\begin{abbreviation}\label{gcd}
 %    $g$ is greatest common divisor of $\{a,b\}$ iff
-%    $g$ is a integral divisor of $a$ 
-%    and $g$ is a integral divisor of $b$ 
+%    $g$ is a integral divisor of $a$
+%    and $g$ is a integral divisor of $b$
 %    and for all $g'$ such that $g'$ is a integral divisor of $a$
 %    and $g'$ is a integral divisor of $b$ we have $g' \leq g$.
 %\end{abbreviation}
-% TODO:  Was man noch so beweisen könnte: bruch kürzung, kehrbruch eigenschaften, bruch in bruch vereinfachung, 
+% TODO:  Was man noch so beweisen könnte: bruch kürzung, kehrbruch eigenschaften, bruch in bruch vereinfachung,
 
 
 \subsection{Order on the reals}
@@ -664,8 +664,8 @@ Laws of the order on the reals
 
 \begin{lemma}\label{order_reals_lemma1}
     Let $x,y,z \in \reals$.
-    Suppose $\zero < x$. 
-    Suppose $y < z$. 
+    Suppose $\zero < x$.
+    Suppose $y < z$.
     Then $(y \rmul x) < (z \rmul x)$.
 \end{lemma}
 \begin{proof}
@@ -675,15 +675,15 @@ Laws of the order on the reals
     %    (z \rmul x) \\
     %    &= ((y + k) \rmul x) \\
     %    &= ((y \rmul x) + (k \rmul x)) \explanation{by \cref{reals_disstro2}}
-    %\end{align*} 
-    %Then $(k \rmul x) > \zero$. 
+    %\end{align*}
+    %Then $(k \rmul x) > \zero$.
     %Therefore $(z \rmul x) > (y \rmul x)$.
 \end{proof}
 
 \begin{lemma}\label{order_reals_lemma2}
     Let $x,y,z \in \reals$.
-    Suppose $\zero < x$. 
-    Suppose $y < z$. 
+    Suppose $\zero < x$.
+    Suppose $y < z$.
     Then $(x \rmul y) < (x \rmul z)$.
 \end{lemma}
 \begin{proof}
@@ -693,8 +693,8 @@ Laws of the order on the reals
 
 \begin{lemma}\label{order_reals_lemma3}
     Let $x,y,z \in \reals$.
-    Suppose $\zero > x$. 
-    Suppose $y < z$. 
+    Suppose $\zero > x$.
+    Suppose $y < z$.
     Then $(x \rmul z) < (x \rmul y)$.
 \end{lemma}
 \begin{proof}
@@ -808,7 +808,7 @@ Laws of the order on the reals
 
 
 \begin{definition}\label{m_to_n_set}
-    $\seq{m}{n} = \{x \in \naturals \mid  m \leq x \leq n\}$.   
+    $\seq{m}{n} = \{x \in \naturals \mid  m \leq x \leq n\}$.
 \end{definition}
 
 \begin{axiom}\label{abs_behavior1}
