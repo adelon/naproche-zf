@@ -118,7 +118,7 @@
 \end{proof}
 
 \begin{definition}\label{funs}
-    $\funs{A}{B} = \{ f\in\rels{A}{B}\mid \text{$A\subseteq \dom{f}$ and $f$ is right-unique}\}$.
+    $\funs{A}{B} = \{ f\in\rels{A}{B}\mid \text{$A= \dom{f}$ and $f$ is right-unique}\}$.
 \end{definition}
 
 \begin{abbreviation}\label{function_from_to}
@@ -159,7 +159,7 @@
 
 \begin{proposition}\label{funs_elim}
     Let $f\in\funs{A}{B}$.
-    Then $f$ is a function to $B$ such that $A\subseteq \dom{f}$.
+    Then $f$ is a function to $B$ such that $A= \dom{f}$.
 \end{proposition}
 \begin{proof}
     $f$ is a function by \cref{funs_is_function}. % and in particular, a relation.
@@ -187,8 +187,7 @@
     Then $f(a)\in B$.
 \end{proposition}
 \begin{proof}
-    $a\in\dom{f}$ by \cref{funs_elim,subseteq}.
-    $(a,f(a)) \in f$ by \cref{function_apply_iff}.
+    $(a,f(a)) \in f$ by \cref{funs_elim,function_apply_iff}.
     Thus $f(a)\in B$ by \cref{funs,rels_type_ran}.
 \end{proof}
 
@@ -198,8 +197,7 @@
     Then there exists $b\in B$ such that $(a,b)\in f$.
 \end{proposition}
 \begin{proof}
-    $a\in\dom{f}$ by \cref{funs_elim,subseteq}.
-    $(a,f(a)) \in f$ by \cref{function_apply_iff}.
+    $(a,f(a)) \in f$ by \cref{funs_elim,function_apply_iff}.
     $f(a)\in B$ by \cref{funs_type_apply}.
 \end{proof}
 
@@ -556,7 +554,6 @@
     there exists $a\in\dom{f}$ such that $f(a) = b$ by \cref{fun_ran_iff}.
     Fix $b\in B$.
     Take $a\in A$ such that $f(a) = b$ by \cref{surj}.
-    Then $\dom{f} = A$ by \cref{surj,funs_elim}.
 \end{proof}
 
 \begin{corollary}\label{funs_surj_iff}
