@@ -419,12 +419,21 @@
     $\fld{\emptyset} = \emptyset$.
 \end{proposition}
 
-% TODO SLOW
 \begin{proposition}\label{fld_cons}
     $\fld{(\cons{(a,b)}{R})} = \cons{a}{\cons{b}{\fld{R}}}$.
 \end{proposition}
 \begin{proof}
-    Follows by set extensionality.
+    \begin{align*}
+        \fld{(\cons{(a,b)}{R})}
+        &= \dom{(\cons{(a,b)}{R})}\union\ran{(\cons{(a,b)}{R})}
+            \explanation{by \cref{fld}}\\
+        &= \cons{a}{\dom{R}}\union\cons{b}{\ran{R}}
+            \explanation{by \cref{dom_cons,ran_cons}}\\
+        &= \cons{a}{\cons{b}{\dom{R}\union\ran{R}}}
+            \explanation{by \cref{union_cons,union_comm}}\\
+        &= \cons{a}{\cons{b}{\fld{R}}}
+          \explanation{by \cref{fld}}
+    \end{align*}
 \end{proof}
 
 \begin{proposition}\label{fld_union}
