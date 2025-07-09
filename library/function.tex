@@ -490,7 +490,7 @@
 \begin{proposition}\label{inj_circ}
     Let $f\in\inj{A}{B}$.
     Let $g\in\inj{B}{C}$.
-    Then $g\circ f\in\surj{A}{C}$.
+    Then $g\circ f\in\inj{A}{C}$.
 \end{proposition}
 \begin{proof}
     Omitted. % TODO
@@ -554,6 +554,7 @@
     there exists $a\in\dom{f}$ such that $f(a) = b$ by \cref{fun_ran_iff}.
     Fix $b\in B$.
     Take $a\in A$ such that $f(a) = b$ by \cref{surj}.
+    Now $A=\dom{f}$.
 \end{proof}
 
 \begin{corollary}\label{funs_surj_iff}
@@ -618,8 +619,8 @@
 \end{proposition}
 \begin{proof}
     $g\circ f\in\surj{A}{C}$ by \cref{bijections,surjections_circ}.
-    $g\circ f$ is an injection.
-    Follows by \cref{circ_rightunique,bijections}.
+    $g\circ f$ is injective by \cref{bijections,circ_injective}.
+    Follows by \cref{bijections}.
 \end{proof}
 
 \subsection{Converse as a function}
