@@ -16,8 +16,13 @@ import Prettyprinter.Render.Text
 import Text.Builder
 
 
-isAsciiAlphaNum :: Char -> Bool
-isAsciiAlphaNum c = isAsciiLower c || isAsciiUpper c || isDigit c || c == '_'
+
+isAsciiLetter :: Char -> Bool
+isAsciiLetter c = isAsciiLower c || isAsciiUpper c
+
+isAsciiAlphaNumOrUnderscore :: Char -> Bool
+isAsciiAlphaNumOrUnderscore c = isAsciiLower c || isAsciiUpper c || isDigit c || c == '_'
+
 
 -- | A TPTP atomic word, starting with a lowercase letter or enclosed in single quotes.
 newtype AtomicWord = AtomicWord Text deriving (Show, Eq, Ord, IsString)
@@ -25,7 +30,7 @@ newtype AtomicWord = AtomicWord Text deriving (Show, Eq, Ord, IsString)
 isProperAtomicWord :: Text -> Bool
 isProperAtomicWord w = case Text.uncons w of
     Nothing -> False
-    Just (head, tail) -> isAsciiLower head && Text.all isAsciiAlphaNum tail
+    Just (head, tail) -> isAsciiLower head && Text.all isAsciiAlphaNumOrUnderscore tail
 
 -- | A TPTP variable, written as a word starting with an uppercase letter.
 newtype Variable = Variable Text deriving (Show, Eq, Ord, IsString)
@@ -33,7 +38,7 @@ newtype Variable = Variable Text deriving (Show, Eq, Ord, IsString)
 isVariable :: Text -> Bool
 isVariable var = case Text.uncons var of
     Nothing -> False -- Variables must be nonempty.
-    Just (head, tail) -> isAsciiUpper head && Text.all isAsciiAlphaNum tail
+    Just (head, tail) -> isAsciiUpper head && Text.all isAsciiAlphaNumOrUnderscore tail
 
 
 data Expr

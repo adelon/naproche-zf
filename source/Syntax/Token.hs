@@ -27,13 +27,13 @@ import Base hiding (many)
 
 import Control.Monad.Combinators
 import Control.Monad.State.Strict
-import Data.Char (isAsciiLower, isDigit)
 import Data.List.NonEmpty qualified as NonEmpty
 import Data.Text qualified as Text
 import Prettyprinter (Pretty(..))
 import Text.Megaparsec hiding (Token, Label, label)
 import Text.Megaparsec.Char qualified as Char
 import Text.Megaparsec.Char.Lexer qualified as Lexer
+import Tptp.UnsortedFirstOrder (isAsciiLetter, isAsciiAlphaNumOrUnderscore)
 
 
 runLexer :: String -> Text -> Either (ParseErrorBundle Text Void) [Located Token]
@@ -418,8 +418,8 @@ ref = lexeme do
 
 marker :: Lexer Text
 marker = do
-    c <- satisfy isAsciiLower
-    cs <- takeWhileP Nothing (\x -> isAsciiLower x || isDigit x || x == '_')
+    c <- satisfy isAsciiLetter
+    cs <- takeWhileP Nothing isAsciiAlphaNumOrUnderscore
     pure (Text.cons c cs)
 
 -- | Parses the end of an environment.

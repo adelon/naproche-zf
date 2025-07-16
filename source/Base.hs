@@ -28,15 +28,16 @@ import Data.Foldable as Export
 import Data.Function as Export (on)
 import Data.Functor as Export (void)
 import Data.Hashable as Export (Hashable(..))
+import Data.HashMap.Strict as Export (HashMap)
+import Data.HashSet as Export (HashSet)
 import Data.IntMap.Strict as Export (IntMap)
 import Data.List.NonEmpty as Export (NonEmpty(..))
 import Data.List.NonEmpty qualified as NonEmpty
 import Data.Map as Export (Map)
 import Data.Maybe as Export hiding (mapMaybe, catMaybes)  -- Replaced by generalized form from "Data.Filtrable".
+import Data.Monoid (First(..))
 import Data.Sequence as Export (Seq(..), replicateA)
 import Data.Set as Export (Set)
-import Data.HashSet as Export (HashSet)
-import Data.HashMap.Strict as Export (HashMap)
 import Data.String as Export (IsString(..))
 import Data.Text as Export (Text)
 import Data.Traversable as Export
@@ -46,7 +47,6 @@ import Debug.Trace as Export
 import GHC.Generics as Export (Generic(..), Generic1(..))
 import Prettyprinter as Export (pretty)
 import UnliftIO as Export (throwIO)
-import Data.Monoid (First(..))
 
 -- | Signal to the developer that a branch is unreachable or represent
 -- an impossible state. Using @impossible@ instead of @error@ allows
