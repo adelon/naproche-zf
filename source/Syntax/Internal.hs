@@ -329,7 +329,7 @@ makeIff :: [ExprOf a] -> ExprOf a
 makeIff = \case
     [] -> Bottom
     es -> List.foldl1' Iff es
-    
+
 makeXor :: [ExprOf a] -> ExprOf a
 makeXor = \case
     [] -> Bottom
@@ -404,6 +404,10 @@ data IntroRule = IntroRule
     }
     deriving (Show, Eq, Ord)
 
+data CalcQuantifier
+    = CalcForall (NonEmpty VarSymbol) (Maybe Formula)
+    | CalcUnquantified
+    deriving (Show, Eq, Ord)
 
 data Proof
     = Omitted
@@ -435,7 +439,7 @@ data Proof
     | Have Formula Justification Proof
     -- ^ An affirmation, e.g.: /@We have \<stmt\> by \<ref\>@/.
     --
-    | Calc Calc Proof
+    | Calc CalcQuantifier Calc Proof
     | Subclaim Formula Proof Proof
     -- ^ A claim is a sublemma with its own proof:
     --
@@ -474,25 +478,32 @@ deriving instance Show Calc
 deriving instance Eq   Calc
 deriving instance Ord  Calc
 
-calcResult :: Calc -> ExprOf VarSymbol
-calcResult = \case
-    Equation e eqns -> e `Equals` fst (NonEmpty.last eqns)
-    Biconditionals phi phis -> phi `Iff` fst (NonEmpty.last phis)
+calcQuant :: CalcQuantifier -> (Formula -> Formula)
+calcQuant = \case
+    CalcUnquantified -> id
+    CalcForall xs maySuchThat -> case maySuchThat of
+        Nothing -> makeForall xs
+        Just suchThat -> \phi -> makeForall xs (suchThat `Implies` phi)
 
-calculation :: Calc -> [(ExprOf VarSymbol, Justification)]
-calculation = \case
-    Equation e1 eqns@((e2, jst) :| _) -> (e1 `Equals` e2, jst) : collectEquations (toList eqns)
-    Biconditionals p1 ps@((p2, jst) :| _) -> (p1 `Iff` p2, jst) : collectBiconditionals (toList ps)
+calcResult :: CalcQuantifier -> Calc -> ExprOf VarSymbol
+calcResult quant = \case
+    Equation e eqns -> calcQuant quant (e `Equals` fst (NonEmpty.last eqns))
+    Biconditionals phi phis -> calcQuant quant (phi `Iff` fst (NonEmpty.last phis))
+
+calculation :: CalcQuantifier -> Calc -> [(ExprOf VarSymbol, Justification)]
+calculation quant = \case
+    Equation e1 eqns@((e2, jst) :| _) -> (calcQuant quant (e1 `Equals` e2), jst) : collectEquations quant (toList eqns)
+    Biconditionals p1 ps@((p2, jst) :| _) -> (calcQuant quant (p1 `Iff` p2), jst) : collectBiconditionals quant (toList ps)
 
 
-collectEquations :: [(ExprOf a, b)] -> [(ExprOf a, b)]
-collectEquations = \case
-    (e1, _) : eqns'@((e2, jst) : _) -> (e1 `Equals` e2, jst) : collectEquations eqns'
+collectEquations :: CalcQuantifier -> [(Formula, j)] -> [(Formula, j)]
+collectEquations quant = \case
+    (e1, _) : eqns'@((e2, jst) : _) -> (calcQuant quant (e1 `Equals` e2), jst) : collectEquations quant eqns'
     _ -> []
 
-collectBiconditionals :: [(ExprOf a, b)] -> [(ExprOf a, b)]
-collectBiconditionals = \case
-    (p1, _) : ps@((p2, jst) : _) -> (p1 `Iff` p2, jst) : collectEquations ps
+collectBiconditionals :: CalcQuantifier -> [(Formula, j)] -> [(Formula, j)]
+collectBiconditionals quant = \case
+    (p1, _) : ps@((p2, jst) : _) -> (calcQuant quant (p1 `Iff` p2), jst) : collectBiconditionals quant ps
     _ -> []
 
 

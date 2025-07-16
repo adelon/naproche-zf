@@ -539,17 +539,17 @@ checkProof = \case
             , Asm (relationNoun (TermVar funVar))
             ]
         checkProof continue
-    Calc calc continue -> do
-        checkCalc calc
-        assume [Asm (calcResult calc)]
+    Calc quant calc continue -> do
+        checkCalc quant calc
+        assume [Asm (calcResult quant calc)]
         checkProof continue
     DefineFunctionLocal funVar argVar domVar ranExpr definitions continue -> do
-        -- We have f: X \to Y and x \mapsto ...  
+        -- We have f: X \to Y and x \mapsto ...
         -- definition is a nonempty list of (expresssion e, formula phi)
         -- such that f(x) =  e if phi(x)
         -- since we do a case deduction in the definition there has to be a check that,
         -- our domains in the case are a disjunct union of dom(f)
-        assume 
+        assume
             [Asm (TermOp DomSymbol [TermVar funVar] `Equals` TermVar domVar)
             ,Asm (rightUniqueAdj (TermVar funVar))
             ,Asm (relationNoun (TermVar funVar))]
@@ -578,7 +578,7 @@ localFunctionGoal xs = makeXor $ map snd $ NonEmpty.toList xs
 --
 -- For    x \mapsto  expr(x,ys,cs) , if formula(x,ys)        ; here cs are just global constants
 --          ->   \forall x,ys: ( formula(x,ys) => expr(x,ys,cs))
- 
+
 
 functionSubdomianExpression :: VarSymbol -> VarSymbol -> VarSymbol -> Set VarSymbol -> [(Term, Formula)] -> [Asm]
 functionSubdomianExpression f a d s (x:xs) = singleFunctionSubdomianExpression f a d s x : functionSubdomianExpression f a d s xs
@@ -588,15 +588,15 @@ singleFunctionSubdomianExpression :: VarSymbol -> VarSymbol -> VarSymbol -> Set 
 singleFunctionSubdomianExpression funVar argVar domVar fixedV (expr, frm) = let
     -- boundVar = Set.toList (freeVars expr) in
     -- let def = makeForall (argVar:boundVar) (((TermVar argVar `IsElementOf` TermVar domVar) `And` frm) `Implies` TermOp ApplySymbol [TermVar funVar, TermVar argVar] `Equals` expr)
-    boundVar = fixedV in    
+    boundVar = fixedV in
     let def = forallClosure boundVar (((TermVar argVar `IsElementOf` TermVar domVar) `And` frm) `Implies` (TermOp ApplySymbol [TermVar funVar, TermVar argVar] `Equals` expr))
     in Asm def
-    
 
 
-checkCalc :: Calc -> Checking
-checkCalc calc = locally do
-    let tasks = calculation calc
+
+checkCalc :: CalcQuantifier -> Calc -> Checking
+checkCalc quant calc = locally do
+    let tasks = calculation quant calc
     forM_ tasks tell
     where
         tell = \case

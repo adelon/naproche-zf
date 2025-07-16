@@ -211,7 +211,6 @@ grammar lexicon@Lexicon{..} = mdo
 
     suchStmt <- rule $ _suchThat *> stmt <* optional _comma
 
-
    -- Symbolic quantifications with or without generalized bounds.
     symbolicForall <- rule $ SymbolicForall
         <$> ((_forAll <|> _forEvery) *> beginMath *> varSymbols)
@@ -327,9 +326,16 @@ grammar lexicon@Lexicon{..} = mdo
 
     let alignedIff = symbol "&" *> command "iff" <?> "\"&\\iff\""
     biconditionalItem <- rule $ (,) <$> (alignedIff *> formula) <*> explanation
-    biconditionals <- rule $ Biconditionals <$> formula <*> (many1 biconditionalItem)
+    biconditionals <- rule $ Biconditionals <$> formula <*> (many1 biconditionalItem) <* optional _dot
 
-    calc  <- rule $ Calc <$> align (equations <|> biconditionals) <*> proof
+
+    calcQuantifier <- rule $ CalcQuantifier <$>
+        ((_forAll <|> _forEvery) *> beginMath *> varSymbols)
+        <*> maybeBounded <* endMath
+        <*> optional suchStmt
+        <* optional _have
+
+    calc  <- rule $ Calc <$> optional calcQuantifier <*> align (equations <|> biconditionals) <*> proof
 
     caseOf           <- rule $ command "caseOf" *> token InvisibleBraceL *> stmt <* _dot <* token InvisibleBraceR
     byCases          <- rule $ ByCase <$> env_ "byCase" (many1_ (Case <$> caseOf <*> proof))
@@ -349,39 +355,40 @@ grammar lexicon@Lexicon{..} = mdo
     subclaim         <- rule $ Subclaim <$> (_show *> stmt <* _dot) <*> env_ "subproof" proof <*> proof
     have             <- rule $ Have <$> optional (_since *> stmt <* _comma <* _have) <* optional _haveIntro <*> stmt <*> justification <* _dot <*> proof
 
+
     define           <- rule $ Define <$> (_let *> beginMath *> varSymbol <* _eq) <*> expr <* endMath <* _dot <*> proof
     defineFunction   <- rule $ DefineFunction <$> (_let *> beginMath *> varSymbol) <*> paren varSymbol <* _eq <*>  expr <* endMath <* _for <* beginMath <*> varSymbol <* _in <*> expr <* endMath <* _dot <*> proof
-    
 
 
 
 
 
-    -- Define $f $\fromTo{X}{Y} such that,         
+
+    -- Define $f $\fromTo{X}{Y} such that,
     -- Define function $f: X \to Y$,
     -- \begin{align}
-    --      &x \mapsto 3*x      &,  
+    --      &x \mapsto 3*x      &,
     --      &x \mapsto 4*k    &,    \forall k \in \N. x \in \Set{k}
     -- \end{align}
-    -- 
+    --
 
     -- Follwing is the definition right now.
     -- Define function $f: X \to Y$ such that,
     -- \begin{cases}
     --     1 & \text{if } x \in \mathbb{Q}\\
     --     0 & \text{if } x \in \mathbb{R}\setminus\mathbb{Q}
-    --     3 & \text{else}     
+    --     3 & \text{else}
     -- \end{cases}
 
     functionDefineCase <- rule $ (,) <$> (optional _ampersand *> expr) <*> (_ampersand *> text _if *> formula)
-    defineFunctionLocal <-  rule    $ DefineFunctionLocal 
+    defineFunctionLocal <-  rule    $ DefineFunctionLocal
                                     <$> (_define *> beginMath *> varSymbol)           -- Define $ f
                                     <*> (_colon *> varSymbol)                           -- : 'var' \to 'var'
-                                    <*> (_to *> expr <* endMath <* _suchThat) 
+                                    <*> (_to *> expr <* endMath <* _suchThat)
                                     -- <*> (_suchThat  *> align (many1 ((_ampersand *> varSymbol <* _mapsto) <*> exprApp <*> (_ampersand *> formula))))
                                     -- <*> (_suchThat  *> align (many1 (varSymbol <* exprApp <*  formula)))
                                     <*> (beginMath *> varSymbol) <*> (paren varSymbol <* _eq )
-                                    <*> cases (many1 functionDefineCase) <* endMath <* optional _dot 
+                                    <*> cases (many1 functionDefineCase) <* endMath <* optional _dot
                                     <*> proof
 
 

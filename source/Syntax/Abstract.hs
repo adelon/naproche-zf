@@ -338,6 +338,10 @@ data Defn
     | DefnOp SymbolPattern Expr
     deriving (Show, Eq, Ord)
 
+data CalcQuantifier
+    = CalcQuantifier (NonEmpty VarSymbol) Bound (Maybe Stmt)
+    deriving (Show, Eq, Ord)
+
 data Proof
     = Omitted
     | Qed Justification
@@ -351,7 +355,7 @@ data Proof
     | Assume Stmt Proof
     | FixSymbolic (NonEmpty VarSymbol) Bound Proof
     | FixSuchThat (NonEmpty VarSymbol) Stmt Proof
-    | Calc Calc Proof
+    | Calc (Maybe CalcQuantifier) Calc Proof
     -- ^ Simplify goals that are implications or disjunctions.
     | TakeVar (NonEmpty VarSymbol) Bound Stmt Justification Proof
     | TakeNoun (NounPhrase []) Justification Proof

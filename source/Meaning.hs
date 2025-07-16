@@ -605,14 +605,22 @@ glossProof = \case
         if domVar == argVar
             then Sem.DefineFunction funVar argVar <$> glossExpr valueExpr <*> glossExpr domExpr <*> glossProof proof
             else error "mismatched variables in function definition."
-    
+
     Raw.DefineFunctionLocal funVar domVar ranExpr funVar2 argVar definitions proof -> do
         if funVar == funVar2
             then Sem.DefineFunctionLocal funVar argVar domVar <$> glossExpr ranExpr <*> (glossLocalFunctionExprDef `each` definitions) <*> glossProof proof
             else error "missmatched function names"
-    Raw.Calc calc proof ->
-        Sem.Calc <$> glossCalc calc <*> glossProof proof
+    Raw.Calc calcQuant calc proof ->
+        Sem.Calc <$> glossCalcQuantifier calcQuant <*> glossCalc calc <*> glossProof proof
 
+glossCalcQuantifier :: Maybe Raw.CalcQuantifier -> Gloss Sem.CalcQuantifier
+glossCalcQuantifier Nothing = pure Sem.CalcUnquantified
+glossCalcQuantifier (Just (Raw.CalcQuantifier xs bound maySuchThat)) = do
+    bound' <- glossBound bound
+    maySuchThat' <- glossStmt `each` maySuchThat
+    let maySuchThat'' = case (bound', maySuchThat') of
+            _ -> Nothing
+    pure (Sem.CalcForall xs maySuchThat'')
 
 glossLocalFunctionExprDef :: (Raw.Expr, Raw.Formula) -> Gloss (Sem.Term, Sem.Formula)
 glossLocalFunctionExprDef (definingExpression, localDomain) = do

@@ -235,13 +235,6 @@ To show that \in\ is a strict total order it only remains to show that \in\ is c
         % Goal: ordinal(fgamma)=>(elem(falpha,fgamma)|elem(fgamma,falpha)|falpha=fgamma))
         %
         Assume $\gamma$ is an ordinal.
-        % Goal:
-        % elem(falpha,fgamma)|elem(fgamma,falpha)|falpha=fgamma
-        %
-        % Original Vampire proof:
-        % Follows by \cref{setext,transitiveset,ordinal,in_implies_neq,prec_is_ordinal,in_asymmetric}.
-        %
-        % Pruned proof:
         Follows by \cref{setext,transitiveset,ordinal}.
     \end{subproof}
 \end{proof}
@@ -489,7 +482,7 @@ Then $\alpha\subseteq\beta$.
 \end{proposition}
 \begin{proof}
     % Vampire proof:
-    Follows by \cref{inters_of_ordinals_is_ordinal,in_implies_neq,inters_iff_forall,ordinal_subseteq_implies_elem_or_eq,inters_subseteq_elem}.
+    Follows by \cref{inters_of_ordinals_is_ordinal,in_irrefl,inters_iff_forall,ordinal_subseteq_implies_elem_or_eq,inters_subseteq_elem}.
 \end{proof}
 
 \begin{proposition}\label{inters_of_ordinals_is_minimal}

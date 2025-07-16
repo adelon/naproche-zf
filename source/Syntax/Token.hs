@@ -321,14 +321,17 @@ var = guardM isMathMode *> lexeme (fmap Variable var')
     where
     var' = do
         alphabeticPart <- letter <|> bb <|> greek
-        variationPart  <- subscriptNumber <|> ticked <|> pure ""
+        variationPart  <- subscript <|> ticked <|> pure ""
         pure (alphabeticPart <> variationPart)
 
-    subscriptNumber :: Lexer Text
-    subscriptNumber = do
+    subscript :: Lexer Text
+    subscript = do
         Char.char '_'
-        n <- some Char.digitChar
-        pure (Text.pack n)
+        unbraced <|> braced <|> text
+        where
+            unbraced = Text.singleton <$> Char.alphaNumChar
+            braced = Text.pack <$> (Char.char '{' *> many Char.alphaNumChar <* Char.char '}')
+            text = Char.string "\\text" *> braced -- for rendering the subscript in roman type
 
     -- Temporary hack to fit the TPTP format.
     ticked :: Lexer Text

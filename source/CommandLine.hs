@@ -18,7 +18,6 @@ import UnliftIO
 import UnliftIO.Directory
 import UnliftIO.Environment (lookupEnv)
 import System.FilePath.Posix
-import qualified Tptp.UnsortedFirstOrder as Syntax.Internal
 
 runCommandLine :: IO ()
 runCommandLine = do
@@ -94,7 +93,7 @@ run = do
                             Text.putStrLn task
                             Text.putStrLn err
                             Text.putStrLn tptp
-                            
+
                 WithFailList -> liftIO case result of
                     VerificationSuccess -> putStrLn "\ESC[32mVerification successful.\ESC[0m"
                     VerificationFailure [] -> error "Empty verification fail"

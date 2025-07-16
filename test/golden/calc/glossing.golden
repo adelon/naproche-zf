@@ -71,7 +71,7 @@
         , sourceColumn = Pos 1
         }
     )
-    ( Calc
+    ( Calc CalcUnquantified
         ( Equation
             ( TermVar
                 ( NamedVar "y" )
@@ -120,7 +120,7 @@
         , sourceColumn = Pos 1
         }
     )
-    ( Calc
+    ( Calc CalcUnquantified
         ( Biconditionals
             ( TermSymbol
                 ( SymbolPredicate

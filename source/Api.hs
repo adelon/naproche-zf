@@ -67,7 +67,6 @@ import Text.Megaparsec hiding (parse, Token)
 import UnliftIO
 import UnliftIO.Directory
 import UnliftIO.Environment
-import Syntax.Abstract (Formula)
 
 -- | Follow all @\\import@ statements recursively and build a theory graph from them.
 -- The @\\import@ statements should be on their own separate line and precede all

@@ -80,7 +80,7 @@
         , sourceColumn = Pos 1
         }
     )
-    ( Calc
+    ( Calc Nothing
         ( Equation
             ( ExprVar
                 ( NamedVar "y" )
@@ -132,7 +132,7 @@
         , sourceColumn = Pos 1
         }
     )
-    ( Calc
+    ( Calc Nothing
         ( Biconditionals
             ( FormulaChain
                 ( ChainBase

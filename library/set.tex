@@ -124,16 +124,6 @@ which applies it to goals of the form “$A = B$” and  “$A \neq B$”.
     Suppose $A\neq\emptyset$. Then $A$ is inhabited.
 \end{proposition}
 
-%\begin{proposition}\label{empty_iff_emptyset}
-%    $A$ is empty iff $A = \emptyset$.
-%\end{proposition}
-
-
-\begin{proposition}%
-\label{empty_eq}
-    If $x$ and $y$ are empty, then $x = y$.
-\end{proposition}
-
 \begin{proposition}\label{emptyset_subseteq}
     For all $a$ we have $\emptyset \subseteq a$.
 \end{proposition}
@@ -351,17 +341,19 @@ The $\operatorname{\textsf{cons}}$ operation is determined by the following axio
     If $c\in B$, then $c\in A\union B$.
 \end{proposition}
 
-% TODO SLOW
 \begin{proposition}\label{union_as_unions}
     $\unions{\{x,y\}} = x\union y$.
 \end{proposition}
 \begin{proof}
-    %For all z we have
-    %\begin{align*}
-    %    z\in \unions{\{x,y\}}
-    %    &\iff \exists Z\in\{x,y\}. z\in Z
-    %\end{align*}
-    Follows by set extensionality.
+    For all $z$ we have
+    \begin{align*}
+        z\in \unions{\{x,y\}}
+        &\iff \exists Z\in\{x,y\}. z\in Z
+        &\iff z\in x \lor z\in y
+        &\iff z\in x\union y.
+    \end{align*}
+    Follows by \cref{setext}.
+    %Follows by set extensionality.
 \end{proof}
 
 \begin{proposition}[Commutativity of union]%
