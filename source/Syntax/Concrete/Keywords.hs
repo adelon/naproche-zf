@@ -183,8 +183,6 @@ _the :: Prod r Text (Located Token) SourcePos
 _the = word "the" ? "the"
 _then :: Prod r Text (Located Token) SourcePos
 _then = word "then" ? "then"
-_throughout :: Prod r Text (Located Token) SourcePos
-_throughout = word "throughout" <* optional (word "this" <* word "section") <* optional _comma <|> (word "in" <* word "the" <* word "sequel") ? "throughout"
 _thus :: Prod r Text (Located Token) SourcePos
 _thus = word "thus" <|> word "then" <|> word "hence" <|> word "now" <|> word "finally" <|> word "therefore" ? "thus"
 _trivial :: Prod r Text (Located Token) SourcePos
