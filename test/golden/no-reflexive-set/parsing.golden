@@ -34,7 +34,7 @@
                         ) Negative
                         ( RelationSymbol
                             ( Command "in" )
-                        )
+                        ) []
                         ( ExprVar
                             ( NamedVar "A" ) :| []
                         )

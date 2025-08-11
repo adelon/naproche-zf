@@ -16,7 +16,7 @@
                         ) Positive
                         ( RelationSymbol
                             ( Command "in" )
-                        )
+                        ) []
                         ( ExprOp
                             [ Just
                                 ( Command "cons" )
@@ -45,7 +45,7 @@
                             ) Positive
                             ( RelationSymbol
                                 ( Symbol "=" )
-                            )
+                            ) []
                             ( ExprVar
                                 ( NamedVar "y" ) :| []
                             )
@@ -60,7 +60,7 @@
                             ) Positive
                             ( RelationSymbol
                                 ( Command "in" )
-                            )
+                            ) []
                             ( ExprVar
                                 ( NamedVar "X" ) :| []
                             )
@@ -111,7 +111,7 @@
                     ) Positive
                     ( RelationSymbol
                         ( Command "in" )
-                    )
+                    ) []
                     ( ExprOp
                         [ Just
                             ( Command "unit" )

@@ -92,8 +92,8 @@ makeTuple = foldr1 ExprPair
 
 
 data Chain
-    = ChainBase (NonEmpty Expr) Sign Relation (NonEmpty Expr)
-    | ChainCons (NonEmpty Expr) Sign Relation Chain
+    = ChainBase (NonEmpty Expr) Sign Relation [Expr] (NonEmpty Expr) -- left arguments, possibly empty list of parameters, right arguments
+    | ChainCons (NonEmpty Expr) Sign Relation [Expr] Chain
     deriving (Show, Eq, Ord)
 
 data Relation
@@ -319,7 +319,7 @@ data DefnHead
     | DefnVerb (Maybe (NounPhrase Maybe)) VarSymbol (VerbOf VarSymbol)
     | DefnNoun VarSymbol (NounOf VarSymbol)
     | DefnSymbolicPredicate PrefixPredicate (NonEmpty VarSymbol)
-    | DefnRel VarSymbol RelationSymbol VarSymbol
+    | DefnRel VarSymbol RelationSymbol [VarSymbol] VarSymbol
     -- ^ E.g.: /@$x \subseteq y$ iff [...@/
     deriving (Show, Eq, Ord)
 
@@ -411,7 +411,7 @@ data Abbreviation
     = AbbreviationAdj VarSymbol (AdjOf VarSymbol) Stmt
     | AbbreviationVerb VarSymbol (VerbOf VarSymbol) Stmt
     | AbbreviationNoun VarSymbol (NounOf VarSymbol) Stmt
-    | AbbreviationRel VarSymbol RelationSymbol VarSymbol Stmt
+    | AbbreviationRel VarSymbol RelationSymbol [VarSymbol] VarSymbol Stmt
     | AbbreviationFun (FunOf VarSymbol) Term
     | AbbreviationEq SymbolPattern Expr
     deriving (Show, Eq, Ord)

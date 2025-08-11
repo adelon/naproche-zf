@@ -19,7 +19,7 @@
                                 ) Positive
                                 ( RelationSymbol
                                     ( Command "in" )
-                                )
+                                ) []
                                 ( ExprVar
                                     ( NamedVar "A" ) :| []
                                 )
@@ -34,7 +34,7 @@
                                 ) Positive
                                 ( RelationSymbol
                                     ( Command "in" )
-                                )
+                                ) []
                                 ( ExprVar
                                     ( NamedVar "B" ) :| []
                                 )
@@ -52,7 +52,7 @@
                     ) Positive
                     ( RelationSymbol
                         ( Symbol "=" )
-                    )
+                    ) []
                     ( ExprVar
                         ( NamedVar "B" ) :| []
                     )
@@ -96,7 +96,7 @@
                         ) Positive
                         ( RelationSymbol
                             ( Command "in" )
-                        )
+                        ) []
                         ( ExprOp
                             [ Nothing
                             , Just
@@ -121,7 +121,7 @@
                             ) Positive
                             ( RelationSymbol
                                 ( Command "in" )
-                            )
+                            ) []
                             ( ExprVar
                                 ( NamedVar "A" ) :| []
                             )
@@ -136,7 +136,7 @@
                             ) Positive
                             ( RelationSymbol
                                 ( Command "in" )
-                            )
+                            ) []
                             ( ExprVar
                                 ( NamedVar "B" ) :| []
                             )
@@ -172,7 +172,7 @@
                     ) Positive
                     ( RelationSymbol
                         ( Symbol "=" )
-                    )
+                    ) []
                     ( ExprOp
                         [ Nothing
                         , Just
@@ -224,7 +224,7 @@
                     ) Positive
                     ( RelationSymbol
                         ( Symbol "=" )
-                    )
+                    ) []
                     ( ExprOp
                         [ Nothing
                         , Just
@@ -269,7 +269,7 @@
                             ) Positive
                             ( RelationSymbol
                                 ( Command "in" )
-                            )
+                            ) []
                             ( ExprOp
                                 [ Nothing
                                 , Just
@@ -302,7 +302,7 @@
                             ) Positive
                             ( RelationSymbol
                                 ( Command "in" )
-                            )
+                            ) []
                             ( ExprOp
                                 [ Nothing
                                 , Just
@@ -341,7 +341,7 @@
                                 ) Positive
                                 ( RelationSymbol
                                     ( Command "in" )
-                                )
+                                ) []
                                 ( ExprOp
                                     [ Nothing
                                     , Just
@@ -374,7 +374,7 @@
                                 ) Positive
                                 ( RelationSymbol
                                     ( Command "in" )
-                                )
+                                ) []
                                 ( ExprOp
                                     [ Nothing
                                     , Just

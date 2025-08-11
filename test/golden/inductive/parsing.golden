@@ -9,7 +9,7 @@
     ( Defn []
         ( DefnRel
             ( NamedVar "A" )
-            ( Command "subseteq" )
+            ( Command "subseteq" ) []
             ( NamedVar "B" )
         )
         ( StmtFormula
@@ -20,7 +20,7 @@
                     ) Positive
                     ( RelationSymbol
                         ( Symbol "=" )
-                    )
+                    ) []
                     ( ExprVar
                         ( NamedVar "B" ) :| []
                     )
@@ -176,7 +176,7 @@
                     ) Positive
                     ( RelationSymbol
                         ( Command "in" )
-                    )
+                    ) []
                     ( ExprOp
                         [ Just
                             ( Command "emptyset" )
@@ -224,7 +224,7 @@
                     ) Positive
                     ( RelationSymbol
                         ( Command "in" )
-                    )
+                    ) []
                     ( ExprOp
                         [ Just
                             ( Command "fin" )
@@ -247,7 +247,7 @@
                             ) Positive
                             ( RelationSymbol
                                 ( Command "in" )
-                            )
+                            ) []
                             ( ExprVar
                                 ( NamedVar "A" ) :| []
                             )
@@ -259,7 +259,7 @@
                             ) Positive
                             ( RelationSymbol
                                 ( Command "in" )
-                            )
+                            ) []
                             ( ExprOp
                                 [ Just
                                     ( Command "fin" )
@@ -293,7 +293,7 @@
                         ) Positive
                         ( RelationSymbol
                             ( Command "in" )
-                        )
+                        ) []
                         ( ExprOp
                             [ Just
                                 ( Command "fin" )
@@ -345,7 +345,7 @@
                         ) Positive
                         ( RelationSymbol
                             ( Command "subseteq" )
-                        )
+                        ) []
                         ( ExprVar
                             ( NamedVar "B" ) :| []
                         )
@@ -369,7 +369,7 @@
                     ) Positive
                     ( RelationSymbol
                         ( Command "subseteq" )
-                    )
+                    ) []
                     ( ExprOp
                         [ Just
                             ( Command "fin" )
@@ -438,7 +438,7 @@
                         ) Positive
                         ( RelationSymbol
                             ( Command "in" )
-                        )
+                        ) []
                         ( ExprVar
                             ( NamedVar "R" ) :| []
                         )
@@ -451,7 +451,7 @@
                     ) Positive
                     ( RelationSymbol
                         ( Command "in" )
-                    )
+                    ) []
                     ( ExprOp
                         [ Just
                             ( Command "tracl" )
@@ -487,7 +487,7 @@
                             ) Positive
                             ( RelationSymbol
                                 ( Command "in" )
-                            )
+                            ) []
                             ( ExprOp
                                 [ Just
                                     ( Command "tracl" )
@@ -520,7 +520,7 @@
                             ) Positive
                             ( RelationSymbol
                                 ( Command "in" )
-                            )
+                            ) []
                             ( ExprVar
                                 ( NamedVar "R" ) :| []
                             )
@@ -546,7 +546,7 @@
                         ) Positive
                         ( RelationSymbol
                             ( Command "in" )
-                        )
+                        ) []
                         ( ExprOp
                             [ Just
                                 ( Command "tracl" )
@@ -616,7 +616,7 @@
                         ) Positive
                         ( RelationSymbol
                             ( Command "in" )
-                        )
+                        ) []
                         ( ExprOp
                             [ Just
                                 ( Command "fld" )
@@ -650,7 +650,7 @@
                     ) Positive
                     ( RelationSymbol
                         ( Command "in" )
-                    )
+                    ) []
                     ( ExprOp
                         [ Just
                             ( Command "qrefltracl" )
@@ -686,7 +686,7 @@
                             ) Positive
                             ( RelationSymbol
                                 ( Command "in" )
-                            )
+                            ) []
                             ( ExprOp
                                 [ Just
                                     ( Command "qrefltracl" )
@@ -719,7 +719,7 @@
                             ) Positive
                             ( RelationSymbol
                                 ( Command "in" )
-                            )
+                            ) []
                             ( ExprVar
                                 ( NamedVar "R" ) :| []
                             )
@@ -745,7 +745,7 @@
                         ) Positive
                         ( RelationSymbol
                             ( Command "in" )
-                        )
+                        ) []
                         ( ExprOp
                             [ Just
                                 ( Command "qrefltracl" )
@@ -804,7 +804,7 @@
                         ) Positive
                         ( RelationSymbol
                             ( Command "in" )
-                        )
+                        ) []
                         ( ExprVar
                             ( NamedVar "A" ) :| []
                         )
@@ -830,7 +830,7 @@
                     ) Positive
                     ( RelationSymbol
                         ( Command "in" )
-                    )
+                    ) []
                     ( ExprOp
                         [ Just
                             ( Command "refltracl" )
@@ -871,7 +871,7 @@
                             ) Positive
                             ( RelationSymbol
                                 ( Command "in" )
-                            )
+                            ) []
                             ( ExprOp
                                 [ Just
                                     ( Command "refltracl" )
@@ -909,7 +909,7 @@
                             ) Positive
                             ( RelationSymbol
                                 ( Command "in" )
-                            )
+                            ) []
                             ( ExprVar
                                 ( NamedVar "R" ) :| []
                             )
@@ -935,7 +935,7 @@
                         ) Positive
                         ( RelationSymbol
                             ( Command "in" )
-                        )
+                        ) []
                         ( ExprOp
                             [ Just
                                 ( Command "refltracl" )
@@ -993,7 +993,7 @@
                         ) Positive
                         ( RelationSymbol
                             ( Command "in" )
-                        )
+                        ) []
                         ( ExprOp
                             [ Just
                                 ( Command "fld" )
@@ -1028,7 +1028,7 @@
                         ) Positive
                         ( RelationSymbol
                             ( Command "in" )
-                        )
+                        ) []
                         ( ExprOp
                             [ Just
                                 ( Command "pow" )
@@ -1057,7 +1057,7 @@
                     ) Positive
                     ( RelationSymbol
                         ( Command "in" )
-                    )
+                    ) []
                     ( ExprOp
                         [ Just
                             ( Command "acc" )

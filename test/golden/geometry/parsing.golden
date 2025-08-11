@@ -244,7 +244,7 @@
                         ) Positive
                         ( RelationSymbol
                             ( Symbol "=" )
-                        )
+                        ) []
                         ( ExprVar
                             ( NamedVar "b" ) :| []
                         )
@@ -516,7 +516,7 @@
                             ) Positive
                             ( RelationSymbol
                                 ( Command "neq" )
-                            )
+                            ) []
                             ( ExprVar
                                 ( NamedVar "b" ) :| []
                             )
@@ -590,7 +590,7 @@
                         ) Positive
                         ( RelationSymbol
                             ( Symbol "=" )
-                        )
+                        ) []
                         ( ExprVar
                             ( NamedVar "b" ) :| []
                         )
@@ -798,7 +798,7 @@
                                     ) Positive
                                     ( RelationSymbol
                                         ( Command "neq" )
-                                    )
+                                    ) []
                                     ( ExprVar
                                         ( NamedVar "v" ) :| []
                                     )

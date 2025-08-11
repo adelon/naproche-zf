@@ -124,7 +124,7 @@ head = ScanNoun <$> noun
     <|> ScanAdj <$> adj
     <|> ScanVerb <$> verb
     <|> ScanFun <$> fun
-    <|> ScanRelationSymbol <$> relationSymbol
+    <|> ScanRelationSymbol . fst <$> relationSymbol
     <|> ScanFunctionSymbol <$> functionSymbol
     <|> ScanPrefixPredicate <$> prefixPredicate
 
@@ -184,14 +184,19 @@ verb = toLexicalPhrase <$> (var *> pat <* iff)
 fun :: RE Token LexicalPhrase
 fun = toLexicalPhrase <$> (the *> pat <* (is <|> comma))
 
-relationSymbol :: RE Token RelationSymbol
-relationSymbol = math relator' <* iff
+relationSymbol :: RE Token (RelationSymbol, Int)
+relationSymbol = definiendum <* iff
     where
-        relator' = do
+        definiendum = math do
             varSymbol
             rel <- symbol
+            k <- params
             varSymbol
-            pure rel
+            pure (rel, k)
+        params :: RE Token Int
+        params = do
+            vars <- many (sym InvisibleBraceL *> var <* sym InvisibleBraceR)
+            pure (length vars)
 
 functionSymbol :: RE Token FunctionSymbol
 functionSymbol = do

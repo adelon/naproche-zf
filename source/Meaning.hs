@@ -42,6 +42,7 @@ type Gloss = ExceptT GlossError (State GlossState)
 data GlossError
     = GlossDefnError DefnError String
     | GlossInductionError
+    | GlossRelationExprWithParams
     deriving (Show, Eq, Ord)
 
 
@@ -189,36 +190,39 @@ glossChain :: Sem.Chain -> Gloss (Sem.ExprOf VarSymbol)
 glossChain ch = Sem.makeConjunction <$> makeRels (conjuncts (splat ch))
     where
         -- | Separate each link of the chain into separate triples.
-        splat :: Raw.Chain -> [(NonEmpty Raw.Expr, Sign, Raw.Relation, NonEmpty Raw.Expr)]
+        splat :: Raw.Chain -> [(NonEmpty Raw.Expr, Sign, Raw.Relation, [Raw.Expr], NonEmpty Raw.Expr)]
         splat = \case
-            Raw.ChainBase es sign rel es'
-                -> [(es, sign, rel, es')]
-            Raw.ChainCons es sign rel ch'@(Raw.ChainBase es' _ _ _)
-                -> (es, sign, rel, es') : splat ch'
-            Raw.ChainCons es sign rel ch'@(Raw.ChainCons es' _ _ _)
-                -> (es, sign, rel, es') : splat ch'
+            Raw.ChainBase es sign rel params es'
+                -> [(es, sign, rel, params, es')]
+            Raw.ChainCons es sign rel params ch'@(Raw.ChainBase es' _ _ _ _)
+                -> (es, sign, rel, params, es') : splat ch'
+            Raw.ChainCons es sign rel params ch'@(Raw.ChainCons es' _ _ _ _)
+                -> (es, sign, rel, params, es') : splat ch'
 
         -- | Take each triple and combine the lhs/rhs to make all the conjuncts.
-        conjuncts :: [(NonEmpty Raw.Expr, Sign, Raw.Relation, NonEmpty Raw.Expr)] -> [(Sign, Raw.Relation, Raw.Expr, Raw.Expr)]
+        conjuncts :: [(NonEmpty Raw.Expr, Sign, Raw.Relation, [Raw.Expr], NonEmpty Raw.Expr)] -> [(Sign, Raw.Relation, [Raw.Expr], Raw.Expr, Raw.Expr)]
         conjuncts triples = do
-            (e1s, sign, rel, e2s) <- triples
+            (e1s, sign, rel, params, e2s) <- triples
             e1 <- toList e1s
             e2 <- toList e2s
-            pure (sign, rel, e1, e2)
+            pure (sign, rel, params, e1, e2)
 
-        makeRels :: [(Sign, Raw.Relation, Raw.Expr, Raw.Expr)] -> Gloss [Sem.Formula]
+        makeRels :: [(Sign, Raw.Relation, [Raw.Expr], Raw.Expr, Raw.Expr)] -> Gloss [Sem.Formula]
         makeRels triples = for triples makeRel
 
-        makeRel :: (Sign, Raw.Relation, Raw.Expr, Raw.Expr) -> Gloss Sem.Formula
-        makeRel (sign, rel, e1, e2) = do
+        makeRel :: (Sign, Raw.Relation, [Raw.Expr], Raw.Expr, Raw.Expr) -> Gloss Sem.Formula
+        makeRel (sign, rel, params, e1, e2) = do
             e1' <- glossExpr e1
             e2' <- glossExpr e2
+            params' <- glossExpr `each` params
             case rel of
                 Raw.RelationSymbol tok ->
-                    pure $ sign' $ Sem.Relation tok (e1' : [e2'])
-                Raw.RelationExpr e -> do
-                    e' <- glossExpr e
-                    pure $ sign' $ Sem.TermPair e1' e2' `Sem.IsElementOf` e'
+                    pure $ sign' $ Sem.Relation tok (params' <> [e1',e2'])
+                Raw.RelationExpr e -> case params of
+                        [] -> do
+                            e' <- glossExpr e
+                            pure (sign' (Sem.TermPair e1' e2' `Sem.IsElementOf` e'))
+                        _ -> throwError GlossRelationExprWithParams
             where
                 sign' = case sign of
                     Positive -> id
@@ -542,8 +546,12 @@ glossDefnHead = \case
         pure $ \asms f -> Sem.DefnPredicate asms (Sem.PredicateVerb verb) (v :| vs) f
     Raw.DefnNoun v (Raw.Noun noun vs) ->
         pure $ \asms f -> Sem.DefnPredicate asms (Sem.PredicateNoun noun) (v :| vs) f
-    Raw.DefnRel v1 rel v2 ->
-        pure $ \asms f -> Sem.DefnPredicate asms (Sem.PredicateRelation rel) (v1 :| [v2]) f
+    Raw.DefnRel v1 rel params v2 ->
+        pure \asms f ->
+            let args = case params of
+                    p : ps -> p :| (ps <> [v1, v2])
+                    [] -> v1 :| [v2]
+            in Sem.DefnPredicate asms (Sem.PredicateRelation rel) args f
     Raw.DefnSymbolicPredicate (Raw.PrefixPredicate symb _ar) vs ->
         pure $ \asms f -> Sem.DefnPredicate asms (Sem.PredicateSymbol symb) vs f
 
@@ -688,8 +696,8 @@ glossAbbreviation = \case
         makeAbbrStmt (Sem.SymbolPredicate (Sem.PredicateVerb verb)) (x : xs) stmt
     Raw.AbbreviationNoun x (Raw.Noun noun xs) stmt ->
         makeAbbrStmt (Sem.SymbolPredicate (Sem.PredicateNoun noun)) (x : xs) stmt
-    Raw.AbbreviationRel x rel y stmt ->
-        makeAbbrStmt (Sem.SymbolPredicate (Sem.PredicateRelation rel)) [x, y] stmt
+    Raw.AbbreviationRel x rel params y stmt ->
+        makeAbbrStmt (Sem.SymbolPredicate (Sem.PredicateRelation rel)) (params <> [x, y]) stmt
     Raw.AbbreviationFun (Raw.Fun fun xs) t ->
         makeAbbrTerm (Sem.SymbolFun fun) xs t
     Raw.AbbreviationEq (Raw.SymbolPattern op xs) e ->

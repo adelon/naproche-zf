@@ -16,7 +16,7 @@
                         ) Positive
                         ( RelationSymbol
                             ( Command "in" )
-                        )
+                        ) []
                         ( ExprVar
                             ( NamedVar "y" ) :| []
                         )
@@ -31,7 +31,7 @@
                         ) Positive
                         ( RelationSymbol
                             ( Command "in" )
-                        )
+                        ) []
                         ( ExprVar
                             ( NamedVar "y" ) :| []
                         )
@@ -56,7 +56,7 @@
                     ) Positive
                     ( RelationSymbol
                         ( Command "in" )
-                    )
+                    ) []
                     ( ExprVar
                         ( NamedVar "y" ) :| []
                     )
@@ -72,7 +72,7 @@
                         ) Positive
                         ( RelationSymbol
                             ( Command "in" )
-                        )
+                        ) []
                         ( ExprVar
                             ( NamedVar "y" ) :| []
                         )
@@ -100,7 +100,7 @@
                             ) Positive
                             ( RelationSymbol
                                 ( Command "in" )
-                            )
+                            ) []
                             ( ExprVar
                                 ( NamedVar "y" ) :| []
                             )
@@ -115,7 +115,7 @@
                             ) Positive
                             ( RelationSymbol
                                 ( Command "in" )
-                            )
+                            ) []
                             ( ExprVar
                                 ( NamedVar "b" ) :| []
                             )
@@ -131,7 +131,7 @@
                         ) Positive
                         ( RelationSymbol
                             ( Command "in" )
-                        )
+                        ) []
                         ( ExprVar
                             ( NamedVar "y" ) :| []
                         )
@@ -156,7 +156,7 @@
                     ) Positive
                     ( RelationSymbol
                         ( Command "in" )
-                    )
+                    ) []
                     ( ExprVar
                         ( NamedVar "b" ) :| []
                     )
@@ -172,7 +172,7 @@
                         ) Positive
                         ( RelationSymbol
                             ( Command "in" )
-                        )
+                        ) []
                         ( ExprVar
                             ( NamedVar "y" ) :| []
                         )
@@ -188,7 +188,7 @@
                             ) Positive
                             ( RelationSymbol
                                 ( Command "in" )
-                            )
+                            ) []
                             ( ExprVar
                                 ( NamedVar "y" ) :| []
                             )

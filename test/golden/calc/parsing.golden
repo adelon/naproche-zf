@@ -15,7 +15,7 @@
                     ) Positive
                     ( RelationSymbol
                         ( Symbol "=" )
-                    )
+                    ) []
                     ( ExprVar
                         ( NamedVar "x" ) :| []
                     )
@@ -40,7 +40,7 @@
                     ) Positive
                     ( RelationSymbol
                         ( Symbol "=" )
-                    )
+                    ) []
                     ( ExprVar
                         ( NamedVar "z" ) :| []
                     )
@@ -65,7 +65,7 @@
                     ) Positive
                     ( RelationSymbol
                         ( Symbol "=" )
-                    )
+                    ) []
                     ( ExprVar
                         ( NamedVar "y" ) :| []
                     )
@@ -117,7 +117,7 @@
                     ) Positive
                     ( RelationSymbol
                         ( Symbol "=" )
-                    )
+                    ) []
                     ( ExprVar
                         ( NamedVar "y" ) :| []
                     )
@@ -141,7 +141,7 @@
                     ) Positive
                     ( RelationSymbol
                         ( Symbol "=" )
-                    )
+                    ) []
                     ( ExprVar
                         ( NamedVar "y" ) :| []
                     )
@@ -159,7 +159,7 @@
                             ) Positive
                             ( RelationSymbol
                                 ( Symbol "=" )
-                            )
+                            ) []
                             ( ExprVar
                                 ( NamedVar "y" ) :| []
                             )
