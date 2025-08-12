@@ -255,10 +255,11 @@ grammar lexicon@Lexicon{..} = mdo
     defnHead <- rule $ optional _write *> asum [defnAdj, defnVerb, defnNoun, defnRel, defnSymbolicPredicate]
 
     defnIf <- rule $ Defn <$> asms <*> defnHead <* (_iff <|> _if) <*> stmt <* _dot
-    defnFunSymb <- rule $ _comma *> termExpr <* _comma --  ^ Optional symbolic equivalent.
+    defnFunSymb <- rule $ _comma *> termExpr <* _comma --  Optional symbolic equivalent.
     defnFun <- rule $ DefnFun <$> asms <*> (optional _the *> funVar) <*> optional defnFunSymb <* _is <*> term <* _dot
 
     symbolicPatternEqTerm <- rule do
+        asms -- NB assumptions are currently ignored!
         pat <- beginMath *> symbolicPattern <* _eq
         e <- expr <* endMath <* _dot
         pure (pat, e)
