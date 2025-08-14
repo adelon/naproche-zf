@@ -122,25 +122,28 @@
     )
     ( Marker "dummy_abbr_test_noun" )
     ( Lemma []
-        ( StmtNoun
-            ( TermExpr
-                ( ExprVar
-                    ( NamedVar "x" )
-                ) :| []
-            ) NounPhrase ( [] )
-            ( Noun
-                ( SgPl
-                    { sg =
-                        [ Just
-                            ( Word "function" )
-                        ]
-                    , pl =
-                        [ Just
-                            ( Word "functions" )
-                        ]
-                    }
-                ) []
-            ) ( Nothing ) ( [] ) ( Nothing )
+        ( SymbolicQuantified Universally
+            ( NamedVar "x" :| [] ) Unbounded Nothing
+            ( StmtNoun
+                ( TermExpr
+                    ( ExprVar
+                        ( NamedVar "x" )
+                    ) :| []
+                ) NounPhrase ( [] )
+                ( Noun
+                    ( SgPl
+                        { sg =
+                            [ Just
+                                ( Word "function" )
+                            ]
+                        , pl =
+                            [ Just
+                                ( Word "functions" )
+                            ]
+                        }
+                    ) []
+                ) ( Nothing ) ( [] ) ( Nothing )
+            )
         )
     )
 , BlockAbbr

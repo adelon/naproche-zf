@@ -125,25 +125,31 @@
     )
     ( Marker "dummy_abbr_test_noun" )
     ( Lemma []
-        ( TermSymbol
-            ( SymbolPredicate
-                ( PredicateNoun
-                    ( SgPl
-                        { sg =
-                            [ Just
-                                ( Word "function" )
-                            ]
-                        , pl =
-                            [ Just
-                                ( Word "functions" )
-                            ]
-                        }
+        ( Quantified Universally
+            ( Scope
+                ( TermSymbol
+                    ( SymbolPredicate
+                        ( PredicateNoun
+                            ( SgPl
+                                { sg =
+                                    [ Just
+                                        ( Word "function" )
+                                    ]
+                                , pl =
+                                    [ Just
+                                        ( Word "functions" )
+                                    ]
+                                }
+                            )
+                        )
                     )
+                    [ TermVar
+                        ( B
+                            ( NamedVar "x" )
+                        )
+                    ]
                 )
             )
-            [ TermVar
-                ( NamedVar "x" )
-            ]
         )
     )
 , BlockAbbr

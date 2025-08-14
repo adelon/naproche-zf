@@ -1,0 +1,4 @@
+[ ScanRelationSymbol
+    ( Command "EQUAL" )
+    ( Marker "equalparam" )
+]

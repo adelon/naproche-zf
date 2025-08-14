@@ -129,9 +129,9 @@ head = ScanNoun <$> noun
     <|> ScanPrefixPredicate <$> prefixPredicate
 
 sigPred :: RE Token (Marker -> ScannedLexicalItem)
-sigPred = ScanNoun . toLexicalPhrase <$> (var *> can *> be *> an *> pat <* iff)
-    <|> ScanAdj . toLexicalPhrase <$> (var *> can *> be *> pat <* iff)
-    -- <|> ScanVerbInfinitive . toLexicalPhrase <$> (var *> can *> pat <* iff)
+sigPred = ScanNoun . toLexicalPhrase <$> (math var *> can *> be *> an *> pat <* iff)
+    <|> ScanAdj . toLexicalPhrase <$> (math var *> can *> be *> pat <* iff)
+    -- <|> ScanVerbInfinitive . toLexicalPhrase <$> (math var *> can *> pat <* iff)
 
 inductive :: RE Token [ScannedLexicalItem]
 inductive = do
@@ -151,7 +151,7 @@ struct = do
     few anySym
     m <- label
     few anySym
-    lexicalItem <- ScanStructNoun . toLexicalPhrase <$> (an *> structPat <* var)
+    lexicalItem <- ScanStructNoun . toLexicalPhrase <$> (an *> structPat <* math var)
     few anySym
     lexicalItems <- structOps <|> pure []
     sym (EndEnv "struct")
@@ -173,26 +173,28 @@ structOp = do
     pure (ScanStructOp op)
 
 noun :: RE Token LexicalPhrase
-noun = toLexicalPhrase <$> (var *> is *> an *> pat <* iff)
+noun = toLexicalPhrase <$> (math var *> is *> an *> pat <* iff)
 
 adj :: RE Token LexicalPhrase
-adj = toLexicalPhrase <$> (var *> is *> pat <* iff)
+adj = toLexicalPhrase <$> (math var *> is *> pat <* iff)
 
 verb :: RE Token LexicalPhrase
-verb = toLexicalPhrase <$> (var *> pat <* iff)
+verb = toLexicalPhrase <$> (math var *> pat <* iff)
 
 fun :: RE Token LexicalPhrase
 fun = toLexicalPhrase <$> (the *> pat <* (is <|> comma))
 
 relationSymbol :: RE Token (RelationSymbol, Int)
-relationSymbol = definiendum <* iff
-    where
-        definiendum = math do
-            varSymbol
-            rel <- symbol
-            k <- params
-            varSymbol
-            pure (rel, k)
+relationSymbol = do
+    beginMath
+    var
+    rel <- symbol
+    k <- params
+    var
+    endMath
+    iff
+    pure (rel, k)
+        where
         params :: RE Token Int
         params = do
             vars <- many (sym InvisibleBraceL *> var <* sym InvisibleBraceR)
@@ -203,7 +205,12 @@ functionSymbol = do
     sym (BeginEnv "math")
     toks <- few nonDefinitionKeyword
     sym (Symbol "=")
-    pure (fromToken <$> toks)
+    pure case toks of
+            -- TODO proper error messages with more info (location, etc.)
+            [] -> error "Malformed function pattern: no pattern"
+            [Variable _] -> error "Malformed function: bare variable. This will cause infinite left recursion in the grammar and cause the parser to hang!"
+            [Variable _, ParenL, Variable _, ParenR] -> error "Malformed function: redefinition of function application. The notation _(_) is reserved for set-theoretic function application."
+            _ -> fromToken <$> toks
     where
         fromToken = \case
             Variable _ -> Nothing -- Variables become slots.
@@ -225,7 +232,7 @@ prefixPredicate = math prfx <* iff
     where
         prfx = do
             r <- command
-            args <- many (sym InvisibleBraceL *> varSymbol <* sym InvisibleBraceR)
+            args <- many (sym InvisibleBraceL *> var <* sym InvisibleBraceR)
             pure (PrefixPredicate r (length args))
 
 
@@ -235,10 +242,7 @@ command = msym \case
     _ -> Nothing
 
 var :: RE Token Token
-var = math varSymbol
-
-varSymbol :: RE Token Token
-varSymbol = psym isVar
+var = psym isVar
 
 
 nonDefinitionKeyword :: RE Token Token
@@ -249,17 +253,23 @@ nonDefinitionKeyword = psym (`notElem` keywords)
             , Word "iff"
             , Symbol "="
             , Command "iff"
+            , BeginEnv "math"
+            , EndEnv "math"
             ]
 
 
 pat :: RE Token [Token]
-pat = many (psym isLexicalPhraseToken <|> var)
+pat = many (psym isLexicalPhraseToken <|> math var)
 
 structPat :: RE Token [Token]
 structPat = many (psym isLexicalPhraseToken)
 
+beginMath, endMath :: RE Token ()
+beginMath = void (sym (BeginEnv "math"))
+endMath = void (sym (EndEnv "math"))
+
 math :: RE Token a -> RE Token a
-math re = sym (BeginEnv "math") *> re <* sym (EndEnv "math")
+math re = beginMath *> re <* endMath
 
 -- | We allow /conditional perfection/: the first /@if@/ in a definition is interpreted as /@iff@/.
 iff :: RE Token ()

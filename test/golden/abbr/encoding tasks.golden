@@ -1,6 +1,6 @@
 fof(dummy_abbr_test_adj,conjecture,~?[Xy]:elem(Xy,fx)=>~?[Xy]:elem(Xy,fx)).
 ------------------
-fof(dummy_abbr_test_noun,conjecture,fx=fx).
+fof(dummy_abbr_test_noun,conjecture,![Xx]:Xx=Xx).
 fof(dummy_abbr_test_adj,axiom,![Xx]:(~?[Xy]:elem(Xy,Xx)=>~?[Xy]:elem(Xy,Xx))).
 ------------------
 fof(dummy_abbr_test_verb,conjecture,fx=fy=>fx=fy).
