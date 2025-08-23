@@ -330,7 +330,7 @@ var = guardM isMathMode *> lexeme (fmap Variable var')
         unbraced <|> braced <|> text
         where
             unbraced = Text.singleton <$> Char.alphaNumChar
-            braced = Text.pack <$> (Char.char '{' *> many Char.alphaNumChar <* Char.char '}')
+            braced = Text.pack <$> (Char.char '{' *> some Char.alphaNumChar <* Char.char '}')
             text = Char.string "\\text" *> braced -- for rendering the subscript in roman type
 
     -- Temporary hack to fit the TPTP format.
