@@ -281,7 +281,6 @@
     %        Fix $m \in \naturals$.
     %        It suffices to show that $m \in n$.
     %\end{byCase}
-
 \end{proof}
 
 
@@ -467,59 +466,11 @@
     Suppose $f$ is a bijection from $X$ to $Y$.
     Suppose $g$ is a function from $X$ to $Y$.
     Suppose $g$ is injective.
-    Suppose $X$ is finite and $Y$ is finite.
+    Suppose $X$ and $Y$ are finite.
     For all $n \in \naturals$ such that $Y$ has cardinality $n$ we have $g$ is a bijection from $X$ to $Y$.
 \end{lemma}
-\begin{proof}[Proof by \in-induction on $n$]
-    Assume $n \in \naturals$.
-    Suppose $Y$ has cardinality $n$.
-    $X$ has cardinality $n$ by \cref{bijection_converse_is_bijection,bijection_circ,regularity,cardinality,foundation,emptyset}.
-    \begin{byCase}
-        \caseOf{$n = \zero$.}
-            Follows by \cref{converse_converse_eq,injective_converse_is_function,converse_is_relation,dom_converse,id_is_function_to,id_ran,ran_circ_exact,circ,ran_converse,emptyset_is_function_on_emptyset,bijective_converse_are_funs,relext,function_member_elim,bijection_is_function,cardinality,bijections_dom,in_irrefl,codom_of_emptyset_can_be_anything,converse_emptyset,funs_elim,neq_witness,id}.
-        \caseOf{$n \neq \zero$.}
-            %Take $n' \in n$ such that $n = \suc{n'}$.
-            %$n' \in \naturals$.
-            %$n' + 1 = n$.
-            %Take $y$ such that $y \in Y$ by \cref{funs_type_apply,apply,bijections_to_funs,cardinality,foundation}.
-            %Let $Y' = Y \setminus \{y\}$.
-            %$Y' \subseteq Y$.
-            %$Y'$ is finite.
-            %There exist $m \in \naturals$ such that $Y'$ has cardinality $m$.
-            %Take $m \in \naturals$ such that $Y'$ has cardinality $m$.
-            %Then $Y'$ has cardinality $n'$.
-            %Let $x' = \apply{\converse{f}}{y'}$.
-            %$x' \in X$.
-            %Let $X' = X \setminus \{x'\}$.
-            %$X' \subseteq X$.
-            %$X'$ is finite.
-            %There exist $m' \in \naturals$ such that $X'$ has cardinality $m'$.
-            %Take $m' \in \naturals$ such that $X''$ has cardinality $m'$.
-            %Then $X'$ has cardinality $n'$.
-            %Let $f'(z)=f(z)$ for $z \in X'$.
-            %$\dom{f'} = X'$.
-            %$\ran{f'} = Y'$.
-            %$f'$ is a bijection from $X'$ to $Y'$.
-            %Let $g'(z) = g(z)$ for $z \in X'$.
-            %Then $g'$ is injective.
-            %Then $g'$ is a bijection from $X'$ to $Y'$ by \cref{rels,id_elem_rels,times_empty_right,powerset_emptyset,double_complement_union,unions_cons,union_eq_cons,union_as_unions,unions_pow,cons_absorb,setminus_self,bijections_dom,ran_converse,id_apply,apply,unions_emptyset,img_emptyset,zero_is_empty}.
-            %Define $G : X \to Y$ such that $G(z)=
-            %\begin{cases}
-            %    g'(z) & \text{if} z \in X' \\
-            %    y' & \text{if} z = x'
-            %\end{cases}$
-            %$G = g$.
-            %Follows by \cref{double_relative_complement,fun_to_surj,bijections,funs_surj_iff,bijections_to_funs,neq_witness,surj,funs_elim,setminus_self,cons_subseteq_iff,cardinality,ordinal_empty_or_emptyset_elem,naturals_inductive_set,natural_number_is_ordinal_for_all,foundation,inter_eq_left_implies_subseteq,inter_emptyset,cons_subseteq_intro,emptyset_subseteq}.
-            Omitted.
-    \end{byCase}
-    %$\converse{f}$ is a bijection from $Y$ to $X$.
-    %Let $h = g \circ \converse{f}$.
-    %It suffices to show that $\ran{g} = Y$ by \cref{fun_to_surj,dom_converse,bijections}.
-    %It suffices to show that for all $y \in Y$ we have there exist $x \in X$ such that $g(x)=y$ by \cref{funs_ran,subseteq_antisymmetric,fun_ran_iff,apply,funs_elim,ran_converse,subseteq}.
-%
-    %Fix $y \in Y$.
-    %Take $x \in X$ such that $\apply{\converse{f}}{y} = x$.
-
+\begin{proof}
+    Omitted.
 \end{proof}
 
 \begin{lemma}\label{injective_functions_is_bijection_if_bijection_there_is_other_bijection}
