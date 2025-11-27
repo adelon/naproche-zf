@@ -5,7 +5,7 @@
         , sourceColumn = Pos 1
         }
     )
-    ( Marker "equalparam" )
+    ( Marker "abbr_equal" )
     ( AbbreviationRel
         ( NamedVar "x" )
         ( Command "EQUAL" )
@@ -34,7 +34,7 @@
         , sourceColumn = Pos 1
         }
     )
-    ( Marker "dummy_abbr_test_noun" )
+    ( Marker "dummy_abbr_test" )
     ( Lemma []
         ( SymbolicQuantified Universally
             ( NamedVar "x" :| [] ) Unbounded Nothing
@@ -46,6 +46,66 @@
                         ) Positive
                         ( RelationSymbol
                             ( Command "EQUAL" )
+                            [ ExprVar
+                                ( NamedVar "y" )
+                            ]
+                        )
+                        ( ExprVar
+                            ( NamedVar "x" ) :| []
+                        )
+                    )
+                )
+            )
+        )
+    )
+, BlockAbbr
+    ( SourcePos
+        { sourceName = "test/examples/relparam.tex"
+        , sourceLine = Pos 11
+        , sourceColumn = Pos 1
+        }
+    )
+    ( Marker "defn_equals" )
+    ( AbbreviationRel
+        ( NamedVar "x" )
+        ( Command "EQUALS" )
+        [ NamedVar "y" ]
+        ( NamedVar "z" )
+        ( StmtFormula
+            ( FormulaChain
+                ( ChainBase
+                    ( ExprVar
+                        ( NamedVar "x" ) :| []
+                    ) Positive
+                    ( RelationSymbol
+                        ( Symbol "=" ) []
+                    )
+                    ( ExprVar
+                        ( NamedVar "z" ) :| []
+                    )
+                )
+            )
+        )
+    )
+, BlockLemma
+    ( SourcePos
+        { sourceName = "test/examples/relparam.tex"
+        , sourceLine = Pos 15
+        , sourceColumn = Pos 1
+        }
+    )
+    ( Marker "dummy_defn_test" )
+    ( Lemma []
+        ( SymbolicQuantified Universally
+            ( NamedVar "x" :| [] ) Unbounded Nothing
+            ( StmtFormula
+                ( FormulaChain
+                    ( ChainBase
+                        ( ExprVar
+                            ( NamedVar "x" ) :| []
+                        ) Positive
+                        ( RelationSymbol
+                            ( Command "EQUALS" )
                             [ ExprVar
                                 ( NamedVar "y" )
                             ]

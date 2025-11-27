@@ -1,1 +1,4 @@
-fof(dummy_abbr_test_noun,conjecture,![Xx]:Xx=Xx).
+fof(dummy_abbr_test,conjecture,![Xx]:Xx=Xx).
+------------------
+fof(dummy_defn_test,conjecture,![Xx]:Xx=Xx).
+fof(dummy_abbr_test,axiom,![Xx]:Xx=Xx).

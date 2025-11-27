@@ -1,4 +1,7 @@
 [ ScanRelationSymbol
     ( Command "EQUAL" )
-    ( Marker "equalparam" )
+    ( Marker "abbr_equal" )
+, ScanRelationSymbol
+    ( Command "EQUALS" )
+    ( Marker "defn_equals" )
 ]

@@ -1,7 +1,54 @@
 [ Task
     { taskDirectness = Direct
     , taskHypotheses = []
-    , taskConjectureLabel = Marker "dummy_abbr_test_noun"
+    , taskConjectureLabel = Marker "dummy_abbr_test"
+    , taskConjecture = Quantified Universally
+        ( Scope
+            ( TermSymbol
+                ( SymbolPredicate
+                    ( PredicateRelation
+                        ( Symbol "=" )
+                    )
+                )
+                [ TermVar
+                    ( B
+                        ( NamedVar "x" )
+                    )
+                , TermVar
+                    ( B
+                        ( NamedVar "x" )
+                    )
+                ]
+            )
+        )
+    }
+, Task
+    { taskDirectness = Direct
+    , taskHypotheses =
+        [
+            ( Marker "dummy_abbr_test"
+            , Quantified Universally
+                ( Scope
+                    ( TermSymbol
+                        ( SymbolPredicate
+                            ( PredicateRelation
+                                ( Symbol "=" )
+                            )
+                        )
+                        [ TermVar
+                            ( B
+                                ( NamedVar "x" )
+                            )
+                        , TermVar
+                            ( B
+                                ( NamedVar "x" )
+                            )
+                        ]
+                    )
+                )
+            )
+        ]
+    , taskConjectureLabel = Marker "dummy_defn_test"
     , taskConjecture = Quantified Universally
         ( Scope
             ( TermSymbol

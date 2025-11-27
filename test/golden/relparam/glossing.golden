@@ -5,7 +5,7 @@
         , sourceColumn = Pos 1
         }
     )
-    ( Marker "equalparam" )
+    ( Marker "abbr_equal" )
     ( Abbreviation
         ( SymbolPredicate
             ( PredicateRelation
@@ -34,7 +34,7 @@
         , sourceColumn = Pos 1
         }
     )
-    ( Marker "dummy_abbr_test_noun" )
+    ( Marker "dummy_abbr_test" )
     ( Lemma []
         ( Quantified Universally
             ( Scope
@@ -42,6 +42,71 @@
                     ( SymbolPredicate
                         ( PredicateRelation
                             ( Command "EQUAL" )
+                        )
+                    )
+                    [ TermVar
+                        ( F
+                            ( TermVar
+                                ( NamedVar "y" )
+                            )
+                        )
+                    , TermVar
+                        ( B
+                            ( NamedVar "x" )
+                        )
+                    , TermVar
+                        ( B
+                            ( NamedVar "x" )
+                        )
+                    ]
+                )
+            )
+        )
+    )
+, BlockAbbr
+    ( SourcePos
+        { sourceName = "test/examples/relparam.tex"
+        , sourceLine = Pos 11
+        , sourceColumn = Pos 1
+        }
+    )
+    ( Marker "defn_equals" )
+    ( Abbreviation
+        ( SymbolPredicate
+            ( PredicateRelation
+                ( Command "EQUALS" )
+            )
+        )
+        ( Scope
+            ( TermSymbol
+                ( SymbolPredicate
+                    ( PredicateRelation
+                        ( Symbol "=" )
+                    )
+                )
+                [ TermVar
+                    ( B 1 )
+                , TermVar
+                    ( B 2 )
+                ]
+            )
+        )
+    )
+, BlockLemma
+    ( SourcePos
+        { sourceName = "test/examples/relparam.tex"
+        , sourceLine = Pos 15
+        , sourceColumn = Pos 1
+        }
+    )
+    ( Marker "dummy_defn_test" )
+    ( Lemma []
+        ( Quantified Universally
+            ( Scope
+                ( TermSymbol
+                    ( SymbolPredicate
+                        ( PredicateRelation
+                            ( Command "EQUALS" )
                         )
                     )
                     [ TermVar
