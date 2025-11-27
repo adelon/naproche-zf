@@ -83,9 +83,9 @@ grammar lexicon@Lexicon{..} = mdo
 
     relationSign   <- rule $ pure Positive <|> (Negative <$ command "not")
     relationExpr   <- rule $ RelationExpr <$> (command "mathrel" *> group expr)
-    relation       <- rule $ (RelationSymbol <$> relator) <|> relationExpr
-    chainBase      <- rule $ ChainBase <$> exprs <*> relationSign <*> relation <*> many (brace expr) <*> exprs
-    chainCons      <- rule $ ChainCons <$> exprs <*> relationSign <*> relation <*> many (brace expr) <*> chain
+    relation       <- rule $ (RelationSymbol <$> relator <*> many (group expr)) <|> relationExpr
+    chainBase      <- rule $ ChainBase <$> exprs <*> relationSign <*> relation <*> exprs
+    chainCons      <- rule $ ChainCons <$> exprs <*> relationSign <*> relation <*> chain
     chain          <- rule $ chainCons <|> chainBase
 
     formulaPredicate  <- rule $ asum $ prefixPredicateOf FormulaPredicate expr <$> HM.keys lexiconPrefixPredicates
@@ -270,7 +270,7 @@ grammar lexicon@Lexicon{..} = mdo
     abbreviationVerb  <- rule $ AbbreviationVerb <$> var <*> verbVar <* (_iff <|> _if) <*> stmt <* _dot
     abbreviationAdj   <- rule $ AbbreviationAdj <$> var <* _is <*> adjVar <* (_iff <|> _if) <*> stmt <* _dot
     abbreviationNoun  <- rule $ AbbreviationNoun <$>  var <* _is <* _an <*> nounVar <* (_iff <|> _if) <*> stmt <* _dot
-    abbreviationRel   <- rule $ AbbreviationRel <$> (beginMath *> varSymbol) <*> relator <*> many (brace varSymbol) <*> varSymbol <* endMath <* (_iff <|> _if) <*> stmt <* _dot
+    abbreviationRel   <- rule $ AbbreviationRel <$> (beginMath *> varSymbol) <*> relator <*> many (group varSymbol) <*> varSymbol <* endMath <* (_iff <|> _if) <*> stmt <* _dot
     abbreviationFun   <- rule $ AbbreviationFun <$> (_the *> funVar) <* (_is <|> _denotes) <*> term <* _dot
     abbreviationEq    <- rule $ uncurry AbbreviationEq <$> symbolicPatternEqTerm
     abbreviation      <- rule $ (abbreviationVerb <|> abbreviationAdj <|> abbreviationNoun <|> abbreviationRel <|> abbreviationFun <|> abbreviationEq)

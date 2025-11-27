@@ -92,12 +92,12 @@ makeTuple = foldr1 ExprPair
 
 
 data Chain
-    = ChainBase (NonEmpty Expr) Sign Relation [Expr] (NonEmpty Expr) -- left arguments, possibly empty list of parameters, right arguments
-    | ChainCons (NonEmpty Expr) Sign Relation [Expr] Chain
+    = ChainBase (NonEmpty Expr) Sign Relation (NonEmpty Expr) -- left arguments, possibly empty list of parameters, right arguments
+    | ChainCons (NonEmpty Expr) Sign Relation Chain
     deriving (Show, Eq, Ord)
 
 data Relation
-    = RelationSymbol RelationSymbol  -- ^  E.g.: /@x \in X@/
+    = RelationSymbol RelationSymbol [Expr] -- ^  E.g.: /@x \in X@/, potentially with parameters in braces
     | RelationExpr Expr   -- ^  E.g.: /@x \mathrel{R} y@/
     deriving (Show, Eq, Ord)
 

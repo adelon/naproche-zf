@@ -15,8 +15,8 @@
                             ( NamedVar "x" ) :| []
                         ) Positive
                         ( RelationSymbol
-                            ( Command "in" )
-                        ) []
+                            ( Command "in" ) []
+                        )
                         ( ExprVar
                             ( NamedVar "y" ) :| []
                         )
@@ -30,8 +30,8 @@
                             ( NamedVar "x" ) :| []
                         ) Positive
                         ( RelationSymbol
-                            ( Command "in" )
-                        ) []
+                            ( Command "in" ) []
+                        )
                         ( ExprVar
                             ( NamedVar "y" ) :| []
                         )
@@ -55,8 +55,8 @@
                         ( NamedVar "x" ) :| []
                     ) Positive
                     ( RelationSymbol
-                        ( Command "in" )
-                    ) []
+                        ( Command "in" ) []
+                    )
                     ( ExprVar
                         ( NamedVar "y" ) :| []
                     )
@@ -71,8 +71,8 @@
                             ( NamedVar "x" ) :| []
                         ) Positive
                         ( RelationSymbol
-                            ( Command "in" )
-                        ) []
+                            ( Command "in" ) []
+                        )
                         ( ExprVar
                             ( NamedVar "y" ) :| []
                         )
@@ -99,8 +99,8 @@
                                 ( NamedVar "x" ) :| []
                             ) Positive
                             ( RelationSymbol
-                                ( Command "in" )
-                            ) []
+                                ( Command "in" ) []
+                            )
                             ( ExprVar
                                 ( NamedVar "y" ) :| []
                             )
@@ -114,8 +114,8 @@
                                 ( NamedVar "a" ) :| []
                             ) Positive
                             ( RelationSymbol
-                                ( Command "in" )
-                            ) []
+                                ( Command "in" ) []
+                            )
                             ( ExprVar
                                 ( NamedVar "b" ) :| []
                             )
@@ -130,8 +130,8 @@
                             ( NamedVar "x" ) :| []
                         ) Positive
                         ( RelationSymbol
-                            ( Command "in" )
-                        ) []
+                            ( Command "in" ) []
+                        )
                         ( ExprVar
                             ( NamedVar "y" ) :| []
                         )
@@ -155,8 +155,8 @@
                         ( NamedVar "a" ) :| []
                     ) Positive
                     ( RelationSymbol
-                        ( Command "in" )
-                    ) []
+                        ( Command "in" ) []
+                    )
                     ( ExprVar
                         ( NamedVar "b" ) :| []
                     )
@@ -171,8 +171,8 @@
                             ( NamedVar "x" ) :| []
                         ) Positive
                         ( RelationSymbol
-                            ( Command "in" )
-                        ) []
+                            ( Command "in" ) []
+                        )
                         ( ExprVar
                             ( NamedVar "y" ) :| []
                         )
@@ -187,8 +187,8 @@
                                 ( NamedVar "x" ) :| []
                             ) Positive
                             ( RelationSymbol
-                                ( Command "in" )
-                            ) []
+                                ( Command "in" ) []
+                            )
                             ( ExprVar
                                 ( NamedVar "y" ) :| []
                             )

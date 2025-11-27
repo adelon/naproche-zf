@@ -14,8 +14,8 @@
                         ( NamedVar "a" ) :| []
                     ) Positive
                     ( RelationSymbol
-                        ( Symbol "=" )
-                    ) []
+                        ( Symbol "=" ) []
+                    )
                     ( ExprVar
                         ( NamedVar "a" ) :| []
                     )
@@ -39,8 +39,8 @@
                         ( NamedVar "b" ) :| []
                     ) Positive
                     ( RelationSymbol
-                        ( Symbol "=" )
-                    ) []
+                        ( Symbol "=" ) []
+                    )
                     ( ExprVar
                         ( NamedVar "b" ) :| []
                     )
@@ -64,8 +64,8 @@
                         ( NamedVar "c" ) :| []
                     ) Positive
                     ( RelationSymbol
-                        ( Symbol "=" )
-                    ) []
+                        ( Symbol "=" ) []
+                    )
                     ( ExprVar
                         ( NamedVar "c" ) :| []
                     )
@@ -101,8 +101,8 @@
                         ( NamedVar "e" ) :| []
                     ) Positive
                     ( RelationSymbol
-                        ( Symbol "=" )
-                    ) []
+                        ( Symbol "=" ) []
+                    )
                     ( ExprVar
                         ( NamedVar "e" ) :| []
                     )
@@ -127,8 +127,8 @@
                             ( NamedVar "d" ) :| []
                         ) Positive
                         ( RelationSymbol
-                            ( Symbol "=" )
-                        ) []
+                            ( Symbol "=" ) []
+                        )
                         ( ExprVar
                             ( NamedVar "d" ) :| []
                         )
@@ -156,8 +156,8 @@
                         ( NamedVar "f" ) :| []
                     ) Positive
                     ( RelationSymbol
-                        ( Symbol "=" )
-                    ) []
+                        ( Symbol "=" ) []
+                    )
                     ( ExprVar
                         ( NamedVar "f" ) :| []
                     )

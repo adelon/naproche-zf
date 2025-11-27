@@ -1,0 +1,61 @@
+[ BlockAbbr
+    ( SourcePos
+        { sourceName = "test/examples/relparam.tex"
+        , sourceLine = Pos 2
+        , sourceColumn = Pos 1
+        }
+    )
+    ( Marker "equalparam" )
+    ( AbbreviationRel
+        ( NamedVar "x" )
+        ( Command "EQUAL" )
+        [ NamedVar "y" ]
+        ( NamedVar "z" )
+        ( StmtFormula
+            ( FormulaChain
+                ( ChainBase
+                    ( ExprVar
+                        ( NamedVar "x" ) :| []
+                    ) Positive
+                    ( RelationSymbol
+                        ( Symbol "=" ) []
+                    )
+                    ( ExprVar
+                        ( NamedVar "z" ) :| []
+                    )
+                )
+            )
+        )
+    )
+, BlockLemma
+    ( SourcePos
+        { sourceName = "test/examples/relparam.tex"
+        , sourceLine = Pos 6
+        , sourceColumn = Pos 1
+        }
+    )
+    ( Marker "dummy_abbr_test_noun" )
+    ( Lemma []
+        ( SymbolicQuantified Universally
+            ( NamedVar "x" :| [] ) Unbounded Nothing
+            ( StmtFormula
+                ( FormulaChain
+                    ( ChainBase
+                        ( ExprVar
+                            ( NamedVar "x" ) :| []
+                        ) Positive
+                        ( RelationSymbol
+                            ( Command "EQUAL" )
+                            [ ExprVar
+                                ( NamedVar "y" )
+                            ]
+                        )
+                        ( ExprVar
+                            ( NamedVar "x" ) :| []
+                        )
+                    )
+                )
+            )
+        )
+    )
+]

@@ -19,8 +19,8 @@
                                 ( NamedVar "x" ) :| []
                             ) Positive
                             ( RelationSymbol
-                                ( Symbol "=" )
-                            ) []
+                                ( Symbol "=" ) []
+                            )
                             ( ExprVar
                                 ( NamedVar "x" ) :| []
                             )
@@ -32,8 +32,8 @@
                                 ( NamedVar "y" ) :| []
                             ) Positive
                             ( RelationSymbol
-                                ( Symbol "=" )
-                            ) []
+                                ( Symbol "=" ) []
+                            )
                             ( ExprVar
                                 ( NamedVar "y" ) :| []
                             )
@@ -63,8 +63,8 @@
                             ( NamedVar "x" ) :| []
                         ) Positive
                         ( RelationSymbol
-                            ( Symbol "=" )
-                        ) []
+                            ( Symbol "=" ) []
+                        )
                         ( ExprVar
                             ( NamedVar "y" ) :| []
                         )
@@ -94,8 +94,8 @@
                                 ( NamedVar "x" ) :| []
                             ) Positive
                             ( RelationSymbol
-                                ( Symbol "=" )
-                            ) []
+                                ( Symbol "=" ) []
+                            )
                             ( ExprVar
                                 ( NamedVar "y" ) :| []
                             )
@@ -113,8 +113,8 @@
                                     ( NamedVar "x" ) :| []
                                 ) Positive
                                 ( RelationSymbol
-                                    ( Command "neq" )
-                                ) []
+                                    ( Command "neq" ) []
+                                )
                                 ( ExprVar
                                     ( NamedVar "x" ) :| []
                                 )

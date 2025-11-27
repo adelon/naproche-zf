@@ -1,0 +1,25 @@
+[ Task
+    { taskDirectness = Direct
+    , taskHypotheses = []
+    , taskConjectureLabel = Marker "dummy_abbr_test_noun"
+    , taskConjecture = Quantified Universally
+        ( Scope
+            ( TermSymbol
+                ( SymbolPredicate
+                    ( PredicateRelation
+                        ( Symbol "=" )
+                    )
+                )
+                [ TermVar
+                    ( B
+                        ( NamedVar "x" )
+                    )
+                , TermVar
+                    ( B
+                        ( NamedVar "x" )
+                    )
+                ]
+            )
+        )
+    }
+]

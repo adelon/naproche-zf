@@ -217,39 +217,37 @@ glossChain :: Sem.Chain -> Gloss (Sem.ExprOf VarSymbol)
 glossChain ch = Sem.makeConjunction <$> makeRels (conjuncts (splat ch))
     where
         -- | Separate each link of the chain into separate triples.
-        splat :: Raw.Chain -> [(NonEmpty Raw.Expr, Sign, Raw.Relation, [Raw.Expr], NonEmpty Raw.Expr)]
+        splat :: Raw.Chain -> [(NonEmpty Raw.Expr, Sign, Raw.Relation, NonEmpty Raw.Expr)]
         splat = \case
-            Raw.ChainBase es sign rel params es'
-                -> [(es, sign, rel, params, es')]
-            Raw.ChainCons es sign rel params ch'@(Raw.ChainBase es' _ _ _ _)
-                -> (es, sign, rel, params, es') : splat ch'
-            Raw.ChainCons es sign rel params ch'@(Raw.ChainCons es' _ _ _ _)
-                -> (es, sign, rel, params, es') : splat ch'
+            Raw.ChainBase es sign rel es'
+                -> [(es, sign, rel, es')]
+            Raw.ChainCons es sign rel ch'@(Raw.ChainBase es' _ _ _)
+                -> (es, sign, rel, es') : splat ch'
+            Raw.ChainCons es sign rel ch'@(Raw.ChainCons es' _ _ _)
+                -> (es, sign, rel, es') : splat ch'
 
         -- | Take each triple and combine the lhs/rhs to make all the conjuncts.
-        conjuncts :: [(NonEmpty Raw.Expr, Sign, Raw.Relation, [Raw.Expr], NonEmpty Raw.Expr)] -> [(Sign, Raw.Relation, [Raw.Expr], Raw.Expr, Raw.Expr)]
+        conjuncts :: [(NonEmpty Raw.Expr, Sign, Raw.Relation, NonEmpty Raw.Expr)] -> [(Sign, Raw.Relation, Raw.Expr, Raw.Expr)]
         conjuncts triples = do
-            (e1s, sign, rel, params, e2s) <- triples
+            (e1s, sign, rel, e2s) <- triples
             e1 <- toList e1s
             e2 <- toList e2s
-            pure (sign, rel, params, e1, e2)
+            pure (sign, rel, e1, e2)
 
-        makeRels :: [(Sign, Raw.Relation, [Raw.Expr], Raw.Expr, Raw.Expr)] -> Gloss [Sem.Formula]
+        makeRels :: [(Sign, Raw.Relation, Raw.Expr, Raw.Expr)] -> Gloss [Sem.Formula]
         makeRels triples = for triples makeRel
 
-        makeRel :: (Sign, Raw.Relation, [Raw.Expr], Raw.Expr, Raw.Expr) -> Gloss Sem.Formula
-        makeRel (sign, rel, params, e1, e2) = do
+        makeRel :: (Sign, Raw.Relation, Raw.Expr, Raw.Expr) -> Gloss Sem.Formula
+        makeRel (sign, rel, e1, e2) = do
             e1' <- glossExpr e1
             e2' <- glossExpr e2
-            params' <- glossExpr `each` params
             case rel of
-                Raw.RelationSymbol tok ->
+                Raw.RelationSymbol tok params -> do
+                    params' <- glossExpr `each` params
                     pure $ sign' $ Sem.Relation tok (params' <> [e1',e2'])
-                Raw.RelationExpr e -> case params of
-                        [] -> do
+                Raw.RelationExpr e -> do
                             e' <- glossExpr e
                             pure (sign' (Sem.TermPair e1' e2' `Sem.IsElementOf` e'))
-                        _ -> throwError GlossRelationExprWithParams
             where
                 sign' = case sign of
                     Positive -> id
@@ -461,9 +459,10 @@ glossBound = \case
                 Positive -> id
                 Negative -> Sem.Not
         bound <- case rel of
-            Raw.RelationSymbol rel' ->
+            Raw.RelationSymbol rel' params -> do
+                params' <- glossExpr `each` params
                 pure $ \v -> sign' $
-                    Sem.Relation rel' (Sem.TermVar v : [term'])
+                    Sem.Relation rel' (params' <> [Sem.TermVar v, term'])
             Raw.RelationExpr e -> do
                 e' <- glossExpr e
                 pure $ \v -> sign' $

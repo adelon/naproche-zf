@@ -1,0 +1,66 @@
+[ BlockAbbr
+    ( SourcePos
+        { sourceName = "test/examples/relparam.tex"
+        , sourceLine = Pos 2
+        , sourceColumn = Pos 1
+        }
+    )
+    ( Marker "equalparam" )
+    ( Abbreviation
+        ( SymbolPredicate
+            ( PredicateRelation
+                ( Command "EQUAL" )
+            )
+        )
+        ( Scope
+            ( TermSymbol
+                ( SymbolPredicate
+                    ( PredicateRelation
+                        ( Symbol "=" )
+                    )
+                )
+                [ TermVar
+                    ( B 1 )
+                , TermVar
+                    ( B 2 )
+                ]
+            )
+        )
+    )
+, BlockLemma
+    ( SourcePos
+        { sourceName = "test/examples/relparam.tex"
+        , sourceLine = Pos 6
+        , sourceColumn = Pos 1
+        }
+    )
+    ( Marker "dummy_abbr_test_noun" )
+    ( Lemma []
+        ( Quantified Universally
+            ( Scope
+                ( TermSymbol
+                    ( SymbolPredicate
+                        ( PredicateRelation
+                            ( Command "EQUAL" )
+                        )
+                    )
+                    [ TermVar
+                        ( F
+                            ( TermVar
+                                ( NamedVar "y" )
+                            )
+                        )
+                    , TermVar
+                        ( B
+                            ( NamedVar "x" )
+                        )
+                    , TermVar
+                        ( B
+                            ( NamedVar "x" )
+                        )
+                    ]
+                )
+            )
+        )
+    )
+]

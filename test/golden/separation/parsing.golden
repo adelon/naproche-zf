@@ -14,8 +14,8 @@
                         ( NamedVar "X" ) :| []
                     ) Positive
                     ( RelationSymbol
-                        ( Symbol "=" )
-                    ) []
+                        ( Symbol "=" ) []
+                    )
                     ( ExprSep
                         ( NamedVar "x" )
                         ( ExprVar
@@ -28,8 +28,8 @@
                                         ( NamedVar "x" ) :| []
                                     ) Positive
                                     ( RelationSymbol
-                                        ( Symbol "=" )
-                                    ) []
+                                        ( Symbol "=" ) []
+                                    )
                                     ( ExprVar
                                         ( NamedVar "x" ) :| []
                                     )

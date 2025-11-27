@@ -243,8 +243,8 @@
                             ( NamedVar "a" ) :| []
                         ) Positive
                         ( RelationSymbol
-                            ( Symbol "=" )
-                        ) []
+                            ( Symbol "=" ) []
+                        )
                         ( ExprVar
                             ( NamedVar "b" ) :| []
                         )
@@ -515,8 +515,8 @@
                                 ( NamedVar "a" ) :| []
                             ) Positive
                             ( RelationSymbol
-                                ( Command "neq" )
-                            ) []
+                                ( Command "neq" ) []
+                            )
                             ( ExprVar
                                 ( NamedVar "b" ) :| []
                             )
@@ -589,8 +589,8 @@
                             ( NamedVar "a" ) :| []
                         ) Positive
                         ( RelationSymbol
-                            ( Symbol "=" )
-                        ) []
+                            ( Symbol "=" ) []
+                        )
                         ( ExprVar
                             ( NamedVar "b" ) :| []
                         )
@@ -797,8 +797,8 @@
                                         ( NamedVar "u" ) :| []
                                     ) Positive
                                     ( RelationSymbol
-                                        ( Command "neq" )
-                                    ) []
+                                        ( Command "neq" ) []
+                                    )
                                     ( ExprVar
                                         ( NamedVar "v" ) :| []
                                     )

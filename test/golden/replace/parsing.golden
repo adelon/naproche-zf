@@ -15,8 +15,8 @@
                             ( NamedVar "x" ) :| []
                         ) Positive
                         ( RelationSymbol
-                            ( Command "in" )
-                        ) []
+                            ( Command "in" ) []
+                        )
                         ( ExprOp
                             [ Just
                                 ( Command "cons" )
@@ -44,8 +44,8 @@
                                 ( NamedVar "x" ) :| []
                             ) Positive
                             ( RelationSymbol
-                                ( Symbol "=" )
-                            ) []
+                                ( Symbol "=" ) []
+                            )
                             ( ExprVar
                                 ( NamedVar "y" ) :| []
                             )
@@ -59,8 +59,8 @@
                                 ( NamedVar "x" ) :| []
                             ) Positive
                             ( RelationSymbol
-                                ( Command "in" )
-                            ) []
+                                ( Command "in" ) []
+                            )
                             ( ExprVar
                                 ( NamedVar "X" ) :| []
                             )
@@ -175,8 +175,8 @@
                         ] :| []
                     ) Positive
                     ( RelationSymbol
-                        ( Command "in" )
-                    ) []
+                        ( Command "in" ) []
+                    )
                     ( ExprOp
                         [ Nothing
                         , Just
@@ -228,8 +228,8 @@
                             ( NamedVar "y" ) :| []
                         ) Positive
                         ( RelationSymbol
-                            ( Symbol "=" )
-                        ) []
+                            ( Symbol "=" ) []
+                        )
                         ( ExprFiniteSet
                             ( ExprVar
                                 ( NamedVar "x" ) :| []
@@ -265,8 +265,8 @@
                         ] :| []
                     ) Positive
                     ( RelationSymbol
-                        ( Symbol "=" )
-                    ) []
+                        ( Symbol "=" ) []
+                    )
                     ( ExprReplace
                         ( ExprOp
                             [ Just
