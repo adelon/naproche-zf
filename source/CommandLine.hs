@@ -89,9 +89,8 @@ run = do
                             Text.hPutStrLn stderr tptp
                         Error err tptp task -> do
                             putStr "Error at:"
-
-                            Text.putStrLn task
-                            Text.putStrLn err
+                            Text.putStrLn $ "Task: " <> task
+                            Text.putStrLn $ "Error: " <> err
                             Text.putStrLn tptp
 
                 WithFailList -> liftIO case result of

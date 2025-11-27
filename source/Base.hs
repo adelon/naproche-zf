@@ -1,4 +1,5 @@
 {-# LANGUAGE NoImplicitPrelude #-}
+{-# LANGUAGE BangPatterns #-}
 
 -- | A basic prelude intended to reduce the amount of repetitive imports.
 -- Mainly consists of re-exports from @base@ modules.
@@ -38,6 +39,7 @@ import Data.Maybe as Export hiding (mapMaybe, catMaybes)  -- Replaced by general
 import Data.Monoid (First(..))
 import Data.Sequence as Export (Seq(..), replicateA)
 import Data.Set as Export (Set)
+import Data.Set.Internal qualified as Set
 import Data.String as Export (IsString(..))
 import Data.Text as Export (Text)
 import Data.Traversable as Export
@@ -154,3 +156,30 @@ locally ma = do
     a <- ma
     put s
     return a
+
+
+{-| Decompose two sets into their /exclusive/ parts.
+
+@
+    symmetricDifferenceDecompose t1 t2 = (t1 \\\\ t2, t2 \\\\ t1)
+@
+
+This is essentially a structural version of symmetric difference that
+preserves the balance of the underlying tree representation.
+
+@
+    let t1 = Set.fromList [1,2,3,4]
+    let t2 = Set.fromList [3,4,5,6]
+    symmetricDifferenceDecompose t1 t2 == (fromList [1,2],fromList [5,6])
+@
+-}
+symmetricDifferenceDecompose :: Ord a => Set a -> Set a -> (Set a, Set a)
+symmetricDifferenceDecompose Set.Tip t2 = (Set.Tip, t2)
+symmetricDifferenceDecompose t1 Set.Tip = (t1, Set.Tip)
+symmetricDifferenceDecompose (Set.Bin _ x l1 r1) t2 =
+    let !(l2, found, r2) = Set.splitMember x t2
+        !(l1', l2') = symmetricDifferenceDecompose l1 l2
+        !(r1', r2') = symmetricDifferenceDecompose r1 r2
+    in  if found
+            then (Set.merge l1' r1', Set.merge l2' r2')
+            else (Set.link x l1' r1', Set.merge l2' r2')

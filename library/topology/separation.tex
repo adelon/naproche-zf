@@ -150,7 +150,7 @@
 \end{proof}
 
 \begin{definition}\label{is_regular}
-    $X$ is regular iff for all $C,p$ such that $p \in \carrier[X]$ and $p \notin C \in \closeds{X}$ we have there exists $U,C \in \opens[X]$ such that $p \in U$ and $C \subseteq V$ and $U \inter V = \emptyset$.
+    $X$ is regular iff for all $C,p$ such that $p \in \carrier[X]$ and $p \notin C \in \closeds{X}$ we have that there exist $U,V \in \opens[X]$ such that $p \in U$ and $C \subseteq V$ and $U \inter V = \emptyset$.
 \end{definition}
 
 \begin{abbreviation}\label{regular_space}
@@ -170,7 +170,7 @@
     Let $X$ be a topological space.
     Suppose $X$ is inhabited.
     Suppose $X$ is \teethree\ .
-    For all $U \in \opens[X]$ we have for all $x \in U$ we have there exist $N \in \neighbourhoods{x}{X}$ such that $N \subseteq U$ and $N$ is closed in $X$.    
+    For all $U \in \opens[X]$ we have for all $x \in U$ we have there exist $N \in \neighbourhoods{x}{X}$ such that $N \subseteq U$ and $N$ is closed in $X$.
 \end{proposition}
 \begin{proof}
     Omitted.
@@ -181,7 +181,7 @@
     %Then $C \in \closeds{X}$.
     %$x \notin C$.
     %$x \in \carrier[X]$.
-    %We show that there exists $A,B \in \opens[X]$ such that $x \in B$ and $C \subseteq A$ and $A \inter B = \emptyset$.     
+    %We show that there exists $A,B \in \opens[X]$ such that $x \in B$ and $C \subseteq A$ and $A \inter B = \emptyset$.
     %We show that $B \subseteq (\carrier[X] \setminus A)$.
     %$(\carrier[X] \setminus A) \subseteq (\carrier[X] \setminus (\carrier[X] \setminus U))$.
     %$(\carrier[X] \setminus (\carrier[X] \setminus U)) = U$.
@@ -194,7 +194,7 @@
 \begin{proposition}\label{teethree_iff_each_closed_is_intersection_of_its_closed_neighborhoods}
     Let $X$ be a topological space.
     Suppose $X$ is inhabited.
-    $X$ is \teethree\ iff for all $H \in \closeds{X}$ such that $F = \{ N \in \neighbourhoodsSet{H}{X} \mid N \in \closeds{X}\}$ we have $H = \inters{F}$.    
+    $X$ is \teethree\ iff for all $H \in \closeds{X}$ such that $F = \{ N \in \neighbourhoodsSet{H}{X} \mid N \in \closeds{X}\}$ we have $H = \inters{F}$.
 \end{proposition}
 \begin{proof}
     We show that if $X$ is \teethree\ then for all $H \in \closeds{X}$ such that $F = \{ N \in \neighbourhoodsSet{H}{X} \mid N \in \closeds{X}\}$ we have $H = \inters{F}$.
@@ -213,7 +213,7 @@
 \begin{proposition}\label{teethree_iff_closed_neighbourhood_in_open}
     Let $X$ be a topological space.
     Suppose $X$ is inhabited.
-    $X$ is \teethree\ iff for all $U \in \opens[X]$ we have for all $x \in U$ we have there exist $N \in \neighbourhoods{x}{X}$ such that $N \subseteq U$ and $N$ is closed in $X$.    
+    $X$ is \teethree\ iff for all $U \in \opens[X]$ we have for all $x \in U$ we have there exist $N \in \neighbourhoods{x}{X}$ such that $N \subseteq U$ and $N$ is closed in $X$.
 \end{proposition}
 \begin{proof}
     Omitted.
@@ -255,7 +255,7 @@
                 Omitted.
             \end{subproof}
             $H \subseteq \carrier[X]$ by \cref{opens_type,subseteq}.
-            Since $\carrier[X] \ni x \notin H$ or $\carrier[X] \ni y \notin H$, we have there exist $c \in H$. 
+            Since $\carrier[X] \ni x \notin H$ or $\carrier[X] \ni y \notin H$, we have there exist $c \in H$.
             Then $H \neq \carrier[X]$.
             Since $y \in H$ or $x \in H$, we have $H \neq \emptyset$.
             Let $K = \carrier[X] \setminus H$.
@@ -279,5 +279,5 @@
     $y \in V$ by assumption.
     Follows by assumption.
 
-    
+
 %\end{proof}

@@ -40,11 +40,27 @@ type Gloss = ExceptT GlossError (State GlossState)
 
 -- | Errors that can be detected during glossing.
 data GlossError
-    = GlossDefnError DefnError String
+    = GlossDefnError DefnError Sem.Marker
     | GlossInductionError
     | GlossRelationExprWithParams
     deriving (Show, Eq, Ord)
 
+explainGlossError :: GlossError -> String
+explainGlossError = \case
+    GlossDefnError defnError marker ->
+        "Definition error at " <> show marker <> ": " <> case defnError of
+            DefnWarnLhsFree xs ->
+                "The variables " <> show xs <> " in the pattern being defined (definiendum) do not occur in the body of the definition (definiens). Remove them or use them in the body."
+            DefnErrorLhsNotLinear ->
+                "The left-hand side of the definition is not linear (a variable occurs multiple times)."
+            DefnErrorLhsTypeFree ->
+                "The defintion contains variables with no typing constraints or assumptions placed on them."
+            DefnErrorRhsFree xs ->
+                "The variables " <> show xs <> " on the right-hand side of the definition do not occurring on the left-hand side."
+    GlossInductionError ->
+        "Induction over a non-variable is not supported."
+    GlossRelationExprWithParams ->
+        "A relation defined by an expression cannot have parameters."
 
 -- | Specialization of 'traverse' to 'Gloss'.
 each :: (Traversable t) => (a -> Gloss b) -> t a -> Gloss (t b)
@@ -63,7 +79,18 @@ infix 7 `each` -- In particular, 'each' has precedence over '(<$>)'.
 -- * If a variable on the lhs does not occur on the rhs, a warning should we issued.
 --
 isWellformedDefn :: Sem.Defn -> Either DefnError Sem.Defn
-isWellformedDefn defn = lhsLinear defn
+isWellformedDefn defn =
+    if  | ls' /= ls -> Left DefnErrorLhsNotLinear
+        | not (null rdiff) -> Left (DefnErrorRhsFree (toList rdiff))
+        | not (null ldiff) -> case defn of
+            Sem.DefnPredicate{} -> Left (DefnWarnLhsFree (toList ldiff))
+            _ -> Right defn
+        | otherwise -> Right defn
+    where
+        ls = lhsVars defn
+        ls' = nubOrd ls
+        rs = rhsVars defn
+        (ldiff, rdiff) = symmetricDifferenceDecompose (Set.fromList ls') rs
 
 
 lhsVars :: Sem.Defn -> [VarSymbol]
@@ -72,19 +99,19 @@ lhsVars = \case
     Sem.DefnFun _ _ vs _ -> vs
     Sem.DefnOp _ vs _ -> vs
 
-lhsLinear :: Sem.Defn -> Either DefnError Sem.Defn
-lhsLinear defn' = let vs = lhsVars defn' in
-    if nubOrd vs /= vs
-        then Left DefnErrorLhsNotLinear
-        else Right defn'
+rhsVars :: Sem.Defn -> Set VarSymbol
+rhsVars = \case
+    Sem.DefnPredicate _ _ _ f -> Sem.freeVars f
+    Sem.DefnFun _ _ _ e -> Sem.freeVars e
+    Sem.DefnOp _ _ e -> Sem.freeVars e
 
 
 -- | Validation errors for top-level definitions.
 data DefnError
-    = DefnWarnLhsFree
+    = DefnWarnLhsFree [VarSymbol]
     | DefnErrorLhsNotLinear
     | DefnErrorLhsTypeFree
-    | DefnErrorRhsFree
+    | DefnErrorRhsFree [VarSymbol]
     deriving (Show, Eq, Ord)
 
 
@@ -752,7 +779,7 @@ glossBlock = \case
         Sem.BlockProof pos <$> glossProof proof
     Raw.BlockDefn pos marker defn -> do
         defn' <- glossDefn defn
-        whenLeft (isWellformedDefn defn') (\err -> throwError (GlossDefnError err (show defn')))
+        whenLeft (isWellformedDefn defn') (\err -> throwError (GlossDefnError err marker))
         pure $ Sem.BlockDefn pos marker defn'
     Raw.BlockAbbr pos marker abbr ->
         Sem.BlockAbbr pos marker <$> glossAbbreviation abbr
