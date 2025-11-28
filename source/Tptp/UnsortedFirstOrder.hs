@@ -13,7 +13,7 @@ import Data.Text qualified as Text
 import Prelude hiding (head, tail)
 import Prettyprinter
 import Prettyprinter.Render.Text
-import Text.Builder
+import TextBuilder
 
 
 
@@ -83,10 +83,10 @@ newtype Task
     deriving (Show, Eq, Ord, Semigroup, Monoid)
 
 toTextNewline :: Task -> Text
-toTextNewline task = run (buildTask task <> char '\n')
+toTextNewline task = TextBuilder.toText (buildTask task <> char '\n')
 
 toText :: Task -> Text
-toText task = run (buildTask task)
+toText task = TextBuilder.toText (buildTask task)
 
 singleQuoted :: Text -> Text
 singleQuoted str = Text.snoc (Text.cons '\'' (escape str)) '\''
@@ -95,26 +95,26 @@ singleQuoted str = Text.snoc (Text.cons '\'' (escape str)) '\''
         escape :: Text -> Text
         escape = Text.replace "'" "\\'" . Text.replace "\\" "\\\\"
 
-buildTuple :: [Builder] -> Builder
+buildTuple :: [TextBuilder] -> TextBuilder
 buildTuple bs = char '(' <> intercalate (char ',') bs <> char ')'
 
-buildList :: [Builder] -> Builder
+buildList :: [TextBuilder] -> TextBuilder
 buildList bs = char '[' <> intercalate (char ',') bs <> char ']'
 
 renderTask :: Task -> Text
 renderTask task = renderStrict (layoutPretty defaultLayoutOptions (prettyTask task))
 
-buildAtomicWord :: AtomicWord -> Builder
+buildAtomicWord :: AtomicWord -> TextBuilder
 buildAtomicWord (AtomicWord w) = text if isProperAtomicWord w then w else singleQuoted w
 
-buildVariable :: Variable -> Builder
+buildVariable :: Variable -> TextBuilder
 buildVariable (Variable v) = text (Text.replace "'" "_" v)
 
 
-buildApply :: AtomicWord -> [Expr] -> Builder
+buildApply :: AtomicWord -> [Expr] -> TextBuilder
 buildApply f args = buildAtomicWord f <> buildTuple (map buildExpr args)
 
-buildExpr :: Expr -> Builder
+buildExpr :: Expr -> TextBuilder
 buildExpr = \case
     Apply f [] -> buildAtomicWord f
     Apply f args -> buildApply f args
@@ -146,12 +146,12 @@ isAtom = \case
     NotEq{} -> True
     _ -> False
 
-buildQuantifier :: Quantifier -> Builder
+buildQuantifier :: Quantifier -> TextBuilder
 buildQuantifier = \case
         Forall -> text "!"
         Exists -> text "?"
 
-buildUnitary :: Expr -> Builder
+buildUnitary :: Expr -> TextBuilder
 buildUnitary = \case
     atom | isAtom atom -> buildExpr atom
     Quantified quant vars f ->
@@ -159,22 +159,22 @@ buildUnitary = \case
     Not phi -> char '~' <> buildUnitary phi
     phi -> char '(' <> buildExpr phi <> char ')'
 
-buildAnd :: Expr -> Builder
+buildAnd :: Expr -> TextBuilder
 buildAnd = \case
     Conn And f1 f2 -> buildAnd f1 <> char '&' <> buildAnd f2
     f -> buildUnitary f
 
-buildOr :: Expr -> Builder
+buildOr :: Expr -> TextBuilder
 buildOr = \case
     Conn Or f1 f2 -> buildOr f1 <> char '|' <> buildUnitary f2
     f -> buildUnitary f
 
-buildName :: Name -> Builder
+buildName :: Name -> TextBuilder
 buildName = \case
         NameAtomicWord w -> buildAtomicWord w
         NameInt n -> decimal n
 
-buildRole :: Role -> Builder
+buildRole :: Role -> TextBuilder
 buildRole = \case
         Axiom -> "axiom"
         AxiomUseful -> "axiom_useful"
@@ -183,11 +183,11 @@ buildRole = \case
         Conjecture -> "conjecture"
         NegatedConjecture -> "negated_conjecture"
 
-buildAnnotatedFormula :: AnnotatedFormula -> Builder
+buildAnnotatedFormula :: AnnotatedFormula -> TextBuilder
 buildAnnotatedFormula (AnnotatedFormula name role phi) =
         "fof" <> buildTuple [buildName name, buildRole role, buildExpr phi] <> "."
 
-buildTask :: Task -> Builder
+buildTask :: Task -> TextBuilder
 buildTask (Task fofs) = intercalate (char '\n') (map buildAnnotatedFormula fofs)
 
 

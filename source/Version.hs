@@ -8,15 +8,15 @@ import Data.Semigroup
 import Data.Text (Text)
 import Data.Version
 import Paths_zf qualified as ZF
-import Text.Builder
+import TextBuilder
 
 
 -- | Informational text about the version number (extracted from the cabal file).
 info :: Text
-info = run infoBuilder
+info = toText infoBuilder
 
-infoBuilder :: Builder
+infoBuilder :: TextBuilder
 infoBuilder = text "Version " <> versionToBuilder ZF.version
 
-versionToBuilder :: Version -> Builder
+versionToBuilder :: Version -> TextBuilder
 versionToBuilder ver = intercalate (char '.') (decimal <$> versionBranch ver)

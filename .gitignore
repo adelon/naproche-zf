@@ -40,8 +40,5 @@ dump/
 premseldump/
 haddocks/
 stack.yaml.lock
-zf*.svg
+*.svg
 check/
-
-
-

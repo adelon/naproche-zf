@@ -16,7 +16,7 @@ import Control.Monad.Logger
 import Data.Text qualified as Text
 import Data.Time
 import System.Process.Text (readProcessWithExitCode)
-import Text.Builder
+import TextBuilder
 
 type Prover = Verbosity -> TimeLimit -> MemoryLimit -> ProverInstance
 
@@ -114,10 +114,10 @@ data ProverAnswer
     deriving (Show, Eq)
 
 nominalDiffTimeToText :: NominalDiffTime -> Text
-nominalDiffTimeToText delta = run (nominalDiffTimeToBuilder delta)
+nominalDiffTimeToText delta = TextBuilder.toText (nominalDiffTimeToTextBuilder delta)
 
-nominalDiffTimeToBuilder :: NominalDiffTime -> Builder
-nominalDiffTimeToBuilder delta = case hours of
+nominalDiffTimeToTextBuilder :: NominalDiffTime -> TextBuilder
+nominalDiffTimeToTextBuilder delta = case hours of
         0 -> padded minutes <> ":" <> padded restSeconds <> "." <> padded restCentis
         _ -> padded hours   <> ":" <> padded restMinutes <> ":" <> padded restSeconds
     where

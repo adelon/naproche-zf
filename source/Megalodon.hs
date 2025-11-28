@@ -9,13 +9,13 @@ import Bound.Scope
 import Bound.Var
 import Data.HashMap.Strict qualified as HM
 import Data.List.NonEmpty qualified as NonEmpty
-import Text.Builder
+import TextBuilder
 import Data.List qualified as List
 import Data.Text qualified as Text
 
 
 encodeBlocks :: Lexicon -> [Block] -> Text
-encodeBlocks lexi blocks = run (preamble <> buildBlocks lexi blocks)
+encodeBlocks lexi blocks = TextBuilder.toText (preamble <> buildBlocks lexi blocks)
 
 closure :: [ExprOf VarSymbol] -> ExprOf VarSymbol -> Formula
 closure asms stmt = contraction (forallClosure mempty (makeConjunction asms `Implies` stmt))
@@ -24,7 +24,7 @@ unAsm :: Asm -> Formula
 unAsm (Asm phi) = phi
 unAsm (AsmStruct x sp) = TermSymbol (SymbolPredicate (PredicateNounStruct sp)) [TermVar x]
 
-buildBlocks :: Lexicon -> [Block] -> Builder
+buildBlocks :: Lexicon -> [Block] -> TextBuilder
 buildBlocks lexi = \case
     BlockAxiom _pos lbl (Axiom asms stmt) : blocks ->
         let phi = closure (unAsm <$> asms) stmt
@@ -44,7 +44,7 @@ buildBlocks lexi = \case
     block : _ ->
         _TODO ("builBlocks" <> show block)
 
-buildDefn :: Lexicon -> Defn -> Builder
+buildDefn :: Lexicon -> Defn -> TextBuilder
 buildDefn lexi = \case
     DefnPredicate [] predi xs phi ->
         "Definition " <> buildSymbol lexi (SymbolPredicate predi) <> " := " <>
@@ -58,18 +58,18 @@ buildDefn lexi = \case
     _ ->
         error "assumptions in definition, deprecated"
 
-buildAbbr :: Lexicon -> Abbreviation -> Builder
+buildAbbr :: Lexicon -> Abbreviation -> TextBuilder
 buildAbbr lexi (Abbreviation f body) =
     "Definition " <> buildSymbol lexi f <> " := " <>
     buildSetFunIfNonEmpty buildBindings' (buildFormula lexi ((instantiate (TermVar . FreshVar) (fmap absurd body)))) <> ".\n"
         where
-            buildBindings' :: Builder
+            buildBindings' :: TextBuilder
             buildBindings' = intercalate (char ' ') (buildVarSymbol . FreshVar <$> List.sort (List.nub (bindings body)))
 
-buildSetFunIfNonEmpty :: Builder -> Builder -> Builder
-buildSetFunIfNonEmpty xs b = if null xs then b else "fun " <> xs <> " : set => " <> b
+buildSetFunIfNonEmpty :: TextBuilder -> TextBuilder -> TextBuilder
+buildSetFunIfNonEmpty xs b = if isEmpty xs then b else "fun " <> xs <> " : set => " <> b
 
-buildFormula :: Lexicon -> Formula -> Builder
+buildFormula :: Lexicon -> Formula -> TextBuilder
 buildFormula lexi = \case
     TermVar x -> buildVarSymbol x
     -- We handle eq in a special manner to avoid having to specify the type of the equality.
@@ -127,23 +127,23 @@ buildFormula lexi = \case
             e = me ?? error "unannotated struct op"
         in char '(' <> f' <> buildFormula lexi e <> char ')'
 
-buildMarker :: Marker -> Builder
+buildMarker :: Marker -> TextBuilder
 buildMarker (Marker m)= text m
 
-buildQuant :: Quantifier -> Builder
+buildQuant :: Quantifier -> TextBuilder
 buildQuant = \case
     Universally -> "forall"
     Existentially -> "exists"
 
-buildBindings :: Scope VarSymbol ExprOf a -> Builder
+buildBindings :: Scope VarSymbol ExprOf a -> TextBuilder
 buildBindings body = intercalate (char ' ') (buildVarSymbol <$> List.nub (bindings body))
 
-buildBounds :: Lexicon -> NonEmpty (VarSymbol, ExprOf VarSymbol) -> Builder
+buildBounds :: Lexicon -> NonEmpty (VarSymbol, ExprOf VarSymbol) -> TextBuilder
 buildBounds l (bound :| bounds) = foldr (\b bs -> buildBound b <> "/\\ " <> bs) (buildBound bound) bounds
     where
         buildBound (y, yB) = buildVarSymbol y <> " :e (" <> buildFormula l yB <> ")"
 
-buildConn :: Connective -> (Builder -> Builder -> Builder)
+buildConn :: Connective -> (TextBuilder -> TextBuilder -> TextBuilder)
 buildConn conn = \p q -> case conn of
     Conjunction -> p <> text "/\\" <> q
     Disjunction -> p <> text "\\/" <> q
@@ -152,15 +152,15 @@ buildConn conn = \p q -> case conn of
     ExclusiveOr -> text "xor" <> p <> char ' ' <> q
     NegatedDisjunction -> text "nor" <> p <> char ' ' <> q
 
-buildVarSymbol :: VarSymbol -> Builder
+buildVarSymbol :: VarSymbol -> TextBuilder
 buildVarSymbol = \case
     NamedVar x -> text x
     FreshVar i -> char 'x' <> decimal i
 
-buildVarSymbols :: (Functor t, Foldable t) => t VarSymbol -> Builder
+buildVarSymbols :: (Functor t, Foldable t) => t VarSymbol -> TextBuilder
 buildVarSymbols xs = intercalate (char ' ') (fmap buildVarSymbol xs)
 
-buildSymbol :: Lexicon -> Symbol -> Builder
+buildSymbol :: Lexicon -> Symbol -> TextBuilder
 buildSymbol _ (SymbolInteger i) = decimal i
 buildSymbol lexi symb = fromRightMarker case symb of
     SymbolMixfix f ->
@@ -174,7 +174,7 @@ buildSymbol lexi symb = fromRightMarker case symb of
     SymbolPredicate (PredicateSymbol f) -> Right (Marker f) -- HM.lookup f (lexiconPrefixPredicates lexi)
 
 
-fromRightMarker :: Either String Marker -> Builder
+fromRightMarker :: Either String Marker -> TextBuilder
 fromRightMarker = \case
     Right (Marker m) -> text m
     Left a -> error ("symbol not in lexicon" <> a)
@@ -192,7 +192,7 @@ isDiseqSymbol = \case
     SymbolPredicate (PredicateAdj f) | f == (unsafeReadPhrase "distinct from ?") -> True
     _ -> False
 
-preamble :: Builder
+preamble :: TextBuilder
 preamble = text $ Text.unlines
     [ "Let emptyset : set := Empty."
     , "Let elem : set->set->prop := In."

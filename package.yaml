@@ -34,7 +34,7 @@ dependencies:
     - tasty-golden
     - tasty-hunit
     - text
-    - text-builder
+    - text-builder >= 1.0.0.4 # force new API
     - time
     - transformers
     - unliftio
