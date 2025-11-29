@@ -1,514 +1,540 @@
-[ BeginEnv "definition"
-, Label "subseteq"
-, BeginEnv "math"
-, Variable "A"
-, Command "subseteq"
-, Variable "B"
-, EndEnv "math"
-, Word "iff"
-, BeginEnv "math"
-, Variable "A"
-, Symbol "="
-, Variable "B"
-, EndEnv "math"
-, Symbol "."
-, EndEnv "definition"
-, BeginEnv "definition"
-, Label "pow"
-, BeginEnv "math"
-, Command "pow"
-, InvisibleBraceL
-, Variable "A"
-, InvisibleBraceR
-, Symbol "="
-, Command "emptyset"
-, EndEnv "math"
-, Symbol "."
-, EndEnv "definition"
-, BeginEnv "definition"
-, Label "cons"
-, BeginEnv "math"
-, Command "cons"
-, InvisibleBraceL
-, Variable "a"
-, InvisibleBraceR
-, InvisibleBraceL
-, Variable "B"
-, InvisibleBraceR
-, Symbol "="
-, Command "emptyset"
-, EndEnv "math"
-, Symbol "."
-, EndEnv "definition"
-, BeginEnv "definition"
-, Label "times"
-, BeginEnv "math"
-, Variable "A"
-, Command "times"
-, Variable "B"
-, Symbol "="
-, Command "emptyset"
-, EndEnv "math"
-, Symbol "."
-, EndEnv "definition"
-, BeginEnv "definition"
-, Label "fld"
-, BeginEnv "math"
-, Command "fld"
-, InvisibleBraceL
-, Variable "R"
-, InvisibleBraceR
-, Symbol "="
-, Command "emptyset"
-, EndEnv "math"
-, Symbol "."
-, EndEnv "definition"
-, BeginEnv "definition"
-, Label "preimg"
-, BeginEnv "math"
-, Command "preimg"
-, InvisibleBraceL
-, Variable "R"
-, InvisibleBraceR
-, InvisibleBraceL
-, Variable "A"
-, InvisibleBraceR
-, Symbol "="
-, Command "emptyset"
-, EndEnv "math"
-, Symbol "."
-, EndEnv "definition"
-, BeginEnv "axiom"
-, Label "lmao"
-, BeginEnv "math"
-, Variable "x"
-, Command "in"
-, Command "emptyset"
-, EndEnv "math"
-, Symbol "."
-, EndEnv "axiom"
-, BeginEnv "inductive"
-, Label "fin"
-, Word "define"
-, BeginEnv "math"
-, Command "fin"
-, InvisibleBraceL
-, Variable "A"
-, InvisibleBraceR
-, Command "subseteq"
-, Command "pow"
-, InvisibleBraceL
-, Variable "A"
-, InvisibleBraceR
-, EndEnv "math"
-, Word "inductively"
-, Word "as"
-, Word "follows"
-, Symbol "."
-, BeginEnv "enumerate"
-, Command "item"
-, BeginEnv "math"
-, Command "emptyset"
-, Command "in"
-, Command "fin"
-, InvisibleBraceL
-, Variable "A"
-, InvisibleBraceR
-, EndEnv "math"
-, Symbol "."
-, Command "item"
-, Word "if"
-, BeginEnv "math"
-, Variable "a"
-, Command "in"
-, Variable "A"
-, EndEnv "math"
-, Word "and"
-, BeginEnv "math"
-, Variable "B"
-, Command "in"
-, Command "fin"
-, InvisibleBraceL
-, Variable "A"
-, InvisibleBraceR
-, EndEnv "math"
-, Symbol ","
-, Word "then"
-, BeginEnv "math"
-, Command "cons"
-, InvisibleBraceL
-, Variable "a"
-, InvisibleBraceR
-, InvisibleBraceL
-, Variable "B"
-, InvisibleBraceR
-, Command "in"
-, Command "fin"
-, InvisibleBraceL
-, Variable "A"
-, InvisibleBraceR
-, EndEnv "math"
-, Symbol "."
-, EndEnv "enumerate"
-, EndEnv "inductive"
-, BeginEnv "lemma"
-, Label "fin_mono"
-, Word "let"
-, BeginEnv "math"
-, Variable "A"
-, Symbol ","
-, Variable "B"
-, EndEnv "math"
-, Word "be"
-, Word "sets"
-, Symbol "."
-, Word "suppose"
-, BeginEnv "math"
-, Variable "A"
-, Command "subseteq"
-, Variable "B"
-, EndEnv "math"
-, Symbol "."
-, Word "then"
-, BeginEnv "math"
-, Command "fin"
-, InvisibleBraceL
-, Variable "A"
-, InvisibleBraceR
-, Command "subseteq"
-, Command "fin"
-, InvisibleBraceL
-, Variable "B"
-, InvisibleBraceR
-, EndEnv "math"
-, Symbol "."
-, EndEnv "lemma"
-, BeginEnv "inductive"
-, Label "tracl"
-, Word "define"
-, BeginEnv "math"
-, Command "tracl"
-, InvisibleBraceL
-, Variable "R"
-, InvisibleBraceR
-, Command "subseteq"
-, Command "fld"
-, InvisibleBraceL
-, Variable "R"
-, InvisibleBraceR
-, Command "times"
-, Command "fld"
-, InvisibleBraceL
-, Variable "R"
-, InvisibleBraceR
-, EndEnv "math"
-, Word "inductively"
-, Word "as"
-, Word "follows"
-, Symbol "."
-, BeginEnv "enumerate"
-, Command "item"
-, Word "if"
-, BeginEnv "math"
-, Variable "w"
-, Command "in"
-, Variable "R"
-, EndEnv "math"
-, Symbol ","
-, Word "then"
-, BeginEnv "math"
-, Variable "w"
-, Command "in"
-, Command "tracl"
-, InvisibleBraceL
-, Variable "R"
-, InvisibleBraceR
-, EndEnv "math"
-, Symbol "."
-, Command "item"
-, Word "if"
-, BeginEnv "math"
-, ParenL
-, Variable "a"
-, Symbol ","
-, Variable "b"
-, ParenR
-, Command "in"
-, Command "tracl"
-, InvisibleBraceL
-, Variable "R"
-, InvisibleBraceR
-, EndEnv "math"
-, Word "and"
-, BeginEnv "math"
-, ParenL
-, Variable "b"
-, Symbol ","
-, Variable "c"
-, ParenR
-, Command "in"
-, Variable "R"
-, EndEnv "math"
-, Symbol ","
-, Word "then"
-, BeginEnv "math"
-, ParenL
-, Variable "a"
-, Symbol ","
-, Variable "c"
-, ParenR
-, Command "in"
-, Command "tracl"
-, InvisibleBraceL
-, Variable "R"
-, InvisibleBraceR
-, EndEnv "math"
-, Symbol "."
-, EndEnv "enumerate"
-, EndEnv "inductive"
-, BeginEnv "inductive"
-, Label "quasirefltracl"
-, Word "define"
-, BeginEnv "math"
-, Command "qrefltracl"
-, InvisibleBraceL
-, Variable "R"
-, InvisibleBraceR
-, Command "subseteq"
-, Command "fld"
-, InvisibleBraceL
-, Variable "R"
-, InvisibleBraceR
-, Command "times"
-, Command "fld"
-, InvisibleBraceL
-, Variable "R"
-, InvisibleBraceR
-, EndEnv "math"
-, Word "inductively"
-, Word "as"
-, Word "follows"
-, Symbol "."
-, BeginEnv "enumerate"
-, Command "item"
-, Word "if"
-, BeginEnv "math"
-, Variable "a"
-, Command "in"
-, Command "fld"
-, InvisibleBraceL
-, Variable "R"
-, InvisibleBraceR
-, EndEnv "math"
-, Symbol ","
-, Word "then"
-, BeginEnv "math"
-, ParenL
-, Variable "a"
-, Symbol ","
-, Variable "a"
-, ParenR
-, Command "in"
-, Command "qrefltracl"
-, InvisibleBraceL
-, Variable "R"
-, InvisibleBraceR
-, EndEnv "math"
-, Symbol "."
-, Command "item"
-, Word "if"
-, BeginEnv "math"
-, ParenL
-, Variable "a"
-, Symbol ","
-, Variable "b"
-, ParenR
-, Command "in"
-, Command "qrefltracl"
-, InvisibleBraceL
-, Variable "R"
-, InvisibleBraceR
-, EndEnv "math"
-, Word "and"
-, BeginEnv "math"
-, ParenL
-, Variable "b"
-, Symbol ","
-, Variable "c"
-, ParenR
-, Command "in"
-, Variable "R"
-, EndEnv "math"
-, Symbol ","
-, Word "then"
-, BeginEnv "math"
-, ParenL
-, Variable "a"
-, Symbol ","
-, Variable "c"
-, ParenR
-, Command "in"
-, Command "qrefltracl"
-, InvisibleBraceL
-, Variable "R"
-, InvisibleBraceR
-, EndEnv "math"
-, Symbol "."
-, EndEnv "enumerate"
-, EndEnv "inductive"
-, BeginEnv "inductive"
-, Label "refltracl"
-, Word "define"
-, BeginEnv "math"
-, Command "refltracl"
-, InvisibleBraceL
-, Variable "A"
-, InvisibleBraceR
-, InvisibleBraceL
-, Variable "R"
-, InvisibleBraceR
-, Command "subseteq"
-, Variable "A"
-, Command "times"
-, Variable "A"
-, EndEnv "math"
-, Word "inductively"
-, Word "as"
-, Word "follows"
-, Symbol "."
-, BeginEnv "enumerate"
-, Command "item"
-, Word "if"
-, BeginEnv "math"
-, Variable "a"
-, Command "in"
-, Variable "A"
-, EndEnv "math"
-, Symbol ","
-, Word "then"
-, BeginEnv "math"
-, ParenL
-, Variable "a"
-, Symbol ","
-, Variable "a"
-, ParenR
-, Command "in"
-, Command "refltracl"
-, InvisibleBraceL
-, Variable "A"
-, InvisibleBraceR
-, InvisibleBraceL
-, Variable "R"
-, InvisibleBraceR
-, EndEnv "math"
-, Symbol "."
-, Command "item"
-, Word "if"
-, BeginEnv "math"
-, ParenL
-, Variable "a"
-, Symbol ","
-, Variable "b"
-, ParenR
-, Command "in"
-, Command "refltracl"
-, InvisibleBraceL
-, Variable "A"
-, InvisibleBraceR
-, InvisibleBraceL
-, Variable "R"
-, InvisibleBraceR
-, EndEnv "math"
-, Word "and"
-, BeginEnv "math"
-, ParenL
-, Variable "b"
-, Symbol ","
-, Variable "c"
-, ParenR
-, Command "in"
-, Variable "R"
-, EndEnv "math"
-, Symbol ","
-, Word "then"
-, BeginEnv "math"
-, ParenL
-, Variable "a"
-, Symbol ","
-, Variable "c"
-, ParenR
-, Command "in"
-, Command "refltracl"
-, InvisibleBraceL
-, Variable "A"
-, InvisibleBraceR
-, InvisibleBraceL
-, Variable "R"
-, InvisibleBraceR
-, EndEnv "math"
-, Symbol "."
-, EndEnv "enumerate"
-, EndEnv "inductive"
-, BeginEnv "inductive"
-, Label "acc"
-, Word "define"
-, BeginEnv "math"
-, Command "acc"
-, InvisibleBraceL
-, Variable "R"
-, InvisibleBraceR
-, Command "subseteq"
-, Command "fld"
-, InvisibleBraceL
-, Variable "R"
-, InvisibleBraceR
-, EndEnv "math"
-, Word "inductively"
-, Word "as"
-, Word "follows"
-, Symbol "."
-, BeginEnv "enumerate"
-, Command "item"
-, Word "if"
-, BeginEnv "math"
-, Variable "a"
-, Command "in"
-, Command "fld"
-, InvisibleBraceL
-, Variable "R"
-, InvisibleBraceR
-, EndEnv "math"
-, Word "and"
-, BeginEnv "math"
-, Command "preimg"
-, InvisibleBraceL
-, Variable "R"
-, InvisibleBraceR
-, InvisibleBraceL
-, VisibleBraceL
-, Variable "a"
-, VisibleBraceR
-, InvisibleBraceR
-, Command "in"
-, Command "pow"
-, InvisibleBraceL
-, Command "acc"
-, InvisibleBraceL
-, Variable "R"
-, InvisibleBraceR
-, InvisibleBraceR
-, EndEnv "math"
-, Symbol ","
-, Word "then"
-, BeginEnv "math"
-, Variable "a"
-, Command "in"
-, Command "acc"
-, InvisibleBraceL
-, Variable "R"
-, InvisibleBraceR
-, EndEnv "math"
-, Symbol "."
-, EndEnv "enumerate"
-, EndEnv "inductive"
+[
+    [ BeginEnv "definition"
+    , Label "subseteq"
+    , BeginEnv "math"
+    , Variable "A"
+    , Command "subseteq"
+    , Variable "B"
+    , EndEnv "math"
+    , Word "iff"
+    , BeginEnv "math"
+    , Variable "A"
+    , Symbol "="
+    , Variable "B"
+    , EndEnv "math"
+    , Symbol "."
+    , EndEnv "definition"
+    ]
+,
+    [ BeginEnv "definition"
+    , Label "pow"
+    , BeginEnv "math"
+    , Command "pow"
+    , InvisibleBraceL
+    , Variable "A"
+    , InvisibleBraceR
+    , Symbol "="
+    , Command "emptyset"
+    , EndEnv "math"
+    , Symbol "."
+    , EndEnv "definition"
+    ]
+,
+    [ BeginEnv "definition"
+    , Label "cons"
+    , BeginEnv "math"
+    , Command "cons"
+    , InvisibleBraceL
+    , Variable "a"
+    , InvisibleBraceR
+    , InvisibleBraceL
+    , Variable "B"
+    , InvisibleBraceR
+    , Symbol "="
+    , Command "emptyset"
+    , EndEnv "math"
+    , Symbol "."
+    , EndEnv "definition"
+    ]
+,
+    [ BeginEnv "definition"
+    , Label "times"
+    , BeginEnv "math"
+    , Variable "A"
+    , Command "times"
+    , Variable "B"
+    , Symbol "="
+    , Command "emptyset"
+    , EndEnv "math"
+    , Symbol "."
+    , EndEnv "definition"
+    ]
+,
+    [ BeginEnv "definition"
+    , Label "fld"
+    , BeginEnv "math"
+    , Command "fld"
+    , InvisibleBraceL
+    , Variable "R"
+    , InvisibleBraceR
+    , Symbol "="
+    , Command "emptyset"
+    , EndEnv "math"
+    , Symbol "."
+    , EndEnv "definition"
+    ]
+,
+    [ BeginEnv "definition"
+    , Label "preimg"
+    , BeginEnv "math"
+    , Command "preimg"
+    , InvisibleBraceL
+    , Variable "R"
+    , InvisibleBraceR
+    , InvisibleBraceL
+    , Variable "A"
+    , InvisibleBraceR
+    , Symbol "="
+    , Command "emptyset"
+    , EndEnv "math"
+    , Symbol "."
+    , EndEnv "definition"
+    ]
+,
+    [ BeginEnv "axiom"
+    , Label "lmao"
+    , BeginEnv "math"
+    , Variable "x"
+    , Command "in"
+    , Command "emptyset"
+    , EndEnv "math"
+    , Symbol "."
+    , EndEnv "axiom"
+    ]
+,
+    [ BeginEnv "inductive"
+    , Label "fin"
+    , Word "define"
+    , BeginEnv "math"
+    , Command "fin"
+    , InvisibleBraceL
+    , Variable "A"
+    , InvisibleBraceR
+    , Command "subseteq"
+    , Command "pow"
+    , InvisibleBraceL
+    , Variable "A"
+    , InvisibleBraceR
+    , EndEnv "math"
+    , Word "inductively"
+    , Word "as"
+    , Word "follows"
+    , Symbol "."
+    , BeginEnv "enumerate"
+    , Command "item"
+    , BeginEnv "math"
+    , Command "emptyset"
+    , Command "in"
+    , Command "fin"
+    , InvisibleBraceL
+    , Variable "A"
+    , InvisibleBraceR
+    , EndEnv "math"
+    , Symbol "."
+    , Command "item"
+    , Word "if"
+    , BeginEnv "math"
+    , Variable "a"
+    , Command "in"
+    , Variable "A"
+    , EndEnv "math"
+    , Word "and"
+    , BeginEnv "math"
+    , Variable "B"
+    , Command "in"
+    , Command "fin"
+    , InvisibleBraceL
+    , Variable "A"
+    , InvisibleBraceR
+    , EndEnv "math"
+    , Symbol ","
+    , Word "then"
+    , BeginEnv "math"
+    , Command "cons"
+    , InvisibleBraceL
+    , Variable "a"
+    , InvisibleBraceR
+    , InvisibleBraceL
+    , Variable "B"
+    , InvisibleBraceR
+    , Command "in"
+    , Command "fin"
+    , InvisibleBraceL
+    , Variable "A"
+    , InvisibleBraceR
+    , EndEnv "math"
+    , Symbol "."
+    , EndEnv "enumerate"
+    , EndEnv "inductive"
+    ]
+,
+    [ BeginEnv "lemma"
+    , Label "fin_mono"
+    , Word "let"
+    , BeginEnv "math"
+    , Variable "A"
+    , Symbol ","
+    , Variable "B"
+    , EndEnv "math"
+    , Word "be"
+    , Word "sets"
+    , Symbol "."
+    , Word "suppose"
+    , BeginEnv "math"
+    , Variable "A"
+    , Command "subseteq"
+    , Variable "B"
+    , EndEnv "math"
+    , Symbol "."
+    , Word "then"
+    , BeginEnv "math"
+    , Command "fin"
+    , InvisibleBraceL
+    , Variable "A"
+    , InvisibleBraceR
+    , Command "subseteq"
+    , Command "fin"
+    , InvisibleBraceL
+    , Variable "B"
+    , InvisibleBraceR
+    , EndEnv "math"
+    , Symbol "."
+    , EndEnv "lemma"
+    ]
+,
+    [ BeginEnv "inductive"
+    , Label "tracl"
+    , Word "define"
+    , BeginEnv "math"
+    , Command "tracl"
+    , InvisibleBraceL
+    , Variable "R"
+    , InvisibleBraceR
+    , Command "subseteq"
+    , Command "fld"
+    , InvisibleBraceL
+    , Variable "R"
+    , InvisibleBraceR
+    , Command "times"
+    , Command "fld"
+    , InvisibleBraceL
+    , Variable "R"
+    , InvisibleBraceR
+    , EndEnv "math"
+    , Word "inductively"
+    , Word "as"
+    , Word "follows"
+    , Symbol "."
+    , BeginEnv "enumerate"
+    , Command "item"
+    , Word "if"
+    , BeginEnv "math"
+    , Variable "w"
+    , Command "in"
+    , Variable "R"
+    , EndEnv "math"
+    , Symbol ","
+    , Word "then"
+    , BeginEnv "math"
+    , Variable "w"
+    , Command "in"
+    , Command "tracl"
+    , InvisibleBraceL
+    , Variable "R"
+    , InvisibleBraceR
+    , EndEnv "math"
+    , Symbol "."
+    , Command "item"
+    , Word "if"
+    , BeginEnv "math"
+    , ParenL
+    , Variable "a"
+    , Symbol ","
+    , Variable "b"
+    , ParenR
+    , Command "in"
+    , Command "tracl"
+    , InvisibleBraceL
+    , Variable "R"
+    , InvisibleBraceR
+    , EndEnv "math"
+    , Word "and"
+    , BeginEnv "math"
+    , ParenL
+    , Variable "b"
+    , Symbol ","
+    , Variable "c"
+    , ParenR
+    , Command "in"
+    , Variable "R"
+    , EndEnv "math"
+    , Symbol ","
+    , Word "then"
+    , BeginEnv "math"
+    , ParenL
+    , Variable "a"
+    , Symbol ","
+    , Variable "c"
+    , ParenR
+    , Command "in"
+    , Command "tracl"
+    , InvisibleBraceL
+    , Variable "R"
+    , InvisibleBraceR
+    , EndEnv "math"
+    , Symbol "."
+    , EndEnv "enumerate"
+    , EndEnv "inductive"
+    ]
+,
+    [ BeginEnv "inductive"
+    , Label "quasirefltracl"
+    , Word "define"
+    , BeginEnv "math"
+    , Command "qrefltracl"
+    , InvisibleBraceL
+    , Variable "R"
+    , InvisibleBraceR
+    , Command "subseteq"
+    , Command "fld"
+    , InvisibleBraceL
+    , Variable "R"
+    , InvisibleBraceR
+    , Command "times"
+    , Command "fld"
+    , InvisibleBraceL
+    , Variable "R"
+    , InvisibleBraceR
+    , EndEnv "math"
+    , Word "inductively"
+    , Word "as"
+    , Word "follows"
+    , Symbol "."
+    , BeginEnv "enumerate"
+    , Command "item"
+    , Word "if"
+    , BeginEnv "math"
+    , Variable "a"
+    , Command "in"
+    , Command "fld"
+    , InvisibleBraceL
+    , Variable "R"
+    , InvisibleBraceR
+    , EndEnv "math"
+    , Symbol ","
+    , Word "then"
+    , BeginEnv "math"
+    , ParenL
+    , Variable "a"
+    , Symbol ","
+    , Variable "a"
+    , ParenR
+    , Command "in"
+    , Command "qrefltracl"
+    , InvisibleBraceL
+    , Variable "R"
+    , InvisibleBraceR
+    , EndEnv "math"
+    , Symbol "."
+    , Command "item"
+    , Word "if"
+    , BeginEnv "math"
+    , ParenL
+    , Variable "a"
+    , Symbol ","
+    , Variable "b"
+    , ParenR
+    , Command "in"
+    , Command "qrefltracl"
+    , InvisibleBraceL
+    , Variable "R"
+    , InvisibleBraceR
+    , EndEnv "math"
+    , Word "and"
+    , BeginEnv "math"
+    , ParenL
+    , Variable "b"
+    , Symbol ","
+    , Variable "c"
+    , ParenR
+    , Command "in"
+    , Variable "R"
+    , EndEnv "math"
+    , Symbol ","
+    , Word "then"
+    , BeginEnv "math"
+    , ParenL
+    , Variable "a"
+    , Symbol ","
+    , Variable "c"
+    , ParenR
+    , Command "in"
+    , Command "qrefltracl"
+    , InvisibleBraceL
+    , Variable "R"
+    , InvisibleBraceR
+    , EndEnv "math"
+    , Symbol "."
+    , EndEnv "enumerate"
+    , EndEnv "inductive"
+    ]
+,
+    [ BeginEnv "inductive"
+    , Label "refltracl"
+    , Word "define"
+    , BeginEnv "math"
+    , Command "refltracl"
+    , InvisibleBraceL
+    , Variable "A"
+    , InvisibleBraceR
+    , InvisibleBraceL
+    , Variable "R"
+    , InvisibleBraceR
+    , Command "subseteq"
+    , Variable "A"
+    , Command "times"
+    , Variable "A"
+    , EndEnv "math"
+    , Word "inductively"
+    , Word "as"
+    , Word "follows"
+    , Symbol "."
+    , BeginEnv "enumerate"
+    , Command "item"
+    , Word "if"
+    , BeginEnv "math"
+    , Variable "a"
+    , Command "in"
+    , Variable "A"
+    , EndEnv "math"
+    , Symbol ","
+    , Word "then"
+    , BeginEnv "math"
+    , ParenL
+    , Variable "a"
+    , Symbol ","
+    , Variable "a"
+    , ParenR
+    , Command "in"
+    , Command "refltracl"
+    , InvisibleBraceL
+    , Variable "A"
+    , InvisibleBraceR
+    , InvisibleBraceL
+    , Variable "R"
+    , InvisibleBraceR
+    , EndEnv "math"
+    , Symbol "."
+    , Command "item"
+    , Word "if"
+    , BeginEnv "math"
+    , ParenL
+    , Variable "a"
+    , Symbol ","
+    , Variable "b"
+    , ParenR
+    , Command "in"
+    , Command "refltracl"
+    , InvisibleBraceL
+    , Variable "A"
+    , InvisibleBraceR
+    , InvisibleBraceL
+    , Variable "R"
+    , InvisibleBraceR
+    , EndEnv "math"
+    , Word "and"
+    , BeginEnv "math"
+    , ParenL
+    , Variable "b"
+    , Symbol ","
+    , Variable "c"
+    , ParenR
+    , Command "in"
+    , Variable "R"
+    , EndEnv "math"
+    , Symbol ","
+    , Word "then"
+    , BeginEnv "math"
+    , ParenL
+    , Variable "a"
+    , Symbol ","
+    , Variable "c"
+    , ParenR
+    , Command "in"
+    , Command "refltracl"
+    , InvisibleBraceL
+    , Variable "A"
+    , InvisibleBraceR
+    , InvisibleBraceL
+    , Variable "R"
+    , InvisibleBraceR
+    , EndEnv "math"
+    , Symbol "."
+    , EndEnv "enumerate"
+    , EndEnv "inductive"
+    ]
+,
+    [ BeginEnv "inductive"
+    , Label "acc"
+    , Word "define"
+    , BeginEnv "math"
+    , Command "acc"
+    , InvisibleBraceL
+    , Variable "R"
+    , InvisibleBraceR
+    , Command "subseteq"
+    , Command "fld"
+    , InvisibleBraceL
+    , Variable "R"
+    , InvisibleBraceR
+    , EndEnv "math"
+    , Word "inductively"
+    , Word "as"
+    , Word "follows"
+    , Symbol "."
+    , BeginEnv "enumerate"
+    , Command "item"
+    , Word "if"
+    , BeginEnv "math"
+    , Variable "a"
+    , Command "in"
+    , Command "fld"
+    , InvisibleBraceL
+    , Variable "R"
+    , InvisibleBraceR
+    , EndEnv "math"
+    , Word "and"
+    , BeginEnv "math"
+    , Command "preimg"
+    , InvisibleBraceL
+    , Variable "R"
+    , InvisibleBraceR
+    , InvisibleBraceL
+    , VisibleBraceL
+    , Variable "a"
+    , VisibleBraceR
+    , InvisibleBraceR
+    , Command "in"
+    , Command "pow"
+    , InvisibleBraceL
+    , Command "acc"
+    , InvisibleBraceL
+    , Variable "R"
+    , InvisibleBraceR
+    , InvisibleBraceR
+    , EndEnv "math"
+    , Symbol ","
+    , Word "then"
+    , BeginEnv "math"
+    , Variable "a"
+    , Command "in"
+    , Command "acc"
+    , InvisibleBraceL
+    , Variable "R"
+    , InvisibleBraceR
+    , EndEnv "math"
+    , Symbol "."
+    , EndEnv "enumerate"
+    , EndEnv "inductive"
+    ]
 ]

@@ -1,975 +1,1007 @@
-[ BeginEnv "definition"
-, Label "collinear"
-, BeginEnv "math"
-, Variable "a"
-, EndEnv "math"
-, Word "is"
-, Word "collinear"
-, Word "with"
-, BeginEnv "math"
-, Variable "b"
-, EndEnv "math"
-, Word "and"
-, BeginEnv "math"
-, Variable "c"
-, EndEnv "math"
-, Word "iff"
-, BeginEnv "math"
-, Command "Betw"
-, InvisibleBraceL
-, Variable "a"
-, InvisibleBraceR
-, InvisibleBraceL
-, Variable "b"
-, InvisibleBraceR
-, InvisibleBraceL
-, Variable "c"
-, InvisibleBraceR
-, EndEnv "math"
-, Word "or"
-, BeginEnv "math"
-, Command "Betw"
-, InvisibleBraceL
-, Variable "b"
-, InvisibleBraceR
-, InvisibleBraceL
-, Variable "c"
-, InvisibleBraceR
-, InvisibleBraceL
-, Variable "a"
-, InvisibleBraceR
-, EndEnv "math"
-, Word "or"
-, BeginEnv "math"
-, Command "Betw"
-, InvisibleBraceL
-, Variable "c"
-, InvisibleBraceR
-, InvisibleBraceL
-, Variable "a"
-, InvisibleBraceR
-, InvisibleBraceL
-, Variable "b"
-, InvisibleBraceR
-, EndEnv "math"
-, Symbol "."
-, EndEnv "definition"
-, BeginEnv "axiom"
-, BracketL
-, Word "reflexivity"
-, Word "of"
-, Word "congruence"
-, BracketR
-, Label "cong_refl_swap"
-, Word "let"
-, BeginEnv "math"
-, Variable "a"
-, Symbol ","
-, Variable "b"
-, EndEnv "math"
-, Word "be"
-, Word "points"
-, Symbol "."
-, Word "then"
-, BeginEnv "math"
-, Command "Cong"
-, InvisibleBraceL
-, Variable "a"
-, InvisibleBraceR
-, InvisibleBraceL
-, Variable "b"
-, InvisibleBraceR
-, InvisibleBraceL
-, Variable "b"
-, InvisibleBraceR
-, InvisibleBraceL
-, Variable "a"
-, InvisibleBraceR
-, EndEnv "math"
-, Symbol "."
-, EndEnv "axiom"
-, BeginEnv "axiom"
-, BracketL
-, Word "pseudotransitivity"
-, Word "of"
-, Word "congruence"
-, BracketR
-, Label "cong_pseudotransitive"
-, Word "let"
-, BeginEnv "math"
-, Variable "a"
-, Symbol ","
-, Variable "b"
-, Symbol ","
-, Variable "c"
-, Symbol ","
-, Variable "d"
-, EndEnv "math"
-, Word "be"
-, Word "points"
-, Symbol "."
-, Word "if"
-, BeginEnv "math"
-, Command "Cong"
-, InvisibleBraceL
-, Variable "c"
-, InvisibleBraceR
-, InvisibleBraceL
-, Variable "d"
-, InvisibleBraceR
-, InvisibleBraceL
-, Variable "a"
-, InvisibleBraceR
-, InvisibleBraceL
-, Variable "b"
-, InvisibleBraceR
-, EndEnv "math"
-, Word "and"
-, BeginEnv "math"
-, Command "Cong"
-, InvisibleBraceL
-, Variable "c"
-, InvisibleBraceR
-, InvisibleBraceL
-, Variable "d"
-, InvisibleBraceR
-, InvisibleBraceL
-, Variable "e"
-, InvisibleBraceR
-, InvisibleBraceL
-, Variable "f"
-, InvisibleBraceR
-, EndEnv "math"
-, Word "then"
-, BeginEnv "math"
-, Command "Cong"
-, InvisibleBraceL
-, Variable "a"
-, InvisibleBraceR
-, InvisibleBraceL
-, Variable "b"
-, InvisibleBraceR
-, InvisibleBraceL
-, Variable "e"
-, InvisibleBraceR
-, InvisibleBraceL
-, Variable "f"
-, InvisibleBraceR
-, EndEnv "math"
-, Symbol "."
-, EndEnv "axiom"
-, BeginEnv "axiom"
-, BracketL
-, Word "identity"
-, Word "of"
-, Word "congruence"
-, BracketR
-, Label "cong_id"
-, Word "let"
-, BeginEnv "math"
-, Variable "a"
-, Symbol ","
-, Variable "b"
-, Symbol ","
-, Variable "c"
-, EndEnv "math"
-, Word "be"
-, Word "points"
-, Symbol "."
-, Word "if"
-, BeginEnv "math"
-, Command "Cong"
-, InvisibleBraceL
-, Variable "a"
-, InvisibleBraceR
-, InvisibleBraceL
-, Variable "b"
-, InvisibleBraceR
-, InvisibleBraceL
-, Variable "c"
-, InvisibleBraceR
-, InvisibleBraceL
-, Variable "c"
-, InvisibleBraceR
-, EndEnv "math"
-, Word "then"
-, BeginEnv "math"
-, Variable "a"
-, Symbol "="
-, Variable "b"
-, EndEnv "math"
-, Symbol "."
-, EndEnv "axiom"
-, BeginEnv "axiom"
-, BracketL
-, Word "segment"
-, Word "construction"
-, BracketR
-, Label "segment_construction"
-, Word "there"
-, Word "exists"
-, Word "a"
-, Word "point"
-, BeginEnv "math"
-, Variable "c"
-, EndEnv "math"
-, Word "such"
-, Word "that"
-, BeginEnv "math"
-, Command "Betw"
-, InvisibleBraceL
-, Variable "a"
-, InvisibleBraceR
-, InvisibleBraceL
-, Variable "b"
-, InvisibleBraceR
-, InvisibleBraceL
-, Variable "c"
-, InvisibleBraceR
-, EndEnv "math"
-, Word "and"
-, BeginEnv "math"
-, Command "Cong"
-, InvisibleBraceL
-, Variable "b"
-, InvisibleBraceR
-, InvisibleBraceL
-, Variable "c"
-, InvisibleBraceR
-, InvisibleBraceL
-, Variable "d"
-, InvisibleBraceR
-, InvisibleBraceL
-, Variable "e"
-, InvisibleBraceR
-, EndEnv "math"
-, Symbol "."
-, EndEnv "axiom"
-, BeginEnv "definition"
-, Label "ofs"
-, Word "let"
-, BeginEnv "math"
-, Variable "x"
-, Symbol ","
-, Variable "y"
-, Symbol ","
-, Variable "z"
-, Symbol ","
-, Variable "r"
-, Symbol ","
-, Variable "u"
-, Symbol ","
-, Variable "v"
-, Symbol ","
-, Variable "w"
-, Symbol ","
-, Variable "p"
-, EndEnv "math"
-, Word "be"
-, Word "points"
-, Symbol "."
-, BeginEnv "math"
-, Command "OFS"
-, InvisibleBraceL
-, Variable "x"
-, InvisibleBraceR
-, InvisibleBraceL
-, Variable "y"
-, InvisibleBraceR
-, InvisibleBraceL
-, Variable "z"
-, InvisibleBraceR
-, InvisibleBraceL
-, Variable "r"
-, InvisibleBraceR
-, InvisibleBraceL
-, Variable "u"
-, InvisibleBraceR
-, InvisibleBraceL
-, Variable "v"
-, InvisibleBraceR
-, InvisibleBraceL
-, Variable "w"
-, InvisibleBraceR
-, InvisibleBraceL
-, Variable "p"
-, InvisibleBraceR
-, EndEnv "math"
-, Word "if"
-, Word "and"
-, Word "only"
-, Word "if"
-, BeginEnv "math"
-, Command "Betw"
-, InvisibleBraceL
-, Variable "x"
-, InvisibleBraceR
-, InvisibleBraceL
-, Variable "y"
-, InvisibleBraceR
-, InvisibleBraceL
-, Variable "z"
-, InvisibleBraceR
-, Command "land"
-, Command "Betw"
-, InvisibleBraceL
-, Variable "u"
-, InvisibleBraceR
-, InvisibleBraceL
-, Variable "v"
-, InvisibleBraceR
-, InvisibleBraceL
-, Variable "w"
-, InvisibleBraceR
-, EndEnv "math"
-, Word "and"
-, BeginEnv "math"
-, Command "Cong"
-, InvisibleBraceL
-, Variable "x"
-, InvisibleBraceR
-, InvisibleBraceL
-, Variable "y"
-, InvisibleBraceR
-, InvisibleBraceL
-, Variable "u"
-, InvisibleBraceR
-, InvisibleBraceL
-, Variable "v"
-, InvisibleBraceR
-, Command "land"
-, Command "Cong"
-, InvisibleBraceL
-, Variable "y"
-, InvisibleBraceR
-, InvisibleBraceL
-, Variable "z"
-, InvisibleBraceR
-, InvisibleBraceL
-, Variable "v"
-, InvisibleBraceR
-, InvisibleBraceL
-, Variable "w"
-, InvisibleBraceR
-, Command "land"
-, Command "Cong"
-, InvisibleBraceL
-, Variable "x"
-, InvisibleBraceR
-, InvisibleBraceL
-, Variable "r"
-, InvisibleBraceR
-, InvisibleBraceL
-, Variable "u"
-, InvisibleBraceR
-, InvisibleBraceL
-, Variable "p"
-, InvisibleBraceR
-, Command "land"
-, Command "Cong"
-, InvisibleBraceL
-, Variable "y"
-, InvisibleBraceR
-, InvisibleBraceL
-, Variable "r"
-, InvisibleBraceR
-, InvisibleBraceL
-, Variable "v"
-, InvisibleBraceR
-, InvisibleBraceL
-, Variable "p"
-, InvisibleBraceR
-, EndEnv "math"
-, Symbol "."
-, EndEnv "definition"
-, BeginEnv "axiom"
-, BracketL
-, Word "five"
-, Word "segment"
-, Word "axiom"
-, BracketR
-, Label "five_segment"
-, Word "let"
-, BeginEnv "math"
-, Variable "a"
-, Symbol ","
-, Variable "b"
-, Symbol ","
-, Variable "c"
-, Symbol ","
-, Variable "d"
-, Symbol ","
-, Variable "aprime"
-, Symbol ","
-, Variable "bprime"
-, Symbol ","
-, Variable "cprime"
-, Symbol ","
-, Variable "dprime"
-, EndEnv "math"
-, Word "be"
-, Word "points"
-, Symbol "."
-, Word "if"
-, BeginEnv "math"
-, Command "OFS"
-, InvisibleBraceL
-, Variable "a"
-, InvisibleBraceR
-, InvisibleBraceL
-, Variable "b"
-, InvisibleBraceR
-, InvisibleBraceL
-, Variable "c"
-, InvisibleBraceR
-, InvisibleBraceL
-, Variable "d"
-, InvisibleBraceR
-, InvisibleBraceL
-, Variable "aprime"
-, InvisibleBraceR
-, InvisibleBraceL
-, Variable "bprime"
-, InvisibleBraceR
-, InvisibleBraceL
-, Variable "cprime"
-, InvisibleBraceR
-, InvisibleBraceL
-, Variable "dprime"
-, InvisibleBraceR
-, EndEnv "math"
-, Word "and"
-, BeginEnv "math"
-, Variable "a"
-, Command "neq"
-, Variable "b"
-, EndEnv "math"
-, Word "then"
-, BeginEnv "math"
-, Command "Cong"
-, InvisibleBraceL
-, Variable "c"
-, InvisibleBraceR
-, InvisibleBraceL
-, Variable "d"
-, InvisibleBraceR
-, InvisibleBraceL
-, Variable "cprime"
-, InvisibleBraceR
-, InvisibleBraceL
-, Variable "dprime"
-, InvisibleBraceR
-, EndEnv "math"
-, Symbol "."
-, EndEnv "axiom"
-, BeginEnv "axiom"
-, BracketL
-, Word "identity"
-, Word "of"
-, Word "betweenness"
-, BracketR
-, Label "betw_id"
-, Word "let"
-, BeginEnv "math"
-, Variable "a"
-, Symbol ","
-, Variable "b"
-, EndEnv "math"
-, Word "be"
-, Word "points"
-, Symbol "."
-, Word "if"
-, BeginEnv "math"
-, Command "Betw"
-, InvisibleBraceL
-, Variable "a"
-, InvisibleBraceR
-, InvisibleBraceL
-, Variable "b"
-, InvisibleBraceR
-, InvisibleBraceL
-, Variable "a"
-, InvisibleBraceR
-, EndEnv "math"
-, Word "then"
-, BeginEnv "math"
-, Variable "a"
-, Symbol "="
-, Variable "b"
-, EndEnv "math"
-, Symbol "."
-, EndEnv "axiom"
-, BeginEnv "axiom"
-, BracketL
-, Word "inner"
-, Word "pasch"
-, BracketR
-, Label "innerpasch"
-, Word "let"
-, BeginEnv "math"
-, Variable "x"
-, Symbol ","
-, Variable "y"
-, Symbol ","
-, Variable "z"
-, Symbol ","
-, Variable "u"
-, Symbol ","
-, Variable "v"
-, Symbol ","
-, Variable "w"
-, EndEnv "math"
-, Word "be"
-, Word "points"
-, Symbol "."
-, Word "if"
-, BeginEnv "math"
-, Command "Betw"
-, InvisibleBraceL
-, Variable "x"
-, InvisibleBraceR
-, InvisibleBraceL
-, Variable "u"
-, InvisibleBraceR
-, InvisibleBraceL
-, Variable "z"
-, InvisibleBraceR
-, EndEnv "math"
-, Word "and"
-, BeginEnv "math"
-, Command "Betw"
-, InvisibleBraceL
-, Variable "y"
-, InvisibleBraceR
-, InvisibleBraceL
-, Variable "v"
-, InvisibleBraceR
-, InvisibleBraceL
-, Variable "z"
-, InvisibleBraceR
-, EndEnv "math"
-, Word "then"
-, Word "there"
-, Word "exists"
-, Word "a"
-, Word "point"
-, BeginEnv "math"
-, Variable "w"
-, EndEnv "math"
-, Word "such"
-, Word "that"
-, BeginEnv "math"
-, Command "Betw"
-, InvisibleBraceL
-, Variable "u"
-, InvisibleBraceR
-, InvisibleBraceL
-, Variable "w"
-, InvisibleBraceR
-, InvisibleBraceL
-, Variable "y"
-, InvisibleBraceR
-, EndEnv "math"
-, Word "and"
-, BeginEnv "math"
-, Command "Betw"
-, InvisibleBraceL
-, Variable "v"
-, InvisibleBraceR
-, InvisibleBraceL
-, Variable "w"
-, InvisibleBraceR
-, InvisibleBraceL
-, Variable "x"
-, InvisibleBraceR
-, EndEnv "math"
-, Symbol "."
-, EndEnv "axiom"
-, BeginEnv "axiom"
-, BracketL
-, Word "upper"
-, Word "dimension"
-, BracketR
-, Label "upperdim"
-, Word "let"
-, BeginEnv "math"
-, Variable "x"
-, Symbol ","
-, Variable "y"
-, Symbol ","
-, Variable "z"
-, Symbol ","
-, Variable "u"
-, Symbol ","
-, Variable "v"
-, EndEnv "math"
-, Word "be"
-, Word "points"
-, Symbol "."
-, Word "if"
-, BeginEnv "math"
-, Command "Cong"
-, InvisibleBraceL
-, Variable "x"
-, InvisibleBraceR
-, InvisibleBraceL
-, Variable "u"
-, InvisibleBraceR
-, InvisibleBraceL
-, Variable "x"
-, InvisibleBraceR
-, InvisibleBraceL
-, Variable "v"
-, InvisibleBraceR
-, EndEnv "math"
-, Word "and"
-, BeginEnv "math"
-, Command "Cong"
-, InvisibleBraceL
-, Variable "y"
-, InvisibleBraceR
-, InvisibleBraceL
-, Variable "u"
-, InvisibleBraceR
-, InvisibleBraceL
-, Variable "y"
-, InvisibleBraceR
-, InvisibleBraceL
-, Variable "v"
-, InvisibleBraceR
-, EndEnv "math"
-, Word "and"
-, BeginEnv "math"
-, Command "Cong"
-, InvisibleBraceL
-, Variable "z"
-, InvisibleBraceR
-, InvisibleBraceL
-, Variable "u"
-, InvisibleBraceR
-, InvisibleBraceL
-, Variable "z"
-, InvisibleBraceR
-, InvisibleBraceL
-, Variable "v"
-, InvisibleBraceR
-, EndEnv "math"
-, Word "and"
-, BeginEnv "math"
-, Variable "u"
-, Command "neq"
-, Variable "v"
-, EndEnv "math"
-, Word "then"
-, BeginEnv "math"
-, Variable "x"
-, EndEnv "math"
-, Word "is"
-, Word "collinear"
-, Word "with"
-, BeginEnv "math"
-, Variable "y"
-, EndEnv "math"
-, Word "and"
-, BeginEnv "math"
-, Variable "z"
-, EndEnv "math"
-, Symbol "."
-, EndEnv "axiom"
-, BeginEnv "lemma"
-, BracketL
-, Word "reflexivity"
-, Word "of"
-, Word "congruence"
-, BracketR
-, Label "cong_refl"
-, Word "let"
-, BeginEnv "math"
-, Variable "a"
-, Symbol ","
-, Variable "b"
-, EndEnv "math"
-, Word "be"
-, Word "points"
-, Symbol "."
-, Word "then"
-, BeginEnv "math"
-, Command "Cong"
-, InvisibleBraceL
-, Variable "a"
-, InvisibleBraceR
-, InvisibleBraceL
-, Variable "b"
-, InvisibleBraceR
-, InvisibleBraceL
-, Variable "a"
-, InvisibleBraceR
-, InvisibleBraceL
-, Variable "b"
-, InvisibleBraceR
-, EndEnv "math"
-, Symbol "."
-, EndEnv "lemma"
-, BeginEnv "lemma"
-, BracketL
-, Word "symmetry"
-, Word "of"
-, Word "congruence"
-, BracketR
-, Label "cong_sym"
-, Word "let"
-, BeginEnv "math"
-, Variable "a"
-, Symbol ","
-, Variable "b"
-, Symbol ","
-, Variable "c"
-, Symbol ","
-, Variable "d"
-, EndEnv "math"
-, Word "be"
-, Word "points"
-, Symbol "."
-, Word "suppose"
-, BeginEnv "math"
-, Command "Cong"
-, InvisibleBraceL
-, Variable "a"
-, InvisibleBraceR
-, InvisibleBraceL
-, Variable "b"
-, InvisibleBraceR
-, InvisibleBraceL
-, Variable "c"
-, InvisibleBraceR
-, InvisibleBraceL
-, Variable "d"
-, InvisibleBraceR
-, EndEnv "math"
-, Symbol "."
-, Word "then"
-, BeginEnv "math"
-, Command "Cong"
-, InvisibleBraceL
-, Variable "c"
-, InvisibleBraceR
-, InvisibleBraceL
-, Variable "d"
-, InvisibleBraceR
-, InvisibleBraceL
-, Variable "a"
-, InvisibleBraceR
-, InvisibleBraceL
-, Variable "b"
-, InvisibleBraceR
-, EndEnv "math"
-, Symbol "."
-, EndEnv "lemma"
-, BeginEnv "lemma"
-, BracketL
-, Word "transitivity"
-, Word "of"
-, Word "congruence"
-, BracketR
-, Label "cong_transitive"
-, Word "let"
-, BeginEnv "math"
-, Variable "a"
-, Symbol ","
-, Variable "b"
-, Symbol ","
-, Variable "c"
-, Symbol ","
-, Variable "d"
-, Symbol ","
-, Variable "e"
-, Symbol ","
-, Variable "f"
-, EndEnv "math"
-, Word "be"
-, Word "points"
-, Symbol "."
-, Word "if"
-, BeginEnv "math"
-, Command "Cong"
-, InvisibleBraceL
-, Variable "a"
-, InvisibleBraceR
-, InvisibleBraceL
-, Variable "b"
-, InvisibleBraceR
-, InvisibleBraceL
-, Variable "c"
-, InvisibleBraceR
-, InvisibleBraceL
-, Variable "d"
-, InvisibleBraceR
-, EndEnv "math"
-, Word "and"
-, BeginEnv "math"
-, Command "Cong"
-, InvisibleBraceL
-, Variable "c"
-, InvisibleBraceR
-, InvisibleBraceL
-, Variable "d"
-, InvisibleBraceR
-, InvisibleBraceL
-, Variable "e"
-, InvisibleBraceR
-, InvisibleBraceL
-, Variable "f"
-, InvisibleBraceR
-, EndEnv "math"
-, Word "then"
-, BeginEnv "math"
-, Command "Cong"
-, InvisibleBraceL
-, Variable "a"
-, InvisibleBraceR
-, InvisibleBraceL
-, Variable "b"
-, InvisibleBraceR
-, InvisibleBraceL
-, Variable "e"
-, InvisibleBraceR
-, InvisibleBraceL
-, Variable "f"
-, InvisibleBraceR
-, EndEnv "math"
-, Symbol "."
-, EndEnv "lemma"
-, BeginEnv "lemma"
-, Label "cong_shuffle_left"
-, Word "let"
-, BeginEnv "math"
-, Variable "a"
-, Symbol ","
-, Variable "b"
-, Symbol ","
-, Variable "c"
-, Symbol ","
-, Variable "d"
-, EndEnv "math"
-, Word "be"
-, Word "points"
-, Symbol "."
-, Word "if"
-, BeginEnv "math"
-, Command "Cong"
-, InvisibleBraceL
-, Variable "a"
-, InvisibleBraceR
-, InvisibleBraceL
-, Variable "b"
-, InvisibleBraceR
-, InvisibleBraceL
-, Variable "c"
-, InvisibleBraceR
-, InvisibleBraceL
-, Variable "d"
-, InvisibleBraceR
-, EndEnv "math"
-, Word "then"
-, BeginEnv "math"
-, Command "Cong"
-, InvisibleBraceL
-, Variable "b"
-, InvisibleBraceR
-, InvisibleBraceL
-, Variable "a"
-, InvisibleBraceR
-, InvisibleBraceL
-, Variable "c"
-, InvisibleBraceR
-, InvisibleBraceL
-, Variable "d"
-, InvisibleBraceR
-, EndEnv "math"
-, Symbol "."
-, EndEnv "lemma"
-, BeginEnv "lemma"
-, Label "cong_shuffle_right"
-, Word "let"
-, BeginEnv "math"
-, Variable "a"
-, Symbol ","
-, Variable "b"
-, Symbol ","
-, Variable "c"
-, Symbol ","
-, Variable "d"
-, EndEnv "math"
-, Word "be"
-, Word "points"
-, Symbol "."
-, Word "if"
-, BeginEnv "math"
-, Command "Cong"
-, InvisibleBraceL
-, Variable "a"
-, InvisibleBraceR
-, InvisibleBraceL
-, Variable "b"
-, InvisibleBraceR
-, InvisibleBraceL
-, Variable "c"
-, InvisibleBraceR
-, InvisibleBraceL
-, Variable "d"
-, InvisibleBraceR
-, EndEnv "math"
-, Word "then"
-, BeginEnv "math"
-, Command "Cong"
-, InvisibleBraceL
-, Variable "b"
-, InvisibleBraceR
-, InvisibleBraceL
-, Variable "a"
-, InvisibleBraceR
-, InvisibleBraceL
-, Variable "d"
-, InvisibleBraceR
-, InvisibleBraceL
-, Variable "c"
-, InvisibleBraceR
-, EndEnv "math"
-, Symbol "."
-, EndEnv "lemma"
-, BeginEnv "lemma"
-, BracketL
-, Word "zero"
-, Word "segments"
-, Word "are"
-, Word "congruent"
-, BracketR
-, Label "cong_zero"
-, Word "let"
-, BeginEnv "math"
-, Variable "a"
-, Symbol ","
-, Variable "b"
-, EndEnv "math"
-, Word "be"
-, Word "points"
-, Symbol "."
-, Word "then"
-, BeginEnv "math"
-, Command "Cong"
-, InvisibleBraceL
-, Variable "a"
-, InvisibleBraceR
-, InvisibleBraceL
-, Variable "a"
-, InvisibleBraceR
-, InvisibleBraceL
-, Variable "b"
-, InvisibleBraceR
-, InvisibleBraceL
-, Variable "b"
-, InvisibleBraceR
-, EndEnv "math"
-, Symbol "."
-, EndEnv "lemma"
+[
+    [ BeginEnv "definition"
+    , Label "collinear"
+    , BeginEnv "math"
+    , Variable "a"
+    , EndEnv "math"
+    , Word "is"
+    , Word "collinear"
+    , Word "with"
+    , BeginEnv "math"
+    , Variable "b"
+    , EndEnv "math"
+    , Word "and"
+    , BeginEnv "math"
+    , Variable "c"
+    , EndEnv "math"
+    , Word "iff"
+    , BeginEnv "math"
+    , Command "Betw"
+    , InvisibleBraceL
+    , Variable "a"
+    , InvisibleBraceR
+    , InvisibleBraceL
+    , Variable "b"
+    , InvisibleBraceR
+    , InvisibleBraceL
+    , Variable "c"
+    , InvisibleBraceR
+    , EndEnv "math"
+    , Word "or"
+    , BeginEnv "math"
+    , Command "Betw"
+    , InvisibleBraceL
+    , Variable "b"
+    , InvisibleBraceR
+    , InvisibleBraceL
+    , Variable "c"
+    , InvisibleBraceR
+    , InvisibleBraceL
+    , Variable "a"
+    , InvisibleBraceR
+    , EndEnv "math"
+    , Word "or"
+    , BeginEnv "math"
+    , Command "Betw"
+    , InvisibleBraceL
+    , Variable "c"
+    , InvisibleBraceR
+    , InvisibleBraceL
+    , Variable "a"
+    , InvisibleBraceR
+    , InvisibleBraceL
+    , Variable "b"
+    , InvisibleBraceR
+    , EndEnv "math"
+    , Symbol "."
+    , EndEnv "definition"
+    ]
+,
+    [ BeginEnv "axiom"
+    , BracketL
+    , Word "reflexivity"
+    , Word "of"
+    , Word "congruence"
+    , BracketR
+    , Label "cong_refl_swap"
+    , Word "let"
+    , BeginEnv "math"
+    , Variable "a"
+    , Symbol ","
+    , Variable "b"
+    , EndEnv "math"
+    , Word "be"
+    , Word "points"
+    , Symbol "."
+    , Word "then"
+    , BeginEnv "math"
+    , Command "Cong"
+    , InvisibleBraceL
+    , Variable "a"
+    , InvisibleBraceR
+    , InvisibleBraceL
+    , Variable "b"
+    , InvisibleBraceR
+    , InvisibleBraceL
+    , Variable "b"
+    , InvisibleBraceR
+    , InvisibleBraceL
+    , Variable "a"
+    , InvisibleBraceR
+    , EndEnv "math"
+    , Symbol "."
+    , EndEnv "axiom"
+    ]
+,
+    [ BeginEnv "axiom"
+    , BracketL
+    , Word "pseudotransitivity"
+    , Word "of"
+    , Word "congruence"
+    , BracketR
+    , Label "cong_pseudotransitive"
+    , Word "let"
+    , BeginEnv "math"
+    , Variable "a"
+    , Symbol ","
+    , Variable "b"
+    , Symbol ","
+    , Variable "c"
+    , Symbol ","
+    , Variable "d"
+    , EndEnv "math"
+    , Word "be"
+    , Word "points"
+    , Symbol "."
+    , Word "if"
+    , BeginEnv "math"
+    , Command "Cong"
+    , InvisibleBraceL
+    , Variable "c"
+    , InvisibleBraceR
+    , InvisibleBraceL
+    , Variable "d"
+    , InvisibleBraceR
+    , InvisibleBraceL
+    , Variable "a"
+    , InvisibleBraceR
+    , InvisibleBraceL
+    , Variable "b"
+    , InvisibleBraceR
+    , EndEnv "math"
+    , Word "and"
+    , BeginEnv "math"
+    , Command "Cong"
+    , InvisibleBraceL
+    , Variable "c"
+    , InvisibleBraceR
+    , InvisibleBraceL
+    , Variable "d"
+    , InvisibleBraceR
+    , InvisibleBraceL
+    , Variable "e"
+    , InvisibleBraceR
+    , InvisibleBraceL
+    , Variable "f"
+    , InvisibleBraceR
+    , EndEnv "math"
+    , Word "then"
+    , BeginEnv "math"
+    , Command "Cong"
+    , InvisibleBraceL
+    , Variable "a"
+    , InvisibleBraceR
+    , InvisibleBraceL
+    , Variable "b"
+    , InvisibleBraceR
+    , InvisibleBraceL
+    , Variable "e"
+    , InvisibleBraceR
+    , InvisibleBraceL
+    , Variable "f"
+    , InvisibleBraceR
+    , EndEnv "math"
+    , Symbol "."
+    , EndEnv "axiom"
+    ]
+,
+    [ BeginEnv "axiom"
+    , BracketL
+    , Word "identity"
+    , Word "of"
+    , Word "congruence"
+    , BracketR
+    , Label "cong_id"
+    , Word "let"
+    , BeginEnv "math"
+    , Variable "a"
+    , Symbol ","
+    , Variable "b"
+    , Symbol ","
+    , Variable "c"
+    , EndEnv "math"
+    , Word "be"
+    , Word "points"
+    , Symbol "."
+    , Word "if"
+    , BeginEnv "math"
+    , Command "Cong"
+    , InvisibleBraceL
+    , Variable "a"
+    , InvisibleBraceR
+    , InvisibleBraceL
+    , Variable "b"
+    , InvisibleBraceR
+    , InvisibleBraceL
+    , Variable "c"
+    , InvisibleBraceR
+    , InvisibleBraceL
+    , Variable "c"
+    , InvisibleBraceR
+    , EndEnv "math"
+    , Word "then"
+    , BeginEnv "math"
+    , Variable "a"
+    , Symbol "="
+    , Variable "b"
+    , EndEnv "math"
+    , Symbol "."
+    , EndEnv "axiom"
+    ]
+,
+    [ BeginEnv "axiom"
+    , BracketL
+    , Word "segment"
+    , Word "construction"
+    , BracketR
+    , Label "segment_construction"
+    , Word "there"
+    , Word "exists"
+    , Word "a"
+    , Word "point"
+    , BeginEnv "math"
+    , Variable "c"
+    , EndEnv "math"
+    , Word "such"
+    , Word "that"
+    , BeginEnv "math"
+    , Command "Betw"
+    , InvisibleBraceL
+    , Variable "a"
+    , InvisibleBraceR
+    , InvisibleBraceL
+    , Variable "b"
+    , InvisibleBraceR
+    , InvisibleBraceL
+    , Variable "c"
+    , InvisibleBraceR
+    , EndEnv "math"
+    , Word "and"
+    , BeginEnv "math"
+    , Command "Cong"
+    , InvisibleBraceL
+    , Variable "b"
+    , InvisibleBraceR
+    , InvisibleBraceL
+    , Variable "c"
+    , InvisibleBraceR
+    , InvisibleBraceL
+    , Variable "d"
+    , InvisibleBraceR
+    , InvisibleBraceL
+    , Variable "e"
+    , InvisibleBraceR
+    , EndEnv "math"
+    , Symbol "."
+    , EndEnv "axiom"
+    ]
+,
+    [ BeginEnv "definition"
+    , Label "ofs"
+    , Word "let"
+    , BeginEnv "math"
+    , Variable "x"
+    , Symbol ","
+    , Variable "y"
+    , Symbol ","
+    , Variable "z"
+    , Symbol ","
+    , Variable "r"
+    , Symbol ","
+    , Variable "u"
+    , Symbol ","
+    , Variable "v"
+    , Symbol ","
+    , Variable "w"
+    , Symbol ","
+    , Variable "p"
+    , EndEnv "math"
+    , Word "be"
+    , Word "points"
+    , Symbol "."
+    , BeginEnv "math"
+    , Command "OFS"
+    , InvisibleBraceL
+    , Variable "x"
+    , InvisibleBraceR
+    , InvisibleBraceL
+    , Variable "y"
+    , InvisibleBraceR
+    , InvisibleBraceL
+    , Variable "z"
+    , InvisibleBraceR
+    , InvisibleBraceL
+    , Variable "r"
+    , InvisibleBraceR
+    , InvisibleBraceL
+    , Variable "u"
+    , InvisibleBraceR
+    , InvisibleBraceL
+    , Variable "v"
+    , InvisibleBraceR
+    , InvisibleBraceL
+    , Variable "w"
+    , InvisibleBraceR
+    , InvisibleBraceL
+    , Variable "p"
+    , InvisibleBraceR
+    , EndEnv "math"
+    , Word "if"
+    , Word "and"
+    , Word "only"
+    , Word "if"
+    , BeginEnv "math"
+    , Command "Betw"
+    , InvisibleBraceL
+    , Variable "x"
+    , InvisibleBraceR
+    , InvisibleBraceL
+    , Variable "y"
+    , InvisibleBraceR
+    , InvisibleBraceL
+    , Variable "z"
+    , InvisibleBraceR
+    , Command "land"
+    , Command "Betw"
+    , InvisibleBraceL
+    , Variable "u"
+    , InvisibleBraceR
+    , InvisibleBraceL
+    , Variable "v"
+    , InvisibleBraceR
+    , InvisibleBraceL
+    , Variable "w"
+    , InvisibleBraceR
+    , EndEnv "math"
+    , Word "and"
+    , BeginEnv "math"
+    , Command "Cong"
+    , InvisibleBraceL
+    , Variable "x"
+    , InvisibleBraceR
+    , InvisibleBraceL
+    , Variable "y"
+    , InvisibleBraceR
+    , InvisibleBraceL
+    , Variable "u"
+    , InvisibleBraceR
+    , InvisibleBraceL
+    , Variable "v"
+    , InvisibleBraceR
+    , Command "land"
+    , Command "Cong"
+    , InvisibleBraceL
+    , Variable "y"
+    , InvisibleBraceR
+    , InvisibleBraceL
+    , Variable "z"
+    , InvisibleBraceR
+    , InvisibleBraceL
+    , Variable "v"
+    , InvisibleBraceR
+    , InvisibleBraceL
+    , Variable "w"
+    , InvisibleBraceR
+    , Command "land"
+    , Command "Cong"
+    , InvisibleBraceL
+    , Variable "x"
+    , InvisibleBraceR
+    , InvisibleBraceL
+    , Variable "r"
+    , InvisibleBraceR
+    , InvisibleBraceL
+    , Variable "u"
+    , InvisibleBraceR
+    , InvisibleBraceL
+    , Variable "p"
+    , InvisibleBraceR
+    , Command "land"
+    , Command "Cong"
+    , InvisibleBraceL
+    , Variable "y"
+    , InvisibleBraceR
+    , InvisibleBraceL
+    , Variable "r"
+    , InvisibleBraceR
+    , InvisibleBraceL
+    , Variable "v"
+    , InvisibleBraceR
+    , InvisibleBraceL
+    , Variable "p"
+    , InvisibleBraceR
+    , EndEnv "math"
+    , Symbol "."
+    , EndEnv "definition"
+    ]
+,
+    [ BeginEnv "axiom"
+    , BracketL
+    , Word "five"
+    , Word "segment"
+    , Word "axiom"
+    , BracketR
+    , Label "five_segment"
+    , Word "let"
+    , BeginEnv "math"
+    , Variable "a"
+    , Symbol ","
+    , Variable "b"
+    , Symbol ","
+    , Variable "c"
+    , Symbol ","
+    , Variable "d"
+    , Symbol ","
+    , Variable "aprime"
+    , Symbol ","
+    , Variable "bprime"
+    , Symbol ","
+    , Variable "cprime"
+    , Symbol ","
+    , Variable "dprime"
+    , EndEnv "math"
+    , Word "be"
+    , Word "points"
+    , Symbol "."
+    , Word "if"
+    , BeginEnv "math"
+    , Command "OFS"
+    , InvisibleBraceL
+    , Variable "a"
+    , InvisibleBraceR
+    , InvisibleBraceL
+    , Variable "b"
+    , InvisibleBraceR
+    , InvisibleBraceL
+    , Variable "c"
+    , InvisibleBraceR
+    , InvisibleBraceL
+    , Variable "d"
+    , InvisibleBraceR
+    , InvisibleBraceL
+    , Variable "aprime"
+    , InvisibleBraceR
+    , InvisibleBraceL
+    , Variable "bprime"
+    , InvisibleBraceR
+    , InvisibleBraceL
+    , Variable "cprime"
+    , InvisibleBraceR
+    , InvisibleBraceL
+    , Variable "dprime"
+    , InvisibleBraceR
+    , EndEnv "math"
+    , Word "and"
+    , BeginEnv "math"
+    , Variable "a"
+    , Command "neq"
+    , Variable "b"
+    , EndEnv "math"
+    , Word "then"
+    , BeginEnv "math"
+    , Command "Cong"
+    , InvisibleBraceL
+    , Variable "c"
+    , InvisibleBraceR
+    , InvisibleBraceL
+    , Variable "d"
+    , InvisibleBraceR
+    , InvisibleBraceL
+    , Variable "cprime"
+    , InvisibleBraceR
+    , InvisibleBraceL
+    , Variable "dprime"
+    , InvisibleBraceR
+    , EndEnv "math"
+    , Symbol "."
+    , EndEnv "axiom"
+    ]
+,
+    [ BeginEnv "axiom"
+    , BracketL
+    , Word "identity"
+    , Word "of"
+    , Word "betweenness"
+    , BracketR
+    , Label "betw_id"
+    , Word "let"
+    , BeginEnv "math"
+    , Variable "a"
+    , Symbol ","
+    , Variable "b"
+    , EndEnv "math"
+    , Word "be"
+    , Word "points"
+    , Symbol "."
+    , Word "if"
+    , BeginEnv "math"
+    , Command "Betw"
+    , InvisibleBraceL
+    , Variable "a"
+    , InvisibleBraceR
+    , InvisibleBraceL
+    , Variable "b"
+    , InvisibleBraceR
+    , InvisibleBraceL
+    , Variable "a"
+    , InvisibleBraceR
+    , EndEnv "math"
+    , Word "then"
+    , BeginEnv "math"
+    , Variable "a"
+    , Symbol "="
+    , Variable "b"
+    , EndEnv "math"
+    , Symbol "."
+    , EndEnv "axiom"
+    ]
+,
+    [ BeginEnv "axiom"
+    , BracketL
+    , Word "inner"
+    , Word "pasch"
+    , BracketR
+    , Label "innerpasch"
+    , Word "let"
+    , BeginEnv "math"
+    , Variable "x"
+    , Symbol ","
+    , Variable "y"
+    , Symbol ","
+    , Variable "z"
+    , Symbol ","
+    , Variable "u"
+    , Symbol ","
+    , Variable "v"
+    , Symbol ","
+    , Variable "w"
+    , EndEnv "math"
+    , Word "be"
+    , Word "points"
+    , Symbol "."
+    , Word "if"
+    , BeginEnv "math"
+    , Command "Betw"
+    , InvisibleBraceL
+    , Variable "x"
+    , InvisibleBraceR
+    , InvisibleBraceL
+    , Variable "u"
+    , InvisibleBraceR
+    , InvisibleBraceL
+    , Variable "z"
+    , InvisibleBraceR
+    , EndEnv "math"
+    , Word "and"
+    , BeginEnv "math"
+    , Command "Betw"
+    , InvisibleBraceL
+    , Variable "y"
+    , InvisibleBraceR
+    , InvisibleBraceL
+    , Variable "v"
+    , InvisibleBraceR
+    , InvisibleBraceL
+    , Variable "z"
+    , InvisibleBraceR
+    , EndEnv "math"
+    , Word "then"
+    , Word "there"
+    , Word "exists"
+    , Word "a"
+    , Word "point"
+    , BeginEnv "math"
+    , Variable "w"
+    , EndEnv "math"
+    , Word "such"
+    , Word "that"
+    , BeginEnv "math"
+    , Command "Betw"
+    , InvisibleBraceL
+    , Variable "u"
+    , InvisibleBraceR
+    , InvisibleBraceL
+    , Variable "w"
+    , InvisibleBraceR
+    , InvisibleBraceL
+    , Variable "y"
+    , InvisibleBraceR
+    , EndEnv "math"
+    , Word "and"
+    , BeginEnv "math"
+    , Command "Betw"
+    , InvisibleBraceL
+    , Variable "v"
+    , InvisibleBraceR
+    , InvisibleBraceL
+    , Variable "w"
+    , InvisibleBraceR
+    , InvisibleBraceL
+    , Variable "x"
+    , InvisibleBraceR
+    , EndEnv "math"
+    , Symbol "."
+    , EndEnv "axiom"
+    ]
+,
+    [ BeginEnv "axiom"
+    , BracketL
+    , Word "upper"
+    , Word "dimension"
+    , BracketR
+    , Label "upperdim"
+    , Word "let"
+    , BeginEnv "math"
+    , Variable "x"
+    , Symbol ","
+    , Variable "y"
+    , Symbol ","
+    , Variable "z"
+    , Symbol ","
+    , Variable "u"
+    , Symbol ","
+    , Variable "v"
+    , EndEnv "math"
+    , Word "be"
+    , Word "points"
+    , Symbol "."
+    , Word "if"
+    , BeginEnv "math"
+    , Command "Cong"
+    , InvisibleBraceL
+    , Variable "x"
+    , InvisibleBraceR
+    , InvisibleBraceL
+    , Variable "u"
+    , InvisibleBraceR
+    , InvisibleBraceL
+    , Variable "x"
+    , InvisibleBraceR
+    , InvisibleBraceL
+    , Variable "v"
+    , InvisibleBraceR
+    , EndEnv "math"
+    , Word "and"
+    , BeginEnv "math"
+    , Command "Cong"
+    , InvisibleBraceL
+    , Variable "y"
+    , InvisibleBraceR
+    , InvisibleBraceL
+    , Variable "u"
+    , InvisibleBraceR
+    , InvisibleBraceL
+    , Variable "y"
+    , InvisibleBraceR
+    , InvisibleBraceL
+    , Variable "v"
+    , InvisibleBraceR
+    , EndEnv "math"
+    , Word "and"
+    , BeginEnv "math"
+    , Command "Cong"
+    , InvisibleBraceL
+    , Variable "z"
+    , InvisibleBraceR
+    , InvisibleBraceL
+    , Variable "u"
+    , InvisibleBraceR
+    , InvisibleBraceL
+    , Variable "z"
+    , InvisibleBraceR
+    , InvisibleBraceL
+    , Variable "v"
+    , InvisibleBraceR
+    , EndEnv "math"
+    , Word "and"
+    , BeginEnv "math"
+    , Variable "u"
+    , Command "neq"
+    , Variable "v"
+    , EndEnv "math"
+    , Word "then"
+    , BeginEnv "math"
+    , Variable "x"
+    , EndEnv "math"
+    , Word "is"
+    , Word "collinear"
+    , Word "with"
+    , BeginEnv "math"
+    , Variable "y"
+    , EndEnv "math"
+    , Word "and"
+    , BeginEnv "math"
+    , Variable "z"
+    , EndEnv "math"
+    , Symbol "."
+    , EndEnv "axiom"
+    ]
+,
+    [ BeginEnv "lemma"
+    , BracketL
+    , Word "reflexivity"
+    , Word "of"
+    , Word "congruence"
+    , BracketR
+    , Label "cong_refl"
+    , Word "let"
+    , BeginEnv "math"
+    , Variable "a"
+    , Symbol ","
+    , Variable "b"
+    , EndEnv "math"
+    , Word "be"
+    , Word "points"
+    , Symbol "."
+    , Word "then"
+    , BeginEnv "math"
+    , Command "Cong"
+    , InvisibleBraceL
+    , Variable "a"
+    , InvisibleBraceR
+    , InvisibleBraceL
+    , Variable "b"
+    , InvisibleBraceR
+    , InvisibleBraceL
+    , Variable "a"
+    , InvisibleBraceR
+    , InvisibleBraceL
+    , Variable "b"
+    , InvisibleBraceR
+    , EndEnv "math"
+    , Symbol "."
+    , EndEnv "lemma"
+    ]
+,
+    [ BeginEnv "lemma"
+    , BracketL
+    , Word "symmetry"
+    , Word "of"
+    , Word "congruence"
+    , BracketR
+    , Label "cong_sym"
+    , Word "let"
+    , BeginEnv "math"
+    , Variable "a"
+    , Symbol ","
+    , Variable "b"
+    , Symbol ","
+    , Variable "c"
+    , Symbol ","
+    , Variable "d"
+    , EndEnv "math"
+    , Word "be"
+    , Word "points"
+    , Symbol "."
+    , Word "suppose"
+    , BeginEnv "math"
+    , Command "Cong"
+    , InvisibleBraceL
+    , Variable "a"
+    , InvisibleBraceR
+    , InvisibleBraceL
+    , Variable "b"
+    , InvisibleBraceR
+    , InvisibleBraceL
+    , Variable "c"
+    , InvisibleBraceR
+    , InvisibleBraceL
+    , Variable "d"
+    , InvisibleBraceR
+    , EndEnv "math"
+    , Symbol "."
+    , Word "then"
+    , BeginEnv "math"
+    , Command "Cong"
+    , InvisibleBraceL
+    , Variable "c"
+    , InvisibleBraceR
+    , InvisibleBraceL
+    , Variable "d"
+    , InvisibleBraceR
+    , InvisibleBraceL
+    , Variable "a"
+    , InvisibleBraceR
+    , InvisibleBraceL
+    , Variable "b"
+    , InvisibleBraceR
+    , EndEnv "math"
+    , Symbol "."
+    , EndEnv "lemma"
+    ]
+,
+    [ BeginEnv "lemma"
+    , BracketL
+    , Word "transitivity"
+    , Word "of"
+    , Word "congruence"
+    , BracketR
+    , Label "cong_transitive"
+    , Word "let"
+    , BeginEnv "math"
+    , Variable "a"
+    , Symbol ","
+    , Variable "b"
+    , Symbol ","
+    , Variable "c"
+    , Symbol ","
+    , Variable "d"
+    , Symbol ","
+    , Variable "e"
+    , Symbol ","
+    , Variable "f"
+    , EndEnv "math"
+    , Word "be"
+    , Word "points"
+    , Symbol "."
+    , Word "if"
+    , BeginEnv "math"
+    , Command "Cong"
+    , InvisibleBraceL
+    , Variable "a"
+    , InvisibleBraceR
+    , InvisibleBraceL
+    , Variable "b"
+    , InvisibleBraceR
+    , InvisibleBraceL
+    , Variable "c"
+    , InvisibleBraceR
+    , InvisibleBraceL
+    , Variable "d"
+    , InvisibleBraceR
+    , EndEnv "math"
+    , Word "and"
+    , BeginEnv "math"
+    , Command "Cong"
+    , InvisibleBraceL
+    , Variable "c"
+    , InvisibleBraceR
+    , InvisibleBraceL
+    , Variable "d"
+    , InvisibleBraceR
+    , InvisibleBraceL
+    , Variable "e"
+    , InvisibleBraceR
+    , InvisibleBraceL
+    , Variable "f"
+    , InvisibleBraceR
+    , EndEnv "math"
+    , Word "then"
+    , BeginEnv "math"
+    , Command "Cong"
+    , InvisibleBraceL
+    , Variable "a"
+    , InvisibleBraceR
+    , InvisibleBraceL
+    , Variable "b"
+    , InvisibleBraceR
+    , InvisibleBraceL
+    , Variable "e"
+    , InvisibleBraceR
+    , InvisibleBraceL
+    , Variable "f"
+    , InvisibleBraceR
+    , EndEnv "math"
+    , Symbol "."
+    , EndEnv "lemma"
+    ]
+,
+    [ BeginEnv "lemma"
+    , Label "cong_shuffle_left"
+    , Word "let"
+    , BeginEnv "math"
+    , Variable "a"
+    , Symbol ","
+    , Variable "b"
+    , Symbol ","
+    , Variable "c"
+    , Symbol ","
+    , Variable "d"
+    , EndEnv "math"
+    , Word "be"
+    , Word "points"
+    , Symbol "."
+    , Word "if"
+    , BeginEnv "math"
+    , Command "Cong"
+    , InvisibleBraceL
+    , Variable "a"
+    , InvisibleBraceR
+    , InvisibleBraceL
+    , Variable "b"
+    , InvisibleBraceR
+    , InvisibleBraceL
+    , Variable "c"
+    , InvisibleBraceR
+    , InvisibleBraceL
+    , Variable "d"
+    , InvisibleBraceR
+    , EndEnv "math"
+    , Word "then"
+    , BeginEnv "math"
+    , Command "Cong"
+    , InvisibleBraceL
+    , Variable "b"
+    , InvisibleBraceR
+    , InvisibleBraceL
+    , Variable "a"
+    , InvisibleBraceR
+    , InvisibleBraceL
+    , Variable "c"
+    , InvisibleBraceR
+    , InvisibleBraceL
+    , Variable "d"
+    , InvisibleBraceR
+    , EndEnv "math"
+    , Symbol "."
+    , EndEnv "lemma"
+    ]
+,
+    [ BeginEnv "lemma"
+    , Label "cong_shuffle_right"
+    , Word "let"
+    , BeginEnv "math"
+    , Variable "a"
+    , Symbol ","
+    , Variable "b"
+    , Symbol ","
+    , Variable "c"
+    , Symbol ","
+    , Variable "d"
+    , EndEnv "math"
+    , Word "be"
+    , Word "points"
+    , Symbol "."
+    , Word "if"
+    , BeginEnv "math"
+    , Command "Cong"
+    , InvisibleBraceL
+    , Variable "a"
+    , InvisibleBraceR
+    , InvisibleBraceL
+    , Variable "b"
+    , InvisibleBraceR
+    , InvisibleBraceL
+    , Variable "c"
+    , InvisibleBraceR
+    , InvisibleBraceL
+    , Variable "d"
+    , InvisibleBraceR
+    , EndEnv "math"
+    , Word "then"
+    , BeginEnv "math"
+    , Command "Cong"
+    , InvisibleBraceL
+    , Variable "b"
+    , InvisibleBraceR
+    , InvisibleBraceL
+    , Variable "a"
+    , InvisibleBraceR
+    , InvisibleBraceL
+    , Variable "d"
+    , InvisibleBraceR
+    , InvisibleBraceL
+    , Variable "c"
+    , InvisibleBraceR
+    , EndEnv "math"
+    , Symbol "."
+    , EndEnv "lemma"
+    ]
+,
+    [ BeginEnv "lemma"
+    , BracketL
+    , Word "zero"
+    , Word "segments"
+    , Word "are"
+    , Word "congruent"
+    , BracketR
+    , Label "cong_zero"
+    , Word "let"
+    , BeginEnv "math"
+    , Variable "a"
+    , Symbol ","
+    , Variable "b"
+    , EndEnv "math"
+    , Word "be"
+    , Word "points"
+    , Symbol "."
+    , Word "then"
+    , BeginEnv "math"
+    , Command "Cong"
+    , InvisibleBraceL
+    , Variable "a"
+    , InvisibleBraceR
+    , InvisibleBraceL
+    , Variable "a"
+    , InvisibleBraceR
+    , InvisibleBraceL
+    , Variable "b"
+    , InvisibleBraceR
+    , InvisibleBraceL
+    , Variable "b"
+    , InvisibleBraceR
+    , EndEnv "math"
+    , Symbol "."
+    , EndEnv "lemma"
+    ]
 ]

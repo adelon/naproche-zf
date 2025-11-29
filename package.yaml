@@ -29,7 +29,6 @@ dependencies:
     - prettyprinter
     - process-extras
     - regex-applicative
-    - regex-applicative-text
     - tasty
     - tasty-golden
     - tasty-hunit

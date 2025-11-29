@@ -44,9 +44,7 @@ import Megalodon qualified
 import Provers
 import Syntax.Abstract qualified as Raw
 import Syntax.Adapt (adaptChunks, scanChunk, ScannedLexicalItem)
-import Syntax.Chunk
 import Syntax.Concrete
-import Syntax.Import
 import Syntax.Internal qualified as Internal
 import Syntax.Lexicon (Lexicon, builtins)
 import Syntax.Token
@@ -114,17 +112,14 @@ tokenize file = do
     raw <- findAndReadFile file
     case runLexer file raw of
         Left tokenError -> throwIO (TokenError (errorBundlePretty tokenError))
-        Right tokenStream -> pure (TokStream raw tokenStream)
+        Right (_imports, chunks) -> pure (TokStream raw chunks)
 
 -- | Scan the given file for lexical items. The actual parsing process
 -- uses 'adaptChunks' instead.
 scan :: MonadIO io => FilePath -> io [ScannedLexicalItem]
 scan input = do
     tokenStream <- tokenize input
-    let chunks = chunkify (unTokStream tokenStream)
-    -- TODO items <- liftIO parseLexiconFile
-    --pure ((concatMap scanChunk chunks) <> items)
-    pure (concatMap scanChunk chunks)
+    pure (concatMap scanChunk (unTokStream tokenStream))
 
 
 -- | Parse a file. Throws a 'ParseException' when tokenizing, scanning, or
@@ -140,7 +135,7 @@ parse file = do
         Right theoryChain -> do
             tokenStreams <- traverse tokenize theoryChain
             let tokenStream = mconcat (toList tokenStreams)
-            let chunks = chunkify (unTokStream tokenStream)
+            let chunks = unTokStream tokenStream
             let lexicon = adaptChunks chunks builtins
             (, lexicon) <$> combineParseResults [fullParses (parser (grammar lexicon)) toks | toks <- chunks]
 
@@ -159,8 +154,8 @@ combineParseResults (result : results) = case result of
         pure (block : blocks)
 
 
-simpleStream :: TokStream -> [Token]
-simpleStream stream = fmap unLocated (unTokStream stream)
+simpleStream :: TokStream -> [[Token]]
+simpleStream TokStream{unTokStream=chunks} = [unLocated <$> ch | ch <- chunks]
 
 
 data ParseException
