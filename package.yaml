@@ -12,7 +12,6 @@ dependencies:
     - base
     - binary
     - bound
-    - charset
     - containers
     - deriving-compat # for bound
     - directory

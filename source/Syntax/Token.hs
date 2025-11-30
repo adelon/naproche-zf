@@ -29,7 +29,6 @@ import Base hiding (many)
 import Control.Monad.Combinators
 import Control.Monad.State.Strict
 import Data.Char (isAlphaNum)
-import Data.CharSet qualified as CharSet
 import Data.List.NonEmpty qualified as NonEmpty
 import Data.Text qualified as Text
 import Prettyprinter (Pretty(..))
@@ -197,16 +196,22 @@ document = do
 
 importBlock :: Lexer [FilePath]
 importBlock = do
-    skipManyTill anySingle (lookAhead (void (Char.string "\\import{") <|> void beginToplevelEnvironment))
+    void (skipManyTill skipChar importLineOrBeginEnv)
     many (importLine <* whitespace)
     where
+        -- When skipping to the import block, we first need to try parsing whitespace to properly handle comments and avoid picking up a commented import line at the start of the import block.
+        skipChar, importLineOrBeginEnv :: Lexer ()
+        skipChar = void whitespace <|> void anySingle
+        importLineOrBeginEnv = lookAhead (void (Char.string "\\import{") <|> void beginToplevelEnvironment)
+
         importLine :: Lexer FilePath = do
             Char.string "\\import{"
             path <- some (satisfy isTheoryNameChar)
             Char.char '}'
             pure path
+
         isTheoryNameChar :: Char -> Bool
-        isTheoryNameChar c = isAlphaNum c || c `CharSet.member` CharSet.fromList ".-_/"
+        isTheoryNameChar c = isAlphaNum c || c `elem` (".-_/" :: [Char])
 
 -- TODO remove once we have a proper build system and incremental compilation
 gatherImports :: Text -> [FilePath]
