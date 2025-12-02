@@ -47,7 +47,7 @@ Explicitly justified proof steps are the best option in terms of stability and p
 
 ### Proof finishing steps
 
-If no explicit proof-finishing step is given, the implicit last step is to establish the conclusion from everything that came before, including all global facts. Alternatively, we can again restrict to the number of global facts available with an explicit reference using the syntax `Follows by \cref{<labelname>}`.
+If no explicit proof-finishing step is given, the implicit last step is to establish the conclusion from everything that came before, including all global facts. Alternatively, we can again restrict the of global facts available with an explicit reference using the syntax `Follows by \cref{<labelname>}`.
 
 ```tex
 \begin{proposition}\label{function_apply_default}
