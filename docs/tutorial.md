@@ -88,3 +88,5 @@ If the suffiency is syntactically of the form `$\phi$ implies $\psi$` or similar
     Follows by assumption. % Finishing proof steps, which uses only local assumptions and intermediate claims (no global facts).
 \end{proof}
 ```
+
+We can also make an assumption step against sufficiencies of the form `$\phi$ or $\psi$`, which changes the goal to the negation of `\psiw`.
