@@ -4,12 +4,13 @@
 ## Proof vernacular
 
 Proof checking in Naproche-ZF relies on automated theorem provers like Vampire.
-This means that reasoning can be quite loosely structured and many small details are taken care of automatically. Reasoning steps that require deep and complex reasoning however, may require more detailed proofs.
+This means that reasoning can be quite loosely structured and many small details are taken care of automatically.
+However, reasoning steps that require deep and complex reasoning may require more detailed proofs.
 
-Within proofs, we distinguish between global facts, which are all preceding theorems that have been successfully proved, and local assumptions, which are the assumptions of the theorem statement (e.g. `Suppose ...`) and local assumptions or intermediate claims that are made throughout the proof.
+Within proofs, we distinguish between *global facts*, which are all preceding theorems that have been successfully proved, and *local assumptions*, which are the assumptions of the theorem statement (e.g. `Suppose ...`) or of individual proof steps (`Assume ...`) and *intermediate claims* that are established throughout the proof.
 
-At the start of a proof, the *sufficiecny* or *proof goal* corresponds to the conclusion of the theorem statement.
-Some proof steps may change the sufficiency.
+At the start of a proof, the *sufficiency* or *proof goal* corresponds to the conclusion of the theorem statement.
+Some proof steps may change this sufficiency.
 
 ### Proof via intermediate claims
 
