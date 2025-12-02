@@ -16,7 +16,7 @@ Some proof steps may change this sufficiency.
 
 The simplest way to prove a statement is to make intermediate claims, relying on the proof automation to put everything together. Unless an explicit justification is given, all global facts are available to the proof automation.
 
-In the following example, establishing the local fact that a restricted relation is a subset of itself, is enough detail for the proof automation to find the rest of the proof. As no explicit justification is given, all global facts can be used to establish that `$R$ is injective` and `$\restrl{R}{A}\subseteq R$` imply `$\restrl{R}{A}$ is injective`.
+In the following example, establishing the local fact that a restricted relation is a subset of itself, is enough for the proof automation to find the rest of the proof. As no explicit justification is given, all global facts can be used to establish that `$R$ is injective` and `$\restrl{R}{A}\subseteq R$` imply `$\restrl{R}{A}$ is injective`.
 
 ```tex
 \begin{proposition}\label{restrl_injective}
@@ -28,7 +28,9 @@ In the following example, establishing the local fact that a restricted relation
 \end{proof}
 ```
 
-If explicit justification by reference given, then we the available global facts are restricted to only those explicitly listed. However, local assumptions and intermediate claims are always available. Explicitly justified proof steps are the best option in terms of stability and perfomance, since they minimize the search space for the proof automation.
+If an explicit justification by reference given, then the available global facts are restricted to only those explicitly listed.
+However, local assumptions and intermediate claims are always available.
+Explicitly justified proof steps are the best option in terms of stability and perfomance, since they minimize the search space for the proof automation.
 
 ```tex
 \begin{proposition}\label{inters_of_family_of_equivalences_is_equivalence}
