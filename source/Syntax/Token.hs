@@ -201,7 +201,7 @@ importBlock = do
     where
         -- When skipping to the import block, we first need to try parsing whitespace to properly handle comments and avoid picking up a commented import line at the start of the import block.
         skipChar, importLineOrBeginEnv :: Lexer ()
-        skipChar = void whitespace <|> void anySingle
+        skipChar = comment <|> void anySingle
         importLineOrBeginEnv = lookAhead (void (Char.string "\\import{") <|> void beginToplevelEnvironment)
 
         importLine :: Lexer FilePath = do
@@ -516,8 +516,10 @@ space = Space <$ (Char.char ' ' <|> Char.char '\n' <|> Char.char '\r')
 
 whitespace :: Lexer Whitespace
 whitespace = do
-    ws <- many (spaces <|> comment)
+    ws <- many (spaces <|> NoSpace <$ comment)
     pure (collapseWhitespace ws)
     where
         spaces = collapseWhitespace <$> some space
-        comment = NoSpace <$ Lexer.skipLineComment "%"
+
+comment :: Lexer ()
+comment = Lexer.skipLineComment "%"
