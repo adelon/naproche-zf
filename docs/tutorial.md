@@ -90,3 +90,85 @@ If the suffiency is syntactically of the form `$\phi$ implies $\psi$` or similar
 ```
 
 We can also make an assumption step against sufficiencies of the form `$\phi$ or $\psi$`, which changes the goal to the negation of `\psiw`.
+
+
+## Proof by contradiction
+
+You can start a proof by negation (or, if the sufficiency is negative, a proof of a negation) with `Suppose not`.
+Below is a proof of a negative statement ("It is not the case that there exists...").
+
+```tex
+\begin{theorem}[Cantor]\label{cantor}
+    There exists no surjection from $A$ to $\pow{A}$.
+\end{theorem}
+\begin{proof}
+    Suppose not.
+    Consider a surjection $f$ from $A$ to $\pow{A}$.
+    Let $B = \{a \in A \mid a\notin f(a)\}$.
+    Then $B\in\pow{A}$.
+    Take an element $a'$ of $A$ such that $f(a') = B$ by \cref{surj}.
+    Now $a' \in B$ iff $a' \notin f(a') = B$.
+    Contradiction.
+\end{proof}
+```
+
+`Suppose not` should only be used when necessary. It disables checking for contradictions within axioms and can lead lower quality error messages.
+In particular, if you reach a stage where the proof automation is able to derive a contradiction, you can start writing misleading "nonsense" claims in your proof, which can mislead readers.
+
+
+## Case splits
+
+You can case split on any number on cases, as long as the proof automation is able to prove the disjunction of all the cases.
+Within each case, there is a local assumption that the case holds.
+
+```tex
+\begin{proposition}\label{ordinal_preceq_implies_subseteq}
+Let $\alpha,\beta$ be ordinals.
+Suppose $\alpha\precedeseq\beta$.
+Then $\alpha\subseteq\beta$.
+\end{proposition}
+\begin{proof}
+    \begin{byCase}
+        \caseOf{$\alpha = \beta$.}
+            Trivial.
+        \caseOf{$\alpha\precedes\beta$.}
+            $\alpha\subset\beta$.
+    \end{byCase}
+\end{proof}
+```
+
+
+## Consider
+
+We can obtain a witness of an existential statement as a local constant with `Consider`.
+For example, `Consider $p$ such that $p$ is a prime factor of $n$` requires the prover to show that such a `$p$` exists.
+After this, `$p$` is available as a local constant with the desired property.
+
+
+## Suffices
+
+We can change the sufficency by using a step of the form `It suffices to show that ...`.
+In this case the automated theorem prover needs to show that the new sufficiency implies the old one within the current context.
+
+
+## Proof by ∈-induction (set induction)
+
+```tex
+\begin{lemma}\label{regularity_aux}
+    For all $a, A$ such that $a\in A$
+    there exists $b\in A$ such that
+    $b\notmeets A$.
+\end{lemma}
+\begin{proof}[Proof by \in-induction on $a$]
+    \begin{byCase}
+        \caseOf{$a\notmeets b$.}
+            Straightforward. % This leaves the goal to the automated prover
+        \caseOf{$a\meets b$.}
+            Take $a'$ such that $a'\in a, b$.
+            Straightforward. % We apply the induction hypothesis to a'
+    \end{byCase}
+\end{proof}
+```
+
+
+## Calculations
