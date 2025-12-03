@@ -41,14 +41,14 @@ For example, on Ubuntu you can install the development version of
 #### Obtaining Vampire
 
 The default prover is Vampire and the included library is written against a specific release of Vampire.
-Currently the library uses [Vampire 4.7](https://github.com/vprover/vampire/releases/tag/v4.7).
-<!--You can find Linux binaries and source releases [on GitHub](https://github.com/vprover/vampire/releases).-->
-On non-Linux platforms you may need to install Vampire by compiling from source.
-Download the source code release and follow the instructions in Vampire’s `README.md` and make sure that the resulting binary is available as `vampire` on your `$PATH`.
+Currently the library uses [Vampire 5.0.0](https://github.com/vprover/vampire/releases/tag/v5.0.0).
+
+If there are no binaries for your platform, you can install Vampire by compiling from source.
+Download the source code release and follow the instructions in Vampire’s `README.md` and make sure that the resulting binary is available as `vampire` on your `$PATH` (running `vampire --version` should tell you the right version).
 If you have multiple versions of Vampire installed, you can export the `$NAPROCHE_VAMPIRE` environment variable to choose a specific version,
 e.g. by adding
 ```
-export NAPROCHE_VAMPIRE="/absolute/path/to/vampire_4.7"
+export NAPROCHE_VAMPIRE="/absolute/path/to/vampire"
 ```
 to your shell configuration.
 
