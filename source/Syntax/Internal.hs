@@ -90,9 +90,6 @@ data ExprOf a
     | TermSep VarSymbol (ExprOf a) (Scope () ExprOf a)
     -- ^ Set comprehension using seperation, e.g.: /@{ x ∈ X | P(x) }@/.
     --
-    | Iota VarSymbol (Scope () ExprOf a)
-    -- ^ Definite descriptor.
-    --
     | ReplacePred VarSymbol VarSymbol (ExprOf a) (Scope ReplacementVar ExprOf a)
     -- ^ Replacement for single-valued predicates. The concrete syntax for these
     -- syntactically requires a bounded existential quantifier in the condition:
@@ -177,8 +174,6 @@ annotateWith = go
                 Apply (go labels ops e1) (go labels ops <$> args)
             TermSep vs e scope ->
                 TermSep vs (go labels ops e) (toScope (go (Set.map F labels) (F <$> ops) (fromScope scope)))
-            Iota x body ->
-                Iota x (toScope (go (Set.map F labels) (F <$> ops) (fromScope body)))
             ReplacePred y x xB scope ->
                 ReplacePred y x (go labels ops xB) (toScope (go (Set.map F labels) (F <$> ops) (fromScope scope)))
             ReplaceFun bounds ap cond ->
@@ -193,7 +188,6 @@ annotateWith = go
 containsHigherOrderConstructs :: ExprOf a -> Bool
 containsHigherOrderConstructs = \case
     TermSep {} -> True
-    Iota{} -> True
     ReplacePred{}-> True
     ReplaceFun{}-> True
     Lambda{} -> True

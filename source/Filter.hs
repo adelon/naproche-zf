@@ -91,7 +91,6 @@ symbols = \case
     TermVar{} -> Set.empty
     TermSymbol sym es -> Set.insert sym (Set.unions (fmap symbols es))
     TermSep _ e scope -> symbols e `Set.union` symbols (fromScope scope)
-    Iota _ scope -> symbols (fromScope scope)
     ReplacePred _ _ e scope -> symbols e `Set.union` symbols (fromScope scope)
     ReplaceFun es scope cond -> (Set.unions (fmap (symbols . snd) es)) `Set.union` symbols (fromScope scope) `Set.union` symbols (fromScope cond)
     Connected _ e1 e2 -> symbols e1 `Set.union` symbols e2
@@ -106,7 +105,6 @@ symbolTable = \case
     TermVar{} -> Map.empty
     TermSymbol sym es -> insert sym 1 (unions (fmap symbolTable es))
     TermSep _ e scope -> symbolTable e `union` symbolTable (fromScope scope)
-    Iota _ scope -> symbolTable (fromScope scope)
     ReplacePred _ _ e scope -> symbolTable e `union` symbolTable (fromScope scope)
     ReplaceFun es scope cond -> (unions (fmap (symbolTable . snd) (toList es))) `union` symbolTable (fromScope scope) `union` symbolTable (fromScope cond)
     Connected _ e1 e2 -> symbolTable e1 `union` symbolTable e2

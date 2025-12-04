@@ -90,7 +90,6 @@ buildFormula lexi = \case
         char  '(' <> buildQuant quant <> char ' ' <> buildBindings body <> text ",(" <> buildFormula lexi (instantiate TermVar body) <> text "))"
     TermSep x bound phi ->
         char '{' <> buildVarSymbol x <> " :e (" <> buildFormula lexi bound <> text ")|" <> buildFormula lexi (instantiate1 (TermVar x) phi) <> char '}'
-    Iota _ _ -> error "TODO buildFormula Iota"
     ReplacePred y x xB body ->
         let x' = buildVarSymbol x
             y' = buildVarSymbol y

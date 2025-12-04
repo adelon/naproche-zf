@@ -87,8 +87,6 @@ encodeExpr l = go . (fmap encodeFreeVar)
             error ("Precondition failed in encodeTerm, cannot encode terms with comprehensions directly: " <> show e)
         e@TermSep{} ->
             error ("Precondition failed in encodeTerm, cannot encode terms with comprehensions directly: " <> show e)
-        e@Iota{} ->
-            error ("Precondition failed in encodeTerm, cannot encode terms with descriptors directly: " <> show e)
         TermSymbolStruct symb e -> case e of
             Just e' ->
                 Tptp.Apply (Tptp.AtomicWord ("s__" <> (unStructSymbol symb))) [go e']

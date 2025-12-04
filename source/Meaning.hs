@@ -398,7 +398,8 @@ glossTerm = \case
         glossFun f
     Raw.TermIota x stmt -> do
         stmt' <- glossStmt stmt
-        pure (Sem.Iota x (abstract1 x stmt'), id)
+        _TODO "glossTerm TermIota"
+        --pure (Sem.Iota x (abstract1 x stmt'), id)
     Raw.TermQuantified quantifier np -> do
         quantify <- glossQuantifier quantifier
         (mkConstraint, maySuchThat) <- glossNPMaybe np

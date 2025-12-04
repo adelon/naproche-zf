@@ -258,8 +258,6 @@ unabbreviateWith abbrs = unabbr
                 Apply (unabbr e) (unabbr <$> es)
             TermSep vs e scope ->
                 TermSep vs (unabbr e) (hoistScope unabbr scope)
-            Iota x scope ->
-                Iota x (hoistScope unabbr scope)
             ReplacePred y x xB scope ->
                 ReplacePred y x xB (hoistScope unabbr scope)
             ReplaceFun bounds scope cond ->
@@ -299,7 +297,6 @@ desugarComprehensions = \case
     Apply e es -> Apply (desugarComprehensions e) (desugarComprehensions <$> es)
     Not e -> Not (desugarComprehensions e)
     TermSymbol sym es -> TermSymbol sym (desugarComprehensions <$> es)
-    Iota x scope -> Iota x (hoistScope desugarComprehensions scope)
     Connected conn e1 e2 -> Connected conn (desugarComprehensions e1) (desugarComprehensions e2)
     Lambda scope -> Lambda (hoistScope desugarComprehensions scope)
     Quantified quant scope -> Quantified quant (hoistScope desugarComprehensions scope)
@@ -525,8 +522,6 @@ checkProof = \case
                         ((TermVar y `IsElementOf` yBound) `And` instantiate1 (TermVar y) phi)
             ReplaceFun bounds lhs cond ->
                 makeReplacementIff (TermVar (F x)) bounds lhs cond
-            Iota _ _ ->
-                _TODO "local definitions with iota"
             _ -> Equals (TermVar x) t
             ]
         checkProof continue
@@ -831,7 +826,6 @@ isValidCondition f args phi = if isSideCondition phi
             TermSymbolStruct _ (Just e) -> isSideCondition e
             Apply a b -> isSideCondition a && all isSideCondition b
             TermSep _ xB cond -> isSideCondition xB && isSideCondition (fromScope cond)
-            Iota _ body -> isSideCondition (fromScope body)
             ReplacePred _ _ e scope -> isSideCondition e && isSideCondition (fromScope scope)
             ReplaceFun bounds lhs rhs ->
                 all (\(_, e) -> isSideCondition e) bounds && isSideCondition (fromScope lhs) && isSideCondition (fromScope rhs)
@@ -892,7 +886,6 @@ typecheckRule f args dom (IntroRule conds result) = makeConjunction (go <$> cond
             Apply a b -> Apply (go a) (go <$> b)
             e@PropositionalConstant{} -> e
             --TermSep x xB cond -> TermSep x (go xB) (hoistScope go cond)
-            --Iota x body -> Iota x (hoistScope go body)
             --ReplacePred x y e scope -> ReplacePred x y (go e) (hoistScope go scope)
             --ReplaceFun bounds lhs rhs ->
             --    ReplaceFun ((\(x, e) -> (x, go e)) <$> bounds) (hoistScope go lhs) (hoistScope go rhs)
