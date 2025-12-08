@@ -131,18 +131,22 @@ initAbbreviations = HM.fromList
     ]
 
 data CheckingError
-    = DuplicateMarker Marker SourcePos
-    | ByContradictionOnMultipleGoals
-    | BySetInductionSyntacticMismatch
-    | ProofWithoutPrecedingTheorem
-    | CouldNotEliminateHigherOrder FunctionSymbol  Term
-    | AmbiguousInductionVar
-    | MismatchedSetExt [Formula]
-    | MismatchedAssume Formula Formula
+    = DuplicateMarker SourcePos Marker
+    | ByContradictionOnMultipleGoals Marker
+    | BySetInductionSyntacticMismatch Marker
+    | ProofWithoutPrecedingTheorem Marker
+    | CouldNotEliminateHigherOrder FunctionSymbol Term Marker
+    | AmbiguousInductionVar Marker
+    | MismatchedSetExt [Formula] Marker
+    | MismatchedAssume Formula Formula Marker
     deriving (Show, Eq)
 
 instance Exception CheckingError
 
+throwWithMarker :: (Marker -> CheckingError) -> CheckingM a
+throwWithMarker err = do
+    m <- gets blockLabel
+    throwIO (err m)
 
 assume :: [Asm] -> Checking
 assume asms = traverse_ go asms
@@ -333,7 +337,7 @@ checkBlocks = \case
         withLabel pos marker (checkLemma lemma)
         checkBlocks blocks
     BlockProof _pos _proof : _ ->
-        throwIO ProofWithoutPrecedingTheorem
+        throwWithMarker ProofWithoutPrecedingTheorem
     BlockSig _pos asms sig : blocks -> do
         checkSig asms sig
         checkBlocks blocks
@@ -352,7 +356,7 @@ withLabel pos marker ma = do
     st <- get
     let markers = definedMarkers st
     if HS.member marker markers
-        then throwIO (DuplicateMarker marker pos)
+        then throwWithMarker (DuplicateMarker pos)
         else put st{definedMarkers = HS.insert marker markers}
     -- Set the marker as the label of the current block.
     modify \st -> st{blockLabel = marker}
@@ -397,7 +401,7 @@ checkProof = \case
                 setGoals goals'
                 tellTasks
             [] -> pure ()
-            _ -> throwIO (MismatchedSetExt goals)
+            _ -> throwWithMarker (MismatchedSetExt goals)
     Qed (JustificationRef ms) ->
         byRef ms
     Qed JustificationLocal ->
@@ -409,7 +413,7 @@ checkProof = \case
                 assume [Asm (Not goal)]
                 byContradiction
                 checkProof proof
-            _ -> throwIO ByContradictionOnMultipleGoals
+            _ -> throwWithMarker ByContradictionOnMultipleGoals
     ByCase splits -> do
         for_ splits checkCase
         setGoals [makeDisjunction (caseOf <$> splits)]
@@ -422,9 +426,11 @@ checkProof = \case
                 z <- case mx of
                     Nothing -> case zs of
                         [z'] -> pure z'
-                        _ -> throwIO AmbiguousInductionVar
+                        _ -> throwWithMarker AmbiguousInductionVar
                     Just (TermVar z') -> pure z'
-                    _ -> throwIO AmbiguousInductionVar
+                    _ -> do
+                        m <- gets blockLabel
+                        throwIO (AmbiguousInductionVar m)
                 let y = NamedVar "IndAntecedent"
                 let ys = List.delete z zs
                 let anteInst bv = if bv == z then TermVar y else TermVar bv
@@ -433,7 +439,9 @@ checkProof = \case
                 let consequent = instantiate TermVar scope
                 setGoals (consequent : goals')
                 checkProof continue
-            _ -> throwIO BySetInductionSyntacticMismatch
+            _ -> do
+                m <- gets blockLabel
+                throwIO (BySetInductionSyntacticMismatch m)
     ByOrdInduction continue -> do
         goals <- gets checkingGoals
         case goals of
@@ -443,7 +451,7 @@ checkProof = \case
                     z <- case zs of
                             [z'] | z' == bz -> pure z'
                             [_] -> error "induction variable does not match the variable with ordinal guard"
-                            _ -> throwIO AmbiguousInductionVar
+                            _ -> throwWithMarker AmbiguousInductionVar
                     -- LATER: this is kinda sketchy:
                     -- we now use the induction variable in two ways:
                     -- we assume the induction hypothesis, where we recycle the induction variable both as a bound variable and a free variable
@@ -636,7 +644,7 @@ splitGoalWithSetExt = \case
         let z = FreshVar 0
             subset x' y' = makeForall [FreshVar 0] (Implies (TermVar z `IsElementOf` x') ((TermVar z `IsElementOf` y')))
         pure [subset x y, subset y x]
-    goal -> throwIO (MismatchedSetExt [goal])
+    goal -> throwWithMarker (MismatchedSetExt [goal])
 
 justify :: Justification -> Checking
 justify = \case
@@ -650,7 +658,7 @@ justify = \case
                 goals' <- splitGoalWithSetExt goal
                 setGoals goals'
                 tellTasks
-            _ -> throwIO (MismatchedSetExt goals)
+            _ -> throwWithMarker (MismatchedSetExt goals)
 
 byRef :: NonEmpty Marker -> Checking
 byRef ms = locally do
@@ -741,7 +749,7 @@ checkDefn = \case
         addFact (forallClosure mempty (makeReplacementIff (TermOp op (TermVar . F <$> vs)) bounds lhs cond))
     DefnOp op vs rhs ->
         if containsHigherOrderConstructs rhs
-            then throwIO (CouldNotEliminateHigherOrder op rhs)
+            then throwWithMarker(CouldNotEliminateHigherOrder op rhs)
             else do
                 let lhs = TermSymbol (SymbolMixfix op) (TermVar <$> vs)
                 addFactWithAsms [] (lhs `Equals` rhs)
@@ -954,10 +962,9 @@ matchAssumptionWithGoal asm = do
                 let rhos = (HM.lookup p defns ?? [])
                     rhos' = [instantiate (\k -> nth k args ?? error "defns: incorrect index") (absurd <$> rho) | rho <- rhos]
                 in case firstJust syntacticMatch rhos' of
-                    Nothing -> throwIO (MismatchedAssume asm phi)
+                    Nothing -> throwWithMarker (MismatchedAssume asm phi)
                     Just match -> pure (match : goals')
-            phi ->
-                throwIO (MismatchedAssume asm phi)
+            phi -> throwWithMarker (MismatchedAssume asm phi)
 
     where
         syntacticMatch :: Formula -> Maybe Formula
