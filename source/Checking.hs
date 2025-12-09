@@ -133,13 +133,13 @@ initAbbreviations = HM.fromList
 
 data CheckingError
     = DuplicateMarker Location Marker
-    | ByContradictionOnMultipleGoals Marker
-    | BySetInductionSyntacticMismatch Marker
-    | ProofWithoutPrecedingTheorem Marker
-    | CouldNotEliminateHigherOrder FunctionSymbol Term Marker
-    | AmbiguousInductionVar Marker
-    | MismatchedSetExt [Formula] Marker
-    | MismatchedAssume Formula Formula Marker
+    | ByContradictionOnMultipleGoals Location Marker
+    | BySetInductionSyntacticMismatch Location Marker
+    | ProofWithoutPrecedingTheorem Location Marker
+    | CouldNotEliminateHigherOrder FunctionSymbol Term Location Marker
+    | AmbiguousInductionVar Location Marker
+    | MismatchedSetExt [Formula] Location Marker
+    | MismatchedAssume Formula Formula Location Marker
     deriving (Show, Eq)
 
 instance Exception CheckingError
@@ -148,6 +148,7 @@ throwWithMarker :: (Marker -> CheckingError) -> CheckingM a
 throwWithMarker err = do
     m <- gets blockLabel
     throwIO (err m)
+
 
 assume :: [Asm] -> Checking
 assume asms = traverse_ go asms
@@ -325,8 +326,8 @@ checkBlocks = \case
     BlockAxiom pos marker axiom : blocks -> do
         withLabel pos marker (checkAxiom axiom)
         checkBlocks blocks
-    BlockDefn pos marker defn : blocks -> do
-        withLabel pos marker (checkDefn defn)
+    BlockDefn loc marker defn : blocks -> do
+        withLabel loc marker (checkDefn loc defn)
         checkBlocks blocks
     BlockAbbr pos marker abbr : blocks -> do
         withLabel pos marker  (checkAbbr abbr)
@@ -337,8 +338,8 @@ checkBlocks = \case
     BlockLemma pos marker  lemma : blocks -> do
         withLabel pos marker (checkLemma lemma)
         checkBlocks blocks
-    BlockProof _pos _proof : _ ->
-        throwWithMarker ProofWithoutPrecedingTheorem
+    BlockProof pos _proof : _ ->
+        throwWithMarker (ProofWithoutPrecedingTheorem pos)
     BlockSig _pos asms sig : blocks -> do
         checkSig asms sig
         checkBlocks blocks
@@ -398,11 +399,11 @@ checkProof = \case
         goals <- gets checkingGoals
         case goals of
             [goal] -> do
-                goals' <- splitGoalWithSetExt goal
+                goals' <- splitGoalWithSetExt (pos ?? Nowhere) goal
                 setGoals goals'
                 tellTasks
             [] -> pure ()
-            _ -> throwWithMarker (MismatchedSetExt goals)
+            _ -> throwWithMarker (MismatchedSetExt goals (pos ?? Nowhere))
     Qed pos (JustificationRef ms) ->
         byRef ms
     Qed pos JustificationLocal ->
@@ -414,7 +415,7 @@ checkProof = \case
                 assume [Asm (Not pos goal)]
                 byContradiction
                 checkProof proof
-            _ -> throwWithMarker ByContradictionOnMultipleGoals
+            _ -> throwWithMarker (ByContradictionOnMultipleGoals pos)
     ByCase pos splits -> do
         for_ splits checkCase
         setGoals [makeDisjunction (caseOf <$> splits)]
@@ -427,11 +428,9 @@ checkProof = \case
                 z <- case mx of
                     Nothing -> case zs of
                         [z'] -> pure z'
-                        _ -> throwWithMarker AmbiguousInductionVar
+                        _ -> throwWithMarker (AmbiguousInductionVar pos)
                     Just (TermVar z') -> pure z'
-                    _ -> do
-                        m <- gets blockLabel
-                        throwIO (AmbiguousInductionVar m)
+                    _ -> throwWithMarker (AmbiguousInductionVar pos)
                 let y = NamedVar "IndAntecedent"
                 let ys = List.delete z zs
                 let anteInst bv = if bv == z then TermVar y else TermVar bv
@@ -442,7 +441,7 @@ checkProof = \case
                 checkProof continue
             _ -> do
                 m <- gets blockLabel
-                throwIO (BySetInductionSyntacticMismatch m)
+                throwWithMarker (BySetInductionSyntacticMismatch pos)
     ByOrdInduction pos continue -> do
         goals <- gets checkingGoals
         case goals of
@@ -452,7 +451,7 @@ checkProof = \case
                     z <- case zs of
                             [z'] | z' == bz -> pure z'
                             [_] -> error "induction variable does not match the variable with ordinal guard"
-                            _ -> throwWithMarker AmbiguousInductionVar
+                            _ -> throwWithMarker (AmbiguousInductionVar pos)
                     -- LATER: this is kinda sketchy:
                     -- we now use the induction variable in two ways:
                     -- we assume the induction hypothesis, where we recycle the induction variable both as a bound variable and a free variable
@@ -464,8 +463,8 @@ checkProof = \case
                     checkProof continue
                 _ -> error ("could not match transfinite induction with syntactic structure of the first goal: " <> show goals)
             _ -> error ("the first goal must be universally quantifier to apply transfinite induction: " <> show goals)
-    Assume pos phi continue -> do
-        goals' <- matchAssumptionWithGoal phi
+    Assume loc phi continue -> do
+        goals' <- matchAssumptionWithGoal loc phi
         assume [Asm phi]
         setGoals goals'
         checkProof continue
@@ -483,7 +482,7 @@ checkProof = \case
     Suffices pos reduction by proof -> do
         goals <- gets checkingGoals
         setGoals [reduction `Implies` makeConjunction goals]
-        justify by
+        justify pos by
         setGoals [reduction]
         checkProof proof
     Take pos _witnesses _suchThat JustificationSetExt _continue ->
@@ -491,7 +490,7 @@ checkProof = \case
     Take pos witnesses suchThat by continue -> locally do
         goals <- gets checkingGoals
         setGoals [makeExists witnesses suchThat]
-        justify by
+        justify pos by
         assume [Asm suchThat]
         setGoals goals
         checkProof continue
@@ -516,7 +515,7 @@ checkProof = \case
                 JustificationEmpty ->
                     pure [claim]
                 JustificationSetExt ->
-                    splitGoalWithSetExt claim
+                    splitGoalWithSetExt pos claim
                 -- NOTE: we already handled @JustificationRef ms@ and GHC recognizes this
             setGoals claims
             tellTasks
@@ -544,7 +543,7 @@ checkProof = \case
             ]
         checkProof continue
     Calc pos quant calc continue -> do
-        checkCalc quant calc
+        checkCalc pos quant calc
         assume [Asm (calcResult quant calc)]
         checkProof continue
     DefineFunctionLocal pos funVar argVar domVar ranExpr definitions continue -> do
@@ -598,13 +597,13 @@ singleFunctionSubdomianExpression funVar argVar domVar fixedV (expr, frm) = let
 
 
 
-checkCalc :: CalcQuantifier -> Calc -> Checking
-checkCalc quant calc = locally do
+checkCalc :: Location -> CalcQuantifier -> Calc -> Checking
+checkCalc loc quant calc = locally do
     let tasks = calculation quant calc
     forM_ tasks tell
     where
         tell = \case
-            (goal, by) -> setGoals [goal] *> justify by
+            (goal, by) -> setGoals [goal] *> justify loc by
 
 
 makeReplacementIff
@@ -635,8 +634,8 @@ makeReplacementIff e bounds lhs cond =
         nestF (F a) = F (F a)
 
 
-splitGoalWithSetExt :: Formula -> CheckingM [Formula]
-splitGoalWithSetExt = \case
+splitGoalWithSetExt :: Location -> Formula -> CheckingM [Formula]
+splitGoalWithSetExt loc = \case
     NotEquals _pos x y -> do
         let z = FreshVar 0
             elemNotElem x' y' = makeExists [FreshVar 0] (And (isElementOf (TermVar z) x') (isNotElementOf Nowhere (TermVar z) y'))
@@ -645,10 +644,10 @@ splitGoalWithSetExt = \case
         let z = FreshVar 0
             subset x' y' = makeForall [FreshVar 0] (Implies (isElementOf (TermVar z) x') (isElementOf (TermVar z) y'))
         pure [subset x y, subset y x]
-    goal -> throwWithMarker (MismatchedSetExt [goal])
+    goal -> throwWithMarker (MismatchedSetExt [goal] loc)
 
-justify :: Justification -> Checking
-justify = \case
+justify :: Location -> Justification -> Checking
+justify loc = \case
     JustificationEmpty -> tellTasks
     JustificationLocal -> byAssumption
     JustificationRef ms -> byRef ms
@@ -656,10 +655,10 @@ justify = \case
         goals <- gets checkingGoals
         case goals of
             [goal] -> do
-                goals' <- splitGoalWithSetExt goal
+                goals' <- splitGoalWithSetExt loc goal
                 setGoals goals'
                 tellTasks
-            _ -> throwWithMarker (MismatchedSetExt goals)
+            _ -> throwWithMarker (MismatchedSetExt goals loc)
 
 byRef :: NonEmpty Marker -> Checking
 byRef ms = locally do
@@ -704,8 +703,8 @@ checkCase (Case split proof) = locally do
         checkProof proof
 
 
-checkDefn :: Defn -> Checking
-checkDefn = \case
+checkDefn :: Location -> Defn -> Checking
+checkDefn loc = \case
     DefnPredicate asms symb vs f -> do
         -- We first need to take the universal closure of the defining formula
         -- while ignoring the variables that occur on the lhs, then take the
@@ -750,7 +749,7 @@ checkDefn = \case
         addFact (forallClosure mempty (makeReplacementIff (TermOp Nowhere op (TermVar . F <$> vs)) bounds lhs cond))
     DefnOp op vs rhs ->
         if containsHigherOrderConstructs rhs
-            then throwWithMarker(CouldNotEliminateHigherOrder op rhs)
+            then throwWithMarker (CouldNotEliminateHigherOrder op rhs loc)
             else do
                 let lhs = TermSymbol Nowhere (SymbolMixfix op) (TermVar <$> vs)
                 addFactWithAsms [] (Equals Nowhere lhs rhs)
@@ -947,8 +946,8 @@ fixing xs = do
     setGoals (goal' : goals')
 
 -- | An assumption step in a proof is supposed to match the goal.
-matchAssumptionWithGoal :: Formula -> CheckingM [Formula]
-matchAssumptionWithGoal asm = do
+matchAssumptionWithGoal :: Location -> Formula -> CheckingM [Formula]
+matchAssumptionWithGoal loc asm = do
     goals <- gets checkingGoals
     let (goal, goals') = case goals of
             goal : goals' -> (goal, goals')
@@ -963,9 +962,9 @@ matchAssumptionWithGoal asm = do
                 let rhos = (HM.lookup p defns ?? [])
                     rhos' = [instantiate (\k -> nth k args ?? error "defns: incorrect index") (absurd <$> rho) | rho <- rhos]
                 in case firstJust syntacticMatch rhos' of
-                    Nothing -> throwWithMarker (MismatchedAssume asm phi)
+                    Nothing -> throwWithMarker (MismatchedAssume asm phi loc)
                     Just match -> pure (match : goals')
-            phi -> throwWithMarker (MismatchedAssume asm phi)
+            phi -> throwWithMarker (MismatchedAssume asm phi loc)
 
     where
         syntacticMatch :: Formula -> Maybe Formula
