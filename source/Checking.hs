@@ -391,9 +391,9 @@ checkAxiom (Axiom asms axiom) = addFactWithAsms asms axiom
 
 checkProof :: Proof -> Checking
 checkProof = \case
-    Qed JustificationEmpty->
+    Qed pos JustificationEmpty->
         tellTasks
-    Qed JustificationSetExt -> do
+    Qed pos JustificationSetExt -> do
         goals <- gets checkingGoals
         case goals of
             [goal] -> do
@@ -402,11 +402,11 @@ checkProof = \case
                 tellTasks
             [] -> pure ()
             _ -> throwWithMarker (MismatchedSetExt goals)
-    Qed (JustificationRef ms) ->
+    Qed pos (JustificationRef ms) ->
         byRef ms
-    Qed JustificationLocal ->
+    Qed pos JustificationLocal ->
         byAssumption
-    ByContradiction proof -> do
+    ByContradiction pos proof -> do
         goals <- gets checkingGoals
         case goals of
             [goal] -> do
@@ -414,11 +414,11 @@ checkProof = \case
                 byContradiction
                 checkProof proof
             _ -> throwWithMarker ByContradictionOnMultipleGoals
-    ByCase splits -> do
+    ByCase pos splits -> do
         for_ splits checkCase
         setGoals [makeDisjunction (caseOf <$> splits)]
         tellTasks
-    BySetInduction mx continue -> do
+    BySetInduction pos mx continue -> do
         goals <- gets checkingGoals
         case goals of
             Forall scope : goals' -> do
@@ -442,7 +442,7 @@ checkProof = \case
             _ -> do
                 m <- gets blockLabel
                 throwIO (BySetInductionSyntacticMismatch m)
-    ByOrdInduction continue -> do
+    ByOrdInduction pos continue -> do
         goals <- gets checkingGoals
         case goals of
             Forall scope : goals' -> case fromScope scope of
@@ -463,52 +463,52 @@ checkProof = \case
                     checkProof continue
                 _ -> error ("could not match transfinite induction with syntactic structure of the first goal: " <> show goals)
             _ -> error ("the first goal must be universally quantifier to apply transfinite induction: " <> show goals)
-    Assume phi continue -> do
+    Assume pos phi continue -> do
         goals' <- matchAssumptionWithGoal phi
         assume [Asm phi]
         setGoals goals'
         checkProof continue
-    Fix xs suchThat continue -> do
+    Fix pos xs suchThat continue -> do
         fixing xs
         checkProof case suchThat of
             Top -> continue
-            _ ->  Assume suchThat continue
-    Subclaim subclaim subproof continue -> do
+            _ ->  Assume pos suchThat continue
+    Subclaim pos subclaim subproof continue -> do
         locally (checkLemmaWithProof (Lemma [] subclaim) subproof)
         assume [Asm subclaim]
         checkProof continue
     Omitted -> do
         setGoals []
-    Suffices reduction by proof -> do
+    Suffices pos reduction by proof -> do
         goals <- gets checkingGoals
         setGoals [reduction `Implies` makeConjunction goals]
         justify by
         setGoals [reduction]
         checkProof proof
-    Take _witnesses _suchThat JustificationSetExt _continue ->
-        error "cannot justify existential statement with setext"
-    Take witnesses suchThat by continue -> locally do
+    Take pos _witnesses _suchThat JustificationSetExt _continue ->
+        error $ "Error at " <> show pos <> "\nCannot justify existential statement with setext"
+    Take pos witnesses suchThat by continue -> locally do
         goals <- gets checkingGoals
         setGoals [makeExists witnesses suchThat]
         justify by
         assume [Asm suchThat]
         setGoals goals
         checkProof continue
-    Have claim (JustificationRef ms) continue -> locally do
+    Have pos claim (JustificationRef ms) continue -> locally do
         goals <- gets checkingGoals
         setGoals [claim]
         byRef ms -- locally prove things with just refs and local assumptions
         assume [Asm claim]
         setGoals goals
         checkProof continue
-    Have claim JustificationLocal continue -> locally do
+    Have pos claim JustificationLocal continue -> locally do
         goals <- gets checkingGoals
         setGoals [claim]
         byAssumption -- locally prove things with just local assumptions
         assume [Asm claim]
         setGoals goals
         checkProof continue
-    Have claim by continue -> do
+    Have pos claim by continue -> do
         locally do
             goals <- gets checkingGoals
             claims <- case by of
@@ -522,7 +522,7 @@ checkProof = \case
             assume [Asm claim]
             setGoals goals
             checkProof continue
-    Define x t continue -> locally do
+    Define pos x t continue -> locally do
         assume [Asm case t of
             TermSep y yBound phi ->
                 makeForall [y] $
@@ -533,7 +533,7 @@ checkProof = \case
             _ -> Equals (TermVar x) t
             ]
         checkProof continue
-    DefineFunction funVar argVar valueExpr domExpr continue -> do
+    DefineFunction pos funVar argVar valueExpr domExpr continue -> do
         -- we're given f, x, e, d
         assume
             [ Asm (TermOp DomSymbol [TermVar funVar] `Equals` domExpr) -- dom(f) = d
@@ -542,11 +542,11 @@ checkProof = \case
             , Asm (relationNoun (TermVar funVar))
             ]
         checkProof continue
-    Calc quant calc continue -> do
+    Calc pos quant calc continue -> do
         checkCalc quant calc
         assume [Asm (calcResult quant calc)]
         checkProof continue
-    DefineFunctionLocal funVar argVar domVar ranExpr definitions continue -> do
+    DefineFunctionLocal pos funVar argVar domVar ranExpr definitions continue -> do
         -- We have f: X \to Y and x \mapsto ...
         -- definition is a nonempty list of (expresssion e, formula phi)
         -- such that f(x) =  e if phi(x)

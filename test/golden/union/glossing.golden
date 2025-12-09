@@ -246,6 +246,12 @@
         }
     )
     ( Have
+        ( SourcePos
+            { sourceName = "test/examples/union.tex"
+            , sourceLine = Pos 19
+            , sourceColumn = Pos 5
+            }
+        )
         ( Quantified Universally
             ( Scope
                 ( Connected Implication
@@ -349,6 +355,12 @@
             )
         ) JustificationEmpty
         ( Have
+            ( SourcePos
+                { sourceName = "test/examples/union.tex"
+                , sourceLine = Pos 20
+                , sourceColumn = Pos 5
+                }
+            )
             ( Quantified Universally
                 ( Scope
                     ( Connected Implication
@@ -450,7 +462,12 @@
                         )
                     )
                 )
-            ) JustificationEmpty ( Qed JustificationEmpty )
+            ) JustificationEmpty
+            ( Qed
+                { mpos = Nothing
+                , by = JustificationEmpty
+                }
+            )
         )
     )
 ]

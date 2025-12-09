@@ -10,6 +10,7 @@ import Syntax.Abstract
 import Syntax.Concrete.Keywords
 import Syntax.Lexicon (Lexicon(..), lexiconAdjs, splitOnVariableSlot)
 import Syntax.Token
+import Report.Location
 
 import Data.HashSet qualified as HS
 import Data.List.NonEmpty qualified as NonEmpty
@@ -172,10 +173,10 @@ grammar lexicon@Lexicon{..} = mdo
 
     termExpr       <- rule $ TermExpr <$> math expr
     termFun        <- rule $ TermFun <$> (optional _the *> fun)
-    termIota       <- rule $ TermIota <$> (_the *> var) <* _suchThat <*> stmt
-    termAll        <- rule $ TermQuantified Universally <$> (_every *> nounPhraseMay)
-    termSome       <- rule $ TermQuantified Existentially <$> (_some *> nounPhraseMay)
-    termNo         <- rule $ TermQuantified Nonexistentially <$> (_no *> nounPhraseMay)
+    termIota       <- rule $ TermIota <$> _the <*> var <* _suchThat <*> stmt
+    termAll        <- rule $ TermQuantified Universally <$> _every <*> nounPhraseMay
+    termSome       <- rule $ TermQuantified Existentially <$> _some <*> nounPhraseMay
+    termNo         <- rule $ TermQuantified Nonexistentially <$> _no <*> nounPhraseMay
     termQuantified <- rule $ termAll <|> termSome <|> termNo
     term           <- rule $ termExpr <|> termFun <|> termQuantified <|> termIota
 
@@ -186,51 +187,79 @@ grammar lexicon@Lexicon{..} = mdo
     stmtVerbSg    <- rule $ StmtVerbPhrase <$> singletonTerm <*> verbPhraseSg
     stmtVerbPl    <-rule $ StmtVerbPhrase <$> andList1 term <*> verbPhrasePl
     stmtVerb      <- rule $ stmtVerbSg <|> stmtVerbPl
-    stmtNounIs    <- rule $ StmtNoun <$> singletonTerm <* _is <* _an <*> nounPhrase
-    stmtNounAre   <- rule $ StmtNoun <$> (nonemptyTerms <* _are) <*> nounPhrasePlMay
-    stmtNounIsNot <- rule $ StmtNeg <$> (StmtNoun <$> singletonTerm <* _is <* _not <* _an <*> nounPhrase)
-    stmtNounAreNot <- rule $ StmtNeg <$> (StmtNoun <$> nonemptyTerms <* (_are *> _not) <*> nounPhrasePlMay)
+    stmtNounIs    <- rule do
+        ts <- singletonTerm
+        np <- _is *> _an *> nounPhrase
+        pure let t :| _ = ts in (StmtNoun (locate t) ts np)
+    stmtNounAre   <- rule do
+        ts <- nonemptyTerms <* _are
+        np <- nounPhrasePlMay
+        pure let t :| _ = ts in (StmtNoun (locate t) ts np)
+    stmtNounIsNot <- rule do
+        ts <- singletonTerm
+        np <- _is *> _not *> _an *> nounPhrase
+        pure let t :| _ = ts in (StmtNeg (locate t) (StmtNoun (locate t) ts np))
+    stmtNounAreNot <- rule do
+        ts <- nonemptyTerms
+        np <- _are *> _not *> nounPhrasePlMay
+        pure let t :| _ = ts in (StmtNeg (locate t) (StmtNoun (locate t) ts np))
     stmtNoun      <- rule $ stmtNounIs <|> stmtNounIsNot <|> stmtNounAre <|> stmtNounAreNot
-    stmtStruct    <- rule $ StmtStruct <$> (term <* _is <* _an) <*> structNounNameless
-    stmtExists    <- rule $ StmtExists <$> (_exists *> _an *> nounPhrase')
-    stmtExist     <- rule $ StmtExists <$> (_exist *> nounPhrasePl)
-    stmtExistsNot <- rule $ StmtNeg . StmtExists <$> (_exists *> _no *> nounPhrase')
+    stmtStruct    <- rule do
+        t <- term
+        s <- _is *> _an *> structNounNameless
+        pure (StmtStruct (locate t) t s)
+    stmtExists    <- rule $ StmtExists <$> _exists <*> (_an *> nounPhrase')
+    stmtExist     <- rule $ StmtExists <$> _exist <*> nounPhrasePl
+    stmtExistsNot <- rule do
+        p <- _exists *> _no
+        np <- nounPhrase'
+        pure (StmtNeg p (StmtExists p np))
     stmtFormula   <- rule $ StmtFormula <$> math formula
-    stmtFormualNeg <- rule $ StmtNeg . StmtFormula <$> (_not *> math formula)
+    stmtFormualNeg <- rule do
+        p <- _not
+        phi <- math formula
+        pure (StmtNeg p (StmtFormula phi))
     stmtBot       <- rule $ StmtFormula (PropositionalConstant IsBottom) <$ _contradiction
     stmt'         <- rule $ stmtVerb <|> stmtNoun <|> stmtStruct <|> stmtFormula <|> stmtFormualNeg <|> stmtBot
-    stmtOr  <- rule $ stmt'   <|> (StmtConnected Disjunction <$> stmt'   <* _or  <*> stmt)
-    stmtAnd <- rule $ stmtOr  <|> (StmtConnected Conjunction <$> stmtOr  <* _and <*> stmt)
-    stmtIff <- rule $ stmtAnd <|> (StmtConnected Equivalence <$> stmtAnd <* _iff <*> stmt)
-    stmtIf  <- rule $ StmtConnected Implication <$> (_if *> stmt) <* optional _comma <* _then <*> stmt
-    stmtXor <- rule $ StmtConnected ExclusiveOr <$> (_either *> stmt) <* _or <*> stmt
-    stmtNor <- rule $ StmtConnected NegatedDisjunction <$> (_neither *> stmt) <* _nor <*> stmt
-    stmtNeg <- rule $ StmtNeg <$> (_itIsWrong *> stmt)
+    stmtOr  <- rule $ stmt'   <|> (StmtConnected Disjunction Nothing <$> stmt'   <* _or  <*> stmt)
+    stmtAnd <- rule $ stmtOr  <|> (StmtConnected Conjunction Nothing <$> stmtOr  <* _and <*> stmt)
+    stmtIff <- rule $ stmtAnd <|> (StmtConnected Equivalence Nothing <$> stmtAnd <* _iff <*> stmt)
+    stmtIf  <- rule $ StmtConnected Implication <$> (Just <$> _if) <*> stmt <* optional _comma <* _then <*> stmt
+    stmtXor <- rule $ StmtConnected ExclusiveOr <$> (Just <$>_either) <*> stmt <* _or <*> stmt
+    stmtNor <- rule $ StmtConnected NegatedDisjunction <$> (Just <$> _neither) <*> stmt <* _nor <*> stmt
+    stmtNeg <- rule $ StmtNeg <$> _itIsWrong <*> stmt
 
-    stmtQuantPhrase <- rule $ StmtQuantPhrase <$> (_for *> quant) <* optional _comma <* optional _have <*> stmt
+    stmtQuantPhrase <- rule $ StmtQuantPhrase <$> _for <*> quant <* optional _comma <* optional _have <*> stmt
 
     suchStmt <- rule $ _suchThat *> stmt <* optional _comma
 
    -- Symbolic quantifications with or without generalized bounds.
-    symbolicForall <- rule $ SymbolicForall
-        <$> ((_forAll <|> _forEvery) *> beginMath *> varSymbols)
-        <*> maybeBounded <* endMath
-        <*> optional suchStmt
-        <* optional _have <*> stmt
-    symbolicExists <- rule $ SymbolicExists
-        <$> ((_exists <|> _exist) *> beginMath *> varSymbols)
-        <*> maybeBounded <* endMath
-        <*> ((_suchThat *> stmt) <|> pure (StmtFormula (PropositionalConstant IsTop)))
-    symbolicNotExists <- rule $ SymbolicNotExists
-        <$> (_exists *> _no *> beginMath *> varSymbols)
-        <*> maybeBounded <* endMath
-        <* _suchThat <*> stmt
+    symbolicForall <- rule do
+        p <- _forAll <|> _forEvery
+        xs <- beginMath *> varSymbols
+        b <- maybeBounded <* endMath
+        ms <- optional suchStmt
+        s <- optional _have *> stmt
+        pure (SymbolicForall p xs b ms s)
+    symbolicExists <- rule do
+        p <- _exists <|> _exist
+        xs <- beginMath *> varSymbols
+        b <- maybeBounded <* endMath
+        s <- (_suchThat *> stmt) <|> pure (StmtFormula (PropositionalConstant IsTop))
+        pure (SymbolicExists p xs b s)
+    symbolicNotExists <- rule do
+        p <- _exists *> _no
+        xs <- beginMath *> varSymbols
+        b <- maybeBounded <* endMath
+        s <- _suchThat *> stmt
+        pure (makeSymbolicNotExists p xs b s)
     symbolicBound <- rule $ Bounded <$> relationSign <*> relation <*> expr
     maybeBounded <- rule (pure Unbounded <|> symbolicBound)
 
     symbolicQuantified <- rule $ symbolicForall <|> symbolicExists <|> symbolicNotExists
 
-    stmt <- rule $ asum [stmtNeg, stmtIf, stmtXor, stmtNor, stmtExists, stmtExist, stmtExistsNot, stmtQuantPhrase, stmtIff, symbolicQuantified] <?> "a statement"
+    stmt :: Prod r Text (Located Token) Stmt <- rule $ asum [stmtNeg, stmtIf, stmtXor, stmtNor, stmtExists, stmtExist, stmtExistsNot, stmtQuantPhrase, stmtIff, symbolicQuantified] <?> "a statement"
+
 
     asmLetIn        <- rule $ uncurry AsmLetIn <$> (_let *> math typing)
     asmLetNoun      <- rule $ AsmLetNoun <$> (_let *> fmap pure var <* (_be <|> _denote) <* _an) <*> nounPhrase
@@ -315,10 +344,10 @@ grammar lexicon@Lexicon{..} = mdo
     justificationLocal <- rule $ JustificationLocal <$ (_by *> (_assumption <|> _definition))
     justification <- rule (justificationSet <|> justificationRef <|> justificationLocal <|> pure JustificationEmpty)
 
-    trivial          <- rule $ Qed JustificationEmpty <$ _trivial <* _dot
+    trivial          <- rule $ Qed . Just <$> _trivial <* _dot <*> pure JustificationEmpty
     omitted          <- rule $ Omitted <$ _omitted <* _dot
-    qedJustified     <- rule $ Qed <$> (_follows *> justification <* _dot)
-    qed              <- rule $ qedJustified <|> trivial <|> omitted <|> pure (Qed JustificationEmpty)
+    qedJustified     <- rule $ Qed . Just <$> _follows <*> (justification <* _dot)
+    qed              <- rule $ qedJustified <|> trivial <|> omitted <|> pure (Qed Nothing JustificationEmpty)
 
     let alignedEq = symbol "&=" <?> "\"&=\""
     explanation <- rule $ (text justification) <|> pure JustificationEmpty
@@ -330,71 +359,56 @@ grammar lexicon@Lexicon{..} = mdo
     biconditionals <- rule $ Biconditionals <$> formula <*> (many1 biconditionalItem) <* optional _dot
 
 
-    calcQuantifier <- rule $ CalcQuantifier <$>
-        ((_forAll <|> _forEvery) *> beginMath *> varSymbols)
-        <*> maybeBounded <* endMath
-        <*> optional suchStmt
-        <* optional _have
+    calcQuantifier <- rule do
+        pos <- _forAll <|> _forEvery
+        xs <- beginMath *> varSymbols
+        mb <- maybeBounded <* endMath
+        st <- optional suchStmt
+        optional _have
+        pure (pos, CalcQuantifier xs mb st)
 
-    calc  <- rule $ Calc <$> optional calcQuantifier <*> align (equations <|> biconditionals) <*> proof
+    calc <- rule do
+        mquant <- optional calcQuantifier
+        psteps <- align (equations <|> biconditionals)
+        pf <- proof
+        pure let (pos2, steps) = psteps in case mquant of
+            Nothing -> Calc pos2 Nothing steps pf
+            Just (pos, q) -> Calc pos (Just q) steps pf
 
     caseOf           <- rule $ command "caseOf" *> token InvisibleBraceL *> stmt <* _dot <* token InvisibleBraceR
-    byCases          <- rule $ ByCase <$> env_ "byCase" (many1_ (Case <$> caseOf <*> proof))
-    byContradiction  <- rule $ ByContradiction <$ _suppose <* _not <* _dot <*> proof
-    bySetInduction   <- rule $ BySetInduction <$> proofBy (_in *> word "-induction" *> optional (word "on" *> term)) <*> proof
-    byOrdInduction   <- rule $ ByOrdInduction <$> proofBy (word "transfinite" *> word "induction" *> proof)
-    assume           <- rule $ Assume <$> (_suppose *> stmt <* _dot) <*> proof
+    byCases          <- rule $ uncurry ByCase <$> envPos_ "byCase" (many1_ (Case <$> caseOf <*> proof))
+    byContradiction  <- rule $ ByContradiction <$> _suppose <* _not <* _dot <*> proof
+    bySetInduction   <- rule $ uncurry BySetInduction <$> proofBy (_in *> word "-induction" *> optional (word "on" *> term)) <*> proof
+    byOrdInduction   <- rule $ uncurry ByOrdInduction <$> proofBy (word "transfinite" *> word "induction" *> proof)
+    assume           <- rule $ Assume <$> _suppose <*> (stmt <* _dot) <*> proof
 
-    fixSymbolic      <- rule $ FixSymbolic <$> (_fix *> beginMath *> varSymbols) <*> maybeBounded <* endMath <* _dot <*> proof
-    fixSuchThat      <- rule $ FixSuchThat <$> (_fix *> math varSymbols) <* _suchThat <*> stmt <* _dot <*> proof
+    fixSymbolic      <- rule $ FixSymbolic <$> _fix <*> (beginMath *> varSymbols) <*> maybeBounded <* endMath <* _dot <*> proof
+    fixSuchThat      <- rule $ FixSuchThat <$> _fix <*> math varSymbols <* _suchThat <*> stmt <* _dot <*> proof
     fix              <- rule $ fixSymbolic <|> fixSuchThat
 
-    takeVar          <- rule $ TakeVar <$> (_take *> beginMath *> varSymbols) <*> maybeBounded <* endMath <* _suchThat <*> stmt <*> justification <* _dot <*> proof
-    takeNoun         <- rule $ TakeNoun <$> (_take *> _an *> (nounPhrase' <|> nounPhrasePl)) <*> justification <* _dot <*> proof
+    takeVar          <- rule $ TakeVar <$> _take <*> (beginMath *> varSymbols) <*> maybeBounded <* endMath <* _suchThat <*> stmt <*> justification <* _dot <*> proof
+    takeNoun         <- rule $ TakeNoun <$> _take <*> (_an *> (nounPhrase' <|> nounPhrasePl)) <*> justification <* _dot <*> proof
     take             <- rule $ takeVar <|> takeNoun
-    suffices         <- rule $ Suffices <$> (_sufficesThat *> stmt) <*> (justification <* _dot) <*> proof
-    subclaim         <- rule $ Subclaim <$> (_show *> stmt <* _dot) <*> env_ "subproof" proof <*> proof
-    have             <- rule $ Have <$> optional (_since *> stmt <* _comma <* _have) <* optional _haveIntro <*> stmt <*> justification <* _dot <*> proof
+    suffices         <- rule $ Suffices <$> _sufficesThat <*> stmt <*> (justification <* _dot) <*> proof
+    subclaim         <- rule $ Subclaim <$> _show <*> (stmt <* _dot) <*> env_ "subproof" proof <*> proof
+    have             <- rule do
+        msince <- optional ((,) <$> _since <*> stmt <* _comma <* _have)
+        mpos <- optional _haveIntro
+        s <- stmt
+        j <- justification <* _dot
+        pf <- proof
+        pure
+            let pos = case (msince, mpos) of
+                    (Just (p, _), _) -> p
+                    (_, Just p) -> p
+                    _ -> locate s
+            in (Have pos (snd <$> msince) s j pf)
 
 
-    define           <- rule $ Define <$> (_let *> beginMath *> varSymbol <* _eq) <*> expr <* endMath <* _dot <*> proof
-    defineFunction   <- rule $ DefineFunction <$> (_let *> beginMath *> varSymbol) <*> paren varSymbol <* _eq <*>  expr <* endMath <* _for <* beginMath <*> varSymbol <* _in <*> expr <* endMath <* _dot <*> proof
+    define           <- rule $ Define <$> _let <*> (beginMath *> varSymbol <* _eq) <*> expr <* endMath <* _dot <*> proof
+    defineFunction   <- rule $ DefineFunction <$> _let <*> (beginMath *> varSymbol) <*> paren varSymbol <* _eq <*>  expr <* endMath <* _for <* beginMath <*> varSymbol <* _in <*> expr <* endMath <* _dot <*> proof
 
-
-
-
-
-
-    -- Define $f $\fromTo{X}{Y} such that,
-    -- Define function $f: X \to Y$,
-    -- \begin{align}
-    --      &x \mapsto 3*x      &,
-    --      &x \mapsto 4*k    &,    \forall k \in \N. x \in \Set{k}
-    -- \end{align}
-    --
-
-    -- Follwing is the definition right now.
-    -- Define function $f: X \to Y$ such that,
-    -- \begin{cases}
-    --     1 & \text{if } x \in \mathbb{Q}\\
-    --     0 & \text{if } x \in \mathbb{R}\setminus\mathbb{Q}
-    --     3 & \text{else}
-    -- \end{cases}
-
-    functionDefineCase <- rule $ (,) <$> (optional _ampersand *> expr) <*> (_ampersand *> text _if *> formula)
-    defineFunctionLocal <-  rule    $ DefineFunctionLocal
-                                    <$> (_define *> beginMath *> varSymbol)           -- Define $ f
-                                    <*> (_colon *> varSymbol)                           -- : 'var' \to 'var'
-                                    <*> (_to *> expr <* endMath <* _suchThat)
-                                    -- <*> (_suchThat  *> align (many1 ((_ampersand *> varSymbol <* _mapsto) <*> exprApp <*> (_ampersand *> formula))))
-                                    -- <*> (_suchThat  *> align (many1 (varSymbol <* exprApp <*  formula)))
-                                    <*> (beginMath *> varSymbol) <*> (paren varSymbol <* _eq )
-                                    <*> cases (many1 functionDefineCase) <* endMath <* optional _dot
-                                    <*> proof
-
-
-
-    proof            <- rule $ asum [byContradiction, byCases, bySetInduction, byOrdInduction, calc, subclaim, assume, fix, take, have, suffices, define, defineFunction, defineFunctionLocal, qed]
+    proof            <- rule $ asum [byContradiction, byCases, bySetInduction, byOrdInduction, calc, subclaim, assume, fix, take, have, suffices, define, defineFunction, qed]
 
 
     blockAxiom  <- rule $ uncurry3 BlockAxiom     <$> envPos  "axiom" axiom
@@ -412,9 +426,11 @@ grammar lexicon@Lexicon{..} = mdo
     pure block
 
 
-proofBy :: Prod r Text (Located Token) a -> Prod r Text (Located Token) a
-proofBy method = bracket $ word "proof" *> word "by" *> method
-
+proofBy :: Prod r Text (Located Token) a -> Prod r Text (Located Token) (SourcePos, a)
+proofBy method = bracket do
+    pos <- word "proof" *> word "by"
+    a <- method
+    pure (pos, a)
 
 lemmaEnv :: Prod r Text (Located Token) a -> Prod r Text (Located Token) (SourcePos, Marker, a)
 lemmaEnv content = asum
@@ -482,40 +498,58 @@ enumeratedMarked1 p = begin "enumerate" *> many1 ((,) <$> (command "item" *> lab
 -- instead of with specialized variants.
 --
 phraseOf
-    :: (pat -> [a] -> b)
+    :: forall pat a b r. Locatable a
+    => (SourcePos -> pat -> [a] -> b)
     -> Lexicon
     -> (Lexicon -> HashSet pat)
     -> (pat -> LexicalPhrase)
     -> Prod r Text (Located Token) a
     -> Prod r Text (Located Token) b
 phraseOf constr lexicon selector proj arg =
-    uncurry constr <$> asum (fmap make pats)
+    uncurry3 constr <$> asum (fmap make pats)
     where
+        pats :: [pat]
         pats = HS.toList (selector lexicon)
-        make pat = (\args -> (pat, args)) <$> go (proj pat)
+
+        make :: pat -> Prod r Text (Located Token) (SourcePos, pat, [a])
+        make pat = (\(pos, args) -> (pos, pat, args)) <$> goPos (proj pat)
+
+        goPos :: LexicalPhrase -> Prod r Text (Located Token) (SourcePos, [a])
+        goPos = \case
+            Just w : ws  -> (,) <$> tokenPos w <*> go ws
+            Nothing : ws -> do
+                a <- arg
+                rest <- go ws
+                pure (locate a, a : rest)
+            []           -> error "phraseOf.goPos: empty phrase"
+
+        go :: LexicalPhrase -> Prod r Text (Located Token) [a]
         go = \case
-            Just w : ws  -> token w *> go ws
-            Nothing : ws -> (:) <$> arg <*> go ws
+            Just w : ws  -> tokenPos w *> go ws
+            Nothing : ws -> do
+                a <- arg
+                rest <- go ws
+                pure (a : rest)
             []           -> pure []
 
-adjLOf :: Lexicon -> Prod r Text (Located Token) arg -> Prod r Text (Located Token) (AdjLOf arg)
+adjLOf :: Locatable arg => Lexicon -> Prod r Text (Located Token) arg -> Prod r Text (Located Token) (AdjLOf arg)
 adjLOf lexicon arg = phraseOf AdjL lexicon (HM.keysSet . lexiconAdjLs) id arg <?> "a left adjective"
 
-adjROf :: Lexicon -> Prod r Text (Located Token) arg -> Prod r Text (Located Token) (AdjROf arg)
+adjROf :: Locatable arg =>Lexicon -> Prod r Text (Located Token) arg -> Prod r Text (Located Token) (AdjROf arg)
 adjROf lexicon arg = phraseOf AdjR lexicon (HM.keysSet . lexiconAdjRs) id arg <?> "a right adjective"
 
-adjOf :: Lexicon -> Prod r Text (Located Token) arg -> Prod r Text (Located Token) (AdjOf arg)
+adjOf :: Locatable arg =>Lexicon -> Prod r Text (Located Token) arg -> Prod r Text (Located Token) (AdjOf arg)
 adjOf lexicon arg = phraseOf Adj lexicon (HM.keysSet . lexiconAdjs) id arg <?> "an adjective"
 
 verbOf
-    :: Lexicon
+    :: Locatable a => Lexicon
     -> (SgPl LexicalPhrase -> LexicalPhrase)
     -> Prod r Text (Located Token) a
     -> Prod r Text (Located Token) (VerbOf a)
 verbOf lexicon proj arg = phraseOf Verb lexicon (HM.keysSet . lexiconVerbs) proj arg
 
 funOf
-    :: Lexicon
+    :: Locatable a => Lexicon
     -> (SgPl LexicalPhrase -> LexicalPhrase)
     -> Prod r Text (Located Token) a
     -> Prod r Text (Located Token) (FunOf a)
@@ -524,7 +558,7 @@ funOf lexicon proj arg = phraseOf Fun lexicon (HM.keysSet . lexiconFuns) proj ar
 
 -- | A noun with a @t VarSymbol@ as name(s).
 nounOf
-    :: Lexicon
+    :: Locatable arg =>  Lexicon
     -> (SgPl LexicalPhrase -> LexicalPhrase)
     -> Prod r Text (Located Token) arg
     -> Prod r Text (Located Token) (t VarSymbol)
@@ -542,7 +576,7 @@ nounOf lexicon proj arg vars =
             []           -> pure []
 
 structNounOf
-    :: Lexicon
+    :: Locatable arg => Lexicon
     -> (SgPl LexicalPhrase -> LexicalPhrase)
     -> Prod r Text (Located Token) arg
     -> Prod r Text (Located Token) name
@@ -630,6 +664,9 @@ ref = terminal \ltok -> case unLocated ltok of
 math :: Prod r Text (Located Token) a -> Prod r Text (Located Token) a
 math body = beginMath *> body <* endMath
 
+mathPos :: Prod r Text (Located Token) a -> Prod r Text (Located Token) (SourcePos, a)
+mathPos body = (,) <$> beginMath <*> body <* endMath
+
 text :: Prod r Text (Located Token) a -> Prod r Text (Located Token) a
 text body = begin "text" *> body <* end "text" <?> "\"\\text{...}\""
 
@@ -649,8 +686,8 @@ brace body = token VisibleBraceL  *> body <* token VisibleBraceR <?> "\"\\{...\\
 group :: Prod r Text (Located Token) a -> Prod r Text (Located Token) a
 group body = token InvisibleBraceL *> body <* token InvisibleBraceR <?> "\"{...}\""
 
-align :: Prod r Text (Located Token) a -> Prod r Text (Located Token) a
-align body = begin "align*" *> body <* end "align*"
+align :: Prod r Text (Located Token) a -> Prod r Text (Located Token) (SourcePos, a)
+align body = (,) <$> begin "align*" <*> body <* end "align*"
 
 cases :: Prod r Text (Located Token) a -> Prod r Text (Located Token) a
 cases body = begin "cases" *> body <* end "cases"

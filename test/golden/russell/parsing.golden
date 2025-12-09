@@ -25,13 +25,24 @@
             )
             ( NamedVar "V" )
             ( Adj
+                ( SourcePos
+                    { sourceName = "test/examples/russell.tex"
+                    , sourceLine = Pos 2
+                    , sourceColumn = Pos 18
+                    }
+                )
                 [ Just
                     ( Word "universal" )
                 ] []
             )
         )
         ( StmtQuantPhrase
-            ( QuantPhrase Universally NounPhrase ( [] )
+            { pos = SourcePos
+                { sourceName = "test/examples/russell.tex"
+                , sourceLine = Pos 4
+                , sourceColumn = Pos 5
+                }
+            , qp = QuantPhrase Universally NounPhrase ( [] )
                 ( Noun
                     ( SgPl
                         { sg =
@@ -48,9 +59,8 @@
                 (
                     [ NamedVar "x" ]
                 ) ( [] ) ( Nothing )
-            )
-            ( StmtFormula
-                ( FormulaChain
+            , stmt = StmtFormula
+                { formula = FormulaChain
                     ( ChainBase
                         ( ExprVar
                             ( NamedVar "x" ) :| []
@@ -62,8 +72,8 @@
                             ( NamedVar "V" ) :| []
                         )
                     )
-                )
-            )
+                }
+            }
         )
     )
 , BlockLemma
@@ -76,28 +86,46 @@
     ( Marker "no_universal_set" )
     ( Lemma []
         ( StmtNeg
-            ( StmtExists NounPhrase
-                (
-                    [ AdjL
-                        [ Just
-                            ( Word "universal" )
-                        ] []
-                    ]
-                )
-                ( Noun
-                    ( SgPl
-                        { sg =
+            { pos = SourcePos
+                { sourceName = "test/examples/russell.tex"
+                , sourceLine = Pos 8
+                , sourceColumn = Pos 18
+                }
+            , stmt = StmtExists
+                { pos = SourcePos
+                    { sourceName = "test/examples/russell.tex"
+                    , sourceLine = Pos 8
+                    , sourceColumn = Pos 18
+                    }
+                , np = NounPhrase
+                    (
+                        [ AdjL
+                            ( SourcePos
+                                { sourceName = "test/examples/russell.tex"
+                                , sourceLine = Pos 8
+                                , sourceColumn = Pos 21
+                                }
+                            )
                             [ Just
-                                ( Word "set" )
-                            ]
-                        , pl =
-                            [ Just
-                                ( Word "sets" )
-                            ]
-                        }
-                    ) []
-                ) ( [] ) ( [] ) ( Nothing )
-            )
+                                ( Word "universal" )
+                            ] []
+                        ]
+                    )
+                    ( Noun
+                        ( SgPl
+                            { sg =
+                                [ Just
+                                    ( Word "set" )
+                                ]
+                            , pl =
+                                [ Just
+                                    ( Word "sets" )
+                                ]
+                            }
+                        ) []
+                    ) ( [] ) ( [] ) ( Nothing )
+                }
+            }
         )
     )
 , BlockProof
@@ -108,9 +136,27 @@
         }
     )
     ( ByContradiction
-        ( TakeNoun NounPhrase
+        ( SourcePos
+            { sourceName = "test/examples/russell.tex"
+            , sourceLine = Pos 11
+            , sourceColumn = Pos 5
+            }
+        )
+        ( TakeNoun
+            ( SourcePos
+                { sourceName = "test/examples/russell.tex"
+                , sourceLine = Pos 12
+                , sourceColumn = Pos 5
+                }
+            ) NounPhrase
             (
                 [ AdjL
+                    ( SourcePos
+                        { sourceName = "test/examples/russell.tex"
+                        , sourceLine = Pos 12
+                        , sourceColumn = Pos 12
+                        }
+                    )
                     [ Just
                         ( Word "universal" )
                     ] []
@@ -133,6 +179,12 @@
                 [ NamedVar "V" ]
             ) ( [] ) ( Nothing ) JustificationEmpty
             ( Define
+                ( SourcePos
+                    { sourceName = "test/examples/russell.tex"
+                    , sourceLine = Pos 13
+                    , sourceColumn = Pos 5
+                    }
+                )
                 ( NamedVar "R" )
                 ( ExprSep
                     ( NamedVar "x" )
@@ -140,7 +192,7 @@
                         ( NamedVar "V" )
                     )
                     ( StmtFormula
-                        ( FormulaChain
+                        { formula = FormulaChain
                             ( ChainBase
                                 ( ExprVar
                                     ( NamedVar "x" ) :| []
@@ -152,13 +204,21 @@
                                     ( NamedVar "x" ) :| []
                                 )
                             )
-                        )
+                        }
                     )
                 )
-                ( Have Nothing
-                    ( StmtConnected Equivalence
-                        ( StmtFormula
-                            ( FormulaChain
+                ( Have
+                    ( SourcePos
+                        { sourceName = "test/examples/russell.tex"
+                        , sourceLine = Pos 14
+                        , sourceColumn = Pos 5
+                        }
+                    ) Nothing
+                    ( StmtConnected
+                        { conn = Equivalence
+                        , mpos = Nothing
+                        , stmt1 = StmtFormula
+                            { formula = FormulaChain
                                 ( ChainBase
                                     ( ExprVar
                                         ( NamedVar "R" ) :| []
@@ -170,10 +230,9 @@
                                         ( NamedVar "R" ) :| []
                                     )
                                 )
-                            )
-                        )
-                        ( StmtFormula
-                            ( FormulaChain
+                            }
+                        , stmt2 = StmtFormula
+                            { formula = FormulaChain
                                 ( ChainBase
                                     ( ExprVar
                                         ( NamedVar "R" ) :| []
@@ -185,11 +244,17 @@
                                         ( NamedVar "R" ) :| []
                                     )
                                 )
-                            )
-                        )
+                            }
+                        }
                     ) JustificationEmpty
-                    ( Have Nothing
-                        ( StmtFormula ( PropositionalConstant IsBottom ) ) JustificationEmpty ( Qed JustificationEmpty )
+                    ( Have
+                        ( SourcePos
+                            { sourceName = "Nowhere"
+                            , sourceLine = Pos 1
+                            , sourceColumn = Pos 1
+                            }
+                        ) Nothing
+                        ( StmtFormula { formula = PropositionalConstant IsBottom } ) JustificationEmpty ( Qed Nothing JustificationEmpty )
                     )
                 )
             )

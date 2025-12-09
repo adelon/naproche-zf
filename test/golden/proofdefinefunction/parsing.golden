@@ -59,13 +59,19 @@
         ( DefnAdj Nothing
             ( NamedVar "f" )
             ( Adj
+                ( SourcePos
+                    { sourceName = "test/examples/proofdefinefunction.tex"
+                    , sourceLine = Pos 14
+                    , sourceColumn = Pos 12
+                    }
+                )
                 [ Just
                     ( Word "right-unique" )
                 ] []
             )
         )
         ( StmtFormula
-            ( FormulaChain
+            { formula = FormulaChain
                 ( ChainBase
                     ( ExprVar
                         ( NamedVar "f" ) :| []
@@ -77,7 +83,7 @@
                         ( NamedVar "f" ) :| []
                     )
                 )
-            )
+            }
         )
     )
 , BlockDefn
@@ -106,7 +112,7 @@
             )
         )
         ( StmtFormula
-            ( FormulaChain
+            { formula = FormulaChain
                 ( ChainBase
                     ( ExprVar
                         ( NamedVar "f" ) :| []
@@ -118,7 +124,7 @@
                         ( NamedVar "f" ) :| []
                     )
                 )
-            )
+            }
         )
     )
 , BlockLemma
@@ -130,9 +136,17 @@
     )
     ( Marker "definefunctiontest" )
     ( Lemma []
-        ( StmtConnected Implication
-            ( StmtFormula
-                ( FormulaChain
+        ( StmtConnected
+            { conn = Implication
+            , mpos = Just
+                ( SourcePos
+                    { sourceName = "test/examples/proofdefinefunction.tex"
+                    , sourceLine = Pos 23
+                    , sourceColumn = Pos 5
+                    }
+                )
+            , stmt1 = StmtFormula
+                { formula = FormulaChain
                     ( ChainBase
                         ( ExprVar
                             ( NamedVar "x" ) :| []
@@ -144,10 +158,9 @@
                             ( NamedVar "y" ) :| []
                         )
                     )
-                )
-            )
-            ( StmtFormula
-                ( FormulaChain
+                }
+            , stmt2 = StmtFormula
+                { formula = FormulaChain
                     ( ChainBase
                         ( ExprVar
                             ( NamedVar "x" ) :| []
@@ -159,8 +172,8 @@
                             ( NamedVar "y" ) :| []
                         )
                     )
-                )
-            )
+                }
+            }
         )
     )
 , BlockProof
@@ -171,6 +184,12 @@
         }
     )
     ( DefineFunction
+        ( SourcePos
+            { sourceName = "test/examples/proofdefinefunction.tex"
+            , sourceLine = Pos 26
+            , sourceColumn = Pos 5
+            }
+        )
         ( NamedVar "f" )
         ( NamedVar "z" )
         ( ExprVar
@@ -179,6 +198,6 @@
         ( NamedVar "z" )
         ( ExprVar
             ( NamedVar "x" )
-        ) ( Qed JustificationEmpty )
+        ) ( Qed Nothing JustificationEmpty )
     )
 ]

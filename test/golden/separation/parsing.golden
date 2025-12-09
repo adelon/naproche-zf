@@ -8,7 +8,7 @@
     ( Marker "sep_test" )
     ( Lemma []
         ( StmtFormula
-            ( FormulaChain
+            { formula = FormulaChain
                 ( ChainBase
                     ( ExprVar
                         ( NamedVar "X" ) :| []
@@ -22,7 +22,7 @@
                             ( NamedVar "X" )
                         )
                         ( StmtFormula
-                            ( FormulaChain
+                            { formula = FormulaChain
                                 ( ChainBase
                                     ( ExprVar
                                         ( NamedVar "x" ) :| []
@@ -34,11 +34,11 @@
                                         ( NamedVar "x" ) :| []
                                     )
                                 )
-                            )
+                            }
                         ) :| []
                     )
                 )
-            )
+            }
         )
     )
 ]

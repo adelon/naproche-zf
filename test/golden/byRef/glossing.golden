@@ -72,9 +72,16 @@
         }
     )
     ( Qed
-        ( JustificationRef
+        { mpos = Just
+            ( SourcePos
+                { sourceName = "test/examples/byRef.tex"
+                , sourceLine = Pos 13
+                , sourceColumn = Pos 5
+                }
+            )
+        , by = JustificationRef
             ( Marker "prop1" :| [] )
-        )
+        }
     )
 , BlockLemma
     ( SourcePos
@@ -106,6 +113,12 @@
         }
     )
     ( Have
+        ( SourcePos
+            { sourceName = "test/examples/byRef.tex"
+            , sourceLine = Pos 20
+            , sourceColumn = Pos 5
+            }
+        )
         ( Quantified Universally
             ( Scope
                 ( TermSymbol
@@ -128,7 +141,12 @@
         )
         ( JustificationRef
             ( Marker "prop1" :| [] )
-        ) ( Qed JustificationEmpty )
+        )
+        ( Qed
+            { mpos = Nothing
+            , by = JustificationEmpty
+            }
+        )
     )
 , BlockLemma
     ( SourcePos

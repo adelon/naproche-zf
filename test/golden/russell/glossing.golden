@@ -78,7 +78,19 @@
         }
     )
     ( ByContradiction
+        ( SourcePos
+            { sourceName = "test/examples/russell.tex"
+            , sourceLine = Pos 11
+            , sourceColumn = Pos 5
+            }
+        )
         ( Take
+            ( SourcePos
+                { sourceName = "test/examples/russell.tex"
+                , sourceLine = Pos 12
+                , sourceColumn = Pos 5
+                }
+            )
             ( NamedVar "V" :| [] )
             ( Connected Conjunction ( PropositionalConstant IsTop )
                 ( TermSymbol
@@ -95,6 +107,12 @@
                 )
             ) JustificationEmpty
             ( Define
+                ( SourcePos
+                    { sourceName = "test/examples/russell.tex"
+                    , sourceLine = Pos 13
+                    , sourceColumn = Pos 5
+                    }
+                )
                 ( NamedVar "R" )
                 ( TermSep
                     ( NamedVar "x" )
@@ -119,6 +137,12 @@
                     )
                 )
                 ( Have
+                    ( SourcePos
+                        { sourceName = "test/examples/russell.tex"
+                        , sourceLine = Pos 14
+                        , sourceColumn = Pos 5
+                        }
+                    )
                     ( Connected Equivalence
                         ( TermSymbol
                             ( SymbolPredicate
@@ -147,7 +171,19 @@
                             )
                         )
                     ) JustificationEmpty
-                    ( Have ( PropositionalConstant IsBottom ) JustificationEmpty ( Qed JustificationEmpty ) )
+                    ( Have
+                        ( SourcePos
+                            { sourceName = "Nowhere"
+                            , sourceLine = Pos 1
+                            , sourceColumn = Pos 1
+                            }
+                        ) ( PropositionalConstant IsBottom ) JustificationEmpty
+                        ( Qed
+                            { mpos = Nothing
+                            , by = JustificationEmpty
+                            }
+                        )
+                    )
                 )
             )
         )

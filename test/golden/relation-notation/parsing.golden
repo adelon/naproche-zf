@@ -7,9 +7,17 @@
     )
     ( Marker "mathrel_notation_test" )
     ( Lemma []
-        ( StmtConnected Implication
-            ( StmtFormula
-                ( FormulaChain
+        ( StmtConnected
+            { conn = Implication
+            , mpos = Just
+                ( SourcePos
+                    { sourceName = "test/examples/relation-notation.tex"
+                    , sourceLine = Pos 2
+                    , sourceColumn = Pos 5
+                    }
+                )
+            , stmt1 = StmtFormula
+                { formula = FormulaChain
                     ( ChainBase
                         ( ExprVar
                             ( NamedVar "x" ) :| []
@@ -23,10 +31,9 @@
                             ( NamedVar "y" ) :| []
                         )
                     )
-                )
-            )
-            ( StmtFormula
-                ( FormulaChain
+                }
+            , stmt2 = StmtFormula
+                { formula = FormulaChain
                     ( ChainBase
                         ( ExprVar
                             ( NamedVar "x" ) :| []
@@ -40,8 +47,8 @@
                             ( NamedVar "y" ) :| []
                         )
                     )
-                )
-            )
+                }
+            }
         )
     )
 ]

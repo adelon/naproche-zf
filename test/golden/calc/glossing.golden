@@ -71,7 +71,13 @@
         , sourceColumn = Pos 1
         }
     )
-    ( Calc CalcUnquantified
+    ( Calc
+        ( SourcePos
+            { sourceName = "test/examples/calc.tex"
+            , sourceLine = Pos 13
+            , sourceColumn = Pos 5
+            }
+        ) CalcUnquantified
         ( Equation
             ( TermVar
                 ( NamedVar "y" )
@@ -89,7 +95,12 @@
                     )
                 ]
             )
-        ) ( Qed JustificationEmpty )
+        )
+        ( Qed
+            { mpos = Nothing
+            , by = JustificationEmpty
+            }
+        )
     )
 , BlockLemma
     ( SourcePos
@@ -120,7 +131,13 @@
         , sourceColumn = Pos 1
         }
     )
-    ( Calc CalcUnquantified
+    ( Calc
+        ( SourcePos
+            { sourceName = "test/examples/calc.tex"
+            , sourceLine = Pos 26
+            , sourceColumn = Pos 5
+            }
+        ) CalcUnquantified
         ( Biconditionals
             ( TermSymbol
                 ( SymbolPredicate
@@ -155,6 +172,11 @@
                     )
                 ]
             )
-        ) ( Qed JustificationEmpty )
+        )
+        ( Qed
+            { mpos = Nothing
+            , by = JustificationEmpty
+            }
+        )
     )
 ]

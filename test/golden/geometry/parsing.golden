@@ -10,6 +10,12 @@
         ( DefnAdj Nothing
             ( NamedVar "a" )
             ( Adj
+                ( SourcePos
+                    { sourceName = "test/examples/geometry.tex"
+                    , sourceLine = Pos 2
+                    , sourceColumn = Pos 12
+                    }
+                )
                 [ Just
                     ( Word "collinear" )
                 , Just
@@ -24,9 +30,11 @@
                 ]
             )
         )
-        ( StmtConnected Disjunction
-            ( StmtFormula
-                ( FormulaPredicate
+        ( StmtConnected
+            { conn = Disjunction
+            , mpos = Nothing
+            , stmt1 = StmtFormula
+                { formula = FormulaPredicate
                     ( PrefixPredicate "Betw" 3 )
                     ( ExprVar
                         ( NamedVar "a" ) :|
@@ -36,11 +44,12 @@
                             ( NamedVar "c" )
                         ]
                     )
-                )
-            )
-            ( StmtConnected Disjunction
-                ( StmtFormula
-                    ( FormulaPredicate
+                }
+            , stmt2 = StmtConnected
+                { conn = Disjunction
+                , mpos = Nothing
+                , stmt1 = StmtFormula
+                    { formula = FormulaPredicate
                         ( PrefixPredicate "Betw" 3 )
                         ( ExprVar
                             ( NamedVar "b" ) :|
@@ -50,10 +59,9 @@
                                 ( NamedVar "a" )
                             ]
                         )
-                    )
-                )
-                ( StmtFormula
-                    ( FormulaPredicate
+                    }
+                , stmt2 = StmtFormula
+                    { formula = FormulaPredicate
                         ( PrefixPredicate "Betw" 3 )
                         ( ExprVar
                             ( NamedVar "c" ) :|
@@ -63,9 +71,9 @@
                                 ( NamedVar "b" )
                             ]
                         )
-                    )
-                )
-            )
+                    }
+                }
+            }
         )
     )
 , BlockAxiom
@@ -96,7 +104,7 @@
             ) ( Nothing ) ( [] ) ( Nothing )
         ]
         ( StmtFormula
-            ( FormulaPredicate
+            { formula = FormulaPredicate
                 ( PrefixPredicate "Cong" 4 )
                 ( ExprVar
                     ( NamedVar "a" ) :|
@@ -108,7 +116,7 @@
                         ( NamedVar "a" )
                     ]
                 )
-            )
+            }
         )
     )
 , BlockAxiom
@@ -141,10 +149,20 @@
                 ) []
             ) ( Nothing ) ( [] ) ( Nothing )
         ]
-        ( StmtConnected Implication
-            ( StmtConnected Conjunction
-                ( StmtFormula
-                    ( FormulaPredicate
+        ( StmtConnected
+            { conn = Implication
+            , mpos = Just
+                ( SourcePos
+                    { sourceName = "test/examples/geometry.tex"
+                    , sourceLine = Pos 12
+                    , sourceColumn = Pos 5
+                    }
+                )
+            , stmt1 = StmtConnected
+                { conn = Conjunction
+                , mpos = Nothing
+                , stmt1 = StmtFormula
+                    { formula = FormulaPredicate
                         ( PrefixPredicate "Cong" 4 )
                         ( ExprVar
                             ( NamedVar "c" ) :|
@@ -156,10 +174,9 @@
                                 ( NamedVar "b" )
                             ]
                         )
-                    )
-                )
-                ( StmtFormula
-                    ( FormulaPredicate
+                    }
+                , stmt2 = StmtFormula
+                    { formula = FormulaPredicate
                         ( PrefixPredicate "Cong" 4 )
                         ( ExprVar
                             ( NamedVar "c" ) :|
@@ -171,11 +188,10 @@
                                 ( NamedVar "f" )
                             ]
                         )
-                    )
-                )
-            )
-            ( StmtFormula
-                ( FormulaPredicate
+                    }
+                }
+            , stmt2 = StmtFormula
+                { formula = FormulaPredicate
                     ( PrefixPredicate "Cong" 4 )
                     ( ExprVar
                         ( NamedVar "a" ) :|
@@ -187,8 +203,8 @@
                             ( NamedVar "f" )
                         ]
                     )
-                )
-            )
+                }
+            }
         )
     )
 , BlockAxiom
@@ -220,9 +236,17 @@
                 ) []
             ) ( Nothing ) ( [] ) ( Nothing )
         ]
-        ( StmtConnected Implication
-            ( StmtFormula
-                ( FormulaPredicate
+        ( StmtConnected
+            { conn = Implication
+            , mpos = Just
+                ( SourcePos
+                    { sourceName = "test/examples/geometry.tex"
+                    , sourceLine = Pos 17
+                    , sourceColumn = Pos 5
+                    }
+                )
+            , stmt1 = StmtFormula
+                { formula = FormulaPredicate
                     ( PrefixPredicate "Cong" 4 )
                     ( ExprVar
                         ( NamedVar "a" ) :|
@@ -234,10 +258,9 @@
                             ( NamedVar "c" )
                         ]
                     )
-                )
-            )
-            ( StmtFormula
-                ( FormulaChain
+                }
+            , stmt2 = StmtFormula
+                { formula = FormulaChain
                     ( ChainBase
                         ( ExprVar
                             ( NamedVar "a" ) :| []
@@ -249,8 +272,8 @@
                             ( NamedVar "b" ) :| []
                         )
                     )
-                )
-            )
+                }
+            }
         )
     )
 , BlockAxiom
@@ -262,55 +285,63 @@
     )
     ( Marker "segment_construction" )
     ( Axiom []
-        ( StmtExists NounPhrase ( [] )
-            ( Noun
-                ( SgPl
-                    { sg =
-                        [ Just
-                            ( Word "point" )
-                        ]
-                    , pl =
-                        [ Just
-                            ( Word "points" )
-                        ]
-                    }
-                ) []
-            )
-            (
-                [ NamedVar "c" ]
-            ) ( [] )
-            ( Just
-                ( StmtConnected Conjunction
-                    ( StmtFormula
-                        ( FormulaPredicate
-                            ( PrefixPredicate "Betw" 3 )
-                            ( ExprVar
-                                ( NamedVar "a" ) :|
-                                [ ExprVar
-                                    ( NamedVar "b" )
-                                , ExprVar
-                                    ( NamedVar "c" )
-                                ]
-                            )
-                        )
-                    )
-                    ( StmtFormula
-                        ( FormulaPredicate
-                            ( PrefixPredicate "Cong" 4 )
-                            ( ExprVar
-                                ( NamedVar "b" ) :|
-                                [ ExprVar
-                                    ( NamedVar "c" )
-                                , ExprVar
-                                    ( NamedVar "d" )
-                                , ExprVar
-                                    ( NamedVar "e" )
-                                ]
-                            )
-                        )
+        ( StmtExists
+            { pos = SourcePos
+                { sourceName = "test/examples/geometry.tex"
+                , sourceLine = Pos 22
+                , sourceColumn = Pos 5
+                }
+            , np = NounPhrase ( [] )
+                ( Noun
+                    ( SgPl
+                        { sg =
+                            [ Just
+                                ( Word "point" )
+                            ]
+                        , pl =
+                            [ Just
+                                ( Word "points" )
+                            ]
+                        }
+                    ) []
+                )
+                (
+                    [ NamedVar "c" ]
+                ) ( [] )
+                ( Just
+                    ( StmtConnected
+                        { conn = Conjunction
+                        , mpos = Nothing
+                        , stmt1 = StmtFormula
+                            { formula = FormulaPredicate
+                                ( PrefixPredicate "Betw" 3 )
+                                ( ExprVar
+                                    ( NamedVar "a" ) :|
+                                    [ ExprVar
+                                        ( NamedVar "b" )
+                                    , ExprVar
+                                        ( NamedVar "c" )
+                                    ]
+                                )
+                            }
+                        , stmt2 = StmtFormula
+                            { formula = FormulaPredicate
+                                ( PrefixPredicate "Cong" 4 )
+                                ( ExprVar
+                                    ( NamedVar "b" ) :|
+                                    [ ExprVar
+                                        ( NamedVar "c" )
+                                    , ExprVar
+                                        ( NamedVar "d" )
+                                    , ExprVar
+                                        ( NamedVar "e" )
+                                    ]
+                                )
+                            }
+                        }
                     )
                 )
-            )
+            }
         )
     )
 , BlockDefn
@@ -360,9 +391,11 @@
                 ]
             )
         )
-        ( StmtConnected Conjunction
-            ( StmtFormula
-                ( Connected Conjunction
+        ( StmtConnected
+            { conn = Conjunction
+            , mpos = Nothing
+            , stmt1 = StmtFormula
+                { formula = Connected Conjunction
                     ( FormulaPredicate
                         ( PrefixPredicate "Betw" 3 )
                         ( ExprVar
@@ -385,10 +418,9 @@
                             ]
                         )
                     )
-                )
-            )
-            ( StmtFormula
-                ( Connected Conjunction
+                }
+            , stmt2 = StmtFormula
+                { formula = Connected Conjunction
                     ( Connected Conjunction
                         ( Connected Conjunction
                             ( FormulaPredicate
@@ -445,8 +477,8 @@
                             ]
                         )
                     )
-                )
-            )
+                }
+            }
         )
     )
 , BlockAxiom
@@ -483,10 +515,20 @@
                 ) []
             ) ( Nothing ) ( [] ) ( Nothing )
         ]
-        ( StmtConnected Implication
-            ( StmtConnected Conjunction
-                ( StmtFormula
-                    ( FormulaPredicate
+        ( StmtConnected
+            { conn = Implication
+            , mpos = Just
+                ( SourcePos
+                    { sourceName = "test/examples/geometry.tex"
+                    , sourceLine = Pos 41
+                    , sourceColumn = Pos 5
+                    }
+                )
+            , stmt1 = StmtConnected
+                { conn = Conjunction
+                , mpos = Nothing
+                , stmt1 = StmtFormula
+                    { formula = FormulaPredicate
                         ( PrefixPredicate "OFS" 8 )
                         ( ExprVar
                             ( NamedVar "a" ) :|
@@ -506,10 +548,9 @@
                                 ( NamedVar "dprime" )
                             ]
                         )
-                    )
-                )
-                ( StmtFormula
-                    ( FormulaChain
+                    }
+                , stmt2 = StmtFormula
+                    { formula = FormulaChain
                         ( ChainBase
                             ( ExprVar
                                 ( NamedVar "a" ) :| []
@@ -521,11 +562,10 @@
                                 ( NamedVar "b" ) :| []
                             )
                         )
-                    )
-                )
-            )
-            ( StmtFormula
-                ( FormulaPredicate
+                    }
+                }
+            , stmt2 = StmtFormula
+                { formula = FormulaPredicate
                     ( PrefixPredicate "Cong" 4 )
                     ( ExprVar
                         ( NamedVar "c" ) :|
@@ -537,8 +577,8 @@
                             ( NamedVar "dprime" )
                         ]
                     )
-                )
-            )
+                }
+            }
         )
     )
 , BlockAxiom
@@ -568,9 +608,17 @@
                 ) []
             ) ( Nothing ) ( [] ) ( Nothing )
         ]
-        ( StmtConnected Implication
-            ( StmtFormula
-                ( FormulaPredicate
+        ( StmtConnected
+            { conn = Implication
+            , mpos = Just
+                ( SourcePos
+                    { sourceName = "test/examples/geometry.tex"
+                    , sourceLine = Pos 48
+                    , sourceColumn = Pos 5
+                    }
+                )
+            , stmt1 = StmtFormula
+                { formula = FormulaPredicate
                     ( PrefixPredicate "Betw" 3 )
                     ( ExprVar
                         ( NamedVar "a" ) :|
@@ -580,10 +628,9 @@
                             ( NamedVar "a" )
                         ]
                     )
-                )
-            )
-            ( StmtFormula
-                ( FormulaChain
+                }
+            , stmt2 = StmtFormula
+                { formula = FormulaChain
                     ( ChainBase
                         ( ExprVar
                             ( NamedVar "a" ) :| []
@@ -595,8 +642,8 @@
                             ( NamedVar "b" ) :| []
                         )
                     )
-                )
-            )
+                }
+            }
         )
     )
 , BlockAxiom
@@ -631,10 +678,20 @@
                 ) []
             ) ( Nothing ) ( [] ) ( Nothing )
         ]
-        ( StmtConnected Implication
-            ( StmtConnected Conjunction
-                ( StmtFormula
-                    ( FormulaPredicate
+        ( StmtConnected
+            { conn = Implication
+            , mpos = Just
+                ( SourcePos
+                    { sourceName = "test/examples/geometry.tex"
+                    , sourceLine = Pos 54
+                    , sourceColumn = Pos 5
+                    }
+                )
+            , stmt1 = StmtConnected
+                { conn = Conjunction
+                , mpos = Nothing
+                , stmt1 = StmtFormula
+                    { formula = FormulaPredicate
                         ( PrefixPredicate "Betw" 3 )
                         ( ExprVar
                             ( NamedVar "x" ) :|
@@ -644,10 +701,9 @@
                                 ( NamedVar "z" )
                             ]
                         )
-                    )
-                )
-                ( StmtFormula
-                    ( FormulaPredicate
+                    }
+                , stmt2 = StmtFormula
+                    { formula = FormulaPredicate
                         ( PrefixPredicate "Betw" 3 )
                         ( ExprVar
                             ( NamedVar "y" ) :|
@@ -657,57 +713,64 @@
                                 ( NamedVar "z" )
                             ]
                         )
+                    }
+                }
+            , stmt2 = StmtExists
+                { pos = SourcePos
+                    { sourceName = "test/examples/geometry.tex"
+                    , sourceLine = Pos 54
+                    , sourceColumn = Pos 51
+                    }
+                , np = NounPhrase ( [] )
+                    ( Noun
+                        ( SgPl
+                            { sg =
+                                [ Just
+                                    ( Word "point" )
+                                ]
+                            , pl =
+                                [ Just
+                                    ( Word "points" )
+                                ]
+                            }
+                        ) []
                     )
-                )
-            )
-            ( StmtExists NounPhrase ( [] )
-                ( Noun
-                    ( SgPl
-                        { sg =
-                            [ Just
-                                ( Word "point" )
-                            ]
-                        , pl =
-                            [ Just
-                                ( Word "points" )
-                            ]
-                        }
-                    ) []
-                )
-                (
-                    [ NamedVar "w" ]
-                ) ( [] )
-                ( Just
-                    ( StmtConnected Conjunction
-                        ( StmtFormula
-                            ( FormulaPredicate
-                                ( PrefixPredicate "Betw" 3 )
-                                ( ExprVar
-                                    ( NamedVar "u" ) :|
-                                    [ ExprVar
-                                        ( NamedVar "w" )
-                                    , ExprVar
-                                        ( NamedVar "y" )
-                                    ]
-                                )
-                            )
-                        )
-                        ( StmtFormula
-                            ( FormulaPredicate
-                                ( PrefixPredicate "Betw" 3 )
-                                ( ExprVar
-                                    ( NamedVar "v" ) :|
-                                    [ ExprVar
-                                        ( NamedVar "w" )
-                                    , ExprVar
-                                        ( NamedVar "x" )
-                                    ]
-                                )
-                            )
+                    (
+                        [ NamedVar "w" ]
+                    ) ( [] )
+                    ( Just
+                        ( StmtConnected
+                            { conn = Conjunction
+                            , mpos = Nothing
+                            , stmt1 = StmtFormula
+                                { formula = FormulaPredicate
+                                    ( PrefixPredicate "Betw" 3 )
+                                    ( ExprVar
+                                        ( NamedVar "u" ) :|
+                                        [ ExprVar
+                                            ( NamedVar "w" )
+                                        , ExprVar
+                                            ( NamedVar "y" )
+                                        ]
+                                    )
+                                }
+                            , stmt2 = StmtFormula
+                                { formula = FormulaPredicate
+                                    ( PrefixPredicate "Betw" 3 )
+                                    ( ExprVar
+                                        ( NamedVar "v" ) :|
+                                        [ ExprVar
+                                            ( NamedVar "w" )
+                                        , ExprVar
+                                            ( NamedVar "x" )
+                                        ]
+                                    )
+                                }
+                            }
                         )
                     )
-                )
-            )
+                }
+            }
         )
     )
 , BlockAxiom
@@ -741,10 +804,20 @@
                 ) []
             ) ( Nothing ) ( [] ) ( Nothing )
         ]
-        ( StmtConnected Implication
-            ( StmtConnected Conjunction
-                ( StmtFormula
-                    ( FormulaPredicate
+        ( StmtConnected
+            { conn = Implication
+            , mpos = Just
+                ( SourcePos
+                    { sourceName = "test/examples/geometry.tex"
+                    , sourceLine = Pos 68
+                    , sourceColumn = Pos 5
+                    }
+                )
+            , stmt1 = StmtConnected
+                { conn = Conjunction
+                , mpos = Nothing
+                , stmt1 = StmtFormula
+                    { formula = FormulaPredicate
                         ( PrefixPredicate "Cong" 4 )
                         ( ExprVar
                             ( NamedVar "x" ) :|
@@ -756,11 +829,12 @@
                                 ( NamedVar "v" )
                             ]
                         )
-                    )
-                )
-                ( StmtConnected Conjunction
-                    ( StmtFormula
-                        ( FormulaPredicate
+                    }
+                , stmt2 = StmtConnected
+                    { conn = Conjunction
+                    , mpos = Nothing
+                    , stmt1 = StmtFormula
+                        { formula = FormulaPredicate
                             ( PrefixPredicate "Cong" 4 )
                             ( ExprVar
                                 ( NamedVar "y" ) :|
@@ -772,11 +846,12 @@
                                     ( NamedVar "v" )
                                 ]
                             )
-                        )
-                    )
-                    ( StmtConnected Conjunction
-                        ( StmtFormula
-                            ( FormulaPredicate
+                        }
+                    , stmt2 = StmtConnected
+                        { conn = Conjunction
+                        , mpos = Nothing
+                        , stmt1 = StmtFormula
+                            { formula = FormulaPredicate
                                 ( PrefixPredicate "Cong" 4 )
                                 ( ExprVar
                                     ( NamedVar "z" ) :|
@@ -788,10 +863,9 @@
                                         ( NamedVar "v" )
                                     ]
                                 )
-                            )
-                        )
-                        ( StmtFormula
-                            ( FormulaChain
+                            }
+                        , stmt2 = StmtFormula
+                            { formula = FormulaChain
                                 ( ChainBase
                                     ( ExprVar
                                         ( NamedVar "u" ) :| []
@@ -803,19 +877,23 @@
                                         ( NamedVar "v" ) :| []
                                     )
                                 )
-                            )
-                        )
-                    )
-                )
-            )
-            ( StmtVerbPhrase
-                ( TermExpr
+                            }
+                        }
+                    }
+                }
+            , stmt2 = StmtVerbPhrase
+                { args = TermExpr
                     ( ExprVar
                         ( NamedVar "x" )
                     ) :| []
-                )
-                ( VPAdj
+                , verb = VPAdj
                     ( Adj
+                        ( SourcePos
+                            { sourceName = "test/examples/geometry.tex"
+                            , sourceLine = Pos 70
+                            , sourceColumn = Pos 17
+                            }
+                        )
                         [ Just
                             ( Word "collinear" )
                         , Just
@@ -835,8 +913,8 @@
                             )
                         ] :| []
                     )
-                )
-            )
+                }
+            }
         )
     )
 , BlockLemma
@@ -867,7 +945,7 @@
             ) ( Nothing ) ( [] ) ( Nothing )
         ]
         ( StmtFormula
-            ( FormulaPredicate
+            { formula = FormulaPredicate
                 ( PrefixPredicate "Cong" 4 )
                 ( ExprVar
                     ( NamedVar "a" ) :|
@@ -879,7 +957,7 @@
                         ( NamedVar "b" )
                     ]
                 )
-            )
+            }
         )
     )
 , BlockLemma
@@ -913,7 +991,7 @@
             ) ( Nothing ) ( [] ) ( Nothing )
         , AsmSuppose
             ( StmtFormula
-                ( FormulaPredicate
+                { formula = FormulaPredicate
                     ( PrefixPredicate "Cong" 4 )
                     ( ExprVar
                         ( NamedVar "a" ) :|
@@ -925,11 +1003,11 @@
                             ( NamedVar "d" )
                         ]
                     )
-                )
+                }
             )
         ]
         ( StmtFormula
-            ( FormulaPredicate
+            { formula = FormulaPredicate
                 ( PrefixPredicate "Cong" 4 )
                 ( ExprVar
                     ( NamedVar "c" ) :|
@@ -941,7 +1019,7 @@
                         ( NamedVar "b" )
                     ]
                 )
-            )
+            }
         )
     )
 , BlockLemma
@@ -976,10 +1054,20 @@
                 ) []
             ) ( Nothing ) ( [] ) ( Nothing )
         ]
-        ( StmtConnected Implication
-            ( StmtConnected Conjunction
-                ( StmtFormula
-                    ( FormulaPredicate
+        ( StmtConnected
+            { conn = Implication
+            , mpos = Just
+                ( SourcePos
+                    { sourceName = "test/examples/geometry.tex"
+                    , sourceLine = Pos 97
+                    , sourceColumn = Pos 5
+                    }
+                )
+            , stmt1 = StmtConnected
+                { conn = Conjunction
+                , mpos = Nothing
+                , stmt1 = StmtFormula
+                    { formula = FormulaPredicate
                         ( PrefixPredicate "Cong" 4 )
                         ( ExprVar
                             ( NamedVar "a" ) :|
@@ -991,10 +1079,9 @@
                                 ( NamedVar "d" )
                             ]
                         )
-                    )
-                )
-                ( StmtFormula
-                    ( FormulaPredicate
+                    }
+                , stmt2 = StmtFormula
+                    { formula = FormulaPredicate
                         ( PrefixPredicate "Cong" 4 )
                         ( ExprVar
                             ( NamedVar "c" ) :|
@@ -1006,11 +1093,10 @@
                                 ( NamedVar "f" )
                             ]
                         )
-                    )
-                )
-            )
-            ( StmtFormula
-                ( FormulaPredicate
+                    }
+                }
+            , stmt2 = StmtFormula
+                { formula = FormulaPredicate
                     ( PrefixPredicate "Cong" 4 )
                     ( ExprVar
                         ( NamedVar "a" ) :|
@@ -1022,8 +1108,8 @@
                             ( NamedVar "f" )
                         ]
                     )
-                )
-            )
+                }
+            }
         )
     )
 , BlockLemma
@@ -1056,9 +1142,17 @@
                 ) []
             ) ( Nothing ) ( [] ) ( Nothing )
         ]
-        ( StmtConnected Implication
-            ( StmtFormula
-                ( FormulaPredicate
+        ( StmtConnected
+            { conn = Implication
+            , mpos = Just
+                ( SourcePos
+                    { sourceName = "test/examples/geometry.tex"
+                    , sourceLine = Pos 104
+                    , sourceColumn = Pos 5
+                    }
+                )
+            , stmt1 = StmtFormula
+                { formula = FormulaPredicate
                     ( PrefixPredicate "Cong" 4 )
                     ( ExprVar
                         ( NamedVar "a" ) :|
@@ -1070,10 +1164,9 @@
                             ( NamedVar "d" )
                         ]
                     )
-                )
-            )
-            ( StmtFormula
-                ( FormulaPredicate
+                }
+            , stmt2 = StmtFormula
+                { formula = FormulaPredicate
                     ( PrefixPredicate "Cong" 4 )
                     ( ExprVar
                         ( NamedVar "b" ) :|
@@ -1085,8 +1178,8 @@
                             ( NamedVar "d" )
                         ]
                     )
-                )
-            )
+                }
+            }
         )
     )
 , BlockLemma
@@ -1119,9 +1212,17 @@
                 ) []
             ) ( Nothing ) ( [] ) ( Nothing )
         ]
-        ( StmtConnected Implication
-            ( StmtFormula
-                ( FormulaPredicate
+        ( StmtConnected
+            { conn = Implication
+            , mpos = Just
+                ( SourcePos
+                    { sourceName = "test/examples/geometry.tex"
+                    , sourceLine = Pos 111
+                    , sourceColumn = Pos 5
+                    }
+                )
+            , stmt1 = StmtFormula
+                { formula = FormulaPredicate
                     ( PrefixPredicate "Cong" 4 )
                     ( ExprVar
                         ( NamedVar "a" ) :|
@@ -1133,10 +1234,9 @@
                             ( NamedVar "d" )
                         ]
                     )
-                )
-            )
-            ( StmtFormula
-                ( FormulaPredicate
+                }
+            , stmt2 = StmtFormula
+                { formula = FormulaPredicate
                     ( PrefixPredicate "Cong" 4 )
                     ( ExprVar
                         ( NamedVar "b" ) :|
@@ -1148,8 +1248,8 @@
                             ( NamedVar "c" )
                         ]
                     )
-                )
-            )
+                }
+            }
         )
     )
 , BlockLemma
@@ -1180,7 +1280,7 @@
             ) ( Nothing ) ( [] ) ( Nothing )
         ]
         ( StmtFormula
-            ( FormulaPredicate
+            { formula = FormulaPredicate
                 ( PrefixPredicate "Cong" 4 )
                 ( ExprVar
                     ( NamedVar "a" ) :|
@@ -1192,7 +1292,7 @@
                         ( NamedVar "b" )
                     ]
                 )
-            )
+            }
         )
     )
 ]

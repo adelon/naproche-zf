@@ -39,5 +39,23 @@
         , sourceColumn = Pos 1
         }
     )
-    ( BySetInduction Nothing ( Qed JustificationEmpty ) )
+    ( BySetInduction
+        ( SourcePos
+            { sourceName = "test/examples/no-reflexive-set.tex"
+            , sourceLine = Pos 4
+            , sourceColumn = Pos 21
+            }
+        ) Nothing
+        ( Qed
+            { mpos = Just
+                ( SourcePos
+                    { sourceName = "test/examples/no-reflexive-set.tex"
+                    , sourceLine = Pos 10
+                    , sourceColumn = Pos 5
+                    }
+                )
+            , by = JustificationEmpty
+            }
+        )
+    )
 ]

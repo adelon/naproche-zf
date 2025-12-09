@@ -24,7 +24,7 @@
             )
         )
         ( StmtFormula
-            ( FormulaChain
+            { formula = FormulaChain
                 ( ChainBase
                     ( ExprVar
                         ( NamedVar "x" ) :| []
@@ -36,7 +36,7 @@
                         ( NamedVar "x" ) :| []
                     )
                 )
-            )
+            }
         )
     )
 , BlockDefn
@@ -51,13 +51,19 @@
         ( DefnAdj Nothing
             ( NamedVar "x" )
             ( Adj
+                ( SourcePos
+                    { sourceName = "test/examples/coord.tex"
+                    , sourceLine = Pos 6
+                    , sourceColumn = Pos 12
+                    }
+                )
                 [ Just
                     ( Word "foo" )
                 ] []
             )
         )
         ( StmtFormula
-            ( FormulaChain
+            { formula = FormulaChain
                 ( ChainBase
                     ( ExprVar
                         ( NamedVar "x" ) :| []
@@ -69,7 +75,7 @@
                         ( NamedVar "x" ) :| []
                     )
                 )
-            )
+            }
         )
     )
 , BlockDefn
@@ -84,13 +90,19 @@
         ( DefnAdj Nothing
             ( NamedVar "x" )
             ( Adj
+                ( SourcePos
+                    { sourceName = "test/examples/coord.tex"
+                    , sourceLine = Pos 10
+                    , sourceColumn = Pos 12
+                    }
+                )
                 [ Just
                     ( Word "baz" )
                 ] []
             )
         )
         ( StmtFormula
-            ( FormulaChain
+            { formula = FormulaChain
                 ( ChainBase
                     ( ExprVar
                         ( NamedVar "x" ) :| []
@@ -102,7 +114,7 @@
                         ( NamedVar "x" ) :| []
                     )
                 )
-            )
+            }
         )
     )
 , BlockLemma
@@ -133,7 +145,7 @@
             ) ( Nothing ) ( [] ) ( Nothing )
         ]
         ( StmtFormula
-            ( FormulaChain
+            { formula = FormulaChain
                 ( ChainBase
                     ( ExprVar
                         ( NamedVar "x" ) :| []
@@ -145,7 +157,7 @@
                         ( NamedVar "x" ) :| []
                     )
                 )
-            )
+            }
         )
     )
 , BlockLemma
@@ -163,6 +175,12 @@
             ) NounPhrase
             (
                 [ AdjL
+                    ( SourcePos
+                        { sourceName = "test/examples/coord.tex"
+                        , sourceLine = Pos 19
+                        , sourceColumn = Pos 19
+                        }
+                    )
                     [ Just
                         ( Word "foo" )
                     ] []
@@ -183,7 +201,7 @@
             ) ( Nothing ) ( [] ) ( Nothing )
         ]
         ( StmtFormula
-            ( FormulaChain
+            { formula = FormulaChain
                 ( ChainBase
                     ( ExprVar
                         ( NamedVar "x" ) :| []
@@ -195,7 +213,7 @@
                         ( NamedVar "x" ) :| []
                     )
                 )
-            )
+            }
         )
     )
 , BlockLemma
@@ -225,40 +243,51 @@
                 ) []
             ) ( Nothing ) ( [] )
             ( Just
-                ( StmtConnected Conjunction
-                    ( StmtVerbPhrase
-                        ( TermExpr
+                ( StmtConnected
+                    { conn = Conjunction
+                    , mpos = Nothing
+                    , stmt1 = StmtVerbPhrase
+                        { args = TermExpr
                             ( ExprVar
                                 ( NamedVar "x" )
                             ) :| []
-                        )
-                        ( VPAdj
+                        , verb = VPAdj
                             ( Adj
+                                ( SourcePos
+                                    { sourceName = "test/examples/coord.tex"
+                                    , sourceLine = Pos 25
+                                    , sourceColumn = Pos 41
+                                    }
+                                )
                                 [ Just
                                     ( Word "foo" )
                                 ] [] :| []
                             )
-                        )
-                    )
-                    ( StmtVerbPhrase
-                        ( TermExpr
+                        }
+                    , stmt2 = StmtVerbPhrase
+                        { args = TermExpr
                             ( ExprVar
                                 ( NamedVar "y" )
                             ) :| []
-                        )
-                        ( VPAdj
+                        , verb = VPAdj
                             ( Adj
+                                ( SourcePos
+                                    { sourceName = "test/examples/coord.tex"
+                                    , sourceLine = Pos 25
+                                    , sourceColumn = Pos 56
+                                    }
+                                )
                                 [ Just
                                     ( Word "baz" )
                                 ] [] :| []
                             )
-                        )
-                    )
+                        }
+                    }
                 )
             )
         ]
         ( StmtFormula
-            ( FormulaChain
+            { formula = FormulaChain
                 ( ChainBase
                     ( ExprVar
                         ( NamedVar "x" ) :| []
@@ -270,7 +299,7 @@
                         ( NamedVar "x" ) :| []
                     )
                 )
-            )
+            }
         )
     )
 , BlockLemma
@@ -282,9 +311,11 @@
     )
     ( Marker "noun_verb" )
     ( Lemma []
-        ( StmtConnected Equivalence
-            ( StmtFormula
-                ( FormulaChain
+        ( StmtConnected
+            { conn = Equivalence
+            , mpos = Nothing
+            , stmt1 = StmtFormula
+                { formula = FormulaChain
                     ( ChainBase
                         ( ExprVar
                             ( NamedVar "x" ) :| []
@@ -296,43 +327,54 @@
                             ( NamedVar "y" ) :| []
                         )
                     )
-                )
-            )
-            ( StmtNoun
-                ( TermExpr
+                }
+            , stmt2 = StmtNoun
+                { pos = SourcePos
+                    { sourceName = "Nowhere"
+                    , sourceLine = Pos 1
+                    , sourceColumn = Pos 1
+                    }
+                , args = TermExpr
                     ( ExprVar
                         ( NamedVar "x" )
                     ) :| []
-                ) NounPhrase ( [] )
-                ( Noun
-                    ( SgPl
-                        { sg =
-                            [ Just
-                                ( Word "bar" )
-                            ]
-                        , pl =
-                            [ Just
-                                ( Word "bars" )
-                            ]
-                        }
-                    ) []
-                ) ( Nothing )
-                (
-                    [ AdjR
-                        [ Just
-                            ( Word "equal" )
-                        , Just
-                            ( Word "to" )
-                        , Nothing
-                        ]
-                        [ TermExpr
-                            ( ExprVar
-                                ( NamedVar "y" )
+                , noun = NounPhrase ( [] )
+                    ( Noun
+                        ( SgPl
+                            { sg =
+                                [ Just
+                                    ( Word "bar" )
+                                ]
+                            , pl =
+                                [ Just
+                                    ( Word "bars" )
+                                ]
+                            }
+                        ) []
+                    ) ( Nothing )
+                    (
+                        [ AdjR
+                            ( SourcePos
+                                { sourceName = "test/examples/coord.tex"
+                                , sourceLine = Pos 31
+                                , sourceColumn = Pos 30
+                                }
                             )
+                            [ Just
+                                ( Word "equal" )
+                            , Just
+                                ( Word "to" )
+                            , Nothing
+                            ]
+                            [ TermExpr
+                                ( ExprVar
+                                    ( NamedVar "y" )
+                                )
+                            ]
                         ]
-                    ]
-                ) ( Nothing )
-            )
+                    ) ( Nothing )
+                }
+            }
         )
     )
 , BlockLemma
@@ -345,23 +387,34 @@
     ( Marker "adjs" )
     ( Lemma []
         ( StmtVerbPhrase
-            ( TermExpr
+            { args = TermExpr
                 ( ExprVar
                     ( NamedVar "x" )
                 ) :| []
-            )
-            ( VPAdj
+            , verb = VPAdj
                 ( Adj
+                    ( SourcePos
+                        { sourceName = "test/examples/coord.tex"
+                        , sourceLine = Pos 36
+                        , sourceColumn = Pos 12
+                        }
+                    )
                     [ Just
                         ( Word "foo" )
                     ] [] :|
                     [ Adj
+                        ( SourcePos
+                            { sourceName = "test/examples/coord.tex"
+                            , sourceLine = Pos 36
+                            , sourceColumn = Pos 20
+                            }
+                        )
                         [ Just
                             ( Word "baz" )
                         ] []
                     ]
                 )
-            )
+            }
         )
     )
 , BlockLemma
@@ -379,6 +432,12 @@
             ) NounPhrase
             (
                 [ AdjL
+                    ( SourcePos
+                        { sourceName = "test/examples/coord.tex"
+                        , sourceLine = Pos 40
+                        , sourceColumn = Pos 19
+                        }
+                    )
                     [ Just
                         ( Word "foo" )
                     ] []
@@ -399,7 +458,12 @@
             ) ( Nothing ) ( [] ) ( Nothing )
         ]
         ( StmtNoun
-            ( TermExpr
+            { pos = SourcePos
+                { sourceName = "Nowhere"
+                , sourceLine = Pos 1
+                , sourceColumn = Pos 1
+                }
+            , args = TermExpr
                 ( ExprVar
                     ( NamedVar "x" )
                 ) :|
@@ -408,27 +472,34 @@
                         ( NamedVar "y" )
                     )
                 ]
-            ) NounPhrase
-            (
-                [ AdjL
-                    [ Just
-                        ( Word "foo" )
-                    ] []
-                ]
-            )
-            ( Noun
-                ( SgPl
-                    { sg =
+            , noun = NounPhrase
+                (
+                    [ AdjL
+                        ( SourcePos
+                            { sourceName = "test/examples/coord.tex"
+                            , sourceLine = Pos 41
+                            , sourceColumn = Pos 26
+                            }
+                        )
                         [ Just
-                            ( Word "bar" )
-                        ]
-                    , pl =
-                        [ Just
-                            ( Word "bars" )
-                        ]
-                    }
-                ) []
-            ) ( Nothing ) ( [] ) ( Nothing )
+                            ( Word "foo" )
+                        ] []
+                    ]
+                )
+                ( Noun
+                    ( SgPl
+                        { sg =
+                            [ Just
+                                ( Word "bar" )
+                            ]
+                        , pl =
+                            [ Just
+                                ( Word "bars" )
+                            ]
+                        }
+                    ) []
+                ) ( Nothing ) ( [] ) ( Nothing )
+            }
         )
     )
 ]

@@ -42,6 +42,12 @@
         }
     )
     ( Assume
+        ( SourcePos
+            { sourceName = "test/examples/proofassume.tex"
+            , sourceLine = Pos 5
+            , sourceColumn = Pos 5
+            }
+        )
         ( TermSymbol
             ( SymbolPredicate
                 ( PredicateRelation
@@ -55,6 +61,12 @@
             ]
         )
         ( Have
+            ( SourcePos
+                { sourceName = "test/examples/proofassume.tex"
+                , sourceLine = Pos 6
+                , sourceColumn = Pos 5
+                }
+            )
             ( TermSymbol
                 ( SymbolPredicate
                     ( PredicateRelation
@@ -66,7 +78,12 @@
                 , TermVar
                     ( NamedVar "y" )
                 ]
-            ) JustificationEmpty ( Qed JustificationEmpty )
+            ) JustificationEmpty
+            ( Qed
+                { mpos = Nothing
+                , by = JustificationEmpty
+                }
+            )
         )
     )
 , BlockLemma
@@ -127,6 +144,12 @@
         }
     )
     ( Assume
+        ( SourcePos
+            { sourceName = "test/examples/proofassume.tex"
+            , sourceLine = Pos 13
+            , sourceColumn = Pos 5
+            }
+        )
         ( TermSymbol
             ( SymbolPredicate
                 ( PredicateRelation
@@ -140,6 +163,12 @@
             ]
         )
         ( Assume
+            ( SourcePos
+                { sourceName = "test/examples/proofassume.tex"
+                , sourceLine = Pos 14
+                , sourceColumn = Pos 5
+                }
+            )
             ( TermSymbol
                 ( SymbolPredicate
                     ( PredicateRelation
@@ -153,6 +182,12 @@
                 ]
             )
             ( Have
+                ( SourcePos
+                    { sourceName = "test/examples/proofassume.tex"
+                    , sourceLine = Pos 15
+                    , sourceColumn = Pos 5
+                    }
+                )
                 ( TermSymbol
                     ( SymbolPredicate
                         ( PredicateRelation
@@ -164,7 +199,12 @@
                     , TermVar
                         ( NamedVar "y" )
                     ]
-                ) JustificationEmpty ( Qed JustificationEmpty )
+                ) JustificationEmpty
+                ( Qed
+                    { mpos = Nothing
+                    , by = JustificationEmpty
+                    }
+                )
             )
         )
     )

@@ -8,7 +8,7 @@
     ( Marker "trivial" )
     ( Lemma []
         ( StmtFormula
-            ( FormulaChain
+            { formula = FormulaChain
                 ( ChainBase
                     ( ExprVar
                         ( NamedVar "x" ) :| []
@@ -20,7 +20,7 @@
                         ( NamedVar "x" ) :| []
                     )
                 )
-            )
+            }
         )
     )
 , BlockLemma
@@ -33,7 +33,7 @@
     ( Marker "irrelevant" )
     ( Lemma []
         ( StmtFormula
-            ( FormulaChain
+            { formula = FormulaChain
                 ( ChainBase
                     ( ExprVar
                         ( NamedVar "z" ) :| []
@@ -45,7 +45,7 @@
                         ( NamedVar "z" ) :| []
                     )
                 )
-            )
+            }
         )
     )
 , BlockLemma
@@ -58,7 +58,7 @@
     ( Marker "alsotrivial" )
     ( Lemma []
         ( StmtFormula
-            ( FormulaChain
+            { formula = FormulaChain
                 ( ChainBase
                     ( ExprVar
                         ( NamedVar "y" ) :| []
@@ -70,7 +70,7 @@
                         ( NamedVar "y" ) :| []
                     )
                 )
-            )
+            }
         )
     )
 , BlockProof
@@ -80,7 +80,13 @@
         , sourceColumn = Pos 1
         }
     )
-    ( Calc Nothing
+    ( Calc
+        ( SourcePos
+            { sourceName = "test/examples/calc.tex"
+            , sourceLine = Pos 13
+            , sourceColumn = Pos 5
+            }
+        ) Nothing
         ( Equation
             ( ExprVar
                 ( NamedVar "y" )
@@ -98,7 +104,7 @@
                     )
                 ]
             )
-        ) ( Qed JustificationEmpty )
+        ) ( Qed Nothing JustificationEmpty )
     )
 , BlockLemma
     ( SourcePos
@@ -110,7 +116,7 @@
     ( Marker "trivial_biconditionals" )
     ( Lemma []
         ( StmtFormula
-            ( FormulaChain
+            { formula = FormulaChain
                 ( ChainBase
                     ( ExprVar
                         ( NamedVar "y" ) :| []
@@ -122,7 +128,7 @@
                         ( NamedVar "y" ) :| []
                     )
                 )
-            )
+            }
         )
     )
 , BlockProof
@@ -132,7 +138,13 @@
         , sourceColumn = Pos 1
         }
     )
-    ( Calc Nothing
+    ( Calc
+        ( SourcePos
+            { sourceName = "test/examples/calc.tex"
+            , sourceLine = Pos 26
+            , sourceColumn = Pos 5
+            }
+        ) Nothing
         ( Biconditionals
             ( FormulaChain
                 ( ChainBase
@@ -169,6 +181,6 @@
                     )
                 ]
             )
-        ) ( Qed JustificationEmpty )
+        ) ( Qed Nothing JustificationEmpty )
     )
 ]

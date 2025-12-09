@@ -7,9 +7,17 @@
     )
     ( Marker "assumetest" )
     ( Lemma []
-        ( StmtConnected Implication
-            ( StmtFormula
-                ( FormulaChain
+        ( StmtConnected
+            { conn = Implication
+            , mpos = Just
+                ( SourcePos
+                    { sourceName = "test/examples/proofassume.tex"
+                    , sourceLine = Pos 2
+                    , sourceColumn = Pos 5
+                    }
+                )
+            , stmt1 = StmtFormula
+                { formula = FormulaChain
                     ( ChainBase
                         ( ExprVar
                             ( NamedVar "x" ) :| []
@@ -21,10 +29,9 @@
                             ( NamedVar "y" ) :| []
                         )
                     )
-                )
-            )
-            ( StmtFormula
-                ( FormulaChain
+                }
+            , stmt2 = StmtFormula
+                { formula = FormulaChain
                     ( ChainBase
                         ( ExprVar
                             ( NamedVar "x" ) :| []
@@ -36,8 +43,8 @@
                             ( NamedVar "y" ) :| []
                         )
                     )
-                )
-            )
+                }
+            }
         )
     )
 , BlockProof
@@ -48,8 +55,14 @@
         }
     )
     ( Assume
+        ( SourcePos
+            { sourceName = "test/examples/proofassume.tex"
+            , sourceLine = Pos 5
+            , sourceColumn = Pos 5
+            }
+        )
         ( StmtFormula
-            ( FormulaChain
+            { formula = FormulaChain
                 ( ChainBase
                     ( ExprVar
                         ( NamedVar "x" ) :| []
@@ -61,11 +74,17 @@
                         ( NamedVar "y" ) :| []
                     )
                 )
-            )
+            }
         )
-        ( Have Nothing
+        ( Have
+            ( SourcePos
+                { sourceName = "test/examples/proofassume.tex"
+                , sourceLine = Pos 6
+                , sourceColumn = Pos 5
+                }
+            ) Nothing
             ( StmtFormula
-                ( FormulaChain
+                { formula = FormulaChain
                     ( ChainBase
                         ( ExprVar
                             ( NamedVar "x" ) :| []
@@ -77,8 +96,8 @@
                             ( NamedVar "y" ) :| []
                         )
                     )
-                )
-            ) JustificationEmpty ( Qed JustificationEmpty )
+                }
+            ) JustificationEmpty ( Qed Nothing JustificationEmpty )
         )
     )
 , BlockLemma
@@ -90,10 +109,20 @@
     )
     ( Marker "assumetesttwo" )
     ( Lemma []
-        ( StmtConnected Implication
-            ( StmtConnected Conjunction
-                ( StmtFormula
-                    ( FormulaChain
+        ( StmtConnected
+            { conn = Implication
+            , mpos = Just
+                ( SourcePos
+                    { sourceName = "test/examples/proofassume.tex"
+                    , sourceLine = Pos 10
+                    , sourceColumn = Pos 5
+                    }
+                )
+            , stmt1 = StmtConnected
+                { conn = Conjunction
+                , mpos = Nothing
+                , stmt1 = StmtFormula
+                    { formula = FormulaChain
                         ( ChainBase
                             ( ExprVar
                                 ( NamedVar "x" ) :| []
@@ -105,10 +134,9 @@
                                 ( NamedVar "y" ) :| []
                             )
                         )
-                    )
-                )
-                ( StmtFormula
-                    ( FormulaChain
+                    }
+                , stmt2 = StmtFormula
+                    { formula = FormulaChain
                         ( ChainBase
                             ( ExprVar
                                 ( NamedVar "a" ) :| []
@@ -120,11 +148,10 @@
                                 ( NamedVar "b" ) :| []
                             )
                         )
-                    )
-                )
-            )
-            ( StmtFormula
-                ( FormulaChain
+                    }
+                }
+            , stmt2 = StmtFormula
+                { formula = FormulaChain
                     ( ChainBase
                         ( ExprVar
                             ( NamedVar "x" ) :| []
@@ -136,8 +163,8 @@
                             ( NamedVar "y" ) :| []
                         )
                     )
-                )
-            )
+                }
+            }
         )
     )
 , BlockProof
@@ -148,8 +175,14 @@
         }
     )
     ( Assume
+        ( SourcePos
+            { sourceName = "test/examples/proofassume.tex"
+            , sourceLine = Pos 13
+            , sourceColumn = Pos 5
+            }
+        )
         ( StmtFormula
-            ( FormulaChain
+            { formula = FormulaChain
                 ( ChainBase
                     ( ExprVar
                         ( NamedVar "a" ) :| []
@@ -161,11 +194,17 @@
                         ( NamedVar "b" ) :| []
                     )
                 )
-            )
+            }
         )
         ( Assume
+            ( SourcePos
+                { sourceName = "test/examples/proofassume.tex"
+                , sourceLine = Pos 14
+                , sourceColumn = Pos 5
+                }
+            )
             ( StmtFormula
-                ( FormulaChain
+                { formula = FormulaChain
                     ( ChainBase
                         ( ExprVar
                             ( NamedVar "x" ) :| []
@@ -177,11 +216,17 @@
                             ( NamedVar "y" ) :| []
                         )
                     )
-                )
+                }
             )
-            ( Have Nothing
+            ( Have
+                ( SourcePos
+                    { sourceName = "test/examples/proofassume.tex"
+                    , sourceLine = Pos 15
+                    , sourceColumn = Pos 5
+                    }
+                ) Nothing
                 ( StmtFormula
-                    ( FormulaChain
+                    { formula = FormulaChain
                         ( ChainBase
                             ( ExprVar
                                 ( NamedVar "x" ) :| []
@@ -193,8 +238,8 @@
                                 ( NamedVar "y" ) :| []
                             )
                         )
-                    )
-                ) JustificationEmpty ( Qed JustificationEmpty )
+                    }
+                ) JustificationEmpty ( Qed Nothing JustificationEmpty )
             )
         )
     )

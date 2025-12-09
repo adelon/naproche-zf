@@ -8,7 +8,7 @@
     ( Marker "formula_test_forall" )
     ( Lemma []
         ( StmtFormula
-            ( FormulaQuantified Universally
+            { formula = FormulaQuantified Universally
                 ( NamedVar "x" :|
                     [ NamedVar "y" ]
                 ) Unbounded
@@ -40,7 +40,7 @@
                         )
                     )
                 )
-            )
+            }
         )
     )
 , BlockLemma
@@ -53,7 +53,7 @@
     ( Marker "formula_test_exists" )
     ( Lemma []
         ( StmtFormula
-            ( FormulaQuantified Existentially
+            { formula = FormulaQuantified Existentially
                 ( NamedVar "x" :|
                     [ NamedVar "y" ]
                 ) Unbounded
@@ -70,7 +70,7 @@
                         )
                     )
                 )
-            )
+            }
         )
     )
 , BlockLemma
@@ -82,9 +82,11 @@
     )
     ( Marker "formula_test_not_exists" )
     ( Lemma []
-        ( StmtConnected Equivalence
-            ( StmtFormula
-                ( FormulaQuantified Existentially
+        ( StmtConnected
+            { conn = Equivalence
+            , mpos = Nothing
+            , stmt1 = StmtFormula
+                { formula = FormulaQuantified Existentially
                     ( NamedVar "x" :|
                         [ NamedVar "y" ]
                     ) Unbounded
@@ -101,11 +103,15 @@
                             )
                         )
                     )
-                )
-            )
-            ( StmtNeg
-                ( StmtFormula
-                    ( FormulaQuantified Existentially
+                }
+            , stmt2 = StmtNeg
+                { pos = SourcePos
+                    { sourceName = "test/examples/formula.tex"
+                    , sourceLine = Pos 10
+                    , sourceColumn = Pos 42
+                    }
+                , stmt = StmtFormula
+                    { formula = FormulaQuantified Existentially
                         ( NamedVar "x" :| [] ) Unbounded
                         ( FormulaChain
                             ( ChainBase
@@ -120,9 +126,9 @@
                                 )
                             )
                         )
-                    )
-                )
-            )
+                    }
+                }
+            }
         )
     )
 ]

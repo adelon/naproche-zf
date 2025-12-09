@@ -3,7 +3,8 @@
 {-# LANGUAGE GADTs #-}
 {-# LANGUAGE NoImplicitPrelude #-}
 {-# LANGUAGE StandaloneDeriving #-}
-
+{-# LANGUAGE OverloadedRecordDot #-}
+{-# LANGUAGE DuplicateRecordFields #-}
 
 -- | Data types for the abstract syntax tree and helper functions
 -- for constructing the lexicon.
@@ -18,6 +19,7 @@ module Syntax.Abstract
 import Base
 import Syntax.LexicalPhrase (LexicalPhrase, SgPl(..), unsafeReadPhraseSgPl, unsafeReadPhrase)
 import Syntax.Token (Token(..))
+import Report.Location
 
 import Text.Earley.Mixfix (Holey)
 import Data.Text qualified as Text
@@ -32,6 +34,8 @@ data VarSymbol
 instance IsString VarSymbol where
     fromString v = NamedVar $ Text.pack v
 
+instance Locatable VarSymbol where
+    locate _ = nowhere -- TODO more info?
 
 data Expr
     = ExprVar VarSymbol
@@ -199,7 +203,7 @@ data Nameless a = Nameless deriving (Show, Eq, Ord)
 -- e.g. /@even@/, /@continuous@/, and /@σ-finite@/.
 type AdjL = AdjLOf Term
 data AdjLOf a
-    = AdjL LexicalPhrase [a]
+    = AdjL SourcePos LexicalPhrase [a]
     deriving (Show, Eq, Ord)
 
 
@@ -210,29 +214,32 @@ data AdjLOf a
 -- by an additional such-that phrase.
 type AdjR = AdjROf Term
 data AdjROf a
-    = AdjR LexicalPhrase [a]
+    = AdjR SourcePos LexicalPhrase [a]
     | AttrRThat VerbPhrase
     deriving (Show, Eq, Ord)
 
+instance Locatable (AdjROf a) where
+    locate (AdjR p _ _) = p
+    locate (AttrRThat vp) = nowhere -- TODO
 
 -- | Adjectives for parts of the AST where adjectives are not used
 -- to modify nouns and the L/R distinction does not matter, such as
 -- when then are used together with a copula (like /@n is even@/).
 type Adj = AdjOf Term
 data AdjOf a
-    = Adj LexicalPhrase [a]
+    = Adj SourcePos LexicalPhrase [a]
     deriving (Show, Eq, Ord)
 
 
 type Verb = VerbOf Term
 data VerbOf a
-    = Verb (SgPl LexicalPhrase) [a]
+    = Verb SourcePos (SgPl LexicalPhrase) [a]
     deriving (Show, Eq, Ord)
 
 
 type Fun = FunOf Term
 data FunOf a
-    = Fun (SgPl LexicalPhrase) [a]
+    = Fun {pos :: SourcePos, phrase :: SgPl LexicalPhrase, funArgs :: [a]}
     deriving (Show, Eq, Ord)
 
 
@@ -259,35 +266,49 @@ data Term
     -- ^ A symbolic expression.
     | TermFun Fun
     -- ^ Definite noun phrase, e.g. /@the derivative of $f$@/.
-    | TermIota VarSymbol Stmt
+    | TermIota SourcePos VarSymbol Stmt
     -- ^ Definite descriptor, e.g. /@an $x$ such that ...@//
-    | TermQuantified Quantifier (NounPhrase Maybe)
+    | TermQuantified Quantifier SourcePos (NounPhrase Maybe)
     -- ^ Indefinite quantified notion, e.g. /@every even integer that divides $k$ ...@/.
     deriving (Show, Eq, Ord)
 
+instance Locatable Term where
+    locate :: Term -> SourcePos
+    locate (TermExpr _) = nowhere -- TODO
+    locate (TermFun f) = f.pos
+    locate (TermIota p _ _) = p
+    locate (TermQuantified _ p _) = p
+
 
 data Stmt
-    = StmtFormula Formula -- ^ E.g.: /@We have \<Formula\>@/.
-    | StmtVerbPhrase (NonEmpty Term) VerbPhrase -- ^ E.g.: /@\<Term\> and \<Term\> \<verb\>@/.
-    | StmtNoun (NonEmpty Term) (NounPhrase Maybe) -- ^ E.g.: /@\<Term\> is a(n) \<NP\>@/.
-    | StmtStruct Term StructPhrase
-    | StmtNeg Stmt -- ^ E.g.: /@It is not the case that \<Stmt\>@/.
-    | StmtExists (NounPhrase []) -- ^ E.g.: /@There exists a(n) \<NP\>@/.
-    | StmtConnected Connective Stmt Stmt
-    | StmtQuantPhrase QuantPhrase Stmt
-    | SymbolicQuantified Quantifier (NonEmpty VarSymbol) Bound (Maybe Stmt) Stmt
+    = StmtFormula {formula :: Formula} -- ^ E.g.: /@We have \<Formula\>@/.
+    | StmtVerbPhrase {args :: NonEmpty Term, verb :: VerbPhrase} -- ^ E.g.: /@\<Term\> and \<Term\> \<verb\>@/.
+    | StmtNoun {pos :: SourcePos, args :: NonEmpty Term, noun :: (NounPhrase Maybe)} -- ^ E.g.: /@\<Term\> is a(n) \<NP\>@/.
+    | StmtStruct {pos :: SourcePos, arg :: Term, struct :: StructPhrase}
+    | StmtNeg {pos :: SourcePos, stmt :: Stmt} -- ^ E.g.: /@It is not the case that \<Stmt\>@/.
+    | StmtExists {pos :: SourcePos, np :: NounPhrase []} -- ^ E.g.: /@There exists a(n) \<NP\>@/.
+    | StmtConnected {conn :: Connective, mpos :: Maybe SourcePos, stmt1 :: Stmt, stmt2 :: Stmt}
+    | StmtQuantPhrase {pos :: SourcePos, qp :: QuantPhrase, stmt :: Stmt}
+    | SymbolicQuantified {pos :: SourcePos, quant :: Quantifier, xs :: NonEmpty VarSymbol, b :: Bound, suchThat :: Maybe Stmt, stmt :: Stmt}
     deriving (Show, Eq, Ord)
+
+instance Locatable Stmt where
+    locate :: Stmt -> SourcePos
+    locate (StmtFormula _) = nowhere -- TODO
+    locate StmtConnected{mpos = Nothing, stmt1 = s} = locate s
+    locate StmtVerbPhrase{args = a :| _} = locate a
+    locate s = s.pos
 
 data Bound = Unbounded | Bounded Sign Relation Expr deriving (Show, Eq, Ord)
 
-pattern SymbolicForall :: NonEmpty VarSymbol -> Bound -> Maybe Stmt -> Stmt -> Stmt
-pattern SymbolicForall vs bound suchThat have = SymbolicQuantified Universally vs bound suchThat have
+pattern SymbolicForall :: SourcePos -> NonEmpty VarSymbol -> Bound -> Maybe Stmt -> Stmt -> Stmt
+pattern SymbolicForall pos vs bound suchThat have = SymbolicQuantified pos Universally vs bound suchThat have
 
-pattern SymbolicExists :: NonEmpty VarSymbol -> Bound -> Stmt -> Stmt
-pattern SymbolicExists vs bound suchThat = SymbolicQuantified Existentially vs bound Nothing suchThat
+pattern SymbolicExists :: SourcePos -> NonEmpty VarSymbol -> Bound -> Stmt -> Stmt
+pattern SymbolicExists pos vs bound suchThat = SymbolicQuantified pos Existentially vs bound Nothing suchThat
 
-pattern SymbolicNotExists :: NonEmpty VarSymbol -> Bound -> Stmt -> Stmt
-pattern SymbolicNotExists vs bound suchThat = StmtNeg (SymbolicExists vs bound suchThat)
+makeSymbolicNotExists :: SourcePos -> NonEmpty VarSymbol -> Bound -> Stmt -> Stmt
+makeSymbolicNotExists p vs bound st = StmtNeg p (SymbolicExists p vs bound st)
 
 data Asm
     = AsmSuppose Stmt
@@ -344,32 +365,32 @@ data CalcQuantifier
 
 data Proof
     = Omitted
-    | Qed Justification
+    | Qed (Maybe SourcePos) Justification
     -- ^ Ends of a proof, leaving automation to discharge the current goal using the given justification.
-    | ByCase [Case]
-    | ByContradiction Proof
-    | BySetInduction (Maybe Term) Proof
+    | ByCase SourcePos [Case]
+    | ByContradiction SourcePos Proof
+    | BySetInduction SourcePos (Maybe Term) Proof
     -- ^ ∈-induction.
-    | ByOrdInduction Proof
+    | ByOrdInduction SourcePos Proof
     -- ^ Transfinite induction for ordinals.
-    | Assume Stmt Proof
-    | FixSymbolic (NonEmpty VarSymbol) Bound Proof
-    | FixSuchThat (NonEmpty VarSymbol) Stmt Proof
-    | Calc (Maybe CalcQuantifier) Calc Proof
+    | Assume SourcePos Stmt Proof
+    | FixSymbolic SourcePos (NonEmpty VarSymbol) Bound Proof
+    | FixSuchThat SourcePos (NonEmpty VarSymbol) Stmt Proof
+    | Calc SourcePos (Maybe CalcQuantifier) Calc Proof
     -- ^ Simplify goals that are implications or disjunctions.
-    | TakeVar (NonEmpty VarSymbol) Bound Stmt Justification Proof
-    | TakeNoun (NounPhrase []) Justification Proof
-    | Have (Maybe Stmt) Stmt Justification Proof
+    | TakeVar SourcePos (NonEmpty VarSymbol) Bound Stmt Justification Proof
+    | TakeNoun SourcePos (NounPhrase []) Justification Proof
+    | Have SourcePos (Maybe Stmt) Stmt Justification Proof
     -- ^ /@Since \<stmt\>, we have \<stmt\> by \<ref\>.@/
-    | Suffices Stmt Justification Proof
+    | Suffices SourcePos Stmt Justification Proof
     -- ^ /@It suffices to show that [...]. [...]@/
-    | Subclaim Stmt Proof Proof
+    | Subclaim SourcePos Stmt Proof Proof
     -- ^ A claim is a sublemma with its own proof:
     --  /@Show \<goal stmt\>. \<steps\>. \<continue other proof\>.@/
-    | Define VarSymbol Expr Proof
+    | Define SourcePos VarSymbol Expr Proof
     -- ^ Local definition.
     --
-    | DefineFunction VarSymbol VarSymbol Expr VarSymbol Expr Proof
+    | DefineFunction SourcePos VarSymbol VarSymbol Expr VarSymbol Expr Proof
     -- ^ Local function definition, e.g. /@Let $f(x) = e$ for $x\\in d$@/.
     -- The first 'VarSymbol' is the newly defined symbol, the second one is the argument.
     -- The first 'Expr' is the value, the final variable and expr specify a bound (the domain of the function).
@@ -377,7 +398,7 @@ data Proof
 
 
 
-    | DefineFunctionLocal VarSymbol VarSymbol Expr VarSymbol VarSymbol (NonEmpty (Expr, Formula)) Proof
+    | DefineFunctionLocal SourcePos VarSymbol VarSymbol Expr VarSymbol VarSymbol (NonEmpty (Expr, Formula)) Proof
     -- ^ Local function definition, but in this case we give the domain and target an the rules for $xs$ in some sub domains.
     --
     deriving (Show, Eq, Ord)

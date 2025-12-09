@@ -9,15 +9,34 @@
     ( AbbreviationAdj
         ( NamedVar "x" )
         ( Adj
+            ( SourcePos
+                { sourceName = "test/examples/abbr.tex"
+                , sourceLine = Pos 2
+                , sourceColumn = Pos 12
+                }
+            )
             [ Just
                 ( Word "empty" )
             ] []
         )
         ( StmtNeg
-            ( SymbolicQuantified Existentially
-                ( NamedVar "y" :| [] ) Unbounded Nothing
-                ( StmtFormula
-                    ( FormulaChain
+            { pos = SourcePos
+                { sourceName = "test/examples/abbr.tex"
+                , sourceLine = Pos 2
+                , sourceColumn = Pos 35
+                }
+            , stmt = SymbolicQuantified
+                { pos = SourcePos
+                    { sourceName = "test/examples/abbr.tex"
+                    , sourceLine = Pos 2
+                    , sourceColumn = Pos 35
+                    }
+                , quant = Existentially
+                , xs = NamedVar "y" :| []
+                , b = Unbounded
+                , suchThat = Nothing
+                , stmt = StmtFormula
+                    { formula = FormulaChain
                         ( ChainBase
                             ( ExprVar
                                 ( NamedVar "y" ) :| []
@@ -29,9 +48,9 @@
                                 ( NamedVar "x" ) :| []
                             )
                         )
-                    )
-                )
-            )
+                    }
+                }
+            }
         )
     )
 , BlockLemma
@@ -43,35 +62,52 @@
     )
     ( Marker "dummy_abbr_test_adj" )
     ( Lemma []
-        ( StmtConnected Implication
-            ( StmtVerbPhrase
-                ( TermExpr
+        ( StmtConnected
+            { conn = Implication
+            , mpos = Just
+                ( SourcePos
+                    { sourceName = "test/examples/abbr.tex"
+                    , sourceLine = Pos 6
+                    , sourceColumn = Pos 4
+                    }
+                )
+            , stmt1 = StmtVerbPhrase
+                { args = TermExpr
                     ( ExprVar
                         ( NamedVar "x" )
                     ) :| []
-                )
-                ( VPAdj
+                , verb = VPAdj
                     ( Adj
+                        ( SourcePos
+                            { sourceName = "test/examples/abbr.tex"
+                            , sourceLine = Pos 6
+                            , sourceColumn = Pos 14
+                            }
+                        )
                         [ Just
                             ( Word "empty" )
                         ] [] :| []
                     )
-                )
-            )
-            ( StmtVerbPhrase
-                ( TermExpr
+                }
+            , stmt2 = StmtVerbPhrase
+                { args = TermExpr
                     ( ExprVar
                         ( NamedVar "x" )
                     ) :| []
-                )
-                ( VPAdj
+                , verb = VPAdj
                     ( Adj
+                        ( SourcePos
+                            { sourceName = "test/examples/abbr.tex"
+                            , sourceLine = Pos 6
+                            , sourceColumn = Pos 33
+                            }
+                        )
                         [ Just
                             ( Word "empty" )
                         ] [] :| []
                     )
-                )
-            )
+                }
+            }
         )
     )
 , BlockAbbr
@@ -98,7 +134,7 @@
             ) []
         )
         ( StmtFormula
-            ( FormulaChain
+            { formula = FormulaChain
                 ( ChainBase
                     ( ExprVar
                         ( NamedVar "x" ) :| []
@@ -110,7 +146,7 @@
                         ( NamedVar "x" ) :| []
                     )
                 )
-            )
+            }
         )
     )
 , BlockLemma
@@ -122,28 +158,42 @@
     )
     ( Marker "dummy_abbr_test_noun" )
     ( Lemma []
-        ( SymbolicQuantified Universally
-            ( NamedVar "x" :| [] ) Unbounded Nothing
-            ( StmtNoun
-                ( TermExpr
+        ( SymbolicQuantified
+            { pos = SourcePos
+                { sourceName = "test/examples/abbr.tex"
+                , sourceLine = Pos 16
+                , sourceColumn = Pos 5
+                }
+            , quant = Universally
+            , xs = NamedVar "x" :| []
+            , b = Unbounded
+            , suchThat = Nothing
+            , stmt = StmtNoun
+                { pos = SourcePos
+                    { sourceName = "Nowhere"
+                    , sourceLine = Pos 1
+                    , sourceColumn = Pos 1
+                    }
+                , args = TermExpr
                     ( ExprVar
                         ( NamedVar "x" )
                     ) :| []
-                ) NounPhrase ( [] )
-                ( Noun
-                    ( SgPl
-                        { sg =
-                            [ Just
-                                ( Word "function" )
-                            ]
-                        , pl =
-                            [ Just
-                                ( Word "functions" )
-                            ]
-                        }
-                    ) []
-                ) ( Nothing ) ( [] ) ( Nothing )
-            )
+                , noun = NounPhrase ( [] )
+                    ( Noun
+                        ( SgPl
+                            { sg =
+                                [ Just
+                                    ( Word "function" )
+                                ]
+                            , pl =
+                                [ Just
+                                    ( Word "functions" )
+                                ]
+                            }
+                        ) []
+                    ) ( Nothing ) ( [] ) ( Nothing )
+                }
+            }
         )
     )
 , BlockAbbr
@@ -157,6 +207,12 @@
     ( AbbreviationVerb
         ( NamedVar "x" )
         ( Verb
+            ( SourcePos
+                { sourceName = "test/examples/abbr.tex"
+                , sourceLine = Pos 22
+                , sourceColumn = Pos 9
+                }
+            )
             ( SgPl
                 { sg =
                     [ Just
@@ -177,7 +233,7 @@
             [ NamedVar "y" ]
         )
         ( StmtFormula
-            ( FormulaChain
+            { formula = FormulaChain
                 ( ChainBase
                     ( ExprVar
                         ( NamedVar "x" ) :| []
@@ -189,7 +245,7 @@
                         ( NamedVar "y" ) :| []
                     )
                 )
-            )
+            }
         )
     )
 , BlockLemma
@@ -201,15 +257,28 @@
     )
     ( Marker "dummy_abbr_test_verb" )
     ( Lemma []
-        ( StmtConnected Implication
-            ( StmtVerbPhrase
-                ( TermExpr
+        ( StmtConnected
+            { conn = Implication
+            , mpos = Just
+                ( SourcePos
+                    { sourceName = "test/examples/abbr.tex"
+                    , sourceLine = Pos 26
+                    , sourceColumn = Pos 5
+                    }
+                )
+            , stmt1 = StmtVerbPhrase
+                { args = TermExpr
                     ( ExprVar
                         ( NamedVar "x" )
                     ) :| []
-                )
-                ( VPVerb
+                , verb = VPVerb
                     ( Verb
+                        ( SourcePos
+                            { sourceName = "test/examples/abbr.tex"
+                            , sourceLine = Pos 26
+                            , sourceColumn = Pos 12
+                            }
+                        )
                         ( SgPl
                             { sg =
                                 [ Just
@@ -233,10 +302,9 @@
                             )
                         ]
                     )
-                )
-            )
-            ( StmtFormula
-                ( FormulaChain
+                }
+            , stmt2 = StmtFormula
+                { formula = FormulaChain
                     ( ChainBase
                         ( ExprVar
                             ( NamedVar "x" ) :| []
@@ -248,8 +316,8 @@
                             ( NamedVar "y" ) :| []
                         )
                     )
-                )
-            )
+                }
+            }
         )
     )
 , BlockLemma
@@ -261,9 +329,17 @@
     )
     ( Marker "abbr_test_notin" )
     ( Lemma []
-        ( StmtConnected Implication
-            ( StmtFormula
-                ( FormulaChain
+        ( StmtConnected
+            { conn = Implication
+            , mpos = Just
+                ( SourcePos
+                    { sourceName = "test/examples/abbr.tex"
+                    , sourceLine = Pos 32
+                    , sourceColumn = Pos 4
+                    }
+                )
+            , stmt1 = StmtFormula
+                { formula = FormulaChain
                     ( ChainBase
                         ( ExprVar
                             ( NamedVar "x" ) :| []
@@ -275,10 +351,9 @@
                             ( NamedVar "y" ) :| []
                         )
                     )
-                )
-            )
-            ( StmtFormula
-                ( FormulaChain
+                }
+            , stmt2 = StmtFormula
+                { formula = FormulaChain
                     ( ChainBase
                         ( ExprVar
                             ( NamedVar "x" ) :| []
@@ -290,8 +365,8 @@
                             ( NamedVar "y" ) :| []
                         )
                     )
-                )
-            )
+                }
+            }
         )
     )
 , BlockLemma
@@ -303,40 +378,53 @@
     )
     ( Marker "abbr_test_elementof_is_in" )
     ( Lemma []
-        ( StmtConnected Implication
-            ( StmtNoun
-                ( TermExpr
+        ( StmtConnected
+            { conn = Implication
+            , mpos = Just
+                ( SourcePos
+                    { sourceName = "test/examples/abbr.tex"
+                    , sourceLine = Pos 38
+                    , sourceColumn = Pos 5
+                    }
+                )
+            , stmt1 = StmtNoun
+                { pos = SourcePos
+                    { sourceName = "Nowhere"
+                    , sourceLine = Pos 1
+                    , sourceColumn = Pos 1
+                    }
+                , args = TermExpr
                     ( ExprVar
                         ( NamedVar "x" )
                     ) :| []
-                ) NounPhrase ( [] )
-                ( Noun
-                    ( SgPl
-                        { sg =
-                            [ Just
-                                ( Word "element" )
-                            , Just
-                                ( Word "of" )
-                            , Nothing
-                            ]
-                        , pl =
-                            [ Just
-                                ( Word "elements" )
-                            , Just
-                                ( Word "of" )
-                            , Nothing
-                            ]
-                        }
-                    )
-                    [ TermExpr
-                        ( ExprVar
-                            ( NamedVar "y" )
+                , noun = NounPhrase ( [] )
+                    ( Noun
+                        ( SgPl
+                            { sg =
+                                [ Just
+                                    ( Word "element" )
+                                , Just
+                                    ( Word "of" )
+                                , Nothing
+                                ]
+                            , pl =
+                                [ Just
+                                    ( Word "elements" )
+                                , Just
+                                    ( Word "of" )
+                                , Nothing
+                                ]
+                            }
                         )
-                    ]
-                ) ( Nothing ) ( [] ) ( Nothing )
-            )
-            ( StmtFormula
-                ( FormulaChain
+                        [ TermExpr
+                            ( ExprVar
+                                ( NamedVar "y" )
+                            )
+                        ]
+                    ) ( Nothing ) ( [] ) ( Nothing )
+                }
+            , stmt2 = StmtFormula
+                { formula = FormulaChain
                     ( ChainBase
                         ( ExprVar
                             ( NamedVar "x" ) :| []
@@ -348,8 +436,8 @@
                             ( NamedVar "y" ) :| []
                         )
                     )
-                )
-            )
+                }
+            }
         )
     )
 , BlockLemma
@@ -361,15 +449,28 @@
     )
     ( Marker "abbr_test_equals_is_eq" )
     ( Lemma []
-        ( StmtConnected Implication
-            ( StmtVerbPhrase
-                ( TermExpr
+        ( StmtConnected
+            { conn = Implication
+            , mpos = Just
+                ( SourcePos
+                    { sourceName = "test/examples/abbr.tex"
+                    , sourceLine = Pos 44
+                    , sourceColumn = Pos 5
+                    }
+                )
+            , stmt1 = StmtVerbPhrase
+                { args = TermExpr
                     ( ExprVar
                         ( NamedVar "x" )
                     ) :| []
-                )
-                ( VPVerb
+                , verb = VPVerb
                     ( Verb
+                        ( SourcePos
+                            { sourceName = "test/examples/abbr.tex"
+                            , sourceLine = Pos 44
+                            , sourceColumn = Pos 12
+                            }
+                        )
                         ( SgPl
                             { sg =
                                 [ Just
@@ -389,10 +490,9 @@
                             )
                         ]
                     )
-                )
-            )
-            ( StmtFormula
-                ( FormulaChain
+                }
+            , stmt2 = StmtFormula
+                { formula = FormulaChain
                     ( ChainBase
                         ( ExprVar
                             ( NamedVar "x" ) :| []
@@ -404,8 +504,8 @@
                             ( NamedVar "y" ) :| []
                         )
                     )
-                )
-            )
+                }
+            }
         )
     )
 ]

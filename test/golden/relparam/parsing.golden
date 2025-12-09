@@ -12,7 +12,7 @@
         [ NamedVar "y" ]
         ( NamedVar "z" )
         ( StmtFormula
-            ( FormulaChain
+            { formula = FormulaChain
                 ( ChainBase
                     ( ExprVar
                         ( NamedVar "x" ) :| []
@@ -24,7 +24,7 @@
                         ( NamedVar "z" ) :| []
                     )
                 )
-            )
+            }
         )
     )
 , BlockLemma
@@ -36,10 +36,18 @@
     )
     ( Marker "dummy_abbr_test" )
     ( Lemma []
-        ( SymbolicQuantified Universally
-            ( NamedVar "x" :| [] ) Unbounded Nothing
-            ( StmtFormula
-                ( FormulaChain
+        ( SymbolicQuantified
+            { pos = SourcePos
+                { sourceName = "test/examples/relparam.tex"
+                , sourceLine = Pos 7
+                , sourceColumn = Pos 5
+                }
+            , quant = Universally
+            , xs = NamedVar "x" :| []
+            , b = Unbounded
+            , suchThat = Nothing
+            , stmt = StmtFormula
+                { formula = FormulaChain
                     ( ChainBase
                         ( ExprVar
                             ( NamedVar "x" ) :| []
@@ -54,8 +62,8 @@
                             ( NamedVar "x" ) :| []
                         )
                     )
-                )
-            )
+                }
+            }
         )
     )
 , BlockAbbr
@@ -72,7 +80,7 @@
         [ NamedVar "y" ]
         ( NamedVar "z" )
         ( StmtFormula
-            ( FormulaChain
+            { formula = FormulaChain
                 ( ChainBase
                     ( ExprVar
                         ( NamedVar "x" ) :| []
@@ -84,7 +92,7 @@
                         ( NamedVar "z" ) :| []
                     )
                 )
-            )
+            }
         )
     )
 , BlockLemma
@@ -96,10 +104,18 @@
     )
     ( Marker "dummy_defn_test" )
     ( Lemma []
-        ( SymbolicQuantified Universally
-            ( NamedVar "x" :| [] ) Unbounded Nothing
-            ( StmtFormula
-                ( FormulaChain
+        ( SymbolicQuantified
+            { pos = SourcePos
+                { sourceName = "test/examples/relparam.tex"
+                , sourceLine = Pos 16
+                , sourceColumn = Pos 5
+                }
+            , quant = Universally
+            , xs = NamedVar "x" :| []
+            , b = Unbounded
+            , suchThat = Nothing
+            , stmt = StmtFormula
+                { formula = FormulaChain
                     ( ChainBase
                         ( ExprVar
                             ( NamedVar "x" ) :| []
@@ -114,8 +130,8 @@
                             ( NamedVar "x" ) :| []
                         )
                     )
-                )
-            )
+                }
+            }
         )
     )
 ]

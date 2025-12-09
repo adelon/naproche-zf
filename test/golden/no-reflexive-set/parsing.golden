@@ -8,7 +8,12 @@
     ( Marker "in_irrefl" )
     ( Lemma []
         ( StmtQuantPhrase
-            ( QuantPhrase Universally NounPhrase ( [] )
+            { pos = SourcePos
+                { sourceName = "test/examples/no-reflexive-set.tex"
+                , sourceLine = Pos 2
+                , sourceColumn = Pos 5
+                }
+            , qp = QuantPhrase Universally NounPhrase ( [] )
                 ( Noun
                     ( SgPl
                         { sg =
@@ -25,9 +30,8 @@
                 (
                     [ NamedVar "A" ]
                 ) ( [] ) ( Nothing )
-            )
-            ( StmtFormula
-                ( FormulaChain
+            , stmt = StmtFormula
+                { formula = FormulaChain
                     ( ChainBase
                         ( ExprVar
                             ( NamedVar "A" ) :| []
@@ -39,8 +43,8 @@
                             ( NamedVar "A" ) :| []
                         )
                     )
-                )
-            )
+                }
+            }
         )
     )
 , BlockProof
@@ -50,5 +54,22 @@
         , sourceColumn = Pos 1
         }
     )
-    ( BySetInduction Nothing ( Qed JustificationEmpty ) )
+    ( BySetInduction
+        ( SourcePos
+            { sourceName = "test/examples/no-reflexive-set.tex"
+            , sourceLine = Pos 4
+            , sourceColumn = Pos 21
+            }
+        ) Nothing
+        ( Qed
+            ( Just
+                ( SourcePos
+                    { sourceName = "test/examples/no-reflexive-set.tex"
+                    , sourceLine = Pos 10
+                    , sourceColumn = Pos 5
+                    }
+                )
+            ) JustificationEmpty
+        )
+    )
 ]

@@ -407,34 +407,34 @@ data Proof
     = Omitted
     -- ^ Ends a proof without further verification.
     -- This results in a “gap” in the formalization.
-    | Qed Justification
+    | Qed {mpos :: Maybe SourcePos, by :: Justification}
     -- ^ Ends of a proof, leaving automation to discharge the current goal using the given justification.
-    | ByContradiction Proof
+    | ByContradiction SourcePos Proof
     -- ^ Take the dual of the current goal as an assumption and
     -- set the goal to absurdity.
-    | BySetInduction (Maybe Term) Proof
+    | BySetInduction SourcePos (Maybe Term) Proof
     -- ^ ∈-induction.
-    | ByOrdInduction Proof
+    | ByOrdInduction SourcePos Proof
     -- ^ Transfinite induction for ordinals.
-    | Assume Formula Proof
+    | Assume SourcePos Formula Proof
     -- ^ Simplify goals that are implications or disjunctions.
-    | Fix (NonEmpty VarSymbol) Formula Proof
+    | Fix SourcePos (NonEmpty VarSymbol) Formula Proof
     -- ^ Simplify universal goals (with an optional bound or such that statement)
-    | Take (NonEmpty VarSymbol) Formula Justification Proof
+    | Take SourcePos (NonEmpty VarSymbol) Formula Justification Proof
     -- ^ Use existential assumptions.
-    | Suffices Formula Justification Proof
-    | ByCase [Case]
+    | Suffices SourcePos Formula Justification Proof
+    | ByCase SourcePos [Case]
     -- ^ Proof by case. Disjunction of the case hypotheses 'Case'
     -- must hold for this step to succeed. Each case starts a subproof,
     -- keeping the same goal but adding the case hypothesis as an assumption.
     -- Often this will be a classical split between /@P@/ and /@not P@/, in
     -- which case the proof that /@P or not P@/ holds is easy.
     --
-    | Have Formula Justification Proof
+    | Have SourcePos Formula Justification Proof
     -- ^ An affirmation, e.g.: /@We have \<stmt\> by \<ref\>@/.
     --
-    | Calc CalcQuantifier Calc Proof
-    | Subclaim Formula Proof Proof
+    | Calc SourcePos CalcQuantifier Calc Proof
+    | Subclaim SourcePos Formula Proof Proof
     -- ^ A claim is a sublemma with its own proof:
     --
     -- /@Show \<goal stmt\>. \<steps\>. \<continue other proof\>.@/
@@ -442,10 +442,10 @@ data Proof
     -- A successful first proof adds the claimed formula as an assumption
     -- for the remaining proof.
     --
-    | Define VarSymbol Term Proof
-    | DefineFunction VarSymbol VarSymbol Term Term Proof
+    | Define SourcePos VarSymbol Term Proof
+    | DefineFunction SourcePos VarSymbol VarSymbol Term Term Proof
 
-    | DefineFunctionLocal VarSymbol VarSymbol VarSymbol Term (NonEmpty (Term, Formula)) Proof
+    | DefineFunctionLocal SourcePos VarSymbol VarSymbol VarSymbol Term (NonEmpty (Term, Formula)) Proof
 
 deriving instance Show Proof
 deriving instance Eq   Proof

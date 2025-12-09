@@ -32,7 +32,7 @@ scanChunk ltoks =
         Located{startPos = pos, unLocated = BeginEnv "abbreviation"} : _ ->
             matchOrErr abbreviation "abbreviation" pos
         Located{startPos = pos, unLocated = (BeginEnv "struct")} :_ ->
-            matchOrErr struct "struct definition" pos
+            matchOrErr structRE "struct definition" pos
         Located{startPos = pos, unLocated = (BeginEnv "inductive")} :_ ->
             matchOrErr inductive "inductive definition" pos
         _ -> []
@@ -66,9 +66,9 @@ definition ::  RE Token [ScannedLexicalItem]
 definition = do
     sym (BeginEnv "definition")
     few notEndOfLexicalEnvToken
-    m <- label
+    m <- labelRE
     few anySym
-    lexicalItem <- head
+    lexicalItem <- headRE
     few anySym
     sym (EndEnv "definition")
     skipUntilNextLexicalEnv
@@ -78,9 +78,9 @@ abbreviation ::  RE Token [ScannedLexicalItem]
 abbreviation = do
     sym (BeginEnv "abbreviation")
     few anySym
-    m <- label
+    m <- labelRE
     few anySym
-    lexicalItem <- head
+    lexicalItem <- headRE
     few anySym
     sym (EndEnv "abbreviation")
     skipUntilNextLexicalEnv
@@ -90,9 +90,9 @@ signatureExtension ::  RE Token [ScannedLexicalItem]
 signatureExtension = do
     sym (BeginEnv "signature")
     few notEndOfLexicalEnvToken
-    m <- label
+    m <- labelRE
     few anySym
-    lexicalItem <- head
+    lexicalItem <- headRE
     few anySym
     sym (EndEnv "signature")
     skipUntilNextLexicalEnv
@@ -102,7 +102,7 @@ signatureExtensionAtom ::  RE Token [ScannedLexicalItem]
 signatureExtensionAtom = do
     sym (BeginEnv "signatureatom")
     few notEndOfLexicalEnvToken
-    m <- label
+    m <- labelRE
     few anySym
     lexicalItem <- sigPred
     few anySym
@@ -110,22 +110,22 @@ signatureExtensionAtom = do
     skipUntilNextLexicalEnv
     pure [lexicalItem m]
 
-label :: RE Token Marker
-label = msym \case
+labelRE :: RE Token Marker
+labelRE = msym \case
     Label m -> Just (Marker m)
     _ -> Nothing
 
 -- | 'RE' that matches the head of a definition.
-head :: RE Token (Marker -> ScannedLexicalItem)
+headRE :: RE Token (Marker -> ScannedLexicalItem)
 -- Note that @<|>@ is left biased for 'RE', so we can just
 -- place 'adj' before 'verb' and do not have to worry about
 -- overlapping patterns.
-head = ScanNoun <$> noun
-    <|> ScanAdj <$> adj
-    <|> ScanVerb <$> verb
-    <|> ScanFun <$> fun
-    <|> ScanRelationSymbol . fst <$> relationSymbol
-    <|> ScanFunctionSymbol <$> functionSymbol
+headRE = ScanNoun <$> nounRE
+    <|> ScanAdj <$> adjRE
+    <|> ScanVerb <$> verbRE
+    <|> ScanFun <$> funRE
+    <|> ScanRelationSymbol . fst <$> relationSymbolRE
+    <|> ScanFunctionSymbol <$> functionSymbolRE
     <|> ScanPrefixPredicate <$> prefixPredicate
 
 sigPred :: RE Token (Marker -> ScannedLexicalItem)
@@ -137,7 +137,7 @@ inductive :: RE Token [ScannedLexicalItem]
 inductive = do
     sym (BeginEnv "inductive")
     few notEndOfLexicalEnvToken
-    m <- label
+    m <- labelRE
     few anySym
     lexicalItem <- functionSymbolInductive
     few anySym
@@ -145,11 +145,11 @@ inductive = do
     skipUntilNextLexicalEnv
     pure [ScanFunctionSymbol lexicalItem m]
 
-struct :: RE Token [ScannedLexicalItem]
-struct = do
+structRE :: RE Token [ScannedLexicalItem]
+structRE = do
     sym (BeginEnv "struct")
     few anySym
-    m <- label
+    m <- labelRE
     few anySym
     lexicalItem <- ScanStructNoun . toLexicalPhrase <$> (an *> structPat <* math var)
     few anySym
@@ -172,20 +172,20 @@ structOp = do
     op <- math command
     pure (ScanStructOp op)
 
-noun :: RE Token LexicalPhrase
-noun = toLexicalPhrase <$> (math var *> is *> an *> pat <* iff)
+nounRE :: RE Token LexicalPhrase
+nounRE = toLexicalPhrase <$> (math var *> is *> an *> pat <* iff)
 
-adj :: RE Token LexicalPhrase
-adj = toLexicalPhrase <$> (math var *> is *> pat <* iff)
+adjRE :: RE Token LexicalPhrase
+adjRE = toLexicalPhrase <$> (math var *> is *> pat <* iff)
 
-verb :: RE Token LexicalPhrase
-verb = toLexicalPhrase <$> (math var *> pat <* iff)
+verbRE :: RE Token LexicalPhrase
+verbRE = toLexicalPhrase <$> (math var *> pat <* iff)
 
-fun :: RE Token LexicalPhrase
-fun = toLexicalPhrase <$> (the *> pat <* (is <|> comma))
+funRE :: RE Token LexicalPhrase
+funRE = toLexicalPhrase <$> (the *> pat <* (is <|> comma))
 
-relationSymbol :: RE Token (RelationSymbol, Int)
-relationSymbol = do
+relationSymbolRE :: RE Token (RelationSymbol, Int)
+relationSymbolRE = do
     beginMath
     var
     rel <- symbol
@@ -200,8 +200,8 @@ relationSymbol = do
             vars <- many (sym InvisibleBraceL *> var <* sym InvisibleBraceR)
             pure (length vars)
 
-functionSymbol :: RE Token FunctionSymbol
-functionSymbol = do
+functionSymbolRE :: RE Token FunctionSymbol
+functionSymbolRE = do
     sym (BeginEnv "math")
     toks <- few nonDefinitionKeyword
     sym (Symbol "=")

@@ -7,9 +7,11 @@
     )
     ( Marker "cons" )
     ( Axiom []
-        ( StmtConnected Equivalence
-            ( StmtFormula
-                ( FormulaChain
+        ( StmtConnected
+            { conn = Equivalence
+            , mpos = Nothing
+            , stmt1 = StmtFormula
+                { formula = FormulaChain
                     ( ChainBase
                         ( ExprVar
                             ( NamedVar "x" ) :| []
@@ -34,11 +36,12 @@
                             ] :| []
                         )
                     )
-                )
-            )
-            ( StmtConnected Disjunction
-                ( StmtFormula
-                    ( FormulaChain
+                }
+            , stmt2 = StmtConnected
+                { conn = Disjunction
+                , mpos = Nothing
+                , stmt1 = StmtFormula
+                    { formula = FormulaChain
                         ( ChainBase
                             ( ExprVar
                                 ( NamedVar "x" ) :| []
@@ -50,10 +53,9 @@
                                 ( NamedVar "y" ) :| []
                             )
                         )
-                    )
-                )
-                ( StmtFormula
-                    ( FormulaChain
+                    }
+                , stmt2 = StmtFormula
+                    { formula = FormulaChain
                         ( ChainBase
                             ( ExprVar
                                 ( NamedVar "x" ) :| []
@@ -65,9 +67,9 @@
                                 ( NamedVar "X" ) :| []
                             )
                         )
-                    )
-                )
-            )
+                    }
+                }
+            }
         )
     )
 , BlockDefn
@@ -102,7 +104,7 @@
     ( Marker "emptyset_in_unit" )
     ( Lemma []
         ( StmtFormula
-            ( FormulaChain
+            { formula = FormulaChain
                 ( ChainBase
                     ( ExprOp
                         [ Just
@@ -118,7 +120,7 @@
                         ] [] :| []
                     )
                 )
-            )
+            }
         )
     )
 ]

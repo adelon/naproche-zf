@@ -13,7 +13,7 @@
             ( NamedVar "B" )
         )
         ( StmtFormula
-            ( FormulaChain
+            { formula = FormulaChain
                 ( ChainBase
                     ( ExprVar
                         ( NamedVar "A" ) :| []
@@ -25,7 +25,7 @@
                         ( NamedVar "B" ) :| []
                     )
                 )
-            )
+            }
         )
     )
 , BlockDefn
@@ -169,7 +169,7 @@
     ( Marker "lmao" )
     ( Axiom []
         ( StmtFormula
-            ( FormulaChain
+            { formula = FormulaChain
                 ( ChainBase
                     ( ExprVar
                         ( NamedVar "x" ) :| []
@@ -183,7 +183,7 @@
                         ] [] :| []
                     )
                 )
-            )
+            }
         )
     )
 , BlockInductive
@@ -338,7 +338,7 @@
             ) ( Nothing ) ( [] ) ( Nothing )
         , AsmSuppose
             ( StmtFormula
-                ( FormulaChain
+                { formula = FormulaChain
                     ( ChainBase
                         ( ExprVar
                             ( NamedVar "A" ) :| []
@@ -350,11 +350,11 @@
                             ( NamedVar "B" ) :| []
                         )
                     )
-                )
+                }
             )
         ]
         ( StmtFormula
-            ( FormulaChain
+            { formula = FormulaChain
                 ( ChainBase
                     ( ExprOp
                         [ Just
@@ -382,7 +382,7 @@
                         ] :| []
                     )
                 )
-            )
+            }
         )
     )
 , BlockInductive

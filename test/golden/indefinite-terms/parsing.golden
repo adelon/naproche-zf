@@ -8,7 +8,18 @@
     ( Marker "indefinite_test_forall" )
     ( Lemma []
         ( StmtNoun
-            ( TermQuantified Universally NounPhrase ( [] )
+            { pos = SourcePos
+                { sourceName = "test/examples/indefinite-terms.tex"
+                , sourceLine = Pos 2
+                , sourceColumn = Pos 5
+                }
+            , args = TermQuantified Universally
+                ( SourcePos
+                    { sourceName = "test/examples/indefinite-terms.tex"
+                    , sourceLine = Pos 2
+                    , sourceColumn = Pos 5
+                    }
+                ) NounPhrase ( [] )
                 ( Noun
                     ( SgPl
                         { sg =
@@ -22,20 +33,21 @@
                         }
                     ) []
                 ) ( Nothing ) ( [] ) ( Nothing ) :| []
-            ) NounPhrase ( [] )
-            ( Noun
-                ( SgPl
-                    { sg =
-                        [ Just
-                            ( Word "set" )
-                        ]
-                    , pl =
-                        [ Just
-                            ( Word "sets" )
-                        ]
-                    }
-                ) []
-            ) ( Nothing ) ( [] ) ( Nothing )
+            , noun = NounPhrase ( [] )
+                ( Noun
+                    ( SgPl
+                        { sg =
+                            [ Just
+                                ( Word "set" )
+                            ]
+                        , pl =
+                            [ Just
+                                ( Word "sets" )
+                            ]
+                        }
+                    ) []
+                ) ( Nothing ) ( [] ) ( Nothing )
+            }
         )
     )
 , BlockLemma
@@ -48,7 +60,18 @@
     ( Marker "indefinite_test_exists" )
     ( Lemma []
         ( StmtNoun
-            ( TermQuantified Existentially NounPhrase ( [] )
+            { pos = SourcePos
+                { sourceName = "test/examples/indefinite-terms.tex"
+                , sourceLine = Pos 6
+                , sourceColumn = Pos 5
+                }
+            , args = TermQuantified Existentially
+                ( SourcePos
+                    { sourceName = "test/examples/indefinite-terms.tex"
+                    , sourceLine = Pos 6
+                    , sourceColumn = Pos 5
+                    }
+                ) NounPhrase ( [] )
                 ( Noun
                     ( SgPl
                         { sg =
@@ -62,20 +85,21 @@
                         }
                     ) []
                 ) ( Nothing ) ( [] ) ( Nothing ) :| []
-            ) NounPhrase ( [] )
-            ( Noun
-                ( SgPl
-                    { sg =
-                        [ Just
-                            ( Word "set" )
-                        ]
-                    , pl =
-                        [ Just
-                            ( Word "sets" )
-                        ]
-                    }
-                ) []
-            ) ( Nothing ) ( [] ) ( Nothing )
+            , noun = NounPhrase ( [] )
+                ( Noun
+                    ( SgPl
+                        { sg =
+                            [ Just
+                                ( Word "set" )
+                            ]
+                        , pl =
+                            [ Just
+                                ( Word "sets" )
+                            ]
+                        }
+                    ) []
+                ) ( Nothing ) ( [] ) ( Nothing )
+            }
         )
     )
 ]

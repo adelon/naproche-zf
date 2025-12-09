@@ -151,6 +151,12 @@
         }
     )
     ( DefineFunction
+        ( SourcePos
+            { sourceName = "test/examples/proofdefinefunction.tex"
+            , sourceLine = Pos 26
+            , sourceColumn = Pos 5
+            }
+        )
         ( NamedVar "f" )
         ( NamedVar "z" )
         ( TermVar
@@ -158,6 +164,11 @@
         )
         ( TermVar
             ( NamedVar "x" )
-        ) ( Qed JustificationEmpty )
+        )
+        ( Qed
+            { mpos = Nothing
+            , by = JustificationEmpty
+            }
+        )
     )
 ]

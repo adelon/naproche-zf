@@ -8,7 +8,7 @@
     ( Marker "prop1" )
     ( Lemma []
         ( StmtFormula
-            ( FormulaChain
+            { formula = FormulaChain
                 ( ChainBase
                     ( ExprVar
                         ( NamedVar "a" ) :| []
@@ -20,7 +20,7 @@
                         ( NamedVar "a" ) :| []
                     )
                 )
-            )
+            }
         )
     )
 , BlockLemma
@@ -33,7 +33,7 @@
     ( Marker "prop2" )
     ( Lemma []
         ( StmtFormula
-            ( FormulaChain
+            { formula = FormulaChain
                 ( ChainBase
                     ( ExprVar
                         ( NamedVar "b" ) :| []
@@ -45,7 +45,7 @@
                         ( NamedVar "b" ) :| []
                     )
                 )
-            )
+            }
         )
     )
 , BlockLemma
@@ -58,7 +58,7 @@
     ( Marker "prop3" )
     ( Lemma []
         ( StmtFormula
-            ( FormulaChain
+            { formula = FormulaChain
                 ( ChainBase
                     ( ExprVar
                         ( NamedVar "c" ) :| []
@@ -70,7 +70,7 @@
                         ( NamedVar "c" ) :| []
                     )
                 )
-            )
+            }
         )
     )
 , BlockProof
@@ -81,6 +81,14 @@
         }
     )
     ( Qed
+        ( Just
+            ( SourcePos
+                { sourceName = "test/examples/byRef.tex"
+                , sourceLine = Pos 13
+                , sourceColumn = Pos 5
+                }
+            )
+        )
         ( JustificationRef
             ( Marker "prop1" :| [] )
         )
@@ -95,7 +103,7 @@
     ( Marker "prop4" )
     ( Lemma []
         ( StmtFormula
-            ( FormulaChain
+            { formula = FormulaChain
                 ( ChainBase
                     ( ExprVar
                         ( NamedVar "e" ) :| []
@@ -107,7 +115,7 @@
                         ( NamedVar "e" ) :| []
                     )
                 )
-            )
+            }
         )
     )
 , BlockProof
@@ -117,11 +125,25 @@
         , sourceColumn = Pos 1
         }
     )
-    ( Have Nothing
-        ( SymbolicQuantified Universally
-            ( NamedVar "d" :| [] ) Unbounded Nothing
-            ( StmtFormula
-                ( FormulaChain
+    ( Have
+        ( SourcePos
+            { sourceName = "test/examples/byRef.tex"
+            , sourceLine = Pos 20
+            , sourceColumn = Pos 5
+            }
+        ) Nothing
+        ( SymbolicQuantified
+            { pos = SourcePos
+                { sourceName = "test/examples/byRef.tex"
+                , sourceLine = Pos 20
+                , sourceColumn = Pos 5
+                }
+            , quant = Universally
+            , xs = NamedVar "d" :| []
+            , b = Unbounded
+            , suchThat = Nothing
+            , stmt = StmtFormula
+                { formula = FormulaChain
                     ( ChainBase
                         ( ExprVar
                             ( NamedVar "d" ) :| []
@@ -133,12 +155,12 @@
                             ( NamedVar "d" ) :| []
                         )
                     )
-                )
-            )
+                }
+            }
         )
         ( JustificationRef
             ( Marker "prop1" :| [] )
-        ) ( Qed JustificationEmpty )
+        ) ( Qed Nothing JustificationEmpty )
     )
 , BlockLemma
     ( SourcePos
@@ -150,7 +172,7 @@
     ( Marker "prop5" )
     ( Lemma []
         ( StmtFormula
-            ( FormulaChain
+            { formula = FormulaChain
                 ( ChainBase
                     ( ExprVar
                         ( NamedVar "f" ) :| []
@@ -162,7 +184,7 @@
                         ( NamedVar "f" ) :| []
                     )
                 )
-            )
+            }
         )
     )
 ]

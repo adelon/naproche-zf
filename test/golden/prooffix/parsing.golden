@@ -7,10 +7,18 @@
     )
     ( Marker "assumetest" )
     ( Lemma []
-        ( SymbolicQuantified Universally
-            ( NamedVar "x" :| [] ) Unbounded Nothing
-            ( StmtFormula
-                ( FormulaChain
+        ( SymbolicQuantified
+            { pos = SourcePos
+                { sourceName = "test/examples/prooffix.tex"
+                , sourceLine = Pos 2
+                , sourceColumn = Pos 5
+                }
+            , quant = Universally
+            , xs = NamedVar "x" :| []
+            , b = Unbounded
+            , suchThat = Nothing
+            , stmt = StmtFormula
+                { formula = FormulaChain
                     ( ChainBase
                         ( ExprVar
                             ( NamedVar "x" ) :| []
@@ -22,8 +30,8 @@
                             ( NamedVar "x" ) :| []
                         )
                     )
-                )
-            )
+                }
+            }
         )
     )
 , BlockProof
@@ -34,10 +42,22 @@
         }
     )
     ( FixSymbolic
+        ( SourcePos
+            { sourceName = "test/examples/prooffix.tex"
+            , sourceLine = Pos 5
+            , sourceColumn = Pos 5
+            }
+        )
         ( NamedVar "x" :| [] ) Unbounded
-        ( Have Nothing
+        ( Have
+            ( SourcePos
+                { sourceName = "test/examples/prooffix.tex"
+                , sourceLine = Pos 6
+                , sourceColumn = Pos 5
+                }
+            ) Nothing
             ( StmtFormula
-                ( FormulaChain
+                { formula = FormulaChain
                     ( ChainBase
                         ( ExprVar
                             ( NamedVar "x" ) :| []
@@ -49,8 +69,8 @@
                             ( NamedVar "x" ) :| []
                         )
                     )
-                )
-            ) JustificationEmpty ( Qed JustificationEmpty )
+                }
+            ) JustificationEmpty ( Qed Nothing JustificationEmpty )
         )
     )
 ]

@@ -36,8 +36,20 @@
         }
     )
     ( Fix
+        ( SourcePos
+            { sourceName = "test/examples/prooffix.tex"
+            , sourceLine = Pos 5
+            , sourceColumn = Pos 5
+            }
+        )
         ( NamedVar "x" :| [] ) ( PropositionalConstant IsTop )
         ( Have
+            ( SourcePos
+                { sourceName = "test/examples/prooffix.tex"
+                , sourceLine = Pos 6
+                , sourceColumn = Pos 5
+                }
+            )
             ( TermSymbol
                 ( SymbolPredicate
                     ( PredicateRelation
@@ -49,7 +61,12 @@
                 , TermVar
                     ( NamedVar "x" )
                 ]
-            ) JustificationEmpty ( Qed JustificationEmpty )
+            ) JustificationEmpty
+            ( Qed
+                { mpos = Nothing
+                , by = JustificationEmpty
+                }
+            )
         )
     )
 ]
