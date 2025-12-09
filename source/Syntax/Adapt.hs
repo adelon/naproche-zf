@@ -8,6 +8,7 @@ import Base
 import Syntax.Abstract
 import Syntax.Lexicon
 import Syntax.Token
+import Report.Location
 
 import Data.Map.Strict qualified as Map
 import Data.Maybe (catMaybes)
@@ -18,12 +19,11 @@ import Data.HashMap.Strict qualified as HM
 import Data.Text qualified as Text
 import Text.Earley.Mixfix (Associativity(..))
 import Text.Regex.Applicative
-import Text.Megaparsec.Pos
 
 scanChunk :: [Located Token] -> [ScannedLexicalItem]
 scanChunk ltoks =
     let toks = unLocated <$> ltoks
-        matchOrErr re env pos = match re toks ?? error ("could not find lexical pattern in " <> env <> " at " <> sourcePosPretty pos)
+        matchOrErr re env pos = match re toks ?? error ("could not find lexical pattern in " <> env <> " at " <> prettyLocation pos)
     in case ltoks of
         Located{startPos = pos, unLocated = BeginEnv "definition"} : _ ->
             matchOrErr definition "definition" pos

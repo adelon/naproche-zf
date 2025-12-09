@@ -4,12 +4,24 @@
     , taskConjectureLabel = Marker "mathrel_notation_test"
     , taskConjecture = Connected Implication
         ( TermSymbol
+            ( Location
+                { locFile = "<nowhere>"
+                , locLine = -1
+                , locColumn = -1
+                }
+            )
             ( SymbolPredicate
                 ( PredicateRelation
                     ( Command "in" )
                 )
             )
             [ TermSymbol
+                ( Location
+                    { locFile = "<nowhere>"
+                    , locLine = -1
+                    , locColumn = -1
+                    }
+                )
                 ( SymbolMixfix
                     [ Just
                         ( Command "pair" )
@@ -31,12 +43,24 @@
             ]
         )
         ( TermSymbol
+            ( Location
+                { locFile = "<nowhere>"
+                , locLine = -1
+                , locColumn = -1
+                }
+            )
             ( SymbolPredicate
                 ( PredicateRelation
                     ( Command "in" )
                 )
             )
             [ TermSymbol
+                ( Location
+                    { locFile = "<nowhere>"
+                    , locLine = -1
+                    , locColumn = -1
+                    }
+                )
                 ( SymbolMixfix
                     [ Just
                         ( Command "pair" )

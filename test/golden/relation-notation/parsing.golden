@@ -1,8 +1,8 @@
 [ BlockLemma
-    ( SourcePos
-        { sourceName = "test/examples/relation-notation.tex"
-        , sourceLine = Pos 1
-        , sourceColumn = Pos 1
+    ( Location
+        { locFile = "test/examples/relation-notation.tex"
+        , locLine = 1
+        , locColumn = 1
         }
     )
     ( Marker "mathrel_notation_test" )
@@ -10,10 +10,10 @@
         ( StmtConnected
             { conn = Implication
             , mpos = Just
-                ( SourcePos
-                    { sourceName = "test/examples/relation-notation.tex"
-                    , sourceLine = Pos 2
-                    , sourceColumn = Pos 5
+                ( Location
+                    { locFile = "test/examples/relation-notation.tex"
+                    , locLine = 2
+                    , locColumn = 2
                     }
                 )
             , stmt1 = StmtFormula

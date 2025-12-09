@@ -1,8 +1,8 @@
 [ BlockLemma
-    ( SourcePos
-        { sourceName = "test/examples/indefinite-terms.tex"
-        , sourceLine = Pos 1
-        , sourceColumn = Pos 1
+    ( Location
+        { locFile = "test/examples/indefinite-terms.tex"
+        , locLine = 1
+        , locColumn = 1
         }
     )
     ( Marker "indefinite_test_forall" )
@@ -14,10 +14,10 @@
         )
     )
 , BlockLemma
-    ( SourcePos
-        { sourceName = "test/examples/indefinite-terms.tex"
-        , sourceLine = Pos 5
-        , sourceColumn = Pos 1
+    ( Location
+        { locFile = "test/examples/indefinite-terms.tex"
+        , locLine = 5
+        , locColumn = 5
         }
     )
     ( Marker "indefinite_test_exists" )

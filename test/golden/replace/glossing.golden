@@ -1,14 +1,20 @@
 [ BlockAxiom
-    ( SourcePos
-        { sourceName = "test/examples/replace.tex"
-        , sourceLine = Pos 1
-        , sourceColumn = Pos 1
+    ( Location
+        { locFile = "test/examples/replace.tex"
+        , locLine = 1
+        , locColumn = 1
         }
     )
     ( Marker "cons" )
     ( Axiom []
         ( Connected Equivalence
             ( TermSymbol
+                ( Location
+                    { locFile = "<nowhere>"
+                    , locLine = -1
+                    , locColumn = -1
+                    }
+                )
                 ( SymbolPredicate
                     ( PredicateRelation
                         ( Command "in" )
@@ -17,6 +23,12 @@
                 [ TermVar
                     ( NamedVar "x" )
                 , TermSymbol
+                    ( Location
+                        { locFile = "<nowhere>"
+                        , locLine = -1
+                        , locColumn = -1
+                        }
+                    )
                     ( SymbolMixfix
                         [ Just
                             ( Command "cons" )
@@ -37,6 +49,12 @@
             )
             ( Connected Disjunction
                 ( TermSymbol
+                    ( Location
+                        { locFile = "<nowhere>"
+                        , locLine = -1
+                        , locColumn = -1
+                        }
+                    )
                     ( SymbolPredicate
                         ( PredicateRelation
                             ( Symbol "=" )
@@ -49,6 +67,12 @@
                     ]
                 )
                 ( TermSymbol
+                    ( Location
+                        { locFile = "<nowhere>"
+                        , locLine = -1
+                        , locColumn = -1
+                        }
+                    )
                     ( SymbolPredicate
                         ( PredicateRelation
                             ( Command "in" )
@@ -64,10 +88,10 @@
         )
     )
 , BlockDefn
-    ( SourcePos
-        { sourceName = "test/examples/replace.tex"
-        , sourceLine = Pos 5
-        , sourceColumn = Pos 1
+    ( Location
+        { locFile = "test/examples/replace.tex"
+        , locLine = 5
+        , locColumn = 5
         }
     )
     ( Marker "times" )
@@ -95,6 +119,12 @@
             )
             ( Scope
                 ( TermSymbol
+                    ( Location
+                        { locFile = "<nowhere>"
+                        , locLine = -1
+                        , locColumn = -1
+                        }
+                    )
                     ( SymbolMixfix
                         [ Just
                             ( Command "pair" )
@@ -121,10 +151,10 @@
         )
     )
 , BlockDefn
-    ( SourcePos
-        { sourceName = "test/examples/replace.tex"
-        , sourceLine = Pos 9
-        , sourceColumn = Pos 1
+    ( Location
+        { locFile = "test/examples/replace.tex"
+        , locLine = 9
+        , locColumn = 9
         }
     )
     ( Marker "unit" )
@@ -133,6 +163,12 @@
             ( Command "unit" )
         ] []
         ( TermSymbol
+            ( Location
+                { locFile = "<nowhere>"
+                , locLine = -1
+                , locColumn = -1
+                }
+            )
             ( SymbolMixfix
                 [ Just
                     ( Command "cons" )
@@ -145,12 +181,24 @@
                 ]
             )
             [ TermSymbol
+                ( Location
+                    { locFile = "<nowhere>"
+                    , locLine = -1
+                    , locColumn = -1
+                    }
+                )
                 ( SymbolMixfix
                     [ Just
                         ( Command "emptyset" )
                     ]
                 ) []
             , TermSymbol
+                ( Location
+                    { locFile = "<nowhere>"
+                    , locLine = -1
+                    , locColumn = -1
+                    }
+                )
                 ( SymbolMixfix
                     [ Just
                         ( Command "emptyset" )
@@ -160,21 +208,33 @@
         )
     )
 , BlockLemma
-    ( SourcePos
-        { sourceName = "test/examples/replace.tex"
-        , sourceLine = Pos 13
-        , sourceColumn = Pos 1
+    ( Location
+        { locFile = "test/examples/replace.tex"
+        , locLine = 13
+        , locColumn = 13
         }
     )
     ( Marker "pair_emptyset_in_times_unit" )
     ( Lemma []
         ( TermSymbol
+            ( Location
+                { locFile = "<nowhere>"
+                , locLine = -1
+                , locColumn = -1
+                }
+            )
             ( SymbolPredicate
                 ( PredicateRelation
                     ( Command "in" )
                 )
             )
             [ TermSymbol
+                ( Location
+                    { locFile = "<nowhere>"
+                    , locLine = -1
+                    , locColumn = -1
+                    }
+                )
                 ( SymbolMixfix
                     [ Just
                         ( Command "pair" )
@@ -187,12 +247,24 @@
                     ]
                 )
                 [ TermSymbol
+                    ( Location
+                        { locFile = "<nowhere>"
+                        , locLine = -1
+                        , locColumn = -1
+                        }
+                    )
                     ( SymbolMixfix
                         [ Just
                             ( Command "emptyset" )
                         ]
                     ) []
                 , TermSymbol
+                    ( Location
+                        { locFile = "<nowhere>"
+                        , locLine = -1
+                        , locColumn = -1
+                        }
+                    )
                     ( SymbolMixfix
                         [ Just
                             ( Command "emptyset" )
@@ -200,6 +272,12 @@
                     ) []
                 ]
             , TermSymbol
+                ( Location
+                    { locFile = "<nowhere>"
+                    , locLine = -1
+                    , locColumn = -1
+                    }
+                )
                 ( SymbolMixfix
                     [ Nothing
                     , Just
@@ -208,12 +286,24 @@
                     ]
                 )
                 [ TermSymbol
+                    ( Location
+                        { locFile = "<nowhere>"
+                        , locLine = -1
+                        , locColumn = -1
+                        }
+                    )
                     ( SymbolMixfix
                         [ Just
                             ( Command "unit" )
                         ]
                     ) []
                 , TermSymbol
+                    ( Location
+                        { locFile = "<nowhere>"
+                        , locLine = -1
+                        , locColumn = -1
+                        }
+                    )
                     ( SymbolMixfix
                         [ Just
                             ( Command "unit" )
@@ -224,10 +314,10 @@
         )
     )
 , BlockDefn
-    ( SourcePos
-        { sourceName = "test/examples/replace.tex"
-        , sourceLine = Pos 19
-        , sourceColumn = Pos 1
+    ( Location
+        { locFile = "test/examples/replace.tex"
+        , locLine = 19
+        , locColumn = 19
         }
     )
     ( Marker "suc" )
@@ -247,6 +337,12 @@
             )
             ( Scope
                 ( TermSymbol
+                    ( Location
+                        { locFile = "<nowhere>"
+                        , locLine = -1
+                        , locColumn = -1
+                        }
+                    )
                     ( SymbolPredicate
                         ( PredicateRelation
                             ( Symbol "=" )
@@ -254,6 +350,12 @@
                     )
                     [ TermVar ( B ReplacementRangeVar )
                     , TermSymbol
+                        ( Location
+                            { locFile = "<nowhere>"
+                            , locLine = -1
+                            , locColumn = -1
+                            }
+                        )
                         ( SymbolMixfix
                             [ Just
                                 ( Command "cons" )
@@ -267,6 +369,12 @@
                         )
                         [ TermVar ( B ReplacementDomVar )
                         , TermSymbol
+                            ( Location
+                                { locFile = "<nowhere>"
+                                , locLine = -1
+                                , locColumn = -1
+                                }
+                            )
                             ( SymbolMixfix
                                 [ Just
                                     ( Command "emptyset" )
@@ -279,21 +387,33 @@
         )
     )
 , BlockLemma
-    ( SourcePos
-        { sourceName = "test/examples/replace.tex"
-        , sourceLine = Pos 25
-        , sourceColumn = Pos 1
+    ( Location
+        { locFile = "test/examples/replace.tex"
+        , locLine = 25
+        , locColumn = 25
         }
     )
     ( Marker "times_replacement_test" )
     ( Lemma []
         ( TermSymbol
+            ( Location
+                { locFile = "<nowhere>"
+                , locLine = -1
+                , locColumn = -1
+                }
+            )
             ( SymbolPredicate
                 ( PredicateRelation
                     ( Symbol "=" )
                 )
             )
             [ TermSymbol
+                ( Location
+                    { locFile = "<nowhere>"
+                    , locLine = -1
+                    , locColumn = -1
+                    }
+                )
                 ( SymbolMixfix
                     [ Nothing
                     , Just
@@ -321,6 +441,12 @@
                 )
                 ( Scope
                     ( TermSymbol
+                        ( Location
+                            { locFile = "<nowhere>"
+                            , locLine = -1
+                            , locColumn = -1
+                            }
+                        )
                         ( SymbolMixfix
                             [ Just
                                 ( Command "pair" )

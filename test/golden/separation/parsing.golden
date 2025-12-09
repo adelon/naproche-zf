@@ -1,8 +1,8 @@
 [ BlockLemma
-    ( SourcePos
-        { sourceName = "test/examples/separation.tex"
-        , sourceLine = Pos 1
-        , sourceColumn = Pos 1
+    ( Location
+        { locFile = "test/examples/separation.tex"
+        , locLine = 1
+        , locColumn = 1
         }
     )
     ( Marker "sep_test" )

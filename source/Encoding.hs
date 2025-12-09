@@ -40,11 +40,11 @@ encodeExpr l = go . (fmap encodeFreeVar)
     where
     go :: ExprOf Tptp.Expr -> Tptp.Expr
     go = \case
-        e1 `Equals` e2 ->
+        Equals _pos e1 e2 ->
             Tptp.Eq (go e1) (go e2)
-        e1 `NotEquals` e2 ->
+        NotEquals _pos e1 e2 ->
             Tptp.NotEq (go e1) (go e2)
-        Atomic p es ->
+        Atomic _pos p es ->
             let p' = encodePredicate l p
                 es' = go <$> toList es
             in Tptp.Apply p' es'
@@ -52,7 +52,7 @@ encodeExpr l = go . (fmap encodeFreeVar)
             Tptp.Bottom
         PropositionalConstant IsTop ->
             Tptp.Top
-        Not f ->
+        Not _pos f ->
             Tptp.Not (go f)
         Connected Conjunction f1 f2 ->
             Tptp.Conn Tptp.And (go f1) (go f2)
@@ -79,7 +79,7 @@ encodeExpr l = go . (fmap encodeFreeVar)
         Apply e es -> case e of
             TermVar (Tptp.Const x) -> Tptp.Apply x (go <$> toList es)
             _ -> error ("encodeExpr: complex term as head of applicaition: " <> show e)
-        TermSymbol symb es ->
+        TermSymbol _pos symb es ->
             Tptp.Apply (encodeSymbol l symb) (go <$> es)
         e@ReplaceFun{} ->
             error ("Precondition failed in encodeTerm, cannot encode terms with comprehensions directly: " <> show e)

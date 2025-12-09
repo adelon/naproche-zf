@@ -1,14 +1,20 @@
 [ BlockLemma
-    ( SourcePos
-        { sourceName = "test/examples/proofassume.tex"
-        , sourceLine = Pos 1
-        , sourceColumn = Pos 1
+    ( Location
+        { locFile = "test/examples/proofassume.tex"
+        , locLine = 1
+        , locColumn = 1
         }
     )
     ( Marker "assumetest" )
     ( Lemma []
         ( Connected Implication
             ( TermSymbol
+                ( Location
+                    { locFile = "<nowhere>"
+                    , locLine = -1
+                    , locColumn = -1
+                    }
+                )
                 ( SymbolPredicate
                     ( PredicateRelation
                         ( Command "in" )
@@ -21,6 +27,12 @@
                 ]
             )
             ( TermSymbol
+                ( Location
+                    { locFile = "<nowhere>"
+                    , locLine = -1
+                    , locColumn = -1
+                    }
+                )
                 ( SymbolPredicate
                     ( PredicateRelation
                         ( Command "in" )
@@ -35,20 +47,26 @@
         )
     )
 , BlockProof
-    ( SourcePos
-        { sourceName = "test/examples/proofassume.tex"
-        , sourceLine = Pos 4
-        , sourceColumn = Pos 1
+    ( Location
+        { locFile = "test/examples/proofassume.tex"
+        , locLine = 4
+        , locColumn = 4
         }
     )
     ( Assume
-        ( SourcePos
-            { sourceName = "test/examples/proofassume.tex"
-            , sourceLine = Pos 5
-            , sourceColumn = Pos 5
+        ( Location
+            { locFile = "test/examples/proofassume.tex"
+            , locLine = 5
+            , locColumn = 5
             }
         )
         ( TermSymbol
+            ( Location
+                { locFile = "<nowhere>"
+                , locLine = -1
+                , locColumn = -1
+                }
+            )
             ( SymbolPredicate
                 ( PredicateRelation
                     ( Command "in" )
@@ -61,13 +79,19 @@
             ]
         )
         ( Have
-            ( SourcePos
-                { sourceName = "test/examples/proofassume.tex"
-                , sourceLine = Pos 6
-                , sourceColumn = Pos 5
+            ( Location
+                { locFile = "test/examples/proofassume.tex"
+                , locLine = 6
+                , locColumn = 6
                 }
             )
             ( TermSymbol
+                ( Location
+                    { locFile = "<nowhere>"
+                    , locLine = -1
+                    , locColumn = -1
+                    }
+                )
                 ( SymbolPredicate
                     ( PredicateRelation
                         ( Command "in" )
@@ -87,10 +111,10 @@
         )
     )
 , BlockLemma
-    ( SourcePos
-        { sourceName = "test/examples/proofassume.tex"
-        , sourceLine = Pos 9
-        , sourceColumn = Pos 1
+    ( Location
+        { locFile = "test/examples/proofassume.tex"
+        , locLine = 9
+        , locColumn = 9
         }
     )
     ( Marker "assumetesttwo" )
@@ -98,6 +122,12 @@
         ( Connected Implication
             ( Connected Conjunction
                 ( TermSymbol
+                    ( Location
+                        { locFile = "<nowhere>"
+                        , locLine = -1
+                        , locColumn = -1
+                        }
+                    )
                     ( SymbolPredicate
                         ( PredicateRelation
                             ( Command "in" )
@@ -110,6 +140,12 @@
                     ]
                 )
                 ( TermSymbol
+                    ( Location
+                        { locFile = "<nowhere>"
+                        , locLine = -1
+                        , locColumn = -1
+                        }
+                    )
                     ( SymbolPredicate
                         ( PredicateRelation
                             ( Command "in" )
@@ -123,6 +159,12 @@
                 )
             )
             ( TermSymbol
+                ( Location
+                    { locFile = "<nowhere>"
+                    , locLine = -1
+                    , locColumn = -1
+                    }
+                )
                 ( SymbolPredicate
                     ( PredicateRelation
                         ( Command "in" )
@@ -137,20 +179,26 @@
         )
     )
 , BlockProof
-    ( SourcePos
-        { sourceName = "test/examples/proofassume.tex"
-        , sourceLine = Pos 12
-        , sourceColumn = Pos 1
+    ( Location
+        { locFile = "test/examples/proofassume.tex"
+        , locLine = 12
+        , locColumn = 12
         }
     )
     ( Assume
-        ( SourcePos
-            { sourceName = "test/examples/proofassume.tex"
-            , sourceLine = Pos 13
-            , sourceColumn = Pos 5
+        ( Location
+            { locFile = "test/examples/proofassume.tex"
+            , locLine = 13
+            , locColumn = 13
             }
         )
         ( TermSymbol
+            ( Location
+                { locFile = "<nowhere>"
+                , locLine = -1
+                , locColumn = -1
+                }
+            )
             ( SymbolPredicate
                 ( PredicateRelation
                     ( Command "in" )
@@ -163,13 +211,19 @@
             ]
         )
         ( Assume
-            ( SourcePos
-                { sourceName = "test/examples/proofassume.tex"
-                , sourceLine = Pos 14
-                , sourceColumn = Pos 5
+            ( Location
+                { locFile = "test/examples/proofassume.tex"
+                , locLine = 14
+                , locColumn = 14
                 }
             )
             ( TermSymbol
+                ( Location
+                    { locFile = "<nowhere>"
+                    , locLine = -1
+                    , locColumn = -1
+                    }
+                )
                 ( SymbolPredicate
                     ( PredicateRelation
                         ( Command "in" )
@@ -182,13 +236,19 @@
                 ]
             )
             ( Have
-                ( SourcePos
-                    { sourceName = "test/examples/proofassume.tex"
-                    , sourceLine = Pos 15
-                    , sourceColumn = Pos 5
+                ( Location
+                    { locFile = "test/examples/proofassume.tex"
+                    , locLine = 15
+                    , locColumn = 15
                     }
                 )
                 ( TermSymbol
+                    ( Location
+                        { locFile = "<nowhere>"
+                        , locLine = -1
+                        , locColumn = -1
+                        }
+                    )
                     ( SymbolPredicate
                         ( PredicateRelation
                             ( Command "in" )

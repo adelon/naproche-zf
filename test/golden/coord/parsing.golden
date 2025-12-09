@@ -1,8 +1,8 @@
 [ BlockDefn
-    ( SourcePos
-        { sourceName = "test/examples/coord.tex"
-        , sourceLine = Pos 1
-        , sourceColumn = Pos 1
+    ( Location
+        { locFile = "test/examples/coord.tex"
+        , locLine = 1
+        , locColumn = 1
         }
     )
     ( Marker "bar" )
@@ -40,10 +40,10 @@
         )
     )
 , BlockDefn
-    ( SourcePos
-        { sourceName = "test/examples/coord.tex"
-        , sourceLine = Pos 5
-        , sourceColumn = Pos 1
+    ( Location
+        { locFile = "test/examples/coord.tex"
+        , locLine = 5
+        , locColumn = 5
         }
     )
     ( Marker "foo" )
@@ -51,10 +51,10 @@
         ( DefnAdj Nothing
             ( NamedVar "x" )
             ( Adj
-                ( SourcePos
-                    { sourceName = "test/examples/coord.tex"
-                    , sourceLine = Pos 6
-                    , sourceColumn = Pos 12
+                ( Location
+                    { locFile = "test/examples/coord.tex"
+                    , locLine = 6
+                    , locColumn = 6
                     }
                 )
                 [ Just
@@ -79,10 +79,10 @@
         )
     )
 , BlockDefn
-    ( SourcePos
-        { sourceName = "test/examples/coord.tex"
-        , sourceLine = Pos 9
-        , sourceColumn = Pos 1
+    ( Location
+        { locFile = "test/examples/coord.tex"
+        , locLine = 9
+        , locColumn = 9
         }
     )
     ( Marker "baz" )
@@ -90,10 +90,10 @@
         ( DefnAdj Nothing
             ( NamedVar "x" )
             ( Adj
-                ( SourcePos
-                    { sourceName = "test/examples/coord.tex"
-                    , sourceLine = Pos 10
-                    , sourceColumn = Pos 12
+                ( Location
+                    { locFile = "test/examples/coord.tex"
+                    , locLine = 10
+                    , locColumn = 10
                     }
                 )
                 [ Just
@@ -118,10 +118,10 @@
         )
     )
 , BlockLemma
-    ( SourcePos
-        { sourceName = "test/examples/coord.tex"
-        , sourceLine = Pos 13
-        , sourceColumn = Pos 1
+    ( Location
+        { locFile = "test/examples/coord.tex"
+        , locLine = 13
+        , locColumn = 13
         }
     )
     ( Marker "nouns" )
@@ -161,10 +161,10 @@
         )
     )
 , BlockLemma
-    ( SourcePos
-        { sourceName = "test/examples/coord.tex"
-        , sourceLine = Pos 18
-        , sourceColumn = Pos 1
+    ( Location
+        { locFile = "test/examples/coord.tex"
+        , locLine = 18
+        , locColumn = 18
         }
     )
     ( Marker "adj_nouns" )
@@ -175,10 +175,10 @@
             ) NounPhrase
             (
                 [ AdjL
-                    ( SourcePos
-                        { sourceName = "test/examples/coord.tex"
-                        , sourceLine = Pos 19
-                        , sourceColumn = Pos 19
+                    ( Location
+                        { locFile = "test/examples/coord.tex"
+                        , locLine = 19
+                        , locColumn = 19
                         }
                     )
                     [ Just
@@ -217,10 +217,10 @@
         )
     )
 , BlockLemma
-    ( SourcePos
-        { sourceName = "test/examples/coord.tex"
-        , sourceLine = Pos 24
-        , sourceColumn = Pos 1
+    ( Location
+        { locFile = "test/examples/coord.tex"
+        , locLine = 24
+        , locColumn = 24
         }
     )
     ( Marker "nouns_suchthat" )
@@ -253,10 +253,10 @@
                             ) :| []
                         , verb = VPAdj
                             ( Adj
-                                ( SourcePos
-                                    { sourceName = "test/examples/coord.tex"
-                                    , sourceLine = Pos 25
-                                    , sourceColumn = Pos 41
+                                ( Location
+                                    { locFile = "test/examples/coord.tex"
+                                    , locLine = 25
+                                    , locColumn = 25
                                     }
                                 )
                                 [ Just
@@ -271,10 +271,10 @@
                             ) :| []
                         , verb = VPAdj
                             ( Adj
-                                ( SourcePos
-                                    { sourceName = "test/examples/coord.tex"
-                                    , sourceLine = Pos 25
-                                    , sourceColumn = Pos 56
+                                ( Location
+                                    { locFile = "test/examples/coord.tex"
+                                    , locLine = 25
+                                    , locColumn = 25
                                     }
                                 )
                                 [ Just
@@ -303,10 +303,10 @@
         )
     )
 , BlockLemma
-    ( SourcePos
-        { sourceName = "test/examples/coord.tex"
-        , sourceLine = Pos 30
-        , sourceColumn = Pos 1
+    ( Location
+        { locFile = "test/examples/coord.tex"
+        , locLine = 30
+        , locColumn = 30
         }
     )
     ( Marker "noun_verb" )
@@ -329,10 +329,10 @@
                     )
                 }
             , stmt2 = StmtNoun
-                { pos = SourcePos
-                    { sourceName = "Nowhere"
-                    , sourceLine = Pos 1
-                    , sourceColumn = Pos 1
+                { pos = Location
+                    { locFile = "<nowhere>"
+                    , locLine = -1
+                    , locColumn = -1
                     }
                 , args = TermExpr
                     ( ExprVar
@@ -354,10 +354,10 @@
                     ) ( Nothing )
                     (
                         [ AdjR
-                            ( SourcePos
-                                { sourceName = "test/examples/coord.tex"
-                                , sourceLine = Pos 31
-                                , sourceColumn = Pos 30
+                            ( Location
+                                { locFile = "test/examples/coord.tex"
+                                , locLine = 31
+                                , locColumn = 31
                                 }
                             )
                             [ Just
@@ -378,10 +378,10 @@
         )
     )
 , BlockLemma
-    ( SourcePos
-        { sourceName = "test/examples/coord.tex"
-        , sourceLine = Pos 35
-        , sourceColumn = Pos 1
+    ( Location
+        { locFile = "test/examples/coord.tex"
+        , locLine = 35
+        , locColumn = 35
         }
     )
     ( Marker "adjs" )
@@ -393,20 +393,20 @@
                 ) :| []
             , verb = VPAdj
                 ( Adj
-                    ( SourcePos
-                        { sourceName = "test/examples/coord.tex"
-                        , sourceLine = Pos 36
-                        , sourceColumn = Pos 12
+                    ( Location
+                        { locFile = "test/examples/coord.tex"
+                        , locLine = 36
+                        , locColumn = 36
                         }
                     )
                     [ Just
                         ( Word "foo" )
                     ] [] :|
                     [ Adj
-                        ( SourcePos
-                            { sourceName = "test/examples/coord.tex"
-                            , sourceLine = Pos 36
-                            , sourceColumn = Pos 20
+                        ( Location
+                            { locFile = "test/examples/coord.tex"
+                            , locLine = 36
+                            , locColumn = 36
                             }
                         )
                         [ Just
@@ -418,10 +418,10 @@
         )
     )
 , BlockLemma
-    ( SourcePos
-        { sourceName = "test/examples/coord.tex"
-        , sourceLine = Pos 39
-        , sourceColumn = Pos 1
+    ( Location
+        { locFile = "test/examples/coord.tex"
+        , locLine = 39
+        , locColumn = 39
         }
     )
     ( Marker "are_nouns" )
@@ -432,10 +432,10 @@
             ) NounPhrase
             (
                 [ AdjL
-                    ( SourcePos
-                        { sourceName = "test/examples/coord.tex"
-                        , sourceLine = Pos 40
-                        , sourceColumn = Pos 19
+                    ( Location
+                        { locFile = "test/examples/coord.tex"
+                        , locLine = 40
+                        , locColumn = 40
                         }
                     )
                     [ Just
@@ -458,10 +458,10 @@
             ) ( Nothing ) ( [] ) ( Nothing )
         ]
         ( StmtNoun
-            { pos = SourcePos
-                { sourceName = "Nowhere"
-                , sourceLine = Pos 1
-                , sourceColumn = Pos 1
+            { pos = Location
+                { locFile = "<nowhere>"
+                , locLine = -1
+                , locColumn = -1
                 }
             , args = TermExpr
                 ( ExprVar
@@ -475,10 +475,10 @@
             , noun = NounPhrase
                 (
                     [ AdjL
-                        ( SourcePos
-                            { sourceName = "test/examples/coord.tex"
-                            , sourceLine = Pos 41
-                            , sourceColumn = Pos 26
+                        ( Location
+                            { locFile = "test/examples/coord.tex"
+                            , locLine = 41
+                            , locColumn = 41
                             }
                         )
                         [ Just

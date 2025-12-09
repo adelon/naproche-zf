@@ -1,17 +1,17 @@
 [ BlockLemma
-    ( SourcePos
-        { sourceName = "test/examples/no-reflexive-set.tex"
-        , sourceLine = Pos 1
-        , sourceColumn = Pos 1
+    ( Location
+        { locFile = "test/examples/no-reflexive-set.tex"
+        , locLine = 1
+        , locColumn = 1
         }
     )
     ( Marker "in_irrefl" )
     ( Lemma []
         ( StmtQuantPhrase
-            { pos = SourcePos
-                { sourceName = "test/examples/no-reflexive-set.tex"
-                , sourceLine = Pos 2
-                , sourceColumn = Pos 5
+            { pos = Location
+                { locFile = "test/examples/no-reflexive-set.tex"
+                , locLine = 2
+                , locColumn = 2
                 }
             , qp = QuantPhrase Universally NounPhrase ( [] )
                 ( Noun
@@ -48,25 +48,25 @@
         )
     )
 , BlockProof
-    ( SourcePos
-        { sourceName = "test/examples/no-reflexive-set.tex"
-        , sourceLine = Pos 4
-        , sourceColumn = Pos 1
+    ( Location
+        { locFile = "test/examples/no-reflexive-set.tex"
+        , locLine = 4
+        , locColumn = 4
         }
     )
     ( BySetInduction
-        ( SourcePos
-            { sourceName = "test/examples/no-reflexive-set.tex"
-            , sourceLine = Pos 4
-            , sourceColumn = Pos 21
+        ( Location
+            { locFile = "test/examples/no-reflexive-set.tex"
+            , locLine = 4
+            , locColumn = 4
             }
         ) Nothing
         ( Qed
             ( Just
-                ( SourcePos
-                    { sourceName = "test/examples/no-reflexive-set.tex"
-                    , sourceLine = Pos 10
-                    , sourceColumn = Pos 5
+                ( Location
+                    { locFile = "test/examples/no-reflexive-set.tex"
+                    , locLine = 10
+                    , locColumn = 10
                     }
                 )
             ) JustificationEmpty

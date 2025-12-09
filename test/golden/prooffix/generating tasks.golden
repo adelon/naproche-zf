@@ -3,6 +3,12 @@
     , taskHypotheses = []
     , taskConjectureLabel = Marker "assumetest"
     , taskConjecture = TermSymbol
+        ( Location
+            { locFile = "<nowhere>"
+            , locLine = -1
+            , locColumn = -1
+            }
+        )
         ( SymbolPredicate
             ( PredicateRelation
                 ( Symbol "=" )
@@ -20,6 +26,12 @@
         [
             ( Marker "assumetest1"
             , TermSymbol
+                ( Location
+                    { locFile = "<nowhere>"
+                    , locLine = -1
+                    , locColumn = -1
+                    }
+                )
                 ( SymbolPredicate
                     ( PredicateRelation
                         ( Symbol "=" )
@@ -34,6 +46,12 @@
         ]
     , taskConjectureLabel = Marker "assumetest"
     , taskConjecture = TermSymbol
+        ( Location
+            { locFile = "<nowhere>"
+            , locLine = -1
+            , locColumn = -1
+            }
+        )
         ( SymbolPredicate
             ( PredicateRelation
                 ( Symbol "=" )

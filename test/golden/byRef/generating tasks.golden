@@ -3,6 +3,12 @@
     , taskHypotheses = []
     , taskConjectureLabel = Marker "prop1"
     , taskConjecture = TermSymbol
+        ( Location
+            { locFile = "<nowhere>"
+            , locLine = -1
+            , locColumn = -1
+            }
+        )
         ( SymbolPredicate
             ( PredicateRelation
                 ( Symbol "=" )
@@ -22,6 +28,12 @@
             , Quantified Universally
                 ( Scope
                     ( TermSymbol
+                        ( Location
+                            { locFile = "<nowhere>"
+                            , locLine = -1
+                            , locColumn = -1
+                            }
+                        )
                         ( SymbolPredicate
                             ( PredicateRelation
                                 ( Symbol "=" )
@@ -42,6 +54,12 @@
         ]
     , taskConjectureLabel = Marker "prop2"
     , taskConjecture = TermSymbol
+        ( Location
+            { locFile = "<nowhere>"
+            , locLine = -1
+            , locColumn = -1
+            }
+        )
         ( SymbolPredicate
             ( PredicateRelation
                 ( Symbol "=" )
@@ -61,6 +79,12 @@
             , Quantified Universally
                 ( Scope
                     ( TermSymbol
+                        ( Location
+                            { locFile = "<nowhere>"
+                            , locLine = -1
+                            , locColumn = -1
+                            }
+                        )
                         ( SymbolPredicate
                             ( PredicateRelation
                                 ( Symbol "=" )
@@ -81,6 +105,12 @@
         ]
     , taskConjectureLabel = Marker "prop3"
     , taskConjecture = TermSymbol
+        ( Location
+            { locFile = "<nowhere>"
+            , locLine = -1
+            , locColumn = -1
+            }
+        )
         ( SymbolPredicate
             ( PredicateRelation
                 ( Symbol "=" )
@@ -100,6 +130,12 @@
             , Quantified Universally
                 ( Scope
                     ( TermSymbol
+                        ( Location
+                            { locFile = "<nowhere>"
+                            , locLine = -1
+                            , locColumn = -1
+                            }
+                        )
                         ( SymbolPredicate
                             ( PredicateRelation
                                 ( Symbol "=" )
@@ -122,6 +158,12 @@
     , taskConjecture = Quantified Universally
         ( Scope
             ( TermSymbol
+                ( Location
+                    { locFile = "<nowhere>"
+                    , locLine = -1
+                    , locColumn = -1
+                    }
+                )
                 ( SymbolPredicate
                     ( PredicateRelation
                         ( Symbol "=" )
@@ -147,6 +189,12 @@
             , Quantified Universally
                 ( Scope
                     ( TermSymbol
+                        ( Location
+                            { locFile = "<nowhere>"
+                            , locLine = -1
+                            , locColumn = -1
+                            }
+                        )
                         ( SymbolPredicate
                             ( PredicateRelation
                                 ( Symbol "=" )
@@ -169,6 +217,12 @@
             , Quantified Universally
                 ( Scope
                     ( TermSymbol
+                        ( Location
+                            { locFile = "<nowhere>"
+                            , locLine = -1
+                            , locColumn = -1
+                            }
+                        )
                         ( SymbolPredicate
                             ( PredicateRelation
                                 ( Symbol "=" )
@@ -191,6 +245,12 @@
             , Quantified Universally
                 ( Scope
                     ( TermSymbol
+                        ( Location
+                            { locFile = "<nowhere>"
+                            , locLine = -1
+                            , locColumn = -1
+                            }
+                        )
                         ( SymbolPredicate
                             ( PredicateRelation
                                 ( Symbol "=" )
@@ -213,6 +273,12 @@
             , Quantified Universally
                 ( Scope
                     ( TermSymbol
+                        ( Location
+                            { locFile = "<nowhere>"
+                            , locLine = -1
+                            , locColumn = -1
+                            }
+                        )
                         ( SymbolPredicate
                             ( PredicateRelation
                                 ( Symbol "=" )
@@ -233,6 +299,12 @@
         ]
     , taskConjectureLabel = Marker "prop4"
     , taskConjecture = TermSymbol
+        ( Location
+            { locFile = "<nowhere>"
+            , locLine = -1
+            , locColumn = -1
+            }
+        )
         ( SymbolPredicate
             ( PredicateRelation
                 ( Symbol "=" )
@@ -252,6 +324,12 @@
             , Quantified Universally
                 ( Scope
                     ( TermSymbol
+                        ( Location
+                            { locFile = "<nowhere>"
+                            , locLine = -1
+                            , locColumn = -1
+                            }
+                        )
                         ( SymbolPredicate
                             ( PredicateRelation
                                 ( Symbol "=" )
@@ -274,6 +352,12 @@
             , Quantified Universally
                 ( Scope
                     ( TermSymbol
+                        ( Location
+                            { locFile = "<nowhere>"
+                            , locLine = -1
+                            , locColumn = -1
+                            }
+                        )
                         ( SymbolPredicate
                             ( PredicateRelation
                                 ( Symbol "=" )
@@ -296,6 +380,12 @@
             , Quantified Universally
                 ( Scope
                     ( TermSymbol
+                        ( Location
+                            { locFile = "<nowhere>"
+                            , locLine = -1
+                            , locColumn = -1
+                            }
+                        )
                         ( SymbolPredicate
                             ( PredicateRelation
                                 ( Symbol "=" )
@@ -318,6 +408,12 @@
             , Quantified Universally
                 ( Scope
                     ( TermSymbol
+                        ( Location
+                            { locFile = "<nowhere>"
+                            , locLine = -1
+                            , locColumn = -1
+                            }
+                        )
                         ( SymbolPredicate
                             ( PredicateRelation
                                 ( Symbol "=" )
@@ -338,6 +434,12 @@
         ]
     , taskConjectureLabel = Marker "prop5"
     , taskConjecture = TermSymbol
+        ( Location
+            { locFile = "<nowhere>"
+            , locLine = -1
+            , locColumn = -1
+            }
+        )
         ( SymbolPredicate
             ( PredicateRelation
                 ( Symbol "=" )

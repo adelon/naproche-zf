@@ -1,14 +1,20 @@
 [ BlockAxiom
-    ( SourcePos
-        { sourceName = "test/examples/finite-set-terms.tex"
-        , sourceLine = Pos 1
-        , sourceColumn = Pos 1
+    ( Location
+        { locFile = "test/examples/finite-set-terms.tex"
+        , locLine = 1
+        , locColumn = 1
         }
     )
     ( Marker "cons" )
     ( Axiom []
         ( Connected Equivalence
             ( TermSymbol
+                ( Location
+                    { locFile = "<nowhere>"
+                    , locLine = -1
+                    , locColumn = -1
+                    }
+                )
                 ( SymbolPredicate
                     ( PredicateRelation
                         ( Command "in" )
@@ -17,6 +23,12 @@
                 [ TermVar
                     ( NamedVar "x" )
                 , TermSymbol
+                    ( Location
+                        { locFile = "<nowhere>"
+                        , locLine = -1
+                        , locColumn = -1
+                        }
+                    )
                     ( SymbolMixfix
                         [ Just
                             ( Command "cons" )
@@ -37,6 +49,12 @@
             )
             ( Connected Disjunction
                 ( TermSymbol
+                    ( Location
+                        { locFile = "<nowhere>"
+                        , locLine = -1
+                        , locColumn = -1
+                        }
+                    )
                     ( SymbolPredicate
                         ( PredicateRelation
                             ( Symbol "=" )
@@ -49,6 +67,12 @@
                     ]
                 )
                 ( TermSymbol
+                    ( Location
+                        { locFile = "<nowhere>"
+                        , locLine = -1
+                        , locColumn = -1
+                        }
+                    )
                     ( SymbolPredicate
                         ( PredicateRelation
                             ( Command "in" )
@@ -64,10 +88,10 @@
         )
     )
 , BlockDefn
-    ( SourcePos
-        { sourceName = "test/examples/finite-set-terms.tex"
-        , sourceLine = Pos 5
-        , sourceColumn = Pos 1
+    ( Location
+        { locFile = "test/examples/finite-set-terms.tex"
+        , locLine = 5
+        , locColumn = 5
         }
     )
     ( Marker "unit" )
@@ -76,6 +100,12 @@
             ( Command "unit" )
         ] []
         ( TermSymbol
+            ( Location
+                { locFile = "<nowhere>"
+                , locLine = -1
+                , locColumn = -1
+                }
+            )
             ( SymbolMixfix
                 [ Just
                     ( Command "cons" )
@@ -88,12 +118,24 @@
                 ]
             )
             [ TermSymbol
+                ( Location
+                    { locFile = "<nowhere>"
+                    , locLine = -1
+                    , locColumn = -1
+                    }
+                )
                 ( SymbolMixfix
                     [ Just
                         ( Command "emptyset" )
                     ]
                 ) []
             , TermSymbol
+                ( Location
+                    { locFile = "<nowhere>"
+                    , locLine = -1
+                    , locColumn = -1
+                    }
+                )
                 ( SymbolMixfix
                     [ Just
                         ( Command "emptyset" )
@@ -103,27 +145,45 @@
         )
     )
 , BlockLemma
-    ( SourcePos
-        { sourceName = "test/examples/finite-set-terms.tex"
-        , sourceLine = Pos 9
-        , sourceColumn = Pos 1
+    ( Location
+        { locFile = "test/examples/finite-set-terms.tex"
+        , locLine = 9
+        , locColumn = 9
         }
     )
     ( Marker "emptyset_in_unit" )
     ( Lemma []
         ( TermSymbol
+            ( Location
+                { locFile = "<nowhere>"
+                , locLine = -1
+                , locColumn = -1
+                }
+            )
             ( SymbolPredicate
                 ( PredicateRelation
                     ( Command "in" )
                 )
             )
             [ TermSymbol
+                ( Location
+                    { locFile = "<nowhere>"
+                    , locLine = -1
+                    , locColumn = -1
+                    }
+                )
                 ( SymbolMixfix
                     [ Just
                         ( Command "emptyset" )
                     ]
                 ) []
             , TermSymbol
+                ( Location
+                    { locFile = "<nowhere>"
+                    , locLine = -1
+                    , locColumn = -1
+                    }
+                )
                 ( SymbolMixfix
                     [ Just
                         ( Command "unit" )

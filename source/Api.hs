@@ -42,6 +42,7 @@ import Filter(filterTask)
 import Meaning (meaning, GlossError(..))
 import Megalodon qualified
 import Provers
+import Report.Location
 import Syntax.Abstract qualified as Raw
 import Syntax.Adapt (adaptChunks, scanChunk, ScannedLexicalItem)
 import Syntax.Concrete
@@ -170,7 +171,7 @@ instance Show ParseException where
             let tok = unLocated ltok
                 toks = unLocated <$> ltoks
             in
-                "unconsumed " <> describeToken tok <> " at " <> sourcePosPretty (startPos ltok) <> "\n" <>
+                "unconsumed " <> describeToken tok <> " at " <> prettyLocation (startPos ltok) <> "\n" <>
                 "  " <> unwords (tokToString <$> (tok : take 4 toks)) <> "\n" <>
                 "  " <> replicate (length (tokToString tok)) '^' <> "\n" <>
                 case es of

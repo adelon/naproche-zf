@@ -3,6 +3,12 @@
     , taskHypotheses = []
     , taskConjectureLabel = Marker "trivial"
     , taskConjecture = TermSymbol
+        ( Location
+            { locFile = "<nowhere>"
+            , locLine = -1
+            , locColumn = -1
+            }
+        )
         ( SymbolPredicate
             ( PredicateRelation
                 ( Symbol "=" )
@@ -22,6 +28,12 @@
             , Quantified Universally
                 ( Scope
                     ( TermSymbol
+                        ( Location
+                            { locFile = "<nowhere>"
+                            , locLine = -1
+                            , locColumn = -1
+                            }
+                        )
                         ( SymbolPredicate
                             ( PredicateRelation
                                 ( Symbol "=" )
@@ -42,6 +54,12 @@
         ]
     , taskConjectureLabel = Marker "irrelevant"
     , taskConjecture = TermSymbol
+        ( Location
+            { locFile = "<nowhere>"
+            , locLine = -1
+            , locColumn = -1
+            }
+        )
         ( SymbolPredicate
             ( PredicateRelation
                 ( Symbol "=" )
@@ -61,6 +79,12 @@
             , Quantified Universally
                 ( Scope
                     ( TermSymbol
+                        ( Location
+                            { locFile = "<nowhere>"
+                            , locLine = -1
+                            , locColumn = -1
+                            }
+                        )
                         ( SymbolPredicate
                             ( PredicateRelation
                                 ( Symbol "=" )
@@ -83,6 +107,12 @@
             , Quantified Universally
                 ( Scope
                     ( TermSymbol
+                        ( Location
+                            { locFile = "<nowhere>"
+                            , locLine = -1
+                            , locColumn = -1
+                            }
+                        )
                         ( SymbolPredicate
                             ( PredicateRelation
                                 ( Symbol "=" )
@@ -103,6 +133,12 @@
         ]
     , taskConjectureLabel = Marker "alsotrivial"
     , taskConjecture = TermSymbol
+        ( Location
+            { locFile = "<nowhere>"
+            , locLine = -1
+            , locColumn = -1
+            }
+        )
         ( SymbolPredicate
             ( PredicateRelation
                 ( Symbol "=" )
@@ -122,6 +158,12 @@
             , Quantified Universally
                 ( Scope
                     ( TermSymbol
+                        ( Location
+                            { locFile = "<nowhere>"
+                            , locLine = -1
+                            , locColumn = -1
+                            }
+                        )
                         ( SymbolPredicate
                             ( PredicateRelation
                                 ( Symbol "=" )
@@ -142,6 +184,12 @@
         ]
     , taskConjectureLabel = Marker "alsotrivial"
     , taskConjecture = TermSymbol
+        ( Location
+            { locFile = "<nowhere>"
+            , locLine = -1
+            , locColumn = -1
+            }
+        )
         ( SymbolPredicate
             ( PredicateRelation
                 ( Symbol "=" )
@@ -161,6 +209,12 @@
             , Quantified Universally
                 ( Scope
                     ( TermSymbol
+                        ( Location
+                            { locFile = "<nowhere>"
+                            , locLine = -1
+                            , locColumn = -1
+                            }
+                        )
                         ( SymbolPredicate
                             ( PredicateRelation
                                 ( Symbol "=" )
@@ -183,6 +237,12 @@
             , Quantified Universally
                 ( Scope
                     ( TermSymbol
+                        ( Location
+                            { locFile = "<nowhere>"
+                            , locLine = -1
+                            , locColumn = -1
+                            }
+                        )
                         ( SymbolPredicate
                             ( PredicateRelation
                                 ( Symbol "=" )
@@ -203,6 +263,12 @@
         ,
             ( Marker "alsotrivial1"
             , TermSymbol
+                ( Location
+                    { locFile = "<nowhere>"
+                    , locLine = -1
+                    , locColumn = -1
+                    }
+                )
                 ( SymbolPredicate
                     ( PredicateRelation
                         ( Symbol "=" )
@@ -217,6 +283,12 @@
         ]
     , taskConjectureLabel = Marker "alsotrivial"
     , taskConjecture = TermSymbol
+        ( Location
+            { locFile = "<nowhere>"
+            , locLine = -1
+            , locColumn = -1
+            }
+        )
         ( SymbolPredicate
             ( PredicateRelation
                 ( Symbol "=" )
@@ -236,6 +308,12 @@
             , Quantified Universally
                 ( Scope
                     ( TermSymbol
+                        ( Location
+                            { locFile = "<nowhere>"
+                            , locLine = -1
+                            , locColumn = -1
+                            }
+                        )
                         ( SymbolPredicate
                             ( PredicateRelation
                                 ( Symbol "=" )
@@ -258,6 +336,12 @@
             , Quantified Universally
                 ( Scope
                     ( TermSymbol
+                        ( Location
+                            { locFile = "<nowhere>"
+                            , locLine = -1
+                            , locColumn = -1
+                            }
+                        )
                         ( SymbolPredicate
                             ( PredicateRelation
                                 ( Symbol "=" )
@@ -280,6 +364,12 @@
             , Quantified Universally
                 ( Scope
                     ( TermSymbol
+                        ( Location
+                            { locFile = "<nowhere>"
+                            , locLine = -1
+                            , locColumn = -1
+                            }
+                        )
                         ( SymbolPredicate
                             ( PredicateRelation
                                 ( Symbol "=" )
@@ -300,6 +390,12 @@
         ]
     , taskConjectureLabel = Marker "trivial_biconditionals"
     , taskConjecture = TermSymbol
+        ( Location
+            { locFile = "<nowhere>"
+            , locLine = -1
+            , locColumn = -1
+            }
+        )
         ( SymbolPredicate
             ( PredicateRelation
                 ( Symbol "=" )
@@ -319,6 +415,12 @@
             , Quantified Universally
                 ( Scope
                     ( TermSymbol
+                        ( Location
+                            { locFile = "<nowhere>"
+                            , locLine = -1
+                            , locColumn = -1
+                            }
+                        )
                         ( SymbolPredicate
                             ( PredicateRelation
                                 ( Symbol "=" )
@@ -339,6 +441,12 @@
         ]
     , taskConjectureLabel = Marker "trivial_biconditionals"
     , taskConjecture = TermSymbol
+        ( Location
+            { locFile = "<nowhere>"
+            , locLine = -1
+            , locColumn = -1
+            }
+        )
         ( SymbolPredicate
             ( PredicateRelation
                 ( Symbol "=" )
@@ -358,6 +466,12 @@
             , Quantified Universally
                 ( Scope
                     ( TermSymbol
+                        ( Location
+                            { locFile = "<nowhere>"
+                            , locLine = -1
+                            , locColumn = -1
+                            }
+                        )
                         ( SymbolPredicate
                             ( PredicateRelation
                                 ( Symbol "=" )
@@ -380,6 +494,12 @@
             , Quantified Universally
                 ( Scope
                     ( TermSymbol
+                        ( Location
+                            { locFile = "<nowhere>"
+                            , locLine = -1
+                            , locColumn = -1
+                            }
+                        )
                         ( SymbolPredicate
                             ( PredicateRelation
                                 ( Symbol "=" )
@@ -402,6 +522,12 @@
             , Quantified Universally
                 ( Scope
                     ( TermSymbol
+                        ( Location
+                            { locFile = "<nowhere>"
+                            , locLine = -1
+                            , locColumn = -1
+                            }
+                        )
                         ( SymbolPredicate
                             ( PredicateRelation
                                 ( Symbol "=" )
@@ -423,6 +549,12 @@
             ( Marker "trivial_biconditionals1"
             , Connected Equivalence
                 ( TermSymbol
+                    ( Location
+                        { locFile = "<nowhere>"
+                        , locLine = -1
+                        , locColumn = -1
+                        }
+                    )
                     ( SymbolPredicate
                         ( PredicateRelation
                             ( Symbol "=" )
@@ -435,6 +567,12 @@
                     ]
                 )
                 ( TermSymbol
+                    ( Location
+                        { locFile = "<nowhere>"
+                        , locLine = -1
+                        , locColumn = -1
+                        }
+                    )
                     ( SymbolPredicate
                         ( PredicateRelation
                             ( Symbol "=" )
@@ -450,6 +588,12 @@
         ]
     , taskConjectureLabel = Marker "trivial_biconditionals"
     , taskConjecture = TermSymbol
+        ( Location
+            { locFile = "<nowhere>"
+            , locLine = -1
+            , locColumn = -1
+            }
+        )
         ( SymbolPredicate
             ( PredicateRelation
                 ( Symbol "=" )

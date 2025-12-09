@@ -4,6 +4,7 @@ import Base hiding (null)
 import Syntax.Internal
 import Syntax.Lexicon
 import Checking (makeReplacementIff)
+import Report.Location
 
 import Bound.Scope
 import Bound.Var
@@ -22,7 +23,7 @@ closure asms stmt = contraction (forallClosure mempty (makeConjunction asms `Imp
 
 unAsm :: Asm -> Formula
 unAsm (Asm phi) = phi
-unAsm (AsmStruct x sp) = TermSymbol (SymbolPredicate (PredicateNounStruct sp)) [TermVar x]
+unAsm (AsmStruct x sp) = TermSymbol Nowhere (SymbolPredicate (PredicateNounStruct sp)) [TermVar x]
 
 buildBlocks :: Lexicon -> [Block] -> TextBuilder
 buildBlocks lexi = \case
@@ -73,17 +74,17 @@ buildFormula :: Lexicon -> Formula -> TextBuilder
 buildFormula lexi = \case
     TermVar x -> buildVarSymbol x
     -- We handle eq in a special manner to avoid having to specify the type of the equality.
-    TermSymbol f [x,y] | isEqSymbol f ->
+    TermSymbol _pos f [x,y] | isEqSymbol f ->
         char '(' <> buildFormula lexi x <> text " = " <> buildFormula lexi y <> char ')'
-    TermSymbol f [x,y] | isDiseqSymbol f ->
+    TermSymbol _pos f [x,y] | isDiseqSymbol f ->
         char '(' <> buildFormula lexi x <> text " <> " <> buildFormula lexi y <> char ')'
-    TermSymbol f es ->
+    TermSymbol _pos f es ->
         let es' = buildSymbol lexi f : (buildFormula lexi <$> es)
         in char '(' <> intercalate (char ' ') es' <> char ')'
     Apply e es ->
         let es' = NonEmpty.cons (buildFormula lexi e) (buildFormula lexi <$> es)
         in char '(' <> intercalate (char ' ') es' <> char ')'
-    Not e -> text "~(" <> buildFormula lexi e <> char ')'
+    Not _pos e -> text "~(" <> buildFormula lexi e <> char ')'
     Connected conn e1 e2 ->
         char '(' <> buildConn conn (buildFormula lexi e1) (buildFormula lexi e2) <> char ')'
     Quantified quant body ->

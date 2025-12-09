@@ -1,23 +1,23 @@
 [ BlockLemma
-    ( SourcePos
-        { sourceName = "test/examples/indefinite-terms.tex"
-        , sourceLine = Pos 1
-        , sourceColumn = Pos 1
+    ( Location
+        { locFile = "test/examples/indefinite-terms.tex"
+        , locLine = 1
+        , locColumn = 1
         }
     )
     ( Marker "indefinite_test_forall" )
     ( Lemma []
         ( StmtNoun
-            { pos = SourcePos
-                { sourceName = "test/examples/indefinite-terms.tex"
-                , sourceLine = Pos 2
-                , sourceColumn = Pos 5
+            { pos = Location
+                { locFile = "test/examples/indefinite-terms.tex"
+                , locLine = 2
+                , locColumn = 2
                 }
             , args = TermQuantified Universally
-                ( SourcePos
-                    { sourceName = "test/examples/indefinite-terms.tex"
-                    , sourceLine = Pos 2
-                    , sourceColumn = Pos 5
+                ( Location
+                    { locFile = "test/examples/indefinite-terms.tex"
+                    , locLine = 2
+                    , locColumn = 2
                     }
                 ) NounPhrase ( [] )
                 ( Noun
@@ -51,25 +51,25 @@
         )
     )
 , BlockLemma
-    ( SourcePos
-        { sourceName = "test/examples/indefinite-terms.tex"
-        , sourceLine = Pos 5
-        , sourceColumn = Pos 1
+    ( Location
+        { locFile = "test/examples/indefinite-terms.tex"
+        , locLine = 5
+        , locColumn = 5
         }
     )
     ( Marker "indefinite_test_exists" )
     ( Lemma []
         ( StmtNoun
-            { pos = SourcePos
-                { sourceName = "test/examples/indefinite-terms.tex"
-                , sourceLine = Pos 6
-                , sourceColumn = Pos 5
+            { pos = Location
+                { locFile = "test/examples/indefinite-terms.tex"
+                , locLine = 6
+                , locColumn = 6
                 }
             , args = TermQuantified Existentially
-                ( SourcePos
-                    { sourceName = "test/examples/indefinite-terms.tex"
-                    , sourceLine = Pos 6
-                    , sourceColumn = Pos 5
+                ( Location
+                    { locFile = "test/examples/indefinite-terms.tex"
+                    , locLine = 6
+                    , locColumn = 6
                     }
                 ) NounPhrase ( [] )
                 ( Noun

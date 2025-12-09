@@ -89,7 +89,7 @@ weightFromFrequency n = 1 + 2 / log (int2Float n + 1)
 symbols :: ExprOf a -> Set Symbol
 symbols = \case
     TermVar{} -> Set.empty
-    TermSymbol sym es -> Set.insert sym (Set.unions (fmap symbols es))
+    TermSymbol _pos sym es -> Set.insert sym (Set.unions (fmap symbols es))
     TermSep _ e scope -> symbols e `Set.union` symbols (fromScope scope)
     ReplacePred _ _ e scope -> symbols e `Set.union` symbols (fromScope scope)
     ReplaceFun es scope cond -> (Set.unions (fmap (symbols . snd) es)) `Set.union` symbols (fromScope scope) `Set.union` symbols (fromScope cond)
@@ -97,13 +97,13 @@ symbols = \case
     Lambda scope -> symbols (fromScope scope)
     Quantified _ scope -> symbols (fromScope scope)
     PropositionalConstant{} -> Set.empty
-    Not e -> symbols e
+    Not _pos e -> symbols e
     _ -> error "Filter.symbols"
 
 symbolTable :: ExprOf a -> Map Symbol Int
 symbolTable = \case
     TermVar{} -> Map.empty
-    TermSymbol sym es -> insert sym 1 (unions (fmap symbolTable es))
+    TermSymbol _pos sym es -> insert sym 1 (unions (fmap symbolTable es))
     TermSep _ e scope -> symbolTable e `union` symbolTable (fromScope scope)
     ReplacePred _ _ e scope -> symbolTable e `union` symbolTable (fromScope scope)
     ReplaceFun es scope cond -> (unions (fmap (symbolTable . snd) (toList es))) `union` symbolTable (fromScope scope) `union` symbolTable (fromScope cond)
@@ -111,7 +111,7 @@ symbolTable = \case
     Lambda scope -> symbolTable (fromScope scope)
     Quantified _ scope -> symbolTable (fromScope scope)
     PropositionalConstant{} -> Map.empty
-    Not e -> symbolTable e
+    Not _pos e -> symbolTable e
     _ -> error "Filter.symbolTable"
     where
         union = Map.unionWith (+)

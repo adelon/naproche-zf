@@ -1,8 +1,8 @@
 [ BlockLemma
-    ( SourcePos
-        { sourceName = "test/examples/formula.tex"
-        , sourceLine = Pos 1
-        , sourceColumn = Pos 1
+    ( Location
+        { locFile = "test/examples/formula.tex"
+        , locLine = 1
+        , locColumn = 1
         }
     )
     ( Marker "formula_test_forall" )
@@ -44,10 +44,10 @@
         )
     )
 , BlockLemma
-    ( SourcePos
-        { sourceName = "test/examples/formula.tex"
-        , sourceLine = Pos 5
-        , sourceColumn = Pos 1
+    ( Location
+        { locFile = "test/examples/formula.tex"
+        , locLine = 5
+        , locColumn = 5
         }
     )
     ( Marker "formula_test_exists" )
@@ -74,10 +74,10 @@
         )
     )
 , BlockLemma
-    ( SourcePos
-        { sourceName = "test/examples/formula.tex"
-        , sourceLine = Pos 9
-        , sourceColumn = Pos 1
+    ( Location
+        { locFile = "test/examples/formula.tex"
+        , locLine = 9
+        , locColumn = 9
         }
     )
     ( Marker "formula_test_not_exists" )
@@ -105,10 +105,10 @@
                     )
                 }
             , stmt2 = StmtNeg
-                { pos = SourcePos
-                    { sourceName = "test/examples/formula.tex"
-                    , sourceLine = Pos 10
-                    , sourceColumn = Pos 42
+                { pos = Location
+                    { locFile = "test/examples/formula.tex"
+                    , locLine = 10
+                    , locColumn = 10
                     }
                 , stmt = StmtFormula
                     { formula = FormulaQuantified Existentially

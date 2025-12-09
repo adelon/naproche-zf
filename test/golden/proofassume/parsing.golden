@@ -1,8 +1,8 @@
 [ BlockLemma
-    ( SourcePos
-        { sourceName = "test/examples/proofassume.tex"
-        , sourceLine = Pos 1
-        , sourceColumn = Pos 1
+    ( Location
+        { locFile = "test/examples/proofassume.tex"
+        , locLine = 1
+        , locColumn = 1
         }
     )
     ( Marker "assumetest" )
@@ -10,10 +10,10 @@
         ( StmtConnected
             { conn = Implication
             , mpos = Just
-                ( SourcePos
-                    { sourceName = "test/examples/proofassume.tex"
-                    , sourceLine = Pos 2
-                    , sourceColumn = Pos 5
+                ( Location
+                    { locFile = "test/examples/proofassume.tex"
+                    , locLine = 2
+                    , locColumn = 2
                     }
                 )
             , stmt1 = StmtFormula
@@ -48,17 +48,17 @@
         )
     )
 , BlockProof
-    ( SourcePos
-        { sourceName = "test/examples/proofassume.tex"
-        , sourceLine = Pos 4
-        , sourceColumn = Pos 1
+    ( Location
+        { locFile = "test/examples/proofassume.tex"
+        , locLine = 4
+        , locColumn = 4
         }
     )
     ( Assume
-        ( SourcePos
-            { sourceName = "test/examples/proofassume.tex"
-            , sourceLine = Pos 5
-            , sourceColumn = Pos 5
+        ( Location
+            { locFile = "test/examples/proofassume.tex"
+            , locLine = 5
+            , locColumn = 5
             }
         )
         ( StmtFormula
@@ -77,10 +77,10 @@
             }
         )
         ( Have
-            ( SourcePos
-                { sourceName = "test/examples/proofassume.tex"
-                , sourceLine = Pos 6
-                , sourceColumn = Pos 5
+            ( Location
+                { locFile = "test/examples/proofassume.tex"
+                , locLine = 6
+                , locColumn = 6
                 }
             ) Nothing
             ( StmtFormula
@@ -101,10 +101,10 @@
         )
     )
 , BlockLemma
-    ( SourcePos
-        { sourceName = "test/examples/proofassume.tex"
-        , sourceLine = Pos 9
-        , sourceColumn = Pos 1
+    ( Location
+        { locFile = "test/examples/proofassume.tex"
+        , locLine = 9
+        , locColumn = 9
         }
     )
     ( Marker "assumetesttwo" )
@@ -112,10 +112,10 @@
         ( StmtConnected
             { conn = Implication
             , mpos = Just
-                ( SourcePos
-                    { sourceName = "test/examples/proofassume.tex"
-                    , sourceLine = Pos 10
-                    , sourceColumn = Pos 5
+                ( Location
+                    { locFile = "test/examples/proofassume.tex"
+                    , locLine = 10
+                    , locColumn = 10
                     }
                 )
             , stmt1 = StmtConnected
@@ -168,17 +168,17 @@
         )
     )
 , BlockProof
-    ( SourcePos
-        { sourceName = "test/examples/proofassume.tex"
-        , sourceLine = Pos 12
-        , sourceColumn = Pos 1
+    ( Location
+        { locFile = "test/examples/proofassume.tex"
+        , locLine = 12
+        , locColumn = 12
         }
     )
     ( Assume
-        ( SourcePos
-            { sourceName = "test/examples/proofassume.tex"
-            , sourceLine = Pos 13
-            , sourceColumn = Pos 5
+        ( Location
+            { locFile = "test/examples/proofassume.tex"
+            , locLine = 13
+            , locColumn = 13
             }
         )
         ( StmtFormula
@@ -197,10 +197,10 @@
             }
         )
         ( Assume
-            ( SourcePos
-                { sourceName = "test/examples/proofassume.tex"
-                , sourceLine = Pos 14
-                , sourceColumn = Pos 5
+            ( Location
+                { locFile = "test/examples/proofassume.tex"
+                , locLine = 14
+                , locColumn = 14
                 }
             )
             ( StmtFormula
@@ -219,10 +219,10 @@
                 }
             )
             ( Have
-                ( SourcePos
-                    { sourceName = "test/examples/proofassume.tex"
-                    , sourceLine = Pos 15
-                    , sourceColumn = Pos 5
+                ( Location
+                    { locFile = "test/examples/proofassume.tex"
+                    , locLine = 15
+                    , locColumn = 15
                     }
                 ) Nothing
                 ( StmtFormula

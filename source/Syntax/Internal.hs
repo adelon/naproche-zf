@@ -17,6 +17,7 @@ import Base
 import Syntax.Lexicon (pattern PairSymbol, pattern ConsSymbol)
 import Syntax.LexicalPhrase (LexicalPhrase, SgPl(..), unsafeReadPhrase, unsafeReadPhraseSgPl)
 import Syntax.Token (Token(..))
+import Report.Location
 
 import Syntax.Abstract
     ( Chain(..)
@@ -31,7 +32,7 @@ import Syntax.Abstract
     , StructPhrase
     , Justification(..)
     , Marker(..)
-    , pattern CarrierSymbol, pattern ConsSymbol
+    , pattern CarrierSymbol, pattern ConsSymbol, pattern ElementSymbol
     )
 
 import Bound
@@ -39,11 +40,10 @@ import Bound.Scope
 import Data.Deriving (deriveShow1, deriveEq1, deriveOrd1)
 import Data.Hashable.Lifted
 import Data.HashMap.Strict qualified as HM
-import Data.Maybe
-import Data.Set qualified as Set
 import Data.List qualified as List
 import Data.List.NonEmpty qualified as NonEmpty
-import Text.Megaparsec.Pos (SourcePos)
+import Data.Maybe
+import Data.Set qualified as Set
 
 -- | 'Symbol's can be used as function and relation symbols.
 data Symbol
@@ -80,7 +80,7 @@ data ExprOf a
     -- ^ Fresh constants disjoint from all user-named identifiers.
     -- These can be used to eliminate higher-order constructs.
     --
-    | TermSymbol Symbol [ExprOf a]
+    | TermSymbol Location Symbol [ExprOf a]
     -- ^ Application of a symbol (including function and predicate symbols).
     | TermSymbolStruct StructSymbol (Maybe (ExprOf a))
     --
@@ -116,7 +116,7 @@ data ExprOf a
     | Lambda (Scope VarSymbol ExprOf a)
     | Quantified Quantifier (Scope VarSymbol ExprOf a)
     | PropositionalConstant PropositionalConstant
-    | Not (ExprOf a)
+    | Not Location (ExprOf a)
     deriving (Functor, Foldable, Traversable)
 
 data ReplacementVar = ReplacementDomVar | ReplacementRangeVar deriving (Show, Eq, Ord, Generic, Hashable)
@@ -138,7 +138,6 @@ deriving instance Hashable1 ExprOf
 
 deriving instance Hashable a =>  Hashable (ExprOf a)
 
-
 abstractVarSymbol :: VarSymbol -> ExprOf VarSymbol -> Scope VarSymbol ExprOf VarSymbol
 abstractVarSymbol x = abstract (\y -> if x == y then Just x else Nothing)
 
@@ -159,17 +158,17 @@ annotateWith = go
                 TermSymbolStruct symb (TermVar <$> HM.lookup symb ops)
             e@TermSymbolStruct{} ->
                 e
-            a `IsElementOf` TermVar x | x `Set.member` labels ->
-                go labels ops a `IsElementOf` TermSymbolStruct CarrierSymbol (Just (TermVar x))
-            Not a ->
-                Not (go labels ops a)
+            IsElementOf pos1 a (TermVar x) | x `Set.member` labels ->
+                IsElementOf pos1 (go labels ops a) (TermSymbolStruct CarrierSymbol (Just (TermVar x)))
+            Not pos a ->
+                Not pos (go labels ops a)
             Connected conn a b ->
                 Connected conn (go labels ops a) (go labels ops b)
             Quantified quant body ->
                 Quantified quant (toScope (go (Set.map F labels) (F <$> ops) (fromScope body)))
             e@TermVar{} -> e
-            TermSymbol symb args ->
-                TermSymbol symb (go labels ops <$> args)
+            TermSymbol pos symb args ->
+                TermSymbol pos symb (go labels ops <$> args)
             Apply e1 args ->
                 Apply (go labels ops e1) (go labels ops <$> args)
             TermSep vs e scope ->
@@ -194,39 +193,39 @@ containsHigherOrderConstructs = \case
     Apply{} -> False -- FIXME: this is a lie in general; we need to add sortchecking to determine this.
     TermVar{} -> False
     PropositionalConstant{} -> False
-    TermSymbol _ es -> any containsHigherOrderConstructs es
-    Not e -> containsHigherOrderConstructs e
+    TermSymbol pos _ es -> any containsHigherOrderConstructs es
+    Not pos e -> containsHigherOrderConstructs e
     Connected _ e1 e2 -> containsHigherOrderConstructs e1 || containsHigherOrderConstructs e2
     Quantified _ scope -> containsHigherOrderConstructs (fromScope scope)
     TermSymbolStruct _ _ -> False
 
-pattern TermOp :: FunctionSymbol -> [ExprOf a] -> ExprOf a
-pattern TermOp op es = TermSymbol (SymbolMixfix op) es
+pattern TermOp :: Location -> FunctionSymbol -> [ExprOf a] -> ExprOf a
+pattern TermOp pos op es = TermSymbol pos (SymbolMixfix op) es
 
-pattern TermConst :: Token -> ExprOf a
-pattern TermConst c = TermOp [Just c] []
+pattern TermConst :: Location -> Token -> ExprOf a
+pattern TermConst pos c = TermOp pos [Just c] []
 
-pattern TermPair :: ExprOf a -> ExprOf a -> ExprOf a
-pattern TermPair e1 e2 = TermOp PairSymbol [e1, e2]
+pattern TermPair :: Location -> ExprOf a -> ExprOf a -> ExprOf a
+pattern TermPair pos e1 e2 = TermOp pos PairSymbol [e1, e2]
 
-pattern Atomic :: Predicate -> [ExprOf a] -> ExprOf a
-pattern Atomic symbol args = TermSymbol (SymbolPredicate symbol) args
+pattern Atomic :: Location -> Predicate -> [ExprOf a] -> ExprOf a
+pattern Atomic pos symbol args = TermSymbol pos (SymbolPredicate symbol) args
 
 
-pattern FormulaAdj :: ExprOf a -> LexicalPhrase -> [ExprOf a] -> ExprOf a
-pattern FormulaAdj e adj es = Atomic (PredicateAdj adj) (e:es)
+pattern FormulaAdj :: Location -> ExprOf a -> LexicalPhrase -> [ExprOf a] -> ExprOf a
+pattern FormulaAdj pos e adj es = Atomic pos (PredicateAdj adj) (e:es)
 
-pattern FormulaVerb :: ExprOf a -> SgPl LexicalPhrase -> [ExprOf a] -> ExprOf a
-pattern FormulaVerb e verb es = Atomic (PredicateVerb verb) (e:es)
+pattern FormulaVerb :: Location -> ExprOf a -> SgPl LexicalPhrase -> [ExprOf a] -> ExprOf a
+pattern FormulaVerb pos e verb es = Atomic pos (PredicateVerb verb) (e:es)
 
-pattern FormulaNoun :: ExprOf a -> SgPl LexicalPhrase -> [ExprOf a] -> ExprOf a
-pattern FormulaNoun e noun es = Atomic (PredicateNoun noun) (e:es)
+pattern FormulaNoun :: Location -> ExprOf a -> SgPl LexicalPhrase -> [ExprOf a] -> ExprOf a
+pattern FormulaNoun pos e noun es = Atomic pos (PredicateNoun noun) (e:es)
 
-relationNoun :: Expr -> Formula
-relationNoun arg = FormulaNoun arg (unsafeReadPhraseSgPl "relation[/s]") []
+relationNoun :: Location -> Expr -> Formula
+relationNoun pos arg = FormulaNoun pos arg (unsafeReadPhraseSgPl "relation[/s]") []
 
-rightUniqueAdj :: Expr -> Formula
-rightUniqueAdj arg = FormulaAdj arg (unsafeReadPhrase "right-unique") []
+rightUniqueAdj :: Location -> Expr -> Formula
+rightUniqueAdj pos arg = FormulaAdj pos arg (unsafeReadPhrase "right-unique") []
 
 -- | Untyped quantification.
 pattern Forall, Exists :: Scope VarSymbol ExprOf a -> ExprOf a
@@ -279,35 +278,41 @@ pattern Top :: ExprOf a
 pattern Top = PropositionalConstant IsTop
 
 
-pattern Relation :: RelationSymbol -> [ExprOf a] -> ExprOf a
-pattern Relation rel es = Atomic (PredicateRelation rel) es
+pattern Relation :: Location -> RelationSymbol -> [ExprOf a] -> ExprOf a
+pattern Relation pos rel es = Atomic pos (PredicateRelation rel) es
 
 -- | Membership.
-pattern IsElementOf :: ExprOf a -> ExprOf a -> ExprOf a
-pattern IsElementOf e1 e2 = Atomic (PredicateRelation (Command "in")) (e1 : [e2])
+pattern IsElementOf :: Location -> ExprOf a -> ExprOf a -> ExprOf a
+pattern IsElementOf pos e1 e2 = Relation pos ElementSymbol (e1 : [e2])
+
+isElementOf :: ExprOf a -> ExprOf a -> ExprOf a
+isElementOf e1 e2 = Relation Nowhere ElementSymbol (e1 : [e2])
 
 -- | Membership.
-pattern IsNotElementOf :: ExprOf a -> ExprOf a -> ExprOf a
-pattern IsNotElementOf e1 e2 = Not (IsElementOf e1 e2)
+isNotElementOf :: Location -> ExprOf a -> ExprOf a -> ExprOf a
+isNotElementOf pos e1 e2 = Not pos (IsElementOf pos e1 e2)
 
 -- | Subset relation (non-strict).
-pattern IsSubsetOf :: ExprOf a -> ExprOf a -> ExprOf a
-pattern IsSubsetOf e1 e2 = Atomic (PredicateRelation (Command "subseteq")) (e1 : [e2])
+pattern IsSubsetOf :: Location -> ExprOf a -> ExprOf a -> ExprOf a
+pattern IsSubsetOf pos e1 e2 = Atomic pos (PredicateRelation (Command "subseteq")) (e1 : [e2])
 
 -- | Ordinal predicate.
-pattern IsOrd :: ExprOf a -> ExprOf a
-pattern IsOrd e1 = Atomic (PredicateNoun (SgPl [Just "ordinal"] [Just "ordinals"])) [e1]
+pattern IsOrd :: Location -> ExprOf a -> ExprOf a
+pattern IsOrd pos e1 = Atomic pos (PredicateNoun (SgPl [Just "ordinal"] [Just "ordinals"])) [e1]
 
 -- | Equality.
-pattern Equals :: ExprOf a -> ExprOf a -> ExprOf a
-pattern Equals e1 e2 = Atomic (PredicateRelation (Symbol "=")) (e1 : [e2])
+pattern Equals :: Location -> ExprOf a -> ExprOf a -> ExprOf a
+pattern Equals pos e1 e2 = Atomic pos (PredicateRelation (Symbol "=")) (e1 : [e2])
+
+equals :: ExprOf a -> ExprOf a -> ExprOf a
+equals e1 e2 = Atomic Nowhere (PredicateRelation (Symbol "=")) (e1 : [e2])
 
 -- | Disequality.
-pattern NotEquals :: ExprOf a -> ExprOf a -> ExprOf a
-pattern NotEquals e1 e2 = Atomic (PredicateRelation (Command "neq")) (e1 : [e2])
+pattern NotEquals :: Location -> ExprOf a -> ExprOf a -> ExprOf a
+pattern NotEquals pos e1 e2 = Atomic pos (PredicateRelation (Command "neq")) (e1 : [e2])
 
-pattern EmptySet :: ExprOf a
-pattern EmptySet = TermSymbol (SymbolMixfix [Just (Command "emptyset")]) []
+pattern EmptySet :: Location -> ExprOf a
+pattern EmptySet pos = TermSymbol pos (SymbolMixfix [Just (Command "emptyset")]) []
 
 makeConjunction :: [ExprOf a] -> ExprOf a
 makeConjunction = \case
@@ -330,19 +335,19 @@ makeXor = \case
     es -> List.foldl1' Xor es
 
 finiteSet :: NonEmpty (ExprOf a) -> ExprOf a
-finiteSet = foldr cons EmptySet
+finiteSet = foldr cons (EmptySet Nowhere)
     where
-        cons x y = TermSymbol (SymbolMixfix ConsSymbol) [x, y]
+        cons x y = TermSymbol Nowhere (SymbolMixfix ConsSymbol) [x, y]
 
 isPositive :: ExprOf a -> Bool
 isPositive = \case
-    Not _ -> False
+    Not _ _ -> False
     _ -> True
 
 dual :: ExprOf a -> ExprOf a
 dual = \case
-    Not f -> f
-    f -> Not f
+    Not _pos f -> f
+    f -> Not Nowhere f
 
 
 
@@ -407,34 +412,34 @@ data Proof
     = Omitted
     -- ^ Ends a proof without further verification.
     -- This results in a “gap” in the formalization.
-    | Qed {mpos :: Maybe SourcePos, by :: Justification}
+    | Qed {mpos :: Maybe Location, by :: Justification}
     -- ^ Ends of a proof, leaving automation to discharge the current goal using the given justification.
-    | ByContradiction SourcePos Proof
+    | ByContradiction Location Proof
     -- ^ Take the dual of the current goal as an assumption and
     -- set the goal to absurdity.
-    | BySetInduction SourcePos (Maybe Term) Proof
+    | BySetInduction Location (Maybe Term) Proof
     -- ^ ∈-induction.
-    | ByOrdInduction SourcePos Proof
+    | ByOrdInduction Location Proof
     -- ^ Transfinite induction for ordinals.
-    | Assume SourcePos Formula Proof
+    | Assume Location Formula Proof
     -- ^ Simplify goals that are implications or disjunctions.
-    | Fix SourcePos (NonEmpty VarSymbol) Formula Proof
+    | Fix Location (NonEmpty VarSymbol) Formula Proof
     -- ^ Simplify universal goals (with an optional bound or such that statement)
-    | Take SourcePos (NonEmpty VarSymbol) Formula Justification Proof
+    | Take Location (NonEmpty VarSymbol) Formula Justification Proof
     -- ^ Use existential assumptions.
-    | Suffices SourcePos Formula Justification Proof
-    | ByCase SourcePos [Case]
+    | Suffices Location Formula Justification Proof
+    | ByCase Location [Case]
     -- ^ Proof by case. Disjunction of the case hypotheses 'Case'
     -- must hold for this step to succeed. Each case starts a subproof,
     -- keeping the same goal but adding the case hypothesis as an assumption.
     -- Often this will be a classical split between /@P@/ and /@not P@/, in
     -- which case the proof that /@P or not P@/ holds is easy.
     --
-    | Have SourcePos Formula Justification Proof
+    | Have Location Formula Justification Proof
     -- ^ An affirmation, e.g.: /@We have \<stmt\> by \<ref\>@/.
     --
-    | Calc SourcePos CalcQuantifier Calc Proof
-    | Subclaim SourcePos Formula Proof Proof
+    | Calc Location CalcQuantifier Calc Proof
+    | Subclaim Location Formula Proof Proof
     -- ^ A claim is a sublemma with its own proof:
     --
     -- /@Show \<goal stmt\>. \<steps\>. \<continue other proof\>.@/
@@ -442,10 +447,10 @@ data Proof
     -- A successful first proof adds the claimed formula as an assumption
     -- for the remaining proof.
     --
-    | Define SourcePos VarSymbol Term Proof
-    | DefineFunction SourcePos VarSymbol VarSymbol Term Term Proof
+    | Define Location VarSymbol Term Proof
+    | DefineFunction Location VarSymbol VarSymbol Term Term Proof
 
-    | DefineFunctionLocal SourcePos VarSymbol VarSymbol VarSymbol Term (NonEmpty (Term, Formula)) Proof
+    | DefineFunctionLocal Location VarSymbol VarSymbol VarSymbol Term (NonEmpty (Term, Formula)) Proof
 
 deriving instance Show Proof
 deriving instance Eq   Proof
@@ -481,18 +486,18 @@ calcQuant = \case
 
 calcResult :: CalcQuantifier -> Calc -> ExprOf VarSymbol
 calcResult quant = \case
-    Equation e eqns -> calcQuant quant (e `Equals` fst (NonEmpty.last eqns))
+    Equation e eqns -> calcQuant quant (Equals Nowhere e (fst (NonEmpty.last eqns)))
     Biconditionals phi phis -> calcQuant quant (phi `Iff` fst (NonEmpty.last phis))
 
 calculation :: CalcQuantifier -> Calc -> [(ExprOf VarSymbol, Justification)]
 calculation quant = \case
-    Equation e1 eqns@((e2, jst) :| _) -> (calcQuant quant (e1 `Equals` e2), jst) : collectEquations quant (toList eqns)
+    Equation e1 eqns@((e2, jst) :| _) -> (calcQuant quant (Equals Nowhere e1 e2), jst) : collectEquations quant (toList eqns)
     Biconditionals p1 ps@((p2, jst) :| _) -> (calcQuant quant (p1 `Iff` p2), jst) : collectBiconditionals quant (toList ps)
 
 
 collectEquations :: CalcQuantifier -> [(Formula, j)] -> [(Formula, j)]
 collectEquations quant = \case
-    (e1, _) : eqns'@((e2, jst) : _) -> (calcQuant quant (e1 `Equals` e2), jst) : collectEquations quant eqns'
+    (e1, _) : eqns'@((e2, jst) : _) -> (calcQuant quant (Equals Nowhere e1 e2), jst) : collectEquations quant eqns'
     _ -> []
 
 collectBiconditionals :: CalcQuantifier -> [(Formula, j)] -> [(Formula, j)]
@@ -542,14 +547,14 @@ data Abbreviation
     deriving (Show, Eq, Ord)
 
 data Block
-    = BlockAxiom SourcePos Marker Axiom
-    | BlockLemma SourcePos Marker Lemma
-    | BlockProof SourcePos Proof
-    | BlockDefn SourcePos Marker Defn
-    | BlockAbbr SourcePos Marker Abbreviation
-    | BlockStruct SourcePos Marker StructDefn
-    | BlockInductive SourcePos Marker Inductive
-    | BlockSig SourcePos [Asm] Signature
+    = BlockAxiom Location Marker Axiom
+    | BlockLemma Location Marker Lemma
+    | BlockProof Location Proof
+    | BlockDefn Location Marker Defn
+    | BlockAbbr Location Marker Abbreviation
+    | BlockStruct Location Marker StructDefn
+    | BlockInductive Location Marker Inductive
+    | BlockSig Location [Asm] Signature
     deriving (Show, Eq, Ord)
 
 
@@ -597,7 +602,7 @@ contraction :: ExprOf a -> ExprOf a
 contraction = \case
     Connected conn f1 f2  -> atomicContraction (Connected conn (contraction f1) (contraction f2))
     Quantified quant scope -> atomicContraction (Quantified quant (hoistScope contraction scope))
-    Not f -> Not (contraction f)
+    Not pos f -> Not pos (contraction f)
     f -> f
 
 
@@ -605,14 +610,14 @@ contraction = \case
 atomicContraction :: ExprOf a -> ExprOf a
 atomicContraction = \case
     Top    `Iff` f      -> f
-    Bottom `Iff` f      -> Not f
+    Bottom `Iff` f      -> Not Nowhere f
     f      `Iff` Top    -> f
-    f      `Iff` Bottom -> Not f
+    f      `Iff` Bottom -> Not Nowhere f
 
     Top    `Implies` f      -> f
     Bottom `Implies` _      -> Top
     _      `Implies` Top    -> Top
-    f      `Implies` Bottom -> Not f
+    f      `Implies` Bottom -> Not Nowhere f
 
     Top    `And` f      -> f
     Bottom `And` _      -> Bottom
@@ -624,7 +629,7 @@ atomicContraction = \case
         Bottom -> Bottom
         _ -> phi
 
-    Not Top    -> Bottom
-    Not Bottom -> Top
+    Not _ Top    -> Bottom
+    Not _ Bottom -> Top
 
     f -> f

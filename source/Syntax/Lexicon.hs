@@ -133,7 +133,7 @@ builtinRelationSymbols = HM.fromList
     [ (Symbol "=", "eq")
     , (Command "rless", "rless")
     , (Command "neq", "neq")
-    , (Command "in", "elem")
+    , (ElementSymbol, "elem")
     , (Command "notin", "notelem") -- Alternative to @\not\in@.
     ]
 

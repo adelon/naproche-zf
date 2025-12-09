@@ -1,13 +1,19 @@
 [ BlockLemma
-    ( SourcePos
-        { sourceName = "test/examples/byRef.tex"
-        , sourceLine = Pos 1
-        , sourceColumn = Pos 1
+    ( Location
+        { locFile = "test/examples/byRef.tex"
+        , locLine = 1
+        , locColumn = 1
         }
     )
     ( Marker "prop1" )
     ( Lemma []
         ( TermSymbol
+            ( Location
+                { locFile = "<nowhere>"
+                , locLine = -1
+                , locColumn = -1
+                }
+            )
             ( SymbolPredicate
                 ( PredicateRelation
                     ( Symbol "=" )
@@ -21,15 +27,21 @@
         )
     )
 , BlockLemma
-    ( SourcePos
-        { sourceName = "test/examples/byRef.tex"
-        , sourceLine = Pos 5
-        , sourceColumn = Pos 1
+    ( Location
+        { locFile = "test/examples/byRef.tex"
+        , locLine = 5
+        , locColumn = 5
         }
     )
     ( Marker "prop2" )
     ( Lemma []
         ( TermSymbol
+            ( Location
+                { locFile = "<nowhere>"
+                , locLine = -1
+                , locColumn = -1
+                }
+            )
             ( SymbolPredicate
                 ( PredicateRelation
                     ( Symbol "=" )
@@ -43,15 +55,21 @@
         )
     )
 , BlockLemma
-    ( SourcePos
-        { sourceName = "test/examples/byRef.tex"
-        , sourceLine = Pos 9
-        , sourceColumn = Pos 1
+    ( Location
+        { locFile = "test/examples/byRef.tex"
+        , locLine = 9
+        , locColumn = 9
         }
     )
     ( Marker "prop3" )
     ( Lemma []
         ( TermSymbol
+            ( Location
+                { locFile = "<nowhere>"
+                , locLine = -1
+                , locColumn = -1
+                }
+            )
             ( SymbolPredicate
                 ( PredicateRelation
                     ( Symbol "=" )
@@ -65,18 +83,18 @@
         )
     )
 , BlockProof
-    ( SourcePos
-        { sourceName = "test/examples/byRef.tex"
-        , sourceLine = Pos 12
-        , sourceColumn = Pos 1
+    ( Location
+        { locFile = "test/examples/byRef.tex"
+        , locLine = 12
+        , locColumn = 12
         }
     )
     ( Qed
         { mpos = Just
-            ( SourcePos
-                { sourceName = "test/examples/byRef.tex"
-                , sourceLine = Pos 13
-                , sourceColumn = Pos 5
+            ( Location
+                { locFile = "test/examples/byRef.tex"
+                , locLine = 13
+                , locColumn = 13
                 }
             )
         , by = JustificationRef
@@ -84,15 +102,21 @@
         }
     )
 , BlockLemma
-    ( SourcePos
-        { sourceName = "test/examples/byRef.tex"
-        , sourceLine = Pos 16
-        , sourceColumn = Pos 1
+    ( Location
+        { locFile = "test/examples/byRef.tex"
+        , locLine = 16
+        , locColumn = 16
         }
     )
     ( Marker "prop4" )
     ( Lemma []
         ( TermSymbol
+            ( Location
+                { locFile = "<nowhere>"
+                , locLine = -1
+                , locColumn = -1
+                }
+            )
             ( SymbolPredicate
                 ( PredicateRelation
                     ( Symbol "=" )
@@ -106,22 +130,28 @@
         )
     )
 , BlockProof
-    ( SourcePos
-        { sourceName = "test/examples/byRef.tex"
-        , sourceLine = Pos 19
-        , sourceColumn = Pos 1
+    ( Location
+        { locFile = "test/examples/byRef.tex"
+        , locLine = 19
+        , locColumn = 19
         }
     )
     ( Have
-        ( SourcePos
-            { sourceName = "test/examples/byRef.tex"
-            , sourceLine = Pos 20
-            , sourceColumn = Pos 5
+        ( Location
+            { locFile = "test/examples/byRef.tex"
+            , locLine = 20
+            , locColumn = 20
             }
         )
         ( Quantified Universally
             ( Scope
                 ( TermSymbol
+                    ( Location
+                        { locFile = "<nowhere>"
+                        , locLine = -1
+                        , locColumn = -1
+                        }
+                    )
                     ( SymbolPredicate
                         ( PredicateRelation
                             ( Symbol "=" )
@@ -149,15 +179,21 @@
         )
     )
 , BlockLemma
-    ( SourcePos
-        { sourceName = "test/examples/byRef.tex"
-        , sourceLine = Pos 23
-        , sourceColumn = Pos 1
+    ( Location
+        { locFile = "test/examples/byRef.tex"
+        , locLine = 23
+        , locColumn = 23
         }
     )
     ( Marker "prop5" )
     ( Lemma []
         ( TermSymbol
+            ( Location
+                { locFile = "<nowhere>"
+                , locLine = -1
+                , locColumn = -1
+                }
+            )
             ( SymbolPredicate
                 ( PredicateRelation
                     ( Symbol "=" )

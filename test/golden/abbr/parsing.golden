@@ -1,18 +1,18 @@
 [ BlockAbbr
-    ( SourcePos
-        { sourceName = "test/examples/abbr.tex"
-        , sourceLine = Pos 1
-        , sourceColumn = Pos 1
+    ( Location
+        { locFile = "test/examples/abbr.tex"
+        , locLine = 1
+        , locColumn = 1
         }
     )
     ( Marker "empty" )
     ( AbbreviationAdj
         ( NamedVar "x" )
         ( Adj
-            ( SourcePos
-                { sourceName = "test/examples/abbr.tex"
-                , sourceLine = Pos 2
-                , sourceColumn = Pos 12
+            ( Location
+                { locFile = "test/examples/abbr.tex"
+                , locLine = 2
+                , locColumn = 2
                 }
             )
             [ Just
@@ -20,16 +20,16 @@
             ] []
         )
         ( StmtNeg
-            { pos = SourcePos
-                { sourceName = "test/examples/abbr.tex"
-                , sourceLine = Pos 2
-                , sourceColumn = Pos 35
+            { pos = Location
+                { locFile = "test/examples/abbr.tex"
+                , locLine = 2
+                , locColumn = 2
                 }
             , stmt = SymbolicQuantified
-                { pos = SourcePos
-                    { sourceName = "test/examples/abbr.tex"
-                    , sourceLine = Pos 2
-                    , sourceColumn = Pos 35
+                { pos = Location
+                    { locFile = "test/examples/abbr.tex"
+                    , locLine = 2
+                    , locColumn = 2
                     }
                 , quant = Existentially
                 , xs = NamedVar "y" :| []
@@ -54,10 +54,10 @@
         )
     )
 , BlockLemma
-    ( SourcePos
-        { sourceName = "test/examples/abbr.tex"
-        , sourceLine = Pos 5
-        , sourceColumn = Pos 1
+    ( Location
+        { locFile = "test/examples/abbr.tex"
+        , locLine = 5
+        , locColumn = 5
         }
     )
     ( Marker "dummy_abbr_test_adj" )
@@ -65,10 +65,10 @@
         ( StmtConnected
             { conn = Implication
             , mpos = Just
-                ( SourcePos
-                    { sourceName = "test/examples/abbr.tex"
-                    , sourceLine = Pos 6
-                    , sourceColumn = Pos 4
+                ( Location
+                    { locFile = "test/examples/abbr.tex"
+                    , locLine = 6
+                    , locColumn = 6
                     }
                 )
             , stmt1 = StmtVerbPhrase
@@ -78,10 +78,10 @@
                     ) :| []
                 , verb = VPAdj
                     ( Adj
-                        ( SourcePos
-                            { sourceName = "test/examples/abbr.tex"
-                            , sourceLine = Pos 6
-                            , sourceColumn = Pos 14
+                        ( Location
+                            { locFile = "test/examples/abbr.tex"
+                            , locLine = 6
+                            , locColumn = 6
                             }
                         )
                         [ Just
@@ -96,10 +96,10 @@
                     ) :| []
                 , verb = VPAdj
                     ( Adj
-                        ( SourcePos
-                            { sourceName = "test/examples/abbr.tex"
-                            , sourceLine = Pos 6
-                            , sourceColumn = Pos 33
+                        ( Location
+                            { locFile = "test/examples/abbr.tex"
+                            , locLine = 6
+                            , locColumn = 6
                             }
                         )
                         [ Just
@@ -111,10 +111,10 @@
         )
     )
 , BlockAbbr
-    ( SourcePos
-        { sourceName = "test/examples/abbr.tex"
-        , sourceLine = Pos 11
-        , sourceColumn = Pos 1
+    ( Location
+        { locFile = "test/examples/abbr.tex"
+        , locLine = 11
+        , locColumn = 11
         }
     )
     ( Marker "function" )
@@ -150,29 +150,29 @@
         )
     )
 , BlockLemma
-    ( SourcePos
-        { sourceName = "test/examples/abbr.tex"
-        , sourceLine = Pos 15
-        , sourceColumn = Pos 1
+    ( Location
+        { locFile = "test/examples/abbr.tex"
+        , locLine = 15
+        , locColumn = 15
         }
     )
     ( Marker "dummy_abbr_test_noun" )
     ( Lemma []
         ( SymbolicQuantified
-            { pos = SourcePos
-                { sourceName = "test/examples/abbr.tex"
-                , sourceLine = Pos 16
-                , sourceColumn = Pos 5
+            { pos = Location
+                { locFile = "test/examples/abbr.tex"
+                , locLine = 16
+                , locColumn = 16
                 }
             , quant = Universally
             , xs = NamedVar "x" :| []
             , b = Unbounded
             , suchThat = Nothing
             , stmt = StmtNoun
-                { pos = SourcePos
-                    { sourceName = "Nowhere"
-                    , sourceLine = Pos 1
-                    , sourceColumn = Pos 1
+                { pos = Location
+                    { locFile = "<nowhere>"
+                    , locLine = -1
+                    , locColumn = -1
                     }
                 , args = TermExpr
                     ( ExprVar
@@ -197,20 +197,20 @@
         )
     )
 , BlockAbbr
-    ( SourcePos
-        { sourceName = "test/examples/abbr.tex"
-        , sourceLine = Pos 21
-        , sourceColumn = Pos 1
+    ( Location
+        { locFile = "test/examples/abbr.tex"
+        , locLine = 21
+        , locColumn = 21
         }
     )
     ( Marker "converges" )
     ( AbbreviationVerb
         ( NamedVar "x" )
         ( Verb
-            ( SourcePos
-                { sourceName = "test/examples/abbr.tex"
-                , sourceLine = Pos 22
-                , sourceColumn = Pos 9
+            ( Location
+                { locFile = "test/examples/abbr.tex"
+                , locLine = 22
+                , locColumn = 22
                 }
             )
             ( SgPl
@@ -249,10 +249,10 @@
         )
     )
 , BlockLemma
-    ( SourcePos
-        { sourceName = "test/examples/abbr.tex"
-        , sourceLine = Pos 25
-        , sourceColumn = Pos 1
+    ( Location
+        { locFile = "test/examples/abbr.tex"
+        , locLine = 25
+        , locColumn = 25
         }
     )
     ( Marker "dummy_abbr_test_verb" )
@@ -260,10 +260,10 @@
         ( StmtConnected
             { conn = Implication
             , mpos = Just
-                ( SourcePos
-                    { sourceName = "test/examples/abbr.tex"
-                    , sourceLine = Pos 26
-                    , sourceColumn = Pos 5
+                ( Location
+                    { locFile = "test/examples/abbr.tex"
+                    , locLine = 26
+                    , locColumn = 26
                     }
                 )
             , stmt1 = StmtVerbPhrase
@@ -273,10 +273,10 @@
                     ) :| []
                 , verb = VPVerb
                     ( Verb
-                        ( SourcePos
-                            { sourceName = "test/examples/abbr.tex"
-                            , sourceLine = Pos 26
-                            , sourceColumn = Pos 12
+                        ( Location
+                            { locFile = "test/examples/abbr.tex"
+                            , locLine = 26
+                            , locColumn = 26
                             }
                         )
                         ( SgPl
@@ -321,10 +321,10 @@
         )
     )
 , BlockLemma
-    ( SourcePos
-        { sourceName = "test/examples/abbr.tex"
-        , sourceLine = Pos 31
-        , sourceColumn = Pos 1
+    ( Location
+        { locFile = "test/examples/abbr.tex"
+        , locLine = 31
+        , locColumn = 31
         }
     )
     ( Marker "abbr_test_notin" )
@@ -332,10 +332,10 @@
         ( StmtConnected
             { conn = Implication
             , mpos = Just
-                ( SourcePos
-                    { sourceName = "test/examples/abbr.tex"
-                    , sourceLine = Pos 32
-                    , sourceColumn = Pos 4
+                ( Location
+                    { locFile = "test/examples/abbr.tex"
+                    , locLine = 32
+                    , locColumn = 32
                     }
                 )
             , stmt1 = StmtFormula
@@ -370,10 +370,10 @@
         )
     )
 , BlockLemma
-    ( SourcePos
-        { sourceName = "test/examples/abbr.tex"
-        , sourceLine = Pos 37
-        , sourceColumn = Pos 1
+    ( Location
+        { locFile = "test/examples/abbr.tex"
+        , locLine = 37
+        , locColumn = 37
         }
     )
     ( Marker "abbr_test_elementof_is_in" )
@@ -381,17 +381,17 @@
         ( StmtConnected
             { conn = Implication
             , mpos = Just
-                ( SourcePos
-                    { sourceName = "test/examples/abbr.tex"
-                    , sourceLine = Pos 38
-                    , sourceColumn = Pos 5
+                ( Location
+                    { locFile = "test/examples/abbr.tex"
+                    , locLine = 38
+                    , locColumn = 38
                     }
                 )
             , stmt1 = StmtNoun
-                { pos = SourcePos
-                    { sourceName = "Nowhere"
-                    , sourceLine = Pos 1
-                    , sourceColumn = Pos 1
+                { pos = Location
+                    { locFile = "<nowhere>"
+                    , locLine = -1
+                    , locColumn = -1
                     }
                 , args = TermExpr
                     ( ExprVar
@@ -441,10 +441,10 @@
         )
     )
 , BlockLemma
-    ( SourcePos
-        { sourceName = "test/examples/abbr.tex"
-        , sourceLine = Pos 43
-        , sourceColumn = Pos 1
+    ( Location
+        { locFile = "test/examples/abbr.tex"
+        , locLine = 43
+        , locColumn = 43
         }
     )
     ( Marker "abbr_test_equals_is_eq" )
@@ -452,10 +452,10 @@
         ( StmtConnected
             { conn = Implication
             , mpos = Just
-                ( SourcePos
-                    { sourceName = "test/examples/abbr.tex"
-                    , sourceLine = Pos 44
-                    , sourceColumn = Pos 5
+                ( Location
+                    { locFile = "test/examples/abbr.tex"
+                    , locLine = 44
+                    , locColumn = 44
                     }
                 )
             , stmt1 = StmtVerbPhrase
@@ -465,10 +465,10 @@
                     ) :| []
                 , verb = VPVerb
                     ( Verb
-                        ( SourcePos
-                            { sourceName = "test/examples/abbr.tex"
-                            , sourceLine = Pos 44
-                            , sourceColumn = Pos 12
+                        ( Location
+                            { locFile = "test/examples/abbr.tex"
+                            , locLine = 44
+                            , locColumn = 44
                             }
                         )
                         ( SgPl

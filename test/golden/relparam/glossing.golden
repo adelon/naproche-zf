@@ -1,8 +1,8 @@
 [ BlockAbbr
-    ( SourcePos
-        { sourceName = "test/examples/relparam.tex"
-        , sourceLine = Pos 2
-        , sourceColumn = Pos 1
+    ( Location
+        { locFile = "test/examples/relparam.tex"
+        , locLine = 2
+        , locColumn = 2
         }
     )
     ( Marker "abbr_equal" )
@@ -14,6 +14,12 @@
         )
         ( Scope
             ( TermSymbol
+                ( Location
+                    { locFile = "<nowhere>"
+                    , locLine = -1
+                    , locColumn = -1
+                    }
+                )
                 ( SymbolPredicate
                     ( PredicateRelation
                         ( Symbol "=" )
@@ -28,10 +34,10 @@
         )
     )
 , BlockLemma
-    ( SourcePos
-        { sourceName = "test/examples/relparam.tex"
-        , sourceLine = Pos 6
-        , sourceColumn = Pos 1
+    ( Location
+        { locFile = "test/examples/relparam.tex"
+        , locLine = 6
+        , locColumn = 6
         }
     )
     ( Marker "dummy_abbr_test" )
@@ -39,6 +45,12 @@
         ( Quantified Universally
             ( Scope
                 ( TermSymbol
+                    ( Location
+                        { locFile = "<nowhere>"
+                        , locLine = -1
+                        , locColumn = -1
+                        }
+                    )
                     ( SymbolPredicate
                         ( PredicateRelation
                             ( Command "EQUAL" )
@@ -64,10 +76,10 @@
         )
     )
 , BlockAbbr
-    ( SourcePos
-        { sourceName = "test/examples/relparam.tex"
-        , sourceLine = Pos 11
-        , sourceColumn = Pos 1
+    ( Location
+        { locFile = "test/examples/relparam.tex"
+        , locLine = 11
+        , locColumn = 11
         }
     )
     ( Marker "defn_equals" )
@@ -79,6 +91,12 @@
         )
         ( Scope
             ( TermSymbol
+                ( Location
+                    { locFile = "<nowhere>"
+                    , locLine = -1
+                    , locColumn = -1
+                    }
+                )
                 ( SymbolPredicate
                     ( PredicateRelation
                         ( Symbol "=" )
@@ -93,10 +111,10 @@
         )
     )
 , BlockLemma
-    ( SourcePos
-        { sourceName = "test/examples/relparam.tex"
-        , sourceLine = Pos 15
-        , sourceColumn = Pos 1
+    ( Location
+        { locFile = "test/examples/relparam.tex"
+        , locLine = 15
+        , locColumn = 15
         }
     )
     ( Marker "dummy_defn_test" )
@@ -104,6 +122,12 @@
         ( Quantified Universally
             ( Scope
                 ( TermSymbol
+                    ( Location
+                        { locFile = "<nowhere>"
+                        , locLine = -1
+                        , locColumn = -1
+                        }
+                    )
                     ( SymbolPredicate
                         ( PredicateRelation
                             ( Command "EQUALS" )

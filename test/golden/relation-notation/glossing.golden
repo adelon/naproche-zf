@@ -1,20 +1,32 @@
 [ BlockLemma
-    ( SourcePos
-        { sourceName = "test/examples/relation-notation.tex"
-        , sourceLine = Pos 1
-        , sourceColumn = Pos 1
+    ( Location
+        { locFile = "test/examples/relation-notation.tex"
+        , locLine = 1
+        , locColumn = 1
         }
     )
     ( Marker "mathrel_notation_test" )
     ( Lemma []
         ( Connected Implication
             ( TermSymbol
+                ( Location
+                    { locFile = "<nowhere>"
+                    , locLine = -1
+                    , locColumn = -1
+                    }
+                )
                 ( SymbolPredicate
                     ( PredicateRelation
                         ( Command "in" )
                     )
                 )
                 [ TermSymbol
+                    ( Location
+                        { locFile = "<nowhere>"
+                        , locLine = -1
+                        , locColumn = -1
+                        }
+                    )
                     ( SymbolMixfix
                         [ Just
                             ( Command "pair" )
@@ -36,12 +48,24 @@
                 ]
             )
             ( TermSymbol
+                ( Location
+                    { locFile = "<nowhere>"
+                    , locLine = -1
+                    , locColumn = -1
+                    }
+                )
                 ( SymbolPredicate
                     ( PredicateRelation
                         ( Command "in" )
                     )
                 )
                 [ TermSymbol
+                    ( Location
+                        { locFile = "<nowhere>"
+                        , locLine = -1
+                        , locColumn = -1
+                        }
+                    )
                     ( SymbolMixfix
                         [ Just
                             ( Command "pair" )

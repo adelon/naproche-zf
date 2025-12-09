@@ -1,8 +1,8 @@
 [ BlockDefn
-    ( SourcePos
-        { sourceName = "test/examples/geometry.tex"
-        , sourceLine = Pos 1
-        , sourceColumn = Pos 1
+    ( Location
+        { locFile = "test/examples/geometry.tex"
+        , locLine = 1
+        , locColumn = 1
         }
     )
     ( Marker "collinear" )
@@ -25,6 +25,12 @@
         )
         ( Connected Disjunction
             ( TermSymbol
+                ( Location
+                    { locFile = "<nowhere>"
+                    , locLine = -1
+                    , locColumn = -1
+                    }
+                )
                 ( SymbolPredicate
                     ( PredicateSymbol "Betw" )
                 )
@@ -38,6 +44,12 @@
             )
             ( Connected Disjunction
                 ( TermSymbol
+                    ( Location
+                        { locFile = "<nowhere>"
+                        , locLine = -1
+                        , locColumn = -1
+                        }
+                    )
                     ( SymbolPredicate
                         ( PredicateSymbol "Betw" )
                     )
@@ -50,6 +62,12 @@
                     ]
                 )
                 ( TermSymbol
+                    ( Location
+                        { locFile = "<nowhere>"
+                        , locLine = -1
+                        , locColumn = -1
+                        }
+                    )
                     ( SymbolPredicate
                         ( PredicateSymbol "Betw" )
                     )
@@ -65,16 +83,22 @@
         )
     )
 , BlockAxiom
-    ( SourcePos
-        { sourceName = "test/examples/geometry.tex"
-        , sourceLine = Pos 5
-        , sourceColumn = Pos 1
+    ( Location
+        { locFile = "test/examples/geometry.tex"
+        , locLine = 5
+        , locColumn = 5
         }
     )
     ( Marker "cong_refl_swap" )
     ( Axiom
         [ Asm
             ( TermSymbol
+                ( Location
+                    { locFile = "<nowhere>"
+                    , locLine = -1
+                    , locColumn = -1
+                    }
+                )
                 ( SymbolPredicate
                     ( PredicateNoun
                         ( SgPl
@@ -96,6 +120,12 @@
             )
         , Asm
             ( TermSymbol
+                ( Location
+                    { locFile = "<nowhere>"
+                    , locLine = -1
+                    , locColumn = -1
+                    }
+                )
                 ( SymbolPredicate
                     ( PredicateNoun
                         ( SgPl
@@ -117,6 +147,12 @@
             )
         ]
         ( TermSymbol
+            ( Location
+                { locFile = "<nowhere>"
+                , locLine = -1
+                , locColumn = -1
+                }
+            )
             ( SymbolPredicate
                 ( PredicateSymbol "Cong" )
             )
@@ -132,16 +168,22 @@
         )
     )
 , BlockAxiom
-    ( SourcePos
-        { sourceName = "test/examples/geometry.tex"
-        , sourceLine = Pos 10
-        , sourceColumn = Pos 1
+    ( Location
+        { locFile = "test/examples/geometry.tex"
+        , locLine = 10
+        , locColumn = 10
         }
     )
     ( Marker "cong_pseudotransitive" )
     ( Axiom
         [ Asm
             ( TermSymbol
+                ( Location
+                    { locFile = "<nowhere>"
+                    , locLine = -1
+                    , locColumn = -1
+                    }
+                )
                 ( SymbolPredicate
                     ( PredicateNoun
                         ( SgPl
@@ -163,6 +205,12 @@
             )
         , Asm
             ( TermSymbol
+                ( Location
+                    { locFile = "<nowhere>"
+                    , locLine = -1
+                    , locColumn = -1
+                    }
+                )
                 ( SymbolPredicate
                     ( PredicateNoun
                         ( SgPl
@@ -184,6 +232,12 @@
             )
         , Asm
             ( TermSymbol
+                ( Location
+                    { locFile = "<nowhere>"
+                    , locLine = -1
+                    , locColumn = -1
+                    }
+                )
                 ( SymbolPredicate
                     ( PredicateNoun
                         ( SgPl
@@ -205,6 +259,12 @@
             )
         , Asm
             ( TermSymbol
+                ( Location
+                    { locFile = "<nowhere>"
+                    , locLine = -1
+                    , locColumn = -1
+                    }
+                )
                 ( SymbolPredicate
                     ( PredicateNoun
                         ( SgPl
@@ -228,6 +288,12 @@
         ( Connected Implication
             ( Connected Conjunction
                 ( TermSymbol
+                    ( Location
+                        { locFile = "<nowhere>"
+                        , locLine = -1
+                        , locColumn = -1
+                        }
+                    )
                     ( SymbolPredicate
                         ( PredicateSymbol "Cong" )
                     )
@@ -242,6 +308,12 @@
                     ]
                 )
                 ( TermSymbol
+                    ( Location
+                        { locFile = "<nowhere>"
+                        , locLine = -1
+                        , locColumn = -1
+                        }
+                    )
                     ( SymbolPredicate
                         ( PredicateSymbol "Cong" )
                     )
@@ -257,6 +329,12 @@
                 )
             )
             ( TermSymbol
+                ( Location
+                    { locFile = "<nowhere>"
+                    , locLine = -1
+                    , locColumn = -1
+                    }
+                )
                 ( SymbolPredicate
                     ( PredicateSymbol "Cong" )
                 )
@@ -273,16 +351,22 @@
         )
     )
 , BlockAxiom
-    ( SourcePos
-        { sourceName = "test/examples/geometry.tex"
-        , sourceLine = Pos 15
-        , sourceColumn = Pos 1
+    ( Location
+        { locFile = "test/examples/geometry.tex"
+        , locLine = 15
+        , locColumn = 15
         }
     )
     ( Marker "cong_id" )
     ( Axiom
         [ Asm
             ( TermSymbol
+                ( Location
+                    { locFile = "<nowhere>"
+                    , locLine = -1
+                    , locColumn = -1
+                    }
+                )
                 ( SymbolPredicate
                     ( PredicateNoun
                         ( SgPl
@@ -304,6 +388,12 @@
             )
         , Asm
             ( TermSymbol
+                ( Location
+                    { locFile = "<nowhere>"
+                    , locLine = -1
+                    , locColumn = -1
+                    }
+                )
                 ( SymbolPredicate
                     ( PredicateNoun
                         ( SgPl
@@ -325,6 +415,12 @@
             )
         , Asm
             ( TermSymbol
+                ( Location
+                    { locFile = "<nowhere>"
+                    , locLine = -1
+                    , locColumn = -1
+                    }
+                )
                 ( SymbolPredicate
                     ( PredicateNoun
                         ( SgPl
@@ -347,6 +443,12 @@
         ]
         ( Connected Implication
             ( TermSymbol
+                ( Location
+                    { locFile = "<nowhere>"
+                    , locLine = -1
+                    , locColumn = -1
+                    }
+                )
                 ( SymbolPredicate
                     ( PredicateSymbol "Cong" )
                 )
@@ -361,6 +463,12 @@
                 ]
             )
             ( TermSymbol
+                ( Location
+                    { locFile = "<nowhere>"
+                    , locLine = -1
+                    , locColumn = -1
+                    }
+                )
                 ( SymbolPredicate
                     ( PredicateRelation
                         ( Symbol "=" )
@@ -375,10 +483,10 @@
         )
     )
 , BlockAxiom
-    ( SourcePos
-        { sourceName = "test/examples/geometry.tex"
-        , sourceLine = Pos 21
-        , sourceColumn = Pos 1
+    ( Location
+        { locFile = "test/examples/geometry.tex"
+        , locLine = 21
+        , locColumn = 21
         }
     )
     ( Marker "segment_construction" )
@@ -387,6 +495,12 @@
             ( Scope
                 ( Connected Conjunction
                     ( TermSymbol
+                        ( Location
+                            { locFile = "<nowhere>"
+                            , locLine = -1
+                            , locColumn = -1
+                            }
+                        )
                         ( SymbolPredicate
                             ( PredicateNoun
                                 ( SgPl
@@ -410,6 +524,12 @@
                     )
                     ( Connected Conjunction
                         ( TermSymbol
+                            ( Location
+                                { locFile = "<nowhere>"
+                                , locLine = -1
+                                , locColumn = -1
+                                }
+                            )
                             ( SymbolPredicate
                                 ( PredicateSymbol "Betw" )
                             )
@@ -432,6 +552,12 @@
                             ]
                         )
                         ( TermSymbol
+                            ( Location
+                                { locFile = "<nowhere>"
+                                , locLine = -1
+                                , locColumn = -1
+                                }
+                            )
                             ( SymbolPredicate
                                 ( PredicateSymbol "Cong" )
                             )
@@ -465,16 +591,22 @@
         )
     )
 , BlockDefn
-    ( SourcePos
-        { sourceName = "test/examples/geometry.tex"
-        , sourceLine = Pos 26
-        , sourceColumn = Pos 1
+    ( Location
+        { locFile = "test/examples/geometry.tex"
+        , locLine = 26
+        , locColumn = 26
         }
     )
     ( Marker "ofs" )
     ( DefnPredicate
         [ Asm
             ( TermSymbol
+                ( Location
+                    { locFile = "<nowhere>"
+                    , locLine = -1
+                    , locColumn = -1
+                    }
+                )
                 ( SymbolPredicate
                     ( PredicateNoun
                         ( SgPl
@@ -496,6 +628,12 @@
             )
         , Asm
             ( TermSymbol
+                ( Location
+                    { locFile = "<nowhere>"
+                    , locLine = -1
+                    , locColumn = -1
+                    }
+                )
                 ( SymbolPredicate
                     ( PredicateNoun
                         ( SgPl
@@ -517,6 +655,12 @@
             )
         , Asm
             ( TermSymbol
+                ( Location
+                    { locFile = "<nowhere>"
+                    , locLine = -1
+                    , locColumn = -1
+                    }
+                )
                 ( SymbolPredicate
                     ( PredicateNoun
                         ( SgPl
@@ -538,6 +682,12 @@
             )
         , Asm
             ( TermSymbol
+                ( Location
+                    { locFile = "<nowhere>"
+                    , locLine = -1
+                    , locColumn = -1
+                    }
+                )
                 ( SymbolPredicate
                     ( PredicateNoun
                         ( SgPl
@@ -559,6 +709,12 @@
             )
         , Asm
             ( TermSymbol
+                ( Location
+                    { locFile = "<nowhere>"
+                    , locLine = -1
+                    , locColumn = -1
+                    }
+                )
                 ( SymbolPredicate
                     ( PredicateNoun
                         ( SgPl
@@ -580,6 +736,12 @@
             )
         , Asm
             ( TermSymbol
+                ( Location
+                    { locFile = "<nowhere>"
+                    , locLine = -1
+                    , locColumn = -1
+                    }
+                )
                 ( SymbolPredicate
                     ( PredicateNoun
                         ( SgPl
@@ -601,6 +763,12 @@
             )
         , Asm
             ( TermSymbol
+                ( Location
+                    { locFile = "<nowhere>"
+                    , locLine = -1
+                    , locColumn = -1
+                    }
+                )
                 ( SymbolPredicate
                     ( PredicateNoun
                         ( SgPl
@@ -622,6 +790,12 @@
             )
         , Asm
             ( TermSymbol
+                ( Location
+                    { locFile = "<nowhere>"
+                    , locLine = -1
+                    , locColumn = -1
+                    }
+                )
                 ( SymbolPredicate
                     ( PredicateNoun
                         ( SgPl
@@ -656,6 +830,12 @@
         ( Connected Conjunction
             ( Connected Conjunction
                 ( TermSymbol
+                    ( Location
+                        { locFile = "<nowhere>"
+                        , locLine = -1
+                        , locColumn = -1
+                        }
+                    )
                     ( SymbolPredicate
                         ( PredicateSymbol "Betw" )
                     )
@@ -668,6 +848,12 @@
                     ]
                 )
                 ( TermSymbol
+                    ( Location
+                        { locFile = "<nowhere>"
+                        , locLine = -1
+                        , locColumn = -1
+                        }
+                    )
                     ( SymbolPredicate
                         ( PredicateSymbol "Betw" )
                     )
@@ -684,6 +870,12 @@
                 ( Connected Conjunction
                     ( Connected Conjunction
                         ( TermSymbol
+                            ( Location
+                                { locFile = "<nowhere>"
+                                , locLine = -1
+                                , locColumn = -1
+                                }
+                            )
                             ( SymbolPredicate
                                 ( PredicateSymbol "Cong" )
                             )
@@ -698,6 +890,12 @@
                             ]
                         )
                         ( TermSymbol
+                            ( Location
+                                { locFile = "<nowhere>"
+                                , locLine = -1
+                                , locColumn = -1
+                                }
+                            )
                             ( SymbolPredicate
                                 ( PredicateSymbol "Cong" )
                             )
@@ -713,6 +911,12 @@
                         )
                     )
                     ( TermSymbol
+                        ( Location
+                            { locFile = "<nowhere>"
+                            , locLine = -1
+                            , locColumn = -1
+                            }
+                        )
                         ( SymbolPredicate
                             ( PredicateSymbol "Cong" )
                         )
@@ -728,6 +932,12 @@
                     )
                 )
                 ( TermSymbol
+                    ( Location
+                        { locFile = "<nowhere>"
+                        , locLine = -1
+                        , locColumn = -1
+                        }
+                    )
                     ( SymbolPredicate
                         ( PredicateSymbol "Cong" )
                     )
@@ -745,16 +955,22 @@
         )
     )
 , BlockAxiom
-    ( SourcePos
-        { sourceName = "test/examples/geometry.tex"
-        , sourceLine = Pos 39
-        , sourceColumn = Pos 1
+    ( Location
+        { locFile = "test/examples/geometry.tex"
+        , locLine = 39
+        , locColumn = 39
         }
     )
     ( Marker "five_segment" )
     ( Axiom
         [ Asm
             ( TermSymbol
+                ( Location
+                    { locFile = "<nowhere>"
+                    , locLine = -1
+                    , locColumn = -1
+                    }
+                )
                 ( SymbolPredicate
                     ( PredicateNoun
                         ( SgPl
@@ -776,6 +992,12 @@
             )
         , Asm
             ( TermSymbol
+                ( Location
+                    { locFile = "<nowhere>"
+                    , locLine = -1
+                    , locColumn = -1
+                    }
+                )
                 ( SymbolPredicate
                     ( PredicateNoun
                         ( SgPl
@@ -797,6 +1019,12 @@
             )
         , Asm
             ( TermSymbol
+                ( Location
+                    { locFile = "<nowhere>"
+                    , locLine = -1
+                    , locColumn = -1
+                    }
+                )
                 ( SymbolPredicate
                     ( PredicateNoun
                         ( SgPl
@@ -818,6 +1046,12 @@
             )
         , Asm
             ( TermSymbol
+                ( Location
+                    { locFile = "<nowhere>"
+                    , locLine = -1
+                    , locColumn = -1
+                    }
+                )
                 ( SymbolPredicate
                     ( PredicateNoun
                         ( SgPl
@@ -839,6 +1073,12 @@
             )
         , Asm
             ( TermSymbol
+                ( Location
+                    { locFile = "<nowhere>"
+                    , locLine = -1
+                    , locColumn = -1
+                    }
+                )
                 ( SymbolPredicate
                     ( PredicateNoun
                         ( SgPl
@@ -860,6 +1100,12 @@
             )
         , Asm
             ( TermSymbol
+                ( Location
+                    { locFile = "<nowhere>"
+                    , locLine = -1
+                    , locColumn = -1
+                    }
+                )
                 ( SymbolPredicate
                     ( PredicateNoun
                         ( SgPl
@@ -881,6 +1127,12 @@
             )
         , Asm
             ( TermSymbol
+                ( Location
+                    { locFile = "<nowhere>"
+                    , locLine = -1
+                    , locColumn = -1
+                    }
+                )
                 ( SymbolPredicate
                     ( PredicateNoun
                         ( SgPl
@@ -902,6 +1154,12 @@
             )
         , Asm
             ( TermSymbol
+                ( Location
+                    { locFile = "<nowhere>"
+                    , locLine = -1
+                    , locColumn = -1
+                    }
+                )
                 ( SymbolPredicate
                     ( PredicateNoun
                         ( SgPl
@@ -925,6 +1183,12 @@
         ( Connected Implication
             ( Connected Conjunction
                 ( TermSymbol
+                    ( Location
+                        { locFile = "<nowhere>"
+                        , locLine = -1
+                        , locColumn = -1
+                        }
+                    )
                     ( SymbolPredicate
                         ( PredicateSymbol "OFS" )
                     )
@@ -947,6 +1211,12 @@
                     ]
                 )
                 ( TermSymbol
+                    ( Location
+                        { locFile = "<nowhere>"
+                        , locLine = -1
+                        , locColumn = -1
+                        }
+                    )
                     ( SymbolPredicate
                         ( PredicateRelation
                             ( Command "neq" )
@@ -960,6 +1230,12 @@
                 )
             )
             ( TermSymbol
+                ( Location
+                    { locFile = "<nowhere>"
+                    , locLine = -1
+                    , locColumn = -1
+                    }
+                )
                 ( SymbolPredicate
                     ( PredicateSymbol "Cong" )
                 )
@@ -976,16 +1252,22 @@
         )
     )
 , BlockAxiom
-    ( SourcePos
-        { sourceName = "test/examples/geometry.tex"
-        , sourceLine = Pos 46
-        , sourceColumn = Pos 1
+    ( Location
+        { locFile = "test/examples/geometry.tex"
+        , locLine = 46
+        , locColumn = 46
         }
     )
     ( Marker "betw_id" )
     ( Axiom
         [ Asm
             ( TermSymbol
+                ( Location
+                    { locFile = "<nowhere>"
+                    , locLine = -1
+                    , locColumn = -1
+                    }
+                )
                 ( SymbolPredicate
                     ( PredicateNoun
                         ( SgPl
@@ -1007,6 +1289,12 @@
             )
         , Asm
             ( TermSymbol
+                ( Location
+                    { locFile = "<nowhere>"
+                    , locLine = -1
+                    , locColumn = -1
+                    }
+                )
                 ( SymbolPredicate
                     ( PredicateNoun
                         ( SgPl
@@ -1029,6 +1317,12 @@
         ]
         ( Connected Implication
             ( TermSymbol
+                ( Location
+                    { locFile = "<nowhere>"
+                    , locLine = -1
+                    , locColumn = -1
+                    }
+                )
                 ( SymbolPredicate
                     ( PredicateSymbol "Betw" )
                 )
@@ -1041,6 +1335,12 @@
                 ]
             )
             ( TermSymbol
+                ( Location
+                    { locFile = "<nowhere>"
+                    , locLine = -1
+                    , locColumn = -1
+                    }
+                )
                 ( SymbolPredicate
                     ( PredicateRelation
                         ( Symbol "=" )
@@ -1055,16 +1355,22 @@
         )
     )
 , BlockAxiom
-    ( SourcePos
-        { sourceName = "test/examples/geometry.tex"
-        , sourceLine = Pos 52
-        , sourceColumn = Pos 1
+    ( Location
+        { locFile = "test/examples/geometry.tex"
+        , locLine = 52
+        , locColumn = 52
         }
     )
     ( Marker "innerpasch" )
     ( Axiom
         [ Asm
             ( TermSymbol
+                ( Location
+                    { locFile = "<nowhere>"
+                    , locLine = -1
+                    , locColumn = -1
+                    }
+                )
                 ( SymbolPredicate
                     ( PredicateNoun
                         ( SgPl
@@ -1086,6 +1392,12 @@
             )
         , Asm
             ( TermSymbol
+                ( Location
+                    { locFile = "<nowhere>"
+                    , locLine = -1
+                    , locColumn = -1
+                    }
+                )
                 ( SymbolPredicate
                     ( PredicateNoun
                         ( SgPl
@@ -1107,6 +1419,12 @@
             )
         , Asm
             ( TermSymbol
+                ( Location
+                    { locFile = "<nowhere>"
+                    , locLine = -1
+                    , locColumn = -1
+                    }
+                )
                 ( SymbolPredicate
                     ( PredicateNoun
                         ( SgPl
@@ -1128,6 +1446,12 @@
             )
         , Asm
             ( TermSymbol
+                ( Location
+                    { locFile = "<nowhere>"
+                    , locLine = -1
+                    , locColumn = -1
+                    }
+                )
                 ( SymbolPredicate
                     ( PredicateNoun
                         ( SgPl
@@ -1149,6 +1473,12 @@
             )
         , Asm
             ( TermSymbol
+                ( Location
+                    { locFile = "<nowhere>"
+                    , locLine = -1
+                    , locColumn = -1
+                    }
+                )
                 ( SymbolPredicate
                     ( PredicateNoun
                         ( SgPl
@@ -1170,6 +1500,12 @@
             )
         , Asm
             ( TermSymbol
+                ( Location
+                    { locFile = "<nowhere>"
+                    , locLine = -1
+                    , locColumn = -1
+                    }
+                )
                 ( SymbolPredicate
                     ( PredicateNoun
                         ( SgPl
@@ -1193,6 +1529,12 @@
         ( Connected Implication
             ( Connected Conjunction
                 ( TermSymbol
+                    ( Location
+                        { locFile = "<nowhere>"
+                        , locLine = -1
+                        , locColumn = -1
+                        }
+                    )
                     ( SymbolPredicate
                         ( PredicateSymbol "Betw" )
                     )
@@ -1205,6 +1547,12 @@
                     ]
                 )
                 ( TermSymbol
+                    ( Location
+                        { locFile = "<nowhere>"
+                        , locLine = -1
+                        , locColumn = -1
+                        }
+                    )
                     ( SymbolPredicate
                         ( PredicateSymbol "Betw" )
                     )
@@ -1221,6 +1569,12 @@
                 ( Scope
                     ( Connected Conjunction
                         ( TermSymbol
+                            ( Location
+                                { locFile = "<nowhere>"
+                                , locLine = -1
+                                , locColumn = -1
+                                }
+                            )
                             ( SymbolPredicate
                                 ( PredicateNoun
                                     ( SgPl
@@ -1244,6 +1598,12 @@
                         )
                         ( Connected Conjunction
                             ( TermSymbol
+                                ( Location
+                                    { locFile = "<nowhere>"
+                                    , locLine = -1
+                                    , locColumn = -1
+                                    }
+                                )
                                 ( SymbolPredicate
                                     ( PredicateSymbol "Betw" )
                                 )
@@ -1266,6 +1626,12 @@
                                 ]
                             )
                             ( TermSymbol
+                                ( Location
+                                    { locFile = "<nowhere>"
+                                    , locLine = -1
+                                    , locColumn = -1
+                                    }
+                                )
                                 ( SymbolPredicate
                                     ( PredicateSymbol "Betw" )
                                 )
@@ -1294,16 +1660,22 @@
         )
     )
 , BlockAxiom
-    ( SourcePos
-        { sourceName = "test/examples/geometry.tex"
-        , sourceLine = Pos 66
-        , sourceColumn = Pos 1
+    ( Location
+        { locFile = "test/examples/geometry.tex"
+        , locLine = 66
+        , locColumn = 66
         }
     )
     ( Marker "upperdim" )
     ( Axiom
         [ Asm
             ( TermSymbol
+                ( Location
+                    { locFile = "<nowhere>"
+                    , locLine = -1
+                    , locColumn = -1
+                    }
+                )
                 ( SymbolPredicate
                     ( PredicateNoun
                         ( SgPl
@@ -1325,6 +1697,12 @@
             )
         , Asm
             ( TermSymbol
+                ( Location
+                    { locFile = "<nowhere>"
+                    , locLine = -1
+                    , locColumn = -1
+                    }
+                )
                 ( SymbolPredicate
                     ( PredicateNoun
                         ( SgPl
@@ -1346,6 +1724,12 @@
             )
         , Asm
             ( TermSymbol
+                ( Location
+                    { locFile = "<nowhere>"
+                    , locLine = -1
+                    , locColumn = -1
+                    }
+                )
                 ( SymbolPredicate
                     ( PredicateNoun
                         ( SgPl
@@ -1367,6 +1751,12 @@
             )
         , Asm
             ( TermSymbol
+                ( Location
+                    { locFile = "<nowhere>"
+                    , locLine = -1
+                    , locColumn = -1
+                    }
+                )
                 ( SymbolPredicate
                     ( PredicateNoun
                         ( SgPl
@@ -1388,6 +1778,12 @@
             )
         , Asm
             ( TermSymbol
+                ( Location
+                    { locFile = "<nowhere>"
+                    , locLine = -1
+                    , locColumn = -1
+                    }
+                )
                 ( SymbolPredicate
                     ( PredicateNoun
                         ( SgPl
@@ -1411,6 +1807,12 @@
         ( Connected Implication
             ( Connected Conjunction
                 ( TermSymbol
+                    ( Location
+                        { locFile = "<nowhere>"
+                        , locLine = -1
+                        , locColumn = -1
+                        }
+                    )
                     ( SymbolPredicate
                         ( PredicateSymbol "Cong" )
                     )
@@ -1426,6 +1828,12 @@
                 )
                 ( Connected Conjunction
                     ( TermSymbol
+                        ( Location
+                            { locFile = "<nowhere>"
+                            , locLine = -1
+                            , locColumn = -1
+                            }
+                        )
                         ( SymbolPredicate
                             ( PredicateSymbol "Cong" )
                         )
@@ -1441,6 +1849,12 @@
                     )
                     ( Connected Conjunction
                         ( TermSymbol
+                            ( Location
+                                { locFile = "<nowhere>"
+                                , locLine = -1
+                                , locColumn = -1
+                                }
+                            )
                             ( SymbolPredicate
                                 ( PredicateSymbol "Cong" )
                             )
@@ -1455,6 +1869,12 @@
                             ]
                         )
                         ( TermSymbol
+                            ( Location
+                                { locFile = "<nowhere>"
+                                , locLine = -1
+                                , locColumn = -1
+                                }
+                            )
                             ( SymbolPredicate
                                 ( PredicateRelation
                                     ( Command "neq" )
@@ -1470,6 +1890,12 @@
                 )
             )
             ( TermSymbol
+                ( Location
+                    { locFile = "test/examples/geometry.tex"
+                    , locLine = 70
+                    , locColumn = 70
+                    }
+                )
                 ( SymbolPredicate
                     ( PredicateAdj
                         [ Just
@@ -1494,16 +1920,22 @@
         )
     )
 , BlockLemma
-    ( SourcePos
-        { sourceName = "test/examples/geometry.tex"
-        , sourceLine = Pos 82
-        , sourceColumn = Pos 1
+    ( Location
+        { locFile = "test/examples/geometry.tex"
+        , locLine = 82
+        , locColumn = 82
         }
     )
     ( Marker "cong_refl" )
     ( Lemma
         [ Asm
             ( TermSymbol
+                ( Location
+                    { locFile = "<nowhere>"
+                    , locLine = -1
+                    , locColumn = -1
+                    }
+                )
                 ( SymbolPredicate
                     ( PredicateNoun
                         ( SgPl
@@ -1525,6 +1957,12 @@
             )
         , Asm
             ( TermSymbol
+                ( Location
+                    { locFile = "<nowhere>"
+                    , locLine = -1
+                    , locColumn = -1
+                    }
+                )
                 ( SymbolPredicate
                     ( PredicateNoun
                         ( SgPl
@@ -1546,6 +1984,12 @@
             )
         ]
         ( TermSymbol
+            ( Location
+                { locFile = "<nowhere>"
+                , locLine = -1
+                , locColumn = -1
+                }
+            )
             ( SymbolPredicate
                 ( PredicateSymbol "Cong" )
             )
@@ -1561,16 +2005,22 @@
         )
     )
 , BlockLemma
-    ( SourcePos
-        { sourceName = "test/examples/geometry.tex"
-        , sourceLine = Pos 88
-        , sourceColumn = Pos 1
+    ( Location
+        { locFile = "test/examples/geometry.tex"
+        , locLine = 88
+        , locColumn = 88
         }
     )
     ( Marker "cong_sym" )
     ( Lemma
         [ Asm
             ( TermSymbol
+                ( Location
+                    { locFile = "<nowhere>"
+                    , locLine = -1
+                    , locColumn = -1
+                    }
+                )
                 ( SymbolPredicate
                     ( PredicateNoun
                         ( SgPl
@@ -1592,6 +2042,12 @@
             )
         , Asm
             ( TermSymbol
+                ( Location
+                    { locFile = "<nowhere>"
+                    , locLine = -1
+                    , locColumn = -1
+                    }
+                )
                 ( SymbolPredicate
                     ( PredicateNoun
                         ( SgPl
@@ -1613,6 +2069,12 @@
             )
         , Asm
             ( TermSymbol
+                ( Location
+                    { locFile = "<nowhere>"
+                    , locLine = -1
+                    , locColumn = -1
+                    }
+                )
                 ( SymbolPredicate
                     ( PredicateNoun
                         ( SgPl
@@ -1634,6 +2096,12 @@
             )
         , Asm
             ( TermSymbol
+                ( Location
+                    { locFile = "<nowhere>"
+                    , locLine = -1
+                    , locColumn = -1
+                    }
+                )
                 ( SymbolPredicate
                     ( PredicateNoun
                         ( SgPl
@@ -1655,6 +2123,12 @@
             )
         , Asm
             ( TermSymbol
+                ( Location
+                    { locFile = "<nowhere>"
+                    , locLine = -1
+                    , locColumn = -1
+                    }
+                )
                 ( SymbolPredicate
                     ( PredicateSymbol "Cong" )
                 )
@@ -1670,6 +2144,12 @@
             )
         ]
         ( TermSymbol
+            ( Location
+                { locFile = "<nowhere>"
+                , locLine = -1
+                , locColumn = -1
+                }
+            )
             ( SymbolPredicate
                 ( PredicateSymbol "Cong" )
             )
@@ -1685,16 +2165,22 @@
         )
     )
 , BlockLemma
-    ( SourcePos
-        { sourceName = "test/examples/geometry.tex"
-        , sourceLine = Pos 95
-        , sourceColumn = Pos 1
+    ( Location
+        { locFile = "test/examples/geometry.tex"
+        , locLine = 95
+        , locColumn = 95
         }
     )
     ( Marker "cong_transitive" )
     ( Lemma
         [ Asm
             ( TermSymbol
+                ( Location
+                    { locFile = "<nowhere>"
+                    , locLine = -1
+                    , locColumn = -1
+                    }
+                )
                 ( SymbolPredicate
                     ( PredicateNoun
                         ( SgPl
@@ -1716,6 +2202,12 @@
             )
         , Asm
             ( TermSymbol
+                ( Location
+                    { locFile = "<nowhere>"
+                    , locLine = -1
+                    , locColumn = -1
+                    }
+                )
                 ( SymbolPredicate
                     ( PredicateNoun
                         ( SgPl
@@ -1737,6 +2229,12 @@
             )
         , Asm
             ( TermSymbol
+                ( Location
+                    { locFile = "<nowhere>"
+                    , locLine = -1
+                    , locColumn = -1
+                    }
+                )
                 ( SymbolPredicate
                     ( PredicateNoun
                         ( SgPl
@@ -1758,6 +2256,12 @@
             )
         , Asm
             ( TermSymbol
+                ( Location
+                    { locFile = "<nowhere>"
+                    , locLine = -1
+                    , locColumn = -1
+                    }
+                )
                 ( SymbolPredicate
                     ( PredicateNoun
                         ( SgPl
@@ -1779,6 +2283,12 @@
             )
         , Asm
             ( TermSymbol
+                ( Location
+                    { locFile = "<nowhere>"
+                    , locLine = -1
+                    , locColumn = -1
+                    }
+                )
                 ( SymbolPredicate
                     ( PredicateNoun
                         ( SgPl
@@ -1800,6 +2310,12 @@
             )
         , Asm
             ( TermSymbol
+                ( Location
+                    { locFile = "<nowhere>"
+                    , locLine = -1
+                    , locColumn = -1
+                    }
+                )
                 ( SymbolPredicate
                     ( PredicateNoun
                         ( SgPl
@@ -1823,6 +2339,12 @@
         ( Connected Implication
             ( Connected Conjunction
                 ( TermSymbol
+                    ( Location
+                        { locFile = "<nowhere>"
+                        , locLine = -1
+                        , locColumn = -1
+                        }
+                    )
                     ( SymbolPredicate
                         ( PredicateSymbol "Cong" )
                     )
@@ -1837,6 +2359,12 @@
                     ]
                 )
                 ( TermSymbol
+                    ( Location
+                        { locFile = "<nowhere>"
+                        , locLine = -1
+                        , locColumn = -1
+                        }
+                    )
                     ( SymbolPredicate
                         ( PredicateSymbol "Cong" )
                     )
@@ -1852,6 +2380,12 @@
                 )
             )
             ( TermSymbol
+                ( Location
+                    { locFile = "<nowhere>"
+                    , locLine = -1
+                    , locColumn = -1
+                    }
+                )
                 ( SymbolPredicate
                     ( PredicateSymbol "Cong" )
                 )
@@ -1868,16 +2402,22 @@
         )
     )
 , BlockLemma
-    ( SourcePos
-        { sourceName = "test/examples/geometry.tex"
-        , sourceLine = Pos 102
-        , sourceColumn = Pos 1
+    ( Location
+        { locFile = "test/examples/geometry.tex"
+        , locLine = 102
+        , locColumn = 102
         }
     )
     ( Marker "cong_shuffle_left" )
     ( Lemma
         [ Asm
             ( TermSymbol
+                ( Location
+                    { locFile = "<nowhere>"
+                    , locLine = -1
+                    , locColumn = -1
+                    }
+                )
                 ( SymbolPredicate
                     ( PredicateNoun
                         ( SgPl
@@ -1899,6 +2439,12 @@
             )
         , Asm
             ( TermSymbol
+                ( Location
+                    { locFile = "<nowhere>"
+                    , locLine = -1
+                    , locColumn = -1
+                    }
+                )
                 ( SymbolPredicate
                     ( PredicateNoun
                         ( SgPl
@@ -1920,6 +2466,12 @@
             )
         , Asm
             ( TermSymbol
+                ( Location
+                    { locFile = "<nowhere>"
+                    , locLine = -1
+                    , locColumn = -1
+                    }
+                )
                 ( SymbolPredicate
                     ( PredicateNoun
                         ( SgPl
@@ -1941,6 +2493,12 @@
             )
         , Asm
             ( TermSymbol
+                ( Location
+                    { locFile = "<nowhere>"
+                    , locLine = -1
+                    , locColumn = -1
+                    }
+                )
                 ( SymbolPredicate
                     ( PredicateNoun
                         ( SgPl
@@ -1963,6 +2521,12 @@
         ]
         ( Connected Implication
             ( TermSymbol
+                ( Location
+                    { locFile = "<nowhere>"
+                    , locLine = -1
+                    , locColumn = -1
+                    }
+                )
                 ( SymbolPredicate
                     ( PredicateSymbol "Cong" )
                 )
@@ -1977,6 +2541,12 @@
                 ]
             )
             ( TermSymbol
+                ( Location
+                    { locFile = "<nowhere>"
+                    , locLine = -1
+                    , locColumn = -1
+                    }
+                )
                 ( SymbolPredicate
                     ( PredicateSymbol "Cong" )
                 )
@@ -1993,16 +2563,22 @@
         )
     )
 , BlockLemma
-    ( SourcePos
-        { sourceName = "test/examples/geometry.tex"
-        , sourceLine = Pos 109
-        , sourceColumn = Pos 1
+    ( Location
+        { locFile = "test/examples/geometry.tex"
+        , locLine = 109
+        , locColumn = 109
         }
     )
     ( Marker "cong_shuffle_right" )
     ( Lemma
         [ Asm
             ( TermSymbol
+                ( Location
+                    { locFile = "<nowhere>"
+                    , locLine = -1
+                    , locColumn = -1
+                    }
+                )
                 ( SymbolPredicate
                     ( PredicateNoun
                         ( SgPl
@@ -2024,6 +2600,12 @@
             )
         , Asm
             ( TermSymbol
+                ( Location
+                    { locFile = "<nowhere>"
+                    , locLine = -1
+                    , locColumn = -1
+                    }
+                )
                 ( SymbolPredicate
                     ( PredicateNoun
                         ( SgPl
@@ -2045,6 +2627,12 @@
             )
         , Asm
             ( TermSymbol
+                ( Location
+                    { locFile = "<nowhere>"
+                    , locLine = -1
+                    , locColumn = -1
+                    }
+                )
                 ( SymbolPredicate
                     ( PredicateNoun
                         ( SgPl
@@ -2066,6 +2654,12 @@
             )
         , Asm
             ( TermSymbol
+                ( Location
+                    { locFile = "<nowhere>"
+                    , locLine = -1
+                    , locColumn = -1
+                    }
+                )
                 ( SymbolPredicate
                     ( PredicateNoun
                         ( SgPl
@@ -2088,6 +2682,12 @@
         ]
         ( Connected Implication
             ( TermSymbol
+                ( Location
+                    { locFile = "<nowhere>"
+                    , locLine = -1
+                    , locColumn = -1
+                    }
+                )
                 ( SymbolPredicate
                     ( PredicateSymbol "Cong" )
                 )
@@ -2102,6 +2702,12 @@
                 ]
             )
             ( TermSymbol
+                ( Location
+                    { locFile = "<nowhere>"
+                    , locLine = -1
+                    , locColumn = -1
+                    }
+                )
                 ( SymbolPredicate
                     ( PredicateSymbol "Cong" )
                 )
@@ -2118,16 +2724,22 @@
         )
     )
 , BlockLemma
-    ( SourcePos
-        { sourceName = "test/examples/geometry.tex"
-        , sourceLine = Pos 116
-        , sourceColumn = Pos 1
+    ( Location
+        { locFile = "test/examples/geometry.tex"
+        , locLine = 116
+        , locColumn = 116
         }
     )
     ( Marker "cong_zero" )
     ( Lemma
         [ Asm
             ( TermSymbol
+                ( Location
+                    { locFile = "<nowhere>"
+                    , locLine = -1
+                    , locColumn = -1
+                    }
+                )
                 ( SymbolPredicate
                     ( PredicateNoun
                         ( SgPl
@@ -2149,6 +2761,12 @@
             )
         , Asm
             ( TermSymbol
+                ( Location
+                    { locFile = "<nowhere>"
+                    , locLine = -1
+                    , locColumn = -1
+                    }
+                )
                 ( SymbolPredicate
                     ( PredicateNoun
                         ( SgPl
@@ -2170,6 +2788,12 @@
             )
         ]
         ( TermSymbol
+            ( Location
+                { locFile = "<nowhere>"
+                , locLine = -1
+                , locColumn = -1
+                }
+            )
             ( SymbolPredicate
                 ( PredicateSymbol "Cong" )
             )

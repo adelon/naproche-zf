@@ -1,8 +1,8 @@
 [ BlockDefn
-    ( SourcePos
-        { sourceName = "test/examples/inductive.tex"
-        , sourceLine = Pos 3
-        , sourceColumn = Pos 1
+    ( Location
+        { locFile = "test/examples/inductive.tex"
+        , locLine = 3
+        , locColumn = 3
         }
     )
     ( Marker "subseteq" )
@@ -29,10 +29,10 @@
         )
     )
 , BlockDefn
-    ( SourcePos
-        { sourceName = "test/examples/inductive.tex"
-        , sourceLine = Pos 7
-        , sourceColumn = Pos 1
+    ( Location
+        { locFile = "test/examples/inductive.tex"
+        , locLine = 7
+        , locColumn = 7
         }
     )
     ( Marker "pow" )
@@ -53,10 +53,10 @@
         )
     )
 , BlockDefn
-    ( SourcePos
-        { sourceName = "test/examples/inductive.tex"
-        , sourceLine = Pos 11
-        , sourceColumn = Pos 1
+    ( Location
+        { locFile = "test/examples/inductive.tex"
+        , locLine = 11
+        , locColumn = 11
         }
     )
     ( Marker "cons" )
@@ -82,10 +82,10 @@
         )
     )
 , BlockDefn
-    ( SourcePos
-        { sourceName = "test/examples/inductive.tex"
-        , sourceLine = Pos 15
-        , sourceColumn = Pos 1
+    ( Location
+        { locFile = "test/examples/inductive.tex"
+        , locLine = 15
+        , locColumn = 15
         }
     )
     ( Marker "times" )
@@ -107,10 +107,10 @@
         )
     )
 , BlockDefn
-    ( SourcePos
-        { sourceName = "test/examples/inductive.tex"
-        , sourceLine = Pos 19
-        , sourceColumn = Pos 1
+    ( Location
+        { locFile = "test/examples/inductive.tex"
+        , locLine = 19
+        , locColumn = 19
         }
     )
     ( Marker "fld" )
@@ -131,10 +131,10 @@
         )
     )
 , BlockDefn
-    ( SourcePos
-        { sourceName = "test/examples/inductive.tex"
-        , sourceLine = Pos 23
-        , sourceColumn = Pos 1
+    ( Location
+        { locFile = "test/examples/inductive.tex"
+        , locLine = 23
+        , locColumn = 23
         }
     )
     ( Marker "preimg" )
@@ -160,10 +160,10 @@
         )
     )
 , BlockAxiom
-    ( SourcePos
-        { sourceName = "test/examples/inductive.tex"
-        , sourceLine = Pos 27
-        , sourceColumn = Pos 1
+    ( Location
+        { locFile = "test/examples/inductive.tex"
+        , locLine = 27
+        , locColumn = 27
         }
     )
     ( Marker "lmao" )
@@ -187,10 +187,10 @@
         )
     )
 , BlockInductive
-    ( SourcePos
-        { sourceName = "test/examples/inductive.tex"
-        , sourceLine = Pos 31
-        , sourceColumn = Pos 1
+    ( Location
+        { locFile = "test/examples/inductive.tex"
+        , locLine = 31
+        , locColumn = 31
         }
     )
     ( Marker "fin" )
@@ -311,10 +311,10 @@
         }
     )
 , BlockLemma
-    ( SourcePos
-        { sourceName = "test/examples/inductive.tex"
-        , sourceLine = Pos 39
-        , sourceColumn = Pos 1
+    ( Location
+        { locFile = "test/examples/inductive.tex"
+        , locLine = 39
+        , locColumn = 39
         }
     )
     ( Marker "fin_mono" )
@@ -386,10 +386,10 @@
         )
     )
 , BlockInductive
-    ( SourcePos
-        { sourceName = "test/examples/inductive.tex"
-        , sourceLine = Pos 45
-        , sourceColumn = Pos 1
+    ( Location
+        { locFile = "test/examples/inductive.tex"
+        , locLine = 45
+        , locColumn = 45
         }
     )
     ( Marker "tracl" )
@@ -564,10 +564,10 @@
         }
     )
 , BlockInductive
-    ( SourcePos
-        { sourceName = "test/examples/inductive.tex"
-        , sourceLine = Pos 53
-        , sourceColumn = Pos 1
+    ( Location
+        { locFile = "test/examples/inductive.tex"
+        , locLine = 53
+        , locColumn = 53
         }
     )
     ( Marker "quasirefltracl" )
@@ -763,10 +763,10 @@
         }
     )
 , BlockInductive
-    ( SourcePos
-        { sourceName = "test/examples/inductive.tex"
-        , sourceLine = Pos 61
-        , sourceColumn = Pos 1
+    ( Location
+        { locFile = "test/examples/inductive.tex"
+        , locLine = 61
+        , locColumn = 61
         }
     )
     ( Marker "refltracl" )
@@ -958,10 +958,10 @@
         }
     )
 , BlockInductive
-    ( SourcePos
-        { sourceName = "test/examples/inductive.tex"
-        , sourceLine = Pos 69
-        , sourceColumn = Pos 1
+    ( Location
+        { locFile = "test/examples/inductive.tex"
+        , locLine = 69
+        , locColumn = 69
         }
     )
     ( Marker "acc" )

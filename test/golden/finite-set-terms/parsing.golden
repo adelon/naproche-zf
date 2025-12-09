@@ -1,8 +1,8 @@
 [ BlockAxiom
-    ( SourcePos
-        { sourceName = "test/examples/finite-set-terms.tex"
-        , sourceLine = Pos 1
-        , sourceColumn = Pos 1
+    ( Location
+        { locFile = "test/examples/finite-set-terms.tex"
+        , locLine = 1
+        , locColumn = 1
         }
     )
     ( Marker "cons" )
@@ -73,10 +73,10 @@
         )
     )
 , BlockDefn
-    ( SourcePos
-        { sourceName = "test/examples/finite-set-terms.tex"
-        , sourceLine = Pos 5
-        , sourceColumn = Pos 1
+    ( Location
+        { locFile = "test/examples/finite-set-terms.tex"
+        , locLine = 5
+        , locColumn = 5
         }
     )
     ( Marker "unit" )
@@ -95,10 +95,10 @@
         )
     )
 , BlockLemma
-    ( SourcePos
-        { sourceName = "test/examples/finite-set-terms.tex"
-        , sourceLine = Pos 9
-        , sourceColumn = Pos 1
+    ( Location
+        { locFile = "test/examples/finite-set-terms.tex"
+        , locLine = 9
+        , locColumn = 9
         }
     )
     ( Marker "emptyset_in_unit" )

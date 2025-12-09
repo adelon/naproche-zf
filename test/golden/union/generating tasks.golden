@@ -7,6 +7,12 @@
                 ( Scope
                     ( Connected Equivalence
                         ( TermSymbol
+                            ( Location
+                                { locFile = "<nowhere>"
+                                , locLine = -1
+                                , locColumn = -1
+                                }
+                            )
                             ( SymbolPredicate
                                 ( PredicateRelation
                                     ( Command "in" )
@@ -17,6 +23,12 @@
                                     ( NamedVar "a" )
                                 )
                             , TermSymbol
+                                ( Location
+                                    { locFile = "<nowhere>"
+                                    , locLine = -1
+                                    , locColumn = -1
+                                    }
+                                )
                                 ( SymbolMixfix
                                     [ Nothing
                                     , Just
@@ -37,6 +49,12 @@
                         )
                         ( Connected Disjunction
                             ( TermSymbol
+                                ( Location
+                                    { locFile = "<nowhere>"
+                                    , locLine = -1
+                                    , locColumn = -1
+                                    }
+                                )
                                 ( SymbolPredicate
                                     ( PredicateRelation
                                         ( Command "in" )
@@ -53,6 +71,12 @@
                                 ]
                             )
                             ( TermSymbol
+                                ( Location
+                                    { locFile = "<nowhere>"
+                                    , locLine = -1
+                                    , locColumn = -1
+                                    }
+                                )
                                 ( SymbolPredicate
                                     ( PredicateRelation
                                         ( Command "in" )
@@ -81,6 +105,12 @@
                             ( Scope
                                 ( Connected Equivalence
                                     ( TermSymbol
+                                        ( Location
+                                            { locFile = "<nowhere>"
+                                            , locLine = -1
+                                            , locColumn = -1
+                                            }
+                                        )
                                         ( SymbolPredicate
                                             ( PredicateRelation
                                                 ( Command "in" )
@@ -101,6 +131,12 @@
                                         ]
                                     )
                                     ( TermSymbol
+                                        ( Location
+                                            { locFile = "<nowhere>"
+                                            , locLine = -1
+                                            , locColumn = -1
+                                            }
+                                        )
                                         ( SymbolPredicate
                                             ( PredicateRelation
                                                 ( Command "in" )
@@ -124,6 +160,12 @@
                             )
                         )
                         ( TermSymbol
+                            ( Location
+                                { locFile = "<nowhere>"
+                                , locLine = -1
+                                , locColumn = -1
+                                }
+                            )
                             ( SymbolPredicate
                                 ( PredicateRelation
                                     ( Symbol "=" )
@@ -145,12 +187,24 @@
         ]
     , taskConjectureLabel = Marker "union_comm"
     , taskConjecture = TermSymbol
+        ( Location
+            { locFile = "<nowhere>"
+            , locLine = -1
+            , locColumn = -1
+            }
+        )
         ( SymbolPredicate
             ( PredicateRelation
                 ( Symbol "=" )
             )
         )
         [ TermSymbol
+            ( Location
+                { locFile = "<nowhere>"
+                , locLine = -1
+                , locColumn = -1
+                }
+            )
             ( SymbolMixfix
                 [ Nothing
                 , Just
@@ -164,6 +218,12 @@
                 ( NamedVar "B" )
             ]
         , TermSymbol
+            ( Location
+                { locFile = "<nowhere>"
+                , locLine = -1
+                , locColumn = -1
+                }
+            )
             ( SymbolMixfix
                 [ Nothing
                 , Just
@@ -186,12 +246,24 @@
             , Quantified Universally
                 ( Scope
                     ( TermSymbol
+                        ( Location
+                            { locFile = "<nowhere>"
+                            , locLine = -1
+                            , locColumn = -1
+                            }
+                        )
                         ( SymbolPredicate
                             ( PredicateRelation
                                 ( Symbol "=" )
                             )
                         )
                         [ TermSymbol
+                            ( Location
+                                { locFile = "<nowhere>"
+                                , locLine = -1
+                                , locColumn = -1
+                                }
+                            )
                             ( SymbolMixfix
                                 [ Nothing
                                 , Just
@@ -209,6 +281,12 @@
                                 )
                             ]
                         , TermSymbol
+                            ( Location
+                                { locFile = "<nowhere>"
+                                , locLine = -1
+                                , locColumn = -1
+                                }
+                            )
                             ( SymbolMixfix
                                 [ Nothing
                                 , Just
@@ -235,6 +313,12 @@
                 ( Scope
                     ( Connected Equivalence
                         ( TermSymbol
+                            ( Location
+                                { locFile = "<nowhere>"
+                                , locLine = -1
+                                , locColumn = -1
+                                }
+                            )
                             ( SymbolPredicate
                                 ( PredicateRelation
                                     ( Command "in" )
@@ -245,6 +329,12 @@
                                     ( NamedVar "a" )
                                 )
                             , TermSymbol
+                                ( Location
+                                    { locFile = "<nowhere>"
+                                    , locLine = -1
+                                    , locColumn = -1
+                                    }
+                                )
                                 ( SymbolMixfix
                                     [ Nothing
                                     , Just
@@ -265,6 +355,12 @@
                         )
                         ( Connected Disjunction
                             ( TermSymbol
+                                ( Location
+                                    { locFile = "<nowhere>"
+                                    , locLine = -1
+                                    , locColumn = -1
+                                    }
+                                )
                                 ( SymbolPredicate
                                     ( PredicateRelation
                                         ( Command "in" )
@@ -281,6 +377,12 @@
                                 ]
                             )
                             ( TermSymbol
+                                ( Location
+                                    { locFile = "<nowhere>"
+                                    , locLine = -1
+                                    , locColumn = -1
+                                    }
+                                )
                                 ( SymbolPredicate
                                     ( PredicateRelation
                                         ( Command "in" )
@@ -309,6 +411,12 @@
                             ( Scope
                                 ( Connected Equivalence
                                     ( TermSymbol
+                                        ( Location
+                                            { locFile = "<nowhere>"
+                                            , locLine = -1
+                                            , locColumn = -1
+                                            }
+                                        )
                                         ( SymbolPredicate
                                             ( PredicateRelation
                                                 ( Command "in" )
@@ -329,6 +437,12 @@
                                         ]
                                     )
                                     ( TermSymbol
+                                        ( Location
+                                            { locFile = "<nowhere>"
+                                            , locLine = -1
+                                            , locColumn = -1
+                                            }
+                                        )
                                         ( SymbolPredicate
                                             ( PredicateRelation
                                                 ( Command "in" )
@@ -352,6 +466,12 @@
                             )
                         )
                         ( TermSymbol
+                            ( Location
+                                { locFile = "<nowhere>"
+                                , locLine = -1
+                                , locColumn = -1
+                                }
+                            )
                             ( SymbolPredicate
                                 ( PredicateRelation
                                     ( Symbol "=" )
@@ -376,6 +496,12 @@
         ( Scope
             ( Connected Implication
                 ( TermSymbol
+                    ( Location
+                        { locFile = "<nowhere>"
+                        , locLine = -1
+                        , locColumn = -1
+                        }
+                    )
                     ( SymbolPredicate
                         ( PredicateRelation
                             ( Command "in" )
@@ -386,6 +512,12 @@
                             ( NamedVar "a" )
                         )
                     , TermSymbol
+                        ( Location
+                            { locFile = "<nowhere>"
+                            , locLine = -1
+                            , locColumn = -1
+                            }
+                        )
                         ( SymbolMixfix
                             [ Nothing
                             , Just
@@ -394,6 +526,12 @@
                             ]
                         )
                         [ TermSymbol
+                            ( Location
+                                { locFile = "<nowhere>"
+                                , locLine = -1
+                                , locColumn = -1
+                                }
+                            )
                             ( SymbolMixfix
                                 [ Nothing
                                 , Just
@@ -424,6 +562,12 @@
                     ]
                 )
                 ( TermSymbol
+                    ( Location
+                        { locFile = "<nowhere>"
+                        , locLine = -1
+                        , locColumn = -1
+                        }
+                    )
                     ( SymbolPredicate
                         ( PredicateRelation
                             ( Command "in" )
@@ -434,6 +578,12 @@
                             ( NamedVar "a" )
                         )
                     , TermSymbol
+                        ( Location
+                            { locFile = "<nowhere>"
+                            , locLine = -1
+                            , locColumn = -1
+                            }
+                        )
                         ( SymbolMixfix
                             [ Nothing
                             , Just
@@ -448,6 +598,12 @@
                                 )
                             )
                         , TermSymbol
+                            ( Location
+                                { locFile = "<nowhere>"
+                                , locLine = -1
+                                , locColumn = -1
+                                }
+                            )
                             ( SymbolMixfix
                                 [ Nothing
                                 , Just
@@ -482,12 +638,24 @@
             , Quantified Universally
                 ( Scope
                     ( TermSymbol
+                        ( Location
+                            { locFile = "<nowhere>"
+                            , locLine = -1
+                            , locColumn = -1
+                            }
+                        )
                         ( SymbolPredicate
                             ( PredicateRelation
                                 ( Symbol "=" )
                             )
                         )
                         [ TermSymbol
+                            ( Location
+                                { locFile = "<nowhere>"
+                                , locLine = -1
+                                , locColumn = -1
+                                }
+                            )
                             ( SymbolMixfix
                                 [ Nothing
                                 , Just
@@ -505,6 +673,12 @@
                                 )
                             ]
                         , TermSymbol
+                            ( Location
+                                { locFile = "<nowhere>"
+                                , locLine = -1
+                                , locColumn = -1
+                                }
+                            )
                             ( SymbolMixfix
                                 [ Nothing
                                 , Just
@@ -531,6 +705,12 @@
                 ( Scope
                     ( Connected Equivalence
                         ( TermSymbol
+                            ( Location
+                                { locFile = "<nowhere>"
+                                , locLine = -1
+                                , locColumn = -1
+                                }
+                            )
                             ( SymbolPredicate
                                 ( PredicateRelation
                                     ( Command "in" )
@@ -541,6 +721,12 @@
                                     ( NamedVar "a" )
                                 )
                             , TermSymbol
+                                ( Location
+                                    { locFile = "<nowhere>"
+                                    , locLine = -1
+                                    , locColumn = -1
+                                    }
+                                )
                                 ( SymbolMixfix
                                     [ Nothing
                                     , Just
@@ -561,6 +747,12 @@
                         )
                         ( Connected Disjunction
                             ( TermSymbol
+                                ( Location
+                                    { locFile = "<nowhere>"
+                                    , locLine = -1
+                                    , locColumn = -1
+                                    }
+                                )
                                 ( SymbolPredicate
                                     ( PredicateRelation
                                         ( Command "in" )
@@ -577,6 +769,12 @@
                                 ]
                             )
                             ( TermSymbol
+                                ( Location
+                                    { locFile = "<nowhere>"
+                                    , locLine = -1
+                                    , locColumn = -1
+                                    }
+                                )
                                 ( SymbolPredicate
                                     ( PredicateRelation
                                         ( Command "in" )
@@ -605,6 +803,12 @@
                             ( Scope
                                 ( Connected Equivalence
                                     ( TermSymbol
+                                        ( Location
+                                            { locFile = "<nowhere>"
+                                            , locLine = -1
+                                            , locColumn = -1
+                                            }
+                                        )
                                         ( SymbolPredicate
                                             ( PredicateRelation
                                                 ( Command "in" )
@@ -625,6 +829,12 @@
                                         ]
                                     )
                                     ( TermSymbol
+                                        ( Location
+                                            { locFile = "<nowhere>"
+                                            , locLine = -1
+                                            , locColumn = -1
+                                            }
+                                        )
                                         ( SymbolPredicate
                                             ( PredicateRelation
                                                 ( Command "in" )
@@ -648,6 +858,12 @@
                             )
                         )
                         ( TermSymbol
+                            ( Location
+                                { locFile = "<nowhere>"
+                                , locLine = -1
+                                , locColumn = -1
+                                }
+                            )
                             ( SymbolPredicate
                                 ( PredicateRelation
                                     ( Symbol "=" )
@@ -672,6 +888,12 @@
                 ( Scope
                     ( Connected Implication
                         ( TermSymbol
+                            ( Location
+                                { locFile = "<nowhere>"
+                                , locLine = -1
+                                , locColumn = -1
+                                }
+                            )
                             ( SymbolPredicate
                                 ( PredicateRelation
                                     ( Command "in" )
@@ -682,6 +904,12 @@
                                     ( NamedVar "a" )
                                 )
                             , TermSymbol
+                                ( Location
+                                    { locFile = "<nowhere>"
+                                    , locLine = -1
+                                    , locColumn = -1
+                                    }
+                                )
                                 ( SymbolMixfix
                                     [ Nothing
                                     , Just
@@ -690,6 +918,12 @@
                                     ]
                                 )
                                 [ TermSymbol
+                                    ( Location
+                                        { locFile = "<nowhere>"
+                                        , locLine = -1
+                                        , locColumn = -1
+                                        }
+                                    )
                                     ( SymbolMixfix
                                         [ Nothing
                                         , Just
@@ -720,6 +954,12 @@
                             ]
                         )
                         ( TermSymbol
+                            ( Location
+                                { locFile = "<nowhere>"
+                                , locLine = -1
+                                , locColumn = -1
+                                }
+                            )
                             ( SymbolPredicate
                                 ( PredicateRelation
                                     ( Command "in" )
@@ -730,6 +970,12 @@
                                     ( NamedVar "a" )
                                 )
                             , TermSymbol
+                                ( Location
+                                    { locFile = "<nowhere>"
+                                    , locLine = -1
+                                    , locColumn = -1
+                                    }
+                                )
                                 ( SymbolMixfix
                                     [ Nothing
                                     , Just
@@ -744,6 +990,12 @@
                                         )
                                     )
                                 , TermSymbol
+                                    ( Location
+                                        { locFile = "<nowhere>"
+                                        , locLine = -1
+                                        , locColumn = -1
+                                        }
+                                    )
                                     ( SymbolMixfix
                                         [ Nothing
                                         , Just
@@ -776,6 +1028,12 @@
         ( Scope
             ( Connected Implication
                 ( TermSymbol
+                    ( Location
+                        { locFile = "<nowhere>"
+                        , locLine = -1
+                        , locColumn = -1
+                        }
+                    )
                     ( SymbolPredicate
                         ( PredicateRelation
                             ( Command "in" )
@@ -786,6 +1044,12 @@
                             ( NamedVar "a" )
                         )
                     , TermSymbol
+                        ( Location
+                            { locFile = "<nowhere>"
+                            , locLine = -1
+                            , locColumn = -1
+                            }
+                        )
                         ( SymbolMixfix
                             [ Nothing
                             , Just
@@ -800,6 +1064,12 @@
                                 )
                             )
                         , TermSymbol
+                            ( Location
+                                { locFile = "<nowhere>"
+                                , locLine = -1
+                                , locColumn = -1
+                                }
+                            )
                             ( SymbolMixfix
                                 [ Nothing
                                 , Just
@@ -824,6 +1094,12 @@
                     ]
                 )
                 ( TermSymbol
+                    ( Location
+                        { locFile = "<nowhere>"
+                        , locLine = -1
+                        , locColumn = -1
+                        }
+                    )
                     ( SymbolPredicate
                         ( PredicateRelation
                             ( Command "in" )
@@ -834,6 +1110,12 @@
                             ( NamedVar "a" )
                         )
                     , TermSymbol
+                        ( Location
+                            { locFile = "<nowhere>"
+                            , locLine = -1
+                            , locColumn = -1
+                            }
+                        )
                         ( SymbolMixfix
                             [ Nothing
                             , Just
@@ -842,6 +1124,12 @@
                             ]
                         )
                         [ TermSymbol
+                            ( Location
+                                { locFile = "<nowhere>"
+                                , locLine = -1
+                                , locColumn = -1
+                                }
+                            )
                             ( SymbolMixfix
                                 [ Nothing
                                 , Just
@@ -882,12 +1170,24 @@
             , Quantified Universally
                 ( Scope
                     ( TermSymbol
+                        ( Location
+                            { locFile = "<nowhere>"
+                            , locLine = -1
+                            , locColumn = -1
+                            }
+                        )
                         ( SymbolPredicate
                             ( PredicateRelation
                                 ( Symbol "=" )
                             )
                         )
                         [ TermSymbol
+                            ( Location
+                                { locFile = "<nowhere>"
+                                , locLine = -1
+                                , locColumn = -1
+                                }
+                            )
                             ( SymbolMixfix
                                 [ Nothing
                                 , Just
@@ -905,6 +1205,12 @@
                                 )
                             ]
                         , TermSymbol
+                            ( Location
+                                { locFile = "<nowhere>"
+                                , locLine = -1
+                                , locColumn = -1
+                                }
+                            )
                             ( SymbolMixfix
                                 [ Nothing
                                 , Just
@@ -931,6 +1237,12 @@
                 ( Scope
                     ( Connected Equivalence
                         ( TermSymbol
+                            ( Location
+                                { locFile = "<nowhere>"
+                                , locLine = -1
+                                , locColumn = -1
+                                }
+                            )
                             ( SymbolPredicate
                                 ( PredicateRelation
                                     ( Command "in" )
@@ -941,6 +1253,12 @@
                                     ( NamedVar "a" )
                                 )
                             , TermSymbol
+                                ( Location
+                                    { locFile = "<nowhere>"
+                                    , locLine = -1
+                                    , locColumn = -1
+                                    }
+                                )
                                 ( SymbolMixfix
                                     [ Nothing
                                     , Just
@@ -961,6 +1279,12 @@
                         )
                         ( Connected Disjunction
                             ( TermSymbol
+                                ( Location
+                                    { locFile = "<nowhere>"
+                                    , locLine = -1
+                                    , locColumn = -1
+                                    }
+                                )
                                 ( SymbolPredicate
                                     ( PredicateRelation
                                         ( Command "in" )
@@ -977,6 +1301,12 @@
                                 ]
                             )
                             ( TermSymbol
+                                ( Location
+                                    { locFile = "<nowhere>"
+                                    , locLine = -1
+                                    , locColumn = -1
+                                    }
+                                )
                                 ( SymbolPredicate
                                     ( PredicateRelation
                                         ( Command "in" )
@@ -1005,6 +1335,12 @@
                             ( Scope
                                 ( Connected Equivalence
                                     ( TermSymbol
+                                        ( Location
+                                            { locFile = "<nowhere>"
+                                            , locLine = -1
+                                            , locColumn = -1
+                                            }
+                                        )
                                         ( SymbolPredicate
                                             ( PredicateRelation
                                                 ( Command "in" )
@@ -1025,6 +1361,12 @@
                                         ]
                                     )
                                     ( TermSymbol
+                                        ( Location
+                                            { locFile = "<nowhere>"
+                                            , locLine = -1
+                                            , locColumn = -1
+                                            }
+                                        )
                                         ( SymbolPredicate
                                             ( PredicateRelation
                                                 ( Command "in" )
@@ -1048,6 +1390,12 @@
                             )
                         )
                         ( TermSymbol
+                            ( Location
+                                { locFile = "<nowhere>"
+                                , locLine = -1
+                                , locColumn = -1
+                                }
+                            )
                             ( SymbolPredicate
                                 ( PredicateRelation
                                     ( Symbol "=" )
@@ -1072,6 +1420,12 @@
                 ( Scope
                     ( Connected Implication
                         ( TermSymbol
+                            ( Location
+                                { locFile = "<nowhere>"
+                                , locLine = -1
+                                , locColumn = -1
+                                }
+                            )
                             ( SymbolPredicate
                                 ( PredicateRelation
                                     ( Command "in" )
@@ -1082,6 +1436,12 @@
                                     ( NamedVar "a" )
                                 )
                             , TermSymbol
+                                ( Location
+                                    { locFile = "<nowhere>"
+                                    , locLine = -1
+                                    , locColumn = -1
+                                    }
+                                )
                                 ( SymbolMixfix
                                     [ Nothing
                                     , Just
@@ -1096,6 +1456,12 @@
                                         )
                                     )
                                 , TermSymbol
+                                    ( Location
+                                        { locFile = "<nowhere>"
+                                        , locLine = -1
+                                        , locColumn = -1
+                                        }
+                                    )
                                     ( SymbolMixfix
                                         [ Nothing
                                         , Just
@@ -1120,6 +1486,12 @@
                             ]
                         )
                         ( TermSymbol
+                            ( Location
+                                { locFile = "<nowhere>"
+                                , locLine = -1
+                                , locColumn = -1
+                                }
+                            )
                             ( SymbolPredicate
                                 ( PredicateRelation
                                     ( Command "in" )
@@ -1130,6 +1502,12 @@
                                     ( NamedVar "a" )
                                 )
                             , TermSymbol
+                                ( Location
+                                    { locFile = "<nowhere>"
+                                    , locLine = -1
+                                    , locColumn = -1
+                                    }
+                                )
                                 ( SymbolMixfix
                                     [ Nothing
                                     , Just
@@ -1138,6 +1516,12 @@
                                     ]
                                 )
                                 [ TermSymbol
+                                    ( Location
+                                        { locFile = "<nowhere>"
+                                        , locLine = -1
+                                        , locColumn = -1
+                                        }
+                                    )
                                     ( SymbolMixfix
                                         [ Nothing
                                         , Just
@@ -1176,6 +1560,12 @@
                 ( Scope
                     ( Connected Implication
                         ( TermSymbol
+                            ( Location
+                                { locFile = "<nowhere>"
+                                , locLine = -1
+                                , locColumn = -1
+                                }
+                            )
                             ( SymbolPredicate
                                 ( PredicateRelation
                                     ( Command "in" )
@@ -1186,6 +1576,12 @@
                                     ( NamedVar "a" )
                                 )
                             , TermSymbol
+                                ( Location
+                                    { locFile = "<nowhere>"
+                                    , locLine = -1
+                                    , locColumn = -1
+                                    }
+                                )
                                 ( SymbolMixfix
                                     [ Nothing
                                     , Just
@@ -1194,6 +1590,12 @@
                                     ]
                                 )
                                 [ TermSymbol
+                                    ( Location
+                                        { locFile = "<nowhere>"
+                                        , locLine = -1
+                                        , locColumn = -1
+                                        }
+                                    )
                                     ( SymbolMixfix
                                         [ Nothing
                                         , Just
@@ -1224,6 +1626,12 @@
                             ]
                         )
                         ( TermSymbol
+                            ( Location
+                                { locFile = "<nowhere>"
+                                , locLine = -1
+                                , locColumn = -1
+                                }
+                            )
                             ( SymbolPredicate
                                 ( PredicateRelation
                                     ( Command "in" )
@@ -1234,6 +1642,12 @@
                                     ( NamedVar "a" )
                                 )
                             , TermSymbol
+                                ( Location
+                                    { locFile = "<nowhere>"
+                                    , locLine = -1
+                                    , locColumn = -1
+                                    }
+                                )
                                 ( SymbolMixfix
                                     [ Nothing
                                     , Just
@@ -1248,6 +1662,12 @@
                                         )
                                     )
                                 , TermSymbol
+                                    ( Location
+                                        { locFile = "<nowhere>"
+                                        , locLine = -1
+                                        , locColumn = -1
+                                        }
+                                    )
                                     ( SymbolMixfix
                                         [ Nothing
                                         , Just
@@ -1277,12 +1697,24 @@
         ]
     , taskConjectureLabel = Marker "union_assoc"
     , taskConjecture = TermSymbol
+        ( Location
+            { locFile = "<nowhere>"
+            , locLine = -1
+            , locColumn = -1
+            }
+        )
         ( SymbolPredicate
             ( PredicateRelation
                 ( Symbol "=" )
             )
         )
         [ TermSymbol
+            ( Location
+                { locFile = "<nowhere>"
+                , locLine = -1
+                , locColumn = -1
+                }
+            )
             ( SymbolMixfix
                 [ Nothing
                 , Just
@@ -1291,6 +1723,12 @@
                 ]
             )
             [ TermSymbol
+                ( Location
+                    { locFile = "<nowhere>"
+                    , locLine = -1
+                    , locColumn = -1
+                    }
+                )
                 ( SymbolMixfix
                     [ Nothing
                     , Just
@@ -1307,6 +1745,12 @@
                 ( NamedVar "C" )
             ]
         , TermSymbol
+            ( Location
+                { locFile = "<nowhere>"
+                , locLine = -1
+                , locColumn = -1
+                }
+            )
             ( SymbolMixfix
                 [ Nothing
                 , Just
@@ -1317,6 +1761,12 @@
             [ TermVar
                 ( NamedVar "A" )
             , TermSymbol
+                ( Location
+                    { locFile = "<nowhere>"
+                    , locLine = -1
+                    , locColumn = -1
+                    }
+                )
                 ( SymbolMixfix
                     [ Nothing
                     , Just

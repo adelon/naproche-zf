@@ -1,8 +1,8 @@
 [ BlockDefn
-    ( SourcePos
-        { sourceName = "test/examples/proofdefinefunction.tex"
-        , sourceLine = Pos 3
-        , sourceColumn = Pos 1
+    ( Location
+        { locFile = "test/examples/proofdefinefunction.tex"
+        , locLine = 3
+        , locColumn = 3
         }
     )
     ( Marker "apply" )
@@ -26,10 +26,10 @@
         )
     )
 , BlockDefn
-    ( SourcePos
-        { sourceName = "test/examples/proofdefinefunction.tex"
-        , sourceLine = Pos 8
-        , sourceColumn = Pos 1
+    ( Location
+        { locFile = "test/examples/proofdefinefunction.tex"
+        , locLine = 8
+        , locColumn = 8
         }
     )
     ( Marker "dom" )
@@ -48,10 +48,10 @@
         )
     )
 , BlockDefn
-    ( SourcePos
-        { sourceName = "test/examples/proofdefinefunction.tex"
-        , sourceLine = Pos 13
-        , sourceColumn = Pos 1
+    ( Location
+        { locFile = "test/examples/proofdefinefunction.tex"
+        , locLine = 13
+        , locColumn = 13
         }
     )
     ( Marker "rightunique" )
@@ -59,10 +59,10 @@
         ( DefnAdj Nothing
             ( NamedVar "f" )
             ( Adj
-                ( SourcePos
-                    { sourceName = "test/examples/proofdefinefunction.tex"
-                    , sourceLine = Pos 14
-                    , sourceColumn = Pos 12
+                ( Location
+                    { locFile = "test/examples/proofdefinefunction.tex"
+                    , locLine = 14
+                    , locColumn = 14
                     }
                 )
                 [ Just
@@ -87,10 +87,10 @@
         )
     )
 , BlockDefn
-    ( SourcePos
-        { sourceName = "test/examples/proofdefinefunction.tex"
-        , sourceLine = Pos 18
-        , sourceColumn = Pos 1
+    ( Location
+        { locFile = "test/examples/proofdefinefunction.tex"
+        , locLine = 18
+        , locColumn = 18
         }
     )
     ( Marker "relation" )
@@ -128,10 +128,10 @@
         )
     )
 , BlockLemma
-    ( SourcePos
-        { sourceName = "test/examples/proofdefinefunction.tex"
-        , sourceLine = Pos 22
-        , sourceColumn = Pos 1
+    ( Location
+        { locFile = "test/examples/proofdefinefunction.tex"
+        , locLine = 22
+        , locColumn = 22
         }
     )
     ( Marker "definefunctiontest" )
@@ -139,10 +139,10 @@
         ( StmtConnected
             { conn = Implication
             , mpos = Just
-                ( SourcePos
-                    { sourceName = "test/examples/proofdefinefunction.tex"
-                    , sourceLine = Pos 23
-                    , sourceColumn = Pos 5
+                ( Location
+                    { locFile = "test/examples/proofdefinefunction.tex"
+                    , locLine = 23
+                    , locColumn = 23
                     }
                 )
             , stmt1 = StmtFormula
@@ -177,17 +177,17 @@
         )
     )
 , BlockProof
-    ( SourcePos
-        { sourceName = "test/examples/proofdefinefunction.tex"
-        , sourceLine = Pos 25
-        , sourceColumn = Pos 1
+    ( Location
+        { locFile = "test/examples/proofdefinefunction.tex"
+        , locLine = 25
+        , locColumn = 25
         }
     )
     ( DefineFunction
-        ( SourcePos
-            { sourceName = "test/examples/proofdefinefunction.tex"
-            , sourceLine = Pos 26
-            , sourceColumn = Pos 5
+        ( Location
+            { locFile = "test/examples/proofdefinefunction.tex"
+            , locLine = 26
+            , locColumn = 26
             }
         )
         ( NamedVar "f" )

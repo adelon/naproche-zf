@@ -1,8 +1,8 @@
 [ BlockDefn
-    ( SourcePos
-        { sourceName = "test/examples/coord.tex"
-        , sourceLine = Pos 1
-        , sourceColumn = Pos 1
+    ( Location
+        { locFile = "test/examples/coord.tex"
+        , locLine = 1
+        , locColumn = 1
         }
     )
     ( Marker "bar" )
@@ -22,6 +22,12 @@
         )
         ( NamedVar "x" :| [] )
         ( TermSymbol
+            ( Location
+                { locFile = "<nowhere>"
+                , locLine = -1
+                , locColumn = -1
+                }
+            )
             ( SymbolPredicate
                 ( PredicateRelation
                     ( Symbol "=" )
@@ -35,10 +41,10 @@
         )
     )
 , BlockDefn
-    ( SourcePos
-        { sourceName = "test/examples/coord.tex"
-        , sourceLine = Pos 5
-        , sourceColumn = Pos 1
+    ( Location
+        { locFile = "test/examples/coord.tex"
+        , locLine = 5
+        , locColumn = 5
         }
     )
     ( Marker "foo" )
@@ -50,6 +56,12 @@
         )
         ( NamedVar "x" :| [] )
         ( TermSymbol
+            ( Location
+                { locFile = "<nowhere>"
+                , locLine = -1
+                , locColumn = -1
+                }
+            )
             ( SymbolPredicate
                 ( PredicateRelation
                     ( Symbol "=" )
@@ -63,10 +75,10 @@
         )
     )
 , BlockDefn
-    ( SourcePos
-        { sourceName = "test/examples/coord.tex"
-        , sourceLine = Pos 9
-        , sourceColumn = Pos 1
+    ( Location
+        { locFile = "test/examples/coord.tex"
+        , locLine = 9
+        , locColumn = 9
         }
     )
     ( Marker "baz" )
@@ -78,6 +90,12 @@
         )
         ( NamedVar "x" :| [] )
         ( TermSymbol
+            ( Location
+                { locFile = "<nowhere>"
+                , locLine = -1
+                , locColumn = -1
+                }
+            )
             ( SymbolPredicate
                 ( PredicateRelation
                     ( Symbol "=" )
@@ -91,16 +109,22 @@
         )
     )
 , BlockLemma
-    ( SourcePos
-        { sourceName = "test/examples/coord.tex"
-        , sourceLine = Pos 13
-        , sourceColumn = Pos 1
+    ( Location
+        { locFile = "test/examples/coord.tex"
+        , locLine = 13
+        , locColumn = 13
         }
     )
     ( Marker "nouns" )
     ( Lemma
         [ Asm
             ( TermSymbol
+                ( Location
+                    { locFile = "<nowhere>"
+                    , locLine = -1
+                    , locColumn = -1
+                    }
+                )
                 ( SymbolPredicate
                     ( PredicateNoun
                         ( SgPl
@@ -122,6 +146,12 @@
             )
         , Asm
             ( TermSymbol
+                ( Location
+                    { locFile = "<nowhere>"
+                    , locLine = -1
+                    , locColumn = -1
+                    }
+                )
                 ( SymbolPredicate
                     ( PredicateNoun
                         ( SgPl
@@ -143,6 +173,12 @@
             )
         ]
         ( TermSymbol
+            ( Location
+                { locFile = "<nowhere>"
+                , locLine = -1
+                , locColumn = -1
+                }
+            )
             ( SymbolPredicate
                 ( PredicateRelation
                     ( Symbol "=" )
@@ -156,10 +192,10 @@
         )
     )
 , BlockLemma
-    ( SourcePos
-        { sourceName = "test/examples/coord.tex"
-        , sourceLine = Pos 18
-        , sourceColumn = Pos 1
+    ( Location
+        { locFile = "test/examples/coord.tex"
+        , locLine = 18
+        , locColumn = 18
         }
     )
     ( Marker "adj_nouns" )
@@ -167,6 +203,12 @@
         [ Asm
             ( Connected Conjunction
                 ( TermSymbol
+                    ( Location
+                        { locFile = "<nowhere>"
+                        , locLine = -1
+                        , locColumn = -1
+                        }
+                    )
                     ( SymbolPredicate
                         ( PredicateNoun
                             ( SgPl
@@ -187,6 +229,12 @@
                     ]
                 )
                 ( TermSymbol
+                    ( Location
+                        { locFile = "test/examples/coord.tex"
+                        , locLine = 19
+                        , locColumn = 19
+                        }
+                    )
                     ( SymbolPredicate
                         ( PredicateAdj
                             [ Just
@@ -202,6 +250,12 @@
         , Asm
             ( Connected Conjunction
                 ( TermSymbol
+                    ( Location
+                        { locFile = "<nowhere>"
+                        , locLine = -1
+                        , locColumn = -1
+                        }
+                    )
                     ( SymbolPredicate
                         ( PredicateNoun
                             ( SgPl
@@ -222,6 +276,12 @@
                     ]
                 )
                 ( TermSymbol
+                    ( Location
+                        { locFile = "test/examples/coord.tex"
+                        , locLine = 19
+                        , locColumn = 19
+                        }
+                    )
                     ( SymbolPredicate
                         ( PredicateAdj
                             [ Just
@@ -236,6 +296,12 @@
             )
         ]
         ( TermSymbol
+            ( Location
+                { locFile = "<nowhere>"
+                , locLine = -1
+                , locColumn = -1
+                }
+            )
             ( SymbolPredicate
                 ( PredicateRelation
                     ( Symbol "=" )
@@ -249,10 +315,10 @@
         )
     )
 , BlockLemma
-    ( SourcePos
-        { sourceName = "test/examples/coord.tex"
-        , sourceLine = Pos 24
-        , sourceColumn = Pos 1
+    ( Location
+        { locFile = "test/examples/coord.tex"
+        , locLine = 24
+        , locColumn = 24
         }
     )
     ( Marker "nouns_suchthat" )
@@ -260,6 +326,12 @@
         [ Asm
             ( Connected Conjunction
                 ( TermSymbol
+                    ( Location
+                        { locFile = "test/examples/coord.tex"
+                        , locLine = 25
+                        , locColumn = 25
+                        }
+                    )
                     ( SymbolPredicate
                         ( PredicateAdj
                             [ Just
@@ -272,6 +344,12 @@
                     ]
                 )
                 ( TermSymbol
+                    ( Location
+                        { locFile = "test/examples/coord.tex"
+                        , locLine = 25
+                        , locColumn = 25
+                        }
+                    )
                     ( SymbolPredicate
                         ( PredicateAdj
                             [ Just
@@ -286,6 +364,12 @@
             )
         , Asm
             ( TermSymbol
+                ( Location
+                    { locFile = "<nowhere>"
+                    , locLine = -1
+                    , locColumn = -1
+                    }
+                )
                 ( SymbolPredicate
                     ( PredicateNoun
                         ( SgPl
@@ -307,6 +391,12 @@
             )
         , Asm
             ( TermSymbol
+                ( Location
+                    { locFile = "<nowhere>"
+                    , locLine = -1
+                    , locColumn = -1
+                    }
+                )
                 ( SymbolPredicate
                     ( PredicateNoun
                         ( SgPl
@@ -328,6 +418,12 @@
             )
         ]
         ( TermSymbol
+            ( Location
+                { locFile = "<nowhere>"
+                , locLine = -1
+                , locColumn = -1
+                }
+            )
             ( SymbolPredicate
                 ( PredicateRelation
                     ( Symbol "=" )
@@ -341,16 +437,22 @@
         )
     )
 , BlockLemma
-    ( SourcePos
-        { sourceName = "test/examples/coord.tex"
-        , sourceLine = Pos 30
-        , sourceColumn = Pos 1
+    ( Location
+        { locFile = "test/examples/coord.tex"
+        , locLine = 30
+        , locColumn = 30
         }
     )
     ( Marker "noun_verb" )
     ( Lemma []
         ( Connected Equivalence
             ( TermSymbol
+                ( Location
+                    { locFile = "<nowhere>"
+                    , locLine = -1
+                    , locColumn = -1
+                    }
+                )
                 ( SymbolPredicate
                     ( PredicateRelation
                         ( Symbol "=" )
@@ -364,6 +466,12 @@
             )
             ( Connected Conjunction
                 ( TermSymbol
+                    ( Location
+                        { locFile = "<nowhere>"
+                        , locLine = -1
+                        , locColumn = -1
+                        }
+                    )
                     ( SymbolPredicate
                         ( PredicateNoun
                             ( SgPl
@@ -384,6 +492,12 @@
                     ]
                 )
                 ( TermSymbol
+                    ( Location
+                        { locFile = "<nowhere>"
+                        , locLine = -1
+                        , locColumn = -1
+                        }
+                    )
                     ( SymbolPredicate
                         ( PredicateRelation
                             ( Symbol "=" )
@@ -399,16 +513,22 @@
         )
     )
 , BlockLemma
-    ( SourcePos
-        { sourceName = "test/examples/coord.tex"
-        , sourceLine = Pos 35
-        , sourceColumn = Pos 1
+    ( Location
+        { locFile = "test/examples/coord.tex"
+        , locLine = 35
+        , locColumn = 35
         }
     )
     ( Marker "adjs" )
     ( Lemma []
         ( Connected Conjunction
             ( TermSymbol
+                ( Location
+                    { locFile = "test/examples/coord.tex"
+                    , locLine = 36
+                    , locColumn = 36
+                    }
+                )
                 ( SymbolPredicate
                     ( PredicateAdj
                         [ Just
@@ -421,6 +541,12 @@
                 ]
             )
             ( TermSymbol
+                ( Location
+                    { locFile = "test/examples/coord.tex"
+                    , locLine = 36
+                    , locColumn = 36
+                    }
+                )
                 ( SymbolPredicate
                     ( PredicateAdj
                         [ Just
@@ -435,10 +561,10 @@
         )
     )
 , BlockLemma
-    ( SourcePos
-        { sourceName = "test/examples/coord.tex"
-        , sourceLine = Pos 39
-        , sourceColumn = Pos 1
+    ( Location
+        { locFile = "test/examples/coord.tex"
+        , locLine = 39
+        , locColumn = 39
         }
     )
     ( Marker "are_nouns" )
@@ -446,6 +572,12 @@
         [ Asm
             ( Connected Conjunction
                 ( TermSymbol
+                    ( Location
+                        { locFile = "<nowhere>"
+                        , locLine = -1
+                        , locColumn = -1
+                        }
+                    )
                     ( SymbolPredicate
                         ( PredicateNoun
                             ( SgPl
@@ -466,6 +598,12 @@
                     ]
                 )
                 ( TermSymbol
+                    ( Location
+                        { locFile = "test/examples/coord.tex"
+                        , locLine = 40
+                        , locColumn = 40
+                        }
+                    )
                     ( SymbolPredicate
                         ( PredicateAdj
                             [ Just
@@ -481,6 +619,12 @@
         , Asm
             ( Connected Conjunction
                 ( TermSymbol
+                    ( Location
+                        { locFile = "<nowhere>"
+                        , locLine = -1
+                        , locColumn = -1
+                        }
+                    )
                     ( SymbolPredicate
                         ( PredicateNoun
                             ( SgPl
@@ -501,6 +645,12 @@
                     ]
                 )
                 ( TermSymbol
+                    ( Location
+                        { locFile = "test/examples/coord.tex"
+                        , locLine = 40
+                        , locColumn = 40
+                        }
+                    )
                     ( SymbolPredicate
                         ( PredicateAdj
                             [ Just
@@ -517,6 +667,12 @@
         ( Connected Conjunction
             ( Connected Conjunction
                 ( TermSymbol
+                    ( Location
+                        { locFile = "<nowhere>"
+                        , locLine = -1
+                        , locColumn = -1
+                        }
+                    )
                     ( SymbolPredicate
                         ( PredicateNoun
                             ( SgPl
@@ -537,6 +693,12 @@
                     ]
                 )
                 ( TermSymbol
+                    ( Location
+                        { locFile = "test/examples/coord.tex"
+                        , locLine = 41
+                        , locColumn = 41
+                        }
+                    )
                     ( SymbolPredicate
                         ( PredicateAdj
                             [ Just
@@ -551,6 +713,12 @@
             )
             ( Connected Conjunction
                 ( TermSymbol
+                    ( Location
+                        { locFile = "<nowhere>"
+                        , locLine = -1
+                        , locColumn = -1
+                        }
+                    )
                     ( SymbolPredicate
                         ( PredicateNoun
                             ( SgPl
@@ -571,6 +739,12 @@
                     ]
                 )
                 ( TermSymbol
+                    ( Location
+                        { locFile = "test/examples/coord.tex"
+                        , locLine = 41
+                        , locColumn = 41
+                        }
+                    )
                     ( SymbolPredicate
                         ( PredicateAdj
                             [ Just

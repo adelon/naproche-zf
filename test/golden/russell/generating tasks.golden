@@ -1,10 +1,22 @@
 [ Task
     { taskDirectness = Indirect
         ( Not
+            ( Location
+                { locFile = "test/examples/russell.tex"
+                , locLine = 8
+                , locColumn = 8
+                }
+            )
             ( Quantified Existentially
                 ( Scope
                     ( Connected Conjunction ( PropositionalConstant IsTop )
                         ( TermSymbol
+                            ( Location
+                                { locFile = "test/examples/russell.tex"
+                                , locLine = 8
+                                , locColumn = 8
+                                }
+                            )
                             ( SymbolPredicate
                                 ( PredicateAdj
                                     [ Just
@@ -29,6 +41,12 @@
                 ( Scope
                     ( Connected Equivalence
                         ( TermSymbol
+                            ( Location
+                                { locFile = "<nowhere>"
+                                , locLine = -1
+                                , locColumn = -1
+                                }
+                            )
                             ( SymbolPredicate
                                 ( PredicateAdj
                                     [ Just
@@ -47,6 +65,12 @@
                                 ( Quantified Universally
                                     ( Scope
                                         ( TermSymbol
+                                            ( Location
+                                                { locFile = "<nowhere>"
+                                                , locLine = -1
+                                                , locColumn = -1
+                                                }
+                                            )
                                             ( SymbolPredicate
                                                 ( PredicateRelation
                                                     ( Command "in" )
@@ -80,10 +104,28 @@
         ,
             ( Marker "no_universal_set1"
             , Not
+                ( Location
+                    { locFile = "test/examples/russell.tex"
+                    , locLine = 11
+                    , locColumn = 11
+                    }
+                )
                 ( Not
+                    ( Location
+                        { locFile = "test/examples/russell.tex"
+                        , locLine = 8
+                        , locColumn = 8
+                        }
+                    )
                     ( Quantified Existentially
                         ( Scope
                             ( TermSymbol
+                                ( Location
+                                    { locFile = "test/examples/russell.tex"
+                                    , locLine = 8
+                                    , locColumn = 8
+                                    }
+                                )
                                 ( SymbolPredicate
                                     ( PredicateAdj
                                         [ Just
@@ -106,6 +148,12 @@
     , taskConjecture = Quantified Existentially
         ( Scope
             ( TermSymbol
+                ( Location
+                    { locFile = "test/examples/russell.tex"
+                    , locLine = 12
+                    , locColumn = 12
+                    }
+                )
                 ( SymbolPredicate
                     ( PredicateAdj
                         [ Just
@@ -124,10 +172,22 @@
 , Task
     { taskDirectness = Indirect
         ( Not
+            ( Location
+                { locFile = "test/examples/russell.tex"
+                , locLine = 8
+                , locColumn = 8
+                }
+            )
             ( Quantified Existentially
                 ( Scope
                     ( Connected Conjunction ( PropositionalConstant IsTop )
                         ( TermSymbol
+                            ( Location
+                                { locFile = "test/examples/russell.tex"
+                                , locLine = 8
+                                , locColumn = 8
+                                }
+                            )
                             ( SymbolPredicate
                                 ( PredicateAdj
                                     [ Just
@@ -152,6 +212,12 @@
                 ( Scope
                     ( Connected Equivalence
                         ( TermSymbol
+                            ( Location
+                                { locFile = "<nowhere>"
+                                , locLine = -1
+                                , locColumn = -1
+                                }
+                            )
                             ( SymbolPredicate
                                 ( PredicateAdj
                                     [ Just
@@ -170,6 +236,12 @@
                                 ( Quantified Universally
                                     ( Scope
                                         ( TermSymbol
+                                            ( Location
+                                                { locFile = "<nowhere>"
+                                                , locLine = -1
+                                                , locColumn = -1
+                                                }
+                                            )
                                             ( SymbolPredicate
                                                 ( PredicateRelation
                                                     ( Command "in" )
@@ -206,6 +278,12 @@
                 ( Scope
                     ( Connected Equivalence
                         ( TermSymbol
+                            ( Location
+                                { locFile = "<nowhere>"
+                                , locLine = -1
+                                , locColumn = -1
+                                }
+                            )
                             ( SymbolPredicate
                                 ( PredicateRelation
                                     ( Command "in" )
@@ -225,6 +303,12 @@
                         )
                         ( Connected Conjunction
                             ( TermSymbol
+                                ( Location
+                                    { locFile = "<nowhere>"
+                                    , locLine = -1
+                                    , locColumn = -1
+                                    }
+                                )
                                 ( SymbolPredicate
                                     ( PredicateRelation
                                         ( Command "in" )
@@ -243,7 +327,19 @@
                                 ]
                             )
                             ( Not
+                                ( Location
+                                    { locFile = "<nowhere>"
+                                    , locLine = -1
+                                    , locColumn = -1
+                                    }
+                                )
                                 ( TermSymbol
+                                    ( Location
+                                        { locFile = "<nowhere>"
+                                        , locLine = -1
+                                        , locColumn = -1
+                                        }
+                                    )
                                     ( SymbolPredicate
                                         ( PredicateRelation
                                             ( Command "in" )
@@ -267,6 +363,12 @@
         ,
             ( Marker "no_universal_set2"
             , TermSymbol
+                ( Location
+                    { locFile = "test/examples/russell.tex"
+                    , locLine = 12
+                    , locColumn = 12
+                    }
+                )
                 ( SymbolPredicate
                     ( PredicateAdj
                         [ Just
@@ -281,10 +383,28 @@
         ,
             ( Marker "no_universal_set3"
             , Not
+                ( Location
+                    { locFile = "test/examples/russell.tex"
+                    , locLine = 11
+                    , locColumn = 11
+                    }
+                )
                 ( Not
+                    ( Location
+                        { locFile = "test/examples/russell.tex"
+                        , locLine = 8
+                        , locColumn = 8
+                        }
+                    )
                     ( Quantified Existentially
                         ( Scope
                             ( TermSymbol
+                                ( Location
+                                    { locFile = "test/examples/russell.tex"
+                                    , locLine = 8
+                                    , locColumn = 8
+                                    }
+                                )
                                 ( SymbolPredicate
                                     ( PredicateAdj
                                         [ Just
@@ -306,6 +426,12 @@
     , taskConjectureLabel = Marker "no_universal_set"
     , taskConjecture = Connected Equivalence
         ( TermSymbol
+            ( Location
+                { locFile = "<nowhere>"
+                , locLine = -1
+                , locColumn = -1
+                }
+            )
             ( SymbolPredicate
                 ( PredicateRelation
                     ( Command "in" )
@@ -318,7 +444,19 @@
             ]
         )
         ( Not
+            ( Location
+                { locFile = "<nowhere>"
+                , locLine = -1
+                , locColumn = -1
+                }
+            )
             ( TermSymbol
+                ( Location
+                    { locFile = "<nowhere>"
+                    , locLine = -1
+                    , locColumn = -1
+                    }
+                )
                 ( SymbolPredicate
                     ( PredicateRelation
                         ( Command "in" )
@@ -335,10 +473,22 @@
 , Task
     { taskDirectness = Indirect
         ( Not
+            ( Location
+                { locFile = "test/examples/russell.tex"
+                , locLine = 8
+                , locColumn = 8
+                }
+            )
             ( Quantified Existentially
                 ( Scope
                     ( Connected Conjunction ( PropositionalConstant IsTop )
                         ( TermSymbol
+                            ( Location
+                                { locFile = "test/examples/russell.tex"
+                                , locLine = 8
+                                , locColumn = 8
+                                }
+                            )
                             ( SymbolPredicate
                                 ( PredicateAdj
                                     [ Just
@@ -363,6 +513,12 @@
                 ( Scope
                     ( Connected Equivalence
                         ( TermSymbol
+                            ( Location
+                                { locFile = "<nowhere>"
+                                , locLine = -1
+                                , locColumn = -1
+                                }
+                            )
                             ( SymbolPredicate
                                 ( PredicateAdj
                                     [ Just
@@ -381,6 +537,12 @@
                                 ( Quantified Universally
                                     ( Scope
                                         ( TermSymbol
+                                            ( Location
+                                                { locFile = "<nowhere>"
+                                                , locLine = -1
+                                                , locColumn = -1
+                                                }
+                                            )
                                             ( SymbolPredicate
                                                 ( PredicateRelation
                                                     ( Command "in" )
@@ -415,6 +577,12 @@
             ( Marker "no_universal_set1"
             , Connected Equivalence
                 ( TermSymbol
+                    ( Location
+                        { locFile = "<nowhere>"
+                        , locLine = -1
+                        , locColumn = -1
+                        }
+                    )
                     ( SymbolPredicate
                         ( PredicateRelation
                             ( Command "in" )
@@ -427,7 +595,19 @@
                     ]
                 )
                 ( Not
+                    ( Location
+                        { locFile = "<nowhere>"
+                        , locLine = -1
+                        , locColumn = -1
+                        }
+                    )
                     ( TermSymbol
+                        ( Location
+                            { locFile = "<nowhere>"
+                            , locLine = -1
+                            , locColumn = -1
+                            }
+                        )
                         ( SymbolPredicate
                             ( PredicateRelation
                                 ( Command "in" )
@@ -447,6 +627,12 @@
                 ( Scope
                     ( Connected Equivalence
                         ( TermSymbol
+                            ( Location
+                                { locFile = "<nowhere>"
+                                , locLine = -1
+                                , locColumn = -1
+                                }
+                            )
                             ( SymbolPredicate
                                 ( PredicateRelation
                                     ( Command "in" )
@@ -466,6 +652,12 @@
                         )
                         ( Connected Conjunction
                             ( TermSymbol
+                                ( Location
+                                    { locFile = "<nowhere>"
+                                    , locLine = -1
+                                    , locColumn = -1
+                                    }
+                                )
                                 ( SymbolPredicate
                                     ( PredicateRelation
                                         ( Command "in" )
@@ -484,7 +676,19 @@
                                 ]
                             )
                             ( Not
+                                ( Location
+                                    { locFile = "<nowhere>"
+                                    , locLine = -1
+                                    , locColumn = -1
+                                    }
+                                )
                                 ( TermSymbol
+                                    ( Location
+                                        { locFile = "<nowhere>"
+                                        , locLine = -1
+                                        , locColumn = -1
+                                        }
+                                    )
                                     ( SymbolPredicate
                                         ( PredicateRelation
                                             ( Command "in" )
@@ -508,6 +712,12 @@
         ,
             ( Marker "no_universal_set3"
             , TermSymbol
+                ( Location
+                    { locFile = "test/examples/russell.tex"
+                    , locLine = 12
+                    , locColumn = 12
+                    }
+                )
                 ( SymbolPredicate
                     ( PredicateAdj
                         [ Just
@@ -522,10 +732,28 @@
         ,
             ( Marker "no_universal_set4"
             , Not
+                ( Location
+                    { locFile = "test/examples/russell.tex"
+                    , locLine = 11
+                    , locColumn = 11
+                    }
+                )
                 ( Not
+                    ( Location
+                        { locFile = "test/examples/russell.tex"
+                        , locLine = 8
+                        , locColumn = 8
+                        }
+                    )
                     ( Quantified Existentially
                         ( Scope
                             ( TermSymbol
+                                ( Location
+                                    { locFile = "test/examples/russell.tex"
+                                    , locLine = 8
+                                    , locColumn = 8
+                                    }
+                                )
                                 ( SymbolPredicate
                                     ( PredicateAdj
                                         [ Just
@@ -550,10 +778,22 @@
 , Task
     { taskDirectness = Indirect
         ( Not
+            ( Location
+                { locFile = "test/examples/russell.tex"
+                , locLine = 8
+                , locColumn = 8
+                }
+            )
             ( Quantified Existentially
                 ( Scope
                     ( Connected Conjunction ( PropositionalConstant IsTop )
                         ( TermSymbol
+                            ( Location
+                                { locFile = "test/examples/russell.tex"
+                                , locLine = 8
+                                , locColumn = 8
+                                }
+                            )
                             ( SymbolPredicate
                                 ( PredicateAdj
                                     [ Just
@@ -578,6 +818,12 @@
                 ( Scope
                     ( Connected Equivalence
                         ( TermSymbol
+                            ( Location
+                                { locFile = "<nowhere>"
+                                , locLine = -1
+                                , locColumn = -1
+                                }
+                            )
                             ( SymbolPredicate
                                 ( PredicateAdj
                                     [ Just
@@ -596,6 +842,12 @@
                                 ( Quantified Universally
                                     ( Scope
                                         ( TermSymbol
+                                            ( Location
+                                                { locFile = "<nowhere>"
+                                                , locLine = -1
+                                                , locColumn = -1
+                                                }
+                                            )
                                             ( SymbolPredicate
                                                 ( PredicateRelation
                                                     ( Command "in" )
@@ -634,6 +886,12 @@
             ( Marker "no_universal_set2"
             , Connected Equivalence
                 ( TermSymbol
+                    ( Location
+                        { locFile = "<nowhere>"
+                        , locLine = -1
+                        , locColumn = -1
+                        }
+                    )
                     ( SymbolPredicate
                         ( PredicateRelation
                             ( Command "in" )
@@ -646,7 +904,19 @@
                     ]
                 )
                 ( Not
+                    ( Location
+                        { locFile = "<nowhere>"
+                        , locLine = -1
+                        , locColumn = -1
+                        }
+                    )
                     ( TermSymbol
+                        ( Location
+                            { locFile = "<nowhere>"
+                            , locLine = -1
+                            , locColumn = -1
+                            }
+                        )
                         ( SymbolPredicate
                             ( PredicateRelation
                                 ( Command "in" )
@@ -666,6 +936,12 @@
                 ( Scope
                     ( Connected Equivalence
                         ( TermSymbol
+                            ( Location
+                                { locFile = "<nowhere>"
+                                , locLine = -1
+                                , locColumn = -1
+                                }
+                            )
                             ( SymbolPredicate
                                 ( PredicateRelation
                                     ( Command "in" )
@@ -685,6 +961,12 @@
                         )
                         ( Connected Conjunction
                             ( TermSymbol
+                                ( Location
+                                    { locFile = "<nowhere>"
+                                    , locLine = -1
+                                    , locColumn = -1
+                                    }
+                                )
                                 ( SymbolPredicate
                                     ( PredicateRelation
                                         ( Command "in" )
@@ -703,7 +985,19 @@
                                 ]
                             )
                             ( Not
+                                ( Location
+                                    { locFile = "<nowhere>"
+                                    , locLine = -1
+                                    , locColumn = -1
+                                    }
+                                )
                                 ( TermSymbol
+                                    ( Location
+                                        { locFile = "<nowhere>"
+                                        , locLine = -1
+                                        , locColumn = -1
+                                        }
+                                    )
                                     ( SymbolPredicate
                                         ( PredicateRelation
                                             ( Command "in" )
@@ -727,6 +1021,12 @@
         ,
             ( Marker "no_universal_set4"
             , TermSymbol
+                ( Location
+                    { locFile = "test/examples/russell.tex"
+                    , locLine = 12
+                    , locColumn = 12
+                    }
+                )
                 ( SymbolPredicate
                     ( PredicateAdj
                         [ Just
@@ -741,10 +1041,28 @@
         ,
             ( Marker "no_universal_set5"
             , Not
+                ( Location
+                    { locFile = "test/examples/russell.tex"
+                    , locLine = 11
+                    , locColumn = 11
+                    }
+                )
                 ( Not
+                    ( Location
+                        { locFile = "test/examples/russell.tex"
+                        , locLine = 8
+                        , locColumn = 8
+                        }
+                    )
                     ( Quantified Existentially
                         ( Scope
                             ( TermSymbol
+                                ( Location
+                                    { locFile = "test/examples/russell.tex"
+                                    , locLine = 8
+                                    , locColumn = 8
+                                    }
+                                )
                                 ( SymbolPredicate
                                     ( PredicateAdj
                                         [ Just

@@ -4,9 +4,21 @@
     , taskConjectureLabel = Marker "dummy_abbr_test_adj"
     , taskConjecture = Connected Implication
         ( Not
+            ( Location
+                { locFile = "test/examples/abbr.tex"
+                , locLine = 2
+                , locColumn = 2
+                }
+            )
             ( Quantified Existentially
                 ( Scope
                     ( TermSymbol
+                        ( Location
+                            { locFile = "<nowhere>"
+                            , locLine = -1
+                            , locColumn = -1
+                            }
+                        )
                         ( SymbolPredicate
                             ( PredicateRelation
                                 ( Command "in" )
@@ -28,9 +40,21 @@
             )
         )
         ( Not
+            ( Location
+                { locFile = "test/examples/abbr.tex"
+                , locLine = 2
+                , locColumn = 2
+                }
+            )
             ( Quantified Existentially
                 ( Scope
                     ( TermSymbol
+                        ( Location
+                            { locFile = "<nowhere>"
+                            , locLine = -1
+                            , locColumn = -1
+                            }
+                        )
                         ( SymbolPredicate
                             ( PredicateRelation
                                 ( Command "in" )
@@ -61,9 +85,21 @@
                 ( Scope
                     ( Connected Implication
                         ( Not
+                            ( Location
+                                { locFile = "test/examples/abbr.tex"
+                                , locLine = 2
+                                , locColumn = 2
+                                }
+                            )
                             ( Quantified Existentially
                                 ( Scope
                                     ( TermSymbol
+                                        ( Location
+                                            { locFile = "<nowhere>"
+                                            , locLine = -1
+                                            , locColumn = -1
+                                            }
+                                        )
                                         ( SymbolPredicate
                                             ( PredicateRelation
                                                 ( Command "in" )
@@ -87,9 +123,21 @@
                             )
                         )
                         ( Not
+                            ( Location
+                                { locFile = "test/examples/abbr.tex"
+                                , locLine = 2
+                                , locColumn = 2
+                                }
+                            )
                             ( Quantified Existentially
                                 ( Scope
                                     ( TermSymbol
+                                        ( Location
+                                            { locFile = "<nowhere>"
+                                            , locLine = -1
+                                            , locColumn = -1
+                                            }
+                                        )
                                         ( SymbolPredicate
                                             ( PredicateRelation
                                                 ( Command "in" )
@@ -120,6 +168,12 @@
     , taskConjecture = Quantified Universally
         ( Scope
             ( TermSymbol
+                ( Location
+                    { locFile = "<nowhere>"
+                    , locLine = -1
+                    , locColumn = -1
+                    }
+                )
                 ( SymbolPredicate
                     ( PredicateRelation
                         ( Symbol "=" )
@@ -145,6 +199,12 @@
             , Quantified Universally
                 ( Scope
                     ( TermSymbol
+                        ( Location
+                            { locFile = "<nowhere>"
+                            , locLine = -1
+                            , locColumn = -1
+                            }
+                        )
                         ( SymbolPredicate
                             ( PredicateRelation
                                 ( Symbol "=" )
@@ -168,9 +228,21 @@
                 ( Scope
                     ( Connected Implication
                         ( Not
+                            ( Location
+                                { locFile = "test/examples/abbr.tex"
+                                , locLine = 2
+                                , locColumn = 2
+                                }
+                            )
                             ( Quantified Existentially
                                 ( Scope
                                     ( TermSymbol
+                                        ( Location
+                                            { locFile = "<nowhere>"
+                                            , locLine = -1
+                                            , locColumn = -1
+                                            }
+                                        )
                                         ( SymbolPredicate
                                             ( PredicateRelation
                                                 ( Command "in" )
@@ -194,9 +266,21 @@
                             )
                         )
                         ( Not
+                            ( Location
+                                { locFile = "test/examples/abbr.tex"
+                                , locLine = 2
+                                , locColumn = 2
+                                }
+                            )
                             ( Quantified Existentially
                                 ( Scope
                                     ( TermSymbol
+                                        ( Location
+                                            { locFile = "<nowhere>"
+                                            , locLine = -1
+                                            , locColumn = -1
+                                            }
+                                        )
                                         ( SymbolPredicate
                                             ( PredicateRelation
                                                 ( Command "in" )
@@ -226,6 +310,12 @@
     , taskConjectureLabel = Marker "dummy_abbr_test_verb"
     , taskConjecture = Connected Implication
         ( TermSymbol
+            ( Location
+                { locFile = "<nowhere>"
+                , locLine = -1
+                , locColumn = -1
+                }
+            )
             ( SymbolPredicate
                 ( PredicateRelation
                     ( Symbol "=" )
@@ -238,6 +328,12 @@
             ]
         )
         ( TermSymbol
+            ( Location
+                { locFile = "<nowhere>"
+                , locLine = -1
+                , locColumn = -1
+                }
+            )
             ( SymbolPredicate
                 ( PredicateRelation
                     ( Symbol "=" )
@@ -259,6 +355,12 @@
                 ( Scope
                     ( Connected Implication
                         ( TermSymbol
+                            ( Location
+                                { locFile = "<nowhere>"
+                                , locLine = -1
+                                , locColumn = -1
+                                }
+                            )
                             ( SymbolPredicate
                                 ( PredicateRelation
                                     ( Symbol "=" )
@@ -275,6 +377,12 @@
                             ]
                         )
                         ( TermSymbol
+                            ( Location
+                                { locFile = "<nowhere>"
+                                , locLine = -1
+                                , locColumn = -1
+                                }
+                            )
                             ( SymbolPredicate
                                 ( PredicateRelation
                                     ( Symbol "=" )
@@ -298,6 +406,12 @@
             , Quantified Universally
                 ( Scope
                     ( TermSymbol
+                        ( Location
+                            { locFile = "<nowhere>"
+                            , locLine = -1
+                            , locColumn = -1
+                            }
+                        )
                         ( SymbolPredicate
                             ( PredicateRelation
                                 ( Symbol "=" )
@@ -321,9 +435,21 @@
                 ( Scope
                     ( Connected Implication
                         ( Not
+                            ( Location
+                                { locFile = "test/examples/abbr.tex"
+                                , locLine = 2
+                                , locColumn = 2
+                                }
+                            )
                             ( Quantified Existentially
                                 ( Scope
                                     ( TermSymbol
+                                        ( Location
+                                            { locFile = "<nowhere>"
+                                            , locLine = -1
+                                            , locColumn = -1
+                                            }
+                                        )
                                         ( SymbolPredicate
                                             ( PredicateRelation
                                                 ( Command "in" )
@@ -347,9 +473,21 @@
                             )
                         )
                         ( Not
+                            ( Location
+                                { locFile = "test/examples/abbr.tex"
+                                , locLine = 2
+                                , locColumn = 2
+                                }
+                            )
                             ( Quantified Existentially
                                 ( Scope
                                     ( TermSymbol
+                                        ( Location
+                                            { locFile = "<nowhere>"
+                                            , locLine = -1
+                                            , locColumn = -1
+                                            }
+                                        )
                                         ( SymbolPredicate
                                             ( PredicateRelation
                                                 ( Command "in" )
@@ -379,7 +517,19 @@
     , taskConjectureLabel = Marker "abbr_test_notin"
     , taskConjecture = Connected Implication
         ( Not
+            ( Location
+                { locFile = "<nowhere>"
+                , locLine = -1
+                , locColumn = -1
+                }
+            )
             ( TermSymbol
+                ( Location
+                    { locFile = "<nowhere>"
+                    , locLine = -1
+                    , locColumn = -1
+                    }
+                )
                 ( SymbolPredicate
                     ( PredicateRelation
                         ( Command "in" )
@@ -393,7 +543,19 @@
             )
         )
         ( Not
+            ( Location
+                { locFile = "<nowhere>"
+                , locLine = -1
+                , locColumn = -1
+                }
+            )
             ( TermSymbol
+                ( Location
+                    { locFile = "<nowhere>"
+                    , locLine = -1
+                    , locColumn = -1
+                    }
+                )
                 ( SymbolPredicate
                     ( PredicateRelation
                         ( Command "in" )
@@ -416,7 +578,19 @@
                 ( Scope
                     ( Connected Implication
                         ( Not
+                            ( Location
+                                { locFile = "<nowhere>"
+                                , locLine = -1
+                                , locColumn = -1
+                                }
+                            )
                             ( TermSymbol
+                                ( Location
+                                    { locFile = "<nowhere>"
+                                    , locLine = -1
+                                    , locColumn = -1
+                                    }
+                                )
                                 ( SymbolPredicate
                                     ( PredicateRelation
                                         ( Command "in" )
@@ -434,7 +608,19 @@
                             )
                         )
                         ( Not
+                            ( Location
+                                { locFile = "<nowhere>"
+                                , locLine = -1
+                                , locColumn = -1
+                                }
+                            )
                             ( TermSymbol
+                                ( Location
+                                    { locFile = "<nowhere>"
+                                    , locLine = -1
+                                    , locColumn = -1
+                                    }
+                                )
                                 ( SymbolPredicate
                                     ( PredicateRelation
                                         ( Command "in" )
@@ -460,6 +646,12 @@
                 ( Scope
                     ( Connected Implication
                         ( TermSymbol
+                            ( Location
+                                { locFile = "<nowhere>"
+                                , locLine = -1
+                                , locColumn = -1
+                                }
+                            )
                             ( SymbolPredicate
                                 ( PredicateRelation
                                     ( Symbol "=" )
@@ -476,6 +668,12 @@
                             ]
                         )
                         ( TermSymbol
+                            ( Location
+                                { locFile = "<nowhere>"
+                                , locLine = -1
+                                , locColumn = -1
+                                }
+                            )
                             ( SymbolPredicate
                                 ( PredicateRelation
                                     ( Symbol "=" )
@@ -499,6 +697,12 @@
             , Quantified Universally
                 ( Scope
                     ( TermSymbol
+                        ( Location
+                            { locFile = "<nowhere>"
+                            , locLine = -1
+                            , locColumn = -1
+                            }
+                        )
                         ( SymbolPredicate
                             ( PredicateRelation
                                 ( Symbol "=" )
@@ -522,9 +726,21 @@
                 ( Scope
                     ( Connected Implication
                         ( Not
+                            ( Location
+                                { locFile = "test/examples/abbr.tex"
+                                , locLine = 2
+                                , locColumn = 2
+                                }
+                            )
                             ( Quantified Existentially
                                 ( Scope
                                     ( TermSymbol
+                                        ( Location
+                                            { locFile = "<nowhere>"
+                                            , locLine = -1
+                                            , locColumn = -1
+                                            }
+                                        )
                                         ( SymbolPredicate
                                             ( PredicateRelation
                                                 ( Command "in" )
@@ -548,9 +764,21 @@
                             )
                         )
                         ( Not
+                            ( Location
+                                { locFile = "test/examples/abbr.tex"
+                                , locLine = 2
+                                , locColumn = 2
+                                }
+                            )
                             ( Quantified Existentially
                                 ( Scope
                                     ( TermSymbol
+                                        ( Location
+                                            { locFile = "<nowhere>"
+                                            , locLine = -1
+                                            , locColumn = -1
+                                            }
+                                        )
                                         ( SymbolPredicate
                                             ( PredicateRelation
                                                 ( Command "in" )
@@ -580,6 +808,12 @@
     , taskConjectureLabel = Marker "abbr_test_elementof_is_in"
     , taskConjecture = Connected Implication
         ( TermSymbol
+            ( Location
+                { locFile = "<nowhere>"
+                , locLine = -1
+                , locColumn = -1
+                }
+            )
             ( SymbolPredicate
                 ( PredicateRelation
                     ( Command "in" )
@@ -592,6 +826,12 @@
             ]
         )
         ( TermSymbol
+            ( Location
+                { locFile = "<nowhere>"
+                , locLine = -1
+                , locColumn = -1
+                }
+            )
             ( SymbolPredicate
                 ( PredicateRelation
                     ( Command "in" )
@@ -613,6 +853,12 @@
                 ( Scope
                     ( Connected Implication
                         ( TermSymbol
+                            ( Location
+                                { locFile = "<nowhere>"
+                                , locLine = -1
+                                , locColumn = -1
+                                }
+                            )
                             ( SymbolPredicate
                                 ( PredicateRelation
                                     ( Command "in" )
@@ -629,6 +875,12 @@
                             ]
                         )
                         ( TermSymbol
+                            ( Location
+                                { locFile = "<nowhere>"
+                                , locLine = -1
+                                , locColumn = -1
+                                }
+                            )
                             ( SymbolPredicate
                                 ( PredicateRelation
                                     ( Command "in" )
@@ -653,7 +905,19 @@
                 ( Scope
                     ( Connected Implication
                         ( Not
+                            ( Location
+                                { locFile = "<nowhere>"
+                                , locLine = -1
+                                , locColumn = -1
+                                }
+                            )
                             ( TermSymbol
+                                ( Location
+                                    { locFile = "<nowhere>"
+                                    , locLine = -1
+                                    , locColumn = -1
+                                    }
+                                )
                                 ( SymbolPredicate
                                     ( PredicateRelation
                                         ( Command "in" )
@@ -671,7 +935,19 @@
                             )
                         )
                         ( Not
+                            ( Location
+                                { locFile = "<nowhere>"
+                                , locLine = -1
+                                , locColumn = -1
+                                }
+                            )
                             ( TermSymbol
+                                ( Location
+                                    { locFile = "<nowhere>"
+                                    , locLine = -1
+                                    , locColumn = -1
+                                    }
+                                )
                                 ( SymbolPredicate
                                     ( PredicateRelation
                                         ( Command "in" )
@@ -697,6 +973,12 @@
                 ( Scope
                     ( Connected Implication
                         ( TermSymbol
+                            ( Location
+                                { locFile = "<nowhere>"
+                                , locLine = -1
+                                , locColumn = -1
+                                }
+                            )
                             ( SymbolPredicate
                                 ( PredicateRelation
                                     ( Symbol "=" )
@@ -713,6 +995,12 @@
                             ]
                         )
                         ( TermSymbol
+                            ( Location
+                                { locFile = "<nowhere>"
+                                , locLine = -1
+                                , locColumn = -1
+                                }
+                            )
                             ( SymbolPredicate
                                 ( PredicateRelation
                                     ( Symbol "=" )
@@ -736,6 +1024,12 @@
             , Quantified Universally
                 ( Scope
                     ( TermSymbol
+                        ( Location
+                            { locFile = "<nowhere>"
+                            , locLine = -1
+                            , locColumn = -1
+                            }
+                        )
                         ( SymbolPredicate
                             ( PredicateRelation
                                 ( Symbol "=" )
@@ -759,9 +1053,21 @@
                 ( Scope
                     ( Connected Implication
                         ( Not
+                            ( Location
+                                { locFile = "test/examples/abbr.tex"
+                                , locLine = 2
+                                , locColumn = 2
+                                }
+                            )
                             ( Quantified Existentially
                                 ( Scope
                                     ( TermSymbol
+                                        ( Location
+                                            { locFile = "<nowhere>"
+                                            , locLine = -1
+                                            , locColumn = -1
+                                            }
+                                        )
                                         ( SymbolPredicate
                                             ( PredicateRelation
                                                 ( Command "in" )
@@ -785,9 +1091,21 @@
                             )
                         )
                         ( Not
+                            ( Location
+                                { locFile = "test/examples/abbr.tex"
+                                , locLine = 2
+                                , locColumn = 2
+                                }
+                            )
                             ( Quantified Existentially
                                 ( Scope
                                     ( TermSymbol
+                                        ( Location
+                                            { locFile = "<nowhere>"
+                                            , locLine = -1
+                                            , locColumn = -1
+                                            }
+                                        )
                                         ( SymbolPredicate
                                             ( PredicateRelation
                                                 ( Command "in" )
@@ -817,6 +1135,12 @@
     , taskConjectureLabel = Marker "abbr_test_equals_is_eq"
     , taskConjecture = Connected Implication
         ( TermSymbol
+            ( Location
+                { locFile = "<nowhere>"
+                , locLine = -1
+                , locColumn = -1
+                }
+            )
             ( SymbolPredicate
                 ( PredicateRelation
                     ( Symbol "=" )
@@ -829,6 +1153,12 @@
             ]
         )
         ( TermSymbol
+            ( Location
+                { locFile = "<nowhere>"
+                , locLine = -1
+                , locColumn = -1
+                }
+            )
             ( SymbolPredicate
                 ( PredicateRelation
                     ( Symbol "=" )

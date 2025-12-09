@@ -1,8 +1,8 @@
 [ BlockDefn
-    ( SourcePos
-        { sourceName = "test/examples/proofdefinefunction.tex"
-        , sourceLine = Pos 3
-        , sourceColumn = Pos 1
+    ( Location
+        { locFile = "test/examples/proofdefinefunction.tex"
+        , locLine = 3
+        , locColumn = 3
         }
     )
     ( Marker "apply" )
@@ -24,10 +24,10 @@
         )
     )
 , BlockDefn
-    ( SourcePos
-        { sourceName = "test/examples/proofdefinefunction.tex"
-        , sourceLine = Pos 8
-        , sourceColumn = Pos 1
+    ( Location
+        { locFile = "test/examples/proofdefinefunction.tex"
+        , locLine = 8
+        , locColumn = 8
         }
     )
     ( Marker "dom" )
@@ -44,10 +44,10 @@
         )
     )
 , BlockDefn
-    ( SourcePos
-        { sourceName = "test/examples/proofdefinefunction.tex"
-        , sourceLine = Pos 13
-        , sourceColumn = Pos 1
+    ( Location
+        { locFile = "test/examples/proofdefinefunction.tex"
+        , locLine = 13
+        , locColumn = 13
         }
     )
     ( Marker "rightunique" )
@@ -59,6 +59,12 @@
         )
         ( NamedVar "f" :| [] )
         ( TermSymbol
+            ( Location
+                { locFile = "<nowhere>"
+                , locLine = -1
+                , locColumn = -1
+                }
+            )
             ( SymbolPredicate
                 ( PredicateRelation
                     ( Symbol "=" )
@@ -72,10 +78,10 @@
         )
     )
 , BlockDefn
-    ( SourcePos
-        { sourceName = "test/examples/proofdefinefunction.tex"
-        , sourceLine = Pos 18
-        , sourceColumn = Pos 1
+    ( Location
+        { locFile = "test/examples/proofdefinefunction.tex"
+        , locLine = 18
+        , locColumn = 18
         }
     )
     ( Marker "relation" )
@@ -95,6 +101,12 @@
         )
         ( NamedVar "f" :| [] )
         ( TermSymbol
+            ( Location
+                { locFile = "<nowhere>"
+                , locLine = -1
+                , locColumn = -1
+                }
+            )
             ( SymbolPredicate
                 ( PredicateRelation
                     ( Symbol "=" )
@@ -108,16 +120,22 @@
         )
     )
 , BlockLemma
-    ( SourcePos
-        { sourceName = "test/examples/proofdefinefunction.tex"
-        , sourceLine = Pos 22
-        , sourceColumn = Pos 1
+    ( Location
+        { locFile = "test/examples/proofdefinefunction.tex"
+        , locLine = 22
+        , locColumn = 22
         }
     )
     ( Marker "definefunctiontest" )
     ( Lemma []
         ( Connected Implication
             ( TermSymbol
+                ( Location
+                    { locFile = "<nowhere>"
+                    , locLine = -1
+                    , locColumn = -1
+                    }
+                )
                 ( SymbolPredicate
                     ( PredicateRelation
                         ( Command "in" )
@@ -130,6 +148,12 @@
                 ]
             )
             ( TermSymbol
+                ( Location
+                    { locFile = "<nowhere>"
+                    , locLine = -1
+                    , locColumn = -1
+                    }
+                )
                 ( SymbolPredicate
                     ( PredicateRelation
                         ( Command "in" )
@@ -144,17 +168,17 @@
         )
     )
 , BlockProof
-    ( SourcePos
-        { sourceName = "test/examples/proofdefinefunction.tex"
-        , sourceLine = Pos 25
-        , sourceColumn = Pos 1
+    ( Location
+        { locFile = "test/examples/proofdefinefunction.tex"
+        , locLine = 25
+        , locColumn = 25
         }
     )
     ( DefineFunction
-        ( SourcePos
-            { sourceName = "test/examples/proofdefinefunction.tex"
-            , sourceLine = Pos 26
-            , sourceColumn = Pos 5
+        ( Location
+            { locFile = "test/examples/proofdefinefunction.tex"
+            , locLine = 26
+            , locColumn = 26
             }
         )
         ( NamedVar "f" )

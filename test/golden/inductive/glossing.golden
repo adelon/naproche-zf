@@ -1,8 +1,8 @@
 [ BlockDefn
-    ( SourcePos
-        { sourceName = "test/examples/inductive.tex"
-        , sourceLine = Pos 3
-        , sourceColumn = Pos 1
+    ( Location
+        { locFile = "test/examples/inductive.tex"
+        , locLine = 3
+        , locColumn = 3
         }
     )
     ( Marker "subseteq" )
@@ -14,6 +14,12 @@
             [ NamedVar "B" ]
         )
         ( TermSymbol
+            ( Location
+                { locFile = "<nowhere>"
+                , locLine = -1
+                , locColumn = -1
+                }
+            )
             ( SymbolPredicate
                 ( PredicateRelation
                     ( Symbol "=" )
@@ -27,10 +33,10 @@
         )
     )
 , BlockDefn
-    ( SourcePos
-        { sourceName = "test/examples/inductive.tex"
-        , sourceLine = Pos 7
-        , sourceColumn = Pos 1
+    ( Location
+        { locFile = "test/examples/inductive.tex"
+        , locLine = 7
+        , locColumn = 7
         }
     )
     ( Marker "pow" )
@@ -43,6 +49,12 @@
         ]
         [ NamedVar "A" ]
         ( TermSymbol
+            ( Location
+                { locFile = "<nowhere>"
+                , locLine = -1
+                , locColumn = -1
+                }
+            )
             ( SymbolMixfix
                 [ Just
                     ( Command "emptyset" )
@@ -51,10 +63,10 @@
         )
     )
 , BlockDefn
-    ( SourcePos
-        { sourceName = "test/examples/inductive.tex"
-        , sourceLine = Pos 11
-        , sourceColumn = Pos 1
+    ( Location
+        { locFile = "test/examples/inductive.tex"
+        , locLine = 11
+        , locColumn = 11
         }
     )
     ( Marker "cons" )
@@ -72,6 +84,12 @@
         , NamedVar "B"
         ]
         ( TermSymbol
+            ( Location
+                { locFile = "<nowhere>"
+                , locLine = -1
+                , locColumn = -1
+                }
+            )
             ( SymbolMixfix
                 [ Just
                     ( Command "emptyset" )
@@ -80,10 +98,10 @@
         )
     )
 , BlockDefn
-    ( SourcePos
-        { sourceName = "test/examples/inductive.tex"
-        , sourceLine = Pos 15
-        , sourceColumn = Pos 1
+    ( Location
+        { locFile = "test/examples/inductive.tex"
+        , locLine = 15
+        , locColumn = 15
         }
     )
     ( Marker "times" )
@@ -97,6 +115,12 @@
         , NamedVar "B"
         ]
         ( TermSymbol
+            ( Location
+                { locFile = "<nowhere>"
+                , locLine = -1
+                , locColumn = -1
+                }
+            )
             ( SymbolMixfix
                 [ Just
                     ( Command "emptyset" )
@@ -105,10 +129,10 @@
         )
     )
 , BlockDefn
-    ( SourcePos
-        { sourceName = "test/examples/inductive.tex"
-        , sourceLine = Pos 19
-        , sourceColumn = Pos 1
+    ( Location
+        { locFile = "test/examples/inductive.tex"
+        , locLine = 19
+        , locColumn = 19
         }
     )
     ( Marker "fld" )
@@ -121,6 +145,12 @@
         ]
         [ NamedVar "R" ]
         ( TermSymbol
+            ( Location
+                { locFile = "<nowhere>"
+                , locLine = -1
+                , locColumn = -1
+                }
+            )
             ( SymbolMixfix
                 [ Just
                     ( Command "emptyset" )
@@ -129,10 +159,10 @@
         )
     )
 , BlockDefn
-    ( SourcePos
-        { sourceName = "test/examples/inductive.tex"
-        , sourceLine = Pos 23
-        , sourceColumn = Pos 1
+    ( Location
+        { locFile = "test/examples/inductive.tex"
+        , locLine = 23
+        , locColumn = 23
         }
     )
     ( Marker "preimg" )
@@ -150,6 +180,12 @@
         , NamedVar "A"
         ]
         ( TermSymbol
+            ( Location
+                { locFile = "<nowhere>"
+                , locLine = -1
+                , locColumn = -1
+                }
+            )
             ( SymbolMixfix
                 [ Just
                     ( Command "emptyset" )
@@ -158,15 +194,21 @@
         )
     )
 , BlockAxiom
-    ( SourcePos
-        { sourceName = "test/examples/inductive.tex"
-        , sourceLine = Pos 27
-        , sourceColumn = Pos 1
+    ( Location
+        { locFile = "test/examples/inductive.tex"
+        , locLine = 27
+        , locColumn = 27
         }
     )
     ( Marker "lmao" )
     ( Axiom []
         ( TermSymbol
+            ( Location
+                { locFile = "<nowhere>"
+                , locLine = -1
+                , locColumn = -1
+                }
+            )
             ( SymbolPredicate
                 ( PredicateRelation
                     ( Command "in" )
@@ -175,6 +217,12 @@
             [ TermVar
                 ( NamedVar "x" )
             , TermSymbol
+                ( Location
+                    { locFile = "<nowhere>"
+                    , locLine = -1
+                    , locColumn = -1
+                    }
+                )
                 ( SymbolMixfix
                     [ Just
                         ( Command "emptyset" )
@@ -184,10 +232,10 @@
         )
     )
 , BlockInductive
-    ( SourcePos
-        { sourceName = "test/examples/inductive.tex"
-        , sourceLine = Pos 31
-        , sourceColumn = Pos 1
+    ( Location
+        { locFile = "test/examples/inductive.tex"
+        , locLine = 31
+        , locColumn = 31
         }
     )
     ( Marker "fin" )
@@ -202,6 +250,12 @@
         , inductiveParams =
             [ NamedVar "A" ]
         , inductiveDomain = TermSymbol
+            ( Location
+                { locFile = "<nowhere>"
+                , locLine = -1
+                , locColumn = -1
+                }
+            )
             ( SymbolMixfix
                 [ Just
                     ( Command "pow" )
@@ -216,18 +270,36 @@
         , inductiveIntros = IntroRule
             { introConditions = []
             , introResult = TermSymbol
+                ( Location
+                    { locFile = "<nowhere>"
+                    , locLine = -1
+                    , locColumn = -1
+                    }
+                )
                 ( SymbolPredicate
                     ( PredicateRelation
                         ( Command "in" )
                     )
                 )
                 [ TermSymbol
+                    ( Location
+                        { locFile = "<nowhere>"
+                        , locLine = -1
+                        , locColumn = -1
+                        }
+                    )
                     ( SymbolMixfix
                         [ Just
                             ( Command "emptyset" )
                         ]
                     ) []
                 , TermSymbol
+                    ( Location
+                        { locFile = "<nowhere>"
+                        , locLine = -1
+                        , locColumn = -1
+                        }
+                    )
                     ( SymbolMixfix
                         [ Just
                             ( Command "fin" )
@@ -244,6 +316,12 @@
             [ IntroRule
                 { introConditions =
                     [ TermSymbol
+                        ( Location
+                            { locFile = "<nowhere>"
+                            , locLine = -1
+                            , locColumn = -1
+                            }
+                        )
                         ( SymbolPredicate
                             ( PredicateRelation
                                 ( Command "in" )
@@ -255,6 +333,12 @@
                             ( NamedVar "A" )
                         ]
                     , TermSymbol
+                        ( Location
+                            { locFile = "<nowhere>"
+                            , locLine = -1
+                            , locColumn = -1
+                            }
+                        )
                         ( SymbolPredicate
                             ( PredicateRelation
                                 ( Command "in" )
@@ -263,6 +347,12 @@
                         [ TermVar
                             ( NamedVar "B" )
                         , TermSymbol
+                            ( Location
+                                { locFile = "<nowhere>"
+                                , locLine = -1
+                                , locColumn = -1
+                                }
+                            )
                             ( SymbolMixfix
                                 [ Just
                                     ( Command "fin" )
@@ -277,12 +367,24 @@
                         ]
                     ]
                 , introResult = TermSymbol
+                    ( Location
+                        { locFile = "<nowhere>"
+                        , locLine = -1
+                        , locColumn = -1
+                        }
+                    )
                     ( SymbolPredicate
                         ( PredicateRelation
                             ( Command "in" )
                         )
                     )
                     [ TermSymbol
+                        ( Location
+                            { locFile = "<nowhere>"
+                            , locLine = -1
+                            , locColumn = -1
+                            }
+                        )
                         ( SymbolMixfix
                             [ Just
                                 ( Command "cons" )
@@ -300,6 +402,12 @@
                             ( NamedVar "B" )
                         ]
                     , TermSymbol
+                        ( Location
+                            { locFile = "<nowhere>"
+                            , locLine = -1
+                            , locColumn = -1
+                            }
+                        )
                         ( SymbolMixfix
                             [ Just
                                 ( Command "fin" )
@@ -317,10 +425,10 @@
         }
     )
 , BlockLemma
-    ( SourcePos
-        { sourceName = "test/examples/inductive.tex"
-        , sourceLine = Pos 39
-        , sourceColumn = Pos 1
+    ( Location
+        { locFile = "test/examples/inductive.tex"
+        , locLine = 39
+        , locColumn = 39
         }
     )
     ( Marker "fin_mono" )
@@ -329,6 +437,12 @@
         , Asm ( PropositionalConstant IsTop )
         , Asm
             ( TermSymbol
+                ( Location
+                    { locFile = "<nowhere>"
+                    , locLine = -1
+                    , locColumn = -1
+                    }
+                )
                 ( SymbolPredicate
                     ( PredicateRelation
                         ( Command "subseteq" )
@@ -342,12 +456,24 @@
             )
         ]
         ( TermSymbol
+            ( Location
+                { locFile = "<nowhere>"
+                , locLine = -1
+                , locColumn = -1
+                }
+            )
             ( SymbolPredicate
                 ( PredicateRelation
                     ( Command "subseteq" )
                 )
             )
             [ TermSymbol
+                ( Location
+                    { locFile = "<nowhere>"
+                    , locLine = -1
+                    , locColumn = -1
+                    }
+                )
                 ( SymbolMixfix
                     [ Just
                         ( Command "fin" )
@@ -360,6 +486,12 @@
                     ( NamedVar "A" )
                 ]
             , TermSymbol
+                ( Location
+                    { locFile = "<nowhere>"
+                    , locLine = -1
+                    , locColumn = -1
+                    }
+                )
                 ( SymbolMixfix
                     [ Just
                         ( Command "fin" )
@@ -375,10 +507,10 @@
         )
     )
 , BlockInductive
-    ( SourcePos
-        { sourceName = "test/examples/inductive.tex"
-        , sourceLine = Pos 45
-        , sourceColumn = Pos 1
+    ( Location
+        { locFile = "test/examples/inductive.tex"
+        , locLine = 45
+        , locColumn = 45
         }
     )
     ( Marker "tracl" )
@@ -393,6 +525,12 @@
         , inductiveParams =
             [ NamedVar "R" ]
         , inductiveDomain = TermSymbol
+            ( Location
+                { locFile = "<nowhere>"
+                , locLine = -1
+                , locColumn = -1
+                }
+            )
             ( SymbolMixfix
                 [ Nothing
                 , Just
@@ -401,6 +539,12 @@
                 ]
             )
             [ TermSymbol
+                ( Location
+                    { locFile = "<nowhere>"
+                    , locLine = -1
+                    , locColumn = -1
+                    }
+                )
                 ( SymbolMixfix
                     [ Just
                         ( Command "fld" )
@@ -413,6 +557,12 @@
                     ( NamedVar "R" )
                 ]
             , TermSymbol
+                ( Location
+                    { locFile = "<nowhere>"
+                    , locLine = -1
+                    , locColumn = -1
+                    }
+                )
                 ( SymbolMixfix
                     [ Just
                         ( Command "fld" )
@@ -428,6 +578,12 @@
         , inductiveIntros = IntroRule
             { introConditions =
                 [ TermSymbol
+                    ( Location
+                        { locFile = "<nowhere>"
+                        , locLine = -1
+                        , locColumn = -1
+                        }
+                    )
                     ( SymbolPredicate
                         ( PredicateRelation
                             ( Command "in" )
@@ -440,6 +596,12 @@
                     ]
                 ]
             , introResult = TermSymbol
+                ( Location
+                    { locFile = "<nowhere>"
+                    , locLine = -1
+                    , locColumn = -1
+                    }
+                )
                 ( SymbolPredicate
                     ( PredicateRelation
                         ( Command "in" )
@@ -448,6 +610,12 @@
                 [ TermVar
                     ( NamedVar "w" )
                 , TermSymbol
+                    ( Location
+                        { locFile = "<nowhere>"
+                        , locLine = -1
+                        , locColumn = -1
+                        }
+                    )
                     ( SymbolMixfix
                         [ Just
                             ( Command "tracl" )
@@ -464,12 +632,24 @@
             [ IntroRule
                 { introConditions =
                     [ TermSymbol
+                        ( Location
+                            { locFile = "<nowhere>"
+                            , locLine = -1
+                            , locColumn = -1
+                            }
+                        )
                         ( SymbolPredicate
                             ( PredicateRelation
                                 ( Command "in" )
                             )
                         )
                         [ TermSymbol
+                            ( Location
+                                { locFile = "<nowhere>"
+                                , locLine = -1
+                                , locColumn = -1
+                                }
+                            )
                             ( SymbolMixfix
                                 [ Just
                                     ( Command "pair" )
@@ -487,6 +667,12 @@
                                 ( NamedVar "b" )
                             ]
                         , TermSymbol
+                            ( Location
+                                { locFile = "<nowhere>"
+                                , locLine = -1
+                                , locColumn = -1
+                                }
+                            )
                             ( SymbolMixfix
                                 [ Just
                                     ( Command "tracl" )
@@ -500,12 +686,24 @@
                             ]
                         ]
                     , TermSymbol
+                        ( Location
+                            { locFile = "<nowhere>"
+                            , locLine = -1
+                            , locColumn = -1
+                            }
+                        )
                         ( SymbolPredicate
                             ( PredicateRelation
                                 ( Command "in" )
                             )
                         )
                         [ TermSymbol
+                            ( Location
+                                { locFile = "<nowhere>"
+                                , locLine = -1
+                                , locColumn = -1
+                                }
+                            )
                             ( SymbolMixfix
                                 [ Just
                                     ( Command "pair" )
@@ -527,12 +725,24 @@
                         ]
                     ]
                 , introResult = TermSymbol
+                    ( Location
+                        { locFile = "<nowhere>"
+                        , locLine = -1
+                        , locColumn = -1
+                        }
+                    )
                     ( SymbolPredicate
                         ( PredicateRelation
                             ( Command "in" )
                         )
                     )
                     [ TermSymbol
+                        ( Location
+                            { locFile = "<nowhere>"
+                            , locLine = -1
+                            , locColumn = -1
+                            }
+                        )
                         ( SymbolMixfix
                             [ Just
                                 ( Command "pair" )
@@ -550,6 +760,12 @@
                             ( NamedVar "c" )
                         ]
                     , TermSymbol
+                        ( Location
+                            { locFile = "<nowhere>"
+                            , locLine = -1
+                            , locColumn = -1
+                            }
+                        )
                         ( SymbolMixfix
                             [ Just
                                 ( Command "tracl" )
@@ -567,10 +783,10 @@
         }
     )
 , BlockInductive
-    ( SourcePos
-        { sourceName = "test/examples/inductive.tex"
-        , sourceLine = Pos 53
-        , sourceColumn = Pos 1
+    ( Location
+        { locFile = "test/examples/inductive.tex"
+        , locLine = 53
+        , locColumn = 53
         }
     )
     ( Marker "quasirefltracl" )
@@ -585,6 +801,12 @@
         , inductiveParams =
             [ NamedVar "R" ]
         , inductiveDomain = TermSymbol
+            ( Location
+                { locFile = "<nowhere>"
+                , locLine = -1
+                , locColumn = -1
+                }
+            )
             ( SymbolMixfix
                 [ Nothing
                 , Just
@@ -593,6 +815,12 @@
                 ]
             )
             [ TermSymbol
+                ( Location
+                    { locFile = "<nowhere>"
+                    , locLine = -1
+                    , locColumn = -1
+                    }
+                )
                 ( SymbolMixfix
                     [ Just
                         ( Command "fld" )
@@ -605,6 +833,12 @@
                     ( NamedVar "R" )
                 ]
             , TermSymbol
+                ( Location
+                    { locFile = "<nowhere>"
+                    , locLine = -1
+                    , locColumn = -1
+                    }
+                )
                 ( SymbolMixfix
                     [ Just
                         ( Command "fld" )
@@ -620,6 +854,12 @@
         , inductiveIntros = IntroRule
             { introConditions =
                 [ TermSymbol
+                    ( Location
+                        { locFile = "<nowhere>"
+                        , locLine = -1
+                        , locColumn = -1
+                        }
+                    )
                     ( SymbolPredicate
                         ( PredicateRelation
                             ( Command "in" )
@@ -628,6 +868,12 @@
                     [ TermVar
                         ( NamedVar "a" )
                     , TermSymbol
+                        ( Location
+                            { locFile = "<nowhere>"
+                            , locLine = -1
+                            , locColumn = -1
+                            }
+                        )
                         ( SymbolMixfix
                             [ Just
                                 ( Command "fld" )
@@ -642,12 +888,24 @@
                     ]
                 ]
             , introResult = TermSymbol
+                ( Location
+                    { locFile = "<nowhere>"
+                    , locLine = -1
+                    , locColumn = -1
+                    }
+                )
                 ( SymbolPredicate
                     ( PredicateRelation
                         ( Command "in" )
                     )
                 )
                 [ TermSymbol
+                    ( Location
+                        { locFile = "<nowhere>"
+                        , locLine = -1
+                        , locColumn = -1
+                        }
+                    )
                     ( SymbolMixfix
                         [ Just
                             ( Command "pair" )
@@ -665,6 +923,12 @@
                         ( NamedVar "a" )
                     ]
                 , TermSymbol
+                    ( Location
+                        { locFile = "<nowhere>"
+                        , locLine = -1
+                        , locColumn = -1
+                        }
+                    )
                     ( SymbolMixfix
                         [ Just
                             ( Command "qrefltracl" )
@@ -681,12 +945,24 @@
             [ IntroRule
                 { introConditions =
                     [ TermSymbol
+                        ( Location
+                            { locFile = "<nowhere>"
+                            , locLine = -1
+                            , locColumn = -1
+                            }
+                        )
                         ( SymbolPredicate
                             ( PredicateRelation
                                 ( Command "in" )
                             )
                         )
                         [ TermSymbol
+                            ( Location
+                                { locFile = "<nowhere>"
+                                , locLine = -1
+                                , locColumn = -1
+                                }
+                            )
                             ( SymbolMixfix
                                 [ Just
                                     ( Command "pair" )
@@ -704,6 +980,12 @@
                                 ( NamedVar "b" )
                             ]
                         , TermSymbol
+                            ( Location
+                                { locFile = "<nowhere>"
+                                , locLine = -1
+                                , locColumn = -1
+                                }
+                            )
                             ( SymbolMixfix
                                 [ Just
                                     ( Command "qrefltracl" )
@@ -717,12 +999,24 @@
                             ]
                         ]
                     , TermSymbol
+                        ( Location
+                            { locFile = "<nowhere>"
+                            , locLine = -1
+                            , locColumn = -1
+                            }
+                        )
                         ( SymbolPredicate
                             ( PredicateRelation
                                 ( Command "in" )
                             )
                         )
                         [ TermSymbol
+                            ( Location
+                                { locFile = "<nowhere>"
+                                , locLine = -1
+                                , locColumn = -1
+                                }
+                            )
                             ( SymbolMixfix
                                 [ Just
                                     ( Command "pair" )
@@ -744,12 +1038,24 @@
                         ]
                     ]
                 , introResult = TermSymbol
+                    ( Location
+                        { locFile = "<nowhere>"
+                        , locLine = -1
+                        , locColumn = -1
+                        }
+                    )
                     ( SymbolPredicate
                         ( PredicateRelation
                             ( Command "in" )
                         )
                     )
                     [ TermSymbol
+                        ( Location
+                            { locFile = "<nowhere>"
+                            , locLine = -1
+                            , locColumn = -1
+                            }
+                        )
                         ( SymbolMixfix
                             [ Just
                                 ( Command "pair" )
@@ -767,6 +1073,12 @@
                             ( NamedVar "c" )
                         ]
                     , TermSymbol
+                        ( Location
+                            { locFile = "<nowhere>"
+                            , locLine = -1
+                            , locColumn = -1
+                            }
+                        )
                         ( SymbolMixfix
                             [ Just
                                 ( Command "qrefltracl" )
@@ -784,10 +1096,10 @@
         }
     )
 , BlockInductive
-    ( SourcePos
-        { sourceName = "test/examples/inductive.tex"
-        , sourceLine = Pos 61
-        , sourceColumn = Pos 1
+    ( Location
+        { locFile = "test/examples/inductive.tex"
+        , locLine = 61
+        , locColumn = 61
         }
     )
     ( Marker "refltracl" )
@@ -807,6 +1119,12 @@
             , NamedVar "R"
             ]
         , inductiveDomain = TermSymbol
+            ( Location
+                { locFile = "<nowhere>"
+                , locLine = -1
+                , locColumn = -1
+                }
+            )
             ( SymbolMixfix
                 [ Nothing
                 , Just
@@ -822,6 +1140,12 @@
         , inductiveIntros = IntroRule
             { introConditions =
                 [ TermSymbol
+                    ( Location
+                        { locFile = "<nowhere>"
+                        , locLine = -1
+                        , locColumn = -1
+                        }
+                    )
                     ( SymbolPredicate
                         ( PredicateRelation
                             ( Command "in" )
@@ -834,12 +1158,24 @@
                     ]
                 ]
             , introResult = TermSymbol
+                ( Location
+                    { locFile = "<nowhere>"
+                    , locLine = -1
+                    , locColumn = -1
+                    }
+                )
                 ( SymbolPredicate
                     ( PredicateRelation
                         ( Command "in" )
                     )
                 )
                 [ TermSymbol
+                    ( Location
+                        { locFile = "<nowhere>"
+                        , locLine = -1
+                        , locColumn = -1
+                        }
+                    )
                     ( SymbolMixfix
                         [ Just
                             ( Command "pair" )
@@ -857,6 +1193,12 @@
                         ( NamedVar "a" )
                     ]
                 , TermSymbol
+                    ( Location
+                        { locFile = "<nowhere>"
+                        , locLine = -1
+                        , locColumn = -1
+                        }
+                    )
                     ( SymbolMixfix
                         [ Just
                             ( Command "refltracl" )
@@ -878,12 +1220,24 @@
             [ IntroRule
                 { introConditions =
                     [ TermSymbol
+                        ( Location
+                            { locFile = "<nowhere>"
+                            , locLine = -1
+                            , locColumn = -1
+                            }
+                        )
                         ( SymbolPredicate
                             ( PredicateRelation
                                 ( Command "in" )
                             )
                         )
                         [ TermSymbol
+                            ( Location
+                                { locFile = "<nowhere>"
+                                , locLine = -1
+                                , locColumn = -1
+                                }
+                            )
                             ( SymbolMixfix
                                 [ Just
                                     ( Command "pair" )
@@ -901,6 +1255,12 @@
                                 ( NamedVar "b" )
                             ]
                         , TermSymbol
+                            ( Location
+                                { locFile = "<nowhere>"
+                                , locLine = -1
+                                , locColumn = -1
+                                }
+                            )
                             ( SymbolMixfix
                                 [ Just
                                     ( Command "refltracl" )
@@ -919,12 +1279,24 @@
                             ]
                         ]
                     , TermSymbol
+                        ( Location
+                            { locFile = "<nowhere>"
+                            , locLine = -1
+                            , locColumn = -1
+                            }
+                        )
                         ( SymbolPredicate
                             ( PredicateRelation
                                 ( Command "in" )
                             )
                         )
                         [ TermSymbol
+                            ( Location
+                                { locFile = "<nowhere>"
+                                , locLine = -1
+                                , locColumn = -1
+                                }
+                            )
                             ( SymbolMixfix
                                 [ Just
                                     ( Command "pair" )
@@ -946,12 +1318,24 @@
                         ]
                     ]
                 , introResult = TermSymbol
+                    ( Location
+                        { locFile = "<nowhere>"
+                        , locLine = -1
+                        , locColumn = -1
+                        }
+                    )
                     ( SymbolPredicate
                         ( PredicateRelation
                             ( Command "in" )
                         )
                     )
                     [ TermSymbol
+                        ( Location
+                            { locFile = "<nowhere>"
+                            , locLine = -1
+                            , locColumn = -1
+                            }
+                        )
                         ( SymbolMixfix
                             [ Just
                                 ( Command "pair" )
@@ -969,6 +1353,12 @@
                             ( NamedVar "c" )
                         ]
                     , TermSymbol
+                        ( Location
+                            { locFile = "<nowhere>"
+                            , locLine = -1
+                            , locColumn = -1
+                            }
+                        )
                         ( SymbolMixfix
                             [ Just
                                 ( Command "refltracl" )
@@ -991,10 +1381,10 @@
         }
     )
 , BlockInductive
-    ( SourcePos
-        { sourceName = "test/examples/inductive.tex"
-        , sourceLine = Pos 69
-        , sourceColumn = Pos 1
+    ( Location
+        { locFile = "test/examples/inductive.tex"
+        , locLine = 69
+        , locColumn = 69
         }
     )
     ( Marker "acc" )
@@ -1009,6 +1399,12 @@
         , inductiveParams =
             [ NamedVar "R" ]
         , inductiveDomain = TermSymbol
+            ( Location
+                { locFile = "<nowhere>"
+                , locLine = -1
+                , locColumn = -1
+                }
+            )
             ( SymbolMixfix
                 [ Just
                     ( Command "fld" )
@@ -1023,6 +1419,12 @@
         , inductiveIntros = IntroRule
             { introConditions =
                 [ TermSymbol
+                    ( Location
+                        { locFile = "<nowhere>"
+                        , locLine = -1
+                        , locColumn = -1
+                        }
+                    )
                     ( SymbolPredicate
                         ( PredicateRelation
                             ( Command "in" )
@@ -1031,6 +1433,12 @@
                     [ TermVar
                         ( NamedVar "a" )
                     , TermSymbol
+                        ( Location
+                            { locFile = "<nowhere>"
+                            , locLine = -1
+                            , locColumn = -1
+                            }
+                        )
                         ( SymbolMixfix
                             [ Just
                                 ( Command "fld" )
@@ -1044,12 +1452,24 @@
                         ]
                     ]
                 , TermSymbol
+                    ( Location
+                        { locFile = "<nowhere>"
+                        , locLine = -1
+                        , locColumn = -1
+                        }
+                    )
                     ( SymbolPredicate
                         ( PredicateRelation
                             ( Command "in" )
                         )
                     )
                     [ TermSymbol
+                        ( Location
+                            { locFile = "<nowhere>"
+                            , locLine = -1
+                            , locColumn = -1
+                            }
+                        )
                         ( SymbolMixfix
                             [ Just
                                 ( Command "preimg" )
@@ -1064,6 +1484,12 @@
                         [ TermVar
                             ( NamedVar "R" )
                         , TermSymbol
+                            ( Location
+                                { locFile = "<nowhere>"
+                                , locLine = -1
+                                , locColumn = -1
+                                }
+                            )
                             ( SymbolMixfix
                                 [ Just
                                     ( Command "cons" )
@@ -1078,6 +1504,12 @@
                             [ TermVar
                                 ( NamedVar "a" )
                             , TermSymbol
+                                ( Location
+                                    { locFile = "<nowhere>"
+                                    , locLine = -1
+                                    , locColumn = -1
+                                    }
+                                )
                                 ( SymbolMixfix
                                     [ Just
                                         ( Command "emptyset" )
@@ -1086,6 +1518,12 @@
                             ]
                         ]
                     , TermSymbol
+                        ( Location
+                            { locFile = "<nowhere>"
+                            , locLine = -1
+                            , locColumn = -1
+                            }
+                        )
                         ( SymbolMixfix
                             [ Just
                                 ( Command "pow" )
@@ -1095,6 +1533,12 @@
                             ]
                         )
                         [ TermSymbol
+                            ( Location
+                                { locFile = "<nowhere>"
+                                , locLine = -1
+                                , locColumn = -1
+                                }
+                            )
                             ( SymbolMixfix
                                 [ Just
                                     ( Command "acc" )
@@ -1110,6 +1554,12 @@
                     ]
                 ]
             , introResult = TermSymbol
+                ( Location
+                    { locFile = "<nowhere>"
+                    , locLine = -1
+                    , locColumn = -1
+                    }
+                )
                 ( SymbolPredicate
                     ( PredicateRelation
                         ( Command "in" )
@@ -1118,6 +1568,12 @@
                 [ TermVar
                     ( NamedVar "a" )
                 , TermSymbol
+                    ( Location
+                        { locFile = "<nowhere>"
+                        , locLine = -1
+                        , locColumn = -1
+                        }
+                    )
                     ( SymbolMixfix
                         [ Just
                             ( Command "acc" )

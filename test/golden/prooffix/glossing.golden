@@ -1,8 +1,8 @@
 [ BlockLemma
-    ( SourcePos
-        { sourceName = "test/examples/prooffix.tex"
-        , sourceLine = Pos 1
-        , sourceColumn = Pos 1
+    ( Location
+        { locFile = "test/examples/prooffix.tex"
+        , locLine = 1
+        , locColumn = 1
         }
     )
     ( Marker "assumetest" )
@@ -10,6 +10,12 @@
         ( Quantified Universally
             ( Scope
                 ( TermSymbol
+                    ( Location
+                        { locFile = "<nowhere>"
+                        , locLine = -1
+                        , locColumn = -1
+                        }
+                    )
                     ( SymbolPredicate
                         ( PredicateRelation
                             ( Symbol "=" )
@@ -29,28 +35,34 @@
         )
     )
 , BlockProof
-    ( SourcePos
-        { sourceName = "test/examples/prooffix.tex"
-        , sourceLine = Pos 4
-        , sourceColumn = Pos 1
+    ( Location
+        { locFile = "test/examples/prooffix.tex"
+        , locLine = 4
+        , locColumn = 4
         }
     )
     ( Fix
-        ( SourcePos
-            { sourceName = "test/examples/prooffix.tex"
-            , sourceLine = Pos 5
-            , sourceColumn = Pos 5
+        ( Location
+            { locFile = "test/examples/prooffix.tex"
+            , locLine = 5
+            , locColumn = 5
             }
         )
         ( NamedVar "x" :| [] ) ( PropositionalConstant IsTop )
         ( Have
-            ( SourcePos
-                { sourceName = "test/examples/prooffix.tex"
-                , sourceLine = Pos 6
-                , sourceColumn = Pos 5
+            ( Location
+                { locFile = "test/examples/prooffix.tex"
+                , locLine = 6
+                , locColumn = 6
                 }
             )
             ( TermSymbol
+                ( Location
+                    { locFile = "<nowhere>"
+                    , locLine = -1
+                    , locColumn = -1
+                    }
+                )
                 ( SymbolPredicate
                     ( PredicateRelation
                         ( Symbol "=" )

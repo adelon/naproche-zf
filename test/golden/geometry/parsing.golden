@@ -1,8 +1,8 @@
 [ BlockDefn
-    ( SourcePos
-        { sourceName = "test/examples/geometry.tex"
-        , sourceLine = Pos 1
-        , sourceColumn = Pos 1
+    ( Location
+        { locFile = "test/examples/geometry.tex"
+        , locLine = 1
+        , locColumn = 1
         }
     )
     ( Marker "collinear" )
@@ -10,10 +10,10 @@
         ( DefnAdj Nothing
             ( NamedVar "a" )
             ( Adj
-                ( SourcePos
-                    { sourceName = "test/examples/geometry.tex"
-                    , sourceLine = Pos 2
-                    , sourceColumn = Pos 12
+                ( Location
+                    { locFile = "test/examples/geometry.tex"
+                    , locLine = 2
+                    , locColumn = 2
                     }
                 )
                 [ Just
@@ -77,10 +77,10 @@
         )
     )
 , BlockAxiom
-    ( SourcePos
-        { sourceName = "test/examples/geometry.tex"
-        , sourceLine = Pos 5
-        , sourceColumn = Pos 1
+    ( Location
+        { locFile = "test/examples/geometry.tex"
+        , locLine = 5
+        , locColumn = 5
         }
     )
     ( Marker "cong_refl_swap" )
@@ -120,10 +120,10 @@
         )
     )
 , BlockAxiom
-    ( SourcePos
-        { sourceName = "test/examples/geometry.tex"
-        , sourceLine = Pos 10
-        , sourceColumn = Pos 1
+    ( Location
+        { locFile = "test/examples/geometry.tex"
+        , locLine = 10
+        , locColumn = 10
         }
     )
     ( Marker "cong_pseudotransitive" )
@@ -152,10 +152,10 @@
         ( StmtConnected
             { conn = Implication
             , mpos = Just
-                ( SourcePos
-                    { sourceName = "test/examples/geometry.tex"
-                    , sourceLine = Pos 12
-                    , sourceColumn = Pos 5
+                ( Location
+                    { locFile = "test/examples/geometry.tex"
+                    , locLine = 12
+                    , locColumn = 12
                     }
                 )
             , stmt1 = StmtConnected
@@ -208,10 +208,10 @@
         )
     )
 , BlockAxiom
-    ( SourcePos
-        { sourceName = "test/examples/geometry.tex"
-        , sourceLine = Pos 15
-        , sourceColumn = Pos 1
+    ( Location
+        { locFile = "test/examples/geometry.tex"
+        , locLine = 15
+        , locColumn = 15
         }
     )
     ( Marker "cong_id" )
@@ -239,10 +239,10 @@
         ( StmtConnected
             { conn = Implication
             , mpos = Just
-                ( SourcePos
-                    { sourceName = "test/examples/geometry.tex"
-                    , sourceLine = Pos 17
-                    , sourceColumn = Pos 5
+                ( Location
+                    { locFile = "test/examples/geometry.tex"
+                    , locLine = 17
+                    , locColumn = 17
                     }
                 )
             , stmt1 = StmtFormula
@@ -277,19 +277,19 @@
         )
     )
 , BlockAxiom
-    ( SourcePos
-        { sourceName = "test/examples/geometry.tex"
-        , sourceLine = Pos 21
-        , sourceColumn = Pos 1
+    ( Location
+        { locFile = "test/examples/geometry.tex"
+        , locLine = 21
+        , locColumn = 21
         }
     )
     ( Marker "segment_construction" )
     ( Axiom []
         ( StmtExists
-            { pos = SourcePos
-                { sourceName = "test/examples/geometry.tex"
-                , sourceLine = Pos 22
-                , sourceColumn = Pos 5
+            { pos = Location
+                { locFile = "test/examples/geometry.tex"
+                , locLine = 22
+                , locColumn = 22
                 }
             , np = NounPhrase ( [] )
                 ( Noun
@@ -345,10 +345,10 @@
         )
     )
 , BlockDefn
-    ( SourcePos
-        { sourceName = "test/examples/geometry.tex"
-        , sourceLine = Pos 26
-        , sourceColumn = Pos 1
+    ( Location
+        { locFile = "test/examples/geometry.tex"
+        , locLine = 26
+        , locColumn = 26
         }
     )
     ( Marker "ofs" )
@@ -482,10 +482,10 @@
         )
     )
 , BlockAxiom
-    ( SourcePos
-        { sourceName = "test/examples/geometry.tex"
-        , sourceLine = Pos 39
-        , sourceColumn = Pos 1
+    ( Location
+        { locFile = "test/examples/geometry.tex"
+        , locLine = 39
+        , locColumn = 39
         }
     )
     ( Marker "five_segment" )
@@ -518,10 +518,10 @@
         ( StmtConnected
             { conn = Implication
             , mpos = Just
-                ( SourcePos
-                    { sourceName = "test/examples/geometry.tex"
-                    , sourceLine = Pos 41
-                    , sourceColumn = Pos 5
+                ( Location
+                    { locFile = "test/examples/geometry.tex"
+                    , locLine = 41
+                    , locColumn = 41
                     }
                 )
             , stmt1 = StmtConnected
@@ -582,10 +582,10 @@
         )
     )
 , BlockAxiom
-    ( SourcePos
-        { sourceName = "test/examples/geometry.tex"
-        , sourceLine = Pos 46
-        , sourceColumn = Pos 1
+    ( Location
+        { locFile = "test/examples/geometry.tex"
+        , locLine = 46
+        , locColumn = 46
         }
     )
     ( Marker "betw_id" )
@@ -611,10 +611,10 @@
         ( StmtConnected
             { conn = Implication
             , mpos = Just
-                ( SourcePos
-                    { sourceName = "test/examples/geometry.tex"
-                    , sourceLine = Pos 48
-                    , sourceColumn = Pos 5
+                ( Location
+                    { locFile = "test/examples/geometry.tex"
+                    , locLine = 48
+                    , locColumn = 48
                     }
                 )
             , stmt1 = StmtFormula
@@ -647,10 +647,10 @@
         )
     )
 , BlockAxiom
-    ( SourcePos
-        { sourceName = "test/examples/geometry.tex"
-        , sourceLine = Pos 52
-        , sourceColumn = Pos 1
+    ( Location
+        { locFile = "test/examples/geometry.tex"
+        , locLine = 52
+        , locColumn = 52
         }
     )
     ( Marker "innerpasch" )
@@ -681,10 +681,10 @@
         ( StmtConnected
             { conn = Implication
             , mpos = Just
-                ( SourcePos
-                    { sourceName = "test/examples/geometry.tex"
-                    , sourceLine = Pos 54
-                    , sourceColumn = Pos 5
+                ( Location
+                    { locFile = "test/examples/geometry.tex"
+                    , locLine = 54
+                    , locColumn = 54
                     }
                 )
             , stmt1 = StmtConnected
@@ -716,10 +716,10 @@
                     }
                 }
             , stmt2 = StmtExists
-                { pos = SourcePos
-                    { sourceName = "test/examples/geometry.tex"
-                    , sourceLine = Pos 54
-                    , sourceColumn = Pos 51
+                { pos = Location
+                    { locFile = "test/examples/geometry.tex"
+                    , locLine = 54
+                    , locColumn = 54
                     }
                 , np = NounPhrase ( [] )
                     ( Noun
@@ -774,10 +774,10 @@
         )
     )
 , BlockAxiom
-    ( SourcePos
-        { sourceName = "test/examples/geometry.tex"
-        , sourceLine = Pos 66
-        , sourceColumn = Pos 1
+    ( Location
+        { locFile = "test/examples/geometry.tex"
+        , locLine = 66
+        , locColumn = 66
         }
     )
     ( Marker "upperdim" )
@@ -807,10 +807,10 @@
         ( StmtConnected
             { conn = Implication
             , mpos = Just
-                ( SourcePos
-                    { sourceName = "test/examples/geometry.tex"
-                    , sourceLine = Pos 68
-                    , sourceColumn = Pos 5
+                ( Location
+                    { locFile = "test/examples/geometry.tex"
+                    , locLine = 68
+                    , locColumn = 68
                     }
                 )
             , stmt1 = StmtConnected
@@ -888,10 +888,10 @@
                     ) :| []
                 , verb = VPAdj
                     ( Adj
-                        ( SourcePos
-                            { sourceName = "test/examples/geometry.tex"
-                            , sourceLine = Pos 70
-                            , sourceColumn = Pos 17
+                        ( Location
+                            { locFile = "test/examples/geometry.tex"
+                            , locLine = 70
+                            , locColumn = 70
                             }
                         )
                         [ Just
@@ -918,10 +918,10 @@
         )
     )
 , BlockLemma
-    ( SourcePos
-        { sourceName = "test/examples/geometry.tex"
-        , sourceLine = Pos 82
-        , sourceColumn = Pos 1
+    ( Location
+        { locFile = "test/examples/geometry.tex"
+        , locLine = 82
+        , locColumn = 82
         }
     )
     ( Marker "cong_refl" )
@@ -961,10 +961,10 @@
         )
     )
 , BlockLemma
-    ( SourcePos
-        { sourceName = "test/examples/geometry.tex"
-        , sourceLine = Pos 88
-        , sourceColumn = Pos 1
+    ( Location
+        { locFile = "test/examples/geometry.tex"
+        , locLine = 88
+        , locColumn = 88
         }
     )
     ( Marker "cong_sym" )
@@ -1023,10 +1023,10 @@
         )
     )
 , BlockLemma
-    ( SourcePos
-        { sourceName = "test/examples/geometry.tex"
-        , sourceLine = Pos 95
-        , sourceColumn = Pos 1
+    ( Location
+        { locFile = "test/examples/geometry.tex"
+        , locLine = 95
+        , locColumn = 95
         }
     )
     ( Marker "cong_transitive" )
@@ -1057,10 +1057,10 @@
         ( StmtConnected
             { conn = Implication
             , mpos = Just
-                ( SourcePos
-                    { sourceName = "test/examples/geometry.tex"
-                    , sourceLine = Pos 97
-                    , sourceColumn = Pos 5
+                ( Location
+                    { locFile = "test/examples/geometry.tex"
+                    , locLine = 97
+                    , locColumn = 97
                     }
                 )
             , stmt1 = StmtConnected
@@ -1113,10 +1113,10 @@
         )
     )
 , BlockLemma
-    ( SourcePos
-        { sourceName = "test/examples/geometry.tex"
-        , sourceLine = Pos 102
-        , sourceColumn = Pos 1
+    ( Location
+        { locFile = "test/examples/geometry.tex"
+        , locLine = 102
+        , locColumn = 102
         }
     )
     ( Marker "cong_shuffle_left" )
@@ -1145,10 +1145,10 @@
         ( StmtConnected
             { conn = Implication
             , mpos = Just
-                ( SourcePos
-                    { sourceName = "test/examples/geometry.tex"
-                    , sourceLine = Pos 104
-                    , sourceColumn = Pos 5
+                ( Location
+                    { locFile = "test/examples/geometry.tex"
+                    , locLine = 104
+                    , locColumn = 104
                     }
                 )
             , stmt1 = StmtFormula
@@ -1183,10 +1183,10 @@
         )
     )
 , BlockLemma
-    ( SourcePos
-        { sourceName = "test/examples/geometry.tex"
-        , sourceLine = Pos 109
-        , sourceColumn = Pos 1
+    ( Location
+        { locFile = "test/examples/geometry.tex"
+        , locLine = 109
+        , locColumn = 109
         }
     )
     ( Marker "cong_shuffle_right" )
@@ -1215,10 +1215,10 @@
         ( StmtConnected
             { conn = Implication
             , mpos = Just
-                ( SourcePos
-                    { sourceName = "test/examples/geometry.tex"
-                    , sourceLine = Pos 111
-                    , sourceColumn = Pos 5
+                ( Location
+                    { locFile = "test/examples/geometry.tex"
+                    , locLine = 111
+                    , locColumn = 111
                     }
                 )
             , stmt1 = StmtFormula
@@ -1253,10 +1253,10 @@
         )
     )
 , BlockLemma
-    ( SourcePos
-        { sourceName = "test/examples/geometry.tex"
-        , sourceLine = Pos 116
-        , sourceColumn = Pos 1
+    ( Location
+        { locFile = "test/examples/geometry.tex"
+        , locLine = 116
+        , locColumn = 116
         }
     )
     ( Marker "cong_zero" )

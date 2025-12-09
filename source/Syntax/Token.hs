@@ -26,6 +26,8 @@ module Syntax.Token
 
 import Base hiding (many)
 
+import Report.Location
+
 import Control.Monad.Combinators
 import Control.Monad.State.Strict
 import Data.Char (isAlphaNum)
@@ -164,7 +166,7 @@ instance Pretty Token where
 
 
 data Located a = Located
-    { startPos :: !SourcePos
+    { startPos :: !Location
     , unLocated :: !a
     , postWhitespace :: Whitespace
     } deriving (Show, Functor)
@@ -508,7 +510,7 @@ lexeme p = do
     start <- getSourcePos
     t <- p
     w <- whitespace
-    pure (Located start t w)
+    pure (Located (fromSourcePos start) t w)
 
 space :: Lexer Whitespace
 space = Space <$ (Char.char ' ' <|> Char.char '\n' <|> Char.char '\r')

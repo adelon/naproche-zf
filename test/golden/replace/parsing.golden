@@ -1,8 +1,8 @@
 [ BlockAxiom
-    ( SourcePos
-        { sourceName = "test/examples/replace.tex"
-        , sourceLine = Pos 1
-        , sourceColumn = Pos 1
+    ( Location
+        { locFile = "test/examples/replace.tex"
+        , locLine = 1
+        , locColumn = 1
         }
     )
     ( Marker "cons" )
@@ -73,10 +73,10 @@
         )
     )
 , BlockDefn
-    ( SourcePos
-        { sourceName = "test/examples/replace.tex"
-        , sourceLine = Pos 5
-        , sourceColumn = Pos 1
+    ( Location
+        { locFile = "test/examples/replace.tex"
+        , locLine = 5
+        , locColumn = 5
         }
     )
     ( Marker "times" )
@@ -123,10 +123,10 @@
         )
     )
 , BlockDefn
-    ( SourcePos
-        { sourceName = "test/examples/replace.tex"
-        , sourceLine = Pos 9
-        , sourceColumn = Pos 1
+    ( Location
+        { locFile = "test/examples/replace.tex"
+        , locLine = 9
+        , locColumn = 9
         }
     )
     ( Marker "unit" )
@@ -145,10 +145,10 @@
         )
     )
 , BlockLemma
-    ( SourcePos
-        { sourceName = "test/examples/replace.tex"
-        , sourceLine = Pos 13
-        , sourceColumn = Pos 1
+    ( Location
+        { locFile = "test/examples/replace.tex"
+        , locLine = 13
+        , locColumn = 13
         }
     )
     ( Marker "pair_emptyset_in_times_unit" )
@@ -200,10 +200,10 @@
         )
     )
 , BlockDefn
-    ( SourcePos
-        { sourceName = "test/examples/replace.tex"
-        , sourceLine = Pos 19
-        , sourceColumn = Pos 1
+    ( Location
+        { locFile = "test/examples/replace.tex"
+        , locLine = 19
+        , locColumn = 19
         }
     )
     ( Marker "suc" )
@@ -243,10 +243,10 @@
         )
     )
 , BlockLemma
-    ( SourcePos
-        { sourceName = "test/examples/replace.tex"
-        , sourceLine = Pos 25
-        , sourceColumn = Pos 1
+    ( Location
+        { locFile = "test/examples/replace.tex"
+        , locLine = 25
+        , locColumn = 25
         }
     )
     ( Marker "times_replacement_test" )

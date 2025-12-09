@@ -17,7 +17,6 @@ import Data.List.NonEmpty qualified as NonEmpty
 import Data.HashMap.Strict qualified as HM
 import Text.Earley (Grammar, Prod, (<?>), rule, satisfy, terminal)
 import Text.Earley.Mixfix
-import Text.Megaparsec.Pos (SourcePos)
 
 
 grammar :: Lexicon -> Grammar r (Prod r Text (Located Token) Block)
@@ -426,13 +425,13 @@ grammar lexicon@Lexicon{..} = mdo
     pure block
 
 
-proofBy :: Prod r Text (Located Token) a -> Prod r Text (Located Token) (SourcePos, a)
+proofBy :: Prod r Text (Located Token) a -> Prod r Text (Located Token) (Location, a)
 proofBy method = bracket do
     pos <- word "proof" *> word "by"
     a <- method
     pure (pos, a)
 
-lemmaEnv :: Prod r Text (Located Token) a -> Prod r Text (Located Token) (SourcePos, Marker, a)
+lemmaEnv :: Prod r Text (Located Token) a -> Prod r Text (Located Token) (Location, Marker, a)
 lemmaEnv content = asum
     [ envPos "theorem" content
     , envPos "lemma" content
@@ -499,7 +498,7 @@ enumeratedMarked1 p = begin "enumerate" *> many1 ((,) <$> (command "item" *> lab
 --
 phraseOf
     :: forall pat a b r. Locatable a
-    => (SourcePos -> pat -> [a] -> b)
+    => (Location -> pat -> [a] -> b)
     -> Lexicon
     -> (Lexicon -> HashSet pat)
     -> (pat -> LexicalPhrase)
@@ -511,10 +510,10 @@ phraseOf constr lexicon selector proj arg =
         pats :: [pat]
         pats = HS.toList (selector lexicon)
 
-        make :: pat -> Prod r Text (Located Token) (SourcePos, pat, [a])
+        make :: pat -> Prod r Text (Located Token) (Location, pat, [a])
         make pat = (\(pos, args) -> (pos, pat, args)) <$> goPos (proj pat)
 
-        goPos :: LexicalPhrase -> Prod r Text (Located Token) (SourcePos, [a])
+        goPos :: LexicalPhrase -> Prod r Text (Located Token) (Location, [a])
         goPos = \case
             Just w : ws  -> (,) <$> tokenPos w <*> go ws
             Nothing : ws -> do
@@ -622,13 +621,13 @@ makeNounPhrase ls (n, vs) rs ms = NounPhrase ls n vs rs ms
 
 
 
-begin, end :: Text -> Prod r Text (Located Token) SourcePos
+begin, end :: Text -> Prod r Text (Located Token) Location
 begin kind = tokenPos (BeginEnv kind) <?> ("\"\\begin{" <> kind <> "}\"")
 end kind   = tokenPos (EndEnv kind) <?> ("\"\\end{" <> kind <> "}\"")
 
 -- | Surround a production rule @body@ with an environment of a certain @kind@ requiring a marker specified in a @\\label@.
 -- Ignores the optional title after the beginning of the environment.
-envPos :: Text -> Prod r Text (Located Token) a -> Prod r Text (Located Token) (SourcePos, Marker, a)
+envPos :: Text -> Prod r Text (Located Token) a -> Prod r Text (Located Token) (Location, Marker, a)
 envPos kind body = do
     p <- begin kind <?> ("start of a \"" <> kind <> "\" environment")
     optional title
@@ -641,7 +640,7 @@ envPos kind body = do
 
 -- 'env_' is like 'env', but without allowing titles.
 --
-envPos_ :: Text -> Prod r Text (Located Token) a -> Prod r Text (Located Token) (SourcePos, a)
+envPos_ :: Text -> Prod r Text (Located Token) a -> Prod r Text (Located Token) (Location, a)
 envPos_ kind body = (,) <$> begin kind <*> (optional label *> body) <* end kind
 
 env_ :: Text -> Prod r Text (Located Token) a -> Prod r Text (Located Token) a
@@ -664,13 +663,13 @@ ref = terminal \ltok -> case unLocated ltok of
 math :: Prod r Text (Located Token) a -> Prod r Text (Located Token) a
 math body = beginMath *> body <* endMath
 
-mathPos :: Prod r Text (Located Token) a -> Prod r Text (Located Token) (SourcePos, a)
+mathPos :: Prod r Text (Located Token) a -> Prod r Text (Located Token) (Location, a)
 mathPos body = (,) <$> beginMath <*> body <* endMath
 
 text :: Prod r Text (Located Token) a -> Prod r Text (Located Token) a
 text body = begin "text" *> body <* end "text" <?> "\"\\text{...}\""
 
-beginMath, endMath :: Prod r Text (Located Token) SourcePos
+beginMath, endMath :: Prod r Text (Located Token) Location
 beginMath = begin "math" <?> "start of a formula, e.g. \"$\""
 endMath = end "math" <?> "end of a formula, e.g. \"$\""
 
@@ -686,7 +685,7 @@ brace body = token VisibleBraceL  *> body <* token VisibleBraceR <?> "\"\\{...\\
 group :: Prod r Text (Located Token) a -> Prod r Text (Located Token) a
 group body = token InvisibleBraceL *> body <* token InvisibleBraceR <?> "\"{...}\""
 
-align :: Prod r Text (Located Token) a -> Prod r Text (Located Token) (SourcePos, a)
+align :: Prod r Text (Located Token) a -> Prod r Text (Located Token) (Location, a)
 align body = (,) <$> begin "align*" <*> body <* end "align*"
 
 cases :: Prod r Text (Located Token) a -> Prod r Text (Located Token) a
@@ -733,7 +732,7 @@ token tok = terminal maybeToken <?> tokToText tok
             tok' | tok == tok' -> Just tok
             _ -> Nothing
 
-tokenPos :: Token -> Prod r Text (Located Token) SourcePos
+tokenPos :: Token -> Prod r Text (Located Token) Location
 tokenPos tok = terminal maybeToken <?> tokToText tok
     where
         maybeToken ltok = case unLocated ltok of
