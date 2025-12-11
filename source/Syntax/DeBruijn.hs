@@ -24,7 +24,7 @@ import Syntax.Abstract
     , StructPhrase
     , Justification(..)
     , Marker(..)
-    , pattern CarrierSymbol, pattern ConsSymbol
+    , pattern CarrierSymbol, pattern ConsSymbol, pattern ElementSymbol
     )
 
 import Data.List qualified as List
@@ -34,7 +34,6 @@ import Data.Maybe
 import Data.Set qualified as Set
 import Text.Megaparsec.Pos (SourcePos)
 
-
 -- | 'Symbol' defined at the top level.
 data Symbol
     = SymbolMixfix FunctionSymbol
@@ -43,6 +42,7 @@ data Symbol
     | SymbolPredicate Predicate
     deriving (Show, Eq, Ord, Generic, Hashable)
 
+-- | Predicate symbols.
 data Predicate
     = PredicateAdj LexicalPhrase
     | PredicateVerb (SgPl LexicalPhrase)
@@ -65,6 +65,7 @@ data Expr
     -- ^ Direct application of a symbol, in particular first-order function and predicate symbols.
     | TermSymbolStruct StructSymbol (Maybe Expr)
     -- ^ Structure symbol with an optional label.
+    | Replacement Replacement
     | Apply Expr Expr
     -- ^ Higher-order application.
     | PropositionalConstant PropositionalConstant
@@ -77,7 +78,25 @@ data Expr
 type Formula = Expr
 type Term = Expr
 
--- | Increase the index of all bound variables matching the given variable name
+-- | A set comprehension that is a replacement expression with side conditions.
+-- They look like @{ f(x,y,z) | x\\in X, y\\in Y(x), z\\in Z(x,y) | \\phi(x,y,z) }@, where
+--
+--  1. @f(x,y,z)@ is the replacement value with bound variables @x,y,z@
+--
+--  2. @x\\in X@, @y\\in Y(x)@, etc. are the replacement bindings with their domains (which may depend on earlier bound variables)
+--
+--  3. @\\phi(x,y,z)@ is the optional replacement condition
+--
+-- The case of no replacement condition is represented by using the constant @Top@ as the formula.
+-- Bound variables scope over inner (later) bindings, the replacement value, and the replacement condition.
+-- Similar constructs are sometimes called ReplSep or Fraenkel operator in other systems.
+-- The degenerate case of no bindings is allowed, resulting in a subsingleton set (singleton or empty set, depending on if the condition is holds or not).
+data Replacement
+    = ReplacementBinding {replacementVar :: VarSymbol, replacementDomain :: Expr, replacement :: Replacement}
+    | ReplacementBody {replacementValue :: Expr, replacementCondition :: Expr}
+    deriving (Show, Eq, Ord, Generic, Hashable)
+
+-- | Increase the index of all free variables matching the given variable name
 shift
     :: Int
     -- ^ The amount to shift by
@@ -98,10 +117,11 @@ shift offset y = go
             let minIndex' = if x == y then minIndex + 1 else minIndex
                 body' = go minIndex' body
             in Lambda x body'
-        Quantified q binder body ->
-            let minIndex' = if binder == y then minIndex + 1 else minIndex
+        Quantified q x body ->
+            let minIndex' = if x == y then minIndex + 1 else minIndex
                 body' = go minIndex' body
-            in Quantified q binder body'
+            in Quantified q x body'
+        Replacement repl -> Replacement (shiftReplacement offset y minIndex repl)
         Apply f a ->
             Apply (go minIndex f) (go minIndex a)
         TermSymbol s args ->
@@ -113,25 +133,42 @@ shift offset y = go
         Connected c e1 e2 -> Connected c (go minIndex e1) (go minIndex e2)
 
 
-substitute
-    :: VarSymbol
+shiftReplacement
+    :: Int
+    -> VarSymbol
     -> Int
+    -> Replacement
+    -> Replacement
+shiftReplacement offset y = go where
+    go minIndex (ReplacementBody value cond) =
+        ReplacementBody (shift offset y minIndex value) (shift offset y minIndex cond)
+    go minIndex (ReplacementBinding x domain repl) =
+        let domain' = shift offset y minIndex domain -- The variable is not bound in its domain, so use the current minIndex
+            minIndex' = if x == y then minIndex + 1 else minIndex
+            repl' = go minIndex' repl
+        in  ReplacementBinding x domain' repl'
+
+-- | Substitute all free occurrences of a variable with given name and index with a new expression.
+substitute
+    :: VarSymbol -- ^ Target variable name
+    -> Int -- ^ Target variable index
+    -> Expr -- ^ New expression to substitute
+    -> Expr -- ^ Expression to perform substitution in
     -> Expr
-    -> Expr
-    -> Expr
-substitute targetName targetIndex replacement = go where
+substitute targetName targetIndex new = go where
     go = \case
-        xi@(Var x i) -> if x == targetName && i == targetIndex then replacement else xi
-        Lambda binder body ->
-            let targetIndex' = if binder == targetName then targetIndex + 1 else targetIndex
-                shiftedReplacement = shift 1 binder 0 replacement
-                body' = substitute targetName targetIndex' shiftedReplacement body
-            in  Lambda binder body'
-        Quantified q binder body ->
-            let targetIndex' = if binder == targetName then targetIndex + 1 else targetIndex
-                shiftedReplacement = shift 1 binder 0 replacement
-                body' = substitute targetName targetIndex' shiftedReplacement body
-            in  Quantified q binder body'
+        xi@(Var x i) -> if x == targetName && i == targetIndex then new else xi
+        Lambda x body ->
+            let targetIndex' = if x == targetName then targetIndex + 1 else targetIndex
+                newShifted = shift 1 x 0 new
+                body' = substitute targetName targetIndex' newShifted body
+            in  Lambda x body'
+        Quantified q x body ->
+            let targetIndex' = if x == targetName then targetIndex + 1 else targetIndex
+                newShifted = shift 1 x 0 new
+                body' = substitute targetName targetIndex' newShifted body
+            in  Quantified q x body'
+        Replacement repl -> Replacement (substituteReplacement targetName targetIndex new repl)
         Apply e1 e2 -> Apply (go e1) (go e2)
         TermSymbol sym args -> TermSymbol sym (go <$> args)
         TermSymbolStruct s m -> TermSymbolStruct s (go <$> m)
@@ -140,68 +177,100 @@ substitute targetName targetIndex replacement = go where
         Connected c e1 e2 -> Connected c (go e1) (go e2)
 
 
+substituteReplacement
+    :: VarSymbol -- ^ Target variable name
+    -> Int -- ^ Target variable index
+    -> Expr  -- ^ New expression to substitute
+    -> Replacement -- ^ Replacement expression to perform substitution in
+    -> Replacement
+substituteReplacement targetName targetIndex new = go
+  where
+    go (ReplacementBody value cond) =
+        ReplacementBody
+            (substitute targetName targetIndex new value)
+            (substitute targetName targetIndex new cond)
+    go (ReplacementBinding x domain repl) =
+        let -- The domain is NOT under the scope of the current binder, so we proceed directly
+            domain' = substitute targetName targetIndex new domain
+            -- For the inner part we shift by 1 relative to new, analogous to other binding constructs
+            newShifted = shift 1 x 0 new
+            targetIndex' = if x == targetName then targetIndex + 1 else targetIndex
+            repl' = substituteReplacement targetName targetIndex' newShifted repl
+         in ReplacementBinding x domain' repl'
+
+
 -- | β-reduce an expression
 betaReduce :: Expr -> Expr
-betaReduce e =
-    case e of
-        Var{} -> e
-
-        Lambda binder body ->
-            let body' = betaReduce body
-             in Lambda binder body'
-
+betaReduce = \case
+        xi@Var{} -> xi
+        Lambda x e ->
+            Lambda x (betaReduce e)
         Apply function argument ->
             let function' = betaReduce function
                 argument' = betaReduce argument
              in case function' of
-                    Lambda x body ->
+                    Lambda x e ->
                         let shiftedArgument = shift 1 x 0 argument'
-                            substitutedBody = substitute x 0 shiftedArgument body
+                            substitutedBody = substitute x 0 shiftedArgument e
                             unshiftedBody = shift (-1) x 0 substitutedBody
-                            body' = betaReduce unshiftedBody
-                         in body'
+                            e' = betaReduce unshiftedBody
+                         in e'
                     _ -> Apply function' argument'
 
         TermSymbol sym args ->
-            TermSymbol sym (map betaReduce args)
-
+            TermSymbol sym (betaReduce <$> args)
         TermSymbolStruct s m ->
-            TermSymbolStruct s (fmap betaReduce m)
-
+            TermSymbolStruct s (betaReduce <$> m)
+        Replacement repl ->
+            Replacement (betaReduceReplacement repl)
         PropositionalConstant pc -> PropositionalConstant pc
         Not e' -> Not (betaReduce e')
         Connected c l r -> Connected c (betaReduce l) (betaReduce r)
-        Quantified q binder body -> Quantified q binder (betaReduce body)
+        Quantified q binder e -> Quantified q binder (betaReduce e)
 
+betaReduceReplacement :: Replacement -> Replacement
+betaReduceReplacement = \case
+    ReplacementBody value cond -> ReplacementBody (betaReduce value) (betaReduce cond)
+    ReplacementBinding binder domain repl -> ReplacementBinding binder (betaReduce domain) (betaReduceReplacement repl)
 
--- | α-reduce (rename binder) an expression
+-- | α-reduce an expression, renaming all bound variables to @\_@
 alphaReduce :: Expr -> Expr
-alphaReduce syntax =
-    case syntax of
-        Var vName vIndex -> Var vName vIndex
+alphaReduce e0 = let dflt = "_" in case e0 of
+    Var vName vIndex -> Var vName vIndex
 
-        Lambda binder body ->
-            let fresh = "_"
-                shiftedBody = shift 1 fresh 0 body
-                substitutedBody = substitute binder 0 (Var fresh 0) shiftedBody
-                unshiftedBody = shift (-1) binder 0 substitutedBody
-                body' = alphaReduce unshiftedBody
-             in Lambda fresh body'
+    Lambda binder e ->
+        let shiftedBody = shift 1 dflt 0 e
+            substitutedBody = substitute binder 0 (Var dflt 0) shiftedBody
+            unshiftedBody = shift (-1) binder 0 substitutedBody
+            e' = alphaReduce unshiftedBody
+            in Lambda dflt e'
 
-        Quantified q binder body ->
-            let fresh = "_"
-                shiftedBody = shift 1 fresh 0 body
-                substitutedBody = substitute binder 0 (Var fresh 0) shiftedBody
-                unshiftedBody = shift (-1) binder 0 substitutedBody
-                body' = alphaReduce unshiftedBody
-             in Quantified q fresh body'
+    Quantified q binder e ->
+        let shiftedBody = shift 1 dflt 0 e
+            substitutedBody = substitute binder 0 (Var dflt 0) shiftedBody
+            unshiftedBody = shift (-1) binder 0 substitutedBody
+            e' = alphaReduce unshiftedBody
+            in Quantified q dflt e'
+    Replacement repl -> Replacement (alphaReduceReplacement dflt repl)
+    Apply f a -> Apply (alphaReduce f) (alphaReduce a)
+    TermSymbol s args -> TermSymbol s (map alphaReduce args)
+    TermSymbolStruct s m -> TermSymbolStruct s (fmap alphaReduce m)
+    PropositionalConstant pc -> PropositionalConstant pc
+    Not e -> Not (alphaReduce e)
+    Connected c l r -> Connected c (alphaReduce l) (alphaReduce r)
 
-        Apply f a -> Apply (alphaReduce f) (alphaReduce a)
-        TermSymbol s args -> TermSymbol s (map alphaReduce args)
-        TermSymbolStruct s m -> TermSymbolStruct s (fmap alphaReduce m)
-        PropositionalConstant pc -> PropositionalConstant pc
-        Not e -> Not (alphaReduce e)
-        Connected c l r -> Connected c (alphaReduce l) (alphaReduce r)
+-- | α-reduce a replacement expression, renaming all bound variables to given default variable name (to be inherited from 'alphaReduce').
+alphaReduceReplacement :: VarSymbol -> Replacement -> Replacement
+alphaReduceReplacement dflt = \case
+    ReplacementBody value cond ->
+        ReplacementBody (alphaReduce value) (alphaReduce cond)
+    ReplacementBinding binder domain repl ->
+        let domain' = alphaReduce domain
+            shiftedRepl = shiftReplacement 1 dflt 0 repl
+            substitutedRepl = substituteReplacement binder 0 (Var dflt 0) shiftedRepl
+            unshiftedRepl = shiftReplacement (-1) binder 0 substitutedRepl
+            repl' = alphaReduceReplacement dflt unshiftedRepl
+        in  ReplacementBinding dflt domain' repl'
 
 
 pattern TermOp :: FunctionSymbol -> [Expr] -> Expr
@@ -242,29 +311,43 @@ makeExists xs e = foldr Exists e xs
 
 
 freeVars :: Expr -> Set VarSymbol
-freeVars = go Map.empty where
-    -- @counts@ keeps track of the number of binders for each VarSymbol
-    go :: Map VarSymbol Int -> Expr -> Set VarSymbol
-    go counts = \case
+freeVars = freeVarsWith Map.empty
+
+freeVarsWith :: Map VarSymbol Int -> Expr -> Set VarSymbol
+freeVarsWith counts = \case
         Var x i ->
             let current = Map.findWithDefault 0 x counts
             in  if i >= current then Set.singleton x else Set.empty
         Lambda binder body ->
             let counts' = Map.insertWith (+) binder 1 counts
-            in  go counts' body
+            in  freeVarsWith counts' body
         Quantified _ binder body ->
             let counts' = Map.insertWith (+) binder 1 counts
-            in  go counts' body
+            in  freeVarsWith counts' body
         Apply e1 e2 ->
-            Set.union (go counts e1) (go counts e2)
+            Set.union (freeVarsWith counts e1) (freeVarsWith counts e2)
+        Replacement repl -> freeVarsReplacementWith counts repl
         TermSymbol _s args ->
-            List.foldl' (\acc e -> Set.union acc (go counts e)) Set.empty args
+            List.foldl' (\acc e -> Set.union acc (freeVarsWith counts e)) Set.empty args
         TermSymbolStruct _s me ->
-            maybe Set.empty (go counts) me
+            maybe Set.empty (freeVarsWith counts) me
         PropositionalConstant _ -> Set.empty
-        Not e -> go counts e
+        Not e -> freeVarsWith counts e
         Connected _ e1 e2 ->
-            Set.union (go counts e1) (go counts e2)
+            Set.union (freeVarsWith counts e1) (freeVarsWith counts e2)
+
+freeVarsReplacement :: Replacement -> Set VarSymbol
+freeVarsReplacement = freeVarsReplacementWith Map.empty
+
+freeVarsReplacementWith :: Map VarSymbol Int -> Replacement -> Set VarSymbol
+freeVarsReplacementWith counts = \case
+    ReplacementBody value cond ->
+        Set.union (freeVarsWith counts value) (freeVarsWith counts cond)
+    ReplacementBinding binder domain rest ->
+        let fvDomain = freeVarsWith counts domain
+            counts'  = Map.insertWith (+) binder 1 counts
+            fvRest   = freeVarsReplacementWith counts' rest
+        in  Set.union fvDomain fvRest
 
 
 pattern And :: Expr -> Expr -> Expr
@@ -293,7 +376,7 @@ pattern Relation rel es = Atomic (PredicateRelation rel) es
 
 -- | Set membership.
 pattern IsElementOf, IsNotElementOf :: Expr -> Expr -> Expr
-pattern IsElementOf e1 e2 = Atomic (PredicateRelation (Command "in")) (e1 : [e2])
+pattern IsElementOf e1 e2 = Atomic (PredicateRelation ElementSymbol) (e1 : [e2])
 pattern IsNotElementOf e1 e2 = Not (IsElementOf e1 e2)
 
 -- | Subset relation (non-strict).

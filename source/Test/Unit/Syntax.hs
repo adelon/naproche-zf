@@ -3,14 +3,15 @@
 
 module Test.Unit.Syntax (unitTests) where
 
+import Base
+import Syntax.DeBruijn
 
 import Test.Tasty
 import Test.Tasty.HUnit
+import Data.Set qualified as Set
 
-import Syntax.DeBruijn
-
-shouldBe :: (HasCallStack) => Expr -> Expr -> Assertion
-shouldBe = assertEqual ""
+shouldBe :: (Eq a, Show a, HasCallStack) => a -> a -> Assertion
+shouldBe = flip (assertEqual "")
 
 unitTests :: TestTree
 unitTests = testGroup "Terms with scoped de Bruijn indices"
@@ -28,7 +29,16 @@ unitTests = testGroup "Terms with scoped de Bruijn indices"
     , testCase "substitute with shifting: replacement must lift correctly across multiple binders" substMultiBinder
     , testCase "betaReduce with nested applications and shadowing" betaReduceNested
     , testCase "alphaReduce deeply nested binders" alphaReduceDeep
-
+    , testCase "freeVars: replacement with no binders" freeVarsReplacementSimple
+    , testCase "freeVars: replacement with binders that correctly shadow" freeVarsReplacementShadow
+    , testCase "freeVars: domains not under binder scope" freeVarsReplacementDomainScope
+    , testCase "shift: shift inside Replacement (value and condition)" shiftReplacementSimple
+    , testCase "shift: shift respects binder inside replacement" shiftReplacementBinder
+    , testCase "substitute: replacement value and condition" substReplacementSimple
+    , testCase "substitute: replacement binder shadows target" substReplacementShadow
+    , testCase "substitute: replacement binder forces shifting of replacementExpr" substReplacementShift
+    , testCase "betaReduce: Replacement unaffected structurally" betaReduceReplacementTest
+    , testCase "alphaReduce: Replacement binders renamed correctly" alphaReduceReplacementTest
     ]
 
 -- | Shift x by 1 on Var "x" 0 -> Var "x" 1
@@ -200,3 +210,78 @@ alphaReduceDeep =
     let actual = alphaReduce (Lambda "x" (Lambda "y" (Lambda "x" (Var "x" 0))))
         expected = Lambda "_" (Lambda "_" (Lambda "_" (Var "_" 0)))
     in  actual `shouldBe` expected
+
+freeVarsReplacementSimple :: Assertion
+freeVarsReplacementSimple = do
+    -- { x | φ(x) } : represented as ReplacementBody value cond
+    let r = Replacement (ReplacementBody (Var "x" 0) (Var "y" 0))
+        actual = freeVars r
+        expected = Set.fromList ["x","y"]
+    actual @?= expected
+
+freeVarsReplacementShadow :: Assertion
+freeVarsReplacementShadow = do
+    -- { f(x,y) | x ∈ A, x ∈ B }
+    -- inner x binds in rest
+    let r = Replacement $
+                ReplacementBinding "x" (Var "A" 0) $
+                    ReplacementBinding "x" (Var "B" 0) $
+                        ReplacementBody (Apply (Var "f" 0) (Var "x" 0)) (Var "y" 0)
+    freeVars r `shouldBe` Set.fromList ["A","B","f","y"]
+
+freeVarsReplacementDomainScope :: Assertion
+freeVarsReplacementDomainScope = do
+    let r = Replacement $ ReplacementBinding "x" (Apply {- x is still free here -} (Var "X" 0) (Var "x" 0)) (ReplacementBody (Var "x" 0) (Var "z" 0))
+        actual = freeVars r
+        -- free vars: X, x (from domain), z (condition)
+        expected = Set.fromList ["X","x","z"]
+    actual `shouldBe` expected
+
+shiftReplacementSimple :: Assertion
+shiftReplacementSimple = do
+    let r = Replacement (ReplacementBody (Var "x" 0) (Var "x" 1))
+        actual = shift 1 "x" 0 r
+        expected = Replacement (ReplacementBody (Var "x" 1) (Var "x" 2)) -- both are free get changed
+    actual `shouldBe` expected
+
+shiftReplacementBinder :: Assertion
+shiftReplacementBinder = do
+    let r = Replacement $ ReplacementBinding "x" (Var "A" 0) (ReplacementBody (Var "x" 0) (Var "x" 1))
+        actual = shift 1 "x" 0 r
+        expected = Replacement (ReplacementBinding "x" (Var "A" 0) (ReplacementBody (Var "x" 0) (Var "x" 2))) -- x0 is bound and remains unchanged
+    actual `shouldBe` expected
+
+substReplacementSimple :: Assertion
+substReplacementSimple = do
+    let r = Replacement $ ReplacementBody (Var "x" 0) (Var "y" 0)
+        actual = substitute "x" 0 (Var "z" 0) r
+        expected = Replacement $ ReplacementBody (Var "z" 0) (Var "y" 0)
+    actual `shouldBe` expected
+
+substReplacementShadow :: Assertion
+substReplacementShadow = do
+    let r = Replacement (ReplacementBinding "x" (Var "A" 0) (ReplacementBody (Var "x" 0) (Var "x" 1)))
+        actual = substitute "x" 0 (Var "z" 0) r
+        expected = Replacement (ReplacementBinding "x" (Var "A" 0) (ReplacementBody (Var "x" 0) (Var "z" 0))) -- binder shadows x0, only x1 replaced
+    actual `shouldBe` expected
+
+substReplacementShift :: Assertion
+substReplacementShift = do
+    let r = Replacement $ ReplacementBinding "x" (Var "A" 0) (ReplacementBody (Var "x" 0) (Var "u" 0))
+        actual = substitute "x" 0 (Var "y" 0) r
+        expected = r -- unchanged, since x0 is bound
+    actual `shouldBe` expected
+
+betaReduceReplacementTest :: Assertion
+betaReduceReplacementTest = do
+    let r = Replacement $ ReplacementBinding "x" (Lambda "a" (Var "a" 0)) (ReplacementBody (Apply (Lambda "b" (Var "b" 0)) (Var "z" 0)) (Var "c" 0))
+        actual = betaReduce r
+        expected = Replacement $  ReplacementBinding "x" (Lambda "a" (Var "a" 0)) (ReplacementBody (Var "z" 0) (Var "c" 0))
+    actual `shouldBe` expected
+
+alphaReduceReplacementTest :: Assertion
+alphaReduceReplacementTest = do
+    let r = Replacement $ ReplacementBinding "x" (Var "A" 0) (ReplacementBody (Var "x" 0) (Var "B" 0))
+        actual = alphaReduce r
+        expected = Replacement $ ReplacementBinding "_" (Var "A" 0) (ReplacementBody (Var "_" 0) (Var "B" 0))
+    actual `shouldBe` expected
