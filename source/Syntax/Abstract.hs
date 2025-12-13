@@ -298,9 +298,15 @@ data Stmt
 instance Locatable Stmt where
     locate :: Stmt -> Location
     locate (StmtFormula _) = Nowhere -- TODO
+    locate StmtConnected{mpos = Just p} = p
     locate StmtConnected{mpos = Nothing, stmt1 = s} = locate s
     locate StmtVerbPhrase{args = a :| _} = locate a
-    locate s = s.pos
+    locate StmtNoun{pos = p} = p
+    locate StmtStruct{pos = p} = p
+    locate StmtNeg{pos = p} = p
+    locate StmtExists{pos = p} = p
+    locate StmtQuantPhrase{pos = p} = p
+    locate SymbolicQuantified{pos = p} = p
 
 data Bound = Unbounded | Bounded Sign Relation Expr deriving (Show, Eq, Ord)
 
