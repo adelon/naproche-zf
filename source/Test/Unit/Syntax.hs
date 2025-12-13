@@ -15,8 +15,14 @@ shouldBe = flip (assertEqual "")
 
 unitTests :: TestTree
 unitTests = testGroup "Terms with indexed names"
-    [ testCase "shift increments indices for matching name and index >= cutoff" shiftBasic
-    , testCase "shift respects cutoff (minIndex)" shiftCutoff
+    [ testCase "shift increments indices for matching name and index >= cutoff" do
+        shift 1 "x" 0 (Var "x" 0) `shouldBe` Var "x" 1
+    , testCase "shift respects cutoff (minIndex)" do
+        -- Shift with cutoff: when minIndex > var index, don't shift
+        let e = Var "x" 0
+            actual = shift 1 "x" 1 e -- minIndex = 1, var index = 0 -> unchanged
+            expected = Var "x" 0
+        actual `shouldBe` expected
     , testCase "shift does not affect variables with different names" shiftDifferent
     , testCase "substitute simple variable replacement" substSimple
     , testCase "substitute is capture-avoiding when binder matches (no replacement under binder)" substShadow
@@ -95,18 +101,7 @@ unitTests = testGroup "Terms with indexed names"
         alphaReduceReplacement r `shouldBe` expected
     ]
 
--- | Shift x by 1 on Var "x" 0 -> Var "x" 1
-shiftBasic :: Assertion
-shiftBasic =
-    shift 1 "x" 0 (Var "x" 0) `shouldBe` Var "x" 1
 
--- | Shift with cutoff: when minIndex > var index, don't shift
-shiftCutoff :: Assertion
-shiftCutoff = do
-    let e = Var "x" 0
-        actual = shift 1 "x" 1 e -- minIndex = 1, var index = 0 -> unchanged
-        expected = Var "x" 0
-    actual `shouldBe` expected
 
 -- | Shift doesn't affect variable of different name
 shiftDifferent :: Assertion
