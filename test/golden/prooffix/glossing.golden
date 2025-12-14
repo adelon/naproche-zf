@@ -38,7 +38,7 @@
     ( Location
         { locFile = "test/examples/prooffix.tex"
         , locLine = 4
-        , locColumn = 4
+        , locColumn = 1
         }
     )
     ( Fix
@@ -53,7 +53,7 @@
             ( Location
                 { locFile = "test/examples/prooffix.tex"
                 , locLine = 6
-                , locColumn = 6
+                , locColumn = 5
                 }
             )
             ( TermSymbol

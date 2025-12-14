@@ -13,7 +13,7 @@
                 ( Location
                     { locFile = "test/examples/geometry.tex"
                     , locLine = 2
-                    , locColumn = 2
+                    , locColumn = 12
                     }
                 )
                 [ Just
@@ -37,7 +37,7 @@
                 { pos = Location
                     { locFile = "test/examples/geometry.tex"
                     , locLine = 2
-                    , locColumn = 2
+                    , locColumn = 43
                     }
                 , formula = FormulaPredicate
                     ( PrefixPredicate "Betw" 3 )
@@ -57,7 +57,7 @@
                     { pos = Location
                         { locFile = "test/examples/geometry.tex"
                         , locLine = 2
-                        , locColumn = 2
+                        , locColumn = 63
                         }
                     , formula = FormulaPredicate
                         ( PrefixPredicate "Betw" 3 )
@@ -74,7 +74,7 @@
                     { pos = Location
                         { locFile = "test/examples/geometry.tex"
                         , locLine = 2
-                        , locColumn = 2
+                        , locColumn = 83
                         }
                     , formula = FormulaPredicate
                         ( PrefixPredicate "Betw" 3 )
@@ -95,7 +95,7 @@
     ( Location
         { locFile = "test/examples/geometry.tex"
         , locLine = 5
-        , locColumn = 5
+        , locColumn = 1
         }
     )
     ( Marker "cong_refl_swap" )
@@ -122,7 +122,7 @@
             { pos = Location
                 { locFile = "test/examples/geometry.tex"
                 , locLine = 7
-                , locColumn = 7
+                , locColumn = 10
                 }
             , formula = FormulaPredicate
                 ( PrefixPredicate "Cong" 4 )
@@ -143,7 +143,7 @@
     ( Location
         { locFile = "test/examples/geometry.tex"
         , locLine = 10
-        , locColumn = 10
+        , locColumn = 1
         }
     )
     ( Marker "cong_pseudotransitive" )
@@ -175,7 +175,7 @@
                 ( Location
                     { locFile = "test/examples/geometry.tex"
                     , locLine = 12
-                    , locColumn = 12
+                    , locColumn = 5
                     }
                 )
             , stmt1 = StmtConnected
@@ -185,7 +185,7 @@
                     { pos = Location
                         { locFile = "test/examples/geometry.tex"
                         , locLine = 12
-                        , locColumn = 12
+                        , locColumn = 8
                         }
                     , formula = FormulaPredicate
                         ( PrefixPredicate "Cong" 4 )
@@ -204,7 +204,7 @@
                     { pos = Location
                         { locFile = "test/examples/geometry.tex"
                         , locLine = 12
-                        , locColumn = 12
+                        , locColumn = 32
                         }
                     , formula = FormulaPredicate
                         ( PrefixPredicate "Cong" 4 )
@@ -224,7 +224,7 @@
                 { pos = Location
                     { locFile = "test/examples/geometry.tex"
                     , locLine = 12
-                    , locColumn = 12
+                    , locColumn = 57
                     }
                 , formula = FormulaPredicate
                     ( PrefixPredicate "Cong" 4 )
@@ -246,7 +246,7 @@
     ( Location
         { locFile = "test/examples/geometry.tex"
         , locLine = 15
-        , locColumn = 15
+        , locColumn = 1
         }
     )
     ( Marker "cong_id" )
@@ -277,14 +277,14 @@
                 ( Location
                     { locFile = "test/examples/geometry.tex"
                     , locLine = 17
-                    , locColumn = 17
+                    , locColumn = 5
                     }
                 )
             , stmt1 = StmtFormula
                 { pos = Location
                     { locFile = "test/examples/geometry.tex"
                     , locLine = 17
-                    , locColumn = 17
+                    , locColumn = 8
                     }
                 , formula = FormulaPredicate
                     ( PrefixPredicate "Cong" 4 )
@@ -303,7 +303,7 @@
                 { pos = Location
                     { locFile = "test/examples/geometry.tex"
                     , locLine = 17
-                    , locColumn = 17
+                    , locColumn = 33
                     }
                 , formula = FormulaChain
                     ( ChainBase
@@ -325,7 +325,7 @@
     ( Location
         { locFile = "test/examples/geometry.tex"
         , locLine = 21
-        , locColumn = 21
+        , locColumn = 1
         }
     )
     ( Marker "segment_construction" )
@@ -334,7 +334,7 @@
             { pos = Location
                 { locFile = "test/examples/geometry.tex"
                 , locLine = 22
-                , locColumn = 22
+                , locColumn = 5
                 }
             , np = NounPhrase ( [] )
                 ( Noun
@@ -361,7 +361,7 @@
                             { pos = Location
                                 { locFile = "test/examples/geometry.tex"
                                 , locLine = 22
-                                , locColumn = 22
+                                , locColumn = 40
                                 }
                             , formula = FormulaPredicate
                                 ( PrefixPredicate "Betw" 3 )
@@ -378,7 +378,7 @@
                             { pos = Location
                                 { locFile = "test/examples/geometry.tex"
                                 , locLine = 22
-                                , locColumn = 22
+                                , locColumn = 61
                                 }
                             , formula = FormulaPredicate
                                 ( PrefixPredicate "Cong" 4 )
@@ -403,7 +403,7 @@
     ( Location
         { locFile = "test/examples/geometry.tex"
         , locLine = 26
-        , locColumn = 26
+        , locColumn = 1
         }
     )
     ( Marker "ofs" )
@@ -453,7 +453,7 @@
                 { pos = Location
                     { locFile = "test/examples/geometry.tex"
                     , locLine = 29
-                    , locColumn = 29
+                    , locColumn = 5
                     }
                 , formula = Connected Conjunction
                     ( FormulaPredicate
@@ -483,7 +483,7 @@
                 { pos = Location
                     { locFile = "test/examples/geometry.tex"
                     , locLine = 32
-                    , locColumn = 32
+                    , locColumn = 5
                     }
                 , formula = Connected Conjunction
                     ( Connected Conjunction
@@ -550,7 +550,7 @@
     ( Location
         { locFile = "test/examples/geometry.tex"
         , locLine = 39
-        , locColumn = 39
+        , locColumn = 1
         }
     )
     ( Marker "five_segment" )
@@ -586,7 +586,7 @@
                 ( Location
                     { locFile = "test/examples/geometry.tex"
                     , locLine = 41
-                    , locColumn = 41
+                    , locColumn = 5
                     }
                 )
             , stmt1 = StmtConnected
@@ -596,7 +596,7 @@
                     { pos = Location
                         { locFile = "test/examples/geometry.tex"
                         , locLine = 41
-                        , locColumn = 41
+                        , locColumn = 8
                         }
                     , formula = FormulaPredicate
                         ( PrefixPredicate "OFS" 8 )
@@ -623,7 +623,7 @@
                     { pos = Location
                         { locFile = "test/examples/geometry.tex"
                         , locLine = 42
-                        , locColumn = 42
+                        , locColumn = 5
                         }
                     , formula = FormulaChain
                         ( ChainBase
@@ -643,7 +643,7 @@
                 { pos = Location
                     { locFile = "test/examples/geometry.tex"
                     , locLine = 42
-                    , locColumn = 42
+                    , locColumn = 21
                     }
                 , formula = FormulaPredicate
                     ( PrefixPredicate "Cong" 4 )
@@ -665,7 +665,7 @@
     ( Location
         { locFile = "test/examples/geometry.tex"
         , locLine = 46
-        , locColumn = 46
+        , locColumn = 1
         }
     )
     ( Marker "betw_id" )
@@ -694,14 +694,14 @@
                 ( Location
                     { locFile = "test/examples/geometry.tex"
                     , locLine = 48
-                    , locColumn = 48
+                    , locColumn = 5
                     }
                 )
             , stmt1 = StmtFormula
                 { pos = Location
                     { locFile = "test/examples/geometry.tex"
                     , locLine = 48
-                    , locColumn = 48
+                    , locColumn = 8
                     }
                 , formula = FormulaPredicate
                     ( PrefixPredicate "Betw" 3 )
@@ -718,7 +718,7 @@
                 { pos = Location
                     { locFile = "test/examples/geometry.tex"
                     , locLine = 48
-                    , locColumn = 48
+                    , locColumn = 30
                     }
                 , formula = FormulaChain
                     ( ChainBase
@@ -740,7 +740,7 @@
     ( Location
         { locFile = "test/examples/geometry.tex"
         , locLine = 52
-        , locColumn = 52
+        , locColumn = 1
         }
     )
     ( Marker "innerpasch" )
@@ -774,7 +774,7 @@
                 ( Location
                     { locFile = "test/examples/geometry.tex"
                     , locLine = 54
-                    , locColumn = 54
+                    , locColumn = 5
                     }
                 )
             , stmt1 = StmtConnected
@@ -784,7 +784,7 @@
                     { pos = Location
                         { locFile = "test/examples/geometry.tex"
                         , locLine = 54
-                        , locColumn = 54
+                        , locColumn = 8
                         }
                     , formula = FormulaPredicate
                         ( PrefixPredicate "Betw" 3 )
@@ -801,7 +801,7 @@
                     { pos = Location
                         { locFile = "test/examples/geometry.tex"
                         , locLine = 54
-                        , locColumn = 54
+                        , locColumn = 29
                         }
                     , formula = FormulaPredicate
                         ( PrefixPredicate "Betw" 3 )
@@ -819,7 +819,7 @@
                 { pos = Location
                     { locFile = "test/examples/geometry.tex"
                     , locLine = 54
-                    , locColumn = 54
+                    , locColumn = 51
                     }
                 , np = NounPhrase ( [] )
                     ( Noun
@@ -846,7 +846,7 @@
                                 { pos = Location
                                     { locFile = "test/examples/geometry.tex"
                                     , locLine = 55
-                                    , locColumn = 55
+                                    , locColumn = 15
                                     }
                                 , formula = FormulaPredicate
                                     ( PrefixPredicate "Betw" 3 )
@@ -863,7 +863,7 @@
                                 { pos = Location
                                     { locFile = "test/examples/geometry.tex"
                                     , locLine = 55
-                                    , locColumn = 55
+                                    , locColumn = 36
                                     }
                                 , formula = FormulaPredicate
                                     ( PrefixPredicate "Betw" 3 )
@@ -887,7 +887,7 @@
     ( Location
         { locFile = "test/examples/geometry.tex"
         , locLine = 66
-        , locColumn = 66
+        , locColumn = 1
         }
     )
     ( Marker "upperdim" )
@@ -920,7 +920,7 @@
                 ( Location
                     { locFile = "test/examples/geometry.tex"
                     , locLine = 68
-                    , locColumn = 68
+                    , locColumn = 5
                     }
                 )
             , stmt1 = StmtConnected
@@ -930,7 +930,7 @@
                     { pos = Location
                         { locFile = "test/examples/geometry.tex"
                         , locLine = 68
-                        , locColumn = 68
+                        , locColumn = 8
                         }
                     , formula = FormulaPredicate
                         ( PrefixPredicate "Cong" 4 )
@@ -952,7 +952,7 @@
                         { pos = Location
                             { locFile = "test/examples/geometry.tex"
                             , locLine = 68
-                            , locColumn = 68
+                            , locColumn = 32
                             }
                         , formula = FormulaPredicate
                             ( PrefixPredicate "Cong" 4 )
@@ -974,7 +974,7 @@
                             { pos = Location
                                 { locFile = "test/examples/geometry.tex"
                                 , locLine = 69
-                                , locColumn = 69
+                                , locColumn = 9
                                 }
                             , formula = FormulaPredicate
                                 ( PrefixPredicate "Cong" 4 )
@@ -993,7 +993,7 @@
                             { pos = Location
                                 { locFile = "test/examples/geometry.tex"
                                 , locLine = 69
-                                , locColumn = 69
+                                , locColumn = 33
                                 }
                             , formula = FormulaChain
                                 ( ChainBase
@@ -1016,7 +1016,7 @@
                     ( Location
                         { locFile = "test/examples/geometry.tex"
                         , locLine = 70
-                        , locColumn = 70
+                        , locColumn = 10
                         }
                     )
                     ( ExprVar
@@ -1027,7 +1027,7 @@
                         ( Location
                             { locFile = "test/examples/geometry.tex"
                             , locLine = 70
-                            , locColumn = 70
+                            , locColumn = 17
                             }
                         )
                         [ Just
@@ -1043,7 +1043,7 @@
                             ( Location
                                 { locFile = "test/examples/geometry.tex"
                                 , locLine = 70
-                                , locColumn = 70
+                                , locColumn = 32
                                 }
                             )
                             ( ExprVar
@@ -1053,7 +1053,7 @@
                             ( Location
                                 { locFile = "test/examples/geometry.tex"
                                 , locLine = 70
-                                , locColumn = 70
+                                , locColumn = 40
                                 }
                             )
                             ( ExprVar
@@ -1069,7 +1069,7 @@
     ( Location
         { locFile = "test/examples/geometry.tex"
         , locLine = 82
-        , locColumn = 82
+        , locColumn = 1
         }
     )
     ( Marker "cong_refl" )
@@ -1096,7 +1096,7 @@
             { pos = Location
                 { locFile = "test/examples/geometry.tex"
                 , locLine = 84
-                , locColumn = 84
+                , locColumn = 10
                 }
             , formula = FormulaPredicate
                 ( PrefixPredicate "Cong" 4 )
@@ -1117,7 +1117,7 @@
     ( Location
         { locFile = "test/examples/geometry.tex"
         , locLine = 88
-        , locColumn = 88
+        , locColumn = 1
         }
     )
     ( Marker "cong_sym" )
@@ -1147,7 +1147,7 @@
                 { pos = Location
                     { locFile = "test/examples/geometry.tex"
                     , locLine = 90
-                    , locColumn = 90
+                    , locColumn = 13
                     }
                 , formula = FormulaPredicate
                     ( PrefixPredicate "Cong" 4 )
@@ -1168,7 +1168,7 @@
             { pos = Location
                 { locFile = "test/examples/geometry.tex"
                 , locLine = 91
-                , locColumn = 91
+                , locColumn = 10
                 }
             , formula = FormulaPredicate
                 ( PrefixPredicate "Cong" 4 )
@@ -1189,7 +1189,7 @@
     ( Location
         { locFile = "test/examples/geometry.tex"
         , locLine = 95
-        , locColumn = 95
+        , locColumn = 1
         }
     )
     ( Marker "cong_transitive" )
@@ -1223,7 +1223,7 @@
                 ( Location
                     { locFile = "test/examples/geometry.tex"
                     , locLine = 97
-                    , locColumn = 97
+                    , locColumn = 5
                     }
                 )
             , stmt1 = StmtConnected
@@ -1233,7 +1233,7 @@
                     { pos = Location
                         { locFile = "test/examples/geometry.tex"
                         , locLine = 97
-                        , locColumn = 97
+                        , locColumn = 8
                         }
                     , formula = FormulaPredicate
                         ( PrefixPredicate "Cong" 4 )
@@ -1252,7 +1252,7 @@
                     { pos = Location
                         { locFile = "test/examples/geometry.tex"
                         , locLine = 97
-                        , locColumn = 97
+                        , locColumn = 32
                         }
                     , formula = FormulaPredicate
                         ( PrefixPredicate "Cong" 4 )
@@ -1272,7 +1272,7 @@
                 { pos = Location
                     { locFile = "test/examples/geometry.tex"
                     , locLine = 98
-                    , locColumn = 98
+                    , locColumn = 10
                     }
                 , formula = FormulaPredicate
                     ( PrefixPredicate "Cong" 4 )
@@ -1294,7 +1294,7 @@
     ( Location
         { locFile = "test/examples/geometry.tex"
         , locLine = 102
-        , locColumn = 102
+        , locColumn = 1
         }
     )
     ( Marker "cong_shuffle_left" )
@@ -1326,14 +1326,14 @@
                 ( Location
                     { locFile = "test/examples/geometry.tex"
                     , locLine = 104
-                    , locColumn = 104
+                    , locColumn = 5
                     }
                 )
             , stmt1 = StmtFormula
                 { pos = Location
                     { locFile = "test/examples/geometry.tex"
                     , locLine = 104
-                    , locColumn = 104
+                    , locColumn = 8
                     }
                 , formula = FormulaPredicate
                     ( PrefixPredicate "Cong" 4 )
@@ -1352,7 +1352,7 @@
                 { pos = Location
                     { locFile = "test/examples/geometry.tex"
                     , locLine = 105
-                    , locColumn = 105
+                    , locColumn = 10
                     }
                 , formula = FormulaPredicate
                     ( PrefixPredicate "Cong" 4 )
@@ -1374,7 +1374,7 @@
     ( Location
         { locFile = "test/examples/geometry.tex"
         , locLine = 109
-        , locColumn = 109
+        , locColumn = 1
         }
     )
     ( Marker "cong_shuffle_right" )
@@ -1406,14 +1406,14 @@
                 ( Location
                     { locFile = "test/examples/geometry.tex"
                     , locLine = 111
-                    , locColumn = 111
+                    , locColumn = 5
                     }
                 )
             , stmt1 = StmtFormula
                 { pos = Location
                     { locFile = "test/examples/geometry.tex"
                     , locLine = 111
-                    , locColumn = 111
+                    , locColumn = 8
                     }
                 , formula = FormulaPredicate
                     ( PrefixPredicate "Cong" 4 )
@@ -1432,7 +1432,7 @@
                 { pos = Location
                     { locFile = "test/examples/geometry.tex"
                     , locLine = 112
-                    , locColumn = 112
+                    , locColumn = 10
                     }
                 , formula = FormulaPredicate
                     ( PrefixPredicate "Cong" 4 )
@@ -1454,7 +1454,7 @@
     ( Location
         { locFile = "test/examples/geometry.tex"
         , locLine = 116
-        , locColumn = 116
+        , locColumn = 1
         }
     )
     ( Marker "cong_zero" )
@@ -1481,7 +1481,7 @@
             { pos = Location
                 { locFile = "test/examples/geometry.tex"
                 , locLine = 118
-                , locColumn = 118
+                , locColumn = 10
                 }
             , formula = FormulaPredicate
                 ( PrefixPredicate "Cong" 4 )

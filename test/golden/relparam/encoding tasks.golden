@@ -1,4 +1,4 @@
-fof(dummy_abbr_test,conjecture,![Xx]:Xx=Xx,"test/examples/relparam.tex 6:6").
+fof(dummy_abbr_test,conjecture,![Xx]:Xx=Xx,"test/examples/relparam.tex 6:1").
 ------------------
-fof(dummy_defn_test,conjecture,![Xx]:Xx=Xx,"test/examples/relparam.tex 15:15").
+fof(dummy_defn_test,conjecture,![Xx]:Xx=Xx,"test/examples/relparam.tex 15:1").
 fof(dummy_abbr_test,axiom,![Xx]:Xx=Xx).

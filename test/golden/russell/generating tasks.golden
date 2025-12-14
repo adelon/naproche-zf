@@ -4,7 +4,7 @@
             ( Location
                 { locFile = "test/examples/russell.tex"
                 , locLine = 8
-                , locColumn = 8
+                , locColumn = 18
                 }
             )
             ( Quantified Existentially
@@ -14,7 +14,7 @@
                             ( Location
                                 { locFile = "test/examples/russell.tex"
                                 , locLine = 8
-                                , locColumn = 8
+                                , locColumn = 21
                                 }
                             )
                             ( SymbolPredicate
@@ -107,14 +107,14 @@
                 ( Location
                     { locFile = "test/examples/russell.tex"
                     , locLine = 11
-                    , locColumn = 11
+                    , locColumn = 5
                     }
                 )
                 ( Not
                     ( Location
                         { locFile = "test/examples/russell.tex"
                         , locLine = 8
-                        , locColumn = 8
+                        , locColumn = 18
                         }
                     )
                     ( Quantified Existentially
@@ -123,7 +123,7 @@
                                 ( Location
                                     { locFile = "test/examples/russell.tex"
                                     , locLine = 8
-                                    , locColumn = 8
+                                    , locColumn = 21
                                     }
                                 )
                                 ( SymbolPredicate
@@ -148,7 +148,7 @@
     , taskLocation = Location
         { locFile = "test/examples/russell.tex"
         , locLine = 12
-        , locColumn = 12
+        , locColumn = 5
         }
     , taskConjecture = Quantified Existentially
         ( Scope
@@ -180,7 +180,7 @@
             ( Location
                 { locFile = "test/examples/russell.tex"
                 , locLine = 8
-                , locColumn = 8
+                , locColumn = 18
                 }
             )
             ( Quantified Existentially
@@ -190,7 +190,7 @@
                             ( Location
                                 { locFile = "test/examples/russell.tex"
                                 , locLine = 8
-                                , locColumn = 8
+                                , locColumn = 21
                                 }
                             )
                             ( SymbolPredicate
@@ -391,14 +391,14 @@
                 ( Location
                     { locFile = "test/examples/russell.tex"
                     , locLine = 11
-                    , locColumn = 11
+                    , locColumn = 5
                     }
                 )
                 ( Not
                     ( Location
                         { locFile = "test/examples/russell.tex"
                         , locLine = 8
-                        , locColumn = 8
+                        , locColumn = 18
                         }
                     )
                     ( Quantified Existentially
@@ -407,7 +407,7 @@
                                 ( Location
                                     { locFile = "test/examples/russell.tex"
                                     , locLine = 8
-                                    , locColumn = 8
+                                    , locColumn = 21
                                     }
                                 )
                                 ( SymbolPredicate
@@ -432,7 +432,7 @@
     , taskLocation = Location
         { locFile = "test/examples/russell.tex"
         , locLine = 14
-        , locColumn = 14
+        , locColumn = 5
         }
     , taskConjecture = Connected Equivalence
         ( TermSymbol
@@ -486,7 +486,7 @@
             ( Location
                 { locFile = "test/examples/russell.tex"
                 , locLine = 8
-                , locColumn = 8
+                , locColumn = 18
                 }
             )
             ( Quantified Existentially
@@ -496,7 +496,7 @@
                             ( Location
                                 { locFile = "test/examples/russell.tex"
                                 , locLine = 8
-                                , locColumn = 8
+                                , locColumn = 21
                                 }
                             )
                             ( SymbolPredicate
@@ -745,14 +745,14 @@
                 ( Location
                     { locFile = "test/examples/russell.tex"
                     , locLine = 11
-                    , locColumn = 11
+                    , locColumn = 5
                     }
                 )
                 ( Not
                     ( Location
                         { locFile = "test/examples/russell.tex"
                         , locLine = 8
-                        , locColumn = 8
+                        , locColumn = 18
                         }
                     )
                     ( Quantified Existentially
@@ -761,7 +761,7 @@
                                 ( Location
                                     { locFile = "test/examples/russell.tex"
                                     , locLine = 8
-                                    , locColumn = 8
+                                    , locColumn = 21
                                     }
                                 )
                                 ( SymbolPredicate
@@ -786,7 +786,7 @@
     , taskLocation = Location
         { locFile = "test/examples/russell.tex"
         , locLine = 15
-        , locColumn = 15
+        , locColumn = 5
         }
     , taskConjecture = PropositionalConstant IsBottom
     }
@@ -796,7 +796,7 @@
             ( Location
                 { locFile = "test/examples/russell.tex"
                 , locLine = 8
-                , locColumn = 8
+                , locColumn = 18
                 }
             )
             ( Quantified Existentially
@@ -806,7 +806,7 @@
                             ( Location
                                 { locFile = "test/examples/russell.tex"
                                 , locLine = 8
-                                , locColumn = 8
+                                , locColumn = 21
                                 }
                             )
                             ( SymbolPredicate
@@ -1059,14 +1059,14 @@
                 ( Location
                     { locFile = "test/examples/russell.tex"
                     , locLine = 11
-                    , locColumn = 11
+                    , locColumn = 5
                     }
                 )
                 ( Not
                     ( Location
                         { locFile = "test/examples/russell.tex"
                         , locLine = 8
-                        , locColumn = 8
+                        , locColumn = 18
                         }
                     )
                     ( Quantified Existentially
@@ -1075,7 +1075,7 @@
                                 ( Location
                                     { locFile = "test/examples/russell.tex"
                                     , locLine = 8
-                                    , locColumn = 8
+                                    , locColumn = 21
                                     }
                                 )
                                 ( SymbolPredicate
@@ -1100,7 +1100,7 @@
     , taskLocation = Location
         { locFile = "test/examples/russell.tex"
         , locLine = 15
-        , locColumn = 15
+        , locColumn = 5
         }
     , taskConjecture = PropositionalConstant IsBottom
     }

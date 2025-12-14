@@ -10,7 +10,7 @@
                             ( Location
                                 { locFile = "test/examples/proofdefinefunction.tex"
                                 , locLine = 18
-                                , locColumn = 18
+                                , locColumn = 1
                                 }
                             )
                             ( SymbolPredicate
@@ -80,7 +80,7 @@
                             ( Location
                                 { locFile = "test/examples/proofdefinefunction.tex"
                                 , locLine = 13
-                                , locColumn = 13
+                                , locColumn = 1
                                 }
                             )
                             ( SymbolPredicate
@@ -234,7 +234,7 @@
                 ( Location
                     { locFile = "test/examples/proofdefinefunction.tex"
                     , locLine = 26
-                    , locColumn = 26
+                    , locColumn = 5
                     }
                 )
                 ( SymbolPredicate
@@ -262,7 +262,7 @@
                 ( Location
                     { locFile = "test/examples/proofdefinefunction.tex"
                     , locLine = 26
-                    , locColumn = 26
+                    , locColumn = 5
                     }
                 )
                 ( SymbolPredicate
@@ -361,7 +361,7 @@
                 ( Location
                     { locFile = "test/examples/proofdefinefunction.tex"
                     , locLine = 26
-                    , locColumn = 26
+                    , locColumn = 5
                     }
                 )
                 ( SymbolPredicate
@@ -396,7 +396,7 @@
     , taskLocation = Location
         { locFile = "test/examples/proofdefinefunction.tex"
         , locLine = 26
-        , locColumn = 26
+        , locColumn = 5
         }
     , taskConjecture = Connected Implication
         ( TermSymbol

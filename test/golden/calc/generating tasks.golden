@@ -61,7 +61,7 @@
     , taskLocation = Location
         { locFile = "test/examples/calc.tex"
         , locLine = 5
-        , locColumn = 5
+        , locColumn = 1
         }
     , taskConjecture = TermSymbol
         ( Location
@@ -145,7 +145,7 @@
     , taskLocation = Location
         { locFile = "test/examples/calc.tex"
         , locLine = 13
-        , locColumn = 13
+        , locColumn = 5
         }
     , taskConjecture = TermSymbol
         ( Location
@@ -201,7 +201,7 @@
     , taskLocation = Location
         { locFile = "test/examples/calc.tex"
         , locLine = 13
-        , locColumn = 13
+        , locColumn = 5
         }
     , taskConjecture = TermSymbol
         ( Location
@@ -305,7 +305,7 @@
     , taskLocation = Location
         { locFile = "test/examples/calc.tex"
         , locLine = 13
-        , locColumn = 13
+        , locColumn = 5
         }
     , taskConjecture = TermSymbol
         ( Location
@@ -417,7 +417,7 @@
     , taskLocation = Location
         { locFile = "test/examples/calc.tex"
         , locLine = 26
-        , locColumn = 26
+        , locColumn = 5
         }
     , taskConjecture = TermSymbol
         ( Location
@@ -473,7 +473,7 @@
     , taskLocation = Location
         { locFile = "test/examples/calc.tex"
         , locLine = 26
-        , locColumn = 26
+        , locColumn = 5
         }
     , taskConjecture = TermSymbol
         ( Location
@@ -625,7 +625,7 @@
     , taskLocation = Location
         { locFile = "test/examples/calc.tex"
         , locLine = 26
-        , locColumn = 26
+        , locColumn = 5
         }
     , taskConjecture = TermSymbol
         ( Location

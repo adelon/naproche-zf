@@ -2,7 +2,7 @@
     ( Location
         { locFile = "test/examples/relparam.tex"
         , locLine = 2
-        , locColumn = 2
+        , locColumn = 1
         }
     )
     ( Marker "abbr_equal" )
@@ -37,7 +37,7 @@
     ( Location
         { locFile = "test/examples/relparam.tex"
         , locLine = 6
-        , locColumn = 6
+        , locColumn = 1
         }
     )
     ( Marker "dummy_abbr_test" )
@@ -79,7 +79,7 @@
     ( Location
         { locFile = "test/examples/relparam.tex"
         , locLine = 11
-        , locColumn = 11
+        , locColumn = 1
         }
     )
     ( Marker "defn_equals" )
@@ -114,7 +114,7 @@
     ( Location
         { locFile = "test/examples/relparam.tex"
         , locLine = 15
-        , locColumn = 15
+        , locColumn = 1
         }
     )
     ( Marker "dummy_defn_test" )

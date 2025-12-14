@@ -11,7 +11,7 @@
             { pos = Location
                 { locFile = "test/examples/no-reflexive-set.tex"
                 , locLine = 2
-                , locColumn = 2
+                , locColumn = 5
                 }
             , qp = QuantPhrase Universally NounPhrase ( [] )
                 ( Noun
@@ -34,7 +34,7 @@
                 { pos = Location
                     { locFile = "test/examples/no-reflexive-set.tex"
                     , locLine = 2
-                    , locColumn = 2
+                    , locColumn = 30
                     }
                 , formula = FormulaChain
                     ( ChainBase
@@ -56,14 +56,14 @@
     ( Location
         { locFile = "test/examples/no-reflexive-set.tex"
         , locLine = 4
-        , locColumn = 4
+        , locColumn = 1
         }
     )
     ( BySetInduction
         ( Location
             { locFile = "test/examples/no-reflexive-set.tex"
             , locLine = 4
-            , locColumn = 4
+            , locColumn = 21
             }
         ) Nothing
         ( Qed
@@ -71,7 +71,7 @@
                 ( Location
                     { locFile = "test/examples/no-reflexive-set.tex"
                     , locLine = 10
-                    , locColumn = 10
+                    , locColumn = 5
                     }
                 )
             ) JustificationEmpty

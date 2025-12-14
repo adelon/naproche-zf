@@ -61,7 +61,7 @@
     , taskLocation = Location
         { locFile = "test/examples/byRef.tex"
         , locLine = 5
-        , locColumn = 5
+        , locColumn = 1
         }
     , taskConjecture = TermSymbol
         ( Location
@@ -117,7 +117,7 @@
     , taskLocation = Location
         { locFile = "test/examples/byRef.tex"
         , locLine = 13
-        , locColumn = 13
+        , locColumn = 5
         }
     , taskConjecture = TermSymbol
         ( Location
@@ -173,7 +173,7 @@
     , taskLocation = Location
         { locFile = "test/examples/byRef.tex"
         , locLine = 20
-        , locColumn = 20
+        , locColumn = 5
         }
     , taskConjecture = Quantified Universally
         ( Scope
@@ -321,7 +321,7 @@
     , taskLocation = Location
         { locFile = "test/examples/byRef.tex"
         , locLine = 20
-        , locColumn = 20
+        , locColumn = 5
         }
     , taskConjecture = TermSymbol
         ( Location
@@ -461,7 +461,7 @@
     , taskLocation = Location
         { locFile = "test/examples/byRef.tex"
         , locLine = 23
-        , locColumn = 23
+        , locColumn = 1
         }
     , taskConjecture = TermSymbol
         ( Location

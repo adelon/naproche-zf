@@ -50,7 +50,7 @@
     ( Location
         { locFile = "test/examples/proofassume.tex"
         , locLine = 4
-        , locColumn = 4
+        , locColumn = 1
         }
     )
     ( Assume
@@ -82,7 +82,7 @@
             ( Location
                 { locFile = "test/examples/proofassume.tex"
                 , locLine = 6
-                , locColumn = 6
+                , locColumn = 5
                 }
             )
             ( TermSymbol
@@ -114,7 +114,7 @@
     ( Location
         { locFile = "test/examples/proofassume.tex"
         , locLine = 9
-        , locColumn = 9
+        , locColumn = 1
         }
     )
     ( Marker "assumetesttwo" )
@@ -182,14 +182,14 @@
     ( Location
         { locFile = "test/examples/proofassume.tex"
         , locLine = 12
-        , locColumn = 12
+        , locColumn = 1
         }
     )
     ( Assume
         ( Location
             { locFile = "test/examples/proofassume.tex"
             , locLine = 13
-            , locColumn = 13
+            , locColumn = 5
             }
         )
         ( TermSymbol
@@ -214,7 +214,7 @@
             ( Location
                 { locFile = "test/examples/proofassume.tex"
                 , locLine = 14
-                , locColumn = 14
+                , locColumn = 5
                 }
             )
             ( TermSymbol
@@ -239,7 +239,7 @@
                 ( Location
                     { locFile = "test/examples/proofassume.tex"
                     , locLine = 15
-                    , locColumn = 15
+                    , locColumn = 5
                     }
                 )
                 ( TermSymbol

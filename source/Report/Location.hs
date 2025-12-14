@@ -3,7 +3,7 @@
 module Report.Location where
 
 import Base
-import Text.Megaparsec.Pos (SourcePos, sourceName, sourceLine, unPos)
+import Text.Megaparsec.Pos (SourcePos (sourceColumn), sourceName, sourceLine, unPos)
 import Data.Text qualified as Text
 
 data Location = Location
@@ -17,7 +17,7 @@ fromSourcePos :: SourcePos -> Location
 fromSourcePos pos = Location
     { locFile = sourceName pos
     , locLine = unPos (sourceLine pos)
-    , locColumn = unPos (sourceLine pos)
+    , locColumn = unPos (sourceColumn pos)
     }
 
 prettyLocation :: Location -> String

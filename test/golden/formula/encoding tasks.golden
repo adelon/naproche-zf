@@ -1,8 +1,8 @@
 fof(formula_test_forall,conjecture,![Xx,Xy]:(Xx=Xx&Xy=Xy),"test/examples/formula.tex 1:1").
 ------------------
-fof(formula_test_exists,conjecture,?[Xx,Xy]:Xx=Xy,"test/examples/formula.tex 5:5").
+fof(formula_test_exists,conjecture,?[Xx,Xy]:Xx=Xy,"test/examples/formula.tex 5:1").
 fof(formula_test_forall,axiom,![Xx,Xy]:(Xx=Xx&Xy=Xy)).
 ------------------
-fof(formula_test_not_exists,conjecture,?[Xx,Xy]:Xx=Xy<=>~?[Xx]:Xx!=Xx,"test/examples/formula.tex 9:9").
+fof(formula_test_not_exists,conjecture,?[Xx,Xy]:Xx=Xy<=>~?[Xx]:Xx!=Xx,"test/examples/formula.tex 9:1").
 fof(formula_test_exists,axiom,?[Xx,Xy]:Xx=Xy).
 fof(formula_test_forall,axiom,![Xx,Xy]:(Xx=Xx&Xy=Xy)).

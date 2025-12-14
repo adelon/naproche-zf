@@ -1,21 +1,21 @@
 fof(prop1,conjecture,fa=fa,"test/examples/byRef.tex 1:1").
 ------------------
-fof(prop2,conjecture,fb=fb,"test/examples/byRef.tex 5:5").
+fof(prop2,conjecture,fb=fb,"test/examples/byRef.tex 5:1").
 fof(prop1,axiom,![Xa]:Xa=Xa).
 ------------------
-fof(prop3,conjecture,fc=fc,"test/examples/byRef.tex 13:13").
+fof(prop3,conjecture,fc=fc,"test/examples/byRef.tex 13:5").
 fof(prop1,axiom,![Xa]:Xa=Xa).
 ------------------
-fof(prop4,conjecture,![Xd]:Xd=Xd,"test/examples/byRef.tex 20:20").
+fof(prop4,conjecture,![Xd]:Xd=Xd,"test/examples/byRef.tex 20:5").
 fof(prop1,axiom,![Xa]:Xa=Xa).
 ------------------
-fof(prop4,conjecture,fe=fe,"test/examples/byRef.tex 20:20").
+fof(prop4,conjecture,fe=fe,"test/examples/byRef.tex 20:5").
 fof(prop3,axiom,![Xc]:Xc=Xc).
 fof(prop2,axiom,![Xb]:Xb=Xb).
 fof(prop1,axiom,![Xa]:Xa=Xa).
 fof(prop41,axiom,![Xd]:Xd=Xd).
 ------------------
-fof(prop5,conjecture,ff=ff,"test/examples/byRef.tex 23:23").
+fof(prop5,conjecture,ff=ff,"test/examples/byRef.tex 23:1").
 fof(prop4,axiom,![Xe]:Xe=Xe).
 fof(prop3,axiom,![Xc]:Xc=Xc).
 fof(prop2,axiom,![Xb]:Xb=Xb).

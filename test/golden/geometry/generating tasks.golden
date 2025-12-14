@@ -271,7 +271,7 @@
                                 ( Location
                                     { locFile = "test/examples/geometry.tex"
                                     , locLine = 70
-                                    , locColumn = 70
+                                    , locColumn = 17
                                     }
                                 )
                                 ( SymbolPredicate
@@ -1349,7 +1349,7 @@
                                 ( Location
                                     { locFile = "test/examples/geometry.tex"
                                     , locLine = 26
-                                    , locColumn = 26
+                                    , locColumn = 1
                                     }
                                 )
                                 ( SymbolPredicate
@@ -2444,7 +2444,7 @@
     , taskLocation = Location
         { locFile = "test/examples/geometry.tex"
         , locLine = 82
-        , locColumn = 82
+        , locColumn = 1
         }
     , taskConjecture = TermSymbol
         ( Location
@@ -2833,7 +2833,7 @@
                                 ( Location
                                     { locFile = "test/examples/geometry.tex"
                                     , locLine = 70
-                                    , locColumn = 70
+                                    , locColumn = 17
                                     }
                                 )
                                 ( SymbolPredicate
@@ -3911,7 +3911,7 @@
                                 ( Location
                                     { locFile = "test/examples/geometry.tex"
                                     , locLine = 26
-                                    , locColumn = 26
+                                    , locColumn = 1
                                     }
                                 )
                                 ( SymbolPredicate
@@ -5084,7 +5084,7 @@
     , taskLocation = Location
         { locFile = "test/examples/geometry.tex"
         , locLine = 88
-        , locColumn = 88
+        , locColumn = 1
         }
     , taskConjecture = TermSymbol
         ( Location
@@ -5657,7 +5657,7 @@
                                 ( Location
                                     { locFile = "test/examples/geometry.tex"
                                     , locLine = 70
-                                    , locColumn = 70
+                                    , locColumn = 17
                                     }
                                 )
                                 ( SymbolPredicate
@@ -6735,7 +6735,7 @@
                                 ( Location
                                     { locFile = "test/examples/geometry.tex"
                                     , locLine = 26
-                                    , locColumn = 26
+                                    , locColumn = 1
                                     }
                                 )
                                 ( SymbolPredicate
@@ -7942,7 +7942,7 @@
     , taskLocation = Location
         { locFile = "test/examples/geometry.tex"
         , locLine = 95
-        , locColumn = 95
+        , locColumn = 1
         }
     , taskConjecture = Connected Implication
         ( Connected Conjunction
@@ -8833,7 +8833,7 @@
                                 ( Location
                                     { locFile = "test/examples/geometry.tex"
                                     , locLine = 70
-                                    , locColumn = 70
+                                    , locColumn = 17
                                     }
                                 )
                                 ( SymbolPredicate
@@ -9911,7 +9911,7 @@
                                 ( Location
                                     { locFile = "test/examples/geometry.tex"
                                     , locLine = 26
-                                    , locColumn = 26
+                                    , locColumn = 1
                                     }
                                 )
                                 ( SymbolPredicate
@@ -11062,7 +11062,7 @@
     , taskLocation = Location
         { locFile = "test/examples/geometry.tex"
         , locLine = 102
-        , locColumn = 102
+        , locColumn = 1
         }
     , taskConjecture = Connected Implication
         ( TermSymbol
@@ -12115,7 +12115,7 @@
                                 ( Location
                                     { locFile = "test/examples/geometry.tex"
                                     , locLine = 70
-                                    , locColumn = 70
+                                    , locColumn = 17
                                     }
                                 )
                                 ( SymbolPredicate
@@ -13193,7 +13193,7 @@
                                 ( Location
                                     { locFile = "test/examples/geometry.tex"
                                     , locLine = 26
-                                    , locColumn = 26
+                                    , locColumn = 1
                                     }
                                 )
                                 ( SymbolPredicate
@@ -14344,7 +14344,7 @@
     , taskLocation = Location
         { locFile = "test/examples/geometry.tex"
         , locLine = 109
-        , locColumn = 109
+        , locColumn = 1
         }
     , taskConjecture = Connected Implication
         ( TermSymbol
@@ -15581,7 +15581,7 @@
                                 ( Location
                                     { locFile = "test/examples/geometry.tex"
                                     , locLine = 70
-                                    , locColumn = 70
+                                    , locColumn = 17
                                     }
                                 )
                                 ( SymbolPredicate
@@ -16659,7 +16659,7 @@
                                 ( Location
                                     { locFile = "test/examples/geometry.tex"
                                     , locLine = 26
-                                    , locColumn = 26
+                                    , locColumn = 1
                                     }
                                 )
                                 ( SymbolPredicate
@@ -17754,7 +17754,7 @@
     , taskLocation = Location
         { locFile = "test/examples/geometry.tex"
         , locLine = 116
-        , locColumn = 116
+        , locColumn = 1
         }
     , taskConjecture = TermSymbol
         ( Location

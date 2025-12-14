@@ -12,7 +12,7 @@
                 { pos = Location
                     { locFile = "test/examples/union.tex"
                     , locLine = 2
-                    , locColumn = 2
+                    , locColumn = 13
                     }
                 , quant = Universally
                 , xs = NamedVar "a" :| []
@@ -25,7 +25,7 @@
                         { pos = Location
                             { locFile = "test/examples/union.tex"
                             , locLine = 2
-                            , locColumn = 2
+                            , locColumn = 33
                             }
                         , formula = FormulaChain
                             ( ChainBase
@@ -44,7 +44,7 @@
                         { pos = Location
                             { locFile = "test/examples/union.tex"
                             , locLine = 2
-                            , locColumn = 2
+                            , locColumn = 46
                             }
                         , formula = FormulaChain
                             ( ChainBase
@@ -67,7 +67,7 @@
             { pos = Location
                 { locFile = "test/examples/union.tex"
                 , locLine = 3
-                , locColumn = 3
+                , locColumn = 10
                 }
             , formula = FormulaChain
                 ( ChainBase
@@ -88,7 +88,7 @@
     ( Location
         { locFile = "test/examples/union.tex"
         , locLine = 6
-        , locColumn = 6
+        , locColumn = 1
         }
     )
     ( Marker "union_defn" )
@@ -118,7 +118,7 @@
                 { pos = Location
                     { locFile = "test/examples/union.tex"
                     , locLine = 8
-                    , locColumn = 8
+                    , locColumn = 5
                     }
                 , formula = FormulaChain
                     ( ChainBase
@@ -149,7 +149,7 @@
                     { pos = Location
                         { locFile = "test/examples/union.tex"
                         , locLine = 8
-                        , locColumn = 8
+                        , locColumn = 26
                         }
                     , formula = FormulaChain
                         ( ChainBase
@@ -168,7 +168,7 @@
                     { pos = Location
                         { locFile = "test/examples/union.tex"
                         , locLine = 8
-                        , locColumn = 8
+                        , locColumn = 38
                         }
                     , formula = FormulaChain
                         ( ChainBase
@@ -191,7 +191,7 @@
     ( Location
         { locFile = "test/examples/union.tex"
         , locLine = 11
-        , locColumn = 11
+        , locColumn = 1
         }
     )
     ( Marker "union_comm" )
@@ -200,7 +200,7 @@
             { pos = Location
                 { locFile = "test/examples/union.tex"
                 , locLine = 12
-                , locColumn = 12
+                , locColumn = 5
                 }
             , formula = FormulaChain
                 ( ChainBase
@@ -239,7 +239,7 @@
     ( Location
         { locFile = "test/examples/union.tex"
         , locLine = 15
-        , locColumn = 15
+        , locColumn = 1
         }
     )
     ( Marker "union_assoc" )
@@ -248,7 +248,7 @@
             { pos = Location
                 { locFile = "test/examples/union.tex"
                 , locLine = 16
-                , locColumn = 16
+                , locColumn = 5
                 }
             , formula = FormulaChain
                 ( ChainBase
@@ -305,21 +305,21 @@
     ( Location
         { locFile = "test/examples/union.tex"
         , locLine = 18
-        , locColumn = 18
+        , locColumn = 1
         }
     )
     ( Have
         ( Location
             { locFile = "test/examples/union.tex"
             , locLine = 19
-            , locColumn = 19
+            , locColumn = 5
             }
         ) Nothing
         ( SymbolicQuantified
             { pos = Location
                 { locFile = "test/examples/union.tex"
                 , locLine = 19
-                , locColumn = 19
+                , locColumn = 5
                 }
             , quant = Universally
             , xs = NamedVar "a" :| []
@@ -331,14 +331,14 @@
                     ( Location
                         { locFile = "test/examples/union.tex"
                         , locLine = 19
-                        , locColumn = 19
+                        , locColumn = 25
                         }
                     )
                 , stmt1 = StmtFormula
                     { pos = Location
                         { locFile = "test/examples/union.tex"
                         , locLine = 19
-                        , locColumn = 19
+                        , locColumn = 28
                         }
                     , formula = FormulaChain
                         ( ChainBase
@@ -375,7 +375,7 @@
                     { pos = Location
                         { locFile = "test/examples/union.tex"
                         , locLine = 19
-                        , locColumn = 19
+                        , locColumn = 61
                         }
                     , formula = FormulaChain
                         ( ChainBase
@@ -415,14 +415,14 @@
             ( Location
                 { locFile = "test/examples/union.tex"
                 , locLine = 20
-                , locColumn = 20
+                , locColumn = 5
                 }
             ) Nothing
             ( SymbolicQuantified
                 { pos = Location
                     { locFile = "test/examples/union.tex"
                     , locLine = 20
-                    , locColumn = 20
+                    , locColumn = 5
                     }
                 , quant = Universally
                 , xs = NamedVar "a" :| []
@@ -434,14 +434,14 @@
                         ( Location
                             { locFile = "test/examples/union.tex"
                             , locLine = 20
-                            , locColumn = 20
+                            , locColumn = 25
                             }
                         )
                     , stmt1 = StmtFormula
                         { pos = Location
                             { locFile = "test/examples/union.tex"
                             , locLine = 20
-                            , locColumn = 20
+                            , locColumn = 28
                             }
                         , formula = FormulaChain
                             ( ChainBase
@@ -478,7 +478,7 @@
                         { pos = Location
                             { locFile = "test/examples/union.tex"
                             , locLine = 20
-                            , locColumn = 20
+                            , locColumn = 61
                             }
                         , formula = FormulaChain
                             ( ChainBase

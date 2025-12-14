@@ -48,7 +48,7 @@
     ( Location
         { locFile = "test/examples/russell.tex"
         , locLine = 7
-        , locColumn = 7
+        , locColumn = 1
         }
     )
     ( Marker "no_universal_set" )
@@ -57,7 +57,7 @@
             ( Location
                 { locFile = "test/examples/russell.tex"
                 , locLine = 8
-                , locColumn = 8
+                , locColumn = 18
                 }
             )
             ( Quantified Existentially
@@ -67,7 +67,7 @@
                             ( Location
                                 { locFile = "test/examples/russell.tex"
                                 , locLine = 8
-                                , locColumn = 8
+                                , locColumn = 21
                                 }
                             )
                             ( SymbolPredicate
@@ -92,21 +92,21 @@
     ( Location
         { locFile = "test/examples/russell.tex"
         , locLine = 10
-        , locColumn = 10
+        , locColumn = 1
         }
     )
     ( ByContradiction
         ( Location
             { locFile = "test/examples/russell.tex"
             , locLine = 11
-            , locColumn = 11
+            , locColumn = 5
             }
         )
         ( Take
             ( Location
                 { locFile = "test/examples/russell.tex"
                 , locLine = 12
-                , locColumn = 12
+                , locColumn = 5
                 }
             )
             ( NamedVar "V" :| [] )
@@ -134,7 +134,7 @@
                 ( Location
                     { locFile = "test/examples/russell.tex"
                     , locLine = 13
-                    , locColumn = 13
+                    , locColumn = 5
                     }
                 )
                 ( NamedVar "R" )
@@ -176,7 +176,7 @@
                     ( Location
                         { locFile = "test/examples/russell.tex"
                         , locLine = 14
-                        , locColumn = 14
+                        , locColumn = 5
                         }
                     )
                     ( Connected Equivalence
@@ -229,7 +229,7 @@
                         ( Location
                             { locFile = "test/examples/russell.tex"
                             , locLine = 15
-                            , locColumn = 15
+                            , locColumn = 5
                             }
                         ) ( PropositionalConstant IsBottom ) JustificationEmpty
                         ( Qed

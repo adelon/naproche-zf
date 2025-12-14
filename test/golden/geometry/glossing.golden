@@ -86,7 +86,7 @@
     ( Location
         { locFile = "test/examples/geometry.tex"
         , locLine = 5
-        , locColumn = 5
+        , locColumn = 1
         }
     )
     ( Marker "cong_refl_swap" )
@@ -171,7 +171,7 @@
     ( Location
         { locFile = "test/examples/geometry.tex"
         , locLine = 10
-        , locColumn = 10
+        , locColumn = 1
         }
     )
     ( Marker "cong_pseudotransitive" )
@@ -354,7 +354,7 @@
     ( Location
         { locFile = "test/examples/geometry.tex"
         , locLine = 15
-        , locColumn = 15
+        , locColumn = 1
         }
     )
     ( Marker "cong_id" )
@@ -486,7 +486,7 @@
     ( Location
         { locFile = "test/examples/geometry.tex"
         , locLine = 21
-        , locColumn = 21
+        , locColumn = 1
         }
     )
     ( Marker "segment_construction" )
@@ -594,7 +594,7 @@
     ( Location
         { locFile = "test/examples/geometry.tex"
         , locLine = 26
-        , locColumn = 26
+        , locColumn = 1
         }
     )
     ( Marker "ofs" )
@@ -958,7 +958,7 @@
     ( Location
         { locFile = "test/examples/geometry.tex"
         , locLine = 39
-        , locColumn = 39
+        , locColumn = 1
         }
     )
     ( Marker "five_segment" )
@@ -1255,7 +1255,7 @@
     ( Location
         { locFile = "test/examples/geometry.tex"
         , locLine = 46
-        , locColumn = 46
+        , locColumn = 1
         }
     )
     ( Marker "betw_id" )
@@ -1358,7 +1358,7 @@
     ( Location
         { locFile = "test/examples/geometry.tex"
         , locLine = 52
-        , locColumn = 52
+        , locColumn = 1
         }
     )
     ( Marker "innerpasch" )
@@ -1663,7 +1663,7 @@
     ( Location
         { locFile = "test/examples/geometry.tex"
         , locLine = 66
-        , locColumn = 66
+        , locColumn = 1
         }
     )
     ( Marker "upperdim" )
@@ -1893,7 +1893,7 @@
                 ( Location
                     { locFile = "test/examples/geometry.tex"
                     , locLine = 70
-                    , locColumn = 70
+                    , locColumn = 17
                     }
                 )
                 ( SymbolPredicate
@@ -1923,7 +1923,7 @@
     ( Location
         { locFile = "test/examples/geometry.tex"
         , locLine = 82
-        , locColumn = 82
+        , locColumn = 1
         }
     )
     ( Marker "cong_refl" )
@@ -2008,7 +2008,7 @@
     ( Location
         { locFile = "test/examples/geometry.tex"
         , locLine = 88
-        , locColumn = 88
+        , locColumn = 1
         }
     )
     ( Marker "cong_sym" )
@@ -2168,7 +2168,7 @@
     ( Location
         { locFile = "test/examples/geometry.tex"
         , locLine = 95
-        , locColumn = 95
+        , locColumn = 1
         }
     )
     ( Marker "cong_transitive" )
@@ -2405,7 +2405,7 @@
     ( Location
         { locFile = "test/examples/geometry.tex"
         , locLine = 102
-        , locColumn = 102
+        , locColumn = 1
         }
     )
     ( Marker "cong_shuffle_left" )
@@ -2566,7 +2566,7 @@
     ( Location
         { locFile = "test/examples/geometry.tex"
         , locLine = 109
-        , locColumn = 109
+        , locColumn = 1
         }
     )
     ( Marker "cong_shuffle_right" )
@@ -2727,7 +2727,7 @@
     ( Location
         { locFile = "test/examples/geometry.tex"
         , locLine = 116
-        , locColumn = 116
+        , locColumn = 1
         }
     )
     ( Marker "cong_zero" )

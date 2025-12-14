@@ -323,7 +323,7 @@
                             ( Location
                                 { locFile = "test/examples/inductive.tex"
                                 , locLine = 3
-                                , locColumn = 3
+                                , locColumn = 1
                                 }
                             )
                             ( SymbolPredicate
@@ -383,7 +383,7 @@
     , taskLocation = Location
         { locFile = "test/examples/inductive.tex"
         , locLine = 31
-        , locColumn = 31
+        , locColumn = 1
         }
     , taskConjecture = TermSymbol
         ( Location
@@ -754,7 +754,7 @@
                             ( Location
                                 { locFile = "test/examples/inductive.tex"
                                 , locLine = 3
-                                , locColumn = 3
+                                , locColumn = 1
                                 }
                             )
                             ( SymbolPredicate
@@ -814,7 +814,7 @@
     , taskLocation = Location
         { locFile = "test/examples/inductive.tex"
         , locLine = 31
-        , locColumn = 31
+        , locColumn = 1
         }
     , taskConjecture = Connected Implication
         ( Connected Conjunction
@@ -1495,7 +1495,7 @@
                             ( Location
                                 { locFile = "test/examples/inductive.tex"
                                 , locLine = 3
-                                , locColumn = 3
+                                , locColumn = 1
                                 }
                             )
                             ( SymbolPredicate
@@ -1575,7 +1575,7 @@
     , taskLocation = Location
         { locFile = "test/examples/inductive.tex"
         , locLine = 39
-        , locColumn = 39
+        , locColumn = 1
         }
     , taskConjecture = TermSymbol
         ( Location
@@ -2279,7 +2279,7 @@
                             ( Location
                                 { locFile = "test/examples/inductive.tex"
                                 , locLine = 3
-                                , locColumn = 3
+                                , locColumn = 1
                                 }
                             )
                             ( SymbolPredicate
@@ -2339,7 +2339,7 @@
     , taskLocation = Location
         { locFile = "test/examples/inductive.tex"
         , locLine = 45
-        , locColumn = 45
+        , locColumn = 1
         }
     , taskConjecture = Connected Implication
         ( TermSymbol
@@ -3080,7 +3080,7 @@
                             ( Location
                                 { locFile = "test/examples/inductive.tex"
                                 , locLine = 3
-                                , locColumn = 3
+                                , locColumn = 1
                                 }
                             )
                             ( SymbolPredicate
@@ -3140,7 +3140,7 @@
     , taskLocation = Location
         { locFile = "test/examples/inductive.tex"
         , locLine = 45
-        , locColumn = 45
+        , locColumn = 1
         }
     , taskConjecture = Connected Implication
         ( Connected Conjunction
@@ -4353,7 +4353,7 @@
                             ( Location
                                 { locFile = "test/examples/inductive.tex"
                                 , locLine = 3
-                                , locColumn = 3
+                                , locColumn = 1
                                 }
                             )
                             ( SymbolPredicate
@@ -4413,7 +4413,7 @@
     , taskLocation = Location
         { locFile = "test/examples/inductive.tex"
         , locLine = 53
-        , locColumn = 53
+        , locColumn = 1
         }
     , taskConjecture = Connected Implication
         ( TermSymbol
@@ -5531,7 +5531,7 @@
                             ( Location
                                 { locFile = "test/examples/inductive.tex"
                                 , locLine = 3
-                                , locColumn = 3
+                                , locColumn = 1
                                 }
                             )
                             ( SymbolPredicate
@@ -5591,7 +5591,7 @@
     , taskLocation = Location
         { locFile = "test/examples/inductive.tex"
         , locLine = 53
-        , locColumn = 53
+        , locColumn = 1
         }
     , taskConjecture = Connected Implication
         ( Connected Conjunction
@@ -7183,7 +7183,7 @@
                             ( Location
                                 { locFile = "test/examples/inductive.tex"
                                 , locLine = 3
-                                , locColumn = 3
+                                , locColumn = 1
                                 }
                             )
                             ( SymbolPredicate
@@ -7243,7 +7243,7 @@
     , taskLocation = Location
         { locFile = "test/examples/inductive.tex"
         , locLine = 61
-        , locColumn = 61
+        , locColumn = 1
         }
     , taskConjecture = Connected Implication
         ( TermSymbol
@@ -8692,7 +8692,7 @@
                             ( Location
                                 { locFile = "test/examples/inductive.tex"
                                 , locLine = 3
-                                , locColumn = 3
+                                , locColumn = 1
                                 }
                             )
                             ( SymbolPredicate
@@ -8752,7 +8752,7 @@
     , taskLocation = Location
         { locFile = "test/examples/inductive.tex"
         , locLine = 61
-        , locColumn = 61
+        , locColumn = 1
         }
     , taskConjecture = Connected Implication
         ( Connected Conjunction
@@ -10639,7 +10639,7 @@
                             ( Location
                                 { locFile = "test/examples/inductive.tex"
                                 , locLine = 3
-                                , locColumn = 3
+                                , locColumn = 1
                                 }
                             )
                             ( SymbolPredicate
@@ -10699,7 +10699,7 @@
     , taskLocation = Location
         { locFile = "test/examples/inductive.tex"
         , locLine = 69
-        , locColumn = 69
+        , locColumn = 1
         }
     , taskConjecture = Quantified Universally
         ( Scope
@@ -12513,7 +12513,7 @@
                             ( Location
                                 { locFile = "test/examples/inductive.tex"
                                 , locLine = 3
-                                , locColumn = 3
+                                , locColumn = 1
                                 }
                             )
                             ( SymbolPredicate
@@ -12573,7 +12573,7 @@
     , taskLocation = Location
         { locFile = "test/examples/inductive.tex"
         , locLine = 69
-        , locColumn = 69
+        , locColumn = 1
         }
     , taskConjecture = Connected Implication
         ( Connected Conjunction

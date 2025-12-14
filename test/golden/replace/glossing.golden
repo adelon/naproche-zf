@@ -91,7 +91,7 @@
     ( Location
         { locFile = "test/examples/replace.tex"
         , locLine = 5
-        , locColumn = 5
+        , locColumn = 1
         }
     )
     ( Marker "times" )
@@ -154,7 +154,7 @@
     ( Location
         { locFile = "test/examples/replace.tex"
         , locLine = 9
-        , locColumn = 9
+        , locColumn = 1
         }
     )
     ( Marker "unit" )
@@ -211,7 +211,7 @@
     ( Location
         { locFile = "test/examples/replace.tex"
         , locLine = 13
-        , locColumn = 13
+        , locColumn = 1
         }
     )
     ( Marker "pair_emptyset_in_times_unit" )
@@ -317,7 +317,7 @@
     ( Location
         { locFile = "test/examples/replace.tex"
         , locLine = 19
-        , locColumn = 19
+        , locColumn = 1
         }
     )
     ( Marker "suc" )
@@ -390,7 +390,7 @@
     ( Location
         { locFile = "test/examples/replace.tex"
         , locLine = 25
-        , locColumn = 25
+        , locColumn = 1
         }
     )
     ( Marker "times_replacement_test" )

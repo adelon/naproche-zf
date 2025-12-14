@@ -1,24 +1,24 @@
-fof(dummy_abbr_test_adj,conjecture,~?[Xy]:elem(Xy,fx)=>~?[Xy]:elem(Xy,fx),"test/examples/abbr.tex 5:5").
+fof(dummy_abbr_test_adj,conjecture,~?[Xy]:elem(Xy,fx)=>~?[Xy]:elem(Xy,fx),"test/examples/abbr.tex 5:1").
 ------------------
-fof(dummy_abbr_test_noun,conjecture,![Xx]:Xx=Xx,"test/examples/abbr.tex 15:15").
+fof(dummy_abbr_test_noun,conjecture,![Xx]:Xx=Xx,"test/examples/abbr.tex 15:1").
 fof(dummy_abbr_test_adj,axiom,![Xx]:(~?[Xy]:elem(Xy,Xx)=>~?[Xy]:elem(Xy,Xx))).
 ------------------
-fof(dummy_abbr_test_verb,conjecture,fx=fy=>fx=fy,"test/examples/abbr.tex 25:25").
+fof(dummy_abbr_test_verb,conjecture,fx=fy=>fx=fy,"test/examples/abbr.tex 25:1").
 fof(dummy_abbr_test_noun,axiom,![Xx]:Xx=Xx).
 fof(dummy_abbr_test_adj,axiom,![Xx]:(~?[Xy]:elem(Xy,Xx)=>~?[Xy]:elem(Xy,Xx))).
 ------------------
-fof(abbr_test_notin,conjecture,~elem(fx,fy)=>~elem(fx,fy),"test/examples/abbr.tex 31:31").
+fof(abbr_test_notin,conjecture,~elem(fx,fy)=>~elem(fx,fy),"test/examples/abbr.tex 31:1").
 fof(dummy_abbr_test_verb,axiom,![Xx,Xy]:(Xx=Xy=>Xx=Xy)).
 fof(dummy_abbr_test_noun,axiom,![Xx]:Xx=Xx).
 fof(dummy_abbr_test_adj,axiom,![Xx]:(~?[Xy]:elem(Xy,Xx)=>~?[Xy]:elem(Xy,Xx))).
 ------------------
-fof(abbr_test_elementof_is_in,conjecture,elem(fx,fy)=>elem(fx,fy),"test/examples/abbr.tex 37:37").
+fof(abbr_test_elementof_is_in,conjecture,elem(fx,fy)=>elem(fx,fy),"test/examples/abbr.tex 37:1").
 fof(abbr_test_notin,axiom,![Xx,Xy]:(~elem(Xx,Xy)=>~elem(Xx,Xy))).
 fof(dummy_abbr_test_verb,axiom,![Xx,Xy]:(Xx=Xy=>Xx=Xy)).
 fof(dummy_abbr_test_noun,axiom,![Xx]:Xx=Xx).
 fof(dummy_abbr_test_adj,axiom,![Xx]:(~?[Xy]:elem(Xy,Xx)=>~?[Xy]:elem(Xy,Xx))).
 ------------------
-fof(abbr_test_equals_is_eq,conjecture,fx=fy=>fx=fy,"test/examples/abbr.tex 43:43").
+fof(abbr_test_equals_is_eq,conjecture,fx=fy=>fx=fy,"test/examples/abbr.tex 43:1").
 fof(abbr_test_elementof_is_in,axiom,![Xx,Xy]:(elem(Xx,Xy)=>elem(Xx,Xy))).
 fof(abbr_test_notin,axiom,![Xx,Xy]:(~elem(Xx,Xy)=>~elem(Xx,Xy))).
 fof(dummy_abbr_test_verb,axiom,![Xx,Xy]:(Xx=Xy=>Xx=Xy)).

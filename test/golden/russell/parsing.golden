@@ -28,7 +28,7 @@
                 ( Location
                     { locFile = "test/examples/russell.tex"
                     , locLine = 2
-                    , locColumn = 2
+                    , locColumn = 18
                     }
                 )
                 [ Just
@@ -40,7 +40,7 @@
             { pos = Location
                 { locFile = "test/examples/russell.tex"
                 , locLine = 4
-                , locColumn = 4
+                , locColumn = 5
                 }
             , qp = QuantPhrase Universally NounPhrase ( [] )
                 ( Noun
@@ -63,7 +63,7 @@
                 { pos = Location
                     { locFile = "test/examples/russell.tex"
                     , locLine = 4
-                    , locColumn = 4
+                    , locColumn = 30
                     }
                 , formula = FormulaChain
                     ( ChainBase
@@ -85,7 +85,7 @@
     ( Location
         { locFile = "test/examples/russell.tex"
         , locLine = 7
-        , locColumn = 7
+        , locColumn = 1
         }
     )
     ( Marker "no_universal_set" )
@@ -94,13 +94,13 @@
             { pos = Location
                 { locFile = "test/examples/russell.tex"
                 , locLine = 8
-                , locColumn = 8
+                , locColumn = 18
                 }
             , stmt = StmtExists
                 { pos = Location
                     { locFile = "test/examples/russell.tex"
                     , locLine = 8
-                    , locColumn = 8
+                    , locColumn = 18
                     }
                 , np = NounPhrase
                     (
@@ -108,7 +108,7 @@
                             ( Location
                                 { locFile = "test/examples/russell.tex"
                                 , locLine = 8
-                                , locColumn = 8
+                                , locColumn = 21
                                 }
                             )
                             [ Just
@@ -137,21 +137,21 @@
     ( Location
         { locFile = "test/examples/russell.tex"
         , locLine = 10
-        , locColumn = 10
+        , locColumn = 1
         }
     )
     ( ByContradiction
         ( Location
             { locFile = "test/examples/russell.tex"
             , locLine = 11
-            , locColumn = 11
+            , locColumn = 5
             }
         )
         ( TakeNoun
             ( Location
                 { locFile = "test/examples/russell.tex"
                 , locLine = 12
-                , locColumn = 12
+                , locColumn = 5
                 }
             ) NounPhrase
             (
@@ -187,7 +187,7 @@
                 ( Location
                     { locFile = "test/examples/russell.tex"
                     , locLine = 13
-                    , locColumn = 13
+                    , locColumn = 5
                     }
                 )
                 ( NamedVar "R" )
@@ -221,7 +221,7 @@
                     ( Location
                         { locFile = "test/examples/russell.tex"
                         , locLine = 14
-                        , locColumn = 14
+                        , locColumn = 5
                         }
                     ) Nothing
                     ( StmtConnected
@@ -231,7 +231,7 @@
                             { pos = Location
                                 { locFile = "test/examples/russell.tex"
                                 , locLine = 14
-                                , locColumn = 14
+                                , locColumn = 10
                                 }
                             , formula = FormulaChain
                                 ( ChainBase
@@ -250,7 +250,7 @@
                             { pos = Location
                                 { locFile = "test/examples/russell.tex"
                                 , locLine = 14
-                                , locColumn = 14
+                                , locColumn = 23
                                 }
                             , formula = FormulaChain
                                 ( ChainBase
@@ -271,14 +271,14 @@
                         ( Location
                             { locFile = "test/examples/russell.tex"
                             , locLine = 15
-                            , locColumn = 15
+                            , locColumn = 5
                             }
                         ) Nothing
                         ( StmtFormula
                             { pos = Location
                                 { locFile = "test/examples/russell.tex"
                                 , locLine = 15
-                                , locColumn = 15
+                                , locColumn = 5
                                 }
                             , formula = PropositionalConstant IsBottom
                             }

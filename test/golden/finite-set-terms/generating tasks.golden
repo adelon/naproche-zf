@@ -26,7 +26,7 @@
                                 ( Location
                                     { locFile = "test/examples/finite-set-terms.tex"
                                     , locLine = 5
-                                    , locColumn = 5
+                                    , locColumn = 1
                                     }
                                 )
                                 ( SymbolMixfix
@@ -71,7 +71,7 @@
                                 ( Location
                                     { locFile = "test/examples/finite-set-terms.tex"
                                     , locLine = 5
-                                    , locColumn = 5
+                                    , locColumn = 1
                                     }
                                 )
                                 ( SymbolPredicate
@@ -205,7 +205,7 @@
     , taskLocation = Location
         { locFile = "test/examples/finite-set-terms.tex"
         , locLine = 9
-        , locColumn = 9
+        , locColumn = 1
         }
     , taskConjecture = TermSymbol
         ( Location

@@ -189,7 +189,7 @@
     , taskLocation = Location
         { locFile = "test/examples/union.tex"
         , locLine = 11
-        , locColumn = 11
+        , locColumn = 1
         }
     , taskConjecture = TermSymbol
         ( Location
@@ -500,7 +500,7 @@
     , taskLocation = Location
         { locFile = "test/examples/union.tex"
         , locLine = 19
-        , locColumn = 19
+        , locColumn = 5
         }
     , taskConjecture = Quantified Universally
         ( Scope
@@ -1037,7 +1037,7 @@
     , taskLocation = Location
         { locFile = "test/examples/union.tex"
         , locLine = 20
-        , locColumn = 20
+        , locColumn = 5
         }
     , taskConjecture = Quantified Universally
         ( Scope
@@ -1714,7 +1714,7 @@
     , taskLocation = Location
         { locFile = "test/examples/union.tex"
         , locLine = 20
-        , locColumn = 20
+        , locColumn = 5
         }
     , taskConjecture = TermSymbol
         ( Location

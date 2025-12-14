@@ -11,7 +11,7 @@
             { pos = Location
                 { locFile = "test/examples/calc.tex"
                 , locLine = 2
-                , locColumn = 2
+                , locColumn = 5
                 }
             , formula = FormulaChain
                 ( ChainBase
@@ -32,7 +32,7 @@
     ( Location
         { locFile = "test/examples/calc.tex"
         , locLine = 5
-        , locColumn = 5
+        , locColumn = 1
         }
     )
     ( Marker "irrelevant" )
@@ -41,7 +41,7 @@
             { pos = Location
                 { locFile = "test/examples/calc.tex"
                 , locLine = 6
-                , locColumn = 6
+                , locColumn = 5
                 }
             , formula = FormulaChain
                 ( ChainBase
@@ -62,7 +62,7 @@
     ( Location
         { locFile = "test/examples/calc.tex"
         , locLine = 9
-        , locColumn = 9
+        , locColumn = 1
         }
     )
     ( Marker "alsotrivial" )
@@ -71,7 +71,7 @@
             { pos = Location
                 { locFile = "test/examples/calc.tex"
                 , locLine = 10
-                , locColumn = 10
+                , locColumn = 5
                 }
             , formula = FormulaChain
                 ( ChainBase
@@ -92,14 +92,14 @@
     ( Location
         { locFile = "test/examples/calc.tex"
         , locLine = 12
-        , locColumn = 12
+        , locColumn = 1
         }
     )
     ( Calc
         ( Location
             { locFile = "test/examples/calc.tex"
             , locLine = 13
-            , locColumn = 13
+            , locColumn = 5
             }
         ) Nothing
         ( Equation
@@ -125,7 +125,7 @@
     ( Location
         { locFile = "test/examples/calc.tex"
         , locLine = 22
-        , locColumn = 22
+        , locColumn = 1
         }
     )
     ( Marker "trivial_biconditionals" )
@@ -134,7 +134,7 @@
             { pos = Location
                 { locFile = "test/examples/calc.tex"
                 , locLine = 23
-                , locColumn = 23
+                , locColumn = 5
                 }
             , formula = FormulaChain
                 ( ChainBase
@@ -155,14 +155,14 @@
     ( Location
         { locFile = "test/examples/calc.tex"
         , locLine = 25
-        , locColumn = 25
+        , locColumn = 1
         }
     )
     ( Calc
         ( Location
             { locFile = "test/examples/calc.tex"
             , locLine = 26
-            , locColumn = 26
+            , locColumn = 5
             }
         ) Nothing
         ( Biconditionals

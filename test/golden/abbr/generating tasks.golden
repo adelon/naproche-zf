@@ -5,14 +5,14 @@
     , taskLocation = Location
         { locFile = "test/examples/abbr.tex"
         , locLine = 5
-        , locColumn = 5
+        , locColumn = 1
         }
     , taskConjecture = Connected Implication
         ( Not
             ( Location
                 { locFile = "test/examples/abbr.tex"
                 , locLine = 2
-                , locColumn = 2
+                , locColumn = 35
                 }
             )
             ( Quantified Existentially
@@ -48,7 +48,7 @@
             ( Location
                 { locFile = "test/examples/abbr.tex"
                 , locLine = 2
-                , locColumn = 2
+                , locColumn = 35
                 }
             )
             ( Quantified Existentially
@@ -93,7 +93,7 @@
                             ( Location
                                 { locFile = "test/examples/abbr.tex"
                                 , locLine = 2
-                                , locColumn = 2
+                                , locColumn = 35
                                 }
                             )
                             ( Quantified Existentially
@@ -131,7 +131,7 @@
                             ( Location
                                 { locFile = "test/examples/abbr.tex"
                                 , locLine = 2
-                                , locColumn = 2
+                                , locColumn = 35
                                 }
                             )
                             ( Quantified Existentially
@@ -173,7 +173,7 @@
     , taskLocation = Location
         { locFile = "test/examples/abbr.tex"
         , locLine = 15
-        , locColumn = 15
+        , locColumn = 1
         }
     , taskConjecture = Quantified Universally
         ( Scope
@@ -241,7 +241,7 @@
                             ( Location
                                 { locFile = "test/examples/abbr.tex"
                                 , locLine = 2
-                                , locColumn = 2
+                                , locColumn = 35
                                 }
                             )
                             ( Quantified Existentially
@@ -279,7 +279,7 @@
                             ( Location
                                 { locFile = "test/examples/abbr.tex"
                                 , locLine = 2
-                                , locColumn = 2
+                                , locColumn = 35
                                 }
                             )
                             ( Quantified Existentially
@@ -321,7 +321,7 @@
     , taskLocation = Location
         { locFile = "test/examples/abbr.tex"
         , locLine = 25
-        , locColumn = 25
+        , locColumn = 1
         }
     , taskConjecture = Connected Implication
         ( TermSymbol
@@ -453,7 +453,7 @@
                             ( Location
                                 { locFile = "test/examples/abbr.tex"
                                 , locLine = 2
-                                , locColumn = 2
+                                , locColumn = 35
                                 }
                             )
                             ( Quantified Existentially
@@ -491,7 +491,7 @@
                             ( Location
                                 { locFile = "test/examples/abbr.tex"
                                 , locLine = 2
-                                , locColumn = 2
+                                , locColumn = 35
                                 }
                             )
                             ( Quantified Existentially
@@ -533,7 +533,7 @@
     , taskLocation = Location
         { locFile = "test/examples/abbr.tex"
         , locLine = 31
-        , locColumn = 31
+        , locColumn = 1
         }
     , taskConjecture = Connected Implication
         ( Not
@@ -749,7 +749,7 @@
                             ( Location
                                 { locFile = "test/examples/abbr.tex"
                                 , locLine = 2
-                                , locColumn = 2
+                                , locColumn = 35
                                 }
                             )
                             ( Quantified Existentially
@@ -787,7 +787,7 @@
                             ( Location
                                 { locFile = "test/examples/abbr.tex"
                                 , locLine = 2
-                                , locColumn = 2
+                                , locColumn = 35
                                 }
                             )
                             ( Quantified Existentially
@@ -829,7 +829,7 @@
     , taskLocation = Location
         { locFile = "test/examples/abbr.tex"
         , locLine = 37
-        , locColumn = 37
+        , locColumn = 1
         }
     , taskConjecture = Connected Implication
         ( TermSymbol
@@ -1081,7 +1081,7 @@
                             ( Location
                                 { locFile = "test/examples/abbr.tex"
                                 , locLine = 2
-                                , locColumn = 2
+                                , locColumn = 35
                                 }
                             )
                             ( Quantified Existentially
@@ -1119,7 +1119,7 @@
                             ( Location
                                 { locFile = "test/examples/abbr.tex"
                                 , locLine = 2
-                                , locColumn = 2
+                                , locColumn = 35
                                 }
                             )
                             ( Quantified Existentially
@@ -1161,7 +1161,7 @@
     , taskLocation = Location
         { locFile = "test/examples/abbr.tex"
         , locLine = 43
-        , locColumn = 43
+        , locColumn = 1
         }
     , taskConjecture = Connected Implication
         ( TermSymbol

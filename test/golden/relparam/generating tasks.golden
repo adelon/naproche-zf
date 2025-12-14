@@ -5,7 +5,7 @@
     , taskLocation = Location
         { locFile = "test/examples/relparam.tex"
         , locLine = 6
-        , locColumn = 6
+        , locColumn = 1
         }
     , taskConjecture = Quantified Universally
         ( Scope
@@ -69,7 +69,7 @@
     , taskLocation = Location
         { locFile = "test/examples/relparam.tex"
         , locLine = 15
-        , locColumn = 15
+        , locColumn = 1
         }
     , taskConjecture = Quantified Universally
         ( Scope

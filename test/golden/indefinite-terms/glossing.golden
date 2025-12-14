@@ -17,7 +17,7 @@
     ( Location
         { locFile = "test/examples/indefinite-terms.tex"
         , locLine = 5
-        , locColumn = 5
+        , locColumn = 1
         }
     )
     ( Marker "indefinite_test_exists" )

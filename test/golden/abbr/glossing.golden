@@ -19,7 +19,7 @@
                 ( Location
                     { locFile = "test/examples/abbr.tex"
                     , locLine = 2
-                    , locColumn = 2
+                    , locColumn = 35
                     }
                 )
                 ( Quantified Existentially
@@ -57,7 +57,7 @@
     ( Location
         { locFile = "test/examples/abbr.tex"
         , locLine = 5
-        , locColumn = 5
+        , locColumn = 1
         }
     )
     ( Marker "dummy_abbr_test_adj" )
@@ -67,7 +67,7 @@
                 ( Location
                     { locFile = "test/examples/abbr.tex"
                     , locLine = 6
-                    , locColumn = 6
+                    , locColumn = 14
                     }
                 )
                 ( SymbolPredicate
@@ -85,7 +85,7 @@
                 ( Location
                     { locFile = "test/examples/abbr.tex"
                     , locLine = 6
-                    , locColumn = 6
+                    , locColumn = 33
                     }
                 )
                 ( SymbolPredicate
@@ -105,7 +105,7 @@
     ( Location
         { locFile = "test/examples/abbr.tex"
         , locLine = 11
-        , locColumn = 11
+        , locColumn = 1
         }
     )
     ( Marker "function" )
@@ -150,7 +150,7 @@
     ( Location
         { locFile = "test/examples/abbr.tex"
         , locLine = 15
-        , locColumn = 15
+        , locColumn = 1
         }
     )
     ( Marker "dummy_abbr_test_noun" )
@@ -192,7 +192,7 @@
     ( Location
         { locFile = "test/examples/abbr.tex"
         , locLine = 21
-        , locColumn = 21
+        , locColumn = 1
         }
     )
     ( Marker "converges" )
@@ -243,7 +243,7 @@
     ( Location
         { locFile = "test/examples/abbr.tex"
         , locLine = 25
-        , locColumn = 25
+        , locColumn = 1
         }
     )
     ( Marker "dummy_abbr_test_verb" )
@@ -253,7 +253,7 @@
                 ( Location
                     { locFile = "test/examples/abbr.tex"
                     , locLine = 26
-                    , locColumn = 26
+                    , locColumn = 12
                     }
                 )
                 ( SymbolPredicate
@@ -307,7 +307,7 @@
     ( Location
         { locFile = "test/examples/abbr.tex"
         , locLine = 31
-        , locColumn = 31
+        , locColumn = 1
         }
     )
     ( Marker "abbr_test_notin" )
@@ -363,7 +363,7 @@
     ( Location
         { locFile = "test/examples/abbr.tex"
         , locLine = 37
-        , locColumn = 37
+        , locColumn = 1
         }
     )
     ( Marker "abbr_test_elementof_is_in" )
@@ -427,7 +427,7 @@
     ( Location
         { locFile = "test/examples/abbr.tex"
         , locLine = 43
-        , locColumn = 43
+        , locColumn = 1
         }
     )
     ( Marker "abbr_test_equals_is_eq" )
@@ -437,7 +437,7 @@
                 ( Location
                     { locFile = "test/examples/abbr.tex"
                     , locLine = 44
-                    , locColumn = 44
+                    , locColumn = 12
                     }
                 )
                 ( SymbolPredicate

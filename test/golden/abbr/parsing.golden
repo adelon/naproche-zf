@@ -12,7 +12,7 @@
             ( Location
                 { locFile = "test/examples/abbr.tex"
                 , locLine = 2
-                , locColumn = 2
+                , locColumn = 12
                 }
             )
             [ Just
@@ -23,13 +23,13 @@
             { pos = Location
                 { locFile = "test/examples/abbr.tex"
                 , locLine = 2
-                , locColumn = 2
+                , locColumn = 35
                 }
             , stmt = SymbolicQuantified
                 { pos = Location
                     { locFile = "test/examples/abbr.tex"
                     , locLine = 2
-                    , locColumn = 2
+                    , locColumn = 35
                     }
                 , quant = Existentially
                 , xs = NamedVar "y" :| []
@@ -39,7 +39,7 @@
                     { pos = Location
                         { locFile = "test/examples/abbr.tex"
                         , locLine = 2
-                        , locColumn = 2
+                        , locColumn = 52
                         }
                     , formula = FormulaChain
                         ( ChainBase
@@ -62,7 +62,7 @@
     ( Location
         { locFile = "test/examples/abbr.tex"
         , locLine = 5
-        , locColumn = 5
+        , locColumn = 1
         }
     )
     ( Marker "dummy_abbr_test_adj" )
@@ -73,7 +73,7 @@
                 ( Location
                     { locFile = "test/examples/abbr.tex"
                     , locLine = 6
-                    , locColumn = 6
+                    , locColumn = 4
                     }
                 )
             , stmt1 = StmtVerbPhrase
@@ -81,7 +81,7 @@
                     ( Location
                         { locFile = "test/examples/abbr.tex"
                         , locLine = 6
-                        , locColumn = 6
+                        , locColumn = 7
                         }
                     )
                     ( ExprVar
@@ -92,7 +92,7 @@
                         ( Location
                             { locFile = "test/examples/abbr.tex"
                             , locLine = 6
-                            , locColumn = 6
+                            , locColumn = 14
                             }
                         )
                         [ Just
@@ -105,7 +105,7 @@
                     ( Location
                         { locFile = "test/examples/abbr.tex"
                         , locLine = 6
-                        , locColumn = 6
+                        , locColumn = 26
                         }
                     )
                     ( ExprVar
@@ -116,7 +116,7 @@
                         ( Location
                             { locFile = "test/examples/abbr.tex"
                             , locLine = 6
-                            , locColumn = 6
+                            , locColumn = 33
                             }
                         )
                         [ Just
@@ -131,7 +131,7 @@
     ( Location
         { locFile = "test/examples/abbr.tex"
         , locLine = 11
-        , locColumn = 11
+        , locColumn = 1
         }
     )
     ( Marker "function" )
@@ -154,7 +154,7 @@
             { pos = Location
                 { locFile = "test/examples/abbr.tex"
                 , locLine = 12
-                , locColumn = 12
+                , locColumn = 27
                 }
             , formula = FormulaChain
                 ( ChainBase
@@ -175,7 +175,7 @@
     ( Location
         { locFile = "test/examples/abbr.tex"
         , locLine = 15
-        , locColumn = 15
+        , locColumn = 1
         }
     )
     ( Marker "dummy_abbr_test_noun" )
@@ -184,7 +184,7 @@
             { pos = Location
                 { locFile = "test/examples/abbr.tex"
                 , locLine = 16
-                , locColumn = 16
+                , locColumn = 5
                 }
             , quant = Universally
             , xs = NamedVar "x" :| []
@@ -194,13 +194,13 @@
                 { pos = Location
                     { locFile = "test/examples/abbr.tex"
                     , locLine = 16
-                    , locColumn = 16
+                    , locColumn = 25
                     }
                 , args = TermExpr
                     ( Location
                         { locFile = "test/examples/abbr.tex"
                         , locLine = 16
-                        , locColumn = 16
+                        , locColumn = 25
                         }
                     )
                     ( ExprVar
@@ -228,7 +228,7 @@
     ( Location
         { locFile = "test/examples/abbr.tex"
         , locLine = 21
-        , locColumn = 21
+        , locColumn = 1
         }
     )
     ( Marker "converges" )
@@ -238,7 +238,7 @@
             ( Location
                 { locFile = "test/examples/abbr.tex"
                 , locLine = 22
-                , locColumn = 22
+                , locColumn = 9
                 }
             )
             ( SgPl
@@ -264,7 +264,7 @@
             { pos = Location
                 { locFile = "test/examples/abbr.tex"
                 , locLine = 22
-                , locColumn = 22
+                , locColumn = 30
                 }
             , formula = FormulaChain
                 ( ChainBase
@@ -285,7 +285,7 @@
     ( Location
         { locFile = "test/examples/abbr.tex"
         , locLine = 25
-        , locColumn = 25
+        , locColumn = 1
         }
     )
     ( Marker "dummy_abbr_test_verb" )
@@ -296,7 +296,7 @@
                 ( Location
                     { locFile = "test/examples/abbr.tex"
                     , locLine = 26
-                    , locColumn = 26
+                    , locColumn = 5
                     }
                 )
             , stmt1 = StmtVerbPhrase
@@ -304,7 +304,7 @@
                     ( Location
                         { locFile = "test/examples/abbr.tex"
                         , locLine = 26
-                        , locColumn = 26
+                        , locColumn = 8
                         }
                     )
                     ( ExprVar
@@ -315,7 +315,7 @@
                         ( Location
                             { locFile = "test/examples/abbr.tex"
                             , locLine = 26
-                            , locColumn = 26
+                            , locColumn = 12
                             }
                         )
                         ( SgPl
@@ -339,7 +339,7 @@
                             ( Location
                                 { locFile = "test/examples/abbr.tex"
                                 , locLine = 26
-                                , locColumn = 26
+                                , locColumn = 25
                                 }
                             )
                             ( ExprVar
@@ -352,7 +352,7 @@
                 { pos = Location
                     { locFile = "test/examples/abbr.tex"
                     , locLine = 26
-                    , locColumn = 26
+                    , locColumn = 35
                     }
                 , formula = FormulaChain
                     ( ChainBase
@@ -374,7 +374,7 @@
     ( Location
         { locFile = "test/examples/abbr.tex"
         , locLine = 31
-        , locColumn = 31
+        , locColumn = 1
         }
     )
     ( Marker "abbr_test_notin" )
@@ -385,14 +385,14 @@
                 ( Location
                     { locFile = "test/examples/abbr.tex"
                     , locLine = 32
-                    , locColumn = 32
+                    , locColumn = 4
                     }
                 )
             , stmt1 = StmtFormula
                 { pos = Location
                     { locFile = "test/examples/abbr.tex"
                     , locLine = 32
-                    , locColumn = 32
+                    , locColumn = 7
                     }
                 , formula = FormulaChain
                     ( ChainBase
@@ -411,7 +411,7 @@
                 { pos = Location
                     { locFile = "test/examples/abbr.tex"
                     , locLine = 32
-                    , locColumn = 32
+                    , locColumn = 25
                     }
                 , formula = FormulaChain
                     ( ChainBase
@@ -433,7 +433,7 @@
     ( Location
         { locFile = "test/examples/abbr.tex"
         , locLine = 37
-        , locColumn = 37
+        , locColumn = 1
         }
     )
     ( Marker "abbr_test_elementof_is_in" )
@@ -444,20 +444,20 @@
                 ( Location
                     { locFile = "test/examples/abbr.tex"
                     , locLine = 38
-                    , locColumn = 38
+                    , locColumn = 5
                     }
                 )
             , stmt1 = StmtNoun
                 { pos = Location
                     { locFile = "test/examples/abbr.tex"
                     , locLine = 38
-                    , locColumn = 38
+                    , locColumn = 8
                     }
                 , args = TermExpr
                     ( Location
                         { locFile = "test/examples/abbr.tex"
                         , locLine = 38
-                        , locColumn = 38
+                        , locColumn = 8
                         }
                     )
                     ( ExprVar
@@ -486,7 +486,7 @@
                             ( Location
                                 { locFile = "test/examples/abbr.tex"
                                 , locLine = 38
-                                , locColumn = 38
+                                , locColumn = 29
                                 }
                             )
                             ( ExprVar
@@ -499,7 +499,7 @@
                 { pos = Location
                     { locFile = "test/examples/abbr.tex"
                     , locLine = 38
-                    , locColumn = 38
+                    , locColumn = 39
                     }
                 , formula = FormulaChain
                     ( ChainBase
@@ -521,7 +521,7 @@
     ( Location
         { locFile = "test/examples/abbr.tex"
         , locLine = 43
-        , locColumn = 43
+        , locColumn = 1
         }
     )
     ( Marker "abbr_test_equals_is_eq" )
@@ -532,7 +532,7 @@
                 ( Location
                     { locFile = "test/examples/abbr.tex"
                     , locLine = 44
-                    , locColumn = 44
+                    , locColumn = 5
                     }
                 )
             , stmt1 = StmtVerbPhrase
@@ -540,7 +540,7 @@
                     ( Location
                         { locFile = "test/examples/abbr.tex"
                         , locLine = 44
-                        , locColumn = 44
+                        , locColumn = 8
                         }
                     )
                     ( ExprVar
@@ -551,7 +551,7 @@
                         ( Location
                             { locFile = "test/examples/abbr.tex"
                             , locLine = 44
-                            , locColumn = 44
+                            , locColumn = 12
                             }
                         )
                         ( SgPl
@@ -571,7 +571,7 @@
                             ( Location
                                 { locFile = "test/examples/abbr.tex"
                                 , locLine = 44
-                                , locColumn = 44
+                                , locColumn = 19
                                 }
                             )
                             ( ExprVar
@@ -584,7 +584,7 @@
                 { pos = Location
                     { locFile = "test/examples/abbr.tex"
                     , locLine = 44
-                    , locColumn = 44
+                    , locColumn = 29
                     }
                 , formula = FormulaChain
                     ( ChainBase

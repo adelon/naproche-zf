@@ -1,4 +1,4 @@
-fof(fin,conjecture,elem(emptyset,pow(fA)),"test/examples/inductive.tex 31:31").
+fof(fin,conjecture,elem(emptyset,pow(fA)),"test/examples/inductive.tex 31:1").
 fof(lmao,axiom,![Xx]:elem(Xx,emptyset)).
 fof(preimg,axiom,![XR,XA]:preimg(XR,XA)=emptyset).
 fof(fld,axiom,![XR]:fld(XR)=emptyset).
@@ -7,7 +7,7 @@ fof(cons,axiom,![Xa,XB]:cons(Xa,XB)=emptyset).
 fof(pow,axiom,![XA]:pow(XA)=emptyset).
 fof(subseteq,axiom,![XA,XB]:(subseteq(XA,XB)<=>XA=XB)).
 ------------------
-fof(fin,conjecture,(elem(fa,fA)&elem(fB,pow(fA)))=>elem(cons(fa,fB),pow(fA)),"test/examples/inductive.tex 31:31").
+fof(fin,conjecture,(elem(fa,fA)&elem(fB,pow(fA)))=>elem(cons(fa,fB),pow(fA)),"test/examples/inductive.tex 31:1").
 fof(lmao,axiom,![Xx]:elem(Xx,emptyset)).
 fof(preimg,axiom,![XR,XA]:preimg(XR,XA)=emptyset).
 fof(fld,axiom,![XR]:fld(XR)=emptyset).
@@ -16,7 +16,7 @@ fof(cons,axiom,![Xa,XB]:cons(Xa,XB)=emptyset).
 fof(pow,axiom,![XA]:pow(XA)=emptyset).
 fof(subseteq,axiom,![XA,XB]:(subseteq(XA,XB)<=>XA=XB)).
 ------------------
-fof(fin_mono,conjecture,subseteq(fin(fA),fin(fB)),"test/examples/inductive.tex 39:39").
+fof(fin_mono,conjecture,subseteq(fin(fA),fin(fB)),"test/examples/inductive.tex 39:1").
 fof(fin,axiom,![Xa,XA,XB]:((elem(Xa,XA)&elem(XB,fin(XA)))=>elem(cons(Xa,XB),fin(XA)))).
 fof(fin,axiom,![XA]:elem(emptyset,fin(XA))).
 fof(fin,axiom,![XA]:subseteq(fin(XA),pow(XA))).
@@ -29,7 +29,7 @@ fof(pow,axiom,![XA]:pow(XA)=emptyset).
 fof(subseteq,axiom,![XA,XB]:(subseteq(XA,XB)<=>XA=XB)).
 fof(fin_mono1,axiom,subseteq(fA,fB)).
 ------------------
-fof(tracl,conjecture,elem(fw,fR)=>elem(fw,times(fld(fR),fld(fR))),"test/examples/inductive.tex 45:45").
+fof(tracl,conjecture,elem(fw,fR)=>elem(fw,times(fld(fR),fld(fR))),"test/examples/inductive.tex 45:1").
 fof(fin_mono,axiom,![XA,XB]:(subseteq(XA,XB)=>subseteq(fin(XA),fin(XB)))).
 fof(fin,axiom,![Xa,XA,XB]:((elem(Xa,XA)&elem(XB,fin(XA)))=>elem(cons(Xa,XB),fin(XA)))).
 fof(fin,axiom,![XA]:elem(emptyset,fin(XA))).
@@ -42,7 +42,7 @@ fof(cons,axiom,![Xa,XB]:cons(Xa,XB)=emptyset).
 fof(pow,axiom,![XA]:pow(XA)=emptyset).
 fof(subseteq,axiom,![XA,XB]:(subseteq(XA,XB)<=>XA=XB)).
 ------------------
-fof(tracl,conjecture,(elem(pair(fa,fb),times(fld(fR),fld(fR)))&elem(pair(fb,fc),fR))=>elem(pair(fa,fc),times(fld(fR),fld(fR))),"test/examples/inductive.tex 45:45").
+fof(tracl,conjecture,(elem(pair(fa,fb),times(fld(fR),fld(fR)))&elem(pair(fb,fc),fR))=>elem(pair(fa,fc),times(fld(fR),fld(fR))),"test/examples/inductive.tex 45:1").
 fof(fin_mono,axiom,![XA,XB]:(subseteq(XA,XB)=>subseteq(fin(XA),fin(XB)))).
 fof(fin,axiom,![Xa,XA,XB]:((elem(Xa,XA)&elem(XB,fin(XA)))=>elem(cons(Xa,XB),fin(XA)))).
 fof(fin,axiom,![XA]:elem(emptyset,fin(XA))).
@@ -55,7 +55,7 @@ fof(cons,axiom,![Xa,XB]:cons(Xa,XB)=emptyset).
 fof(pow,axiom,![XA]:pow(XA)=emptyset).
 fof(subseteq,axiom,![XA,XB]:(subseteq(XA,XB)<=>XA=XB)).
 ------------------
-fof(quasirefltracl,conjecture,elem(fa,fld(fR))=>elem(pair(fa,fa),times(fld(fR),fld(fR))),"test/examples/inductive.tex 53:53").
+fof(quasirefltracl,conjecture,elem(fa,fld(fR))=>elem(pair(fa,fa),times(fld(fR),fld(fR))),"test/examples/inductive.tex 53:1").
 fof(tracl,axiom,![Xa,Xb,XR,Xc]:((elem(pair(Xa,Xb),tracl(XR))&elem(pair(Xb,Xc),XR))=>elem(pair(Xa,Xc),tracl(XR)))).
 fof(tracl,axiom,![Xw,XR]:(elem(Xw,XR)=>elem(Xw,tracl(XR)))).
 fof(tracl,axiom,![XR]:subseteq(tracl(XR),times(fld(XR),fld(XR)))).
@@ -71,7 +71,7 @@ fof(cons,axiom,![Xa,XB]:cons(Xa,XB)=emptyset).
 fof(pow,axiom,![XA]:pow(XA)=emptyset).
 fof(subseteq,axiom,![XA,XB]:(subseteq(XA,XB)<=>XA=XB)).
 ------------------
-fof(quasirefltracl,conjecture,(elem(pair(fa,fb),times(fld(fR),fld(fR)))&elem(pair(fb,fc),fR))=>elem(pair(fa,fc),times(fld(fR),fld(fR))),"test/examples/inductive.tex 53:53").
+fof(quasirefltracl,conjecture,(elem(pair(fa,fb),times(fld(fR),fld(fR)))&elem(pair(fb,fc),fR))=>elem(pair(fa,fc),times(fld(fR),fld(fR))),"test/examples/inductive.tex 53:1").
 fof(tracl,axiom,![Xa,Xb,XR,Xc]:((elem(pair(Xa,Xb),tracl(XR))&elem(pair(Xb,Xc),XR))=>elem(pair(Xa,Xc),tracl(XR)))).
 fof(tracl,axiom,![Xw,XR]:(elem(Xw,XR)=>elem(Xw,tracl(XR)))).
 fof(tracl,axiom,![XR]:subseteq(tracl(XR),times(fld(XR),fld(XR)))).
@@ -87,7 +87,7 @@ fof(cons,axiom,![Xa,XB]:cons(Xa,XB)=emptyset).
 fof(pow,axiom,![XA]:pow(XA)=emptyset).
 fof(subseteq,axiom,![XA,XB]:(subseteq(XA,XB)<=>XA=XB)).
 ------------------
-fof(refltracl,conjecture,elem(fa,fA)=>elem(pair(fa,fa),times(fA,fA)),"test/examples/inductive.tex 61:61").
+fof(refltracl,conjecture,elem(fa,fA)=>elem(pair(fa,fa),times(fA,fA)),"test/examples/inductive.tex 61:1").
 fof(quasirefltracl,axiom,![Xa,Xb,XR,Xc]:((elem(pair(Xa,Xb),quasirefltracl(XR))&elem(pair(Xb,Xc),XR))=>elem(pair(Xa,Xc),quasirefltracl(XR)))).
 fof(quasirefltracl,axiom,![Xa,XR]:(elem(Xa,fld(XR))=>elem(pair(Xa,Xa),quasirefltracl(XR)))).
 fof(quasirefltracl,axiom,![XR]:subseteq(quasirefltracl(XR),times(fld(XR),fld(XR)))).
@@ -106,7 +106,7 @@ fof(cons,axiom,![Xa,XB]:cons(Xa,XB)=emptyset).
 fof(pow,axiom,![XA]:pow(XA)=emptyset).
 fof(subseteq,axiom,![XA,XB]:(subseteq(XA,XB)<=>XA=XB)).
 ------------------
-fof(refltracl,conjecture,(elem(pair(fa,fb),times(fA,fA))&elem(pair(fb,fc),fR))=>elem(pair(fa,fc),times(fA,fA)),"test/examples/inductive.tex 61:61").
+fof(refltracl,conjecture,(elem(pair(fa,fb),times(fA,fA))&elem(pair(fb,fc),fR))=>elem(pair(fa,fc),times(fA,fA)),"test/examples/inductive.tex 61:1").
 fof(quasirefltracl,axiom,![Xa,Xb,XR,Xc]:((elem(pair(Xa,Xb),quasirefltracl(XR))&elem(pair(Xb,Xc),XR))=>elem(pair(Xa,Xc),quasirefltracl(XR)))).
 fof(quasirefltracl,axiom,![Xa,XR]:(elem(Xa,fld(XR))=>elem(pair(Xa,Xa),quasirefltracl(XR)))).
 fof(quasirefltracl,axiom,![XR]:subseteq(quasirefltracl(XR),times(fld(XR),fld(XR)))).
@@ -125,7 +125,7 @@ fof(cons,axiom,![Xa,XB]:cons(Xa,XB)=emptyset).
 fof(pow,axiom,![XA]:pow(XA)=emptyset).
 fof(subseteq,axiom,![XA,XB]:(subseteq(XA,XB)<=>XA=XB)).
 ------------------
-fof(acc,conjecture,![Xxa,Xxb]:(subseteq(Xxa,Xxb)=>subseteq(pow(Xxa),pow(Xxb))),"test/examples/inductive.tex 69:69").
+fof(acc,conjecture,![Xxa,Xxb]:(subseteq(Xxa,Xxb)=>subseteq(pow(Xxa),pow(Xxb))),"test/examples/inductive.tex 69:1").
 fof(refltracl,axiom,![Xa,Xb,XA,XR,Xc]:((elem(pair(Xa,Xb),refltracl(XA,XR))&elem(pair(Xb,Xc),XR))=>elem(pair(Xa,Xc),refltracl(XA,XR)))).
 fof(refltracl,axiom,![Xa,XA,XR]:(elem(Xa,XA)=>elem(pair(Xa,Xa),refltracl(XA,XR)))).
 fof(refltracl,axiom,![XA,XR]:subseteq(refltracl(XA,XR),times(XA,XA))).
@@ -147,7 +147,7 @@ fof(cons,axiom,![Xa,XB]:cons(Xa,XB)=emptyset).
 fof(pow,axiom,![XA]:pow(XA)=emptyset).
 fof(subseteq,axiom,![XA,XB]:(subseteq(XA,XB)<=>XA=XB)).
 ------------------
-fof(acc,conjecture,(elem(fa,fld(fR))&elem(preimg(fR,cons(fa,emptyset)),pow(fld(fR))))=>elem(fa,fld(fR)),"test/examples/inductive.tex 69:69").
+fof(acc,conjecture,(elem(fa,fld(fR))&elem(preimg(fR,cons(fa,emptyset)),pow(fld(fR))))=>elem(fa,fld(fR)),"test/examples/inductive.tex 69:1").
 fof(refltracl,axiom,![Xa,Xb,XA,XR,Xc]:((elem(pair(Xa,Xb),refltracl(XA,XR))&elem(pair(Xb,Xc),XR))=>elem(pair(Xa,Xc),refltracl(XA,XR)))).
 fof(refltracl,axiom,![Xa,XA,XR]:(elem(Xa,XA)=>elem(pair(Xa,Xa),refltracl(XA,XR)))).
 fof(refltracl,axiom,![XA,XR]:subseteq(refltracl(XA,XR),times(XA,XA))).

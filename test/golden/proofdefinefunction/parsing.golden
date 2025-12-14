@@ -2,7 +2,7 @@
     ( Location
         { locFile = "test/examples/proofdefinefunction.tex"
         , locLine = 3
-        , locColumn = 3
+        , locColumn = 1
         }
     )
     ( Marker "apply" )
@@ -29,7 +29,7 @@
     ( Location
         { locFile = "test/examples/proofdefinefunction.tex"
         , locLine = 8
-        , locColumn = 8
+        , locColumn = 1
         }
     )
     ( Marker "dom" )
@@ -51,7 +51,7 @@
     ( Location
         { locFile = "test/examples/proofdefinefunction.tex"
         , locLine = 13
-        , locColumn = 13
+        , locColumn = 1
         }
     )
     ( Marker "rightunique" )
@@ -62,7 +62,7 @@
                 ( Location
                     { locFile = "test/examples/proofdefinefunction.tex"
                     , locLine = 14
-                    , locColumn = 14
+                    , locColumn = 12
                     }
                 )
                 [ Just
@@ -74,7 +74,7 @@
             { pos = Location
                 { locFile = "test/examples/proofdefinefunction.tex"
                 , locLine = 14
-                , locColumn = 14
+                , locColumn = 29
                 }
             , formula = FormulaChain
                 ( ChainBase
@@ -95,7 +95,7 @@
     ( Location
         { locFile = "test/examples/proofdefinefunction.tex"
         , locLine = 18
-        , locColumn = 18
+        , locColumn = 1
         }
     )
     ( Marker "relation" )
@@ -120,7 +120,7 @@
             { pos = Location
                 { locFile = "test/examples/proofdefinefunction.tex"
                 , locLine = 19
-                , locColumn = 19
+                , locColumn = 27
                 }
             , formula = FormulaChain
                 ( ChainBase
@@ -141,7 +141,7 @@
     ( Location
         { locFile = "test/examples/proofdefinefunction.tex"
         , locLine = 22
-        , locColumn = 22
+        , locColumn = 1
         }
     )
     ( Marker "definefunctiontest" )
@@ -152,14 +152,14 @@
                 ( Location
                     { locFile = "test/examples/proofdefinefunction.tex"
                     , locLine = 23
-                    , locColumn = 23
+                    , locColumn = 5
                     }
                 )
             , stmt1 = StmtFormula
                 { pos = Location
                     { locFile = "test/examples/proofdefinefunction.tex"
                     , locLine = 23
-                    , locColumn = 23
+                    , locColumn = 8
                     }
                 , formula = FormulaChain
                     ( ChainBase
@@ -200,14 +200,14 @@
     ( Location
         { locFile = "test/examples/proofdefinefunction.tex"
         , locLine = 25
-        , locColumn = 25
+        , locColumn = 1
         }
     )
     ( DefineFunction
         ( Location
             { locFile = "test/examples/proofdefinefunction.tex"
             , locLine = 26
-            , locColumn = 26
+            , locColumn = 5
             }
         )
         ( NamedVar "f" )

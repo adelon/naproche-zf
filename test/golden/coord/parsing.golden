@@ -27,7 +27,7 @@
             { pos = Location
                 { locFile = "test/examples/coord.tex"
                 , locLine = 2
-                , locColumn = 2
+                , locColumn = 22
                 }
             , formula = FormulaChain
                 ( ChainBase
@@ -48,7 +48,7 @@
     ( Location
         { locFile = "test/examples/coord.tex"
         , locLine = 5
-        , locColumn = 5
+        , locColumn = 1
         }
     )
     ( Marker "foo" )
@@ -59,7 +59,7 @@
                 ( Location
                     { locFile = "test/examples/coord.tex"
                     , locLine = 6
-                    , locColumn = 6
+                    , locColumn = 12
                     }
                 )
                 [ Just
@@ -71,7 +71,7 @@
             { pos = Location
                 { locFile = "test/examples/coord.tex"
                 , locLine = 6
-                , locColumn = 6
+                , locColumn = 20
                 }
             , formula = FormulaChain
                 ( ChainBase
@@ -92,7 +92,7 @@
     ( Location
         { locFile = "test/examples/coord.tex"
         , locLine = 9
-        , locColumn = 9
+        , locColumn = 1
         }
     )
     ( Marker "baz" )
@@ -103,7 +103,7 @@
                 ( Location
                     { locFile = "test/examples/coord.tex"
                     , locLine = 10
-                    , locColumn = 10
+                    , locColumn = 12
                     }
                 )
                 [ Just
@@ -115,7 +115,7 @@
             { pos = Location
                 { locFile = "test/examples/coord.tex"
                 , locLine = 10
-                , locColumn = 10
+                , locColumn = 20
                 }
             , formula = FormulaChain
                 ( ChainBase
@@ -136,7 +136,7 @@
     ( Location
         { locFile = "test/examples/coord.tex"
         , locLine = 13
-        , locColumn = 13
+        , locColumn = 1
         }
     )
     ( Marker "nouns" )
@@ -163,7 +163,7 @@
             { pos = Location
                 { locFile = "test/examples/coord.tex"
                 , locLine = 15
-                , locColumn = 15
+                , locColumn = 10
                 }
             , formula = FormulaChain
                 ( ChainBase
@@ -184,7 +184,7 @@
     ( Location
         { locFile = "test/examples/coord.tex"
         , locLine = 18
-        , locColumn = 18
+        , locColumn = 1
         }
     )
     ( Marker "adj_nouns" )
@@ -224,7 +224,7 @@
             { pos = Location
                 { locFile = "test/examples/coord.tex"
                 , locLine = 20
-                , locColumn = 20
+                , locColumn = 10
                 }
             , formula = FormulaChain
                 ( ChainBase
@@ -245,7 +245,7 @@
     ( Location
         { locFile = "test/examples/coord.tex"
         , locLine = 24
-        , locColumn = 24
+        , locColumn = 1
         }
     )
     ( Marker "nouns_suchthat" )
@@ -276,7 +276,7 @@
                             ( Location
                                 { locFile = "test/examples/coord.tex"
                                 , locLine = 25
-                                , locColumn = 25
+                                , locColumn = 34
                                 }
                             )
                             ( ExprVar
@@ -287,7 +287,7 @@
                                 ( Location
                                     { locFile = "test/examples/coord.tex"
                                     , locLine = 25
-                                    , locColumn = 25
+                                    , locColumn = 41
                                     }
                                 )
                                 [ Just
@@ -300,7 +300,7 @@
                             ( Location
                                 { locFile = "test/examples/coord.tex"
                                 , locLine = 25
-                                , locColumn = 25
+                                , locColumn = 49
                                 }
                             )
                             ( ExprVar
@@ -311,7 +311,7 @@
                                 ( Location
                                     { locFile = "test/examples/coord.tex"
                                     , locLine = 25
-                                    , locColumn = 25
+                                    , locColumn = 56
                                     }
                                 )
                                 [ Just
@@ -327,7 +327,7 @@
             { pos = Location
                 { locFile = "test/examples/coord.tex"
                 , locLine = 26
-                , locColumn = 26
+                , locColumn = 10
                 }
             , formula = FormulaChain
                 ( ChainBase
@@ -348,7 +348,7 @@
     ( Location
         { locFile = "test/examples/coord.tex"
         , locLine = 30
-        , locColumn = 30
+        , locColumn = 1
         }
     )
     ( Marker "noun_verb" )
@@ -360,7 +360,7 @@
                 { pos = Location
                     { locFile = "test/examples/coord.tex"
                     , locLine = 31
-                    , locColumn = 31
+                    , locColumn = 5
                     }
                 , formula = FormulaChain
                     ( ChainBase
@@ -379,13 +379,13 @@
                 { pos = Location
                     { locFile = "test/examples/coord.tex"
                     , locLine = 31
-                    , locColumn = 31
+                    , locColumn = 17
                     }
                 , args = TermExpr
                     ( Location
                         { locFile = "test/examples/coord.tex"
                         , locLine = 31
-                        , locColumn = 31
+                        , locColumn = 17
                         }
                     )
                     ( ExprVar
@@ -410,7 +410,7 @@
                             ( Location
                                 { locFile = "test/examples/coord.tex"
                                 , locLine = 31
-                                , locColumn = 31
+                                , locColumn = 30
                                 }
                             )
                             [ Just
@@ -423,7 +423,7 @@
                                 ( Location
                                     { locFile = "test/examples/coord.tex"
                                     , locLine = 31
-                                    , locColumn = 31
+                                    , locColumn = 39
                                     }
                                 )
                                 ( ExprVar
@@ -440,7 +440,7 @@
     ( Location
         { locFile = "test/examples/coord.tex"
         , locLine = 35
-        , locColumn = 35
+        , locColumn = 1
         }
     )
     ( Marker "adjs" )
@@ -450,7 +450,7 @@
                 ( Location
                     { locFile = "test/examples/coord.tex"
                     , locLine = 36
-                    , locColumn = 36
+                    , locColumn = 5
                     }
                 )
                 ( ExprVar
@@ -461,7 +461,7 @@
                     ( Location
                         { locFile = "test/examples/coord.tex"
                         , locLine = 36
-                        , locColumn = 36
+                        , locColumn = 12
                         }
                     )
                     [ Just
@@ -471,7 +471,7 @@
                         ( Location
                             { locFile = "test/examples/coord.tex"
                             , locLine = 36
-                            , locColumn = 36
+                            , locColumn = 20
                             }
                         )
                         [ Just
@@ -486,7 +486,7 @@
     ( Location
         { locFile = "test/examples/coord.tex"
         , locLine = 39
-        , locColumn = 39
+        , locColumn = 1
         }
     )
     ( Marker "are_nouns" )
@@ -500,7 +500,7 @@
                     ( Location
                         { locFile = "test/examples/coord.tex"
                         , locLine = 40
-                        , locColumn = 40
+                        , locColumn = 19
                         }
                     )
                     [ Just
@@ -526,13 +526,13 @@
             { pos = Location
                 { locFile = "test/examples/coord.tex"
                 , locLine = 41
-                , locColumn = 41
+                , locColumn = 10
                 }
             , args = TermExpr
                 ( Location
                     { locFile = "test/examples/coord.tex"
                     , locLine = 41
-                    , locColumn = 41
+                    , locColumn = 10
                     }
                 )
                 ( ExprVar
@@ -542,7 +542,7 @@
                     ( Location
                         { locFile = "test/examples/coord.tex"
                         , locLine = 41
-                        , locColumn = 41
+                        , locColumn = 18
                         }
                     )
                     ( ExprVar
@@ -555,7 +555,7 @@
                         ( Location
                             { locFile = "test/examples/coord.tex"
                             , locLine = 41
-                            , locColumn = 41
+                            , locColumn = 26
                             }
                         )
                         [ Just

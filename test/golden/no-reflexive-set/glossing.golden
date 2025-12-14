@@ -48,14 +48,14 @@
     ( Location
         { locFile = "test/examples/no-reflexive-set.tex"
         , locLine = 4
-        , locColumn = 4
+        , locColumn = 1
         }
     )
     ( BySetInduction
         ( Location
             { locFile = "test/examples/no-reflexive-set.tex"
             , locLine = 4
-            , locColumn = 4
+            , locColumn = 21
             }
         ) Nothing
         ( Qed
@@ -63,7 +63,7 @@
                 ( Location
                     { locFile = "test/examples/no-reflexive-set.tex"
                     , locLine = 10
-                    , locColumn = 10
+                    , locColumn = 5
                     }
                 )
             , by = JustificationEmpty

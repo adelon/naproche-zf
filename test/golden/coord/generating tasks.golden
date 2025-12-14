@@ -10,7 +10,7 @@
                             ( Location
                                 { locFile = "test/examples/coord.tex"
                                 , locLine = 9
-                                , locColumn = 9
+                                , locColumn = 1
                                 }
                             )
                             ( SymbolPredicate
@@ -72,7 +72,7 @@
                             ( Location
                                 { locFile = "test/examples/coord.tex"
                                 , locLine = 5
-                                , locColumn = 5
+                                , locColumn = 1
                                 }
                             )
                             ( SymbolPredicate
@@ -256,7 +256,7 @@
     , taskLocation = Location
         { locFile = "test/examples/coord.tex"
         , locLine = 13
-        , locColumn = 13
+        , locColumn = 1
         }
     , taskConjecture = TermSymbol
         ( Location
@@ -376,7 +376,7 @@
                             ( Location
                                 { locFile = "test/examples/coord.tex"
                                 , locLine = 9
-                                , locColumn = 9
+                                , locColumn = 1
                                 }
                             )
                             ( SymbolPredicate
@@ -438,7 +438,7 @@
                             ( Location
                                 { locFile = "test/examples/coord.tex"
                                 , locLine = 5
-                                , locColumn = 5
+                                , locColumn = 1
                                 }
                             )
                             ( SymbolPredicate
@@ -662,7 +662,7 @@
     , taskLocation = Location
         { locFile = "test/examples/coord.tex"
         , locLine = 18
-        , locColumn = 18
+        , locColumn = 1
         }
     , taskConjecture = TermSymbol
         ( Location
@@ -914,7 +914,7 @@
                             ( Location
                                 { locFile = "test/examples/coord.tex"
                                 , locLine = 9
-                                , locColumn = 9
+                                , locColumn = 1
                                 }
                             )
                             ( SymbolPredicate
@@ -976,7 +976,7 @@
                             ( Location
                                 { locFile = "test/examples/coord.tex"
                                 , locLine = 5
-                                , locColumn = 5
+                                , locColumn = 1
                                 }
                             )
                             ( SymbolPredicate
@@ -1162,7 +1162,7 @@
                     ( Location
                         { locFile = "test/examples/coord.tex"
                         , locLine = 25
-                        , locColumn = 25
+                        , locColumn = 41
                         }
                     )
                     ( SymbolPredicate
@@ -1180,7 +1180,7 @@
                     ( Location
                         { locFile = "test/examples/coord.tex"
                         , locLine = 25
-                        , locColumn = 25
+                        , locColumn = 56
                         }
                     )
                     ( SymbolPredicate
@@ -1200,7 +1200,7 @@
     , taskLocation = Location
         { locFile = "test/examples/coord.tex"
         , locLine = 24
-        , locColumn = 24
+        , locColumn = 1
         }
     , taskConjecture = TermSymbol
         ( Location
@@ -1235,7 +1235,7 @@
                                         ( Location
                                             { locFile = "test/examples/coord.tex"
                                             , locLine = 25
-                                            , locColumn = 25
+                                            , locColumn = 41
                                             }
                                         )
                                         ( SymbolPredicate
@@ -1255,7 +1255,7 @@
                                         ( Location
                                             { locFile = "test/examples/coord.tex"
                                             , locLine = 25
-                                            , locColumn = 25
+                                            , locColumn = 56
                                             }
                                         )
                                         ( SymbolPredicate
@@ -1584,7 +1584,7 @@
                             ( Location
                                 { locFile = "test/examples/coord.tex"
                                 , locLine = 9
-                                , locColumn = 9
+                                , locColumn = 1
                                 }
                             )
                             ( SymbolPredicate
@@ -1646,7 +1646,7 @@
                             ( Location
                                 { locFile = "test/examples/coord.tex"
                                 , locLine = 5
-                                , locColumn = 5
+                                , locColumn = 1
                                 }
                             )
                             ( SymbolPredicate
@@ -1774,7 +1774,7 @@
     , taskLocation = Location
         { locFile = "test/examples/coord.tex"
         , locLine = 30
-        , locColumn = 30
+        , locColumn = 1
         }
     , taskConjecture = Connected Equivalence
         ( TermSymbol
@@ -1939,7 +1939,7 @@
                                         ( Location
                                             { locFile = "test/examples/coord.tex"
                                             , locLine = 25
-                                            , locColumn = 25
+                                            , locColumn = 41
                                             }
                                         )
                                         ( SymbolPredicate
@@ -1959,7 +1959,7 @@
                                         ( Location
                                             { locFile = "test/examples/coord.tex"
                                             , locLine = 25
-                                            , locColumn = 25
+                                            , locColumn = 56
                                             }
                                         )
                                         ( SymbolPredicate
@@ -2288,7 +2288,7 @@
                             ( Location
                                 { locFile = "test/examples/coord.tex"
                                 , locLine = 9
-                                , locColumn = 9
+                                , locColumn = 1
                                 }
                             )
                             ( SymbolPredicate
@@ -2350,7 +2350,7 @@
                             ( Location
                                 { locFile = "test/examples/coord.tex"
                                 , locLine = 5
-                                , locColumn = 5
+                                , locColumn = 1
                                 }
                             )
                             ( SymbolPredicate
@@ -2478,14 +2478,14 @@
     , taskLocation = Location
         { locFile = "test/examples/coord.tex"
         , locLine = 35
-        , locColumn = 35
+        , locColumn = 1
         }
     , taskConjecture = Connected Conjunction
         ( TermSymbol
             ( Location
                 { locFile = "test/examples/coord.tex"
                 , locLine = 36
-                , locColumn = 36
+                , locColumn = 12
                 }
             )
             ( SymbolPredicate
@@ -2503,7 +2503,7 @@
             ( Location
                 { locFile = "test/examples/coord.tex"
                 , locLine = 36
-                , locColumn = 36
+                , locColumn = 20
                 }
             )
             ( SymbolPredicate
@@ -2530,7 +2530,7 @@
                             ( Location
                                 { locFile = "test/examples/coord.tex"
                                 , locLine = 36
-                                , locColumn = 36
+                                , locColumn = 12
                                 }
                             )
                             ( SymbolPredicate
@@ -2550,7 +2550,7 @@
                             ( Location
                                 { locFile = "test/examples/coord.tex"
                                 , locLine = 36
-                                , locColumn = 36
+                                , locColumn = 20
                                 }
                             )
                             ( SymbolPredicate
@@ -2663,7 +2663,7 @@
                                         ( Location
                                             { locFile = "test/examples/coord.tex"
                                             , locLine = 25
-                                            , locColumn = 25
+                                            , locColumn = 41
                                             }
                                         )
                                         ( SymbolPredicate
@@ -2683,7 +2683,7 @@
                                         ( Location
                                             { locFile = "test/examples/coord.tex"
                                             , locLine = 25
-                                            , locColumn = 25
+                                            , locColumn = 56
                                             }
                                         )
                                         ( SymbolPredicate
@@ -3012,7 +3012,7 @@
                             ( Location
                                 { locFile = "test/examples/coord.tex"
                                 , locLine = 9
-                                , locColumn = 9
+                                , locColumn = 1
                                 }
                             )
                             ( SymbolPredicate
@@ -3074,7 +3074,7 @@
                             ( Location
                                 { locFile = "test/examples/coord.tex"
                                 , locLine = 5
-                                , locColumn = 5
+                                , locColumn = 1
                                 }
                             )
                             ( SymbolPredicate
@@ -3230,7 +3230,7 @@
                     ( Location
                         { locFile = "test/examples/coord.tex"
                         , locLine = 40
-                        , locColumn = 40
+                        , locColumn = 19
                         }
                     )
                     ( SymbolPredicate
@@ -3278,7 +3278,7 @@
                     ( Location
                         { locFile = "test/examples/coord.tex"
                         , locLine = 40
-                        , locColumn = 40
+                        , locColumn = 19
                         }
                     )
                     ( SymbolPredicate
@@ -3298,7 +3298,7 @@
     , taskLocation = Location
         { locFile = "test/examples/coord.tex"
         , locLine = 39
-        , locColumn = 39
+        , locColumn = 1
         }
     , taskConjecture = Connected Conjunction
         ( Connected Conjunction
@@ -3332,7 +3332,7 @@
                 ( Location
                     { locFile = "test/examples/coord.tex"
                     , locLine = 41
-                    , locColumn = 41
+                    , locColumn = 26
                     }
                 )
                 ( SymbolPredicate
@@ -3378,7 +3378,7 @@
                 ( Location
                     { locFile = "test/examples/coord.tex"
                     , locLine = 41
-                    , locColumn = 41
+                    , locColumn = 26
                     }
                 )
                 ( SymbolPredicate

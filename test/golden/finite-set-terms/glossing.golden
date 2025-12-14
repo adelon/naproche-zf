@@ -91,7 +91,7 @@
     ( Location
         { locFile = "test/examples/finite-set-terms.tex"
         , locLine = 5
-        , locColumn = 5
+        , locColumn = 1
         }
     )
     ( Marker "unit" )
@@ -148,7 +148,7 @@
     ( Location
         { locFile = "test/examples/finite-set-terms.tex"
         , locLine = 9
-        , locColumn = 9
+        , locColumn = 1
         }
     )
     ( Marker "emptyset_in_unit" )

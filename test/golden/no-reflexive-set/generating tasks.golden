@@ -68,7 +68,7 @@
     , taskLocation = Location
         { locFile = "test/examples/no-reflexive-set.tex"
         , locLine = 10
-        , locColumn = 10
+        , locColumn = 5
         }
     , taskConjecture = Not
         ( Location

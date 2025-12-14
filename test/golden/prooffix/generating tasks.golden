@@ -5,7 +5,7 @@
     , taskLocation = Location
         { locFile = "test/examples/prooffix.tex"
         , locLine = 6
-        , locColumn = 6
+        , locColumn = 5
         }
     , taskConjecture = TermSymbol
         ( Location
@@ -53,7 +53,7 @@
     , taskLocation = Location
         { locFile = "test/examples/prooffix.tex"
         , locLine = 6
-        , locColumn = 6
+        , locColumn = 5
         }
     , taskConjecture = TermSymbol
         ( Location

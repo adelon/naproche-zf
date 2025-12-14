@@ -2,7 +2,7 @@
     ( Location
         { locFile = "test/examples/inductive.tex"
         , locLine = 3
-        , locColumn = 3
+        , locColumn = 1
         }
     )
     ( Marker "subseteq" )
@@ -36,7 +36,7 @@
     ( Location
         { locFile = "test/examples/inductive.tex"
         , locLine = 7
-        , locColumn = 7
+        , locColumn = 1
         }
     )
     ( Marker "pow" )
@@ -66,7 +66,7 @@
     ( Location
         { locFile = "test/examples/inductive.tex"
         , locLine = 11
-        , locColumn = 11
+        , locColumn = 1
         }
     )
     ( Marker "cons" )
@@ -101,7 +101,7 @@
     ( Location
         { locFile = "test/examples/inductive.tex"
         , locLine = 15
-        , locColumn = 15
+        , locColumn = 1
         }
     )
     ( Marker "times" )
@@ -132,7 +132,7 @@
     ( Location
         { locFile = "test/examples/inductive.tex"
         , locLine = 19
-        , locColumn = 19
+        , locColumn = 1
         }
     )
     ( Marker "fld" )
@@ -162,7 +162,7 @@
     ( Location
         { locFile = "test/examples/inductive.tex"
         , locLine = 23
-        , locColumn = 23
+        , locColumn = 1
         }
     )
     ( Marker "preimg" )
@@ -197,7 +197,7 @@
     ( Location
         { locFile = "test/examples/inductive.tex"
         , locLine = 27
-        , locColumn = 27
+        , locColumn = 1
         }
     )
     ( Marker "lmao" )
@@ -235,7 +235,7 @@
     ( Location
         { locFile = "test/examples/inductive.tex"
         , locLine = 31
-        , locColumn = 31
+        , locColumn = 1
         }
     )
     ( Marker "fin" )
@@ -428,7 +428,7 @@
     ( Location
         { locFile = "test/examples/inductive.tex"
         , locLine = 39
-        , locColumn = 39
+        , locColumn = 1
         }
     )
     ( Marker "fin_mono" )
@@ -510,7 +510,7 @@
     ( Location
         { locFile = "test/examples/inductive.tex"
         , locLine = 45
-        , locColumn = 45
+        , locColumn = 1
         }
     )
     ( Marker "tracl" )
@@ -786,7 +786,7 @@
     ( Location
         { locFile = "test/examples/inductive.tex"
         , locLine = 53
-        , locColumn = 53
+        , locColumn = 1
         }
     )
     ( Marker "quasirefltracl" )
@@ -1099,7 +1099,7 @@
     ( Location
         { locFile = "test/examples/inductive.tex"
         , locLine = 61
-        , locColumn = 61
+        , locColumn = 1
         }
     )
     ( Marker "refltracl" )
@@ -1384,7 +1384,7 @@
     ( Location
         { locFile = "test/examples/inductive.tex"
         , locLine = 69
-        , locColumn = 69
+        , locColumn = 1
         }
     )
     ( Marker "acc" )

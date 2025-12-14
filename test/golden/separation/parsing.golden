@@ -11,7 +11,7 @@
             { pos = Location
                 { locFile = "test/examples/separation.tex"
                 , locLine = 2
-                , locColumn = 2
+                , locColumn = 5
                 }
             , formula = FormulaChain
                 ( ChainBase

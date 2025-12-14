@@ -30,7 +30,7 @@
     ( Location
         { locFile = "test/examples/byRef.tex"
         , locLine = 5
-        , locColumn = 5
+        , locColumn = 1
         }
     )
     ( Marker "prop2" )
@@ -58,7 +58,7 @@
     ( Location
         { locFile = "test/examples/byRef.tex"
         , locLine = 9
-        , locColumn = 9
+        , locColumn = 1
         }
     )
     ( Marker "prop3" )
@@ -86,7 +86,7 @@
     ( Location
         { locFile = "test/examples/byRef.tex"
         , locLine = 12
-        , locColumn = 12
+        , locColumn = 1
         }
     )
     ( Qed
@@ -94,7 +94,7 @@
             ( Location
                 { locFile = "test/examples/byRef.tex"
                 , locLine = 13
-                , locColumn = 13
+                , locColumn = 5
                 }
             )
         , by = JustificationRef
@@ -105,7 +105,7 @@
     ( Location
         { locFile = "test/examples/byRef.tex"
         , locLine = 16
-        , locColumn = 16
+        , locColumn = 1
         }
     )
     ( Marker "prop4" )
@@ -133,14 +133,14 @@
     ( Location
         { locFile = "test/examples/byRef.tex"
         , locLine = 19
-        , locColumn = 19
+        , locColumn = 1
         }
     )
     ( Have
         ( Location
             { locFile = "test/examples/byRef.tex"
             , locLine = 20
-            , locColumn = 20
+            , locColumn = 5
             }
         )
         ( Quantified Universally
@@ -182,7 +182,7 @@
     ( Location
         { locFile = "test/examples/byRef.tex"
         , locLine = 23
-        , locColumn = 23
+        , locColumn = 1
         }
     )
     ( Marker "prop5" )

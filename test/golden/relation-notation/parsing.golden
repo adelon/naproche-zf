@@ -13,14 +13,14 @@
                 ( Location
                     { locFile = "test/examples/relation-notation.tex"
                     , locLine = 2
-                    , locColumn = 2
+                    , locColumn = 5
                     }
                 )
             , stmt1 = StmtFormula
                 { pos = Location
                     { locFile = "test/examples/relation-notation.tex"
                     , locLine = 2
-                    , locColumn = 2
+                    , locColumn = 8
                     }
                 , formula = FormulaChain
                     ( ChainBase
@@ -41,7 +41,7 @@
                 { pos = Location
                     { locFile = "test/examples/relation-notation.tex"
                     , locLine = 2
-                    , locColumn = 2
+                    , locColumn = 31
                     }
                 , formula = FormulaChain
                     ( ChainBase

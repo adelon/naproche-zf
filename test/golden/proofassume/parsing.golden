@@ -13,14 +13,14 @@
                 ( Location
                     { locFile = "test/examples/proofassume.tex"
                     , locLine = 2
-                    , locColumn = 2
+                    , locColumn = 5
                     }
                 )
             , stmt1 = StmtFormula
                 { pos = Location
                     { locFile = "test/examples/proofassume.tex"
                     , locLine = 2
-                    , locColumn = 2
+                    , locColumn = 8
                     }
                 , formula = FormulaChain
                     ( ChainBase
@@ -39,7 +39,7 @@
                 { pos = Location
                     { locFile = "test/examples/proofassume.tex"
                     , locLine = 2
-                    , locColumn = 2
+                    , locColumn = 23
                     }
                 , formula = FormulaChain
                     ( ChainBase
@@ -61,7 +61,7 @@
     ( Location
         { locFile = "test/examples/proofassume.tex"
         , locLine = 4
-        , locColumn = 4
+        , locColumn = 1
         }
     )
     ( Assume
@@ -75,7 +75,7 @@
             { pos = Location
                 { locFile = "test/examples/proofassume.tex"
                 , locLine = 5
-                , locColumn = 5
+                , locColumn = 12
                 }
             , formula = FormulaChain
                 ( ChainBase
@@ -95,14 +95,14 @@
             ( Location
                 { locFile = "test/examples/proofassume.tex"
                 , locLine = 6
-                , locColumn = 6
+                , locColumn = 5
                 }
             ) Nothing
             ( StmtFormula
                 { pos = Location
                     { locFile = "test/examples/proofassume.tex"
                     , locLine = 6
-                    , locColumn = 6
+                    , locColumn = 10
                     }
                 , formula = FormulaChain
                     ( ChainBase
@@ -124,7 +124,7 @@
     ( Location
         { locFile = "test/examples/proofassume.tex"
         , locLine = 9
-        , locColumn = 9
+        , locColumn = 1
         }
     )
     ( Marker "assumetesttwo" )
@@ -135,7 +135,7 @@
                 ( Location
                     { locFile = "test/examples/proofassume.tex"
                     , locLine = 10
-                    , locColumn = 10
+                    , locColumn = 5
                     }
                 )
             , stmt1 = StmtConnected
@@ -145,7 +145,7 @@
                     { pos = Location
                         { locFile = "test/examples/proofassume.tex"
                         , locLine = 10
-                        , locColumn = 10
+                        , locColumn = 8
                         }
                     , formula = FormulaChain
                         ( ChainBase
@@ -164,7 +164,7 @@
                     { pos = Location
                         { locFile = "test/examples/proofassume.tex"
                         , locLine = 10
-                        , locColumn = 10
+                        , locColumn = 21
                         }
                     , formula = FormulaChain
                         ( ChainBase
@@ -184,7 +184,7 @@
                 { pos = Location
                     { locFile = "test/examples/proofassume.tex"
                     , locLine = 10
-                    , locColumn = 10
+                    , locColumn = 36
                     }
                 , formula = FormulaChain
                     ( ChainBase
@@ -206,21 +206,21 @@
     ( Location
         { locFile = "test/examples/proofassume.tex"
         , locLine = 12
-        , locColumn = 12
+        , locColumn = 1
         }
     )
     ( Assume
         ( Location
             { locFile = "test/examples/proofassume.tex"
             , locLine = 13
-            , locColumn = 13
+            , locColumn = 5
             }
         )
         ( StmtFormula
             { pos = Location
                 { locFile = "test/examples/proofassume.tex"
                 , locLine = 13
-                , locColumn = 13
+                , locColumn = 12
                 }
             , formula = FormulaChain
                 ( ChainBase
@@ -240,14 +240,14 @@
             ( Location
                 { locFile = "test/examples/proofassume.tex"
                 , locLine = 14
-                , locColumn = 14
+                , locColumn = 5
                 }
             )
             ( StmtFormula
                 { pos = Location
                     { locFile = "test/examples/proofassume.tex"
                     , locLine = 14
-                    , locColumn = 14
+                    , locColumn = 12
                     }
                 , formula = FormulaChain
                     ( ChainBase
@@ -267,14 +267,14 @@
                 ( Location
                     { locFile = "test/examples/proofassume.tex"
                     , locLine = 15
-                    , locColumn = 15
+                    , locColumn = 5
                     }
                 ) Nothing
                 ( StmtFormula
                     { pos = Location
                         { locFile = "test/examples/proofassume.tex"
                         , locLine = 15
-                        , locColumn = 15
+                        , locColumn = 10
                         }
                     , formula = FormulaChain
                         ( ChainBase
