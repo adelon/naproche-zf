@@ -1,29 +1,29 @@
-fof(trivial,conjecture,fx=fx,"test/examples/calc.tex: 1:1").
+fof(trivial,conjecture,fx=fx,"test/examples/calc.tex 1:1").
 ------------------
-fof(irrelevant,conjecture,fz=fz,"test/examples/calc.tex: 5:5").
+fof(irrelevant,conjecture,fz=fz,"test/examples/calc.tex 5:5").
 fof(trivial,axiom,![Xx]:Xx=Xx).
 ------------------
-fof(alsotrivial,conjecture,fy=fy,"test/examples/calc.tex: 13:13").
+fof(alsotrivial,conjecture,fy=fy,"test/examples/calc.tex 13:13").
 fof(irrelevant,axiom,![Xz]:Xz=Xz).
 fof(trivial,axiom,![Xx]:Xx=Xx).
 ------------------
-fof(alsotrivial,conjecture,fy=fy,"test/examples/calc.tex: 13:13").
+fof(alsotrivial,conjecture,fy=fy,"test/examples/calc.tex 13:13").
 fof(trivial,axiom,![Xx]:Xx=Xx).
 ------------------
-fof(alsotrivial,conjecture,fy=fy,"test/examples/calc.tex: 13:13").
+fof(alsotrivial,conjecture,fy=fy,"test/examples/calc.tex 13:13").
 fof(irrelevant,axiom,![Xz]:Xz=Xz).
 fof(trivial,axiom,![Xx]:Xx=Xx).
 fof(alsotrivial1,axiom,fy=fy).
 ------------------
-fof(trivial_biconditionals,conjecture,fy=fy,"test/examples/calc.tex: 26:26").
+fof(trivial_biconditionals,conjecture,fy=fy,"test/examples/calc.tex 26:26").
 fof(alsotrivial,axiom,![Xy]:Xy=Xy).
 fof(irrelevant,axiom,![Xz]:Xz=Xz).
 fof(trivial,axiom,![Xx]:Xx=Xx).
 ------------------
-fof(trivial_biconditionals,conjecture,fy=fy,"test/examples/calc.tex: 26:26").
+fof(trivial_biconditionals,conjecture,fy=fy,"test/examples/calc.tex 26:26").
 fof(trivial,axiom,![Xx]:Xx=Xx).
 ------------------
-fof(trivial_biconditionals,conjecture,fy=fy,"test/examples/calc.tex: 26:26").
+fof(trivial_biconditionals,conjecture,fy=fy,"test/examples/calc.tex 26:26").
 fof(alsotrivial,axiom,![Xy]:Xy=Xy).
 fof(irrelevant,axiom,![Xz]:Xz=Xz).
 fof(trivial,axiom,![Xx]:Xx=Xx).

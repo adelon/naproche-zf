@@ -22,7 +22,7 @@ fromSourcePos pos = Location
 
 prettyLocation :: Location -> String
 prettyLocation loc =
-    locFile loc <> ": " <> show (locLine loc) <> ":" <> show (locColumn loc)
+    locFile loc <> " " <> show (locLine loc) <> ":" <> show (locColumn loc)
 
 locationToText :: Location -> Text
 locationToText loc = Text.pack (prettyLocation loc)

@@ -176,7 +176,7 @@ instantiateStruct x sp = do
     let structGraph = checkingStructs st
     let struct = lookupStruct structGraph sp
     let fixes = StructGraph.structSymbols struct structGraph
-    let phi = (TermSymbol Nowhere (SymbolPredicate (PredicateNounStruct sp)) [TermVar x])
+    let phi = (TermSymbol (stepLocation st) (SymbolPredicate (PredicateNounStruct sp)) [TermVar x])
     --
     -- NOTE: this will always cause shadowing of operations, ideally this should be type-directed instead.
     let ops = HM.fromList [(op, x) | op <- Set.toList fixes]
@@ -367,7 +367,7 @@ withLabel loc marker ma = do
     if HS.member marker markers
         then throwWithMarker (DuplicateMarker loc)
         else put st{definedMarkers = HS.insert marker markers}
-    -- Set the marker as the label of the current block.
+    -- Set the marker as the label of the current block and upate the step location.
     modify \st -> st{blockLabel = marker, stepLocation = loc}
     ma
 
@@ -451,23 +451,23 @@ checkProof = \case
                 setGoals (consequent : goals')
                 checkProof continue
             _ -> throwWithMarker (BySetInductionSyntacticMismatch pos)
-    ByOrdInduction pos continue -> do
-        setLocation pos
+    ByOrdInduction loc continue -> do
+        setLocation loc
         goals <- gets checkingGoals
         case goals of
             Forall scope : goals' -> case fromScope scope of
-                Implies (IsOrd Nowhere (TermVar (B bz))) rhs -> do
+                Implies (IsOrd loc' (TermVar (B bz))) rhs -> do
                     let zs = nubOrd (bindings scope)
                     z <- case zs of
                             [z'] | z' == bz -> pure z'
                             [_] -> error "induction variable does not match the variable with ordinal guard"
-                            _ -> throwWithMarker (AmbiguousInductionVar pos)
+                            _ -> throwWithMarker (AmbiguousInductionVar loc')
                     -- LATER: this is kinda sketchy:
                     -- we now use the induction variable in two ways:
                     -- we assume the induction hypothesis, where we recycle the induction variable both as a bound variable and a free variable
                     -- we then need to show that under that hypothesis the claim holds for the free variable...
                     let hypo = Forall (toScope (Implies (isElementOf (TermVar (B z)) (TermVar (F z))) rhs))
-                    assume [Asm (IsOrd Nowhere (TermVar z)), Asm hypo]
+                    assume [Asm (IsOrd loc' (TermVar z)), Asm hypo]
                     let goal' = unvar id id <$> rhs -- we "instantiate" the single bound variable on the rhs
                     setGoals (goal' : goals')
                     checkProof continue
@@ -499,8 +499,8 @@ checkProof = \case
         justify by
         setGoals [reduction]
         checkProof proof
-    Take pos _witnesses _suchThat JustificationSetExt _continue ->
-        error $ "Error at " <> show pos <> "\nCannot justify existential statement with setext"
+    Take loc _witnesses _suchThat JustificationSetExt _continue ->
+        error $ "Error at " <> show loc <> "\nCannot justify existential statement with setext"
     Take loc witnesses suchThat by continue -> locally do
         setLocation loc
         goals <- gets checkingGoals
@@ -549,17 +549,17 @@ checkProof = \case
                         ((isElementOf (TermVar y) yBound) `And` instantiate1 (TermVar y) phi)
             ReplaceFun bounds lhs cond ->
                 makeReplacementIff (TermVar (F x)) bounds lhs cond
-            _ -> Equals Nowhere (TermVar x) t
+            _ -> Equals loc (TermVar x) t
             ]
         checkProof continue
     DefineFunction loc funVar argVar valueExpr domExpr continue -> do
         setLocation loc
         -- we're given f, x, e, d
         assume
-            [ Asm (Equals Nowhere (TermOp Nowhere DomSymbol [TermVar funVar]) domExpr) -- dom(f) = d
+            [ Asm (Equals loc (TermOp Nowhere DomSymbol [TermVar funVar]) domExpr) -- dom(f) = d
             , Asm (makeForall [argVar] ((isElementOf (TermVar argVar) domExpr) `Implies` (Equals Nowhere (TermOp Nowhere ApplySymbol [TermVar funVar, TermVar argVar]) valueExpr))) -- f(x) = e for all x\in d
-            , Asm (rightUniqueAdj Nowhere (TermVar funVar))
-            , Asm (relationNoun Nowhere (TermVar funVar))
+            , Asm (rightUniqueAdj loc (TermVar funVar))
+            , Asm (relationNoun loc (TermVar funVar))
             ]
         checkProof continue
     Calc loc quant calc continue -> do
@@ -567,7 +567,7 @@ checkProof = \case
         checkCalc quant calc
         assume [Asm (calcResult quant calc)]
         checkProof continue
-    DefineFunctionLocal loc funVar argVar domVar ranExpr definitions continue -> do
+    DefineFunctionLocal loc funVar argVar domVar ranExpr definitions continue -> do -- TODO refactor
         setLocation loc
         -- We have f: X \to Y and x \mapsto ...
         -- definition is a nonempty list of (expresssion e, formula phi)
@@ -658,13 +658,13 @@ makeReplacementIff e bounds lhs cond =
 
 splitGoalWithSetExt :: Formula -> CheckingM [Formula]
 splitGoalWithSetExt = \case
-    NotEquals _pos x y -> do
+    NotEquals loc x y -> do
         let z = FreshVar 0
-            elemNotElem x' y' = makeExists [FreshVar 0] (And (isElementOf (TermVar z) x') (isNotElementOf Nowhere (TermVar z) y'))
+            elemNotElem x' y' = makeExists [FreshVar 0] (And (IsElementOf loc (TermVar z) x') (isNotElementOf loc (TermVar z) y'))
         pure [elemNotElem x y `Or` elemNotElem y x]
-    Equals _pos x y -> do
+    Equals loc x y -> do
         let z = FreshVar 0
-            subset x' y' = makeForall [FreshVar 0] (Implies (isElementOf (TermVar z) x') (isElementOf (TermVar z) y'))
+            subset x' y' = makeForall [FreshVar 0] (Implies (IsElementOf loc (TermVar z) x') (IsElementOf loc (TermVar z) y'))
         pure [subset x y, subset y x]
     goal -> throwWithLocationAndMarker (MismatchedSetExt [goal])
 
@@ -735,21 +735,21 @@ checkDefn loc = \case
         -- variables (from the lhs).
         let vs' = TermVar <$> toList vs
         let f' = forallClosure (Set.fromList (toList vs)) f
-        addFactWithAsms asms (Atomic Nowhere symb vs' `Iff` f')
+        addFactWithAsms asms (Atomic loc symb vs' `Iff` f')
     DefnFun asms fun vs rhs -> do
-        let lhs = TermSymbol Nowhere (SymbolFun fun) (TermVar <$> vs)
-        addFactWithAsms asms (Equals Nowhere lhs rhs)
+        let lhs = TermSymbol loc (SymbolFun fun) (TermVar <$> vs)
+        addFactWithAsms asms (Equals loc lhs rhs)
     -- TODO Check that the function symbol on the lhs does not appear on the rhs.
     DefnOp op vs (TermSep x bound phi) ->
         addFact $ makeForall (x : vs) $
-            Iff (TermVar x `isElementOf` TermOp Nowhere op (TermVar <$> vs))
+            Iff (TermVar x `isElementOf` TermOp loc op (TermVar <$> vs))
                 ((TermVar x `isElementOf` bound) `And` instantiate1 (TermVar x) phi)
     DefnOp op vs (TermSymbol _pos symbol [x, y]) | symbol == SymbolMixfix ConsSymbol -> do
         -- TODO generalize this to support arbitrarily many applications of _Cons
         -- and also handle the case of emptyset or singleton as final argument separately
         -- so that finite set terms get recognized in full.
-        let phi = isElementOf (TermVar "any") (TermOp Nowhere op (TermVar <$> vs))
-        let psi = (isElementOf (TermVar "any") y) `Or` (Equals Nowhere (TermVar "any") x)
+        let phi = isElementOf (TermVar "any") (TermOp loc op (TermVar <$> vs))
+        let psi = (isElementOf (TermVar "any") y) `Or` (Equals loc (TermVar "any") x)
         addFact (makeForall ("any" : vs) (phi `Iff` psi))
     DefnOp op vs (ReplacePred _y _x xBound scope) -> do
         let x  = (FreshVar 0)

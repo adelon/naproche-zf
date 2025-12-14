@@ -8,9 +8,9 @@
                     ( Connected Equivalence
                         ( TermSymbol
                             ( Location
-                                { locFile = "<nowhere>"
-                                , locLine = -1
-                                , locColumn = -1
+                                { locFile = "test/examples/coord.tex"
+                                , locLine = 9
+                                , locColumn = 9
                                 }
                             )
                             ( SymbolPredicate
@@ -70,9 +70,9 @@
                     ( Connected Equivalence
                         ( TermSymbol
                             ( Location
-                                { locFile = "<nowhere>"
-                                , locLine = -1
-                                , locColumn = -1
+                                { locFile = "test/examples/coord.tex"
+                                , locLine = 5
+                                , locColumn = 5
                                 }
                             )
                             ( SymbolPredicate
@@ -132,9 +132,9 @@
                     ( Connected Equivalence
                         ( TermSymbol
                             ( Location
-                                { locFile = "<nowhere>"
-                                , locLine = -1
-                                , locColumn = -1
+                                { locFile = "test/examples/coord.tex"
+                                , locLine = 1
+                                , locColumn = 1
                                 }
                             )
                             ( SymbolPredicate
@@ -374,9 +374,9 @@
                     ( Connected Equivalence
                         ( TermSymbol
                             ( Location
-                                { locFile = "<nowhere>"
-                                , locLine = -1
-                                , locColumn = -1
+                                { locFile = "test/examples/coord.tex"
+                                , locLine = 9
+                                , locColumn = 9
                                 }
                             )
                             ( SymbolPredicate
@@ -436,9 +436,9 @@
                     ( Connected Equivalence
                         ( TermSymbol
                             ( Location
-                                { locFile = "<nowhere>"
-                                , locLine = -1
-                                , locColumn = -1
+                                { locFile = "test/examples/coord.tex"
+                                , locLine = 5
+                                , locColumn = 5
                                 }
                             )
                             ( SymbolPredicate
@@ -498,9 +498,9 @@
                     ( Connected Equivalence
                         ( TermSymbol
                             ( Location
-                                { locFile = "<nowhere>"
-                                , locLine = -1
-                                , locColumn = -1
+                                { locFile = "test/examples/coord.tex"
+                                , locLine = 1
+                                , locColumn = 1
                                 }
                             )
                             ( SymbolPredicate
@@ -912,9 +912,9 @@
                     ( Connected Equivalence
                         ( TermSymbol
                             ( Location
-                                { locFile = "<nowhere>"
-                                , locLine = -1
-                                , locColumn = -1
+                                { locFile = "test/examples/coord.tex"
+                                , locLine = 9
+                                , locColumn = 9
                                 }
                             )
                             ( SymbolPredicate
@@ -974,9 +974,9 @@
                     ( Connected Equivalence
                         ( TermSymbol
                             ( Location
-                                { locFile = "<nowhere>"
-                                , locLine = -1
-                                , locColumn = -1
+                                { locFile = "test/examples/coord.tex"
+                                , locLine = 5
+                                , locColumn = 5
                                 }
                             )
                             ( SymbolPredicate
@@ -1036,9 +1036,9 @@
                     ( Connected Equivalence
                         ( TermSymbol
                             ( Location
-                                { locFile = "<nowhere>"
-                                , locLine = -1
-                                , locColumn = -1
+                                { locFile = "test/examples/coord.tex"
+                                , locLine = 1
+                                , locColumn = 1
                                 }
                             )
                             ( SymbolPredicate
@@ -1582,9 +1582,9 @@
                     ( Connected Equivalence
                         ( TermSymbol
                             ( Location
-                                { locFile = "<nowhere>"
-                                , locLine = -1
-                                , locColumn = -1
+                                { locFile = "test/examples/coord.tex"
+                                , locLine = 9
+                                , locColumn = 9
                                 }
                             )
                             ( SymbolPredicate
@@ -1644,9 +1644,9 @@
                     ( Connected Equivalence
                         ( TermSymbol
                             ( Location
-                                { locFile = "<nowhere>"
-                                , locLine = -1
-                                , locColumn = -1
+                                { locFile = "test/examples/coord.tex"
+                                , locLine = 5
+                                , locColumn = 5
                                 }
                             )
                             ( SymbolPredicate
@@ -1706,9 +1706,9 @@
                     ( Connected Equivalence
                         ( TermSymbol
                             ( Location
-                                { locFile = "<nowhere>"
-                                , locLine = -1
-                                , locColumn = -1
+                                { locFile = "test/examples/coord.tex"
+                                , locLine = 1
+                                , locColumn = 1
                                 }
                             )
                             ( SymbolPredicate
@@ -2286,9 +2286,9 @@
                     ( Connected Equivalence
                         ( TermSymbol
                             ( Location
-                                { locFile = "<nowhere>"
-                                , locLine = -1
-                                , locColumn = -1
+                                { locFile = "test/examples/coord.tex"
+                                , locLine = 9
+                                , locColumn = 9
                                 }
                             )
                             ( SymbolPredicate
@@ -2348,9 +2348,9 @@
                     ( Connected Equivalence
                         ( TermSymbol
                             ( Location
-                                { locFile = "<nowhere>"
-                                , locLine = -1
-                                , locColumn = -1
+                                { locFile = "test/examples/coord.tex"
+                                , locLine = 5
+                                , locColumn = 5
                                 }
                             )
                             ( SymbolPredicate
@@ -2410,9 +2410,9 @@
                     ( Connected Equivalence
                         ( TermSymbol
                             ( Location
-                                { locFile = "<nowhere>"
-                                , locLine = -1
-                                , locColumn = -1
+                                { locFile = "test/examples/coord.tex"
+                                , locLine = 1
+                                , locColumn = 1
                                 }
                             )
                             ( SymbolPredicate
@@ -3010,9 +3010,9 @@
                     ( Connected Equivalence
                         ( TermSymbol
                             ( Location
-                                { locFile = "<nowhere>"
-                                , locLine = -1
-                                , locColumn = -1
+                                { locFile = "test/examples/coord.tex"
+                                , locLine = 9
+                                , locColumn = 9
                                 }
                             )
                             ( SymbolPredicate
@@ -3072,9 +3072,9 @@
                     ( Connected Equivalence
                         ( TermSymbol
                             ( Location
-                                { locFile = "<nowhere>"
-                                , locLine = -1
-                                , locColumn = -1
+                                { locFile = "test/examples/coord.tex"
+                                , locLine = 5
+                                , locColumn = 5
                                 }
                             )
                             ( SymbolPredicate
@@ -3134,9 +3134,9 @@
                     ( Connected Equivalence
                         ( TermSymbol
                             ( Location
-                                { locFile = "<nowhere>"
-                                , locLine = -1
-                                , locColumn = -1
+                                { locFile = "test/examples/coord.tex"
+                                , locLine = 1
+                                , locColumn = 1
                                 }
                             )
                             ( SymbolPredicate

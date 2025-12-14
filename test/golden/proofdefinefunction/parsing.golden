@@ -71,7 +71,12 @@
             )
         )
         ( StmtFormula
-            { formula = FormulaChain
+            { pos = Location
+                { locFile = "test/examples/proofdefinefunction.tex"
+                , locLine = 14
+                , locColumn = 14
+                }
+            , formula = FormulaChain
                 ( ChainBase
                     ( ExprVar
                         ( NamedVar "f" ) :| []
@@ -112,7 +117,12 @@
             )
         )
         ( StmtFormula
-            { formula = FormulaChain
+            { pos = Location
+                { locFile = "test/examples/proofdefinefunction.tex"
+                , locLine = 19
+                , locColumn = 19
+                }
+            , formula = FormulaChain
                 ( ChainBase
                     ( ExprVar
                         ( NamedVar "f" ) :| []
@@ -146,7 +156,12 @@
                     }
                 )
             , stmt1 = StmtFormula
-                { formula = FormulaChain
+                { pos = Location
+                    { locFile = "test/examples/proofdefinefunction.tex"
+                    , locLine = 23
+                    , locColumn = 23
+                    }
+                , formula = FormulaChain
                     ( ChainBase
                         ( ExprVar
                             ( NamedVar "x" ) :| []
@@ -160,7 +175,12 @@
                     )
                 }
             , stmt2 = StmtFormula
-                { formula = FormulaChain
+                { pos = Location
+                    { locFile = "test/examples/proofdefinefunction.tex"
+                    , locLine = 23
+                    , locColumn = 23
+                    }
+                , formula = FormulaChain
                     ( ChainBase
                         ( ExprVar
                             ( NamedVar "x" ) :| []

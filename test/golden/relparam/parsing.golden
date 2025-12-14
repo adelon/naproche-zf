@@ -12,7 +12,12 @@
         [ NamedVar "y" ]
         ( NamedVar "z" )
         ( StmtFormula
-            { formula = FormulaChain
+            { pos = Location
+                { locFile = "test/examples/relparam.tex"
+                , locLine = 3
+                , locColumn = 3
+                }
+            , formula = FormulaChain
                 ( ChainBase
                     ( ExprVar
                         ( NamedVar "x" ) :| []
@@ -47,7 +52,12 @@
             , b = Unbounded
             , suchThat = Nothing
             , stmt = StmtFormula
-                { formula = FormulaChain
+                { pos = Location
+                    { locFile = "test/examples/relparam.tex"
+                    , locLine = 7
+                    , locColumn = 7
+                    }
+                , formula = FormulaChain
                     ( ChainBase
                         ( ExprVar
                             ( NamedVar "x" ) :| []
@@ -80,7 +90,12 @@
         [ NamedVar "y" ]
         ( NamedVar "z" )
         ( StmtFormula
-            { formula = FormulaChain
+            { pos = Location
+                { locFile = "test/examples/relparam.tex"
+                , locLine = 12
+                , locColumn = 12
+                }
+            , formula = FormulaChain
                 ( ChainBase
                     ( ExprVar
                         ( NamedVar "x" ) :| []
@@ -115,7 +130,12 @@
             , b = Unbounded
             , suchThat = Nothing
             , stmt = StmtFormula
-                { formula = FormulaChain
+                { pos = Location
+                    { locFile = "test/examples/relparam.tex"
+                    , locLine = 16
+                    , locColumn = 16
+                    }
+                , formula = FormulaChain
                     ( ChainBase
                         ( ExprVar
                             ( NamedVar "x" ) :| []

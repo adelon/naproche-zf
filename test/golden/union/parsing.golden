@@ -22,7 +22,12 @@
                     { conn = Equivalence
                     , mpos = Nothing
                     , stmt1 = StmtFormula
-                        { formula = FormulaChain
+                        { pos = Location
+                            { locFile = "test/examples/union.tex"
+                            , locLine = 2
+                            , locColumn = 2
+                            }
+                        , formula = FormulaChain
                             ( ChainBase
                                 ( ExprVar
                                     ( NamedVar "a" ) :| []
@@ -36,7 +41,12 @@
                             )
                         }
                     , stmt2 = StmtFormula
-                        { formula = FormulaChain
+                        { pos = Location
+                            { locFile = "test/examples/union.tex"
+                            , locLine = 2
+                            , locColumn = 2
+                            }
+                        , formula = FormulaChain
                             ( ChainBase
                                 ( ExprVar
                                     ( NamedVar "a" ) :| []
@@ -54,7 +64,12 @@
             )
         ]
         ( StmtFormula
-            { formula = FormulaChain
+            { pos = Location
+                { locFile = "test/examples/union.tex"
+                , locLine = 3
+                , locColumn = 3
+                }
+            , formula = FormulaChain
                 ( ChainBase
                     ( ExprVar
                         ( NamedVar "A" ) :| []
@@ -100,7 +115,12 @@
             { conn = Equivalence
             , mpos = Nothing
             , stmt1 = StmtFormula
-                { formula = FormulaChain
+                { pos = Location
+                    { locFile = "test/examples/union.tex"
+                    , locLine = 8
+                    , locColumn = 8
+                    }
+                , formula = FormulaChain
                     ( ChainBase
                         ( ExprVar
                             ( NamedVar "a" ) :| []
@@ -126,7 +146,12 @@
                 { conn = Disjunction
                 , mpos = Nothing
                 , stmt1 = StmtFormula
-                    { formula = FormulaChain
+                    { pos = Location
+                        { locFile = "test/examples/union.tex"
+                        , locLine = 8
+                        , locColumn = 8
+                        }
+                    , formula = FormulaChain
                         ( ChainBase
                             ( ExprVar
                                 ( NamedVar "a" ) :| []
@@ -140,7 +165,12 @@
                         )
                     }
                 , stmt2 = StmtFormula
-                    { formula = FormulaChain
+                    { pos = Location
+                        { locFile = "test/examples/union.tex"
+                        , locLine = 8
+                        , locColumn = 8
+                        }
+                    , formula = FormulaChain
                         ( ChainBase
                             ( ExprVar
                                 ( NamedVar "a" ) :| []
@@ -167,7 +197,12 @@
     ( Marker "union_comm" )
     ( Lemma []
         ( StmtFormula
-            { formula = FormulaChain
+            { pos = Location
+                { locFile = "test/examples/union.tex"
+                , locLine = 12
+                , locColumn = 12
+                }
+            , formula = FormulaChain
                 ( ChainBase
                     ( ExprOp
                         [ Nothing
@@ -210,7 +245,12 @@
     ( Marker "union_assoc" )
     ( Lemma []
         ( StmtFormula
-            { formula = FormulaChain
+            { pos = Location
+                { locFile = "test/examples/union.tex"
+                , locLine = 16
+                , locColumn = 16
+                }
+            , formula = FormulaChain
                 ( ChainBase
                     ( ExprOp
                         [ Nothing
@@ -295,7 +335,12 @@
                         }
                     )
                 , stmt1 = StmtFormula
-                    { formula = FormulaChain
+                    { pos = Location
+                        { locFile = "test/examples/union.tex"
+                        , locLine = 19
+                        , locColumn = 19
+                        }
+                    , formula = FormulaChain
                         ( ChainBase
                             ( ExprVar
                                 ( NamedVar "a" ) :| []
@@ -327,7 +372,12 @@
                         )
                     }
                 , stmt2 = StmtFormula
-                    { formula = FormulaChain
+                    { pos = Location
+                        { locFile = "test/examples/union.tex"
+                        , locLine = 19
+                        , locColumn = 19
+                        }
+                    , formula = FormulaChain
                         ( ChainBase
                             ( ExprVar
                                 ( NamedVar "a" ) :| []
@@ -388,7 +438,12 @@
                             }
                         )
                     , stmt1 = StmtFormula
-                        { formula = FormulaChain
+                        { pos = Location
+                            { locFile = "test/examples/union.tex"
+                            , locLine = 20
+                            , locColumn = 20
+                            }
+                        , formula = FormulaChain
                             ( ChainBase
                                 ( ExprVar
                                     ( NamedVar "a" ) :| []
@@ -420,7 +475,12 @@
                             )
                         }
                     , stmt2 = StmtFormula
-                        { formula = FormulaChain
+                        { pos = Location
+                            { locFile = "test/examples/union.tex"
+                            , locLine = 20
+                            , locColumn = 20
+                            }
+                        , formula = FormulaChain
                             ( ChainBase
                                 ( ExprVar
                                     ( NamedVar "a" ) :| []

@@ -53,9 +53,9 @@ grammar lexicon@Lexicon{..} = mdo
     replaceBound  <- rule $ (,) <$> varSymbol <* _in <*> expr
     replaceBounds <- rule $ commaList replaceBound
     replaceFun    <- rule $ ExprReplace <$> expr <* _pipe <*> replaceBounds <*> optional (_pipe *> comprStmt)
-    comprStmt   <- rule $ (StmtFormula <$> formula) <|> text stmt
+    comprStmt   <- rule $ (StmtFormula Nowhere <$> formula) <|> text stmt
 
-    replacePredSymbolic <- rule $ ExprReplacePred <$> varSymbol <* _pipe <*> (command "exists" *> varSymbol) <* _in <*> expr <* _dot <*> (StmtFormula <$> formula)
+    replacePredSymbolic <- rule $ ExprReplacePred <$> varSymbol <* _pipe <*> (command "exists" *> varSymbol) <* _in <*> expr <* _dot <*> (StmtFormula Nowhere <$> formula)
     replacePredText     <- rule $ ExprReplacePred <$> varSymbol <* _pipe <*> (begin "text" *> _exists *> beginMath *> varSymbol <* _in) <*> expr <* endMath <* _suchThat <*> stmt <* end "text"
     replacePred         <- rule $ replacePredSymbolic <|> replacePredText
 
@@ -170,7 +170,7 @@ grammar lexicon@Lexicon{..} = mdo
     quant      <- rule $ quantAll <|> quantSome <|> quantNone -- <|> quantUniq
 
 
-    termExpr       <- rule $ TermExpr <$> math expr
+    termExpr       <- rule $ uncurry TermExpr <$> mathPos expr
     termFun        <- rule $ TermFun <$> (optional _the *> fun)
     termIota       <- rule $ TermIota <$> _the <*> var <* _suchThat <*> stmt
     termAll        <- rule $ TermQuantified Universally <$> _every <*> nounPhraseMay
@@ -213,12 +213,14 @@ grammar lexicon@Lexicon{..} = mdo
         p <- _exists *> _no
         np <- nounPhrase'
         pure (StmtNeg p (StmtExists p np))
-    stmtFormula   <- rule $ StmtFormula <$> math formula
+    stmtFormula <- rule $ uncurry StmtFormula <$> mathPos formula
     stmtFormualNeg <- rule do
-        p <- _not
-        phi <- math formula
-        pure (StmtNeg p (StmtFormula phi))
-    stmtBot       <- rule $ StmtFormula (PropositionalConstant IsBottom) <$ _contradiction
+        loc <- _not
+        phi <- mathPos formula
+        pure (StmtNeg loc (uncurry StmtFormula phi))
+    stmtBot <- rule do
+        loc <- _contradiction
+        return (StmtFormula loc (PropositionalConstant IsBottom))
     stmt'         <- rule $ stmtVerb <|> stmtNoun <|> stmtStruct <|> stmtFormula <|> stmtFormualNeg <|> stmtBot
     stmtOr  <- rule $ stmt'   <|> (StmtConnected Disjunction Nothing <$> stmt'   <* _or  <*> stmt)
     stmtAnd <- rule $ stmtOr  <|> (StmtConnected Conjunction Nothing <$> stmtOr  <* _and <*> stmt)
@@ -241,11 +243,12 @@ grammar lexicon@Lexicon{..} = mdo
         s <- optional _have *> stmt
         pure (SymbolicForall p xs b ms s)
     symbolicExists <- rule do
-        p <- _exists <|> _exist
+        loc1 <- _exists <|> _exist
         xs <- beginMath *> varSymbols
-        b <- maybeBounded <* endMath
-        s <- (_suchThat *> stmt) <|> pure (StmtFormula (PropositionalConstant IsTop))
-        pure (SymbolicExists p xs b s)
+        b <- maybeBounded
+        loc2 <- endMath
+        ms <- optional (_suchThat *> stmt)
+        pure (SymbolicExists loc1 xs b (ms ?? StmtFormula loc2 (PropositionalConstant IsTop)))
     symbolicNotExists <- rule do
         p <- _exists *> _no
         xs <- beginMath *> varSymbols
@@ -257,7 +260,8 @@ grammar lexicon@Lexicon{..} = mdo
 
     symbolicQuantified <- rule $ symbolicForall <|> symbolicExists <|> symbolicNotExists
 
-    stmt :: Prod r Text (Located Token) Stmt <- rule $ asum [stmtNeg, stmtIf, stmtXor, stmtNor, stmtExists, stmtExist, stmtExistsNot, stmtQuantPhrase, stmtIff, symbolicQuantified] <?> "a statement"
+    stmt :: Prod r Text (Located Token) Stmt <- rule $
+        asum [stmtNeg, stmtIf, stmtXor, stmtNor, stmtExists, stmtExist, stmtExistsNot, stmtQuantPhrase, stmtIff, symbolicQuantified] <?> "a statement"
 
 
     asmLetIn        <- rule $ uncurry AsmLetIn <$> (_let *> math typing)

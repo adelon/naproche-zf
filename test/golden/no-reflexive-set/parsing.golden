@@ -31,7 +31,12 @@
                     [ NamedVar "A" ]
                 ) ( [] ) ( Nothing )
             , stmt = StmtFormula
-                { formula = FormulaChain
+                { pos = Location
+                    { locFile = "test/examples/no-reflexive-set.tex"
+                    , locLine = 2
+                    , locColumn = 2
+                    }
+                , formula = FormulaChain
                     ( ChainBase
                         ( ExprVar
                             ( NamedVar "A" ) :| []

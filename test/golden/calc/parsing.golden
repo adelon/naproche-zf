@@ -8,7 +8,12 @@
     ( Marker "trivial" )
     ( Lemma []
         ( StmtFormula
-            { formula = FormulaChain
+            { pos = Location
+                { locFile = "test/examples/calc.tex"
+                , locLine = 2
+                , locColumn = 2
+                }
+            , formula = FormulaChain
                 ( ChainBase
                     ( ExprVar
                         ( NamedVar "x" ) :| []
@@ -33,7 +38,12 @@
     ( Marker "irrelevant" )
     ( Lemma []
         ( StmtFormula
-            { formula = FormulaChain
+            { pos = Location
+                { locFile = "test/examples/calc.tex"
+                , locLine = 6
+                , locColumn = 6
+                }
+            , formula = FormulaChain
                 ( ChainBase
                     ( ExprVar
                         ( NamedVar "z" ) :| []
@@ -58,7 +68,12 @@
     ( Marker "alsotrivial" )
     ( Lemma []
         ( StmtFormula
-            { formula = FormulaChain
+            { pos = Location
+                { locFile = "test/examples/calc.tex"
+                , locLine = 10
+                , locColumn = 10
+                }
+            , formula = FormulaChain
                 ( ChainBase
                     ( ExprVar
                         ( NamedVar "y" ) :| []
@@ -116,7 +131,12 @@
     ( Marker "trivial_biconditionals" )
     ( Lemma []
         ( StmtFormula
-            { formula = FormulaChain
+            { pos = Location
+                { locFile = "test/examples/calc.tex"
+                , locLine = 23
+                , locColumn = 23
+                }
+            , formula = FormulaChain
                 ( ChainBase
                     ( ExprVar
                         ( NamedVar "y" ) :| []

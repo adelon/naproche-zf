@@ -1,3 +1,3 @@
-fof(indefinite_test_forall,conjecture,$true,"test/examples/indefinite-terms.tex: 1:1").
+fof(indefinite_test_forall,conjecture,$true,"test/examples/indefinite-terms.tex 1:1").
 ------------------
-fof(indefinite_test_exists,conjecture,$true,"test/examples/indefinite-terms.tex: 5:5").
+fof(indefinite_test_exists,conjecture,$true,"test/examples/indefinite-terms.tex 5:5").

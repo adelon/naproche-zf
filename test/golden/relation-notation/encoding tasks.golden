@@ -1,1 +1,1 @@
-fof(mathrel_notation_test,conjecture,elem(pair(fx,fy),fR)=>elem(pair(fx,fy),fR),"test/examples/relation-notation.tex: 1:1").
+fof(mathrel_notation_test,conjecture,elem(pair(fx,fy),fR)=>elem(pair(fx,fy),fR),"test/examples/relation-notation.tex 1:1").

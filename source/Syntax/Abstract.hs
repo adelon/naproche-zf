@@ -265,7 +265,7 @@ data QuantPhrase = QuantPhrase Quantifier (NounPhrase []) deriving (Show, Eq, Or
 
 
 data Term
-    = TermExpr Expr
+    = TermExpr Location Expr
     -- ^ A symbolic expression.
     | TermFun Fun
     -- ^ Definite noun phrase, e.g. /@the derivative of $f$@/.
@@ -277,14 +277,14 @@ data Term
 
 instance Locatable Term where
     locate :: Term -> Location
-    locate (TermExpr _) = Nowhere -- TODO
+    locate (TermExpr loc _) = loc
     locate (TermFun f) = f.pos
-    locate (TermIota p _ _) = p
-    locate (TermQuantified _ p _) = p
+    locate (TermIota loc _ _) = loc
+    locate (TermQuantified _ loc _) = loc
 
 
 data Stmt
-    = StmtFormula {formula :: Formula} -- ^ E.g.: /@We have \<Formula\>@/.
+    = StmtFormula {pos :: Location, formula :: Formula} -- ^ E.g.: /@We have \<Formula\>@/.
     | StmtVerbPhrase {args :: NonEmpty Term, verb :: VerbPhrase} -- ^ E.g.: /@\<Term\> and \<Term\> \<verb\>@/.
     | StmtNoun {pos :: Location, args :: NonEmpty Term, noun :: (NounPhrase Maybe)} -- ^ E.g.: /@\<Term\> is a(n) \<NP\>@/.
     | StmtStruct {pos :: Location, arg :: Term, struct :: StructPhrase}
@@ -297,7 +297,7 @@ data Stmt
 
 instance Locatable Stmt where
     locate :: Stmt -> Location
-    locate (StmtFormula _) = Nowhere -- TODO
+    locate StmtFormula{pos = loc} = loc
     locate StmtConnected{mpos = Just p} = p
     locate StmtConnected{mpos = Nothing, stmt1 = s} = locate s
     locate StmtVerbPhrase{args = a :| _} = locate a

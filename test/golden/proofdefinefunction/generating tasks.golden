@@ -8,9 +8,9 @@
                     ( Connected Equivalence
                         ( TermSymbol
                             ( Location
-                                { locFile = "<nowhere>"
-                                , locLine = -1
-                                , locColumn = -1
+                                { locFile = "test/examples/proofdefinefunction.tex"
+                                , locLine = 18
+                                , locColumn = 18
                                 }
                             )
                             ( SymbolPredicate
@@ -78,9 +78,9 @@
                     ( Connected Equivalence
                         ( TermSymbol
                             ( Location
-                                { locFile = "<nowhere>"
-                                , locLine = -1
-                                , locColumn = -1
+                                { locFile = "test/examples/proofdefinefunction.tex"
+                                , locLine = 13
+                                , locColumn = 13
                                 }
                             )
                             ( SymbolPredicate
@@ -232,9 +232,9 @@
             ( Marker "definefunctiontest1"
             , TermSymbol
                 ( Location
-                    { locFile = "<nowhere>"
-                    , locLine = -1
-                    , locColumn = -1
+                    { locFile = "test/examples/proofdefinefunction.tex"
+                    , locLine = 26
+                    , locColumn = 26
                     }
                 )
                 ( SymbolPredicate
@@ -260,9 +260,9 @@
             ( Marker "definefunctiontest2"
             , TermSymbol
                 ( Location
-                    { locFile = "<nowhere>"
-                    , locLine = -1
-                    , locColumn = -1
+                    { locFile = "test/examples/proofdefinefunction.tex"
+                    , locLine = 26
+                    , locColumn = 26
                     }
                 )
                 ( SymbolPredicate
@@ -359,9 +359,9 @@
             ( Marker "definefunctiontest4"
             , TermSymbol
                 ( Location
-                    { locFile = "<nowhere>"
-                    , locLine = -1
-                    , locColumn = -1
+                    { locFile = "test/examples/proofdefinefunction.tex"
+                    , locLine = 26
+                    , locColumn = 26
                     }
                 )
                 ( SymbolPredicate

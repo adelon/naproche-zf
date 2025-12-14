@@ -11,7 +11,12 @@
             { conn = Equivalence
             , mpos = Nothing
             , stmt1 = StmtFormula
-                { formula = FormulaChain
+                { pos = Location
+                    { locFile = "test/examples/finite-set-terms.tex"
+                    , locLine = 2
+                    , locColumn = 2
+                    }
+                , formula = FormulaChain
                     ( ChainBase
                         ( ExprVar
                             ( NamedVar "x" ) :| []
@@ -41,7 +46,12 @@
                 { conn = Disjunction
                 , mpos = Nothing
                 , stmt1 = StmtFormula
-                    { formula = FormulaChain
+                    { pos = Location
+                        { locFile = "test/examples/finite-set-terms.tex"
+                        , locLine = 2
+                        , locColumn = 2
+                        }
+                    , formula = FormulaChain
                         ( ChainBase
                             ( ExprVar
                                 ( NamedVar "x" ) :| []
@@ -55,7 +65,12 @@
                         )
                     }
                 , stmt2 = StmtFormula
-                    { formula = FormulaChain
+                    { pos = Location
+                        { locFile = "test/examples/finite-set-terms.tex"
+                        , locLine = 2
+                        , locColumn = 2
+                        }
+                    , formula = FormulaChain
                         ( ChainBase
                             ( ExprVar
                                 ( NamedVar "x" ) :| []
@@ -104,7 +119,12 @@
     ( Marker "emptyset_in_unit" )
     ( Lemma []
         ( StmtFormula
-            { formula = FormulaChain
+            { pos = Location
+                { locFile = "test/examples/finite-set-terms.tex"
+                , locLine = 10
+                , locColumn = 10
+                }
+            , formula = FormulaChain
                 ( ChainBase
                     ( ExprOp
                         [ Just

@@ -8,7 +8,12 @@
     ( Marker "prop1" )
     ( Lemma []
         ( StmtFormula
-            { formula = FormulaChain
+            { pos = Location
+                { locFile = "test/examples/byRef.tex"
+                , locLine = 2
+                , locColumn = 2
+                }
+            , formula = FormulaChain
                 ( ChainBase
                     ( ExprVar
                         ( NamedVar "a" ) :| []
@@ -33,7 +38,12 @@
     ( Marker "prop2" )
     ( Lemma []
         ( StmtFormula
-            { formula = FormulaChain
+            { pos = Location
+                { locFile = "test/examples/byRef.tex"
+                , locLine = 6
+                , locColumn = 6
+                }
+            , formula = FormulaChain
                 ( ChainBase
                     ( ExprVar
                         ( NamedVar "b" ) :| []
@@ -58,7 +68,12 @@
     ( Marker "prop3" )
     ( Lemma []
         ( StmtFormula
-            { formula = FormulaChain
+            { pos = Location
+                { locFile = "test/examples/byRef.tex"
+                , locLine = 10
+                , locColumn = 10
+                }
+            , formula = FormulaChain
                 ( ChainBase
                     ( ExprVar
                         ( NamedVar "c" ) :| []
@@ -103,7 +118,12 @@
     ( Marker "prop4" )
     ( Lemma []
         ( StmtFormula
-            { formula = FormulaChain
+            { pos = Location
+                { locFile = "test/examples/byRef.tex"
+                , locLine = 17
+                , locColumn = 17
+                }
+            , formula = FormulaChain
                 ( ChainBase
                     ( ExprVar
                         ( NamedVar "e" ) :| []
@@ -143,7 +163,12 @@
             , b = Unbounded
             , suchThat = Nothing
             , stmt = StmtFormula
-                { formula = FormulaChain
+                { pos = Location
+                    { locFile = "test/examples/byRef.tex"
+                    , locLine = 20
+                    , locColumn = 20
+                    }
+                , formula = FormulaChain
                     ( ChainBase
                         ( ExprVar
                             ( NamedVar "d" ) :| []
@@ -172,7 +197,12 @@
     ( Marker "prop5" )
     ( Lemma []
         ( StmtFormula
-            { formula = FormulaChain
+            { pos = Location
+                { locFile = "test/examples/byRef.tex"
+                , locLine = 24
+                , locColumn = 24
+                }
+            , formula = FormulaChain
                 ( ChainBase
                     ( ExprVar
                         ( NamedVar "f" ) :| []

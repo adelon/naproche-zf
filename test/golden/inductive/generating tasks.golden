@@ -321,9 +321,9 @@
                     ( Connected Equivalence
                         ( TermSymbol
                             ( Location
-                                { locFile = "<nowhere>"
-                                , locLine = -1
-                                , locColumn = -1
+                                { locFile = "test/examples/inductive.tex"
+                                , locLine = 3
+                                , locColumn = 3
                                 }
                             )
                             ( SymbolPredicate
@@ -752,9 +752,9 @@
                     ( Connected Equivalence
                         ( TermSymbol
                             ( Location
-                                { locFile = "<nowhere>"
-                                , locLine = -1
-                                , locColumn = -1
+                                { locFile = "test/examples/inductive.tex"
+                                , locLine = 3
+                                , locColumn = 3
                                 }
                             )
                             ( SymbolPredicate
@@ -1493,9 +1493,9 @@
                     ( Connected Equivalence
                         ( TermSymbol
                             ( Location
-                                { locFile = "<nowhere>"
-                                , locLine = -1
-                                , locColumn = -1
+                                { locFile = "test/examples/inductive.tex"
+                                , locLine = 3
+                                , locColumn = 3
                                 }
                             )
                             ( SymbolPredicate
@@ -2277,9 +2277,9 @@
                     ( Connected Equivalence
                         ( TermSymbol
                             ( Location
-                                { locFile = "<nowhere>"
-                                , locLine = -1
-                                , locColumn = -1
+                                { locFile = "test/examples/inductive.tex"
+                                , locLine = 3
+                                , locColumn = 3
                                 }
                             )
                             ( SymbolPredicate
@@ -3078,9 +3078,9 @@
                     ( Connected Equivalence
                         ( TermSymbol
                             ( Location
-                                { locFile = "<nowhere>"
-                                , locLine = -1
-                                , locColumn = -1
+                                { locFile = "test/examples/inductive.tex"
+                                , locLine = 3
+                                , locColumn = 3
                                 }
                             )
                             ( SymbolPredicate
@@ -4351,9 +4351,9 @@
                     ( Connected Equivalence
                         ( TermSymbol
                             ( Location
-                                { locFile = "<nowhere>"
-                                , locLine = -1
-                                , locColumn = -1
+                                { locFile = "test/examples/inductive.tex"
+                                , locLine = 3
+                                , locColumn = 3
                                 }
                             )
                             ( SymbolPredicate
@@ -5529,9 +5529,9 @@
                     ( Connected Equivalence
                         ( TermSymbol
                             ( Location
-                                { locFile = "<nowhere>"
-                                , locLine = -1
-                                , locColumn = -1
+                                { locFile = "test/examples/inductive.tex"
+                                , locLine = 3
+                                , locColumn = 3
                                 }
                             )
                             ( SymbolPredicate
@@ -7181,9 +7181,9 @@
                     ( Connected Equivalence
                         ( TermSymbol
                             ( Location
-                                { locFile = "<nowhere>"
-                                , locLine = -1
-                                , locColumn = -1
+                                { locFile = "test/examples/inductive.tex"
+                                , locLine = 3
+                                , locColumn = 3
                                 }
                             )
                             ( SymbolPredicate
@@ -8690,9 +8690,9 @@
                     ( Connected Equivalence
                         ( TermSymbol
                             ( Location
-                                { locFile = "<nowhere>"
-                                , locLine = -1
-                                , locColumn = -1
+                                { locFile = "test/examples/inductive.tex"
+                                , locLine = 3
+                                , locColumn = 3
                                 }
                             )
                             ( SymbolPredicate
@@ -10637,9 +10637,9 @@
                     ( Connected Equivalence
                         ( TermSymbol
                             ( Location
-                                { locFile = "<nowhere>"
-                                , locLine = -1
-                                , locColumn = -1
+                                { locFile = "test/examples/inductive.tex"
+                                , locLine = 3
+                                , locColumn = 3
                                 }
                             )
                             ( SymbolPredicate
@@ -12511,9 +12511,9 @@
                     ( Connected Equivalence
                         ( TermSymbol
                             ( Location
-                                { locFile = "<nowhere>"
-                                , locLine = -1
-                                , locColumn = -1
+                                { locFile = "test/examples/inductive.tex"
+                                , locLine = 3
+                                , locColumn = 3
                                 }
                             )
                             ( SymbolPredicate

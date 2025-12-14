@@ -8,7 +8,12 @@
     ( Marker "formula_test_forall" )
     ( Lemma []
         ( StmtFormula
-            { formula = FormulaQuantified Universally
+            { pos = Location
+                { locFile = "test/examples/formula.tex"
+                , locLine = 2
+                , locColumn = 2
+                }
+            , formula = FormulaQuantified Universally
                 ( NamedVar "x" :|
                     [ NamedVar "y" ]
                 ) Unbounded
@@ -53,7 +58,12 @@
     ( Marker "formula_test_exists" )
     ( Lemma []
         ( StmtFormula
-            { formula = FormulaQuantified Existentially
+            { pos = Location
+                { locFile = "test/examples/formula.tex"
+                , locLine = 6
+                , locColumn = 6
+                }
+            , formula = FormulaQuantified Existentially
                 ( NamedVar "x" :|
                     [ NamedVar "y" ]
                 ) Unbounded
@@ -86,7 +96,12 @@
             { conn = Equivalence
             , mpos = Nothing
             , stmt1 = StmtFormula
-                { formula = FormulaQuantified Existentially
+                { pos = Location
+                    { locFile = "test/examples/formula.tex"
+                    , locLine = 10
+                    , locColumn = 10
+                    }
+                , formula = FormulaQuantified Existentially
                     ( NamedVar "x" :|
                         [ NamedVar "y" ]
                     ) Unbounded
@@ -111,7 +126,12 @@
                     , locColumn = 10
                     }
                 , stmt = StmtFormula
-                    { formula = FormulaQuantified Existentially
+                    { pos = Location
+                        { locFile = "test/examples/formula.tex"
+                        , locLine = 10
+                        , locColumn = 10
+                        }
+                    , formula = FormulaQuantified Existentially
                         ( NamedVar "x" :| [] ) Unbounded
                         ( FormulaChain
                             ( ChainBase

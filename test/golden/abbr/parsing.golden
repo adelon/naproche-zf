@@ -36,7 +36,12 @@
                 , b = Unbounded
                 , suchThat = Nothing
                 , stmt = StmtFormula
-                    { formula = FormulaChain
+                    { pos = Location
+                        { locFile = "test/examples/abbr.tex"
+                        , locLine = 2
+                        , locColumn = 2
+                        }
+                    , formula = FormulaChain
                         ( ChainBase
                             ( ExprVar
                                 ( NamedVar "y" ) :| []
@@ -73,6 +78,12 @@
                 )
             , stmt1 = StmtVerbPhrase
                 { args = TermExpr
+                    ( Location
+                        { locFile = "test/examples/abbr.tex"
+                        , locLine = 6
+                        , locColumn = 6
+                        }
+                    )
                     ( ExprVar
                         ( NamedVar "x" )
                     ) :| []
@@ -91,6 +102,12 @@
                 }
             , stmt2 = StmtVerbPhrase
                 { args = TermExpr
+                    ( Location
+                        { locFile = "test/examples/abbr.tex"
+                        , locLine = 6
+                        , locColumn = 6
+                        }
+                    )
                     ( ExprVar
                         ( NamedVar "x" )
                     ) :| []
@@ -134,7 +151,12 @@
             ) []
         )
         ( StmtFormula
-            { formula = FormulaChain
+            { pos = Location
+                { locFile = "test/examples/abbr.tex"
+                , locLine = 12
+                , locColumn = 12
+                }
+            , formula = FormulaChain
                 ( ChainBase
                     ( ExprVar
                         ( NamedVar "x" ) :| []
@@ -170,11 +192,17 @@
             , suchThat = Nothing
             , stmt = StmtNoun
                 { pos = Location
-                    { locFile = "<nowhere>"
-                    , locLine = -1
-                    , locColumn = -1
+                    { locFile = "test/examples/abbr.tex"
+                    , locLine = 16
+                    , locColumn = 16
                     }
                 , args = TermExpr
+                    ( Location
+                        { locFile = "test/examples/abbr.tex"
+                        , locLine = 16
+                        , locColumn = 16
+                        }
+                    )
                     ( ExprVar
                         ( NamedVar "x" )
                     ) :| []
@@ -233,7 +261,12 @@
             [ NamedVar "y" ]
         )
         ( StmtFormula
-            { formula = FormulaChain
+            { pos = Location
+                { locFile = "test/examples/abbr.tex"
+                , locLine = 22
+                , locColumn = 22
+                }
+            , formula = FormulaChain
                 ( ChainBase
                     ( ExprVar
                         ( NamedVar "x" ) :| []
@@ -268,6 +301,12 @@
                 )
             , stmt1 = StmtVerbPhrase
                 { args = TermExpr
+                    ( Location
+                        { locFile = "test/examples/abbr.tex"
+                        , locLine = 26
+                        , locColumn = 26
+                        }
+                    )
                     ( ExprVar
                         ( NamedVar "x" )
                     ) :| []
@@ -297,6 +336,12 @@
                             }
                         )
                         [ TermExpr
+                            ( Location
+                                { locFile = "test/examples/abbr.tex"
+                                , locLine = 26
+                                , locColumn = 26
+                                }
+                            )
                             ( ExprVar
                                 ( NamedVar "y" )
                             )
@@ -304,7 +349,12 @@
                     )
                 }
             , stmt2 = StmtFormula
-                { formula = FormulaChain
+                { pos = Location
+                    { locFile = "test/examples/abbr.tex"
+                    , locLine = 26
+                    , locColumn = 26
+                    }
+                , formula = FormulaChain
                     ( ChainBase
                         ( ExprVar
                             ( NamedVar "x" ) :| []
@@ -339,7 +389,12 @@
                     }
                 )
             , stmt1 = StmtFormula
-                { formula = FormulaChain
+                { pos = Location
+                    { locFile = "test/examples/abbr.tex"
+                    , locLine = 32
+                    , locColumn = 32
+                    }
+                , formula = FormulaChain
                     ( ChainBase
                         ( ExprVar
                             ( NamedVar "x" ) :| []
@@ -353,7 +408,12 @@
                     )
                 }
             , stmt2 = StmtFormula
-                { formula = FormulaChain
+                { pos = Location
+                    { locFile = "test/examples/abbr.tex"
+                    , locLine = 32
+                    , locColumn = 32
+                    }
+                , formula = FormulaChain
                     ( ChainBase
                         ( ExprVar
                             ( NamedVar "x" ) :| []
@@ -389,11 +449,17 @@
                 )
             , stmt1 = StmtNoun
                 { pos = Location
-                    { locFile = "<nowhere>"
-                    , locLine = -1
-                    , locColumn = -1
+                    { locFile = "test/examples/abbr.tex"
+                    , locLine = 38
+                    , locColumn = 38
                     }
                 , args = TermExpr
+                    ( Location
+                        { locFile = "test/examples/abbr.tex"
+                        , locLine = 38
+                        , locColumn = 38
+                        }
+                    )
                     ( ExprVar
                         ( NamedVar "x" )
                     ) :| []
@@ -417,6 +483,12 @@
                             }
                         )
                         [ TermExpr
+                            ( Location
+                                { locFile = "test/examples/abbr.tex"
+                                , locLine = 38
+                                , locColumn = 38
+                                }
+                            )
                             ( ExprVar
                                 ( NamedVar "y" )
                             )
@@ -424,7 +496,12 @@
                     ) ( Nothing ) ( [] ) ( Nothing )
                 }
             , stmt2 = StmtFormula
-                { formula = FormulaChain
+                { pos = Location
+                    { locFile = "test/examples/abbr.tex"
+                    , locLine = 38
+                    , locColumn = 38
+                    }
+                , formula = FormulaChain
                     ( ChainBase
                         ( ExprVar
                             ( NamedVar "x" ) :| []
@@ -460,6 +537,12 @@
                 )
             , stmt1 = StmtVerbPhrase
                 { args = TermExpr
+                    ( Location
+                        { locFile = "test/examples/abbr.tex"
+                        , locLine = 44
+                        , locColumn = 44
+                        }
+                    )
                     ( ExprVar
                         ( NamedVar "x" )
                     ) :| []
@@ -485,6 +568,12 @@
                             }
                         )
                         [ TermExpr
+                            ( Location
+                                { locFile = "test/examples/abbr.tex"
+                                , locLine = 44
+                                , locColumn = 44
+                                }
+                            )
                             ( ExprVar
                                 ( NamedVar "y" )
                             )
@@ -492,7 +581,12 @@
                     )
                 }
             , stmt2 = StmtFormula
-                { formula = FormulaChain
+                { pos = Location
+                    { locFile = "test/examples/abbr.tex"
+                    , locLine = 44
+                    , locColumn = 44
+                    }
+                , formula = FormulaChain
                     ( ChainBase
                         ( ExprVar
                             ( NamedVar "x" ) :| []

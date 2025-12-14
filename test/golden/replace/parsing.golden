@@ -11,7 +11,12 @@
             { conn = Equivalence
             , mpos = Nothing
             , stmt1 = StmtFormula
-                { formula = FormulaChain
+                { pos = Location
+                    { locFile = "test/examples/replace.tex"
+                    , locLine = 2
+                    , locColumn = 2
+                    }
+                , formula = FormulaChain
                     ( ChainBase
                         ( ExprVar
                             ( NamedVar "x" ) :| []
@@ -41,7 +46,12 @@
                 { conn = Disjunction
                 , mpos = Nothing
                 , stmt1 = StmtFormula
-                    { formula = FormulaChain
+                    { pos = Location
+                        { locFile = "test/examples/replace.tex"
+                        , locLine = 2
+                        , locColumn = 2
+                        }
+                    , formula = FormulaChain
                         ( ChainBase
                             ( ExprVar
                                 ( NamedVar "x" ) :| []
@@ -55,7 +65,12 @@
                         )
                     }
                 , stmt2 = StmtFormula
-                    { formula = FormulaChain
+                    { pos = Location
+                        { locFile = "test/examples/replace.tex"
+                        , locLine = 2
+                        , locColumn = 2
+                        }
+                    , formula = FormulaChain
                         ( ChainBase
                             ( ExprVar
                                 ( NamedVar "x" ) :| []
@@ -154,7 +169,12 @@
     ( Marker "pair_emptyset_in_times_unit" )
     ( Lemma []
         ( StmtFormula
-            { formula = FormulaChain
+            { pos = Location
+                { locFile = "test/examples/replace.tex"
+                , locLine = 14
+                , locColumn = 14
+                }
+            , formula = FormulaChain
                 ( ChainBase
                     ( ExprOp
                         [ Just
@@ -224,7 +244,12 @@
                 ( NamedVar "a" )
             )
             ( StmtFormula
-                { formula = FormulaChain
+                { pos = Location
+                    { locFile = "<nowhere>"
+                    , locLine = -1
+                    , locColumn = -1
+                    }
+                , formula = FormulaChain
                     ( ChainBase
                         ( ExprVar
                             ( NamedVar "y" ) :| []
@@ -252,7 +277,12 @@
     ( Marker "times_replacement_test" )
     ( Lemma []
         ( StmtFormula
-            { formula = FormulaChain
+            { pos = Location
+                { locFile = "test/examples/replace.tex"
+                , locLine = 26
+                , locColumn = 26
+                }
+            , formula = FormulaChain
                 ( ChainBase
                     ( ExprOp
                         [ Nothing

@@ -1,4 +1,4 @@
-fof(definefunctiontest,conjecture,elem(fx,fy)=>elem(fx,fy),"test/examples/proofdefinefunction.tex: 26:26").
+fof(definefunctiontest,conjecture,elem(fx,fy)=>elem(fx,fy),"test/examples/proofdefinefunction.tex 26:26").
 fof(relation,axiom,![Xf]:(relation(Xf)<=>Xf=Xf)).
 fof(rightunique,axiom,![Xf]:(rightunique(Xf)<=>Xf=Xf)).
 fof(dom,axiom,![Xf]:dom(Xf)=Xf).

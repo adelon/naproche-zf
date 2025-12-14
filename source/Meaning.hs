@@ -392,7 +392,7 @@ glossFun (Raw.Fun pos phrase es) = do
 
 glossTerm :: Raw.Term -> Gloss (Sem.Term, Sem.Formula -> Sem.Formula)
 glossTerm = \case
-    Raw.TermExpr e ->
+    Raw.TermExpr loc e ->
         (, id) <$> glossExpr e
     Raw.TermFun f ->
         glossFun f
@@ -412,7 +412,7 @@ glossTerm = \case
 
 glossStmt :: Raw.Stmt -> Gloss Sem.Formula
 glossStmt = \case
-    Raw.StmtFormula f -> glossFormula f
+    Raw.StmtFormula loc f -> glossFormula f
     Raw.StmtNeg pos s -> Sem.Not pos <$> glossStmt s
     Raw.StmtVerbPhrase ts vp -> do
         (ts', quantifies) <- NonEmpty.unzip <$> glossTerm `each` ts
@@ -596,7 +596,7 @@ glossProof = \case
             where
                 mmt' = case mt of
                     Nothing -> pure Nothing
-                    Just (Raw.TermExpr (Raw.ExprVar x)) -> pure (Just (Sem.TermVar x))
+                    Just (Raw.TermExpr loc (Raw.ExprVar x)) -> pure (Just (Sem.TermVar x))
                     Just _t -> throwError GlossInductionError
     Raw.ByOrdInduction pos proof ->
         Sem.ByOrdInduction pos <$> glossProof proof

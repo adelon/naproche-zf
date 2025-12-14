@@ -18,7 +18,12 @@
             , b = Unbounded
             , suchThat = Nothing
             , stmt = StmtFormula
-                { formula = FormulaChain
+                { pos = Location
+                    { locFile = "test/examples/prooffix.tex"
+                    , locLine = 2
+                    , locColumn = 2
+                    }
+                , formula = FormulaChain
                     ( ChainBase
                         ( ExprVar
                             ( NamedVar "x" ) :| []
@@ -57,7 +62,12 @@
                 }
             ) Nothing
             ( StmtFormula
-                { formula = FormulaChain
+                { pos = Location
+                    { locFile = "test/examples/prooffix.tex"
+                    , locLine = 6
+                    , locColumn = 6
+                    }
+                , formula = FormulaChain
                     ( ChainBase
                         ( ExprVar
                             ( NamedVar "x" ) :| []

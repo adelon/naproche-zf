@@ -13,7 +13,12 @@
             ( NamedVar "B" )
         )
         ( StmtFormula
-            { formula = FormulaChain
+            { pos = Location
+                { locFile = "test/examples/inductive.tex"
+                , locLine = 4
+                , locColumn = 4
+                }
+            , formula = FormulaChain
                 ( ChainBase
                     ( ExprVar
                         ( NamedVar "A" ) :| []
@@ -169,7 +174,12 @@
     ( Marker "lmao" )
     ( Axiom []
         ( StmtFormula
-            { formula = FormulaChain
+            { pos = Location
+                { locFile = "test/examples/inductive.tex"
+                , locLine = 28
+                , locColumn = 28
+                }
+            , formula = FormulaChain
                 ( ChainBase
                     ( ExprVar
                         ( NamedVar "x" ) :| []
@@ -338,7 +348,12 @@
             ) ( Nothing ) ( [] ) ( Nothing )
         , AsmSuppose
             ( StmtFormula
-                { formula = FormulaChain
+                { pos = Location
+                    { locFile = "test/examples/inductive.tex"
+                    , locLine = 41
+                    , locColumn = 41
+                    }
+                , formula = FormulaChain
                     ( ChainBase
                         ( ExprVar
                             ( NamedVar "A" ) :| []
@@ -354,7 +369,12 @@
             )
         ]
         ( StmtFormula
-            { formula = FormulaChain
+            { pos = Location
+                { locFile = "test/examples/inductive.tex"
+                , locLine = 42
+                , locColumn = 42
+                }
+            , formula = FormulaChain
                 ( ChainBase
                     ( ExprOp
                         [ Just

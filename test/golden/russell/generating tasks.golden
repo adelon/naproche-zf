@@ -42,9 +42,9 @@
                     ( Connected Equivalence
                         ( TermSymbol
                             ( Location
-                                { locFile = "<nowhere>"
-                                , locLine = -1
-                                , locColumn = -1
+                                { locFile = "test/examples/russell.tex"
+                                , locLine = 1
+                                , locColumn = 1
                                 }
                             )
                             ( SymbolPredicate
@@ -218,9 +218,9 @@
                     ( Connected Equivalence
                         ( TermSymbol
                             ( Location
-                                { locFile = "<nowhere>"
-                                , locLine = -1
-                                , locColumn = -1
+                                { locFile = "test/examples/russell.tex"
+                                , locLine = 1
+                                , locColumn = 1
                                 }
                             )
                             ( SymbolPredicate
@@ -524,9 +524,9 @@
                     ( Connected Equivalence
                         ( TermSymbol
                             ( Location
-                                { locFile = "<nowhere>"
-                                , locLine = -1
-                                , locColumn = -1
+                                { locFile = "test/examples/russell.tex"
+                                , locLine = 1
+                                , locColumn = 1
                                 }
                             )
                             ( SymbolPredicate
@@ -784,9 +784,9 @@
         ]
     , taskConjectureLabel = Marker "no_universal_set"
     , taskLocation = Location
-        { locFile = "<nowhere>"
-        , locLine = -1
-        , locColumn = -1
+        { locFile = "test/examples/russell.tex"
+        , locLine = 15
+        , locColumn = 15
         }
     , taskConjecture = PropositionalConstant IsBottom
     }
@@ -834,9 +834,9 @@
                     ( Connected Equivalence
                         ( TermSymbol
                             ( Location
-                                { locFile = "<nowhere>"
-                                , locLine = -1
-                                , locColumn = -1
+                                { locFile = "test/examples/russell.tex"
+                                , locLine = 1
+                                , locColumn = 1
                                 }
                             )
                             ( SymbolPredicate
@@ -1098,9 +1098,9 @@
         ]
     , taskConjectureLabel = Marker "no_universal_set"
     , taskLocation = Location
-        { locFile = "<nowhere>"
-        , locLine = -1
-        , locColumn = -1
+        { locFile = "test/examples/russell.tex"
+        , locLine = 15
+        , locColumn = 15
         }
     , taskConjecture = PropositionalConstant IsBottom
     }

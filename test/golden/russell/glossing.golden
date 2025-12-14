@@ -227,9 +227,9 @@
                     ) JustificationEmpty
                     ( Have
                         ( Location
-                            { locFile = "<nowhere>"
-                            , locLine = -1
-                            , locColumn = -1
+                            { locFile = "test/examples/russell.tex"
+                            , locLine = 15
+                            , locColumn = 15
                             }
                         ) ( PropositionalConstant IsBottom ) JustificationEmpty
                         ( Qed

@@ -17,7 +17,12 @@
                     }
                 )
             , stmt1 = StmtFormula
-                { formula = FormulaChain
+                { pos = Location
+                    { locFile = "test/examples/proofassume.tex"
+                    , locLine = 2
+                    , locColumn = 2
+                    }
+                , formula = FormulaChain
                     ( ChainBase
                         ( ExprVar
                             ( NamedVar "x" ) :| []
@@ -31,7 +36,12 @@
                     )
                 }
             , stmt2 = StmtFormula
-                { formula = FormulaChain
+                { pos = Location
+                    { locFile = "test/examples/proofassume.tex"
+                    , locLine = 2
+                    , locColumn = 2
+                    }
+                , formula = FormulaChain
                     ( ChainBase
                         ( ExprVar
                             ( NamedVar "x" ) :| []
@@ -62,7 +72,12 @@
             }
         )
         ( StmtFormula
-            { formula = FormulaChain
+            { pos = Location
+                { locFile = "test/examples/proofassume.tex"
+                , locLine = 5
+                , locColumn = 5
+                }
+            , formula = FormulaChain
                 ( ChainBase
                     ( ExprVar
                         ( NamedVar "x" ) :| []
@@ -84,7 +99,12 @@
                 }
             ) Nothing
             ( StmtFormula
-                { formula = FormulaChain
+                { pos = Location
+                    { locFile = "test/examples/proofassume.tex"
+                    , locLine = 6
+                    , locColumn = 6
+                    }
+                , formula = FormulaChain
                     ( ChainBase
                         ( ExprVar
                             ( NamedVar "x" ) :| []
@@ -122,7 +142,12 @@
                 { conn = Conjunction
                 , mpos = Nothing
                 , stmt1 = StmtFormula
-                    { formula = FormulaChain
+                    { pos = Location
+                        { locFile = "test/examples/proofassume.tex"
+                        , locLine = 10
+                        , locColumn = 10
+                        }
+                    , formula = FormulaChain
                         ( ChainBase
                             ( ExprVar
                                 ( NamedVar "x" ) :| []
@@ -136,7 +161,12 @@
                         )
                     }
                 , stmt2 = StmtFormula
-                    { formula = FormulaChain
+                    { pos = Location
+                        { locFile = "test/examples/proofassume.tex"
+                        , locLine = 10
+                        , locColumn = 10
+                        }
+                    , formula = FormulaChain
                         ( ChainBase
                             ( ExprVar
                                 ( NamedVar "a" ) :| []
@@ -151,7 +181,12 @@
                     }
                 }
             , stmt2 = StmtFormula
-                { formula = FormulaChain
+                { pos = Location
+                    { locFile = "test/examples/proofassume.tex"
+                    , locLine = 10
+                    , locColumn = 10
+                    }
+                , formula = FormulaChain
                     ( ChainBase
                         ( ExprVar
                             ( NamedVar "x" ) :| []
@@ -182,7 +217,12 @@
             }
         )
         ( StmtFormula
-            { formula = FormulaChain
+            { pos = Location
+                { locFile = "test/examples/proofassume.tex"
+                , locLine = 13
+                , locColumn = 13
+                }
+            , formula = FormulaChain
                 ( ChainBase
                     ( ExprVar
                         ( NamedVar "a" ) :| []
@@ -204,7 +244,12 @@
                 }
             )
             ( StmtFormula
-                { formula = FormulaChain
+                { pos = Location
+                    { locFile = "test/examples/proofassume.tex"
+                    , locLine = 14
+                    , locColumn = 14
+                    }
+                , formula = FormulaChain
                     ( ChainBase
                         ( ExprVar
                             ( NamedVar "x" ) :| []
@@ -226,7 +271,12 @@
                     }
                 ) Nothing
                 ( StmtFormula
-                    { formula = FormulaChain
+                    { pos = Location
+                        { locFile = "test/examples/proofassume.tex"
+                        , locLine = 15
+                        , locColumn = 15
+                        }
+                    , formula = FormulaChain
                         ( ChainBase
                             ( ExprVar
                                 ( NamedVar "x" ) :| []

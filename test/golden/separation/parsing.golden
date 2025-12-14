@@ -8,7 +8,12 @@
     ( Marker "sep_test" )
     ( Lemma []
         ( StmtFormula
-            { formula = FormulaChain
+            { pos = Location
+                { locFile = "test/examples/separation.tex"
+                , locLine = 2
+                , locColumn = 2
+                }
+            , formula = FormulaChain
                 ( ChainBase
                     ( ExprVar
                         ( NamedVar "X" ) :| []
@@ -22,7 +27,12 @@
                             ( NamedVar "X" )
                         )
                         ( StmtFormula
-                            { formula = FormulaChain
+                            { pos = Location
+                                { locFile = "<nowhere>"
+                                , locLine = -1
+                                , locColumn = -1
+                                }
+                            , formula = FormulaChain
                                 ( ChainBase
                                     ( ExprVar
                                         ( NamedVar "x" ) :| []

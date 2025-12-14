@@ -60,7 +60,12 @@
                     [ NamedVar "x" ]
                 ) ( [] ) ( Nothing )
             , stmt = StmtFormula
-                { formula = FormulaChain
+                { pos = Location
+                    { locFile = "test/examples/russell.tex"
+                    , locLine = 4
+                    , locColumn = 4
+                    }
+                , formula = FormulaChain
                     ( ChainBase
                         ( ExprVar
                             ( NamedVar "x" ) :| []
@@ -192,7 +197,12 @@
                         ( NamedVar "V" )
                     )
                     ( StmtFormula
-                        { formula = FormulaChain
+                        { pos = Location
+                            { locFile = "<nowhere>"
+                            , locLine = -1
+                            , locColumn = -1
+                            }
+                        , formula = FormulaChain
                             ( ChainBase
                                 ( ExprVar
                                     ( NamedVar "x" ) :| []
@@ -218,7 +228,12 @@
                         { conn = Equivalence
                         , mpos = Nothing
                         , stmt1 = StmtFormula
-                            { formula = FormulaChain
+                            { pos = Location
+                                { locFile = "test/examples/russell.tex"
+                                , locLine = 14
+                                , locColumn = 14
+                                }
+                            , formula = FormulaChain
                                 ( ChainBase
                                     ( ExprVar
                                         ( NamedVar "R" ) :| []
@@ -232,7 +247,12 @@
                                 )
                             }
                         , stmt2 = StmtFormula
-                            { formula = FormulaChain
+                            { pos = Location
+                                { locFile = "test/examples/russell.tex"
+                                , locLine = 14
+                                , locColumn = 14
+                                }
+                            , formula = FormulaChain
                                 ( ChainBase
                                     ( ExprVar
                                         ( NamedVar "R" ) :| []
@@ -249,12 +269,20 @@
                     ) JustificationEmpty
                     ( Have
                         ( Location
-                            { locFile = "<nowhere>"
-                            , locLine = -1
-                            , locColumn = -1
+                            { locFile = "test/examples/russell.tex"
+                            , locLine = 15
+                            , locColumn = 15
                             }
                         ) Nothing
-                        ( StmtFormula { formula = PropositionalConstant IsBottom } ) JustificationEmpty ( Qed Nothing JustificationEmpty )
+                        ( StmtFormula
+                            { pos = Location
+                                { locFile = "test/examples/russell.tex"
+                                , locLine = 15
+                                , locColumn = 15
+                                }
+                            , formula = PropositionalConstant IsBottom
+                            }
+                        ) JustificationEmpty ( Qed Nothing JustificationEmpty )
                     )
                 )
             )

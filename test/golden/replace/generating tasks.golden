@@ -24,9 +24,9 @@
                                 )
                             , TermSymbol
                                 ( Location
-                                    { locFile = "<nowhere>"
-                                    , locLine = -1
-                                    , locColumn = -1
+                                    { locFile = "test/examples/replace.tex"
+                                    , locLine = 9
+                                    , locColumn = 9
                                     }
                                 )
                                 ( SymbolMixfix
@@ -69,9 +69,9 @@
                             )
                             ( TermSymbol
                                 ( Location
-                                    { locFile = "<nowhere>"
-                                    , locLine = -1
-                                    , locColumn = -1
+                                    { locFile = "test/examples/replace.tex"
+                                    , locLine = 9
+                                    , locColumn = 9
                                     }
                                 )
                                 ( SymbolPredicate
@@ -605,9 +605,9 @@
                                 )
                             , TermSymbol
                                 ( Location
-                                    { locFile = "<nowhere>"
-                                    , locLine = -1
-                                    , locColumn = -1
+                                    { locFile = "test/examples/replace.tex"
+                                    , locLine = 9
+                                    , locColumn = 9
                                     }
                                 )
                                 ( SymbolMixfix
@@ -650,9 +650,9 @@
                             )
                             ( TermSymbol
                                 ( Location
-                                    { locFile = "<nowhere>"
-                                    , locLine = -1
-                                    , locColumn = -1
+                                    { locFile = "test/examples/replace.tex"
+                                    , locLine = 9
+                                    , locColumn = 9
                                     }
                                 )
                                 ( SymbolPredicate
@@ -1399,9 +1399,9 @@
                                 )
                             , TermSymbol
                                 ( Location
-                                    { locFile = "<nowhere>"
-                                    , locLine = -1
-                                    , locColumn = -1
+                                    { locFile = "test/examples/replace.tex"
+                                    , locLine = 9
+                                    , locColumn = 9
                                     }
                                 )
                                 ( SymbolMixfix
@@ -1444,9 +1444,9 @@
                             )
                             ( TermSymbol
                                 ( Location
-                                    { locFile = "<nowhere>"
-                                    , locLine = -1
-                                    , locColumn = -1
+                                    { locFile = "test/examples/replace.tex"
+                                    , locLine = 9
+                                    , locColumn = 9
                                     }
                                 )
                                 ( SymbolPredicate

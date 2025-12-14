@@ -34,7 +34,12 @@
             { conn = Disjunction
             , mpos = Nothing
             , stmt1 = StmtFormula
-                { formula = FormulaPredicate
+                { pos = Location
+                    { locFile = "test/examples/geometry.tex"
+                    , locLine = 2
+                    , locColumn = 2
+                    }
+                , formula = FormulaPredicate
                     ( PrefixPredicate "Betw" 3 )
                     ( ExprVar
                         ( NamedVar "a" ) :|
@@ -49,7 +54,12 @@
                 { conn = Disjunction
                 , mpos = Nothing
                 , stmt1 = StmtFormula
-                    { formula = FormulaPredicate
+                    { pos = Location
+                        { locFile = "test/examples/geometry.tex"
+                        , locLine = 2
+                        , locColumn = 2
+                        }
+                    , formula = FormulaPredicate
                         ( PrefixPredicate "Betw" 3 )
                         ( ExprVar
                             ( NamedVar "b" ) :|
@@ -61,7 +71,12 @@
                         )
                     }
                 , stmt2 = StmtFormula
-                    { formula = FormulaPredicate
+                    { pos = Location
+                        { locFile = "test/examples/geometry.tex"
+                        , locLine = 2
+                        , locColumn = 2
+                        }
+                    , formula = FormulaPredicate
                         ( PrefixPredicate "Betw" 3 )
                         ( ExprVar
                             ( NamedVar "c" ) :|
@@ -104,7 +119,12 @@
             ) ( Nothing ) ( [] ) ( Nothing )
         ]
         ( StmtFormula
-            { formula = FormulaPredicate
+            { pos = Location
+                { locFile = "test/examples/geometry.tex"
+                , locLine = 7
+                , locColumn = 7
+                }
+            , formula = FormulaPredicate
                 ( PrefixPredicate "Cong" 4 )
                 ( ExprVar
                     ( NamedVar "a" ) :|
@@ -162,7 +182,12 @@
                 { conn = Conjunction
                 , mpos = Nothing
                 , stmt1 = StmtFormula
-                    { formula = FormulaPredicate
+                    { pos = Location
+                        { locFile = "test/examples/geometry.tex"
+                        , locLine = 12
+                        , locColumn = 12
+                        }
+                    , formula = FormulaPredicate
                         ( PrefixPredicate "Cong" 4 )
                         ( ExprVar
                             ( NamedVar "c" ) :|
@@ -176,7 +201,12 @@
                         )
                     }
                 , stmt2 = StmtFormula
-                    { formula = FormulaPredicate
+                    { pos = Location
+                        { locFile = "test/examples/geometry.tex"
+                        , locLine = 12
+                        , locColumn = 12
+                        }
+                    , formula = FormulaPredicate
                         ( PrefixPredicate "Cong" 4 )
                         ( ExprVar
                             ( NamedVar "c" ) :|
@@ -191,7 +221,12 @@
                     }
                 }
             , stmt2 = StmtFormula
-                { formula = FormulaPredicate
+                { pos = Location
+                    { locFile = "test/examples/geometry.tex"
+                    , locLine = 12
+                    , locColumn = 12
+                    }
+                , formula = FormulaPredicate
                     ( PrefixPredicate "Cong" 4 )
                     ( ExprVar
                         ( NamedVar "a" ) :|
@@ -246,7 +281,12 @@
                     }
                 )
             , stmt1 = StmtFormula
-                { formula = FormulaPredicate
+                { pos = Location
+                    { locFile = "test/examples/geometry.tex"
+                    , locLine = 17
+                    , locColumn = 17
+                    }
+                , formula = FormulaPredicate
                     ( PrefixPredicate "Cong" 4 )
                     ( ExprVar
                         ( NamedVar "a" ) :|
@@ -260,7 +300,12 @@
                     )
                 }
             , stmt2 = StmtFormula
-                { formula = FormulaChain
+                { pos = Location
+                    { locFile = "test/examples/geometry.tex"
+                    , locLine = 17
+                    , locColumn = 17
+                    }
+                , formula = FormulaChain
                     ( ChainBase
                         ( ExprVar
                             ( NamedVar "a" ) :| []
@@ -313,7 +358,12 @@
                         { conn = Conjunction
                         , mpos = Nothing
                         , stmt1 = StmtFormula
-                            { formula = FormulaPredicate
+                            { pos = Location
+                                { locFile = "test/examples/geometry.tex"
+                                , locLine = 22
+                                , locColumn = 22
+                                }
+                            , formula = FormulaPredicate
                                 ( PrefixPredicate "Betw" 3 )
                                 ( ExprVar
                                     ( NamedVar "a" ) :|
@@ -325,7 +375,12 @@
                                 )
                             }
                         , stmt2 = StmtFormula
-                            { formula = FormulaPredicate
+                            { pos = Location
+                                { locFile = "test/examples/geometry.tex"
+                                , locLine = 22
+                                , locColumn = 22
+                                }
+                            , formula = FormulaPredicate
                                 ( PrefixPredicate "Cong" 4 )
                                 ( ExprVar
                                     ( NamedVar "b" ) :|
@@ -395,7 +450,12 @@
             { conn = Conjunction
             , mpos = Nothing
             , stmt1 = StmtFormula
-                { formula = Connected Conjunction
+                { pos = Location
+                    { locFile = "test/examples/geometry.tex"
+                    , locLine = 29
+                    , locColumn = 29
+                    }
+                , formula = Connected Conjunction
                     ( FormulaPredicate
                         ( PrefixPredicate "Betw" 3 )
                         ( ExprVar
@@ -420,7 +480,12 @@
                     )
                 }
             , stmt2 = StmtFormula
-                { formula = Connected Conjunction
+                { pos = Location
+                    { locFile = "test/examples/geometry.tex"
+                    , locLine = 32
+                    , locColumn = 32
+                    }
+                , formula = Connected Conjunction
                     ( Connected Conjunction
                         ( Connected Conjunction
                             ( FormulaPredicate
@@ -528,7 +593,12 @@
                 { conn = Conjunction
                 , mpos = Nothing
                 , stmt1 = StmtFormula
-                    { formula = FormulaPredicate
+                    { pos = Location
+                        { locFile = "test/examples/geometry.tex"
+                        , locLine = 41
+                        , locColumn = 41
+                        }
+                    , formula = FormulaPredicate
                         ( PrefixPredicate "OFS" 8 )
                         ( ExprVar
                             ( NamedVar "a" ) :|
@@ -550,7 +620,12 @@
                         )
                     }
                 , stmt2 = StmtFormula
-                    { formula = FormulaChain
+                    { pos = Location
+                        { locFile = "test/examples/geometry.tex"
+                        , locLine = 42
+                        , locColumn = 42
+                        }
+                    , formula = FormulaChain
                         ( ChainBase
                             ( ExprVar
                                 ( NamedVar "a" ) :| []
@@ -565,7 +640,12 @@
                     }
                 }
             , stmt2 = StmtFormula
-                { formula = FormulaPredicate
+                { pos = Location
+                    { locFile = "test/examples/geometry.tex"
+                    , locLine = 42
+                    , locColumn = 42
+                    }
+                , formula = FormulaPredicate
                     ( PrefixPredicate "Cong" 4 )
                     ( ExprVar
                         ( NamedVar "c" ) :|
@@ -618,7 +698,12 @@
                     }
                 )
             , stmt1 = StmtFormula
-                { formula = FormulaPredicate
+                { pos = Location
+                    { locFile = "test/examples/geometry.tex"
+                    , locLine = 48
+                    , locColumn = 48
+                    }
+                , formula = FormulaPredicate
                     ( PrefixPredicate "Betw" 3 )
                     ( ExprVar
                         ( NamedVar "a" ) :|
@@ -630,7 +715,12 @@
                     )
                 }
             , stmt2 = StmtFormula
-                { formula = FormulaChain
+                { pos = Location
+                    { locFile = "test/examples/geometry.tex"
+                    , locLine = 48
+                    , locColumn = 48
+                    }
+                , formula = FormulaChain
                     ( ChainBase
                         ( ExprVar
                             ( NamedVar "a" ) :| []
@@ -691,7 +781,12 @@
                 { conn = Conjunction
                 , mpos = Nothing
                 , stmt1 = StmtFormula
-                    { formula = FormulaPredicate
+                    { pos = Location
+                        { locFile = "test/examples/geometry.tex"
+                        , locLine = 54
+                        , locColumn = 54
+                        }
+                    , formula = FormulaPredicate
                         ( PrefixPredicate "Betw" 3 )
                         ( ExprVar
                             ( NamedVar "x" ) :|
@@ -703,7 +798,12 @@
                         )
                     }
                 , stmt2 = StmtFormula
-                    { formula = FormulaPredicate
+                    { pos = Location
+                        { locFile = "test/examples/geometry.tex"
+                        , locLine = 54
+                        , locColumn = 54
+                        }
+                    , formula = FormulaPredicate
                         ( PrefixPredicate "Betw" 3 )
                         ( ExprVar
                             ( NamedVar "y" ) :|
@@ -743,7 +843,12 @@
                             { conn = Conjunction
                             , mpos = Nothing
                             , stmt1 = StmtFormula
-                                { formula = FormulaPredicate
+                                { pos = Location
+                                    { locFile = "test/examples/geometry.tex"
+                                    , locLine = 55
+                                    , locColumn = 55
+                                    }
+                                , formula = FormulaPredicate
                                     ( PrefixPredicate "Betw" 3 )
                                     ( ExprVar
                                         ( NamedVar "u" ) :|
@@ -755,7 +860,12 @@
                                     )
                                 }
                             , stmt2 = StmtFormula
-                                { formula = FormulaPredicate
+                                { pos = Location
+                                    { locFile = "test/examples/geometry.tex"
+                                    , locLine = 55
+                                    , locColumn = 55
+                                    }
+                                , formula = FormulaPredicate
                                     ( PrefixPredicate "Betw" 3 )
                                     ( ExprVar
                                         ( NamedVar "v" ) :|
@@ -817,7 +927,12 @@
                 { conn = Conjunction
                 , mpos = Nothing
                 , stmt1 = StmtFormula
-                    { formula = FormulaPredicate
+                    { pos = Location
+                        { locFile = "test/examples/geometry.tex"
+                        , locLine = 68
+                        , locColumn = 68
+                        }
+                    , formula = FormulaPredicate
                         ( PrefixPredicate "Cong" 4 )
                         ( ExprVar
                             ( NamedVar "x" ) :|
@@ -834,7 +949,12 @@
                     { conn = Conjunction
                     , mpos = Nothing
                     , stmt1 = StmtFormula
-                        { formula = FormulaPredicate
+                        { pos = Location
+                            { locFile = "test/examples/geometry.tex"
+                            , locLine = 68
+                            , locColumn = 68
+                            }
+                        , formula = FormulaPredicate
                             ( PrefixPredicate "Cong" 4 )
                             ( ExprVar
                                 ( NamedVar "y" ) :|
@@ -851,7 +971,12 @@
                         { conn = Conjunction
                         , mpos = Nothing
                         , stmt1 = StmtFormula
-                            { formula = FormulaPredicate
+                            { pos = Location
+                                { locFile = "test/examples/geometry.tex"
+                                , locLine = 69
+                                , locColumn = 69
+                                }
+                            , formula = FormulaPredicate
                                 ( PrefixPredicate "Cong" 4 )
                                 ( ExprVar
                                     ( NamedVar "z" ) :|
@@ -865,7 +990,12 @@
                                 )
                             }
                         , stmt2 = StmtFormula
-                            { formula = FormulaChain
+                            { pos = Location
+                                { locFile = "test/examples/geometry.tex"
+                                , locLine = 69
+                                , locColumn = 69
+                                }
+                            , formula = FormulaChain
                                 ( ChainBase
                                     ( ExprVar
                                         ( NamedVar "u" ) :| []
@@ -883,6 +1013,12 @@
                 }
             , stmt2 = StmtVerbPhrase
                 { args = TermExpr
+                    ( Location
+                        { locFile = "test/examples/geometry.tex"
+                        , locLine = 70
+                        , locColumn = 70
+                        }
+                    )
                     ( ExprVar
                         ( NamedVar "x" )
                     ) :| []
@@ -904,10 +1040,22 @@
                         , Nothing
                         ]
                         [ TermExpr
+                            ( Location
+                                { locFile = "test/examples/geometry.tex"
+                                , locLine = 70
+                                , locColumn = 70
+                                }
+                            )
                             ( ExprVar
                                 ( NamedVar "y" )
                             )
                         , TermExpr
+                            ( Location
+                                { locFile = "test/examples/geometry.tex"
+                                , locLine = 70
+                                , locColumn = 70
+                                }
+                            )
                             ( ExprVar
                                 ( NamedVar "z" )
                             )
@@ -945,7 +1093,12 @@
             ) ( Nothing ) ( [] ) ( Nothing )
         ]
         ( StmtFormula
-            { formula = FormulaPredicate
+            { pos = Location
+                { locFile = "test/examples/geometry.tex"
+                , locLine = 84
+                , locColumn = 84
+                }
+            , formula = FormulaPredicate
                 ( PrefixPredicate "Cong" 4 )
                 ( ExprVar
                     ( NamedVar "a" ) :|
@@ -991,7 +1144,12 @@
             ) ( Nothing ) ( [] ) ( Nothing )
         , AsmSuppose
             ( StmtFormula
-                { formula = FormulaPredicate
+                { pos = Location
+                    { locFile = "test/examples/geometry.tex"
+                    , locLine = 90
+                    , locColumn = 90
+                    }
+                , formula = FormulaPredicate
                     ( PrefixPredicate "Cong" 4 )
                     ( ExprVar
                         ( NamedVar "a" ) :|
@@ -1007,7 +1165,12 @@
             )
         ]
         ( StmtFormula
-            { formula = FormulaPredicate
+            { pos = Location
+                { locFile = "test/examples/geometry.tex"
+                , locLine = 91
+                , locColumn = 91
+                }
+            , formula = FormulaPredicate
                 ( PrefixPredicate "Cong" 4 )
                 ( ExprVar
                     ( NamedVar "c" ) :|
@@ -1067,7 +1230,12 @@
                 { conn = Conjunction
                 , mpos = Nothing
                 , stmt1 = StmtFormula
-                    { formula = FormulaPredicate
+                    { pos = Location
+                        { locFile = "test/examples/geometry.tex"
+                        , locLine = 97
+                        , locColumn = 97
+                        }
+                    , formula = FormulaPredicate
                         ( PrefixPredicate "Cong" 4 )
                         ( ExprVar
                             ( NamedVar "a" ) :|
@@ -1081,7 +1249,12 @@
                         )
                     }
                 , stmt2 = StmtFormula
-                    { formula = FormulaPredicate
+                    { pos = Location
+                        { locFile = "test/examples/geometry.tex"
+                        , locLine = 97
+                        , locColumn = 97
+                        }
+                    , formula = FormulaPredicate
                         ( PrefixPredicate "Cong" 4 )
                         ( ExprVar
                             ( NamedVar "c" ) :|
@@ -1096,7 +1269,12 @@
                     }
                 }
             , stmt2 = StmtFormula
-                { formula = FormulaPredicate
+                { pos = Location
+                    { locFile = "test/examples/geometry.tex"
+                    , locLine = 98
+                    , locColumn = 98
+                    }
+                , formula = FormulaPredicate
                     ( PrefixPredicate "Cong" 4 )
                     ( ExprVar
                         ( NamedVar "a" ) :|
@@ -1152,7 +1330,12 @@
                     }
                 )
             , stmt1 = StmtFormula
-                { formula = FormulaPredicate
+                { pos = Location
+                    { locFile = "test/examples/geometry.tex"
+                    , locLine = 104
+                    , locColumn = 104
+                    }
+                , formula = FormulaPredicate
                     ( PrefixPredicate "Cong" 4 )
                     ( ExprVar
                         ( NamedVar "a" ) :|
@@ -1166,7 +1349,12 @@
                     )
                 }
             , stmt2 = StmtFormula
-                { formula = FormulaPredicate
+                { pos = Location
+                    { locFile = "test/examples/geometry.tex"
+                    , locLine = 105
+                    , locColumn = 105
+                    }
+                , formula = FormulaPredicate
                     ( PrefixPredicate "Cong" 4 )
                     ( ExprVar
                         ( NamedVar "b" ) :|
@@ -1222,7 +1410,12 @@
                     }
                 )
             , stmt1 = StmtFormula
-                { formula = FormulaPredicate
+                { pos = Location
+                    { locFile = "test/examples/geometry.tex"
+                    , locLine = 111
+                    , locColumn = 111
+                    }
+                , formula = FormulaPredicate
                     ( PrefixPredicate "Cong" 4 )
                     ( ExprVar
                         ( NamedVar "a" ) :|
@@ -1236,7 +1429,12 @@
                     )
                 }
             , stmt2 = StmtFormula
-                { formula = FormulaPredicate
+                { pos = Location
+                    { locFile = "test/examples/geometry.tex"
+                    , locLine = 112
+                    , locColumn = 112
+                    }
+                , formula = FormulaPredicate
                     ( PrefixPredicate "Cong" 4 )
                     ( ExprVar
                         ( NamedVar "b" ) :|
@@ -1280,7 +1478,12 @@
             ) ( Nothing ) ( [] ) ( Nothing )
         ]
         ( StmtFormula
-            { formula = FormulaPredicate
+            { pos = Location
+                { locFile = "test/examples/geometry.tex"
+                , locLine = 118
+                , locColumn = 118
+                }
+            , formula = FormulaPredicate
                 ( PrefixPredicate "Cong" 4 )
                 ( ExprVar
                     ( NamedVar "a" ) :|
