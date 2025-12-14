@@ -2,6 +2,11 @@
     { taskDirectness = Direct
     , taskHypotheses = []
     , taskConjectureLabel = Marker "dummy_abbr_test"
+    , taskLocation = Location
+        { locFile = "test/examples/relparam.tex"
+        , locLine = 6
+        , locColumn = 6
+        }
     , taskConjecture = Quantified Universally
         ( Scope
             ( TermSymbol
@@ -61,6 +66,11 @@
             )
         ]
     , taskConjectureLabel = Marker "dummy_defn_test"
+    , taskLocation = Location
+        { locFile = "test/examples/relparam.tex"
+        , locLine = 15
+        , locColumn = 15
+        }
     , taskConjecture = Quantified Universally
         ( Scope
             ( TermSymbol

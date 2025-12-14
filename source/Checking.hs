@@ -34,7 +34,6 @@ import Data.Set qualified as Set
 import Data.Text qualified as Text
 import Data.Text.IO qualified as Text
 import System.FilePath.Posix
-import Text.Megaparsec (SourcePos)
 import UnliftIO.Directory
 
 type Checking = CheckingM ()
@@ -59,6 +58,7 @@ check dumpPremselTraining lexicon blocks = do
             , definedMarkers = HS.empty
             , checkingLexicon = lexicon
             , blockLabel = Marker ""
+            , stepLocation = Nowhere
             , fixedVars = mempty
             }
 
@@ -113,8 +113,8 @@ data CheckingState = CheckingState
     -- ^ Markers for toplevel sections need to be unique. This keeps track of the
     -- markers used thus far.
     --
-    , blockLabel :: Marker
-    -- ^ Label/marker of the current block
+    , blockLabel :: Marker -- ^ Label/marker of the current block
+    , stepLocation :: Location -- ^ Location of the current proof step
     }
 
 initCheckingStructs :: StructGraph
@@ -144,11 +144,16 @@ data CheckingError
 
 instance Exception CheckingError
 
+throwWithLocationAndMarker :: (Location -> Marker -> CheckingError) -> CheckingM a
+throwWithLocationAndMarker err = do
+    m <- gets blockLabel
+    loc <- gets stepLocation
+    throwIO (err loc m)
+
 throwWithMarker :: (Marker -> CheckingError) -> CheckingM a
 throwWithMarker err = do
     m <- gets blockLabel
     throwIO (err m)
-
 
 assume :: [Asm] -> Checking
 assume asms = traverse_ go asms
@@ -187,6 +192,9 @@ lookupStruct structGraph struct = case StructGraph.lookup struct structGraph of
     Just result -> result
     Nothing -> error $ "lookup of undefined structure: " <> show struct
 
+setLocation :: Location -> Checking
+setLocation loc = modify \st -> st{stepLocation = loc}
+
 
 -- | Replace all current goals with a new goal. Use with care!
 setGoals :: [Formula] -> Checking
@@ -202,7 +210,8 @@ tellTasks = do
     m <- gets blockLabel
     facts <- liftA2 (<>) (gets checkingFacts) (withMarker m <$> gets checkingAssumptions)
     directness <- gets checkingDirectness
-    let tasks = DList.fromList (Task directness (InsOrdMap.toList facts) m <$> goals)
+    loc <- gets stepLocation
+    let tasks = DList.fromList (Task directness (InsOrdMap.toList facts) m loc <$> goals)
     tell tasks
 
 withMarker :: Marker -> [v] -> InsOrdMap Marker v
@@ -221,8 +230,6 @@ addFacts :: InsOrdMap Marker Formula -> Checking
 addFacts phis = do
     phis' <- forM phis canonicalize
     modify $ \st -> st{checkingFacts = phis' <> (checkingFacts st)}
-
-
 
 
 
@@ -353,15 +360,15 @@ checkBlocks = \case
 
 -- | Add the given label to the set of in-scope markers and set it as the current label for error reporting.
 withLabel :: Location -> Marker -> CheckingM a -> CheckingM a
-withLabel pos marker ma = do
+withLabel loc marker ma = do
     -- Add a new marker to the set. It is a checking error if the marker has already been used.
     st <- get
     let markers = definedMarkers st
     if HS.member marker markers
-        then throwWithMarker (DuplicateMarker pos)
+        then throwWithMarker (DuplicateMarker loc)
         else put st{definedMarkers = HS.insert marker markers}
     -- Set the marker as the label of the current block.
-    modify \st -> st{blockLabel = marker}
+    modify \st -> st{blockLabel = marker, stepLocation = loc}
     ma
 
 -- | Verification of a lemma with a proof.
@@ -393,34 +400,38 @@ checkAxiom (Axiom asms axiom) = addFactWithAsms asms axiom
 
 checkProof :: Proof -> Checking
 checkProof = \case
-    Qed pos JustificationEmpty->
-        tellTasks
-    Qed pos JustificationSetExt -> do
+    Qed mloc j -> do
+        case mloc of
+            Just loc -> setLocation loc
+            Nothing -> skip
+        case j of
+            JustificationEmpty -> tellTasks
+            JustificationRef ms -> byRef ms
+            JustificationLocal -> byAssumption
+            JustificationSetExt -> do
+                goals <- gets checkingGoals
+                case goals of
+                    [goal] -> do
+                        goals' <- splitGoalWithSetExt goal
+                        setGoals goals'
+                    [] -> pure ()
+                    _ -> throwWithLocationAndMarker (MismatchedSetExt goals)
+    ByContradiction loc proof -> do
+        setLocation loc
         goals <- gets checkingGoals
         case goals of
             [goal] -> do
-                goals' <- splitGoalWithSetExt (pos ?? Nowhere) goal
-                setGoals goals'
-                tellTasks
-            [] -> pure ()
-            _ -> throwWithMarker (MismatchedSetExt goals (pos ?? Nowhere))
-    Qed pos (JustificationRef ms) ->
-        byRef ms
-    Qed pos JustificationLocal ->
-        byAssumption
-    ByContradiction pos proof -> do
-        goals <- gets checkingGoals
-        case goals of
-            [goal] -> do
-                assume [Asm (Not pos goal)]
+                assume [Asm (Not loc goal)]
                 byContradiction
                 checkProof proof
-            _ -> throwWithMarker (ByContradictionOnMultipleGoals pos)
+            _ -> throwWithLocationAndMarker (ByContradictionOnMultipleGoals)
     ByCase pos splits -> do
+        setLocation pos
         for_ splits checkCase
         setGoals [makeDisjunction (caseOf <$> splits)]
         tellTasks
     BySetInduction pos mx continue -> do
+        setLocation pos
         goals <- gets checkingGoals
         case goals of
             Forall scope : goals' -> do
@@ -439,10 +450,9 @@ checkProof = \case
                 let consequent = instantiate TermVar scope
                 setGoals (consequent : goals')
                 checkProof continue
-            _ -> do
-                m <- gets blockLabel
-                throwWithMarker (BySetInductionSyntacticMismatch pos)
+            _ -> throwWithMarker (BySetInductionSyntacticMismatch pos)
     ByOrdInduction pos continue -> do
+        setLocation pos
         goals <- gets checkingGoals
         case goals of
             Forall scope : goals' -> case fromScope scope of
@@ -464,65 +474,74 @@ checkProof = \case
                 _ -> error ("could not match transfinite induction with syntactic structure of the first goal: " <> show goals)
             _ -> error ("the first goal must be universally quantifier to apply transfinite induction: " <> show goals)
     Assume loc phi continue -> do
+        setLocation loc
         goals' <- matchAssumptionWithGoal loc phi
         assume [Asm phi]
         setGoals goals'
         checkProof continue
-    Fix pos xs suchThat continue -> do
+    Fix loc xs suchThat continue -> do
+        setLocation loc
         fixing xs
         checkProof case suchThat of
             Top -> continue
-            _ ->  Assume pos suchThat continue
-    Subclaim pos subclaim subproof continue -> do
+            _ ->  Assume loc suchThat continue
+    Subclaim loc subclaim subproof continue -> do
+        setLocation loc
         locally (checkLemmaWithProof (Lemma [] subclaim) subproof)
         assume [Asm subclaim]
         checkProof continue
     Omitted -> do
         setGoals []
-    Suffices pos reduction by proof -> do
+    Suffices loc reduction by proof -> do
+        setLocation loc
         goals <- gets checkingGoals
         setGoals [reduction `Implies` makeConjunction goals]
-        justify pos by
+        justify by
         setGoals [reduction]
         checkProof proof
     Take pos _witnesses _suchThat JustificationSetExt _continue ->
         error $ "Error at " <> show pos <> "\nCannot justify existential statement with setext"
-    Take pos witnesses suchThat by continue -> locally do
+    Take loc witnesses suchThat by continue -> locally do
+        setLocation loc
         goals <- gets checkingGoals
         setGoals [makeExists witnesses suchThat]
-        justify pos by
+        justify by
         assume [Asm suchThat]
         setGoals goals
         checkProof continue
-    Have pos claim (JustificationRef ms) continue -> locally do
+    Have loc claim (JustificationRef ms) continue -> locally do
+        setLocation loc
         goals <- gets checkingGoals
         setGoals [claim]
         byRef ms -- locally prove things with just refs and local assumptions
         assume [Asm claim]
         setGoals goals
         checkProof continue
-    Have pos claim JustificationLocal continue -> locally do
+    Have loc claim JustificationLocal continue -> locally do
+        setLocation loc
         goals <- gets checkingGoals
         setGoals [claim]
         byAssumption -- locally prove things with just local assumptions
         assume [Asm claim]
         setGoals goals
         checkProof continue
-    Have pos claim by continue -> do
+    Have loc claim by continue -> do
+        setLocation loc
         locally do
             goals <- gets checkingGoals
             claims <- case by of
                 JustificationEmpty ->
                     pure [claim]
                 JustificationSetExt ->
-                    splitGoalWithSetExt pos claim
+                    splitGoalWithSetExt claim
                 -- NOTE: we already handled @JustificationRef ms@ and GHC recognizes this
             setGoals claims
             tellTasks
             assume [Asm claim]
             setGoals goals
             checkProof continue
-    Define pos x t continue -> locally do
+    Define loc x t continue -> locally do
+        setLocation loc
         assume [Asm case t of
             TermSep y yBound phi ->
                 makeForall [y] $
@@ -533,7 +552,8 @@ checkProof = \case
             _ -> Equals Nowhere (TermVar x) t
             ]
         checkProof continue
-    DefineFunction pos funVar argVar valueExpr domExpr continue -> do
+    DefineFunction loc funVar argVar valueExpr domExpr continue -> do
+        setLocation loc
         -- we're given f, x, e, d
         assume
             [ Asm (Equals Nowhere (TermOp Nowhere DomSymbol [TermVar funVar]) domExpr) -- dom(f) = d
@@ -542,11 +562,13 @@ checkProof = \case
             , Asm (relationNoun Nowhere (TermVar funVar))
             ]
         checkProof continue
-    Calc pos quant calc continue -> do
-        checkCalc pos quant calc
+    Calc loc quant calc continue -> do
+        setLocation loc
+        checkCalc quant calc
         assume [Asm (calcResult quant calc)]
         checkProof continue
-    DefineFunctionLocal pos funVar argVar domVar ranExpr definitions continue -> do
+    DefineFunctionLocal loc funVar argVar domVar ranExpr definitions continue -> do
+        setLocation loc
         -- We have f: X \to Y and x \mapsto ...
         -- definition is a nonempty list of (expresssion e, formula phi)
         -- such that f(x) =  e if phi(x)
@@ -597,13 +619,13 @@ singleFunctionSubdomianExpression funVar argVar domVar fixedV (expr, frm) = let
 
 
 
-checkCalc :: Location -> CalcQuantifier -> Calc -> Checking
-checkCalc loc quant calc = locally do
+checkCalc :: CalcQuantifier -> Calc -> Checking
+checkCalc quant calc = locally do
     let tasks = calculation quant calc
     forM_ tasks tell
     where
         tell = \case
-            (goal, by) -> setGoals [goal] *> justify loc by
+            (goal, by) -> setGoals [goal] *> justify by
 
 
 makeReplacementIff
@@ -634,8 +656,8 @@ makeReplacementIff e bounds lhs cond =
         nestF (F a) = F (F a)
 
 
-splitGoalWithSetExt :: Location -> Formula -> CheckingM [Formula]
-splitGoalWithSetExt loc = \case
+splitGoalWithSetExt :: Formula -> CheckingM [Formula]
+splitGoalWithSetExt = \case
     NotEquals _pos x y -> do
         let z = FreshVar 0
             elemNotElem x' y' = makeExists [FreshVar 0] (And (isElementOf (TermVar z) x') (isNotElementOf Nowhere (TermVar z) y'))
@@ -644,10 +666,10 @@ splitGoalWithSetExt loc = \case
         let z = FreshVar 0
             subset x' y' = makeForall [FreshVar 0] (Implies (isElementOf (TermVar z) x') (isElementOf (TermVar z) y'))
         pure [subset x y, subset y x]
-    goal -> throwWithMarker (MismatchedSetExt [goal] loc)
+    goal -> throwWithLocationAndMarker (MismatchedSetExt [goal])
 
-justify :: Location -> Justification -> Checking
-justify loc = \case
+justify :: Justification -> Checking
+justify = \case
     JustificationEmpty -> tellTasks
     JustificationLocal -> byAssumption
     JustificationRef ms -> byRef ms
@@ -655,10 +677,10 @@ justify loc = \case
         goals <- gets checkingGoals
         case goals of
             [goal] -> do
-                goals' <- splitGoalWithSetExt loc goal
+                goals' <- splitGoalWithSetExt goal
                 setGoals goals'
                 tellTasks
-            _ -> throwWithMarker (MismatchedSetExt goals loc)
+            _ -> throwWithLocationAndMarker (MismatchedSetExt goals)
 
 byRef :: NonEmpty Marker -> Checking
 byRef ms = locally do
@@ -681,11 +703,12 @@ dumpTrainingData facts ms = do
     lexicon <- gets checkingLexicon
     goals <- gets checkingGoals
     m@(Marker m_) <- gets blockLabel
+    loc <- gets stepLocation
     _localFacts <- withMarker m <$> gets checkingAssumptions
     let dir = "premseldump"
     let makePath k = dir </> (Text.unpack m_ <> show (k :: Int)) <.> "txt"
     let dumpTrainingExample goal =
-            let conj = encodeConjecture lexicon m goal
+            let conj = encodeConjecture lexicon m loc goal
                 usefuls = encodeWithRole Tptp.AxiomUseful lexicon (InsOrdMap.toList picked)
                 redundants = encodeWithRole Tptp.AxiomRedundant lexicon (InsOrdMap.toList unpicked)
                 k = hash goal

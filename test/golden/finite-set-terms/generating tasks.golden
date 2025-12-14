@@ -202,6 +202,11 @@
             )
         ]
     , taskConjectureLabel = Marker "emptyset_in_unit"
+    , taskLocation = Location
+        { locFile = "test/examples/finite-set-terms.tex"
+        , locLine = 9
+        , locColumn = 9
+        }
     , taskConjecture = TermSymbol
         ( Location
             { locFile = "<nowhere>"

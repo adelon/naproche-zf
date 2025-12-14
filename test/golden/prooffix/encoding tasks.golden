@@ -1,4 +1,4 @@
-fof(assumetest,conjecture,fx=fx).
+fof(assumetest,conjecture,fx=fx,"test/examples/prooffix.tex: 6:6").
 ------------------
-fof(assumetest,conjecture,fx=fx).
+fof(assumetest,conjecture,fx=fx,"test/examples/prooffix.tex: 6:6").
 fof(assumetest1,axiom,fx=fx).

@@ -37,7 +37,11 @@ unitTests = testGroup "Terms with indexed names"
     , testCase "alphaReduce deeply nested binders" alphaReduceDeep
     , testCase "freeVars: replacement with no binders" freeVarsReplacementSimple
     , testCase "freeVars: replacement with binders that correctly shadow" freeVarsReplacementShadow
-    , testCase "freeVars: domains not under binder scope" freeVarsReplacementDomainScope
+    , testCase "freeVars: domains not under binder scope" do
+        let bs = [("x", Apply (Var "X" 0) (Var "x" 0))] -- since x appears in its own domain, it is not bound there
+            r = ReplExpr bs (Var "x" 0) (Var "z" 0)
+            expected = Set.fromList ["X","x", "z"]
+        freeVarsReplacement r `shouldBe` expected
     , testCase "shift: shift inside Replacement (value and condition)" shiftReplacementSimple
     , testCase "shift: shift respects binder inside replacement" shiftReplacementBinder
 

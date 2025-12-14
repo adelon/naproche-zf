@@ -23,6 +23,11 @@
             )
         ]
     , taskConjectureLabel = Marker "assumetest"
+    , taskLocation = Location
+        { locFile = "test/examples/proofassume.tex"
+        , locLine = 6
+        , locColumn = 6
+        }
     , taskConjecture = TermSymbol
         ( Location
             { locFile = "<nowhere>"
@@ -86,6 +91,11 @@
             )
         ]
     , taskConjectureLabel = Marker "assumetest"
+    , taskLocation = Location
+        { locFile = "test/examples/proofassume.tex"
+        , locLine = 6
+        , locColumn = 6
+        }
     , taskConjecture = TermSymbol
         ( Location
             { locFile = "<nowhere>"
@@ -201,6 +211,11 @@
             )
         ]
     , taskConjectureLabel = Marker "assumetesttwo"
+    , taskLocation = Location
+        { locFile = "test/examples/proofassume.tex"
+        , locLine = 15
+        , locColumn = 15
+        }
     , taskConjecture = TermSymbol
         ( Location
             { locFile = "<nowhere>"
@@ -336,6 +351,11 @@
             )
         ]
     , taskConjectureLabel = Marker "assumetesttwo"
+    , taskLocation = Location
+        { locFile = "test/examples/proofassume.tex"
+        , locLine = 15
+        , locColumn = 15
+        }
     , taskConjecture = TermSymbol
         ( Location
             { locFile = "<nowhere>"

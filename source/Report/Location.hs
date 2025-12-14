@@ -4,7 +4,7 @@ module Report.Location where
 
 import Base
 import Text.Megaparsec.Pos (SourcePos, sourceName, sourceLine, unPos)
-
+import Data.Text qualified as Text
 
 data Location = Location
     { locFile :: !FilePath
@@ -22,7 +22,10 @@ fromSourcePos pos = Location
 
 prettyLocation :: Location -> String
 prettyLocation loc =
-    locFile loc ++ ": " ++ show (locLine loc) ++ ":" ++ show (locColumn loc)
+    locFile loc <> ": " <> show (locLine loc) <> ":" <> show (locColumn loc)
+
+locationToText :: Location -> Text
+locationToText loc = Text.pack (prettyLocation loc)
 
 -- | Things that have a location.
 class Locatable a where

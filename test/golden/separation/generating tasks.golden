@@ -2,6 +2,11 @@
     { taskDirectness = Direct
     , taskHypotheses = []
     , taskConjectureLabel = Marker "sep_test"
+    , taskLocation = Location
+        { locFile = "test/examples/separation.tex"
+        , locLine = 1
+        , locColumn = 1
+        }
     , taskConjecture = Quantified Universally
         ( Scope
             ( Connected Equivalence

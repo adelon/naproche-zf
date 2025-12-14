@@ -2,12 +2,22 @@
     { taskDirectness = Direct
     , taskHypotheses = []
     , taskConjectureLabel = Marker "indefinite_test_forall"
+    , taskLocation = Location
+        { locFile = "test/examples/indefinite-terms.tex"
+        , locLine = 1
+        , locColumn = 1
+        }
     , taskConjecture = PropositionalConstant IsTop
     }
 , Task
     { taskDirectness = Direct
     , taskHypotheses = []
     , taskConjectureLabel = Marker "indefinite_test_exists"
+    , taskLocation = Location
+        { locFile = "test/examples/indefinite-terms.tex"
+        , locLine = 5
+        , locColumn = 5
+        }
     , taskConjecture = PropositionalConstant IsTop
     }
 ]

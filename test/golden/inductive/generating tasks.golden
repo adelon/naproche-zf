@@ -380,6 +380,11 @@
             )
         ]
     , taskConjectureLabel = Marker "fin"
+    , taskLocation = Location
+        { locFile = "test/examples/inductive.tex"
+        , locLine = 31
+        , locColumn = 31
+        }
     , taskConjecture = TermSymbol
         ( Location
             { locFile = "<nowhere>"
@@ -806,6 +811,11 @@
             )
         ]
     , taskConjectureLabel = Marker "fin"
+    , taskLocation = Location
+        { locFile = "test/examples/inductive.tex"
+        , locLine = 31
+        , locColumn = 31
+        }
     , taskConjecture = Connected Implication
         ( Connected Conjunction
             ( TermSymbol
@@ -1562,6 +1572,11 @@
             )
         ]
     , taskConjectureLabel = Marker "fin_mono"
+    , taskLocation = Location
+        { locFile = "test/examples/inductive.tex"
+        , locLine = 39
+        , locColumn = 39
+        }
     , taskConjecture = TermSymbol
         ( Location
             { locFile = "<nowhere>"
@@ -2321,6 +2336,11 @@
             )
         ]
     , taskConjectureLabel = Marker "tracl"
+    , taskLocation = Location
+        { locFile = "test/examples/inductive.tex"
+        , locLine = 45
+        , locColumn = 45
+        }
     , taskConjecture = Connected Implication
         ( TermSymbol
             ( Location
@@ -3117,6 +3137,11 @@
             )
         ]
     , taskConjectureLabel = Marker "tracl"
+    , taskLocation = Location
+        { locFile = "test/examples/inductive.tex"
+        , locLine = 45
+        , locColumn = 45
+        }
     , taskConjecture = Connected Implication
         ( Connected Conjunction
             ( TermSymbol
@@ -4385,6 +4410,11 @@
             )
         ]
     , taskConjectureLabel = Marker "quasirefltracl"
+    , taskLocation = Location
+        { locFile = "test/examples/inductive.tex"
+        , locLine = 53
+        , locColumn = 53
+        }
     , taskConjecture = Connected Implication
         ( TermSymbol
             ( Location
@@ -5558,6 +5588,11 @@
             )
         ]
     , taskConjectureLabel = Marker "quasirefltracl"
+    , taskLocation = Location
+        { locFile = "test/examples/inductive.tex"
+        , locLine = 53
+        , locColumn = 53
+        }
     , taskConjecture = Connected Implication
         ( Connected Conjunction
             ( TermSymbol
@@ -7205,6 +7240,11 @@
             )
         ]
     , taskConjectureLabel = Marker "refltracl"
+    , taskLocation = Location
+        { locFile = "test/examples/inductive.tex"
+        , locLine = 61
+        , locColumn = 61
+        }
     , taskConjecture = Connected Implication
         ( TermSymbol
             ( Location
@@ -8709,6 +8749,11 @@
             )
         ]
     , taskConjectureLabel = Marker "refltracl"
+    , taskLocation = Location
+        { locFile = "test/examples/inductive.tex"
+        , locLine = 61
+        , locColumn = 61
+        }
     , taskConjecture = Connected Implication
         ( Connected Conjunction
             ( TermSymbol
@@ -10651,6 +10696,11 @@
             )
         ]
     , taskConjectureLabel = Marker "acc"
+    , taskLocation = Location
+        { locFile = "test/examples/inductive.tex"
+        , locLine = 69
+        , locColumn = 69
+        }
     , taskConjecture = Quantified Universally
         ( Scope
             ( Connected Implication
@@ -12520,6 +12570,11 @@
             )
         ]
     , taskConjectureLabel = Marker "acc"
+    , taskLocation = Location
+        { locFile = "test/examples/inductive.tex"
+        , locLine = 69
+        , locColumn = 69
+        }
     , taskConjecture = Connected Implication
         ( Connected Conjunction
             ( TermSymbol

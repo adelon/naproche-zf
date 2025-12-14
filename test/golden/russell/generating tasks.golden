@@ -145,6 +145,11 @@
             )
         ]
     , taskConjectureLabel = Marker "no_universal_set"
+    , taskLocation = Location
+        { locFile = "test/examples/russell.tex"
+        , locLine = 12
+        , locColumn = 12
+        }
     , taskConjecture = Quantified Existentially
         ( Scope
             ( TermSymbol
@@ -424,6 +429,11 @@
             )
         ]
     , taskConjectureLabel = Marker "no_universal_set"
+    , taskLocation = Location
+        { locFile = "test/examples/russell.tex"
+        , locLine = 14
+        , locColumn = 14
+        }
     , taskConjecture = Connected Equivalence
         ( TermSymbol
             ( Location
@@ -773,6 +783,11 @@
             )
         ]
     , taskConjectureLabel = Marker "no_universal_set"
+    , taskLocation = Location
+        { locFile = "<nowhere>"
+        , locLine = -1
+        , locColumn = -1
+        }
     , taskConjecture = PropositionalConstant IsBottom
     }
 , Task
@@ -1082,6 +1097,11 @@
             )
         ]
     , taskConjectureLabel = Marker "no_universal_set"
+    , taskLocation = Location
+        { locFile = "<nowhere>"
+        , locLine = -1
+        , locColumn = -1
+        }
     , taskConjecture = PropositionalConstant IsBottom
     }
 ]

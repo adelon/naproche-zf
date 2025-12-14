@@ -2,6 +2,11 @@
     { taskDirectness = Direct
     , taskHypotheses = []
     , taskConjectureLabel = Marker "prop1"
+    , taskLocation = Location
+        { locFile = "test/examples/byRef.tex"
+        , locLine = 1
+        , locColumn = 1
+        }
     , taskConjecture = TermSymbol
         ( Location
             { locFile = "<nowhere>"
@@ -53,6 +58,11 @@
             )
         ]
     , taskConjectureLabel = Marker "prop2"
+    , taskLocation = Location
+        { locFile = "test/examples/byRef.tex"
+        , locLine = 5
+        , locColumn = 5
+        }
     , taskConjecture = TermSymbol
         ( Location
             { locFile = "<nowhere>"
@@ -104,6 +114,11 @@
             )
         ]
     , taskConjectureLabel = Marker "prop3"
+    , taskLocation = Location
+        { locFile = "test/examples/byRef.tex"
+        , locLine = 13
+        , locColumn = 13
+        }
     , taskConjecture = TermSymbol
         ( Location
             { locFile = "<nowhere>"
@@ -155,6 +170,11 @@
             )
         ]
     , taskConjectureLabel = Marker "prop4"
+    , taskLocation = Location
+        { locFile = "test/examples/byRef.tex"
+        , locLine = 20
+        , locColumn = 20
+        }
     , taskConjecture = Quantified Universally
         ( Scope
             ( TermSymbol
@@ -298,6 +318,11 @@
             )
         ]
     , taskConjectureLabel = Marker "prop4"
+    , taskLocation = Location
+        { locFile = "test/examples/byRef.tex"
+        , locLine = 20
+        , locColumn = 20
+        }
     , taskConjecture = TermSymbol
         ( Location
             { locFile = "<nowhere>"
@@ -433,6 +458,11 @@
             )
         ]
     , taskConjectureLabel = Marker "prop5"
+    , taskLocation = Location
+        { locFile = "test/examples/byRef.tex"
+        , locLine = 23
+        , locColumn = 23
+        }
     , taskConjecture = TermSymbol
         ( Location
             { locFile = "<nowhere>"

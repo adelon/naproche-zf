@@ -393,6 +393,11 @@
             )
         ]
     , taskConjectureLabel = Marker "definefunctiontest"
+    , taskLocation = Location
+        { locFile = "test/examples/proofdefinefunction.tex"
+        , locLine = 26
+        , locColumn = 26
+        }
     , taskConjecture = Connected Implication
         ( TermSymbol
             ( Location

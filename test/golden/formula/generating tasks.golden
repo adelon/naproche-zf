@@ -2,6 +2,11 @@
     { taskDirectness = Direct
     , taskHypotheses = []
     , taskConjectureLabel = Marker "formula_test_forall"
+    , taskLocation = Location
+        { locFile = "test/examples/formula.tex"
+        , locLine = 1
+        , locColumn = 1
+        }
     , taskConjecture = Quantified Universally
         ( Scope
             ( Connected Conjunction
@@ -109,6 +114,11 @@
             )
         ]
     , taskConjectureLabel = Marker "formula_test_exists"
+    , taskLocation = Location
+        { locFile = "test/examples/formula.tex"
+        , locLine = 5
+        , locColumn = 5
+        }
     , taskConjecture = Quantified Existentially
         ( Scope
             ( TermSymbol
@@ -220,6 +230,11 @@
             )
         ]
     , taskConjectureLabel = Marker "formula_test_not_exists"
+    , taskLocation = Location
+        { locFile = "test/examples/formula.tex"
+        , locLine = 9
+        , locColumn = 9
+        }
     , taskConjecture = Connected Equivalence
         ( Quantified Existentially
             ( Scope

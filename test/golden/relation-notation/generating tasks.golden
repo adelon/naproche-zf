@@ -2,6 +2,11 @@
     { taskDirectness = Direct
     , taskHypotheses = []
     , taskConjectureLabel = Marker "mathrel_notation_test"
+    , taskLocation = Location
+        { locFile = "test/examples/relation-notation.tex"
+        , locLine = 1
+        , locColumn = 1
+        }
     , taskConjecture = Connected Implication
         ( TermSymbol
             ( Location

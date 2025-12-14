@@ -1,15 +1,15 @@
-fof(pair_emptyset_in_times_unit,conjecture,elem(pair(emptyset,emptyset),times(unit,unit))).
+fof(pair_emptyset_in_times_unit,conjecture,elem(pair(emptyset,emptyset),times(unit,unit)),"test/examples/replace.tex: 13:13").
 fof(unit,axiom,![Xany]:(elem(Xany,unit)<=>(elem(Xany,emptyset)|Xany=emptyset))).
 fof(times,axiom,![XA,XB]:![Xfrv]:(elem(Xfrv,times(XA,XB))<=>?[Xa,Xb]:(elem(Xa,XA)&elem(Xb,XB)&pair(Xa,Xb)=Xfrv))).
 fof(cons,axiom,![Xx,Xy,XX]:(elem(Xx,cons(Xy,XX))<=>(Xx=Xy|elem(Xx,XX)))).
 ------------------
-fof(suc,conjecture,![X0]:(elem(X0,fa)=>![X1,X2]:((X1=cons(X0,emptyset)&X2=cons(X0,emptyset))=>X1=X2))).
+fof(suc,conjecture,![X0]:(elem(X0,fa)=>![X1,X2]:((X1=cons(X0,emptyset)&X2=cons(X0,emptyset))=>X1=X2)),"test/examples/replace.tex: 19:19").
 fof(pair_emptyset_in_times_unit,axiom,elem(pair(emptyset,emptyset),times(unit,unit))).
 fof(unit,axiom,![Xany]:(elem(Xany,unit)<=>(elem(Xany,emptyset)|Xany=emptyset))).
 fof(times,axiom,![XA,XB]:![Xfrv]:(elem(Xfrv,times(XA,XB))<=>?[Xa,Xb]:(elem(Xa,XA)&elem(Xb,XB)&pair(Xa,Xb)=Xfrv))).
 fof(cons,axiom,![Xx,Xy,XX]:(elem(Xx,cons(Xy,XX))<=>(Xx=Xy|elem(Xx,XX)))).
 ------------------
-fof(times_replacement_test,conjecture,![Xfrv]:(elem(Xfrv,times(fA,fB))<=>?[Xa,Xb]:(elem(Xa,fA)&elem(Xb,fB)&pair(Xa,Xb)=Xfrv))).
+fof(times_replacement_test,conjecture,![Xfrv]:(elem(Xfrv,times(fA,fB))<=>?[Xa,Xb]:(elem(Xa,fA)&elem(Xb,fB)&pair(Xa,Xb)=Xfrv)),"test/examples/replace.tex: 25:25").
 fof(suc,axiom,![X1,Xa]:(elem(X1,suc(Xa))<=>?[X0]:(elem(X0,Xa)&X1=cons(X0,emptyset)))).
 fof(pair_emptyset_in_times_unit,axiom,elem(pair(emptyset,emptyset),times(unit,unit))).
 fof(unit,axiom,![Xany]:(elem(Xany,unit)<=>(elem(Xany,emptyset)|Xany=emptyset))).

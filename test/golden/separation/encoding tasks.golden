@@ -1,1 +1,1 @@
-fof(sep_test,conjecture,![Xx]:(elem(Xx,fX)<=>(elem(Xx,fX)&Xx=Xx))).
+fof(sep_test,conjecture,![Xx]:(elem(Xx,fX)<=>(elem(Xx,fX)&Xx=Xx)),"test/examples/separation.tex: 1:1").

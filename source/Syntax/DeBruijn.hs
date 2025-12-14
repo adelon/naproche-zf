@@ -378,8 +378,8 @@ freeVarsReplacement = freeVarsReplacementWith Map.empty
 freeVarsReplacementWith :: Map VarSymbol Int -> ReplExpr -> Set VarSymbol
 freeVarsReplacementWith counts0 (ReplExpr bs value cond) =
     let step (m, acc) (binder, domain) =
-            let m'   = Map.insertWith (+) binder 1 m
-            in (m', acc <> freeVarsWith m' domain)
+            let m' = Map.insertWith (+) binder 1 m
+            in (m', acc <> freeVarsWith m domain) -- Crucially, we use the old environment m here, since the domain is not under the scope of its own binder.
         (countsFinal, freeVarsDomain) = foldl' step (counts0, Set.empty) (toList bs)
         freeVarsValue      = freeVarsWith countsFinal value
         freeVarsCondition  = freeVarsWith countsFinal cond

@@ -2441,6 +2441,11 @@
             )
         ]
     , taskConjectureLabel = Marker "cong_refl"
+    , taskLocation = Location
+        { locFile = "test/examples/geometry.tex"
+        , locLine = 82
+        , locColumn = 82
+        }
     , taskConjecture = TermSymbol
         ( Location
             { locFile = "<nowhere>"
@@ -5076,6 +5081,11 @@
             )
         ]
     , taskConjectureLabel = Marker "cong_sym"
+    , taskLocation = Location
+        { locFile = "test/examples/geometry.tex"
+        , locLine = 88
+        , locColumn = 88
+        }
     , taskConjecture = TermSymbol
         ( Location
             { locFile = "<nowhere>"
@@ -7929,6 +7939,11 @@
             )
         ]
     , taskConjectureLabel = Marker "cong_transitive"
+    , taskLocation = Location
+        { locFile = "test/examples/geometry.tex"
+        , locLine = 95
+        , locColumn = 95
+        }
     , taskConjecture = Connected Implication
         ( Connected Conjunction
             ( TermSymbol
@@ -11044,6 +11059,11 @@
             )
         ]
     , taskConjectureLabel = Marker "cong_shuffle_left"
+    , taskLocation = Location
+        { locFile = "test/examples/geometry.tex"
+        , locLine = 102
+        , locColumn = 102
+        }
     , taskConjecture = Connected Implication
         ( TermSymbol
             ( Location
@@ -14321,6 +14341,11 @@
             )
         ]
     , taskConjectureLabel = Marker "cong_shuffle_right"
+    , taskLocation = Location
+        { locFile = "test/examples/geometry.tex"
+        , locLine = 109
+        , locColumn = 109
+        }
     , taskConjecture = Connected Implication
         ( TermSymbol
             ( Location
@@ -17726,6 +17751,11 @@
             )
         ]
     , taskConjectureLabel = Marker "cong_zero"
+    , taskLocation = Location
+        { locFile = "test/examples/geometry.tex"
+        , locLine = 116
+        , locColumn = 116
+        }
     , taskConjecture = TermSymbol
         ( Location
             { locFile = "<nowhere>"

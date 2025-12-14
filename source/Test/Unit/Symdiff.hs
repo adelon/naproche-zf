@@ -20,8 +20,8 @@ badFact = Quantified Universally (Scope (Connected Equivalence (TermSymbol Nowhe
 symdiff :: Task
 symdiff =
     Task
-        { taskDirectness =
-            Direct
+        { taskDirectness = Direct
+        , taskLocation = Nowhere
         , taskConjectureLabel = Marker "symdiff_test"
         , taskHypotheses = zipWith (,) (Marker . Text.pack . show <$> ([1..] :: [Int]))
             [ Quantified Universally (Scope (TermSymbol Nowhere (SymbolPredicate (PredicateRelation (Symbol "="))) [TermSymbol Nowhere (SymbolMixfix [Nothing, Just (Command "inter"), Nothing]) [TermVar (B (NamedVar "A")), TermVar (B (NamedVar "A"))], TermVar (B (NamedVar "A"))]))

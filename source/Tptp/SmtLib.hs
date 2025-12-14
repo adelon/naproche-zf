@@ -63,7 +63,7 @@ buildName = \case
         Fof.NameInt n -> decimal n
 
 buildAnnotatedFormula :: Fof.AnnotatedFormula -> TextBuilder
-buildAnnotatedFormula (Fof.AnnotatedFormula _name _role phi) =
+buildAnnotatedFormula (Fof.AnnotatedFormula _name _role phi _src) =
         "(assert " <> buildExpr phi <> char ')'
 
 buildTask :: Fof.Task -> TextBuilder

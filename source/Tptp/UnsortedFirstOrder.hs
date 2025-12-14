@@ -74,13 +74,15 @@ data Name = NameAtomicWord AtomicWord | NameInt Int
 
 
 data AnnotatedFormula
-    = AnnotatedFormula Name Role Expr
+    = AnnotatedFormula Name Role Expr Source
     deriving (Show, Eq, Ord)
 
 
 newtype Task
     = Task [AnnotatedFormula]
     deriving (Show, Eq, Ord, Semigroup, Monoid)
+
+newtype Source = Source Text deriving (Show, Eq, Ord)
 
 toTextNewline :: Task -> Text
 toTextNewline task = TextBuilder.toText (buildTask task <> char '\n')
@@ -184,8 +186,9 @@ buildRole = \case
         NegatedConjecture -> "negated_conjecture"
 
 buildAnnotatedFormula :: AnnotatedFormula -> TextBuilder
-buildAnnotatedFormula (AnnotatedFormula name role phi) =
-        "fof" <> buildTuple [buildName name, buildRole role, buildExpr phi] <> "."
+buildAnnotatedFormula (AnnotatedFormula name role phi (Source src)) =
+    let info = text (if Text.null src then "" else ",\"" <> src <> "\"")
+    in  "fof(" <> intercalate (char ',') [buildName name, buildRole role, buildExpr phi] <> info <> ")."
 
 buildTask :: Task -> TextBuilder
 buildTask (Task fofs) = intercalate (char '\n') (map buildAnnotatedFormula fofs)
@@ -270,8 +273,8 @@ prettyRole = \case
         NegatedConjecture -> "negated_conjecture"
 
 prettyAnnotatedFormula :: AnnotatedFormula -> Doc ann
-prettyAnnotatedFormula (AnnotatedFormula name role phi) =
-        "fof" <> tupled [prettyName name, prettyRole role, prettyExpr phi] <> "."
+prettyAnnotatedFormula (AnnotatedFormula name role phi (Source src)) =
+        "fof" <> tupled [prettyName name, prettyRole role, prettyExpr phi, pretty src] <> "."
 
 prettyTask :: Task -> Doc ann
 prettyTask (Task fofs) = vsep (map prettyAnnotatedFormula fofs)

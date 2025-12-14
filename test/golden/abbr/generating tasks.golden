@@ -2,6 +2,11 @@
     { taskDirectness = Direct
     , taskHypotheses = []
     , taskConjectureLabel = Marker "dummy_abbr_test_adj"
+    , taskLocation = Location
+        { locFile = "test/examples/abbr.tex"
+        , locLine = 5
+        , locColumn = 5
+        }
     , taskConjecture = Connected Implication
         ( Not
             ( Location
@@ -165,6 +170,11 @@
             )
         ]
     , taskConjectureLabel = Marker "dummy_abbr_test_noun"
+    , taskLocation = Location
+        { locFile = "test/examples/abbr.tex"
+        , locLine = 15
+        , locColumn = 15
+        }
     , taskConjecture = Quantified Universally
         ( Scope
             ( TermSymbol
@@ -308,6 +318,11 @@
             )
         ]
     , taskConjectureLabel = Marker "dummy_abbr_test_verb"
+    , taskLocation = Location
+        { locFile = "test/examples/abbr.tex"
+        , locLine = 25
+        , locColumn = 25
+        }
     , taskConjecture = Connected Implication
         ( TermSymbol
             ( Location
@@ -515,6 +530,11 @@
             )
         ]
     , taskConjectureLabel = Marker "abbr_test_notin"
+    , taskLocation = Location
+        { locFile = "test/examples/abbr.tex"
+        , locLine = 31
+        , locColumn = 31
+        }
     , taskConjecture = Connected Implication
         ( Not
             ( Location
@@ -806,6 +826,11 @@
             )
         ]
     , taskConjectureLabel = Marker "abbr_test_elementof_is_in"
+    , taskLocation = Location
+        { locFile = "test/examples/abbr.tex"
+        , locLine = 37
+        , locColumn = 37
+        }
     , taskConjecture = Connected Implication
         ( TermSymbol
             ( Location
@@ -1133,6 +1158,11 @@
             )
         ]
     , taskConjectureLabel = Marker "abbr_test_equals_is_eq"
+    , taskLocation = Location
+        { locFile = "test/examples/abbr.tex"
+        , locLine = 43
+        , locColumn = 43
+        }
     , taskConjecture = Connected Implication
         ( TermSymbol
             ( Location

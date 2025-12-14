@@ -65,6 +65,11 @@
             )
         ]
     , taskConjectureLabel = Marker "in_irrefl"
+    , taskLocation = Location
+        { locFile = "test/examples/no-reflexive-set.tex"
+        , locLine = 10
+        , locColumn = 10
+        }
     , taskConjecture = Not
         ( Location
             { locFile = "<nowhere>"

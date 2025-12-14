@@ -562,6 +562,7 @@ data Task = Task
     { taskDirectness :: Directness
     , taskHypotheses :: [(Marker, Formula)] -- ^ No guarantees on order.
     , taskConjectureLabel :: Marker
+    , taskLocation :: Location
     , taskConjecture :: Formula
     } deriving (Show, Eq, Generic, Hashable)
 

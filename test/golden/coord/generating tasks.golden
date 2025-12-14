@@ -253,6 +253,11 @@
             )
         ]
     , taskConjectureLabel = Marker "nouns"
+    , taskLocation = Location
+        { locFile = "test/examples/coord.tex"
+        , locLine = 13
+        , locColumn = 13
+        }
     , taskConjecture = TermSymbol
         ( Location
             { locFile = "<nowhere>"
@@ -654,6 +659,11 @@
             )
         ]
     , taskConjectureLabel = Marker "adj_nouns"
+    , taskLocation = Location
+        { locFile = "test/examples/coord.tex"
+        , locLine = 18
+        , locColumn = 18
+        }
     , taskConjecture = TermSymbol
         ( Location
             { locFile = "<nowhere>"
@@ -1187,6 +1197,11 @@
             )
         ]
     , taskConjectureLabel = Marker "nouns_suchthat"
+    , taskLocation = Location
+        { locFile = "test/examples/coord.tex"
+        , locLine = 24
+        , locColumn = 24
+        }
     , taskConjecture = TermSymbol
         ( Location
             { locFile = "<nowhere>"
@@ -1756,6 +1771,11 @@
             )
         ]
     , taskConjectureLabel = Marker "noun_verb"
+    , taskLocation = Location
+        { locFile = "test/examples/coord.tex"
+        , locLine = 30
+        , locColumn = 30
+        }
     , taskConjecture = Connected Equivalence
         ( TermSymbol
             ( Location
@@ -2455,6 +2475,11 @@
             )
         ]
     , taskConjectureLabel = Marker "adjs"
+    , taskLocation = Location
+        { locFile = "test/examples/coord.tex"
+        , locLine = 35
+        , locColumn = 35
+        }
     , taskConjecture = Connected Conjunction
         ( TermSymbol
             ( Location
@@ -3270,6 +3295,11 @@
             )
         ]
     , taskConjectureLabel = Marker "are_nouns"
+    , taskLocation = Location
+        { locFile = "test/examples/coord.tex"
+        , locLine = 39
+        , locColumn = 39
+        }
     , taskConjecture = Connected Conjunction
         ( Connected Conjunction
             ( TermSymbol

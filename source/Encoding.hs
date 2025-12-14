@@ -1,7 +1,10 @@
+{-# LANGUAGE RecordWildCards #-}
+
 module Encoding where
 
 
 import Base
+import Report.Location
 import Syntax.Internal
 import Syntax.Lexicon
 import Tptp.UnsortedFirstOrder qualified as Tptp
@@ -12,27 +15,27 @@ import Bound.Scope
 
 
 encodeTask :: Lexicon -> Task -> Tptp.Task
-encodeTask l (Task _isByContradiction hypos m conjecture) = Tptp.Task (conjecture' : hypos')
+encodeTask l Task{..} = Tptp.Task (conjecture' : hypos')
     where
-        conjecture' = encodeConjecture l m conjecture
-        hypos' = encodeHypos l hypos
+        conjecture' = encodeConjecture l taskConjectureLabel taskLocation taskConjecture
+        hypos' = encodeHypos l taskHypotheses
 
 
-encodeConjecture :: Lexicon -> Marker -> Formula -> Tptp.AnnotatedFormula
-encodeConjecture l (Marker str) f = Tptp.AnnotatedFormula (Tptp.NameAtomicWord (Tptp.AtomicWord str)) Tptp.Conjecture (encodeExpr l f)
+encodeConjecture :: Lexicon -> Marker -> Location -> Formula -> Tptp.AnnotatedFormula
+encodeConjecture l (Marker str) loc f = Tptp.AnnotatedFormula (Tptp.NameAtomicWord (Tptp.AtomicWord str)) Tptp.Conjecture (encodeExpr l f) (Tptp.Source (locationToText loc))
 
 -- NOTE: E's SInE will only filter out axioms and leave hypotheses fixed.
 encodeHypos :: Lexicon -> [(Marker, Formula)] -> [Tptp.AnnotatedFormula]
 encodeHypos l phis = [makeHypo  m (encodeExpr l phi) | (m,  phi) <- phis]
     where
         makeHypo :: Marker -> Tptp.Expr -> Tptp.AnnotatedFormula
-        makeHypo (Marker str) f' = Tptp.AnnotatedFormula (Tptp.NameAtomicWord (Tptp.AtomicWord str)) Tptp.Axiom f'
+        makeHypo (Marker str) f' = Tptp.AnnotatedFormula (Tptp.NameAtomicWord (Tptp.AtomicWord str)) Tptp.Axiom f' (Tptp.Source "")
 
 encodeWithRole :: Tptp.Role -> Lexicon -> [(Marker, Formula)] -> [Tptp.AnnotatedFormula]
 encodeWithRole role l phis = [makeHypo  m (encodeExpr l phi) | (m,  phi) <- phis]
     where
         makeHypo :: Marker -> Tptp.Expr -> Tptp.AnnotatedFormula
-        makeHypo (Marker str) f' = Tptp.AnnotatedFormula (Tptp.NameAtomicWord (Tptp.AtomicWord str)) role f'
+        makeHypo (Marker str) f' = Tptp.AnnotatedFormula (Tptp.NameAtomicWord (Tptp.AtomicWord str)) role f' (Tptp.Source "")
 
 
 encodeExpr :: Lexicon -> Expr -> Tptp.Expr

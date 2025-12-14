@@ -380,6 +380,11 @@
             )
         ]
     , taskConjectureLabel = Marker "pair_emptyset_in_times_unit"
+    , taskLocation = Location
+        { locFile = "test/examples/replace.tex"
+        , locLine = 13
+        , locColumn = 13
+        }
     , taskConjecture = TermSymbol
         ( Location
             { locFile = "<nowhere>"
@@ -956,6 +961,11 @@
             )
         ]
     , taskConjectureLabel = Marker "suc"
+    , taskLocation = Location
+        { locFile = "test/examples/replace.tex"
+        , locLine = 19
+        , locColumn = 19
+        }
     , taskConjecture = Quantified Universally
         ( Scope
             ( Connected Implication
@@ -1745,6 +1755,11 @@
             )
         ]
     , taskConjectureLabel = Marker "times_replacement_test"
+    , taskLocation = Location
+        { locFile = "test/examples/replace.tex"
+        , locLine = 25
+        , locColumn = 25
+        }
     , taskConjecture = Quantified Universally
         ( Scope
             ( Connected Equivalence

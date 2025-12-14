@@ -2,6 +2,11 @@
     { taskDirectness = Direct
     , taskHypotheses = []
     , taskConjectureLabel = Marker "trivial"
+    , taskLocation = Location
+        { locFile = "test/examples/calc.tex"
+        , locLine = 1
+        , locColumn = 1
+        }
     , taskConjecture = TermSymbol
         ( Location
             { locFile = "<nowhere>"
@@ -53,6 +58,11 @@
             )
         ]
     , taskConjectureLabel = Marker "irrelevant"
+    , taskLocation = Location
+        { locFile = "test/examples/calc.tex"
+        , locLine = 5
+        , locColumn = 5
+        }
     , taskConjecture = TermSymbol
         ( Location
             { locFile = "<nowhere>"
@@ -132,6 +142,11 @@
             )
         ]
     , taskConjectureLabel = Marker "alsotrivial"
+    , taskLocation = Location
+        { locFile = "test/examples/calc.tex"
+        , locLine = 13
+        , locColumn = 13
+        }
     , taskConjecture = TermSymbol
         ( Location
             { locFile = "<nowhere>"
@@ -183,6 +198,11 @@
             )
         ]
     , taskConjectureLabel = Marker "alsotrivial"
+    , taskLocation = Location
+        { locFile = "test/examples/calc.tex"
+        , locLine = 13
+        , locColumn = 13
+        }
     , taskConjecture = TermSymbol
         ( Location
             { locFile = "<nowhere>"
@@ -282,6 +302,11 @@
             )
         ]
     , taskConjectureLabel = Marker "alsotrivial"
+    , taskLocation = Location
+        { locFile = "test/examples/calc.tex"
+        , locLine = 13
+        , locColumn = 13
+        }
     , taskConjecture = TermSymbol
         ( Location
             { locFile = "<nowhere>"
@@ -389,6 +414,11 @@
             )
         ]
     , taskConjectureLabel = Marker "trivial_biconditionals"
+    , taskLocation = Location
+        { locFile = "test/examples/calc.tex"
+        , locLine = 26
+        , locColumn = 26
+        }
     , taskConjecture = TermSymbol
         ( Location
             { locFile = "<nowhere>"
@@ -440,6 +470,11 @@
             )
         ]
     , taskConjectureLabel = Marker "trivial_biconditionals"
+    , taskLocation = Location
+        { locFile = "test/examples/calc.tex"
+        , locLine = 26
+        , locColumn = 26
+        }
     , taskConjecture = TermSymbol
         ( Location
             { locFile = "<nowhere>"
@@ -587,6 +622,11 @@
             )
         ]
     , taskConjectureLabel = Marker "trivial_biconditionals"
+    , taskLocation = Location
+        { locFile = "test/examples/calc.tex"
+        , locLine = 26
+        , locColumn = 26
+        }
     , taskConjecture = TermSymbol
         ( Location
             { locFile = "<nowhere>"

@@ -186,6 +186,11 @@
             )
         ]
     , taskConjectureLabel = Marker "union_comm"
+    , taskLocation = Location
+        { locFile = "test/examples/union.tex"
+        , locLine = 11
+        , locColumn = 11
+        }
     , taskConjecture = TermSymbol
         ( Location
             { locFile = "<nowhere>"
@@ -492,6 +497,11 @@
             )
         ]
     , taskConjectureLabel = Marker "union_assoc"
+    , taskLocation = Location
+        { locFile = "test/examples/union.tex"
+        , locLine = 19
+        , locColumn = 19
+        }
     , taskConjecture = Quantified Universally
         ( Scope
             ( Connected Implication
@@ -1024,6 +1034,11 @@
             )
         ]
     , taskConjectureLabel = Marker "union_assoc"
+    , taskLocation = Location
+        { locFile = "test/examples/union.tex"
+        , locLine = 20
+        , locColumn = 20
+        }
     , taskConjecture = Quantified Universally
         ( Scope
             ( Connected Implication
@@ -1696,6 +1711,11 @@
             )
         ]
     , taskConjectureLabel = Marker "union_assoc"
+    , taskLocation = Location
+        { locFile = "test/examples/union.tex"
+        , locLine = 20
+        , locColumn = 20
+        }
     , taskConjecture = TermSymbol
         ( Location
             { locFile = "<nowhere>"
