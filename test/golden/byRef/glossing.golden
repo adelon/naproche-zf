@@ -89,8 +89,14 @@
         , locColumn = 1
         }
     )
+    ( Location
+        { locFile = "test/examples/byRef.tex"
+        , locLine = 14
+        , locColumn = 1
+        }
+    )
     ( Qed
-        { mpos = Just
+        { mloc = Just
             ( Location
                 { locFile = "test/examples/byRef.tex"
                 , locLine = 13
@@ -136,6 +142,12 @@
         , locColumn = 1
         }
     )
+    ( Location
+        { locFile = "test/examples/byRef.tex"
+        , locLine = 21
+        , locColumn = 1
+        }
+    )
     ( Have
         ( Location
             { locFile = "test/examples/byRef.tex"
@@ -173,7 +185,7 @@
             ( Marker "prop1" :| [] )
         )
         ( Qed
-            { mpos = Nothing
+            { mloc = Nothing
             , by = JustificationEmpty
             }
         )

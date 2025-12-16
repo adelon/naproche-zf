@@ -52,8 +52,8 @@
     , taskConjectureLabel = Marker "assumetest"
     , taskLocation = Location
         { locFile = "test/examples/prooffix.tex"
-        , locLine = 6
-        , locColumn = 5
+        , locLine = 7
+        , locColumn = 1
         }
     , taskConjecture = TermSymbol
         ( Location

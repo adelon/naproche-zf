@@ -83,4 +83,10 @@
             ) JustificationEmpty ( Qed Nothing JustificationEmpty )
         )
     )
+    ( Location
+        { locFile = "test/examples/prooffix.tex"
+        , locLine = 7
+        , locColumn = 1
+        }
+    )
 ]

@@ -304,8 +304,8 @@
     , taskConjectureLabel = Marker "alsotrivial"
     , taskLocation = Location
         { locFile = "test/examples/calc.tex"
-        , locLine = 13
-        , locColumn = 5
+        , locLine = 20
+        , locColumn = 1
         }
     , taskConjecture = TermSymbol
         ( Location
@@ -624,8 +624,8 @@
     , taskConjectureLabel = Marker "trivial_biconditionals"
     , taskLocation = Location
         { locFile = "test/examples/calc.tex"
-        , locLine = 26
-        , locColumn = 5
+        , locLine = 33
+        , locColumn = 1
         }
     , taskConjecture = TermSymbol
         ( Location

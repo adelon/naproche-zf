@@ -13,7 +13,7 @@ fof(union_defn,axiom,![Xa,XA,XB]:(elem(Xa,union(XA,XB))<=>(elem(Xa,XA)|elem(Xa,X
 fof(ext,axiom,![XA,XB]:(![Xa]:(elem(Xa,XA)<=>elem(Xa,XB))=>XA=XB)).
 fof(union_assoc1,axiom,![Xa]:(elem(Xa,union(union(fA,fB),fC))=>elem(Xa,union(fA,union(fB,fC))))).
 ------------------
-fof(union_assoc,conjecture,union(union(fA,fB),fC)=union(fA,union(fB,fC)),"test/examples/union.tex 20:5").
+fof(union_assoc,conjecture,union(union(fA,fB),fC)=union(fA,union(fB,fC)),"test/examples/union.tex 21:1").
 fof(union_comm,axiom,![XA,XB]:union(XA,XB)=union(XB,XA)).
 fof(union_defn,axiom,![Xa,XA,XB]:(elem(Xa,union(XA,XB))<=>(elem(Xa,XA)|elem(Xa,XB)))).
 fof(ext,axiom,![XA,XB]:(![Xa]:(elem(Xa,XA)<=>elem(Xa,XB))=>XA=XB)).

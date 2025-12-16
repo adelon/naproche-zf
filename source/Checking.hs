@@ -59,6 +59,7 @@ check dumpPremselTraining lexicon blocks = do
             , checkingLexicon = lexicon
             , blockLabel = Marker ""
             , stepLocation = Nowhere
+            , blockEndLocation = Nowhere
             , fixedVars = mempty
             }
 
@@ -115,6 +116,7 @@ data CheckingState = CheckingState
     --
     , blockLabel :: Marker -- ^ Label/marker of the current block
     , stepLocation :: Location -- ^ Location of the current proof step
+    , blockEndLocation :: Location -- ^ Ending of the current proof block, useful for error messages for implicit QEDs.
     }
 
 initCheckingStructs :: StructGraph
@@ -339,14 +341,15 @@ checkBlocks = \case
     BlockAbbr pos marker abbr : blocks -> do
         withLabel pos marker  (checkAbbr abbr)
         checkBlocks blocks
-    BlockLemma pos marker lemma : BlockProof _pos2 proof : blocks -> do
+    BlockLemma pos marker lemma : BlockProof _startLoc endLoc proof : blocks -> do
+        modify \st -> st{blockEndLocation = endLoc}
         withLabel pos marker (checkLemmaWithProof lemma proof)
         checkBlocks blocks
     BlockLemma pos marker  lemma : blocks -> do
         withLabel pos marker (checkLemma lemma)
         checkBlocks blocks
-    BlockProof pos _proof : _ ->
-        throwWithMarker (ProofWithoutPrecedingTheorem pos)
+    BlockProof startLoc _endLoc _proof : _ ->
+        throwWithMarker (ProofWithoutPrecedingTheorem startLoc)
     BlockSig _pos asms sig : blocks -> do
         checkSig asms sig
         checkBlocks blocks
@@ -401,21 +404,12 @@ checkAxiom (Axiom asms axiom) = addFactWithAsms asms axiom
 checkProof :: Proof -> Checking
 checkProof = \case
     Qed mloc j -> do
-        case mloc of
-            Just loc -> setLocation loc
-            Nothing -> skip
-        case j of
-            JustificationEmpty -> tellTasks
-            JustificationRef ms -> byRef ms
-            JustificationLocal -> byAssumption
-            JustificationSetExt -> do
-                goals <- gets checkingGoals
-                case goals of
-                    [goal] -> do
-                        goals' <- splitGoalWithSetExt goal
-                        setGoals goals'
-                    [] -> pure ()
-                    _ -> throwWithLocationAndMarker (MismatchedSetExt goals)
+        loc <- case mloc of
+                Just loc -> pure loc
+                Nothing -> do
+                    gets blockEndLocation
+        setLocation loc
+        justify j
     ByContradiction loc proof -> do
         setLocation loc
         goals <- gets checkingGoals

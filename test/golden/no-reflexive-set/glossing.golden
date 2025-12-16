@@ -51,6 +51,12 @@
         , locColumn = 1
         }
     )
+    ( Location
+        { locFile = "test/examples/no-reflexive-set.tex"
+        , locLine = 11
+        , locColumn = 1
+        }
+    )
     ( BySetInduction
         ( Location
             { locFile = "test/examples/no-reflexive-set.tex"
@@ -59,7 +65,7 @@
             }
         ) Nothing
         ( Qed
-            { mpos = Just
+            { mloc = Just
                 ( Location
                     { locFile = "test/examples/no-reflexive-set.tex"
                     , locLine = 10

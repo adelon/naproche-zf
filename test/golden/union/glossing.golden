@@ -335,6 +335,12 @@
         , locColumn = 1
         }
     )
+    ( Location
+        { locFile = "test/examples/union.tex"
+        , locLine = 21
+        , locColumn = 1
+        }
+    )
     ( Have
         ( Location
             { locFile = "test/examples/union.tex"
@@ -626,7 +632,7 @@
                 )
             ) JustificationEmpty
             ( Qed
-                { mpos = Nothing
+                { mloc = Nothing
                 , by = JustificationEmpty
                 }
             )

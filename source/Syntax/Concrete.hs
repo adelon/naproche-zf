@@ -416,7 +416,7 @@ grammar lexicon@Lexicon{..} = mdo
 
     blockAxiom  <- rule $ uncurry3 BlockAxiom     <$> envPos  "axiom" axiom
     blockLemma  <- rule $ uncurry3 BlockLemma     <$> lemmaEnv lemma
-    blockProof  <- rule $ uncurry  BlockProof     <$> envPos_ "proof" proof
+    blockProof  <- rule $ uncurry3 BlockProof     <$> envStartEndLocation "proof" proof
     blockDefn   <- rule $ uncurry3 BlockDefn      <$> envPos "definition" defn
     blockAbbr   <- rule $ uncurry3 BlockAbbr      <$> envPos "abbreviation" abbreviation
     blockData   <- rule $ uncurry  BlockData      <$> envPos_ "datatype" datatype
@@ -646,6 +646,9 @@ envPos kind body = do
 --
 envPos_ :: Text -> Prod r Text (Located Token) a -> Prod r Text (Located Token) (Location, a)
 envPos_ kind body = (,) <$> begin kind <*> (optional label *> body) <* end kind
+
+envStartEndLocation :: Text -> Prod r Text (Located Token) a -> Prod r Text (Located Token) (Location, a, Location)
+envStartEndLocation kind body = (,,) <$> begin kind <*> (optional label *> body) <*> end kind
 
 env_ :: Text -> Prod r Text (Located Token) a -> Prod r Text (Located Token) a
 env_ kind body = begin kind *> optional label *> body <* end kind

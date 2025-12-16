@@ -220,4 +220,10 @@
             ( NamedVar "x" )
         ) ( Qed Nothing JustificationEmpty )
     )
+    ( Location
+        { locFile = "test/examples/proofdefinefunction.tex"
+        , locLine = 27
+        , locColumn = 1
+        }
+    )
 ]

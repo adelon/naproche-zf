@@ -95,6 +95,12 @@
         , locColumn = 1
         }
     )
+    ( Location
+        { locFile = "test/examples/russell.tex"
+        , locLine = 16
+        , locColumn = 1
+        }
+    )
     ( ByContradiction
         ( Location
             { locFile = "test/examples/russell.tex"
@@ -233,7 +239,7 @@
                             }
                         ) ( PropositionalConstant IsBottom ) JustificationEmpty
                         ( Qed
-                            { mpos = Nothing
+                            { mloc = Nothing
                             , by = JustificationEmpty
                             }
                         )

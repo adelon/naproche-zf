@@ -120,6 +120,12 @@
             ) JustificationEmpty ( Qed Nothing JustificationEmpty )
         )
     )
+    ( Location
+        { locFile = "test/examples/proofassume.tex"
+        , locLine = 7
+        , locColumn = 1
+        }
+    )
 , BlockLemma
     ( Location
         { locFile = "test/examples/proofassume.tex"
@@ -292,5 +298,11 @@
                 ) JustificationEmpty ( Qed Nothing JustificationEmpty )
             )
         )
+    )
+    ( Location
+        { locFile = "test/examples/proofassume.tex"
+        , locLine = 16
+        , locColumn = 1
+        }
     )
 ]

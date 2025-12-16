@@ -93,8 +93,8 @@
     , taskConjectureLabel = Marker "assumetest"
     , taskLocation = Location
         { locFile = "test/examples/proofassume.tex"
-        , locLine = 6
-        , locColumn = 5
+        , locLine = 7
+        , locColumn = 1
         }
     , taskConjecture = TermSymbol
         ( Location
@@ -353,8 +353,8 @@
     , taskConjectureLabel = Marker "assumetesttwo"
     , taskLocation = Location
         { locFile = "test/examples/proofassume.tex"
-        , locLine = 15
-        , locColumn = 5
+        , locLine = 16
+        , locColumn = 1
         }
     , taskConjecture = TermSymbol
         ( Location

@@ -89,6 +89,12 @@
         , locColumn = 1
         }
     )
+    ( Location
+        { locFile = "test/examples/calc.tex"
+        , locLine = 20
+        , locColumn = 1
+        }
+    )
     ( Calc
         ( Location
             { locFile = "test/examples/calc.tex"
@@ -115,7 +121,7 @@
             )
         )
         ( Qed
-            { mpos = Nothing
+            { mloc = Nothing
             , by = JustificationEmpty
             }
         )
@@ -152,6 +158,12 @@
     ( Location
         { locFile = "test/examples/calc.tex"
         , locLine = 25
+        , locColumn = 1
+        }
+    )
+    ( Location
+        { locFile = "test/examples/calc.tex"
+        , locLine = 33
         , locColumn = 1
         }
     )
@@ -210,7 +222,7 @@
             )
         )
         ( Qed
-            { mpos = Nothing
+            { mloc = Nothing
             , by = JustificationEmpty
             }
         )

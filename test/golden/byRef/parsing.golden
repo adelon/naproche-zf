@@ -108,6 +108,12 @@
             ( Marker "prop1" :| [] )
         )
     )
+    ( Location
+        { locFile = "test/examples/byRef.tex"
+        , locLine = 14
+        , locColumn = 1
+        }
+    )
 , BlockLemma
     ( Location
         { locFile = "test/examples/byRef.tex"
@@ -186,6 +192,12 @@
         ( JustificationRef
             ( Marker "prop1" :| [] )
         ) ( Qed Nothing JustificationEmpty )
+    )
+    ( Location
+        { locFile = "test/examples/byRef.tex"
+        , locLine = 21
+        , locColumn = 1
+        }
     )
 , BlockLemma
     ( Location

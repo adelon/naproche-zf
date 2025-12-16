@@ -499,7 +499,7 @@ instance IsString Marker where
 data Block
     = BlockAxiom Location Marker Axiom
     | BlockLemma Location Marker Lemma
-    | BlockProof Location Proof
+    | BlockProof Location Proof Location -- ^ Proof start and ending location.
     | BlockDefn Location Marker Defn
     | BlockAbbr Location Marker Abbreviation
     | BlockData Location Datatype

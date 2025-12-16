@@ -41,6 +41,12 @@
         , locColumn = 1
         }
     )
+    ( Location
+        { locFile = "test/examples/prooffix.tex"
+        , locLine = 7
+        , locColumn = 1
+        }
+    )
     ( Fix
         ( Location
             { locFile = "test/examples/prooffix.tex"
@@ -75,7 +81,7 @@
                 ]
             ) JustificationEmpty
             ( Qed
-                { mpos = Nothing
+                { mloc = Nothing
                 , by = JustificationEmpty
                 }
             )

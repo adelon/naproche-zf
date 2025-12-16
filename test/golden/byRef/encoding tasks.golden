@@ -9,7 +9,7 @@ fof(prop1,axiom,![Xa]:Xa=Xa).
 fof(prop4,conjecture,![Xd]:Xd=Xd,"test/examples/byRef.tex 20:5").
 fof(prop1,axiom,![Xa]:Xa=Xa).
 ------------------
-fof(prop4,conjecture,fe=fe,"test/examples/byRef.tex 20:5").
+fof(prop4,conjecture,fe=fe,"test/examples/byRef.tex 21:1").
 fof(prop3,axiom,![Xc]:Xc=Xc).
 fof(prop2,axiom,![Xb]:Xb=Xb).
 fof(prop1,axiom,![Xa]:Xa=Xa).

@@ -775,8 +775,8 @@ glossBlock = \case
         Sem.BlockAxiom pos marker <$> glossAxiom axiom
     Raw.BlockLemma pos marker lemma ->
         Sem.BlockLemma pos marker <$> glossLemma lemma
-    Raw.BlockProof pos proof ->
-        Sem.BlockProof pos <$> glossProof proof
+    Raw.BlockProof startLoc proof endLoc ->
+        Sem.BlockProof startLoc endLoc <$> glossProof proof
     Raw.BlockDefn pos marker defn -> do
         defn' <- glossDefn defn
         whenLeft (isWellformedDefn defn') (\err -> throwError (GlossDefnError err marker))

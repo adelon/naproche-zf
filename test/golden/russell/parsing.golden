@@ -288,4 +288,10 @@
             )
         )
     )
+    ( Location
+        { locFile = "test/examples/russell.tex"
+        , locLine = 16
+        , locColumn = 1
+        }
+    )
 ]

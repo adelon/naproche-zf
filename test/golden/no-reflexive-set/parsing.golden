@@ -77,4 +77,10 @@
             ) JustificationEmpty
         )
     )
+    ( Location
+        { locFile = "test/examples/no-reflexive-set.tex"
+        , locLine = 11
+        , locColumn = 1
+        }
+    )
 ]

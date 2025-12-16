@@ -30,7 +30,7 @@ buildBlocks lexi = \case
     BlockAxiom _pos lbl (Axiom asms stmt) : blocks ->
         let phi = closure (unAsm <$> asms) stmt
         in text "Fact " <> buildMarker lbl <> text " : " <> buildFormula lexi phi <> text ".\nAdmitted.\n" <> buildBlocks lexi blocks
-    BlockLemma _pos lbl (Lemma asms stmt) : BlockProof _ _ : blocks ->
+    BlockLemma _pos lbl (Lemma asms stmt) : BlockProof _ _ _ : blocks ->
         let phi = closure (unAsm <$> asms) stmt
         in text "Theorem " <> buildMarker lbl <> text " : " <> buildFormula lexi phi <> text ".\nAdmitted.\n" <> buildBlocks lexi blocks
     BlockLemma _pos lbl (Lemma asms stmt) : blocks ->

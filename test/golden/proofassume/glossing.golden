@@ -53,6 +53,12 @@
         , locColumn = 1
         }
     )
+    ( Location
+        { locFile = "test/examples/proofassume.tex"
+        , locLine = 7
+        , locColumn = 1
+        }
+    )
     ( Assume
         ( Location
             { locFile = "test/examples/proofassume.tex"
@@ -104,7 +110,7 @@
                 ]
             ) JustificationEmpty
             ( Qed
-                { mpos = Nothing
+                { mloc = Nothing
                 , by = JustificationEmpty
                 }
             )
@@ -185,6 +191,12 @@
         , locColumn = 1
         }
     )
+    ( Location
+        { locFile = "test/examples/proofassume.tex"
+        , locLine = 16
+        , locColumn = 1
+        }
+    )
     ( Assume
         ( Location
             { locFile = "test/examples/proofassume.tex"
@@ -261,7 +273,7 @@
                     ]
                 ) JustificationEmpty
                 ( Qed
-                    { mpos = Nothing
+                    { mloc = Nothing
                     , by = JustificationEmpty
                     }
                 )

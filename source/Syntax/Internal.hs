@@ -412,7 +412,7 @@ data Proof
     = Omitted
     -- ^ Ends a proof without further verification.
     -- This results in a “gap” in the formalization.
-    | Qed {mpos :: Maybe Location, by :: Justification}
+    | Qed {mloc :: Maybe Location, by :: Justification}
     -- ^ Ends of a proof, leaving automation to discharge the current goal using the given justification.
     | ByContradiction Location Proof
     -- ^ Take the dual of the current goal as an assumption and
@@ -549,7 +549,7 @@ data Abbreviation
 data Block
     = BlockAxiom Location Marker Axiom
     | BlockLemma Location Marker Lemma
-    | BlockProof Location Proof
+    | BlockProof Location Location Proof
     | BlockDefn Location Marker Defn
     | BlockAbbr Location Marker Abbreviation
     | BlockStruct Location Marker StructDefn

@@ -320,8 +320,8 @@
     , taskConjectureLabel = Marker "prop4"
     , taskLocation = Location
         { locFile = "test/examples/byRef.tex"
-        , locLine = 20
-        , locColumn = 5
+        , locLine = 21
+        , locColumn = 1
         }
     , taskConjecture = TermSymbol
         ( Location

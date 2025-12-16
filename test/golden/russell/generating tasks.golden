@@ -1099,8 +1099,8 @@
     , taskConjectureLabel = Marker "no_universal_set"
     , taskLocation = Location
         { locFile = "test/examples/russell.tex"
-        , locLine = 15
-        , locColumn = 5
+        , locLine = 16
+        , locColumn = 1
         }
     , taskConjecture = PropositionalConstant IsBottom
     }
