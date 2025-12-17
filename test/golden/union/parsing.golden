@@ -9,7 +9,7 @@
     ( Axiom
         [ AsmSuppose
             ( SymbolicQuantified
-                { pos = Location
+                { loc = Location
                     { locFile = "test/examples/union.tex"
                     , locLine = 2
                     , locColumn = 13
@@ -20,9 +20,9 @@
                 , suchThat = Nothing
                 , stmt = StmtConnected
                     { conn = Equivalence
-                    , mpos = Nothing
+                    , mloc = Nothing
                     , stmt1 = StmtFormula
-                        { pos = Location
+                        { loc = Location
                             { locFile = "test/examples/union.tex"
                             , locLine = 2
                             , locColumn = 33
@@ -41,7 +41,7 @@
                             )
                         }
                     , stmt2 = StmtFormula
-                        { pos = Location
+                        { loc = Location
                             { locFile = "test/examples/union.tex"
                             , locLine = 2
                             , locColumn = 46
@@ -64,7 +64,7 @@
             )
         ]
         ( StmtFormula
-            { pos = Location
+            { loc = Location
                 { locFile = "test/examples/union.tex"
                 , locLine = 3
                 , locColumn = 10
@@ -113,9 +113,9 @@
         ]
         ( StmtConnected
             { conn = Equivalence
-            , mpos = Nothing
+            , mloc = Nothing
             , stmt1 = StmtFormula
-                { pos = Location
+                { loc = Location
                     { locFile = "test/examples/union.tex"
                     , locLine = 8
                     , locColumn = 5
@@ -144,9 +144,9 @@
                 }
             , stmt2 = StmtConnected
                 { conn = Disjunction
-                , mpos = Nothing
+                , mloc = Nothing
                 , stmt1 = StmtFormula
-                    { pos = Location
+                    { loc = Location
                         { locFile = "test/examples/union.tex"
                         , locLine = 8
                         , locColumn = 26
@@ -165,7 +165,7 @@
                         )
                     }
                 , stmt2 = StmtFormula
-                    { pos = Location
+                    { loc = Location
                         { locFile = "test/examples/union.tex"
                         , locLine = 8
                         , locColumn = 38
@@ -197,7 +197,7 @@
     ( Marker "union_comm" )
     ( Lemma []
         ( StmtFormula
-            { pos = Location
+            { loc = Location
                 { locFile = "test/examples/union.tex"
                 , locLine = 12
                 , locColumn = 5
@@ -245,7 +245,7 @@
     ( Marker "union_assoc" )
     ( Lemma []
         ( StmtFormula
-            { pos = Location
+            { loc = Location
                 { locFile = "test/examples/union.tex"
                 , locLine = 16
                 , locColumn = 5
@@ -316,7 +316,7 @@
             }
         ) Nothing
         ( SymbolicQuantified
-            { pos = Location
+            { loc = Location
                 { locFile = "test/examples/union.tex"
                 , locLine = 19
                 , locColumn = 5
@@ -327,7 +327,7 @@
             , suchThat = Nothing
             , stmt = StmtConnected
                 { conn = Implication
-                , mpos = Just
+                , mloc = Just
                     ( Location
                         { locFile = "test/examples/union.tex"
                         , locLine = 19
@@ -335,7 +335,7 @@
                         }
                     )
                 , stmt1 = StmtFormula
-                    { pos = Location
+                    { loc = Location
                         { locFile = "test/examples/union.tex"
                         , locLine = 19
                         , locColumn = 28
@@ -372,7 +372,7 @@
                         )
                     }
                 , stmt2 = StmtFormula
-                    { pos = Location
+                    { loc = Location
                         { locFile = "test/examples/union.tex"
                         , locLine = 19
                         , locColumn = 61
@@ -419,7 +419,7 @@
                 }
             ) Nothing
             ( SymbolicQuantified
-                { pos = Location
+                { loc = Location
                     { locFile = "test/examples/union.tex"
                     , locLine = 20
                     , locColumn = 5
@@ -430,7 +430,7 @@
                 , suchThat = Nothing
                 , stmt = StmtConnected
                     { conn = Implication
-                    , mpos = Just
+                    , mloc = Just
                         ( Location
                             { locFile = "test/examples/union.tex"
                             , locLine = 20
@@ -438,7 +438,7 @@
                             }
                         )
                     , stmt1 = StmtFormula
-                        { pos = Location
+                        { loc = Location
                             { locFile = "test/examples/union.tex"
                             , locLine = 20
                             , locColumn = 28
@@ -475,7 +475,7 @@
                             )
                         }
                     , stmt2 = StmtFormula
-                        { pos = Location
+                        { loc = Location
                             { locFile = "test/examples/union.tex"
                             , locLine = 20
                             , locColumn = 61

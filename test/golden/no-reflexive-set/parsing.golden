@@ -8,7 +8,7 @@
     ( Marker "in_irrefl" )
     ( Lemma []
         ( StmtQuantPhrase
-            { pos = Location
+            { loc = Location
                 { locFile = "test/examples/no-reflexive-set.tex"
                 , locLine = 2
                 , locColumn = 5
@@ -31,7 +31,7 @@
                     [ NamedVar "A" ]
                 ) ( [] ) ( Nothing )
             , stmt = StmtFormula
-                { pos = Location
+                { loc = Location
                     { locFile = "test/examples/no-reflexive-set.tex"
                     , locLine = 2
                     , locColumn = 30

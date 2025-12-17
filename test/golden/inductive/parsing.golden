@@ -13,7 +13,7 @@
             ( NamedVar "B" )
         )
         ( StmtFormula
-            { pos = Location
+            { loc = Location
                 { locFile = "test/examples/inductive.tex"
                 , locLine = 4
                 , locColumn = 24
@@ -174,7 +174,7 @@
     ( Marker "lmao" )
     ( Axiom []
         ( StmtFormula
-            { pos = Location
+            { loc = Location
                 { locFile = "test/examples/inductive.tex"
                 , locLine = 28
                 , locColumn = 5
@@ -348,7 +348,7 @@
             ) ( Nothing ) ( [] ) ( Nothing )
         , AsmSuppose
             ( StmtFormula
-                { pos = Location
+                { loc = Location
                     { locFile = "test/examples/inductive.tex"
                     , locLine = 41
                     , locColumn = 13
@@ -369,7 +369,7 @@
             )
         ]
         ( StmtFormula
-            { pos = Location
+            { loc = Location
                 { locFile = "test/examples/inductive.tex"
                 , locLine = 42
                 , locColumn = 10

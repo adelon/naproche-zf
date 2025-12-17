@@ -8,7 +8,7 @@
     ( Marker "sep_test" )
     ( Lemma []
         ( StmtFormula
-            { pos = Location
+            { loc = Location
                 { locFile = "test/examples/separation.tex"
                 , locLine = 2
                 , locColumn = 5
@@ -27,7 +27,7 @@
                             ( NamedVar "X" )
                         )
                         ( StmtFormula
-                            { pos = Location
+                            { loc = Location
                                 { locFile = "<nowhere>"
                                 , locLine = -1
                                 , locColumn = -1

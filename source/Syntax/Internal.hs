@@ -158,17 +158,17 @@ annotateWith = go
                 TermSymbolStruct symb (TermVar <$> HM.lookup symb ops)
             e@TermSymbolStruct{} ->
                 e
-            IsElementOf pos1 a (TermVar x) | x `Set.member` labels ->
-                IsElementOf pos1 (go labels ops a) (TermSymbolStruct CarrierSymbol (Just (TermVar x)))
-            Not pos a ->
-                Not pos (go labels ops a)
+            IsElementOf loc1 a (TermVar x) | x `Set.member` labels ->
+                IsElementOf loc1 (go labels ops a) (TermSymbolStruct CarrierSymbol (Just (TermVar x)))
+            Not loc a ->
+                Not loc (go labels ops a)
             Connected conn a b ->
                 Connected conn (go labels ops a) (go labels ops b)
             Quantified quant body ->
                 Quantified quant (toScope (go (Set.map F labels) (F <$> ops) (fromScope body)))
             e@TermVar{} -> e
-            TermSymbol pos symb args ->
-                TermSymbol pos symb (go labels ops <$> args)
+            TermSymbol loc symb args ->
+                TermSymbol loc symb (go labels ops <$> args)
             Apply e1 args ->
                 Apply (go labels ops e1) (go labels ops <$> args)
             TermSep vs e scope ->
@@ -193,39 +193,39 @@ containsHigherOrderConstructs = \case
     Apply{} -> False -- FIXME: this is a lie in general; we need to add sortchecking to determine this.
     TermVar{} -> False
     PropositionalConstant{} -> False
-    TermSymbol pos _ es -> any containsHigherOrderConstructs es
-    Not pos e -> containsHigherOrderConstructs e
+    TermSymbol _loc _s es -> any containsHigherOrderConstructs es
+    Not _loc e -> containsHigherOrderConstructs e
     Connected _ e1 e2 -> containsHigherOrderConstructs e1 || containsHigherOrderConstructs e2
     Quantified _ scope -> containsHigherOrderConstructs (fromScope scope)
     TermSymbolStruct _ _ -> False
 
 pattern TermOp :: Location -> FunctionSymbol -> [ExprOf a] -> ExprOf a
-pattern TermOp pos op es = TermSymbol pos (SymbolMixfix op) es
+pattern TermOp loc op es = TermSymbol loc (SymbolMixfix op) es
 
 pattern TermConst :: Location -> Token -> ExprOf a
-pattern TermConst pos c = TermOp pos [Just c] []
+pattern TermConst loc c = TermOp loc [Just c] []
 
 pattern TermPair :: Location -> ExprOf a -> ExprOf a -> ExprOf a
-pattern TermPair pos e1 e2 = TermOp pos PairSymbol [e1, e2]
+pattern TermPair loc e1 e2 = TermOp loc PairSymbol [e1, e2]
 
 pattern Atomic :: Location -> Predicate -> [ExprOf a] -> ExprOf a
-pattern Atomic pos symbol args = TermSymbol pos (SymbolPredicate symbol) args
+pattern Atomic loc symbol args = TermSymbol loc (SymbolPredicate symbol) args
 
 
 pattern FormulaAdj :: Location -> ExprOf a -> LexicalPhrase -> [ExprOf a] -> ExprOf a
-pattern FormulaAdj pos e adj es = Atomic pos (PredicateAdj adj) (e:es)
+pattern FormulaAdj loc e adj es = Atomic loc (PredicateAdj adj) (e:es)
 
 pattern FormulaVerb :: Location -> ExprOf a -> SgPl LexicalPhrase -> [ExprOf a] -> ExprOf a
-pattern FormulaVerb pos e verb es = Atomic pos (PredicateVerb verb) (e:es)
+pattern FormulaVerb loc e verb es = Atomic loc (PredicateVerb verb) (e:es)
 
 pattern FormulaNoun :: Location -> ExprOf a -> SgPl LexicalPhrase -> [ExprOf a] -> ExprOf a
-pattern FormulaNoun pos e noun es = Atomic pos (PredicateNoun noun) (e:es)
+pattern FormulaNoun loc e noun es = Atomic loc (PredicateNoun noun) (e:es)
 
 relationNoun :: Location -> Expr -> Formula
-relationNoun pos arg = FormulaNoun pos arg (unsafeReadPhraseSgPl "relation[/s]") []
+relationNoun loc arg = FormulaNoun loc arg (unsafeReadPhraseSgPl "relation[/s]") []
 
 rightUniqueAdj :: Location -> Expr -> Formula
-rightUniqueAdj pos arg = FormulaAdj pos arg (unsafeReadPhrase "right-unique") []
+rightUniqueAdj loc arg = FormulaAdj loc arg (unsafeReadPhrase "right-unique") []
 
 -- | Untyped quantification.
 pattern Forall, Exists :: Scope VarSymbol ExprOf a -> ExprOf a
@@ -279,40 +279,40 @@ pattern Top = PropositionalConstant IsTop
 
 
 pattern Relation :: Location -> RelationSymbol -> [ExprOf a] -> ExprOf a
-pattern Relation pos rel es = Atomic pos (PredicateRelation rel) es
+pattern Relation loc rel es = Atomic loc (PredicateRelation rel) es
 
 -- | Membership.
 pattern IsElementOf :: Location -> ExprOf a -> ExprOf a -> ExprOf a
-pattern IsElementOf pos e1 e2 = Relation pos ElementSymbol (e1 : [e2])
+pattern IsElementOf loc e1 e2 = Relation loc ElementSymbol (e1 : [e2])
 
 isElementOf :: ExprOf a -> ExprOf a -> ExprOf a
 isElementOf e1 e2 = Relation Nowhere ElementSymbol (e1 : [e2])
 
 -- | Membership.
 isNotElementOf :: Location -> ExprOf a -> ExprOf a -> ExprOf a
-isNotElementOf pos e1 e2 = Not pos (IsElementOf pos e1 e2)
+isNotElementOf loc e1 e2 = Not loc (IsElementOf loc e1 e2)
 
 -- | Subset relation (non-strict).
 pattern IsSubsetOf :: Location -> ExprOf a -> ExprOf a -> ExprOf a
-pattern IsSubsetOf pos e1 e2 = Atomic pos (PredicateRelation (Command "subseteq")) (e1 : [e2])
+pattern IsSubsetOf loc e1 e2 = Atomic loc (PredicateRelation (Command "subseteq")) (e1 : [e2])
 
 -- | Ordinal predicate.
 pattern IsOrd :: Location -> ExprOf a -> ExprOf a
-pattern IsOrd pos e1 = Atomic pos (PredicateNoun (SgPl [Just "ordinal"] [Just "ordinals"])) [e1]
+pattern IsOrd loc e1 = Atomic loc (PredicateNoun (SgPl [Just "ordinal"] [Just "ordinals"])) [e1]
 
 -- | Equality.
 pattern Equals :: Location -> ExprOf a -> ExprOf a -> ExprOf a
-pattern Equals pos e1 e2 = Atomic pos (PredicateRelation (Symbol "=")) (e1 : [e2])
+pattern Equals loc e1 e2 = Atomic loc (PredicateRelation (Symbol "=")) (e1 : [e2])
 
 equals :: ExprOf a -> ExprOf a -> ExprOf a
 equals e1 e2 = Atomic Nowhere (PredicateRelation (Symbol "=")) (e1 : [e2])
 
 -- | Disequality.
 pattern NotEquals :: Location -> ExprOf a -> ExprOf a -> ExprOf a
-pattern NotEquals pos e1 e2 = Atomic pos (PredicateRelation (Command "neq")) (e1 : [e2])
+pattern NotEquals loc e1 e2 = Atomic loc (PredicateRelation (Command "neq")) (e1 : [e2])
 
 pattern EmptySet :: Location -> ExprOf a
-pattern EmptySet pos = TermSymbol pos (SymbolMixfix [Just (Command "emptyset")]) []
+pattern EmptySet loc = TermSymbol loc (SymbolMixfix [Just (Command "emptyset")]) []
 
 makeConjunction :: [ExprOf a] -> ExprOf a
 makeConjunction = \case
@@ -346,7 +346,7 @@ isPositive = \case
 
 dual :: ExprOf a -> ExprOf a
 dual = \case
-    Not _pos f -> f
+    Not _loc f -> f
     f -> Not Nowhere f
 
 
@@ -603,7 +603,7 @@ contraction :: ExprOf a -> ExprOf a
 contraction = \case
     Connected conn f1 f2  -> atomicContraction (Connected conn (contraction f1) (contraction f2))
     Quantified quant scope -> atomicContraction (Quantified quant (hoistScope contraction scope))
-    Not pos f -> Not pos (contraction f)
+    Not loc f -> Not loc (contraction f)
     f -> f
 
 

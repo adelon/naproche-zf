@@ -262,13 +262,13 @@ unabbreviateWith abbrs = unabbr
     where
         unabbr :: ExprOf b -> ExprOf b
         unabbr = \case
-            TermSymbol pos sym es ->
+            TermSymbol loc sym es ->
                 let es' = unabbr <$> es
                 in case HM.lookup sym abbrs of
-                        Nothing -> TermSymbol pos sym es'
+                        Nothing -> TermSymbol loc sym es'
                         Just scope -> unabbr (instantiate (\k -> nth k es ?? error "unabbreviateWith: incorrect index") scope)
-            Not pos e ->
-                Not pos (unabbr e)
+            Not loc e ->
+                Not loc (unabbr e)
             Apply e es ->
                 Apply (unabbr e) (unabbr <$> es)
             TermSep vs e scope ->
@@ -310,8 +310,8 @@ desugarComprehensions = \case
     Equals _pos (ReplaceFun bounds scope cond) e -> makeReplacementIff (F <$> e) bounds scope cond
     --
     Apply e es -> Apply (desugarComprehensions e) (desugarComprehensions <$> es)
-    Not pos e -> Not pos (desugarComprehensions e)
-    TermSymbol pos sym es -> TermSymbol pos sym (desugarComprehensions <$> es)
+    Not loc e -> Not loc (desugarComprehensions e)
+    TermSymbol loc sym es -> TermSymbol loc sym (desugarComprehensions <$> es)
     Connected conn e1 e2 -> Connected conn (desugarComprehensions e1) (desugarComprehensions e2)
     Lambda scope -> Lambda (hoistScope desugarComprehensions scope)
     Quantified quant scope -> Quantified quant (hoistScope desugarComprehensions scope)
@@ -332,32 +332,32 @@ desugarComprehensionsA e = pure (desugarComprehensions e)
 
 checkBlocks :: [Block] -> Checking
 checkBlocks = \case
-    BlockAxiom pos marker axiom : blocks -> do
-        withLabel pos marker (checkAxiom axiom)
+    BlockAxiom loc marker axiom : blocks -> do
+        withLabel loc marker (checkAxiom axiom)
         checkBlocks blocks
     BlockDefn loc marker defn : blocks -> do
         withLabel loc marker (checkDefn loc defn)
         checkBlocks blocks
-    BlockAbbr pos marker abbr : blocks -> do
-        withLabel pos marker  (checkAbbr abbr)
+    BlockAbbr loc marker abbr : blocks -> do
+        withLabel loc marker  (checkAbbr abbr)
         checkBlocks blocks
-    BlockLemma pos marker lemma : BlockProof _startLoc endLoc proof : blocks -> do
+    BlockLemma loc marker lemma : BlockProof _startLoc endLoc proof : blocks -> do
         modify \st -> st{blockEndLocation = endLoc}
-        withLabel pos marker (checkLemmaWithProof lemma proof)
+        withLabel loc marker (checkLemmaWithProof lemma proof)
         checkBlocks blocks
-    BlockLemma pos marker  lemma : blocks -> do
-        withLabel pos marker (checkLemma lemma)
+    BlockLemma loc marker  lemma : blocks -> do
+        withLabel loc marker (checkLemma lemma)
         checkBlocks blocks
     BlockProof startLoc _endLoc _proof : _ ->
         throwWithMarker (ProofWithoutPrecedingTheorem startLoc)
     BlockSig _pos asms sig : blocks -> do
         checkSig asms sig
         checkBlocks blocks
-    BlockInductive pos marker inductiveDefn : blocks -> do
-        withLabel pos marker (checkInductive inductiveDefn)
+    BlockInductive loc marker inductiveDefn : blocks -> do
+        withLabel loc marker (checkInductive inductiveDefn)
         checkBlocks blocks
-    BlockStruct pos marker structDefn : blocks -> do
-        withLabel pos marker (checkStructDefn structDefn)
+    BlockStruct loc marker structDefn : blocks -> do
+        withLabel loc marker (checkStructDefn structDefn)
         checkBlocks blocks
     [] -> skip
 
@@ -419,13 +419,13 @@ checkProof = \case
                 byContradiction
                 checkProof proof
             _ -> throwWithLocationAndMarker (ByContradictionOnMultipleGoals)
-    ByCase pos splits -> do
-        setLocation pos
+    ByCase loc splits -> do
+        setLocation loc
         for_ splits checkCase
         setGoals [makeDisjunction (caseOf <$> splits)]
         tellTasks
-    BySetInduction pos mx continue -> do
-        setLocation pos
+    BySetInduction loc mx continue -> do
+        setLocation loc
         goals <- gets checkingGoals
         case goals of
             Forall scope : goals' -> do
@@ -433,9 +433,9 @@ checkProof = \case
                 z <- case mx of
                     Nothing -> case zs of
                         [z'] -> pure z'
-                        _ -> throwWithMarker (AmbiguousInductionVar pos)
+                        _ -> throwWithMarker (AmbiguousInductionVar loc)
                     Just (TermVar z') -> pure z'
-                    _ -> throwWithMarker (AmbiguousInductionVar pos)
+                    _ -> throwWithMarker (AmbiguousInductionVar loc)
                 let y = NamedVar "IndAntecedent"
                 let ys = List.delete z zs
                 let anteInst bv = if bv == z then TermVar y else TermVar bv
@@ -444,7 +444,7 @@ checkProof = \case
                 let consequent = instantiate TermVar scope
                 setGoals (consequent : goals')
                 checkProof continue
-            _ -> throwWithMarker (BySetInductionSyntacticMismatch pos)
+            _ -> throwWithMarker (BySetInductionSyntacticMismatch loc)
     ByOrdInduction loc continue -> do
         setLocation loc
         goals <- gets checkingGoals
@@ -870,10 +870,10 @@ isValidCondition f args phi = if isSideCondition phi
         extractMonotonicFunction e = \x -> go x e
             where
                 go x = \case
-                    TermSymbol pos f' args' -> if
+                    TermSymbol loc f' args' -> if
                         | f' == SymbolMixfix f && args' == (TermVar <$> args) -> x
                         | f' == SymbolMixfix f -> error ("symbol " <> show f <> " occurred with the wrong arguments " <> show args')
-                        | otherwise -> TermSymbol pos f' (go x <$> args')
+                        | otherwise -> TermSymbol loc f' (go x <$> args')
                     TermVar x -> TermVar x
                     e@(TermSymbolStruct _ Nothing) -> e
                     TermSymbolStruct s (Just e') -> TermSymbolStruct s (Just (go x e'))
@@ -899,14 +899,14 @@ typecheckRule f args dom (IntroRule conds result) = makeConjunction (go <$> cond
         -- replace symbol by dom for TC rule
         go :: Expr -> Expr
         go = \case
-            TermSymbol pos f' args' -> if
+            TermSymbol loc f' args' -> if
                 | f' == SymbolMixfix f && args' == (TermVar <$> args) -> dom
                 | f' == SymbolMixfix f -> error ("typecheckRule: symbol " <> show f <> " occurred with the wrong arguments " <> show args')
-                | otherwise -> TermSymbol pos f' (go <$> args')
+                | otherwise -> TermSymbol loc f' (go <$> args')
             TermVar x -> TermVar x
             e@(TermSymbolStruct _ Nothing) -> e
             TermSymbolStruct s (Just e') -> TermSymbolStruct s (Just (go e'))
-            Not pos a -> Not pos (go a)
+            Not loc a -> Not loc (go a)
             Connected conn a b -> Connected conn (go a) (go b)
             Apply a b -> Apply (go a) (go <$> b)
             e@PropositionalConstant{} -> e

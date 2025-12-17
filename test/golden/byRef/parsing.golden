@@ -8,7 +8,7 @@
     ( Marker "prop1" )
     ( Lemma []
         ( StmtFormula
-            { pos = Location
+            { loc = Location
                 { locFile = "test/examples/byRef.tex"
                 , locLine = 2
                 , locColumn = 5
@@ -38,7 +38,7 @@
     ( Marker "prop2" )
     ( Lemma []
         ( StmtFormula
-            { pos = Location
+            { loc = Location
                 { locFile = "test/examples/byRef.tex"
                 , locLine = 6
                 , locColumn = 5
@@ -68,7 +68,7 @@
     ( Marker "prop3" )
     ( Lemma []
         ( StmtFormula
-            { pos = Location
+            { loc = Location
                 { locFile = "test/examples/byRef.tex"
                 , locLine = 10
                 , locColumn = 5
@@ -124,7 +124,7 @@
     ( Marker "prop4" )
     ( Lemma []
         ( StmtFormula
-            { pos = Location
+            { loc = Location
                 { locFile = "test/examples/byRef.tex"
                 , locLine = 17
                 , locColumn = 5
@@ -159,7 +159,7 @@
             }
         ) Nothing
         ( SymbolicQuantified
-            { pos = Location
+            { loc = Location
                 { locFile = "test/examples/byRef.tex"
                 , locLine = 20
                 , locColumn = 5
@@ -169,7 +169,7 @@
             , b = Unbounded
             , suchThat = Nothing
             , stmt = StmtFormula
-                { pos = Location
+                { loc = Location
                     { locFile = "test/examples/byRef.tex"
                     , locLine = 20
                     , locColumn = 25
@@ -209,7 +209,7 @@
     ( Marker "prop5" )
     ( Lemma []
         ( StmtFormula
-            { pos = Location
+            { loc = Location
                 { locFile = "test/examples/byRef.tex"
                 , locLine = 24
                 , locColumn = 5

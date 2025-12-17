@@ -37,7 +37,7 @@
             )
         )
         ( StmtQuantPhrase
-            { pos = Location
+            { loc = Location
                 { locFile = "test/examples/russell.tex"
                 , locLine = 4
                 , locColumn = 5
@@ -60,7 +60,7 @@
                     [ NamedVar "x" ]
                 ) ( [] ) ( Nothing )
             , stmt = StmtFormula
-                { pos = Location
+                { loc = Location
                     { locFile = "test/examples/russell.tex"
                     , locLine = 4
                     , locColumn = 30
@@ -91,13 +91,13 @@
     ( Marker "no_universal_set" )
     ( Lemma []
         ( StmtNeg
-            { pos = Location
+            { loc = Location
                 { locFile = "test/examples/russell.tex"
                 , locLine = 8
                 , locColumn = 18
                 }
             , stmt = StmtExists
-                { pos = Location
+                { loc = Location
                     { locFile = "test/examples/russell.tex"
                     , locLine = 8
                     , locColumn = 18
@@ -197,7 +197,7 @@
                         ( NamedVar "V" )
                     )
                     ( StmtFormula
-                        { pos = Location
+                        { loc = Location
                             { locFile = "<nowhere>"
                             , locLine = -1
                             , locColumn = -1
@@ -226,9 +226,9 @@
                     ) Nothing
                     ( StmtConnected
                         { conn = Equivalence
-                        , mpos = Nothing
+                        , mloc = Nothing
                         , stmt1 = StmtFormula
-                            { pos = Location
+                            { loc = Location
                                 { locFile = "test/examples/russell.tex"
                                 , locLine = 14
                                 , locColumn = 10
@@ -247,7 +247,7 @@
                                 )
                             }
                         , stmt2 = StmtFormula
-                            { pos = Location
+                            { loc = Location
                                 { locFile = "test/examples/russell.tex"
                                 , locLine = 14
                                 , locColumn = 23
@@ -275,7 +275,7 @@
                             }
                         ) Nothing
                         ( StmtFormula
-                            { pos = Location
+                            { loc = Location
                                 { locFile = "test/examples/russell.tex"
                                 , locLine = 15
                                 , locColumn = 5

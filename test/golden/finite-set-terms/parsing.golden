@@ -9,9 +9,9 @@
     ( Axiom []
         ( StmtConnected
             { conn = Equivalence
-            , mpos = Nothing
+            , mloc = Nothing
             , stmt1 = StmtFormula
-                { pos = Location
+                { loc = Location
                     { locFile = "test/examples/finite-set-terms.tex"
                     , locLine = 2
                     , locColumn = 5
@@ -44,9 +44,9 @@
                 }
             , stmt2 = StmtConnected
                 { conn = Disjunction
-                , mpos = Nothing
+                , mloc = Nothing
                 , stmt1 = StmtFormula
-                    { pos = Location
+                    { loc = Location
                         { locFile = "test/examples/finite-set-terms.tex"
                         , locLine = 2
                         , locColumn = 28
@@ -65,7 +65,7 @@
                         )
                     }
                 , stmt2 = StmtFormula
-                    { pos = Location
+                    { loc = Location
                         { locFile = "test/examples/finite-set-terms.tex"
                         , locLine = 2
                         , locColumn = 39
@@ -119,7 +119,7 @@
     ( Marker "emptyset_in_unit" )
     ( Lemma []
         ( StmtFormula
-            { pos = Location
+            { loc = Location
                 { locFile = "test/examples/finite-set-terms.tex"
                 , locLine = 10
                 , locColumn = 5

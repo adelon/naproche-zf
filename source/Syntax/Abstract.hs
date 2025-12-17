@@ -222,8 +222,8 @@ data AdjROf a
     deriving (Show, Eq, Ord)
 
 instance Locatable (AdjROf a) where
-    locate (AdjR p _ _) = p
-    locate (AttrRThat vp) = Nowhere -- TODO
+    locate (AdjR loc _ _) = loc
+    locate (AttrRThat _) = Nowhere -- TODO
 
 -- | Adjectives for parts of the AST where adjectives are not used
 -- to modify nouns and the L/R distinction does not matter, such as
@@ -242,7 +242,7 @@ data VerbOf a
 
 type Fun = FunOf Term
 data FunOf a
-    = Fun {pos :: Location, phrase :: SgPl LexicalPhrase, funArgs :: [a]}
+    = Fun {loc :: Location, phrase :: SgPl LexicalPhrase, funArgs :: [a]}
     deriving (Show, Eq, Ord)
 
 
@@ -278,43 +278,43 @@ data Term
 instance Locatable Term where
     locate :: Term -> Location
     locate (TermExpr loc _) = loc
-    locate (TermFun f) = f.pos
+    locate (TermFun f) = f.loc
     locate (TermIota loc _ _) = loc
     locate (TermQuantified _ loc _) = loc
 
 
 data Stmt
-    = StmtFormula {pos :: Location, formula :: Formula} -- ^ E.g.: /@We have \<Formula\>@/.
+    = StmtFormula {loc :: Location, formula :: Formula} -- ^ E.g.: /@We have \<Formula\>@/.
     | StmtVerbPhrase {args :: NonEmpty Term, verb :: VerbPhrase} -- ^ E.g.: /@\<Term\> and \<Term\> \<verb\>@/.
-    | StmtNoun {pos :: Location, args :: NonEmpty Term, noun :: (NounPhrase Maybe)} -- ^ E.g.: /@\<Term\> is a(n) \<NP\>@/.
-    | StmtStruct {pos :: Location, arg :: Term, struct :: StructPhrase}
-    | StmtNeg {pos :: Location, stmt :: Stmt} -- ^ E.g.: /@It is not the case that \<Stmt\>@/.
-    | StmtExists {pos :: Location, np :: NounPhrase []} -- ^ E.g.: /@There exists a(n) \<NP\>@/.
-    | StmtConnected {conn :: Connective, mpos :: Maybe Location, stmt1 :: Stmt, stmt2 :: Stmt}
-    | StmtQuantPhrase {pos :: Location, qp :: QuantPhrase, stmt :: Stmt}
-    | SymbolicQuantified {pos :: Location, quant :: Quantifier, xs :: NonEmpty VarSymbol, b :: Bound, suchThat :: Maybe Stmt, stmt :: Stmt}
+    | StmtNoun {loc :: Location, args :: NonEmpty Term, noun :: (NounPhrase Maybe)} -- ^ E.g.: /@\<Term\> is a(n) \<NP\>@/.
+    | StmtStruct {loc :: Location, arg :: Term, struct :: StructPhrase}
+    | StmtNeg {loc :: Location, stmt :: Stmt} -- ^ E.g.: /@It is not the case that \<Stmt\>@/.
+    | StmtExists {loc :: Location, np :: NounPhrase []} -- ^ E.g.: /@There exists a(n) \<NP\>@/.
+    | StmtConnected {conn :: Connective, mloc :: Maybe Location, stmt1 :: Stmt, stmt2 :: Stmt}
+    | StmtQuantPhrase {loc :: Location, qp :: QuantPhrase, stmt :: Stmt}
+    | SymbolicQuantified {loc :: Location, quant :: Quantifier, xs :: NonEmpty VarSymbol, b :: Bound, suchThat :: Maybe Stmt, stmt :: Stmt}
     deriving (Show, Eq, Ord)
 
 instance Locatable Stmt where
     locate :: Stmt -> Location
-    locate StmtFormula{pos = loc} = loc
-    locate StmtConnected{mpos = Just p} = p
-    locate StmtConnected{mpos = Nothing, stmt1 = s} = locate s
+    locate StmtFormula{loc = loc} = loc
+    locate StmtConnected{mloc = Just p} = p
+    locate StmtConnected{mloc = Nothing, stmt1 = s} = locate s
     locate StmtVerbPhrase{args = a :| _} = locate a
-    locate StmtNoun{pos = p} = p
-    locate StmtStruct{pos = p} = p
-    locate StmtNeg{pos = p} = p
-    locate StmtExists{pos = p} = p
-    locate StmtQuantPhrase{pos = p} = p
-    locate SymbolicQuantified{pos = p} = p
+    locate StmtNoun{loc = p} = p
+    locate StmtStruct{loc = p} = p
+    locate StmtNeg{loc = p} = p
+    locate StmtExists{loc = p} = p
+    locate StmtQuantPhrase{loc = p} = p
+    locate SymbolicQuantified{loc = p} = p
 
 data Bound = Unbounded | Bounded Sign Relation Expr deriving (Show, Eq, Ord)
 
 pattern SymbolicForall :: Location -> NonEmpty VarSymbol -> Bound -> Maybe Stmt -> Stmt -> Stmt
-pattern SymbolicForall pos vs bound suchThat have = SymbolicQuantified pos Universally vs bound suchThat have
+pattern SymbolicForall loc vs bound suchThat have = SymbolicQuantified loc Universally vs bound suchThat have
 
 pattern SymbolicExists :: Location -> NonEmpty VarSymbol -> Bound -> Stmt -> Stmt
-pattern SymbolicExists pos vs bound suchThat = SymbolicQuantified pos Existentially vs bound Nothing suchThat
+pattern SymbolicExists loc vs bound suchThat = SymbolicQuantified loc Existentially vs bound Nothing suchThat
 
 makeSymbolicNotExists :: Location -> NonEmpty VarSymbol -> Bound -> Stmt -> Stmt
 makeSymbolicNotExists p vs bound st = StmtNeg p (SymbolicExists p vs bound st)

@@ -19,7 +19,7 @@ passmark = 0.4
 
 
 filterTask :: Task -> Task
-filterTask Task{taskDirectness = directness, taskConjectureLabel = label, taskConjecture = conjecture, taskHypotheses = hypotheses} =
+filterTask Task{taskDirectness = directness, taskConjectureLabel = label, taskConjecture = conjecture, taskHypotheses = hypotheses, taskLocation = loc} =
     let
         motive = case directness of
             Indirect formerConjecture -> formerConjecture
@@ -32,6 +32,7 @@ filterTask Task{taskDirectness = directness, taskConjectureLabel = label, taskCo
         , taskConjecture = conjecture
         , taskHypotheses = filteredHypos
         , taskConjectureLabel = label
+        , taskLocation = loc
         }
 
 

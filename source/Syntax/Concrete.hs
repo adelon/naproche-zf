@@ -363,20 +363,20 @@ grammar lexicon@Lexicon{..} = mdo
 
 
     calcQuantifier <- rule do
-        pos <- _forAll <|> _forEvery
+        loc <- _forAll <|> _forEvery
         xs <- beginMath *> varSymbols
         mb <- maybeBounded <* endMath
         st <- optional suchStmt
         optional _have
-        pure (pos, CalcQuantifier xs mb st)
+        pure (loc, CalcQuantifier xs mb st)
 
     calc <- rule do
         mquant <- optional calcQuantifier
         psteps <- align (equations <|> biconditionals)
         pf <- proof
-        pure let (pos2, steps) = psteps in case mquant of
-            Nothing -> Calc pos2 Nothing steps pf
-            Just (pos, q) -> Calc pos (Just q) steps pf
+        pure let (loc2, steps) = psteps in case mquant of
+            Nothing -> Calc loc2 Nothing steps pf
+            Just (loc, q) -> Calc loc (Just q) steps pf
 
     caseOf           <- rule $ command "caseOf" *> token InvisibleBraceL *> stmt <* _dot <* token InvisibleBraceR
     byCases          <- rule $ uncurry ByCase <$> envPos_ "byCase" (many1_ (Case <$> caseOf <*> proof))

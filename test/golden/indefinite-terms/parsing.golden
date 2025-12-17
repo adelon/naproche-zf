@@ -8,7 +8,7 @@
     ( Marker "indefinite_test_forall" )
     ( Lemma []
         ( StmtNoun
-            { pos = Location
+            { loc = Location
                 { locFile = "test/examples/indefinite-terms.tex"
                 , locLine = 2
                 , locColumn = 5
@@ -60,7 +60,7 @@
     ( Marker "indefinite_test_exists" )
     ( Lemma []
         ( StmtNoun
-            { pos = Location
+            { loc = Location
                 { locFile = "test/examples/indefinite-terms.tex"
                 , locLine = 6
                 , locColumn = 5

@@ -8,7 +8,7 @@
     ( Marker "formula_test_forall" )
     ( Lemma []
         ( StmtFormula
-            { pos = Location
+            { loc = Location
                 { locFile = "test/examples/formula.tex"
                 , locLine = 2
                 , locColumn = 5
@@ -58,7 +58,7 @@
     ( Marker "formula_test_exists" )
     ( Lemma []
         ( StmtFormula
-            { pos = Location
+            { loc = Location
                 { locFile = "test/examples/formula.tex"
                 , locLine = 6
                 , locColumn = 5
@@ -94,9 +94,9 @@
     ( Lemma []
         ( StmtConnected
             { conn = Equivalence
-            , mpos = Nothing
+            , mloc = Nothing
             , stmt1 = StmtFormula
-                { pos = Location
+                { loc = Location
                     { locFile = "test/examples/formula.tex"
                     , locLine = 10
                     , locColumn = 5
@@ -120,13 +120,13 @@
                     )
                 }
             , stmt2 = StmtNeg
-                { pos = Location
+                { loc = Location
                     { locFile = "test/examples/formula.tex"
                     , locLine = 10
                     , locColumn = 42
                     }
                 , stmt = StmtFormula
-                    { pos = Location
+                    { loc = Location
                         { locFile = "test/examples/formula.tex"
                         , locLine = 10
                         , locColumn = 46

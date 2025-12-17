@@ -9,9 +9,9 @@
     ( Axiom []
         ( StmtConnected
             { conn = Equivalence
-            , mpos = Nothing
+            , mloc = Nothing
             , stmt1 = StmtFormula
-                { pos = Location
+                { loc = Location
                     { locFile = "test/examples/replace.tex"
                     , locLine = 2
                     , locColumn = 5
@@ -44,9 +44,9 @@
                 }
             , stmt2 = StmtConnected
                 { conn = Disjunction
-                , mpos = Nothing
+                , mloc = Nothing
                 , stmt1 = StmtFormula
-                    { pos = Location
+                    { loc = Location
                         { locFile = "test/examples/replace.tex"
                         , locLine = 2
                         , locColumn = 28
@@ -65,7 +65,7 @@
                         )
                     }
                 , stmt2 = StmtFormula
-                    { pos = Location
+                    { loc = Location
                         { locFile = "test/examples/replace.tex"
                         , locLine = 2
                         , locColumn = 39
@@ -169,7 +169,7 @@
     ( Marker "pair_emptyset_in_times_unit" )
     ( Lemma []
         ( StmtFormula
-            { pos = Location
+            { loc = Location
                 { locFile = "test/examples/replace.tex"
                 , locLine = 14
                 , locColumn = 5
@@ -244,7 +244,7 @@
                 ( NamedVar "a" )
             )
             ( StmtFormula
-                { pos = Location
+                { loc = Location
                     { locFile = "<nowhere>"
                     , locLine = -1
                     , locColumn = -1
@@ -277,7 +277,7 @@
     ( Marker "times_replacement_test" )
     ( Lemma []
         ( StmtFormula
-            { pos = Location
+            { loc = Location
                 { locFile = "test/examples/replace.tex"
                 , locLine = 26
                 , locColumn = 5

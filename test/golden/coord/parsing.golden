@@ -24,7 +24,7 @@
             )
         )
         ( StmtFormula
-            { pos = Location
+            { loc = Location
                 { locFile = "test/examples/coord.tex"
                 , locLine = 2
                 , locColumn = 22
@@ -68,7 +68,7 @@
             )
         )
         ( StmtFormula
-            { pos = Location
+            { loc = Location
                 { locFile = "test/examples/coord.tex"
                 , locLine = 6
                 , locColumn = 20
@@ -112,7 +112,7 @@
             )
         )
         ( StmtFormula
-            { pos = Location
+            { loc = Location
                 { locFile = "test/examples/coord.tex"
                 , locLine = 10
                 , locColumn = 20
@@ -160,7 +160,7 @@
             ) ( Nothing ) ( [] ) ( Nothing )
         ]
         ( StmtFormula
-            { pos = Location
+            { loc = Location
                 { locFile = "test/examples/coord.tex"
                 , locLine = 15
                 , locColumn = 10
@@ -221,7 +221,7 @@
             ) ( Nothing ) ( [] ) ( Nothing )
         ]
         ( StmtFormula
-            { pos = Location
+            { loc = Location
                 { locFile = "test/examples/coord.tex"
                 , locLine = 20
                 , locColumn = 10
@@ -270,7 +270,7 @@
             ( Just
                 ( StmtConnected
                     { conn = Conjunction
-                    , mpos = Nothing
+                    , mloc = Nothing
                     , stmt1 = StmtVerbPhrase
                         { args = TermExpr
                             ( Location
@@ -324,7 +324,7 @@
             )
         ]
         ( StmtFormula
-            { pos = Location
+            { loc = Location
                 { locFile = "test/examples/coord.tex"
                 , locLine = 26
                 , locColumn = 10
@@ -355,9 +355,9 @@
     ( Lemma []
         ( StmtConnected
             { conn = Equivalence
-            , mpos = Nothing
+            , mloc = Nothing
             , stmt1 = StmtFormula
-                { pos = Location
+                { loc = Location
                     { locFile = "test/examples/coord.tex"
                     , locLine = 31
                     , locColumn = 5
@@ -376,7 +376,7 @@
                     )
                 }
             , stmt2 = StmtNoun
-                { pos = Location
+                { loc = Location
                     { locFile = "test/examples/coord.tex"
                     , locLine = 31
                     , locColumn = 17
@@ -523,7 +523,7 @@
             ) ( Nothing ) ( [] ) ( Nothing )
         ]
         ( StmtNoun
-            { pos = Location
+            { loc = Location
                 { locFile = "test/examples/coord.tex"
                 , locLine = 41
                 , locColumn = 10

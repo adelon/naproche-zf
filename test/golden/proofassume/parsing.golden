@@ -9,7 +9,7 @@
     ( Lemma []
         ( StmtConnected
             { conn = Implication
-            , mpos = Just
+            , mloc = Just
                 ( Location
                     { locFile = "test/examples/proofassume.tex"
                     , locLine = 2
@@ -17,7 +17,7 @@
                     }
                 )
             , stmt1 = StmtFormula
-                { pos = Location
+                { loc = Location
                     { locFile = "test/examples/proofassume.tex"
                     , locLine = 2
                     , locColumn = 8
@@ -36,7 +36,7 @@
                     )
                 }
             , stmt2 = StmtFormula
-                { pos = Location
+                { loc = Location
                     { locFile = "test/examples/proofassume.tex"
                     , locLine = 2
                     , locColumn = 23
@@ -72,7 +72,7 @@
             }
         )
         ( StmtFormula
-            { pos = Location
+            { loc = Location
                 { locFile = "test/examples/proofassume.tex"
                 , locLine = 5
                 , locColumn = 12
@@ -99,7 +99,7 @@
                 }
             ) Nothing
             ( StmtFormula
-                { pos = Location
+                { loc = Location
                     { locFile = "test/examples/proofassume.tex"
                     , locLine = 6
                     , locColumn = 10
@@ -137,7 +137,7 @@
     ( Lemma []
         ( StmtConnected
             { conn = Implication
-            , mpos = Just
+            , mloc = Just
                 ( Location
                     { locFile = "test/examples/proofassume.tex"
                     , locLine = 10
@@ -146,9 +146,9 @@
                 )
             , stmt1 = StmtConnected
                 { conn = Conjunction
-                , mpos = Nothing
+                , mloc = Nothing
                 , stmt1 = StmtFormula
-                    { pos = Location
+                    { loc = Location
                         { locFile = "test/examples/proofassume.tex"
                         , locLine = 10
                         , locColumn = 8
@@ -167,7 +167,7 @@
                         )
                     }
                 , stmt2 = StmtFormula
-                    { pos = Location
+                    { loc = Location
                         { locFile = "test/examples/proofassume.tex"
                         , locLine = 10
                         , locColumn = 21
@@ -187,7 +187,7 @@
                     }
                 }
             , stmt2 = StmtFormula
-                { pos = Location
+                { loc = Location
                     { locFile = "test/examples/proofassume.tex"
                     , locLine = 10
                     , locColumn = 36
@@ -223,7 +223,7 @@
             }
         )
         ( StmtFormula
-            { pos = Location
+            { loc = Location
                 { locFile = "test/examples/proofassume.tex"
                 , locLine = 13
                 , locColumn = 12
@@ -250,7 +250,7 @@
                 }
             )
             ( StmtFormula
-                { pos = Location
+                { loc = Location
                     { locFile = "test/examples/proofassume.tex"
                     , locLine = 14
                     , locColumn = 12
@@ -277,7 +277,7 @@
                     }
                 ) Nothing
                 ( StmtFormula
-                    { pos = Location
+                    { loc = Location
                         { locFile = "test/examples/proofassume.tex"
                         , locLine = 15
                         , locColumn = 10
