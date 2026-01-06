@@ -144,6 +144,13 @@ abstractVarSymbol x = abstract (\y -> if x == y then Just x else Nothing)
 abstractVarSymbols :: Foldable t => t VarSymbol -> ExprOf VarSymbol -> Scope VarSymbol ExprOf VarSymbol
 abstractVarSymbols xs = abstract (\y -> if y `elem` xs then Just y else Nothing)
 
+
+forgetLocation :: ExprOf a -> ExprOf a
+forgetLocation = \case
+    TermSymbol _loc symb args -> TermSymbol Nowhere symb (forgetLocation <$> args)
+    Not _loc e -> Not Nowhere (forgetLocation e)
+    e -> e
+
 -- | Use the given set of in scope structures to cast them to their carriers
 -- when occurring on the rhs of the element relation.
 -- Use the given 'Map' to annotate (unannotated) structure operations
