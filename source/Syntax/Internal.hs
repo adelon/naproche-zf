@@ -151,6 +151,9 @@ forgetLocation = \case
     Not _loc e -> Not Nowhere (forgetLocation e)
     e -> e
 
+equivalent :: Eq a => ExprOf a -> ExprOf a -> Bool
+equivalent e1 e2 = forgetLocation e1 == forgetLocation e2
+
 -- | Use the given set of in scope structures to cast them to their carriers
 -- when occurring on the rhs of the element relation.
 -- Use the given 'Map' to annotate (unannotated) structure operations

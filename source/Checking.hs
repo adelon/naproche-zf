@@ -986,13 +986,13 @@ matchAssumptionWithGoal loc asm = do
     where
         syntacticMatch :: Formula -> Maybe Formula
         syntacticMatch = \case
-            (phi1 `And` phi2) `Implies` psi  | forgetLocation phi1 == forgetLocation asm ->
+            (phi1 `And` phi2) `Implies` psi  | equivalent phi1 asm ->
                 Just (phi2 `Implies` psi)
-            (phi1 `And` phi2) `Implies` psi  | forgetLocation phi2 == forgetLocation asm ->
+            (phi1 `And` phi2) `Implies` psi  | equivalent phi2 asm ->
                 Just (phi1 `Implies` psi)
-            phi `Implies` psi  | forgetLocation phi == forgetLocation asm ->
+            phi `Implies` psi  | equivalent phi asm ->
                 Just psi
-            phi `Or` psi | forgetLocation phi == forgetLocation asm ->
+            phi `Or` psi | equivalent phi asm ->
                 Just (dual psi)
             _ -> Nothing
 
