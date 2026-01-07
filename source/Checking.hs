@@ -368,7 +368,7 @@ withLabel loc marker ma = do
     st <- get
     let markers = definedMarkers st
     if HS.member marker markers
-        then throwWithMarker (DuplicateMarker loc)
+        then throwIO (DuplicateMarker loc marker)
         else put st{definedMarkers = HS.insert marker markers}
     -- Set the marker as the label of the current block and upate the step location.
     modify \st -> st{blockLabel = marker, stepLocation = loc}
