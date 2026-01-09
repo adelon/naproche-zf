@@ -142,6 +142,7 @@ data CheckingError
     | AmbiguousInductionVar Location Marker
     | MismatchedSetExt [Formula] Location Marker
     | MismatchedAssume Formula Formula Location Marker
+    | CheckingError Text Location Marker
     deriving (Show, Eq)
 
 instance Exception CheckingError
@@ -684,7 +685,7 @@ byRef ms = locally do
         WithDumpPremselTraining -> dumpTrainingData facts ms
         WithoutDumpPremselTraining -> skip
     case InsOrdMap.lookupsMap ms facts of
-        Left (Marker str) -> error ("unknown marker: " <> Text.unpack str)
+        Left (Marker str) -> throwWithLocationAndMarker (CheckingError ("unknown marker: " <> str))
         Right facts' -> modify (\st -> st{checkingFacts = facts'}) *> tellTasks
 
 byAssumption :: Checking
@@ -941,25 +942,23 @@ checkStructDefn StructDefn{..} = do
 fixing :: NonEmpty VarSymbol -> Checking
 fixing xs = do
     goals <- gets checkingGoals
-    let (goal, goals') = case goals of
-            goal : goals' -> (goal, goals')
-            _ -> error "no open goals, cannot use \"fix\" step"
-    let goal' = case goal of
+    (goal, goals') <- case goals of
+            goal : goals' -> return (goal, goals')
+            _ -> throwWithLocationAndMarker (CheckingError "No open goals, cannot use \"fix\" step")
+    goal' <- case goal of
             Forall body | [_bv] <- nubOrd (bindings body) ->
                 -- If there's only one quantified variable we can freely choose a new name.
                 -- This is useful for nameless quantified phrases such as @every _ is an element of _@.
                 case xs of
-                    x :| [] ->
-                        instantiate (\_bv -> TermVar x) body
-                    _ ->
-                        error "couldn't use fix: only one bound variable but multiple variables to be fixed"
+                    x :| [] -> return (instantiate (\_bv -> TermVar x) body)
+                    _ -> throwWithLocationAndMarker (CheckingError "Couldn't use \"fix\" step: only one bound variable but multiple variables to be fixed")
             Forall body | toList xs `List.intersect` nubOrd (bindings body) == toList xs ->
-                Forall (instantiateSome xs body)
+                return (Forall (instantiateSome xs body))
             Forall body ->
-                error ("You can only use \"fix\" if all specified variables occur in the outermost quantifier. Variables to be fixed were: "
-                    <> show xs <> " but only the following are bound: " <> show (nubOrd (bindings body)))
+                throwWithLocationAndMarker (CheckingError ("You can only use a \"fix\" step if all specified variables occur in the outermost quantifier. Variables to be fixed were: "
+                    <> Text.pack (show xs) <> " but only the following are bound: " <> Text.pack (show (nubOrd (bindings body)))))
             _ ->
-                error "you can only use \"fix\" if the goal is universal."
+                throwWithLocationAndMarker (CheckingError "You can only use a \"fix\" step if the goal is universal.")
     setGoals (goal' : goals')
 
 -- | An assumption step in a proof is supposed to match the goal.
