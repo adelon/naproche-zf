@@ -503,8 +503,9 @@ glossAsm = \case
         pure [Sem.AsmStruct structLabel structPhrase]
     Raw.AsmLetThe _ _ ->
         _TODO "glossAsm AsmLetThe"
-    Raw.AsmLetEq _ _ ->
-        _TODO "glossAsm AsmLetEq"
+    Raw.AsmLetEq x e -> do
+        e' <- glossExpr e
+        pure (Sem.Asm (Sem.Equals Nowhere (Sem.TermVar x) e') : [])
 
 
 -- | A quantifier is interpreted as a quantification function that takes a nonempty list of variables,
