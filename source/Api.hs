@@ -11,7 +11,7 @@ module Api
     , simpleStream
     , builtins
     , ParseException(..)
-    , gloss, GlossError(..), GlossException(..)
+    , gloss, GlossError(..)
     , generateTasks
     , encodeTasks
     , dumpTask
@@ -205,16 +205,8 @@ gloss :: MonadIO io => FilePath -> io ([Internal.Block], Lexicon)
 gloss file = do
     (blocks, lexicon) <- parse file
     case meaning blocks of
-        Left err -> throwIO (GlossException err)
+        Left err -> throwIO err
         Right blocks' -> pure (blocks', lexicon)
-
-
-newtype GlossException
-    = GlossException GlossError
-    deriving (Show, Eq)
-
-instance Exception GlossException
-
 
 
 generateTasks :: (MonadIO io, MonadReader Options io) => FilePath -> io ([Internal.Task], Lexicon)

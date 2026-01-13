@@ -26,6 +26,7 @@ import Data.List qualified as List
 import Data.List.NonEmpty qualified as NonEmpty
 import Data.Map qualified as Map
 import Data.Set qualified as Set
+import Control.Exception (Exception)
 
 
 -- | The 'Gloss' monad. Basic elaboration, desugaring, and validation
@@ -40,15 +41,18 @@ type Gloss = ExceptT GlossError (State GlossState)
 
 -- | Errors that can be detected during glossing.
 data GlossError
-    = GlossDefnError DefnError Sem.Marker
-    | GlossInductionError
-    | GlossRelationExprWithParams
-    deriving (Show, Eq, Ord)
+    = GlossDefnError Location DefnError Sem.Marker
+    | GlossInductionError Location
+    | GlossRelationExprWithParams Location
+    deriving (Eq, Ord)
+
+instance Exception GlossError
+instance Show GlossError where show = explainGlossError
 
 explainGlossError :: GlossError -> String
 explainGlossError = \case
-    GlossDefnError defnError marker ->
-        "Definition error at " <> show marker <> ": " <> case defnError of
+    GlossDefnError loc defnError marker ->
+        "Definition error at " <> prettyLocation loc <> " (in " <> show marker <> "): " <> case defnError of
             DefnWarnLhsFree xs ->
                 "The variables " <> show xs <> " in the pattern being defined (definiendum) do not occur in the body of the definition (definiens). Remove them or use them in the body."
             DefnErrorLhsNotLinear ->
@@ -57,10 +61,10 @@ explainGlossError = \case
                 "The defintion contains variables with no typing constraints or assumptions placed on them."
             DefnErrorRhsFree xs ->
                 "The variables " <> show xs <> " on the right-hand side of the definition do not occurring on the left-hand side."
-    GlossInductionError ->
-        "Induction over a non-variable is not supported."
-    GlossRelationExprWithParams ->
-        "A relation defined by an expression cannot have parameters."
+    GlossInductionError loc ->
+        "Error at " <> prettyLocation loc <> ": Induction over a non-variable is not supported."
+    GlossRelationExprWithParams loc ->
+        "Error at " <> prettyLocation loc <> ": A relation defined by an expression cannot have parameters."
 
 -- | Specialization of 'traverse' to 'Gloss'.
 each :: (Traversable t) => (a -> Gloss b) -> t a -> Gloss (t b)
@@ -597,7 +601,7 @@ glossProof = \case
                 mmt' = case mt of
                     Nothing -> pure Nothing
                     Just (Raw.TermExpr _loc (Raw.ExprVar x)) -> pure (Just (Sem.TermVar x))
-                    Just _t -> throwError GlossInductionError
+                    Just _t -> throwError (GlossInductionError loc)
     Raw.ByOrdInduction loc proof ->
         Sem.ByOrdInduction loc <$> glossProof proof
     Raw.ByCase loc cases -> Sem.ByCase loc <$> glossCase `each` cases
@@ -779,7 +783,7 @@ glossBlock = \case
         Sem.BlockProof startLoc endLoc <$> glossProof proof
     Raw.BlockDefn loc marker defn -> do
         defn' <- glossDefn defn
-        whenLeft (isWellformedDefn defn') (\err -> throwError (GlossDefnError err marker))
+        whenLeft (isWellformedDefn defn') (\err -> throwError (GlossDefnError loc err marker))
         pure $ Sem.BlockDefn loc marker defn'
     Raw.BlockAbbr loc marker abbr ->
         Sem.BlockAbbr loc marker <$> glossAbbreviation abbr
