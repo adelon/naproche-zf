@@ -964,12 +964,13 @@ fixing xs = do
 -- | An assumption step in a proof is supposed to match the goal.
 matchAssumptionWithGoal :: Location -> Formula -> CheckingM [Formula]
 matchAssumptionWithGoal loc asm = do
+    asm' <- canonicalize asm
     goals <- gets checkingGoals
     let (goal, goals') = case goals of
             goal : goals' -> (goal, goals')
             _ -> error "no open goals, cannot use assumption step"
     defns <- gets checkingPredicateDefinitions
-    case syntacticMatch goal of
+    case syntacticMatch asm' goal of
         Just phi -> pure (phi : goals')
         --
         -- Unfolding definitions against atomic goals
@@ -977,23 +978,23 @@ matchAssumptionWithGoal loc asm = do
             phi@(Atomic _pos p args) ->
                 let rhos = (HM.lookup p defns ?? [])
                     rhos' = [instantiate (\k -> nth k args ?? error "defns: incorrect index") (absurd <$> rho) | rho <- rhos]
-                in case firstJust syntacticMatch rhos' of
-                    Nothing -> throwWithMarker (MismatchedAssume asm phi loc)
+                in case firstJust (syntacticMatch asm') rhos' of
+                    Nothing -> throwWithMarker (MismatchedAssume asm' phi loc)
                     Just match -> pure (match : goals')
-            phi -> throwWithMarker (MismatchedAssume asm phi loc)
+            phi -> throwWithMarker (MismatchedAssume asm' phi loc)
 
-    where
-        syntacticMatch :: Formula -> Maybe Formula
-        syntacticMatch = \case
-            (phi1 `And` phi2) `Implies` psi  | equivalent phi1 asm ->
-                Just (phi2 `Implies` psi)
-            (phi1 `And` phi2) `Implies` psi  | equivalent phi2 asm ->
-                Just (phi1 `Implies` psi)
-            phi `Implies` psi  | equivalent phi asm ->
-                Just psi
-            phi `Or` psi | equivalent phi asm ->
-                Just (dual psi)
-            _ -> Nothing
+
+syntacticMatch :: Formula -> Formula -> Maybe Formula
+syntacticMatch asm = \case
+    (phi1 `And` phi2) `Implies` psi  | equivalent phi1 asm ->
+        Just (phi2 `Implies` psi)
+    (phi1 `And` phi2) `Implies` psi  | equivalent phi2 asm ->
+        Just (phi1 `Implies` psi)
+    phi `Implies` psi  | equivalent phi asm ->
+        Just psi
+    phi `Or` psi | equivalent phi asm ->
+        Just (dual psi)
+    _ -> Nothing
 
 
 checkAbbr :: Abbreviation -> Checking

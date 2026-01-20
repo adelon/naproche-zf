@@ -145,11 +145,47 @@ abstractVarSymbols :: Foldable t => t VarSymbol -> ExprOf VarSymbol -> Scope Var
 abstractVarSymbols xs = abstract (\y -> if y `elem` xs then Just y else Nothing)
 
 
-forgetLocation :: ExprOf a -> ExprOf a
+forgetLocation :: forall a. ExprOf a -> ExprOf a
 forgetLocation = \case
-    TermSymbol _loc symb args -> TermSymbol Nowhere symb (forgetLocation <$> args)
-    Not _loc e -> Not Nowhere (forgetLocation e)
-    e -> e
+      TermVar a ->
+        TermVar a
+
+      TermSymbol _loc symb args ->
+        TermSymbol Nowhere symb (map forgetLocation args)
+
+      TermSymbolStruct ss me ->
+        TermSymbolStruct ss (forgetLocation <$> me)
+
+      Apply f args ->
+        Apply (forgetLocation f) (forgetLocation <$> args)
+
+      TermSep v dom sc ->
+        TermSep v (forgetLocation dom) (hoistScope forgetLocation sc)
+
+      ReplacePred v1 v2 dom sc ->
+        ReplacePred v1 v2 (forgetLocation dom) (hoistScope forgetLocation sc)
+
+      ReplaceFun doms lhs rhs ->
+        ReplaceFun
+          (fmap (fmap forgetLocation) doms)
+          (hoistScope forgetLocation lhs)
+          (hoistScope forgetLocation rhs)
+
+      Connected c e1 e2 ->
+        Connected c (forgetLocation e1) (forgetLocation e2)
+
+      Lambda sc ->
+        Lambda (hoistScope forgetLocation sc)
+
+      Quantified q sc ->
+        Quantified q (hoistScope forgetLocation sc)
+
+      PropositionalConstant pc ->
+        PropositionalConstant pc
+
+      Not _loc e ->
+        Not Nowhere (forgetLocation e)
+
 
 equivalent :: Eq a => ExprOf a -> ExprOf a -> Bool
 equivalent e1 e2 = forgetLocation e1 == forgetLocation e2
