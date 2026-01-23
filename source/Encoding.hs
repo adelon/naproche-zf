@@ -17,12 +17,14 @@ import Bound.Scope
 encodeTask :: Lexicon -> Task -> Tptp.Task
 encodeTask l Task{..} = Tptp.Task (conjecture' : hypos')
     where
-        conjecture' = encodeConjecture l taskConjectureLabel taskLocation taskConjecture
+        conjecture' = encodeConjecture l taskConjectureLabel taskLocation taskDirectness taskConjecture
         hypos' = encodeHypos l taskHypotheses
 
 
-encodeConjecture :: Lexicon -> Marker -> Location -> Formula -> Tptp.AnnotatedFormula
-encodeConjecture l (Marker str) loc f = Tptp.AnnotatedFormula (Tptp.NameAtomicWord (Tptp.AtomicWord str)) Tptp.Conjecture (encodeExpr l f) (Tptp.Source (locationToText loc))
+encodeConjecture :: Lexicon -> Marker -> Location -> Directness -> Formula -> Tptp.AnnotatedFormula
+encodeConjecture l (Marker str) loc directness f = Tptp.AnnotatedFormula (Tptp.NameAtomicWord (Tptp.AtomicWord str)) Tptp.Conjecture (encodeExpr l f) case directness of
+    Direct -> (Tptp.Source (locationToText loc))
+    Indirect _ -> (Tptp.Source (locationToText loc <> " (indirect proof)"))
 
 -- NOTE: E's SInE will only filter out axioms and leave hypotheses fixed.
 encodeHypos :: Lexicon -> [(Marker, Formula)] -> [Tptp.AnnotatedFormula]
