@@ -14,6 +14,7 @@ module Api
     , gloss, GlossError(..)
     , generateTasks
     , encodeTasks
+    , prepareDumpTasks
     , dumpTask
     , verify, ProverAnswer(..), VerificationResult(..)
     , exportMegalodon
@@ -216,6 +217,34 @@ generateTasks file = do
     tasks <- liftIO (check dumpPremselTraining lexicon blocks)
     pure (Internal.contractionTask <$> tasks, lexicon)
 
+prepareCache :: MonadIO io => FilePath -> io FilePath
+prepareCache file = do
+    xdgCache <- getXdgDirectory XdgCache "zf"
+    let cacheDir = xdgCache </> takeDirectory file
+    let cache    = xdgCache </> file
+    createDirectoryIfMissing True cacheDir
+    -- Initialize with an empty cache when no cache exists.
+    -- If we do not do this opening the cache file will fail.
+    unlessM (doesFileExist cache)
+        (putTaskCache cache [])
+    pure cache
+
+prepareDumpTasks :: (MonadIO io, MonadReader Options io) => FilePath -> io [(Int, Tptp.Task)]
+prepareDumpTasks file = do
+    (tasks, lexicon) <- generateTasks file
+    filterOption <- asks withFilter
+    let filteredTasks = case filterOption of
+            WithFilter -> filterTask <$> tasks
+            WithoutFilter -> tasks
+    let indexedTasks = zip [1..] filteredTasks
+    cacheOption <- asks withCache
+    indexedTasks' <- case cacheOption of
+        WithoutCache -> pure indexedTasks
+        WithCache -> do
+            cache <- prepareCache file
+            filterM (\(_, task) -> notInCache cache task) indexedTasks
+    pure [(idx, encodeTask lexicon task) | (idx, task) <- indexedTasks']
+
 
 encodeTasks :: (MonadIO io, MonadReader Options io) => FilePath -> io [Tptp.Task]
 encodeTasks file = do
@@ -249,15 +278,7 @@ verify prover file = do
         WithoutCache ->
             pooledForConcurrently filteredTasks (runProver prover lexicon)
         WithCache -> do
-            xdgCache <- getXdgDirectory XdgCache "zf"
-            let cacheDir = xdgCache </> takeDirectory file
-            let cache    = xdgCache </> file
-            createDirectoryIfMissing True cacheDir
-            -- Initialize with an empty cache when no cache exists.
-            -- If we do not do this opening the cache file will fail.
-            unlessM (doesFileExist cache)
-                (putTaskCache cache [])
-
+            cache <- prepareCache file
             filteredTasks' <- filterM (notInCache cache) filteredTasks
             answers' <- pooledForConcurrently filteredTasks' (runProver prover lexicon)
 

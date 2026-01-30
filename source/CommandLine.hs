@@ -43,10 +43,9 @@ run = do
         WithoutDump -> skip
         WithDump dir -> do
             liftIO (Text.putStrLn "\ESC[1;36mCreating Dumpfiles.\ESC[0m")
-            let serials = [dir </> show n <.> "p" | n :: Int <- [1..]]
-            tasks <- zip serials <$> encodeTasks (inputPath opts)
+            tasks <- prepareDumpTasks (inputPath opts)
             createDirectoryIfMissing True dir
-            forM_ tasks (uncurry dumpTask)
+            forM_ [(dir </> show n <.> "p", task) | (n, task) <- tasks] (uncurry dumpTask)
             liftIO (Text.putStrLn "\ESC[35mDump ready.\ESC[0m")
     case (withParseOnly opts, withMegalodon opts) of
         (WithParseOnly, _) -> do
@@ -102,14 +101,6 @@ run = do
                         Text.hPutStrLn stderr "Don't give up!"
 
 
-
-
-
-
-
-
-
-
 parseOptions :: Parser Options
 parseOptions = do
     inputPath <- strArgument (help "Source file" <> metavar "FILE")
@@ -150,39 +141,39 @@ withFilterParser = flag' WithoutFilter (long "nofilter" <> help "Do not perform 
     <|> pure WithoutFilter
 
 withOmissionsParser :: Parser WithOmissions
-withOmissionsParser = flag' WithOmissions (long "unsafe" <> help "Allow proof omissions (default).")
+withOmissionsParser = flag' WithOmissions (long "unsafe" <> help "Allow proof omissions (on by default).")
     <|> flag' WithoutOmissions (long "safe" <> help "Disallow proof omissions.")
-    <|> pure WithOmissions -- Default to allowing omissions.
+    <|> pure WithOmissions
 
 withParseOnlyParser :: Parser WithParseOnly
-withParseOnlyParser = flag' WithParseOnly (long "parseonly" <> help "Only parse and show the resulting AST.")
-    <|> pure WithoutParseOnly -- Default to allowing omissions.
+withParseOnlyParser = flag' WithParseOnly (long "parseonly" <> help "Only parse and show the resulting AST (off by default).")
+    <|> pure WithoutParseOnly
 
 withVersionParser :: Parser WithVersion
-withVersionParser = flag' WithVersion (long "version" <> help "Show the current version.")
-    <|> pure WithoutVersion -- Default to not showing the version.
+withVersionParser = flag' WithVersion (long "version" <> help "Show the current version (off by default).")
+    <|> pure WithoutVersion
 
 withLoggingParser :: Parser WithLogging
-withLoggingParser = flag' WithLogging (long "log" <> help "Enable logging.")
-    <|> pure WithoutLogging -- Default to not showing the version.
+withLoggingParser = flag' WithLogging (long "log" <> help "Enable logging (off by default).")
+    <|> pure WithoutLogging
 
 withCacheParser :: Parser WithCache
 withCacheParser = flag' WithoutCache (long "uncached" <> help "Do not use caching.")
     <|> flag' WithCache (long "cached" <> help "Use caching (default).")
-    <|> pure WithCache -- Default to using the cache.
+    <|> pure WithCache
 
 withDumpParser :: Parser WithDump
-withDumpParser = WithDump <$> strOption (long "dump" <> metavar "DUMPDIR" <> help "Dump all proof tasks in a separate directory.")
-    <|> pure WithoutDump -- Default to using the cache.
+withDumpParser = WithDump <$> strOption (long "dump" <> metavar "DUMPDIR" <> help "Dump all proof tasks in a separate directory. Run with --unchached to dump all tasks.")
+    <|> pure WithoutDump
 
 withDumpPremselTrainingParser :: Parser WithDumpPremselTraining
 withDumpPremselTrainingParser = flag' WithDumpPremselTraining (long "premseldump" <> help "Dump training data for premise selection.")
-    <|> pure WithoutDumpPremselTraining -- Default to using the cache.
+    <|> pure WithoutDumpPremselTraining
 
 withMegalodonParser :: Parser WithMegalodon
-withMegalodonParser = flag' WithMegalodon (long "megalodon" <> help "Export to Megalodon.")
-    <|> pure WithoutMegalodon -- Default to using the cache.
+withMegalodonParser = flag' WithMegalodon (long "megalodon" <> help "Export to Megalodon (experimental).")
+    <|> pure WithoutMegalodon
 
 withFailListParser :: Parser WithFailList
 withFailListParser = flag' WithFailList (long "list_fails" <> help "Will list all unproven task with possible reason of failure.")
-    <|> pure WithoutFailList -- Default to using the cache.
+    <|> pure WithoutFailList
