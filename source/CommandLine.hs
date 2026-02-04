@@ -49,8 +49,8 @@ run = do
             liftIO (Text.putStrLn "\ESC[35mDump ready.\ESC[0m")
     case (withParseOnly opts, withMegalodon opts) of
         (WithParseOnly, _) -> do
-            ast <- parse (inputPath opts)
-            liftIO (LazyText.putStrLn (pShowNoColor ast))
+            _ast <- parse (inputPath opts)
+            skip
         (_, WithMegalodon) -> do
             megalodon <- exportMegalodon (inputPath opts)
             let outputFile = "megalodon" </> replaceExtension (inputPath opts) "mg"

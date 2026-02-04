@@ -164,7 +164,7 @@ buildSymbol :: Lexicon -> Symbol -> TextBuilder
 buildSymbol _ (SymbolInteger i) = decimal i
 buildSymbol lexi symb = fromRightMarker case symb of
     SymbolMixfix f ->
-        lookupOp f (lexiconMixfix lexi)
+        lookupOp f (lexiconMixfixMarkers lexi)
     SymbolFun f -> lookupLexicalItem f (lexiconFuns lexi)
     SymbolPredicate (PredicateAdj f) -> lookupLexicalItem f (lexiconAdjs lexi)
     SymbolPredicate (PredicateVerb f) -> lookupLexicalItem f (lexiconVerbs lexi)

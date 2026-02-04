@@ -23,7 +23,7 @@ grammar :: Lexicon -> Grammar r (Prod r Text (Located Token) Block)
 grammar lexicon@Lexicon{..} = mdo
     let makeOp :: ([Maybe Token], Associativity) -> ([Maybe (Prod r Text (Located Token) Token)], Associativity)
         makeOp (pat, assoc) = (map (fmap token) pat, assoc)
-        ops = map (map makeOp) (toList (HM.toList . HM.map fst <$> lexiconMixfix))
+        ops = map (map makeOp) (toList (HM.toList <$> lexiconMixfixTable))
         conns = map (map makeOp) lexiconConnectives
 
     integer    <- rule (terminal maybeIntToken <?> "integer")

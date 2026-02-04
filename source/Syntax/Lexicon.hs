@@ -31,7 +31,8 @@ import Text.Earley.Mixfix (Holey, Associativity(..))
 
 
 data Lexicon = Lexicon
-    { lexiconMixfix             :: Seq (HashMap (Holey Token) (Associativity, Marker))
+    { lexiconMixfixTable        :: Seq (HashMap (Holey Token) Associativity)
+    , lexiconMixfixMarkers      :: HashMap (Holey Token) Marker
     , lexiconConnectives        :: [[(Holey Token, Associativity)]]
     , lexiconPrefixPredicates   :: LexicalItems PrefixPredicate
     , lexiconStructFun          :: LexicalItems StructSymbol
@@ -49,8 +50,8 @@ data Lexicon = Lexicon
 lexiconAdjs :: Lexicon -> HashMap LexicalPhrase Marker
 lexiconAdjs lexicon = lexiconAdjLs lexicon <> lexiconAdjRs lexicon
 
-lookupOp :: FunctionSymbol -> Seq (HashMap FunctionSymbol (assoc, Marker)) -> Either String Marker
-lookupOp f ops = case snd <$> firstJust (HM.lookup f) ops of
+lookupOp :: FunctionSymbol -> HashMap (Holey Token) Marker-> Either String Marker
+lookupOp f ops = case HM.lookup f ops of
     Just m -> Right m
     Nothing -> Left (show f)
 
@@ -63,7 +64,8 @@ type LexicalItems a = HashMap a Marker
 
 builtins :: Lexicon
 builtins = Lexicon
-    { lexiconMixfix             = builtinMixfix
+    { lexiconMixfixTable        = builtinMixfixTable
+    , lexiconMixfixMarkers      = builtinMixfixMarkers
     , lexiconPrefixPredicates   = builtinPrefixPredicates
     , lexiconStructFun          = builtinStructOps
     , lexiconConnectives        = builtinConnectives
@@ -75,6 +77,12 @@ builtins = Lexicon
     , lexiconStructNouns        = builtinStructNouns
     , lexiconFuns               = mempty
     }
+
+builtinMixfixMarkers :: HashMap FunctionSymbol Marker
+builtinMixfixMarkers = HM.map snd (fold builtinMixfix)
+
+builtinMixfixTable :: Seq (HashMap (Holey Token) Associativity)
+builtinMixfixTable = fmap (HM.map fst) builtinMixfix
 
 -- INVARIANT: 10 precedence levels for now.
 builtinMixfix :: Seq (HashMap FunctionSymbol (Associativity, Marker))
@@ -103,10 +111,11 @@ builtinMixfix = Seq.fromList $ (HM.fromList <$>)
             , "zero"
             ]
 
+
 prefixOps :: [(FunctionSymbol, (Associativity, Marker))]
 prefixOps =
     [ ([Just (Command "rfrac"), Just InvisibleBraceL, Nothing, Just InvisibleBraceR, Just InvisibleBraceL, Nothing, Just InvisibleBraceR], (NonAssoc, "rfrac"))
-    , ([Just (Command "exp"), Just InvisibleBraceL, Nothing, Just InvisibleBraceR, Just InvisibleBraceL, Nothing, Just InvisibleBraceR], (NonAssoc, "exp")) 
+    , ([Just (Command "exp"), Just InvisibleBraceL, Nothing, Just InvisibleBraceR, Just InvisibleBraceL, Nothing, Just InvisibleBraceR], (NonAssoc, "exp"))
     , ([Just (Command "unions"), Just InvisibleBraceL, Nothing, Just InvisibleBraceR], (NonAssoc, "unions"))
     , ([Just (Command "cumul"), Just InvisibleBraceL, Nothing, Just InvisibleBraceR], (NonAssoc, "cumul"))
     , ([Just (Command "fst"), Just InvisibleBraceL, Nothing, Just InvisibleBraceR], (NonAssoc, "fst"))

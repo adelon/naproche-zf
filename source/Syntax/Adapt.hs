@@ -432,9 +432,12 @@ extendLexicon (scan : scans) lexicon@Lexicon{..} = case scan of
     ScanRelationSymbol item m ->
         extendLexicon scans lexicon{lexiconRelationSymbols = insertR item m lexiconRelationSymbols}
     ScanFunctionSymbol item m ->
-        if any (item `HM.member`) lexiconMixfix
+        if item `HM.member` lexiconMixfixMarkers
             then extendLexicon scans lexicon
-            else extendLexicon scans lexicon{lexiconMixfix = Seq.adjust (HM.insert item (NonAssoc, m)) 9 lexiconMixfix}
+            else extendLexicon scans lexicon
+                { lexiconMixfixTable = Seq.adjust (HM.insert item NonAssoc) 9 lexiconMixfixTable
+                , lexiconMixfixMarkers = HM.insert item m lexiconMixfixMarkers
+                }
     ScanStructOp op ->
         extendLexicon scans lexicon{lexiconStructFun = insertR (StructSymbol op) (Marker op) lexiconStructFun}
     ScanPrefixPredicate tok m ->

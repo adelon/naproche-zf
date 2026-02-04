@@ -115,7 +115,7 @@ encodeQuant Existentially = Tptp.Exists
 encodeSymbol :: Lexicon -> Symbol -> Tptp.AtomicWord
 encodeSymbol l symb = atomicWordFromRightMarker case symb of
     SymbolMixfix op ->
-        lookupOp op (lexiconMixfix l)
+        lookupOp op (lexiconMixfixMarkers l)
     SymbolFun fun ->
         lookupLexicalItem fun (lexiconFuns l)
     SymbolInteger n ->
