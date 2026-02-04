@@ -2,6 +2,7 @@
 {-# LANGUAGE MultiWayIf #-}
 {-# LANGUAGE NoImplicitPrelude #-}
 {-# LANGUAGE TupleSections #-}
+{-# LANGUAGE NoMonomorphismRestriction #-}
 
 module Api
     ( constructTheoryGraph, TheoryGraph
@@ -62,7 +63,7 @@ import Data.List qualified as List
 import Data.Text.IO qualified as Text
 import qualified Data.Text as Text
 import System.FilePath.Posix
-import Text.Earley (parser, fullParses, Report(..))
+import Text.Earley (parser, fullParses, Parser, Report(..))
 import Text.Megaparsec hiding (parse, Token)
 import UnliftIO
 import UnliftIO.Directory
@@ -139,7 +140,8 @@ parse file = do
             let tokenStream = mconcat (toList tokenStreams)
             let chunks = unTokStream tokenStream
             let lexicon = adaptChunks chunks builtins
-            let p = parser (grammar lexicon)
+            let p :: Parser Text [Located Token] Raw.Block
+                p = parser (grammar lexicon)
             (, lexicon) <$> combineParseResults [fullParses p toks | toks <- chunks]
 
 combineParseResults :: MonadIO io => [([Raw.Block], Report Text [Located Token])] -> io [Raw.Block]
