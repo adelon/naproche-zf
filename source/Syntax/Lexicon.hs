@@ -95,6 +95,7 @@ builtinMixfix = Seq.fromList $ (HM.fromList <$>)
         builtinIdentifiers = identifier <$>
             [ "emptyset"
             , "naturals"
+            , "naturalsPlus"
             , "integers"
             , "rationals"
             , "reals"
@@ -105,6 +106,7 @@ builtinMixfix = Seq.fromList $ (HM.fromList <$>)
 prefixOps :: [(FunctionSymbol, (Associativity, Marker))]
 prefixOps =
     [ ([Just (Command "rfrac"), Just InvisibleBraceL, Nothing, Just InvisibleBraceR, Just InvisibleBraceL, Nothing, Just InvisibleBraceR], (NonAssoc, "rfrac"))
+    , ([Just (Command "exp"), Just InvisibleBraceL, Nothing, Just InvisibleBraceR, Just InvisibleBraceL, Nothing, Just InvisibleBraceR], (NonAssoc, "exp")) 
     , ([Just (Command "unions"), Just InvisibleBraceL, Nothing, Just InvisibleBraceR], (NonAssoc, "unions"))
     , ([Just (Command "cumul"), Just InvisibleBraceL, Nothing, Just InvisibleBraceR], (NonAssoc, "cumul"))
     , ([Just (Command "fst"), Just InvisibleBraceL, Nothing, Just InvisibleBraceR], (NonAssoc, "fst"))
