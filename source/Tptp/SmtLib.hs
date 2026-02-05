@@ -1,14 +1,20 @@
 {-# LANGUAGE NoImplicitPrelude #-}
+{-# LANGUAGE RecordWildCards #-}
 
 
 module Tptp.SmtLib where
--- ^ Export TPTP problems to SMT-LIB S-expressions
+-- ^ Export tasks to SMT-LIB S-expressions.
 
-import Tptp.UnsortedFirstOrder qualified as Fof
-import TextBuilder
-import Prelude hiding (head, tail)
+import Base
+import Encoding qualified
+import Syntax.Internal
+import Syntax.Lexicon
+import Tptp.UnsortedFirstOrder qualified as Tptp
+
+import Bound
+import Bound.Scope
 import Data.Text qualified as Text
-import Data.List.NonEmpty qualified as NonEmpty
+import TextBuilder
 
 buildList :: [TextBuilder] -> TextBuilder
 buildList bs = char '(' <> intercalate (char ' ') bs <> char ')'
@@ -18,55 +24,113 @@ quotedAtom :: TextBuilder -> TextBuilder
 quotedAtom b = char '|' <> b <> char '|'
 {-# INLINE quotedAtom #-}
 
-buildAtomicWord :: Fof.AtomicWord -> TextBuilder
-buildAtomicWord (Fof.AtomicWord w) = if Fof.isProperAtomicWord w then text w else quotedAtom (text w)
+buildAtomicWord :: Tptp.AtomicWord -> TextBuilder
+buildAtomicWord (Tptp.AtomicWord w) = if Tptp.isProperAtomicWord w then text w else quotedAtom (text w)
 
-buildVariable :: Fof.Variable -> TextBuilder
-buildVariable (Fof.Variable v) = text (Text.replace "'" "_" v)
+buildVariable :: Tptp.Variable -> TextBuilder
+buildVariable (Tptp.Variable v) = text (Text.replace "'" "_" v)
 
-buildApply :: Fof.AtomicWord -> [Fof.Expr] -> TextBuilder
-buildApply f args = buildList (buildAtomicWord f : map buildExpr args)
+buildApply :: Tptp.AtomicWord -> [TextBuilder] -> TextBuilder
+buildApply f args = case args of
+    [] -> buildAtomicWord f
+    _ -> buildList (buildAtomicWord f : args)
 
-buildExpr :: Fof.Expr -> TextBuilder
-buildExpr = \case
-    Fof.Apply f [] -> buildAtomicWord f
-    Fof.Apply f args -> buildApply f args
-    Fof.Var var -> buildVariable var
-    Fof.Top -> text "$true"
-    Fof.Bottom -> text "$false"
-    Fof.Eq t1 t2 -> buildExpr t1 <> char '=' <> buildExpr t2
-    Fof.NotEq t1 t2 -> buildExpr t1 <> text "!=" <> buildExpr t2
-    Fof.Not f ->
-        text "(not " <> buildExpr f <> char ')'
-    Fof.Conn Fof.And f1 f2 ->
-        text "(and  " <> buildExpr f1 <> char ' ' <> buildExpr f2 <> char ' '
-    Fof.Conn Fof.Or f1 f2 ->
-        text "(or  " <> buildExpr f1 <> char ' ' <> buildExpr f2 <> char ' '
-    Fof.Conn Fof.Imply f1 f2 ->
-        text "(=>  " <> buildExpr f1 <> char ' ' <> buildExpr f2 <> char ' '
-    Fof.Conn Fof.Iff f1 f2 ->
-        text "(=  " <> buildExpr f1 <> char ' ' <> buildExpr f2 <> char ' '
-    Fof.Quantified quant vars f ->
-        buildQuantifier quant <> char ' ' <>
-        buildList (map buildVariable (NonEmpty.toList vars))
-        <> char ' ' <> buildExpr f
+encodeTask :: Lexicon -> Task -> TextBuilder
+encodeTask l Task{..} = buildTask (conjecture' : hypos')
     where
-        buildQuantifier :: Fof.Quantifier -> TextBuilder
-        buildQuantifier Fof.Forall = "(forall "
-        buildQuantifier Fof.Exists = "(exists "
+        conjecture' = encodeExpr l taskConjecture
+        hypos' = encodeExpr l . snd <$> taskHypotheses
 
+encodeExpr :: Lexicon -> Expr -> TextBuilder
+encodeExpr l = buildExpr . fmap encodeFreeVar
+    where
+    buildExpr :: ExprOf EncodedVar -> TextBuilder
+    buildExpr = \case
+        Equals _pos e1 e2 ->
+            buildExpr e1 <> char '=' <> buildExpr e2
+        NotEquals _pos e1 e2 ->
+            buildExpr e1 <> text "!=" <> buildExpr e2
+        Atomic _pos p es ->
+            let p' = Encoding.encodePredicate l p
+                es' = buildExpr <$> toList es
+            in buildApply p' es'
+        PropositionalConstant IsBottom ->
+            text "$false"
+        PropositionalConstant IsTop ->
+            text "$true"
+        Not _pos f ->
+            text "(not " <> buildExpr f <> char ')'
+        Connected Conjunction f1 f2 ->
+            text "(and  " <> buildExpr f1 <> char ' ' <> buildExpr f2 <> char ' '
+        Connected Disjunction f1 f2 ->
+            text "(or  " <> buildExpr f1 <> char ' ' <> buildExpr f2 <> char ' '
+        Connected Implication f1 f2 ->
+            text "(=>  " <> buildExpr f1 <> char ' ' <> buildExpr f2 <> char ' '
+        Connected Equivalence f1 f2 ->
+            text "(=  " <> buildExpr f1 <> char ' ' <> buildExpr f2 <> char ' '
+        Connected NegatedDisjunction f1 f2 ->
+            text "(not " <> buildExpr (Connected Disjunction f1 f2) <> char ')'
+        Connected ExclusiveOr f1 f2 ->
+            text "(not " <> buildExpr (Connected Equivalence f1 f2) <> char ')'
+        Quantified quant scope ->
+            buildQuantified quant scope
+        TermVar v ->
+            buildTermVar v
+        Apply e es -> case e of
+            TermVar (FreeConst x) -> buildApply x (buildExpr <$> toList es)
+            _ -> error ("encodeExpr: complex term as head of applicaition: " <> show e)
+        TermSymbol _pos symb es ->
+            buildApply (Encoding.encodeSymbol l symb) (buildExpr <$> es)
+        e@ReplaceFun{} ->
+            error ("Precondition failed in encodeTerm, cannot encode terms with comprehensions directly: " <> show e)
+        e@ReplacePred{} ->
+            error ("Precondition failed in encodeTerm, cannot encode terms with comprehensions directly: " <> show e)
+        e@TermSep{} ->
+            error ("Precondition failed in encodeTerm, cannot encode terms with comprehensions directly: " <> show e)
+        TermSymbolStruct symb e -> case e of
+            Just e' ->
+                buildApply (Tptp.AtomicWord ("s__" <> (unStructSymbol symb))) [buildExpr e']
+            Nothing ->
+                error ("encodeExpr.go (precondition failed): unannotated struct symbol" <> show symb)
+        _ -> error "encodeExpr.go: missing case"
 
+    buildTermVar :: EncodedVar -> TextBuilder
+    buildTermVar = \case
+        BoundVar v -> buildVariable v
+        FreeConst w -> buildAtomicWord w
 
-buildName :: Fof.Name -> TextBuilder
-buildName = \case
-        Fof.NameAtomicWord w -> buildAtomicWord w
-        Fof.NameInt n -> decimal n
+    buildQuantified :: Quantifier -> Scope VarSymbol ExprOf EncodedVar -> TextBuilder
+    buildQuantified quant scope =
+        let phi = instantiate instantiator scope
+            xs = [Encoding.encodeBoundVar x | x <- nubOrd (bindings scope)]
+        in case xs of
+            [] -> buildExpr phi
+            _ -> buildQuantifier quant <> char ' ' <> buildList (map buildVariable xs) <> char ' ' <> buildExpr phi
 
-buildAnnotatedFormula :: Fof.AnnotatedFormula -> TextBuilder
-buildAnnotatedFormula (Fof.AnnotatedFormula _name _role phi _src) =
-        "(assert " <> buildExpr phi <> char ')'
+    buildQuantifier :: Quantifier -> TextBuilder
+    buildQuantifier = \case
+        Universally -> "(forall "
+        Existentially -> "(exists "
 
-buildTask :: Fof.Task -> TextBuilder
-buildTask (Fof.Task fofs) = intercalate (char '\n') decls <> "\n(check-sat)\n"
+instantiator :: VarSymbol -> ExprOf EncodedVar
+instantiator bv = TermVar (BoundVar (Encoding.encodeBoundVar bv))
+
+data EncodedVar
+    = BoundVar Tptp.Variable
+    | FreeConst Tptp.AtomicWord
+    deriving (Show, Eq, Ord)
+
+encodeFreeVar :: VarSymbol -> EncodedVar
+encodeFreeVar fv = FreeConst fv'
+    where
+        fv' = Tptp.AtomicWord case fv of
+            NamedVar x -> Text.cons 'f' x
+            FreshVar n -> Text.cons 'y' (Text.pack (show n))
+
+buildAnnotatedFormula :: TextBuilder -> TextBuilder
+buildAnnotatedFormula phi = "(assert " <> phi <> char ')'
+
+buildTask :: [TextBuilder] -> TextBuilder
+buildTask fofs = intercalate (char '\n') decls <> "\n(check-sat)\n"
     where
         decls = "(set-logic UF)" : map buildAnnotatedFormula fofs

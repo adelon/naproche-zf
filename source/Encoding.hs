@@ -9,9 +9,10 @@ import Syntax.Internal
 import Syntax.Lexicon
 import Tptp.UnsortedFirstOrder qualified as Tptp
 
-import Data.Text qualified as Text
 import Bound
 import Bound.Scope
+import Data.Text qualified as Text
+import TextBuilder
 
 
 encodeTask :: Lexicon -> Task -> Tptp.Task
@@ -30,62 +31,56 @@ encodeConjecture l (Marker str) loc directness f = Tptp.AnnotatedFormula (Tptp.N
 encodeHypos :: Lexicon -> [(Marker, Formula)] -> [Tptp.AnnotatedFormula]
 encodeHypos l phis = [makeHypo  m (encodeExpr l phi) | (m,  phi) <- phis]
     where
-        makeHypo :: Marker -> Tptp.Expr -> Tptp.AnnotatedFormula
+        makeHypo :: Marker -> TextBuilder -> Tptp.AnnotatedFormula
         makeHypo (Marker str) f' = Tptp.AnnotatedFormula (Tptp.NameAtomicWord (Tptp.AtomicWord str)) Tptp.Axiom f' (Tptp.Source "")
 
 encodeWithRole :: Tptp.Role -> Lexicon -> [(Marker, Formula)] -> [Tptp.AnnotatedFormula]
 encodeWithRole role l phis = [makeHypo  m (encodeExpr l phi) | (m,  phi) <- phis]
     where
-        makeHypo :: Marker -> Tptp.Expr -> Tptp.AnnotatedFormula
+        makeHypo :: Marker -> TextBuilder -> Tptp.AnnotatedFormula
         makeHypo (Marker str) f' = Tptp.AnnotatedFormula (Tptp.NameAtomicWord (Tptp.AtomicWord str)) role f' (Tptp.Source "")
 
 
-encodeExpr :: Lexicon -> Expr -> Tptp.Expr
-encodeExpr l = go . (fmap encodeFreeVar)
+encodeExpr :: Lexicon -> Expr -> TextBuilder
+encodeExpr l = buildExpr . fmap encodeFreeVar
     where
-    go :: ExprOf Tptp.Expr -> Tptp.Expr
-    go = \case
+    buildExpr :: ExprOf EncodedVar -> TextBuilder
+    buildExpr = \case
         Equals _pos e1 e2 ->
-            Tptp.Eq (go e1) (go e2)
+            buildExpr e1 <> char '=' <> buildExpr e2
         NotEquals _pos e1 e2 ->
-            Tptp.NotEq (go e1) (go e2)
+            buildExpr e1 <> text "!=" <> buildExpr e2
         Atomic _pos p es ->
             let p' = encodePredicate l p
-                es' = go <$> toList es
-            in Tptp.Apply p' es'
+                es' = buildExpr <$> toList es
+            in buildApply p' es'
         PropositionalConstant IsBottom ->
-            Tptp.Bottom
+            text "$false"
         PropositionalConstant IsTop ->
-            Tptp.Top
+            text "$true"
         Not _pos f ->
-            Tptp.Not (go f)
+            char '~' <> buildUnitary f
         Connected Conjunction f1 f2 ->
-            Tptp.Conn Tptp.And (go f1) (go f2)
+            buildAnd f1 <> char '&' <> buildAnd f2
         Connected Disjunction f1 f2 ->
-            Tptp.Conn Tptp.Or (go f1) (go f2)
+            buildOr f1 <> char '|' <> buildOr f2
         Connected Implication f1 f2 ->
-            Tptp.Conn Tptp.Imply (go f1) (go f2)
+            buildUnitary f1 <> text "=>" <> buildUnitary f2
         Connected Equivalence f1 f2 ->
-            Tptp.Conn Tptp.Iff (go f1) (go f2)
+            buildUnitary f1 <> text "<=>" <> buildUnitary f2
         Connected NegatedDisjunction f1 f2 ->
-            Tptp.Not (Tptp.Conn Tptp.Or (go f1) (go f2))
+            char '~' <> buildUnitary (Connected Disjunction f1 f2)
         Connected ExclusiveOr f1 f2 ->
-            Tptp.Not (Tptp.Conn Tptp.Iff (go f1) (go f2))
+            char '~' <> buildUnitary (Connected Equivalence f1 f2)
         Quantified quant scope ->
-            let phi = instantiate instantiator scope
-                xs = [encodeBoundVar x | x <- nubOrd (bindings scope)]
-                phi' = go phi
-                quant' = encodeQuant quant
-            in case xs of
-                [] -> phi'
-                y:ys -> Tptp.Quantified quant' (y:|ys) phi'
+            buildQuantified buildExpr buildUnitary quant scope
         TermVar v ->
-            v
+            buildTermVar v
         Apply e es -> case e of
-            TermVar (Tptp.Const x) -> Tptp.Apply x (go <$> toList es)
+            TermVar (FreeConst x) -> buildApply x (buildExpr <$> toList es)
             _ -> error ("encodeExpr: complex term as head of applicaition: " <> show e)
         TermSymbol _pos symb es ->
-            Tptp.Apply (encodeSymbol l symb) (go <$> es)
+            buildApply (encodeSymbol l symb) (buildExpr <$> es)
         e@ReplaceFun{} ->
             error ("Precondition failed in encodeTerm, cannot encode terms with comprehensions directly: " <> show e)
         e@ReplacePred{} ->
@@ -94,20 +89,70 @@ encodeExpr l = go . (fmap encodeFreeVar)
             error ("Precondition failed in encodeTerm, cannot encode terms with comprehensions directly: " <> show e)
         TermSymbolStruct symb e -> case e of
             Just e' ->
-                Tptp.Apply (Tptp.AtomicWord ("s__" <> (unStructSymbol symb))) [go e']
+                buildApply (Tptp.AtomicWord ("s__" <> (unStructSymbol symb))) [buildExpr e']
             Nothing ->
                 error ("encodeExpr.go (precondition failed): unannotated struct symbol" <> show symb)
         _ -> error "encodeExpr.go: missing case"
 
+    buildTermVar :: EncodedVar -> TextBuilder
+    buildTermVar = \case
+        BoundVar v -> Tptp.buildVariable v
+        FreeConst w -> Tptp.buildAtomicWord w
 
-instantiator :: VarSymbol -> ExprOf Tptp.Expr
-instantiator bv = TermVar (Tptp.Var (encodeBoundVar bv))
+    buildApply :: Tptp.AtomicWord -> [TextBuilder] -> TextBuilder
+    buildApply f args = case args of
+        [] -> Tptp.buildAtomicWord f
+        _ -> Tptp.buildAtomicWord f <> Tptp.buildTuple args
+
+    isAtom :: ExprOf EncodedVar -> Bool
+    isAtom = \case
+        TermVar{} -> True
+        TermSymbol{} -> True
+        TermSymbolStruct{} -> True
+        Apply{} -> True
+        PropositionalConstant{} -> True
+        Equals{} -> True
+        NotEquals{} -> True
+        _ -> False
+
+    buildQuantified
+        :: (ExprOf EncodedVar -> TextBuilder)
+        -> (ExprOf EncodedVar -> TextBuilder)
+        -> Quantifier
+        -> Scope VarSymbol ExprOf EncodedVar
+        -> TextBuilder
+    buildQuantified renderEmpty renderBody quant scope =
+        let phi = instantiate instantiator scope
+            xs = [encodeBoundVar x | x <- nubOrd (bindings scope)]
+        in case xs of
+            [] -> renderEmpty phi
+            _ -> buildQuantifier quant <> Tptp.buildList (map Tptp.buildVariable xs) <> char ':' <> renderBody phi
+
+    buildQuantifier :: Quantifier -> TextBuilder
+    buildQuantifier = \case
+        Universally -> text "!"
+        Existentially -> text "?"
+
+    buildUnitary :: ExprOf EncodedVar -> TextBuilder
+    buildUnitary = \case
+        atom | isAtom atom -> buildExpr atom
+        Quantified quant scope -> buildQuantified buildUnitary buildUnitary quant scope
+        Not _ phi -> char '~' <> buildUnitary phi
+        phi -> char '(' <> buildExpr phi <> char ')'
+
+    buildAnd :: ExprOf EncodedVar -> TextBuilder
+    buildAnd = \case
+        Connected Conjunction f1 f2 -> buildAnd f1 <> char '&' <> buildAnd f2
+        f -> buildUnitary f
+
+    buildOr :: ExprOf EncodedVar -> TextBuilder
+    buildOr = \case
+        Connected Disjunction f1 f2 -> buildOr f1 <> char '|' <> buildUnitary f2
+        f -> buildUnitary f
 
 
-
-encodeQuant :: Quantifier -> Tptp.Quantifier
-encodeQuant Universally = Tptp.Forall
-encodeQuant Existentially = Tptp.Exists
+instantiator :: VarSymbol -> ExprOf EncodedVar
+instantiator bv = TermVar (BoundVar (encodeBoundVar bv))
 
 
 
@@ -145,8 +190,13 @@ atomicWordFromRightMarker = \case
     Right (Marker m) -> Tptp.AtomicWord m
     Left a -> error ("symbol not in lexicon" <> a)
 
-encodeFreeVar :: VarSymbol -> Tptp.Expr
-encodeFreeVar fv = Tptp.Const fv'
+data EncodedVar
+    = BoundVar Tptp.Variable
+    | FreeConst Tptp.AtomicWord
+    deriving (Show, Eq, Ord)
+
+encodeFreeVar :: VarSymbol -> EncodedVar
+encodeFreeVar fv = FreeConst fv'
     where
         fv' = Tptp.AtomicWord case fv of
             NamedVar x -> Text.cons 'f' x
