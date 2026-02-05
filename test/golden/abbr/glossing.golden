@@ -9,9 +9,12 @@
     ( Abbreviation
         ( SymbolPredicate
             ( PredicateAdj
-                [ Just
-                    ( Word "empty" )
-                ]
+                ( LexicalItem
+                    ( TokenCons
+                        ( Word "empty" ) End
+                    )
+                    ( Marker "empty" )
+                )
             )
         )
         ( Scope
@@ -33,7 +36,10 @@
                             )
                             ( SymbolPredicate
                                 ( PredicateRelation
-                                    ( Command "in" )
+                                    ( RelationSymbol
+                                        ( Command "in" )
+                                        ( Marker "elem" )
+                                    )
                                 )
                             )
                             [ TermVar
@@ -72,9 +78,12 @@
                 )
                 ( SymbolPredicate
                     ( PredicateAdj
-                        [ Just
-                            ( Word "empty" )
-                        ]
+                        ( LexicalItem
+                            ( TokenCons
+                                ( Word "empty" ) End
+                            )
+                            ( Marker "empty" )
+                        )
                     )
                 )
                 [ TermVar
@@ -90,9 +99,12 @@
                 )
                 ( SymbolPredicate
                     ( PredicateAdj
-                        [ Just
-                            ( Word "empty" )
-                        ]
+                        ( LexicalItem
+                            ( TokenCons
+                                ( Word "empty" ) End
+                            )
+                            ( Marker "empty" )
+                        )
                     )
                 )
                 [ TermVar
@@ -112,16 +124,15 @@
     ( Abbreviation
         ( SymbolPredicate
             ( PredicateNoun
-                ( SgPl
-                    { sg =
-                        [ Just
-                            ( Word "function" )
-                        ]
-                    , pl =
-                        [ Just
-                            ( Word "functions" )
-                        ]
-                    }
+                ( LexicalItemSgPl
+                    ( SgPl
+                        { sg = TokenCons
+                            ( Word "function" ) End
+                        , pl = TokenCons
+                            ( Word "functions" ) End
+                        }
+                    )
+                    ( Marker "function" )
                 )
             )
         )
@@ -135,7 +146,10 @@
                 )
                 ( SymbolPredicate
                     ( PredicateRelation
-                        ( Symbol "=" )
+                        ( RelationSymbol
+                            ( Symbol "=" )
+                            ( Marker "eq" )
+                        )
                     )
                 )
                 [ TermVar
@@ -166,16 +180,15 @@
                     )
                     ( SymbolPredicate
                         ( PredicateNoun
-                            ( SgPl
-                                { sg =
-                                    [ Just
-                                        ( Word "function" )
-                                    ]
-                                , pl =
-                                    [ Just
-                                        ( Word "functions" )
-                                    ]
-                                }
+                            ( LexicalItemSgPl
+                                ( SgPl
+                                    { sg = TokenCons
+                                        ( Word "function" ) End
+                                    , pl = TokenCons
+                                        ( Word "functions" ) End
+                                    }
+                                )
+                                ( Marker "function" )
                             )
                         )
                     )
@@ -199,22 +212,21 @@
     ( Abbreviation
         ( SymbolPredicate
             ( PredicateVerb
-                ( SgPl
-                    { sg =
-                        [ Just
+                ( LexicalItemSgPl
+                    ( SgPl
+                        { sg = TokenCons
                             ( Word "converges" )
-                        , Just
-                            ( Word "to" )
-                        , Nothing
-                        ]
-                    , pl =
-                        [ Just
+                            ( TokenCons
+                                ( Word "to" ) ( HoleCons End )
+                            )
+                        , pl = TokenCons
                             ( Word "converge" )
-                        , Just
-                            ( Word "to" )
-                        , Nothing
-                        ]
-                    }
+                            ( TokenCons
+                                ( Word "to" ) ( HoleCons End )
+                            )
+                        }
+                    )
+                    ( Marker "converges" )
                 )
             )
         )
@@ -228,7 +240,10 @@
                 )
                 ( SymbolPredicate
                     ( PredicateRelation
-                        ( Symbol "=" )
+                        ( RelationSymbol
+                            ( Symbol "=" )
+                            ( Marker "eq" )
+                        )
                     )
                 )
                 [ TermVar
@@ -258,22 +273,21 @@
                 )
                 ( SymbolPredicate
                     ( PredicateVerb
-                        ( SgPl
-                            { sg =
-                                [ Just
+                        ( LexicalItemSgPl
+                            ( SgPl
+                                { sg = TokenCons
                                     ( Word "converges" )
-                                , Just
-                                    ( Word "to" )
-                                , Nothing
-                                ]
-                            , pl =
-                                [ Just
+                                    ( TokenCons
+                                        ( Word "to" ) ( HoleCons End )
+                                    )
+                                , pl = TokenCons
                                     ( Word "converge" )
-                                , Just
-                                    ( Word "to" )
-                                , Nothing
-                                ]
-                            }
+                                    ( TokenCons
+                                        ( Word "to" ) ( HoleCons End )
+                                    )
+                                }
+                            )
+                            ( Marker "converges" )
                         )
                     )
                 )
@@ -292,7 +306,10 @@
                 )
                 ( SymbolPredicate
                     ( PredicateRelation
-                        ( Symbol "=" )
+                        ( RelationSymbol
+                            ( Symbol "=" )
+                            ( Marker "eq" )
+                        )
                     )
                 )
                 [ TermVar
@@ -322,7 +339,10 @@
                 )
                 ( SymbolPredicate
                     ( PredicateRelation
-                        ( Command "notin" )
+                        ( RelationSymbol
+                            ( Command "notin" )
+                            ( Marker "notelem" )
+                        )
                     )
                 )
                 [ TermVar
@@ -347,7 +367,10 @@
                     )
                     ( SymbolPredicate
                         ( PredicateRelation
-                            ( Command "in" )
+                            ( RelationSymbol
+                                ( Command "in" )
+                                ( Marker "elem" )
+                            )
                         )
                     )
                     [ TermVar
@@ -378,22 +401,21 @@
                 )
                 ( SymbolPredicate
                     ( PredicateNoun
-                        ( SgPl
-                            { sg =
-                                [ Just
+                        ( LexicalItemSgPl
+                            ( SgPl
+                                { sg = TokenCons
                                     ( Word "element" )
-                                , Just
-                                    ( Word "of" )
-                                , Nothing
-                                ]
-                            , pl =
-                                [ Just
+                                    ( TokenCons
+                                        ( Word "of" ) ( HoleCons End )
+                                    )
+                                , pl = TokenCons
                                     ( Word "elements" )
-                                , Just
-                                    ( Word "of" )
-                                , Nothing
-                                ]
-                            }
+                                    ( TokenCons
+                                        ( Word "of" ) ( HoleCons End )
+                                    )
+                                }
+                            )
+                            ( Marker "elem" )
                         )
                     )
                 )
@@ -412,7 +434,10 @@
                 )
                 ( SymbolPredicate
                     ( PredicateRelation
-                        ( Command "in" )
+                        ( RelationSymbol
+                            ( Command "in" )
+                            ( Marker "elem" )
+                        )
                     )
                 )
                 [ TermVar
@@ -442,18 +467,15 @@
                 )
                 ( SymbolPredicate
                     ( PredicateVerb
-                        ( SgPl
-                            { sg =
-                                [ Just
-                                    ( Word "equals" )
-                                , Nothing
-                                ]
-                            , pl =
-                                [ Just
-                                    ( Word "equal" )
-                                , Nothing
-                                ]
-                            }
+                        ( LexicalItemSgPl
+                            ( SgPl
+                                { sg = TokenCons
+                                    ( Word "equals" ) ( HoleCons End )
+                                , pl = TokenCons
+                                    ( Word "equal" ) ( HoleCons End )
+                                }
+                            )
+                            ( Marker "eq" )
                         )
                     )
                 )
@@ -472,7 +494,10 @@
                 )
                 ( SymbolPredicate
                     ( PredicateRelation
-                        ( Symbol "=" )
+                        ( RelationSymbol
+                            ( Symbol "=" )
+                            ( Marker "eq" )
+                        )
                     )
                 )
                 [ TermVar

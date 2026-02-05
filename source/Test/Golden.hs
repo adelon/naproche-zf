@@ -124,7 +124,7 @@ glossing = makeGoldenTest "glossing" $ \Triple{..} -> do
 
 generatingTasks :: (MonadUnliftIO io, MonadReader Api.Options io) => io TestTree
 generatingTasks = makeGoldenTest "generating tasks" $ \Triple{..} -> do
-    (tasks, _) <- Api.generateTasks input
+    tasks <- Api.generateTasks input
     liftIO $ LazyTextIO.writeFile output (pShowNoColor tasks)
 
 

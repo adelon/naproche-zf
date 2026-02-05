@@ -18,8 +18,11 @@
                     ( ExprVar
                         ( NamedVar "X" ) :| []
                     ) Positive
-                    ( RelationSymbol
-                        ( Symbol "=" ) []
+                    ( Relation
+                        ( RelationSymbol
+                            ( Symbol "=" )
+                            ( Marker "eq" )
+                        ) []
                     )
                     ( ExprSep
                         ( NamedVar "x" )
@@ -37,8 +40,11 @@
                                     ( ExprVar
                                         ( NamedVar "x" ) :| []
                                     ) Positive
-                                    ( RelationSymbol
-                                        ( Symbol "=" ) []
+                                    ( Relation
+                                        ( RelationSymbol
+                                            ( Symbol "=" )
+                                            ( Marker "eq" )
+                                        ) []
                                     )
                                     ( ExprVar
                                         ( NamedVar "x" ) :| []

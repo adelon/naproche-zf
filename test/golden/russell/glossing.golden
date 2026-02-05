@@ -8,9 +8,12 @@
     ( Marker "universal_set" )
     ( DefnPredicate []
         ( PredicateAdj
-            [ Just
-                ( Word "universal" )
-            ]
+            ( LexicalItem
+                ( TokenCons
+                    ( Word "universal" ) End
+                )
+                ( Marker "universal_set" )
+            )
         )
         ( NamedVar "V" :| [] )
         ( Quantified Universally
@@ -25,7 +28,10 @@
                         )
                         ( SymbolPredicate
                             ( PredicateRelation
-                                ( Command "in" )
+                                ( RelationSymbol
+                                    ( Command "in" )
+                                    ( Marker "elem" )
+                                )
                             )
                         )
                         [ TermVar
@@ -72,9 +78,12 @@
                             )
                             ( SymbolPredicate
                                 ( PredicateAdj
-                                    [ Just
-                                        ( Word "universal" )
-                                    ]
+                                    ( LexicalItem
+                                        ( TokenCons
+                                            ( Word "universal" ) End
+                                        )
+                                        ( Marker "universal_set" )
+                                    )
                                 )
                             )
                             [ TermVar
@@ -126,9 +135,12 @@
                     )
                     ( SymbolPredicate
                         ( PredicateAdj
-                            [ Just
-                                ( Word "universal" )
-                            ]
+                            ( LexicalItem
+                                ( TokenCons
+                                    ( Word "universal" ) End
+                                )
+                                ( Marker "universal_set" )
+                            )
                         )
                     )
                     [ TermVar
@@ -166,7 +178,10 @@
                                 )
                                 ( SymbolPredicate
                                     ( PredicateRelation
-                                        ( Command "in" )
+                                        ( RelationSymbol
+                                            ( Command "in" )
+                                            ( Marker "elem" )
+                                        )
                                     )
                                 )
                                 [ TermVar
@@ -195,7 +210,10 @@
                             )
                             ( SymbolPredicate
                                 ( PredicateRelation
-                                    ( Command "in" )
+                                    ( RelationSymbol
+                                        ( Command "in" )
+                                        ( Marker "elem" )
+                                    )
                                 )
                             )
                             [ TermVar
@@ -220,7 +238,10 @@
                                 )
                                 ( SymbolPredicate
                                     ( PredicateRelation
-                                        ( Command "in" )
+                                        ( RelationSymbol
+                                            ( Command "in" )
+                                            ( Marker "elem" )
+                                        )
                                     )
                                 )
                                 [ TermVar

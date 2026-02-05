@@ -51,8 +51,27 @@ data Expr
     deriving (Show, Eq, Ord)
 
 
-data LexicalItem = LexicalItem Pattern Marker deriving (Eq, Show, Ord)
-data LexicalItemSgPl = LexicalItemSgPl (SgPl Pattern) Marker deriving (Eq, Show, Ord)
+data LexicalItem = LexicalItem Pattern Marker deriving (Show, Generic)
+
+instance Eq LexicalItem where
+    LexicalItem p _ == LexicalItem p' _ = p == p'
+
+instance Ord LexicalItem where
+    compare (LexicalItem p _) (LexicalItem p' _) = compare p p'
+
+instance Hashable LexicalItem where
+    hashWithSalt s (LexicalItem p _) = hashWithSalt s p
+
+data LexicalItemSgPl = LexicalItemSgPl (SgPl Pattern) Marker deriving (Show, Generic)
+
+instance Eq LexicalItemSgPl where
+    LexicalItemSgPl p _ == LexicalItemSgPl p' _ = sg p == sg p'
+
+instance Ord LexicalItemSgPl where
+    compare (LexicalItemSgPl p _) (LexicalItemSgPl p' _) = compare (sg p) (sg p')
+
+instance Hashable LexicalItemSgPl where
+    hashWithSalt s (LexicalItemSgPl p _) = hashWithSalt s (sg p)
 
 data Associativity
   = LeftAssoc
@@ -66,13 +85,18 @@ data Pattern = End | HoleCons Pattern | TokenCons Token Pattern deriving (Eq, Sh
 
 type FunctionSymbol = MixfixItem
 
-type RelationSymbol = Token
+data RelationSymbol = RelationSymbol Token Marker deriving (Show, Eq, Ord, Generic, Hashable)
 
 newtype StructSymbol = StructSymbol { unStructSymbol :: Text } deriving newtype (Show, Eq, Ord, Hashable)
 
-pattern ElementSymbol, NotElementSymbol :: Token
-pattern ElementSymbol = Command "in"
-pattern NotElementSymbol = Command "notin"
+pattern ElementSymbol, NotElementSymbol :: RelationSymbol
+pattern ElementSymbol = RelationSymbol (Command "in") "elem"
+pattern NotElementSymbol = RelationSymbol (Command "notin") "notelem"
+
+pattern EqSymbol, NeqSymbol, SubseteqSymbol :: RelationSymbol
+pattern EqSymbol = RelationSymbol (Symbol "=") "eq"
+pattern NeqSymbol = RelationSymbol (Command "neq") "neq"
+pattern SubseteqSymbol = RelationSymbol (Command "subseteq") "subseteq"
 
 -- | The predefined @cons@ function symbol used for desugaring finite set expressions.
 pattern ConsSymbol :: FunctionSymbol
@@ -154,6 +178,41 @@ mixfixAssoc (MixfixItem _ _ assoc) = assoc
 mkMixfixItem :: Holey Token -> Marker -> Associativity -> MixfixItem
 mkMixfixItem pat m assoc = MixfixItem (patternFromHoley pat) m assoc
 
+lexicalItemPattern :: LexicalItem -> Pattern
+lexicalItemPattern (LexicalItem pat _) = pat
+
+lexicalItemMarker :: LexicalItem -> Marker
+lexicalItemMarker (LexicalItem _ m) = m
+
+lexicalItemPhrase :: LexicalItem -> LexicalPhrase
+lexicalItemPhrase = patternToHoley . lexicalItemPattern
+
+lexicalItemSgPlPattern :: LexicalItemSgPl -> SgPl Pattern
+lexicalItemSgPlPattern (LexicalItemSgPl pat _) = pat
+
+lexicalItemSgPlMarker :: LexicalItemSgPl -> Marker
+lexicalItemSgPlMarker (LexicalItemSgPl _ m) = m
+
+lexicalItemSgPlPhrase :: LexicalItemSgPl -> SgPl LexicalPhrase
+lexicalItemSgPlPhrase = fmap patternToHoley . lexicalItemSgPlPattern
+
+mkLexicalItem :: LexicalPhrase -> Marker -> LexicalItem
+mkLexicalItem pat m = LexicalItem (patternFromHoley pat) m
+
+mkLexicalItemSgPl :: SgPl LexicalPhrase -> Marker -> LexicalItemSgPl
+mkLexicalItemSgPl pat m = LexicalItemSgPl (patternFromHoley <$> pat) m
+
+relationSymbolToken :: RelationSymbol -> Token
+relationSymbolToken (RelationSymbol tok _) = tok
+
+relationSymbolMarker :: RelationSymbol -> Marker
+relationSymbolMarker (RelationSymbol _ m) = m
+
+patternToken :: Pattern -> Maybe Token
+patternToken = \case
+    TokenCons tok End -> Just tok
+    _ -> Nothing
+
 markerFromToken :: Token -> Marker
 markerFromToken = \case
     Word w -> Marker w
@@ -189,7 +248,7 @@ data Chain
     deriving (Show, Eq, Ord)
 
 data Relation
-    = RelationSymbol RelationSymbol [Expr] -- ^  E.g.: /@x \in X@/, potentially with parameters in braces
+    = Relation RelationSymbol [Expr] -- ^  E.g.: /@x \in X@/, potentially with parameters in braces
     | RelationExpr Expr   -- ^  E.g.: /@x \mathrel{R} y@/
     deriving (Show, Eq, Ord)
 
@@ -233,13 +292,13 @@ makeConnective pat _ = error ("makeConnective does not handle the following conn
 
 
 
-type StructPhrase = SgPl LexicalPhrase
+type StructPhrase = LexicalItemSgPl
 
 -- | For example 'an integer' would be
 -- > Noun (unsafeReadPhrase "integer[/s]") []
 type Noun = NounOf Term
 data NounOf a
-    = Noun (SgPl LexicalPhrase) [a]
+    = Noun LexicalItemSgPl [a]
     deriving (Show, Eq, Ord)
 
 
@@ -291,7 +350,7 @@ data Nameless a = Nameless deriving (Show, Eq, Ord)
 -- e.g. /@even@/, /@continuous@/, and /@σ-finite@/.
 type AdjL = AdjLOf Term
 data AdjLOf a
-    = AdjL Location LexicalPhrase [a]
+    = AdjL Location LexicalItem [a]
     deriving (Show, Eq, Ord)
 
 
@@ -302,7 +361,7 @@ data AdjLOf a
 -- by an additional such-that phrase.
 type AdjR = AdjROf Term
 data AdjROf a
-    = AdjR Location LexicalPhrase [a]
+    = AdjR Location LexicalItem [a]
     | AttrRThat VerbPhrase
     deriving (Show, Eq, Ord)
 
@@ -315,19 +374,19 @@ instance Locatable (AdjROf a) where
 -- when then are used together with a copula (like /@n is even@/).
 type Adj = AdjOf Term
 data AdjOf a
-    = Adj Location LexicalPhrase [a]
+    = Adj Location LexicalItem [a]
     deriving (Show, Eq, Ord)
 
 
 type Verb = VerbOf Term
 data VerbOf a
-    = Verb Location (SgPl LexicalPhrase) [a]
+    = Verb Location LexicalItemSgPl [a]
     deriving (Show, Eq, Ord)
 
 
 type Fun = FunOf Term
 data FunOf a
-    = Fun {loc :: Location, phrase :: SgPl LexicalPhrase, funArgs :: [a]}
+    = Fun {loc :: Location, phrase :: LexicalItemSgPl, funArgs :: [a]}
     deriving (Show, Eq, Ord)
 
 
@@ -377,7 +436,7 @@ data Stmt
     | StmtExists {loc :: Location, np :: NounPhrase []} -- ^ E.g.: /@There exists a(n) \<NP\>@/.
     | StmtConnected {conn :: Connective, mloc :: Maybe Location, stmt1 :: Stmt, stmt2 :: Stmt}
     | StmtQuantPhrase {loc :: Location, qp :: QuantPhrase, stmt :: Stmt}
-    | SymbolicQuantified {loc :: Location, quant :: Quantifier, xs :: NonEmpty VarSymbol, b :: Bound, suchThat :: Maybe Stmt, stmt :: Stmt}
+    | SymbolicQuantified {loc :: Location, quant :: Quantifier, vars :: NonEmpty VarSymbol, b :: Bound, suchThat :: Maybe Stmt, stmt :: Stmt}
     deriving (Show, Eq, Ord)
 
 instance Locatable Stmt where

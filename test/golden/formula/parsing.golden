@@ -23,8 +23,11 @@
                             ( ExprVar
                                 ( NamedVar "x" ) :| []
                             ) Positive
-                            ( RelationSymbol
-                                ( Symbol "=" ) []
+                            ( Relation
+                                ( RelationSymbol
+                                    ( Symbol "=" )
+                                    ( Marker "eq" )
+                                ) []
                             )
                             ( ExprVar
                                 ( NamedVar "x" ) :| []
@@ -36,8 +39,11 @@
                             ( ExprVar
                                 ( NamedVar "y" ) :| []
                             ) Positive
-                            ( RelationSymbol
-                                ( Symbol "=" ) []
+                            ( Relation
+                                ( RelationSymbol
+                                    ( Symbol "=" )
+                                    ( Marker "eq" )
+                                ) []
                             )
                             ( ExprVar
                                 ( NamedVar "y" ) :| []
@@ -72,8 +78,11 @@
                         ( ExprVar
                             ( NamedVar "x" ) :| []
                         ) Positive
-                        ( RelationSymbol
-                            ( Symbol "=" ) []
+                        ( Relation
+                            ( RelationSymbol
+                                ( Symbol "=" )
+                                ( Marker "eq" )
+                            ) []
                         )
                         ( ExprVar
                             ( NamedVar "y" ) :| []
@@ -110,8 +119,11 @@
                             ( ExprVar
                                 ( NamedVar "x" ) :| []
                             ) Positive
-                            ( RelationSymbol
-                                ( Symbol "=" ) []
+                            ( Relation
+                                ( RelationSymbol
+                                    ( Symbol "=" )
+                                    ( Marker "eq" )
+                                ) []
                             )
                             ( ExprVar
                                 ( NamedVar "y" ) :| []
@@ -138,8 +150,11 @@
                                 ( ExprVar
                                     ( NamedVar "x" ) :| []
                                 ) Positive
-                                ( RelationSymbol
-                                    ( Command "neq" ) []
+                                ( Relation
+                                    ( RelationSymbol
+                                        ( Command "neq" )
+                                        ( Marker "neq" )
+                                    ) []
                                 )
                                 ( ExprVar
                                     ( NamedVar "x" ) :| []

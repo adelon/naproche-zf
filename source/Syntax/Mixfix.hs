@@ -57,8 +57,6 @@ consA p q = (:) <$> p <*> q
 type Holey a = [Maybe a]
 
 
-
-
 -- | Create a grammar for parsing mixfix expressions.
 mixfixExpression
   :: [[(Holey (Prod r e t ident), Associativity)]]

@@ -15,16 +15,15 @@
                 }
             , qp = QuantPhrase Universally NounPhrase ( [] )
                 ( Noun
-                    ( SgPl
-                        { sg =
-                            [ Just
-                                ( Word "set" )
-                            ]
-                        , pl =
-                            [ Just
-                                ( Word "sets" )
-                            ]
-                        }
+                    ( LexicalItemSgPl
+                        ( SgPl
+                            { sg = TokenCons
+                                ( Word "set" ) End
+                            , pl = TokenCons
+                                ( Word "sets" ) End
+                            }
+                        )
+                        ( Marker "set" )
                     ) []
                 )
                 (
@@ -41,8 +40,11 @@
                         ( ExprVar
                             ( NamedVar "A" ) :| []
                         ) Negative
-                        ( RelationSymbol
-                            ( Command "in" ) []
+                        ( Relation
+                            ( RelationSymbol
+                                ( Command "in" )
+                                ( Marker "elem" )
+                            ) []
                         )
                         ( ExprVar
                             ( NamedVar "A" ) :| []

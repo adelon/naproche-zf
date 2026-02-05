@@ -15,16 +15,15 @@
                             )
                             ( SymbolPredicate
                                 ( PredicateNoun
-                                    ( SgPl
-                                        { sg =
-                                            [ Just
-                                                ( Word "relation" )
-                                            ]
-                                        , pl =
-                                            [ Just
-                                                ( Word "relations" )
-                                            ]
-                                        }
+                                    ( LexicalItemSgPl
+                                        ( SgPl
+                                            { sg = TokenCons
+                                                ( Word "relation" ) End
+                                            , pl = TokenCons
+                                                ( Word "relations" ) End
+                                            }
+                                        )
+                                        ( Marker "relation" )
                                     )
                                 )
                             )
@@ -45,7 +44,10 @@
                                     )
                                     ( SymbolPredicate
                                         ( PredicateRelation
-                                            ( Symbol "=" )
+                                            ( RelationSymbol
+                                                ( Symbol "=" )
+                                                ( Marker "eq" )
+                                            )
                                         )
                                     )
                                     [ TermVar
@@ -85,9 +87,12 @@
                             )
                             ( SymbolPredicate
                                 ( PredicateAdj
-                                    [ Just
-                                        ( Word "right-unique" )
-                                    ]
+                                    ( LexicalItem
+                                        ( TokenCons
+                                            ( Word "right-unique" ) End
+                                        )
+                                        ( Marker "rightunique" )
+                                    )
                                 )
                             )
                             [ TermVar
@@ -107,7 +112,10 @@
                                     )
                                     ( SymbolPredicate
                                         ( PredicateRelation
-                                            ( Symbol "=" )
+                                            ( RelationSymbol
+                                                ( Symbol "=" )
+                                                ( Marker "eq" )
+                                            )
                                         )
                                     )
                                     [ TermVar
@@ -146,7 +154,10 @@
                         )
                         ( SymbolPredicate
                             ( PredicateRelation
-                                ( Symbol "=" )
+                                ( RelationSymbol
+                                    ( Symbol "=" )
+                                    ( Marker "eq" )
+                                )
                             )
                         )
                         [ TermSymbol
@@ -193,7 +204,10 @@
                         )
                         ( SymbolPredicate
                             ( PredicateRelation
-                                ( Symbol "=" )
+                                ( RelationSymbol
+                                    ( Symbol "=" )
+                                    ( Marker "eq" )
+                                )
                             )
                         )
                         [ TermSymbol
@@ -248,16 +262,15 @@
                 )
                 ( SymbolPredicate
                     ( PredicateNoun
-                        ( SgPl
-                            { sg =
-                                [ Just
-                                    ( Word "relation" )
-                                ]
-                            , pl =
-                                [ Just
-                                    ( Word "relations" )
-                                ]
-                            }
+                        ( LexicalItemSgPl
+                            ( SgPl
+                                { sg = TokenCons
+                                    ( Word "relation" ) End
+                                , pl = TokenCons
+                                    ( Word "relations" ) End
+                                }
+                            )
+                            ( Marker "relation" )
                         )
                     )
                 )
@@ -276,9 +289,12 @@
                 )
                 ( SymbolPredicate
                     ( PredicateAdj
-                        [ Just
-                            ( Word "right-unique" )
-                        ]
+                        ( LexicalItem
+                            ( TokenCons
+                                ( Word "right-unique" ) End
+                            )
+                            ( Marker "rightunique" )
+                        )
                     )
                 )
                 [ TermVar
@@ -299,7 +315,10 @@
                             )
                             ( SymbolPredicate
                                 ( PredicateRelation
-                                    ( Command "in" )
+                                    ( RelationSymbol
+                                        ( Command "in" )
+                                        ( Marker "elem" )
+                                    )
                                 )
                             )
                             [ TermVar
@@ -323,7 +342,10 @@
                             )
                             ( SymbolPredicate
                                 ( PredicateRelation
-                                    ( Symbol "=" )
+                                    ( RelationSymbol
+                                        ( Symbol "=" )
+                                        ( Marker "eq" )
+                                    )
                                 )
                             )
                             [ TermSymbol
@@ -381,7 +403,10 @@
                 )
                 ( SymbolPredicate
                     ( PredicateRelation
-                        ( Symbol "=" )
+                        ( RelationSymbol
+                            ( Symbol "=" )
+                            ( Marker "eq" )
+                        )
                     )
                 )
                 [ TermSymbol
@@ -426,7 +451,10 @@
             )
             ( SymbolPredicate
                 ( PredicateRelation
-                    ( Command "in" )
+                    ( RelationSymbol
+                        ( Command "in" )
+                        ( Marker "elem" )
+                    )
                 )
             )
             [ TermVar
@@ -444,7 +472,10 @@
             )
             ( SymbolPredicate
                 ( PredicateRelation
-                    ( Command "in" )
+                    ( RelationSymbol
+                        ( Command "in" )
+                        ( Marker "elem" )
+                    )
                 )
             )
             [ TermVar

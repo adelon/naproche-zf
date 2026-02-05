@@ -16,7 +16,10 @@
             )
             ( SymbolPredicate
                 ( PredicateRelation
-                    ( Symbol "=" )
+                    ( RelationSymbol
+                        ( Symbol "=" )
+                        ( Marker "eq" )
+                    )
                 )
             )
             [ TermVar
@@ -44,7 +47,10 @@
             )
             ( SymbolPredicate
                 ( PredicateRelation
-                    ( Symbol "=" )
+                    ( RelationSymbol
+                        ( Symbol "=" )
+                        ( Marker "eq" )
+                    )
                 )
             )
             [ TermVar
@@ -72,7 +78,10 @@
             )
             ( SymbolPredicate
                 ( PredicateRelation
-                    ( Symbol "=" )
+                    ( RelationSymbol
+                        ( Symbol "=" )
+                        ( Marker "eq" )
+                    )
                 )
             )
             [ TermVar
@@ -125,7 +134,10 @@
             )
             ( SymbolPredicate
                 ( PredicateRelation
-                    ( Symbol "=" )
+                    ( RelationSymbol
+                        ( Symbol "=" )
+                        ( Marker "eq" )
+                    )
                 )
             )
             [ TermVar
@@ -166,7 +178,10 @@
                     )
                     ( SymbolPredicate
                         ( PredicateRelation
-                            ( Symbol "=" )
+                            ( RelationSymbol
+                                ( Symbol "=" )
+                                ( Marker "eq" )
+                            )
                         )
                     )
                     [ TermVar
@@ -208,7 +223,10 @@
             )
             ( SymbolPredicate
                 ( PredicateRelation
-                    ( Symbol "=" )
+                    ( RelationSymbol
+                        ( Symbol "=" )
+                        ( Marker "eq" )
+                    )
                 )
             )
             [ TermVar

@@ -62,9 +62,12 @@
     ( Marker "rightunique" )
     ( DefnPredicate []
         ( PredicateAdj
-            [ Just
-                ( Word "right-unique" )
-            ]
+            ( LexicalItem
+                ( TokenCons
+                    ( Word "right-unique" ) End
+                )
+                ( Marker "rightunique" )
+            )
         )
         ( NamedVar "f" :| [] )
         ( TermSymbol
@@ -76,7 +79,10 @@
             )
             ( SymbolPredicate
                 ( PredicateRelation
-                    ( Symbol "=" )
+                    ( RelationSymbol
+                        ( Symbol "=" )
+                        ( Marker "eq" )
+                    )
                 )
             )
             [ TermVar
@@ -96,16 +102,15 @@
     ( Marker "relation" )
     ( DefnPredicate []
         ( PredicateNoun
-            ( SgPl
-                { sg =
-                    [ Just
-                        ( Word "relation" )
-                    ]
-                , pl =
-                    [ Just
-                        ( Word "relations" )
-                    ]
-                }
+            ( LexicalItemSgPl
+                ( SgPl
+                    { sg = TokenCons
+                        ( Word "relation" ) End
+                    , pl = TokenCons
+                        ( Word "relations" ) End
+                    }
+                )
+                ( Marker "relation" )
             )
         )
         ( NamedVar "f" :| [] )
@@ -118,7 +123,10 @@
             )
             ( SymbolPredicate
                 ( PredicateRelation
-                    ( Symbol "=" )
+                    ( RelationSymbol
+                        ( Symbol "=" )
+                        ( Marker "eq" )
+                    )
                 )
             )
             [ TermVar
@@ -147,7 +155,10 @@
                 )
                 ( SymbolPredicate
                     ( PredicateRelation
-                        ( Command "in" )
+                        ( RelationSymbol
+                            ( Command "in" )
+                            ( Marker "elem" )
+                        )
                     )
                 )
                 [ TermVar
@@ -165,7 +176,10 @@
                 )
                 ( SymbolPredicate
                     ( PredicateRelation
-                        ( Command "in" )
+                        ( RelationSymbol
+                            ( Command "in" )
+                            ( Marker "elem" )
+                        )
                     )
                 )
                 [ TermVar

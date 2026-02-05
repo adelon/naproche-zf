@@ -8,7 +8,10 @@
     ( Marker "abbr_equal" )
     ( AbbreviationRel
         ( NamedVar "x" )
-        ( Command "EQUAL" )
+        ( RelationSymbol
+            ( Command "EQUAL" )
+            ( Marker "abbr_equal" )
+        )
         [ NamedVar "y" ]
         ( NamedVar "z" )
         ( StmtFormula
@@ -22,8 +25,11 @@
                     ( ExprVar
                         ( NamedVar "x" ) :| []
                     ) Positive
-                    ( RelationSymbol
-                        ( Symbol "=" ) []
+                    ( Relation
+                        ( RelationSymbol
+                            ( Symbol "=" )
+                            ( Marker "eq" )
+                        ) []
                     )
                     ( ExprVar
                         ( NamedVar "z" ) :| []
@@ -62,8 +68,11 @@
                         ( ExprVar
                             ( NamedVar "x" ) :| []
                         ) Positive
-                        ( RelationSymbol
-                            ( Command "EQUAL" )
+                        ( Relation
+                            ( RelationSymbol
+                                ( Command "EQUAL" )
+                                ( Marker "abbr_equal" )
+                            )
                             [ ExprVar
                                 ( NamedVar "y" )
                             ]
@@ -86,7 +95,10 @@
     ( Marker "defn_equals" )
     ( AbbreviationRel
         ( NamedVar "x" )
-        ( Command "EQUALS" )
+        ( RelationSymbol
+            ( Command "EQUALS" )
+            ( Marker "defn_equals" )
+        )
         [ NamedVar "y" ]
         ( NamedVar "z" )
         ( StmtFormula
@@ -100,8 +112,11 @@
                     ( ExprVar
                         ( NamedVar "x" ) :| []
                     ) Positive
-                    ( RelationSymbol
-                        ( Symbol "=" ) []
+                    ( Relation
+                        ( RelationSymbol
+                            ( Symbol "=" )
+                            ( Marker "eq" )
+                        ) []
                     )
                     ( ExprVar
                         ( NamedVar "z" ) :| []
@@ -140,8 +155,11 @@
                         ( ExprVar
                             ( NamedVar "x" ) :| []
                         ) Positive
-                        ( RelationSymbol
-                            ( Command "EQUALS" )
+                        ( Relation
+                            ( RelationSymbol
+                                ( Command "EQUALS" )
+                                ( Marker "defn_equals" )
+                            )
                             [ ExprVar
                                 ( NamedVar "y" )
                             ]

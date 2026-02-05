@@ -26,7 +26,10 @@
                             )
                             ( SymbolPredicate
                                 ( PredicateRelation
-                                    ( Command "in" )
+                                    ( RelationSymbol
+                                        ( Command "in" )
+                                        ( Marker "elem" )
+                                    )
                                 )
                             )
                             [ TermVar

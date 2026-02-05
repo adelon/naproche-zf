@@ -16,15 +16,20 @@
                     , locColumn = 12
                     }
                 )
-                [ Just
-                    ( Word "collinear" )
-                , Just
-                    ( Word "with" )
-                , Nothing
-                , Just
-                    ( Word "and" )
-                , Nothing
-                ]
+                ( LexicalItem
+                    ( TokenCons
+                        ( Word "collinear" )
+                        ( TokenCons
+                            ( Word "with" )
+                            ( HoleCons
+                                ( TokenCons
+                                    ( Word "and" ) ( HoleCons End )
+                                )
+                            )
+                        )
+                    )
+                    ( Marker "collinear" )
+                )
                 [ NamedVar "b"
                 , NamedVar "c"
                 ]
@@ -105,16 +110,15 @@
                 [ NamedVar "b" ]
             ) NounPhrase ( [] )
             ( Noun
-                ( SgPl
-                    { sg =
-                        [ Just
-                            ( Word "point" )
-                        ]
-                    , pl =
-                        [ Just
-                            ( Word "points" )
-                        ]
-                    }
+                ( LexicalItemSgPl
+                    ( SgPl
+                        { sg = TokenCons
+                            ( Word "point" ) End
+                        , pl = TokenCons
+                            ( Word "points" ) End
+                        }
+                    )
+                    ( Marker "point" )
                 ) []
             ) ( Nothing ) ( [] ) ( Nothing )
         ]
@@ -156,16 +160,15 @@
                 ]
             ) NounPhrase ( [] )
             ( Noun
-                ( SgPl
-                    { sg =
-                        [ Just
-                            ( Word "point" )
-                        ]
-                    , pl =
-                        [ Just
-                            ( Word "points" )
-                        ]
-                    }
+                ( LexicalItemSgPl
+                    ( SgPl
+                        { sg = TokenCons
+                            ( Word "point" ) End
+                        , pl = TokenCons
+                            ( Word "points" ) End
+                        }
+                    )
+                    ( Marker "point" )
                 ) []
             ) ( Nothing ) ( [] ) ( Nothing )
         ]
@@ -258,16 +261,15 @@
                 ]
             ) NounPhrase ( [] )
             ( Noun
-                ( SgPl
-                    { sg =
-                        [ Just
-                            ( Word "point" )
-                        ]
-                    , pl =
-                        [ Just
-                            ( Word "points" )
-                        ]
-                    }
+                ( LexicalItemSgPl
+                    ( SgPl
+                        { sg = TokenCons
+                            ( Word "point" ) End
+                        , pl = TokenCons
+                            ( Word "points" ) End
+                        }
+                    )
+                    ( Marker "point" )
                 ) []
             ) ( Nothing ) ( [] ) ( Nothing )
         ]
@@ -310,8 +312,11 @@
                         ( ExprVar
                             ( NamedVar "a" ) :| []
                         ) Positive
-                        ( RelationSymbol
-                            ( Symbol "=" ) []
+                        ( Relation
+                            ( RelationSymbol
+                                ( Symbol "=" )
+                                ( Marker "eq" )
+                            ) []
                         )
                         ( ExprVar
                             ( NamedVar "b" ) :| []
@@ -338,16 +343,15 @@
                 }
             , np = NounPhrase ( [] )
                 ( Noun
-                    ( SgPl
-                        { sg =
-                            [ Just
-                                ( Word "point" )
-                            ]
-                        , pl =
-                            [ Just
-                                ( Word "points" )
-                            ]
-                        }
+                    ( LexicalItemSgPl
+                        ( SgPl
+                            { sg = TokenCons
+                                ( Word "point" ) End
+                            , pl = TokenCons
+                                ( Word "points" ) End
+                            }
+                        )
+                        ( Marker "point" )
                     ) []
                 )
                 (
@@ -420,16 +424,15 @@
                 ]
             ) NounPhrase ( [] )
             ( Noun
-                ( SgPl
-                    { sg =
-                        [ Just
-                            ( Word "point" )
-                        ]
-                    , pl =
-                        [ Just
-                            ( Word "points" )
-                        ]
-                    }
+                ( LexicalItemSgPl
+                    ( SgPl
+                        { sg = TokenCons
+                            ( Word "point" ) End
+                        , pl = TokenCons
+                            ( Word "points" ) End
+                        }
+                    )
+                    ( Marker "point" )
                 ) []
             ) ( Nothing ) ( [] ) ( Nothing )
         ]
@@ -567,16 +570,15 @@
                 ]
             ) NounPhrase ( [] )
             ( Noun
-                ( SgPl
-                    { sg =
-                        [ Just
-                            ( Word "point" )
-                        ]
-                    , pl =
-                        [ Just
-                            ( Word "points" )
-                        ]
-                    }
+                ( LexicalItemSgPl
+                    ( SgPl
+                        { sg = TokenCons
+                            ( Word "point" ) End
+                        , pl = TokenCons
+                            ( Word "points" ) End
+                        }
+                    )
+                    ( Marker "point" )
                 ) []
             ) ( Nothing ) ( [] ) ( Nothing )
         ]
@@ -630,8 +632,11 @@
                             ( ExprVar
                                 ( NamedVar "a" ) :| []
                             ) Positive
-                            ( RelationSymbol
-                                ( Command "neq" ) []
+                            ( Relation
+                                ( RelationSymbol
+                                    ( Command "neq" )
+                                    ( Marker "neq" )
+                                ) []
                             )
                             ( ExprVar
                                 ( NamedVar "b" ) :| []
@@ -675,16 +680,15 @@
                 [ NamedVar "b" ]
             ) NounPhrase ( [] )
             ( Noun
-                ( SgPl
-                    { sg =
-                        [ Just
-                            ( Word "point" )
-                        ]
-                    , pl =
-                        [ Just
-                            ( Word "points" )
-                        ]
-                    }
+                ( LexicalItemSgPl
+                    ( SgPl
+                        { sg = TokenCons
+                            ( Word "point" ) End
+                        , pl = TokenCons
+                            ( Word "points" ) End
+                        }
+                    )
+                    ( Marker "point" )
                 ) []
             ) ( Nothing ) ( [] ) ( Nothing )
         ]
@@ -725,8 +729,11 @@
                         ( ExprVar
                             ( NamedVar "a" ) :| []
                         ) Positive
-                        ( RelationSymbol
-                            ( Symbol "=" ) []
+                        ( Relation
+                            ( RelationSymbol
+                                ( Symbol "=" )
+                                ( Marker "eq" )
+                            ) []
                         )
                         ( ExprVar
                             ( NamedVar "b" ) :| []
@@ -755,16 +762,15 @@
                 ]
             ) NounPhrase ( [] )
             ( Noun
-                ( SgPl
-                    { sg =
-                        [ Just
-                            ( Word "point" )
-                        ]
-                    , pl =
-                        [ Just
-                            ( Word "points" )
-                        ]
-                    }
+                ( LexicalItemSgPl
+                    ( SgPl
+                        { sg = TokenCons
+                            ( Word "point" ) End
+                        , pl = TokenCons
+                            ( Word "points" ) End
+                        }
+                    )
+                    ( Marker "point" )
                 ) []
             ) ( Nothing ) ( [] ) ( Nothing )
         ]
@@ -823,16 +829,15 @@
                     }
                 , np = NounPhrase ( [] )
                     ( Noun
-                        ( SgPl
-                            { sg =
-                                [ Just
-                                    ( Word "point" )
-                                ]
-                            , pl =
-                                [ Just
-                                    ( Word "points" )
-                                ]
-                            }
+                        ( LexicalItemSgPl
+                            ( SgPl
+                                { sg = TokenCons
+                                    ( Word "point" ) End
+                                , pl = TokenCons
+                                    ( Word "points" ) End
+                                }
+                            )
+                            ( Marker "point" )
                         ) []
                     )
                     (
@@ -901,16 +906,15 @@
                 ]
             ) NounPhrase ( [] )
             ( Noun
-                ( SgPl
-                    { sg =
-                        [ Just
-                            ( Word "point" )
-                        ]
-                    , pl =
-                        [ Just
-                            ( Word "points" )
-                        ]
-                    }
+                ( LexicalItemSgPl
+                    ( SgPl
+                        { sg = TokenCons
+                            ( Word "point" ) End
+                        , pl = TokenCons
+                            ( Word "points" ) End
+                        }
+                    )
+                    ( Marker "point" )
                 ) []
             ) ( Nothing ) ( [] ) ( Nothing )
         ]
@@ -1000,8 +1004,11 @@
                                     ( ExprVar
                                         ( NamedVar "u" ) :| []
                                     ) Positive
-                                    ( RelationSymbol
-                                        ( Command "neq" ) []
+                                    ( Relation
+                                        ( RelationSymbol
+                                            ( Command "neq" )
+                                            ( Marker "neq" )
+                                        ) []
                                     )
                                     ( ExprVar
                                         ( NamedVar "v" ) :| []
@@ -1030,15 +1037,20 @@
                             , locColumn = 17
                             }
                         )
-                        [ Just
-                            ( Word "collinear" )
-                        , Just
-                            ( Word "with" )
-                        , Nothing
-                        , Just
-                            ( Word "and" )
-                        , Nothing
-                        ]
+                        ( LexicalItem
+                            ( TokenCons
+                                ( Word "collinear" )
+                                ( TokenCons
+                                    ( Word "with" )
+                                    ( HoleCons
+                                        ( TokenCons
+                                            ( Word "and" ) ( HoleCons End )
+                                        )
+                                    )
+                                )
+                            )
+                            ( Marker "collinear" )
+                        )
                         [ TermExpr
                             ( Location
                                 { locFile = "test/examples/geometry.tex"
@@ -1079,16 +1091,15 @@
                 [ NamedVar "b" ]
             ) NounPhrase ( [] )
             ( Noun
-                ( SgPl
-                    { sg =
-                        [ Just
-                            ( Word "point" )
-                        ]
-                    , pl =
-                        [ Just
-                            ( Word "points" )
-                        ]
-                    }
+                ( LexicalItemSgPl
+                    ( SgPl
+                        { sg = TokenCons
+                            ( Word "point" ) End
+                        , pl = TokenCons
+                            ( Word "points" ) End
+                        }
+                    )
+                    ( Marker "point" )
                 ) []
             ) ( Nothing ) ( [] ) ( Nothing )
         ]
@@ -1130,16 +1141,15 @@
                 ]
             ) NounPhrase ( [] )
             ( Noun
-                ( SgPl
-                    { sg =
-                        [ Just
-                            ( Word "point" )
-                        ]
-                    , pl =
-                        [ Just
-                            ( Word "points" )
-                        ]
-                    }
+                ( LexicalItemSgPl
+                    ( SgPl
+                        { sg = TokenCons
+                            ( Word "point" ) End
+                        , pl = TokenCons
+                            ( Word "points" ) End
+                        }
+                    )
+                    ( Marker "point" )
                 ) []
             ) ( Nothing ) ( [] ) ( Nothing )
         , AsmSuppose
@@ -1204,16 +1214,15 @@
                 ]
             ) NounPhrase ( [] )
             ( Noun
-                ( SgPl
-                    { sg =
-                        [ Just
-                            ( Word "point" )
-                        ]
-                    , pl =
-                        [ Just
-                            ( Word "points" )
-                        ]
-                    }
+                ( LexicalItemSgPl
+                    ( SgPl
+                        { sg = TokenCons
+                            ( Word "point" ) End
+                        , pl = TokenCons
+                            ( Word "points" ) End
+                        }
+                    )
+                    ( Marker "point" )
                 ) []
             ) ( Nothing ) ( [] ) ( Nothing )
         ]
@@ -1307,16 +1316,15 @@
                 ]
             ) NounPhrase ( [] )
             ( Noun
-                ( SgPl
-                    { sg =
-                        [ Just
-                            ( Word "point" )
-                        ]
-                    , pl =
-                        [ Just
-                            ( Word "points" )
-                        ]
-                    }
+                ( LexicalItemSgPl
+                    ( SgPl
+                        { sg = TokenCons
+                            ( Word "point" ) End
+                        , pl = TokenCons
+                            ( Word "points" ) End
+                        }
+                    )
+                    ( Marker "point" )
                 ) []
             ) ( Nothing ) ( [] ) ( Nothing )
         ]
@@ -1387,16 +1395,15 @@
                 ]
             ) NounPhrase ( [] )
             ( Noun
-                ( SgPl
-                    { sg =
-                        [ Just
-                            ( Word "point" )
-                        ]
-                    , pl =
-                        [ Just
-                            ( Word "points" )
-                        ]
-                    }
+                ( LexicalItemSgPl
+                    ( SgPl
+                        { sg = TokenCons
+                            ( Word "point" ) End
+                        , pl = TokenCons
+                            ( Word "points" ) End
+                        }
+                    )
+                    ( Marker "point" )
                 ) []
             ) ( Nothing ) ( [] ) ( Nothing )
         ]
@@ -1464,16 +1471,15 @@
                 [ NamedVar "b" ]
             ) NounPhrase ( [] )
             ( Noun
-                ( SgPl
-                    { sg =
-                        [ Just
-                            ( Word "point" )
-                        ]
-                    , pl =
-                        [ Just
-                            ( Word "points" )
-                        ]
-                    }
+                ( LexicalItemSgPl
+                    ( SgPl
+                        { sg = TokenCons
+                            ( Word "point" ) End
+                        , pl = TokenCons
+                            ( Word "points" ) End
+                        }
+                    )
+                    ( Marker "point" )
                 ) []
             ) ( Nothing ) ( [] ) ( Nothing )
         ]

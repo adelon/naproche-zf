@@ -74,9 +74,12 @@
                     , locColumn = 12
                     }
                 )
-                [ Just
-                    ( Word "right-unique" )
-                ] []
+                ( LexicalItem
+                    ( TokenCons
+                        ( Word "right-unique" ) End
+                    )
+                    ( Marker "rightunique" )
+                ) []
             )
         )
         ( StmtFormula
@@ -90,8 +93,11 @@
                     ( ExprVar
                         ( NamedVar "f" ) :| []
                     ) Positive
-                    ( RelationSymbol
-                        ( Symbol "=" ) []
+                    ( Relation
+                        ( RelationSymbol
+                            ( Symbol "=" )
+                            ( Marker "eq" )
+                        ) []
                     )
                     ( ExprVar
                         ( NamedVar "f" ) :| []
@@ -112,16 +118,15 @@
         ( DefnNoun
             ( NamedVar "f" )
             ( Noun
-                ( SgPl
-                    { sg =
-                        [ Just
-                            ( Word "relation" )
-                        ]
-                    , pl =
-                        [ Just
-                            ( Word "relations" )
-                        ]
-                    }
+                ( LexicalItemSgPl
+                    ( SgPl
+                        { sg = TokenCons
+                            ( Word "relation" ) End
+                        , pl = TokenCons
+                            ( Word "relations" ) End
+                        }
+                    )
+                    ( Marker "relation" )
                 ) []
             )
         )
@@ -136,8 +141,11 @@
                     ( ExprVar
                         ( NamedVar "f" ) :| []
                     ) Positive
-                    ( RelationSymbol
-                        ( Symbol "=" ) []
+                    ( Relation
+                        ( RelationSymbol
+                            ( Symbol "=" )
+                            ( Marker "eq" )
+                        ) []
                     )
                     ( ExprVar
                         ( NamedVar "f" ) :| []
@@ -175,8 +183,11 @@
                         ( ExprVar
                             ( NamedVar "x" ) :| []
                         ) Positive
-                        ( RelationSymbol
-                            ( Command "in" ) []
+                        ( Relation
+                            ( RelationSymbol
+                                ( Command "in" )
+                                ( Marker "elem" )
+                            ) []
                         )
                         ( ExprVar
                             ( NamedVar "y" ) :| []
@@ -194,8 +205,11 @@
                         ( ExprVar
                             ( NamedVar "x" ) :| []
                         ) Positive
-                        ( RelationSymbol
-                            ( Command "in" ) []
+                        ( Relation
+                            ( RelationSymbol
+                                ( Command "in" )
+                                ( Marker "elem" )
+                            ) []
                         )
                         ( ExprVar
                             ( NamedVar "y" ) :| []

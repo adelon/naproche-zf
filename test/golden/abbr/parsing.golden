@@ -15,9 +15,12 @@
                 , locColumn = 12
                 }
             )
-            [ Just
-                ( Word "empty" )
-            ] []
+            ( LexicalItem
+                ( TokenCons
+                    ( Word "empty" ) End
+                )
+                ( Marker "empty" )
+            ) []
         )
         ( StmtNeg
             { loc = Location
@@ -46,8 +49,11 @@
                             ( ExprVar
                                 ( NamedVar "y" ) :| []
                             ) Positive
-                            ( RelationSymbol
-                                ( Command "in" ) []
+                            ( Relation
+                                ( RelationSymbol
+                                    ( Command "in" )
+                                    ( Marker "elem" )
+                                ) []
                             )
                             ( ExprVar
                                 ( NamedVar "x" ) :| []
@@ -95,9 +101,12 @@
                             , locColumn = 14
                             }
                         )
-                        [ Just
-                            ( Word "empty" )
-                        ] [] :| []
+                        ( LexicalItem
+                            ( TokenCons
+                                ( Word "empty" ) End
+                            )
+                            ( Marker "empty" )
+                        ) [] :| []
                     )
                 }
             , stmt2 = StmtVerbPhrase
@@ -119,9 +128,12 @@
                             , locColumn = 33
                             }
                         )
-                        [ Just
-                            ( Word "empty" )
-                        ] [] :| []
+                        ( LexicalItem
+                            ( TokenCons
+                                ( Word "empty" ) End
+                            )
+                            ( Marker "empty" )
+                        ) [] :| []
                     )
                 }
             }
@@ -138,16 +150,15 @@
     ( AbbreviationNoun
         ( NamedVar "x" )
         ( Noun
-            ( SgPl
-                { sg =
-                    [ Just
-                        ( Word "function" )
-                    ]
-                , pl =
-                    [ Just
-                        ( Word "functions" )
-                    ]
-                }
+            ( LexicalItemSgPl
+                ( SgPl
+                    { sg = TokenCons
+                        ( Word "function" ) End
+                    , pl = TokenCons
+                        ( Word "functions" ) End
+                    }
+                )
+                ( Marker "function" )
             ) []
         )
         ( StmtFormula
@@ -161,8 +172,11 @@
                     ( ExprVar
                         ( NamedVar "x" ) :| []
                     ) Positive
-                    ( RelationSymbol
-                        ( Symbol "=" ) []
+                    ( Relation
+                        ( RelationSymbol
+                            ( Symbol "=" )
+                            ( Marker "eq" )
+                        ) []
                     )
                     ( ExprVar
                         ( NamedVar "x" ) :| []
@@ -208,16 +222,15 @@
                     ) :| []
                 , noun = NounPhrase ( [] )
                     ( Noun
-                        ( SgPl
-                            { sg =
-                                [ Just
-                                    ( Word "function" )
-                                ]
-                            , pl =
-                                [ Just
-                                    ( Word "functions" )
-                                ]
-                            }
+                        ( LexicalItemSgPl
+                            ( SgPl
+                                { sg = TokenCons
+                                    ( Word "function" ) End
+                                , pl = TokenCons
+                                    ( Word "functions" ) End
+                                }
+                            )
+                            ( Marker "function" )
                         ) []
                     ) ( Nothing ) ( [] ) ( Nothing )
                 }
@@ -241,22 +254,21 @@
                 , locColumn = 9
                 }
             )
-            ( SgPl
-                { sg =
-                    [ Just
+            ( LexicalItemSgPl
+                ( SgPl
+                    { sg = TokenCons
                         ( Word "converges" )
-                    , Just
-                        ( Word "to" )
-                    , Nothing
-                    ]
-                , pl =
-                    [ Just
+                        ( TokenCons
+                            ( Word "to" ) ( HoleCons End )
+                        )
+                    , pl = TokenCons
                         ( Word "converge" )
-                    , Just
-                        ( Word "to" )
-                    , Nothing
-                    ]
-                }
+                        ( TokenCons
+                            ( Word "to" ) ( HoleCons End )
+                        )
+                    }
+                )
+                ( Marker "converges" )
             )
             [ NamedVar "y" ]
         )
@@ -271,8 +283,11 @@
                     ( ExprVar
                         ( NamedVar "x" ) :| []
                     ) Positive
-                    ( RelationSymbol
-                        ( Symbol "=" ) []
+                    ( Relation
+                        ( RelationSymbol
+                            ( Symbol "=" )
+                            ( Marker "eq" )
+                        ) []
                     )
                     ( ExprVar
                         ( NamedVar "y" ) :| []
@@ -318,22 +333,21 @@
                             , locColumn = 12
                             }
                         )
-                        ( SgPl
-                            { sg =
-                                [ Just
+                        ( LexicalItemSgPl
+                            ( SgPl
+                                { sg = TokenCons
                                     ( Word "converges" )
-                                , Just
-                                    ( Word "to" )
-                                , Nothing
-                                ]
-                            , pl =
-                                [ Just
+                                    ( TokenCons
+                                        ( Word "to" ) ( HoleCons End )
+                                    )
+                                , pl = TokenCons
                                     ( Word "converge" )
-                                , Just
-                                    ( Word "to" )
-                                , Nothing
-                                ]
-                            }
+                                    ( TokenCons
+                                        ( Word "to" ) ( HoleCons End )
+                                    )
+                                }
+                            )
+                            ( Marker "converges" )
                         )
                         [ TermExpr
                             ( Location
@@ -359,8 +373,11 @@
                         ( ExprVar
                             ( NamedVar "x" ) :| []
                         ) Positive
-                        ( RelationSymbol
-                            ( Symbol "=" ) []
+                        ( Relation
+                            ( RelationSymbol
+                                ( Symbol "=" )
+                                ( Marker "eq" )
+                            ) []
                         )
                         ( ExprVar
                             ( NamedVar "y" ) :| []
@@ -399,8 +416,11 @@
                         ( ExprVar
                             ( NamedVar "x" ) :| []
                         ) Positive
-                        ( RelationSymbol
-                            ( Command "notin" ) []
+                        ( Relation
+                            ( RelationSymbol
+                                ( Command "notin" )
+                                ( Marker "notelem" )
+                            ) []
                         )
                         ( ExprVar
                             ( NamedVar "y" ) :| []
@@ -418,8 +438,11 @@
                         ( ExprVar
                             ( NamedVar "x" ) :| []
                         ) Negative
-                        ( RelationSymbol
-                            ( Command "in" ) []
+                        ( Relation
+                            ( RelationSymbol
+                                ( Command "in" )
+                                ( Marker "elem" )
+                            ) []
                         )
                         ( ExprVar
                             ( NamedVar "y" ) :| []
@@ -465,22 +488,21 @@
                     ) :| []
                 , noun = NounPhrase ( [] )
                     ( Noun
-                        ( SgPl
-                            { sg =
-                                [ Just
+                        ( LexicalItemSgPl
+                            ( SgPl
+                                { sg = TokenCons
                                     ( Word "element" )
-                                , Just
-                                    ( Word "of" )
-                                , Nothing
-                                ]
-                            , pl =
-                                [ Just
+                                    ( TokenCons
+                                        ( Word "of" ) ( HoleCons End )
+                                    )
+                                , pl = TokenCons
                                     ( Word "elements" )
-                                , Just
-                                    ( Word "of" )
-                                , Nothing
-                                ]
-                            }
+                                    ( TokenCons
+                                        ( Word "of" ) ( HoleCons End )
+                                    )
+                                }
+                            )
+                            ( Marker "elem" )
                         )
                         [ TermExpr
                             ( Location
@@ -506,8 +528,11 @@
                         ( ExprVar
                             ( NamedVar "x" ) :| []
                         ) Positive
-                        ( RelationSymbol
-                            ( Command "in" ) []
+                        ( Relation
+                            ( RelationSymbol
+                                ( Command "in" )
+                                ( Marker "elem" )
+                            ) []
                         )
                         ( ExprVar
                             ( NamedVar "y" ) :| []
@@ -554,18 +579,15 @@
                             , locColumn = 12
                             }
                         )
-                        ( SgPl
-                            { sg =
-                                [ Just
-                                    ( Word "equals" )
-                                , Nothing
-                                ]
-                            , pl =
-                                [ Just
-                                    ( Word "equal" )
-                                , Nothing
-                                ]
-                            }
+                        ( LexicalItemSgPl
+                            ( SgPl
+                                { sg = TokenCons
+                                    ( Word "equals" ) ( HoleCons End )
+                                , pl = TokenCons
+                                    ( Word "equal" ) ( HoleCons End )
+                                }
+                            )
+                            ( Marker "eq" )
                         )
                         [ TermExpr
                             ( Location
@@ -591,8 +613,11 @@
                         ( ExprVar
                             ( NamedVar "x" ) :| []
                         ) Positive
-                        ( RelationSymbol
-                            ( Symbol "=" ) []
+                        ( Relation
+                            ( RelationSymbol
+                                ( Symbol "=" )
+                                ( Marker "eq" )
+                            ) []
                         )
                         ( ExprVar
                             ( NamedVar "y" ) :| []

@@ -131,10 +131,10 @@ timeDifferenceToText :: UTCTime -> UTCTime -> Text
 timeDifferenceToText startTime endTime = nominalDiffTimeToText (diffUTCTime endTime startTime)
 
 
-runProver :: (MonadIO io, MonadLogger io) => ProverInstance -> Lexicon -> Task -> io (Formula, ProverAnswer)
-runProver prover@Prover{..} lexicon task = do
+runProver :: (MonadIO io, MonadLogger io) => ProverInstance -> Task -> io (Formula, ProverAnswer)
+runProver prover@Prover{..} task = do
     startTime <- liftIO getCurrentTime
-    let tptp = encodeTask lexicon task
+    let tptp = encodeTask task
     let tptp' = Tptp.toText tptp
     (_exitCode, answer, answerErr) <- liftIO (readProcessWithExitCode proverPath proverArgs tptp')
     endTime <- liftIO getCurrentTime

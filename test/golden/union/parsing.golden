@@ -32,8 +32,11 @@
                                 ( ExprVar
                                     ( NamedVar "a" ) :| []
                                 ) Positive
-                                ( RelationSymbol
-                                    ( Command "in" ) []
+                                ( Relation
+                                    ( RelationSymbol
+                                        ( Command "in" )
+                                        ( Marker "elem" )
+                                    ) []
                                 )
                                 ( ExprVar
                                     ( NamedVar "A" ) :| []
@@ -51,8 +54,11 @@
                                 ( ExprVar
                                     ( NamedVar "a" ) :| []
                                 ) Positive
-                                ( RelationSymbol
-                                    ( Command "in" ) []
+                                ( Relation
+                                    ( RelationSymbol
+                                        ( Command "in" )
+                                        ( Marker "elem" )
+                                    ) []
                                 )
                                 ( ExprVar
                                     ( NamedVar "B" ) :| []
@@ -74,8 +80,11 @@
                     ( ExprVar
                         ( NamedVar "A" ) :| []
                     ) Positive
-                    ( RelationSymbol
-                        ( Symbol "=" ) []
+                    ( Relation
+                        ( RelationSymbol
+                            ( Symbol "=" )
+                            ( Marker "eq" )
+                        ) []
                     )
                     ( ExprVar
                         ( NamedVar "B" ) :| []
@@ -98,16 +107,15 @@
                 [ NamedVar "B" ]
             ) NounPhrase ( [] )
             ( Noun
-                ( SgPl
-                    { sg =
-                        [ Just
-                            ( Word "set" )
-                        ]
-                    , pl =
-                        [ Just
-                            ( Word "sets" )
-                        ]
-                    }
+                ( LexicalItemSgPl
+                    ( SgPl
+                        { sg = TokenCons
+                            ( Word "set" ) End
+                        , pl = TokenCons
+                            ( Word "sets" ) End
+                        }
+                    )
+                    ( Marker "set" )
                 ) []
             ) ( Nothing ) ( [] ) ( Nothing )
         ]
@@ -125,8 +133,11 @@
                         ( ExprVar
                             ( NamedVar "a" ) :| []
                         ) Positive
-                        ( RelationSymbol
-                            ( Command "in" ) []
+                        ( Relation
+                            ( RelationSymbol
+                                ( Command "in" )
+                                ( Marker "elem" )
+                            ) []
                         )
                         ( ExprOp
                             ( MixfixItem
@@ -159,8 +170,11 @@
                             ( ExprVar
                                 ( NamedVar "a" ) :| []
                             ) Positive
-                            ( RelationSymbol
-                                ( Command "in" ) []
+                            ( Relation
+                                ( RelationSymbol
+                                    ( Command "in" )
+                                    ( Marker "elem" )
+                                ) []
                             )
                             ( ExprVar
                                 ( NamedVar "A" ) :| []
@@ -178,8 +192,11 @@
                             ( ExprVar
                                 ( NamedVar "a" ) :| []
                             ) Positive
-                            ( RelationSymbol
-                                ( Command "in" ) []
+                            ( Relation
+                                ( RelationSymbol
+                                    ( Command "in" )
+                                    ( Marker "elem" )
+                                ) []
                             )
                             ( ExprVar
                                 ( NamedVar "B" ) :| []
@@ -222,8 +239,11 @@
                             ( NamedVar "B" )
                         ] :| []
                     ) Positive
-                    ( RelationSymbol
-                        ( Symbol "=" ) []
+                    ( Relation
+                        ( RelationSymbol
+                            ( Symbol "=" )
+                            ( Marker "eq" )
+                        ) []
                     )
                     ( ExprOp
                         ( MixfixItem
@@ -288,8 +308,11 @@
                             ( NamedVar "C" )
                         ] :| []
                     ) Positive
-                    ( RelationSymbol
-                        ( Symbol "=" ) []
+                    ( Relation
+                        ( RelationSymbol
+                            ( Symbol "=" )
+                            ( Marker "eq" )
+                        ) []
                     )
                     ( ExprOp
                         ( MixfixItem
@@ -366,8 +389,11 @@
                             ( ExprVar
                                 ( NamedVar "a" ) :| []
                             ) Positive
-                            ( RelationSymbol
-                                ( Command "in" ) []
+                            ( Relation
+                                ( RelationSymbol
+                                    ( Command "in" )
+                                    ( Marker "elem" )
+                                ) []
                             )
                             ( ExprOp
                                 ( MixfixItem
@@ -409,8 +435,11 @@
                             ( ExprVar
                                 ( NamedVar "a" ) :| []
                             ) Positive
-                            ( RelationSymbol
-                                ( Command "in" ) []
+                            ( Relation
+                                ( RelationSymbol
+                                    ( Command "in" )
+                                    ( Marker "elem" )
+                                ) []
                             )
                             ( ExprOp
                                 ( MixfixItem
@@ -481,8 +510,11 @@
                                 ( ExprVar
                                     ( NamedVar "a" ) :| []
                                 ) Positive
-                                ( RelationSymbol
-                                    ( Command "in" ) []
+                                ( Relation
+                                    ( RelationSymbol
+                                        ( Command "in" )
+                                        ( Marker "elem" )
+                                    ) []
                                 )
                                 ( ExprOp
                                     ( MixfixItem
@@ -524,8 +556,11 @@
                                 ( ExprVar
                                     ( NamedVar "a" ) :| []
                                 ) Positive
-                                ( RelationSymbol
-                                    ( Command "in" ) []
+                                ( Relation
+                                    ( RelationSymbol
+                                        ( Command "in" )
+                                        ( Marker "elem" )
+                                    ) []
                                 )
                                 ( ExprOp
                                     ( MixfixItem

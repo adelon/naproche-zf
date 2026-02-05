@@ -8,7 +8,6 @@ module Tptp.SmtLib where
 import Base
 import Encoding qualified
 import Syntax.Internal
-import Syntax.Lexicon
 import Tptp.UnsortedFirstOrder qualified as Tptp
 
 import Bound
@@ -35,14 +34,14 @@ buildApply f args = case args of
     [] -> buildAtomicWord f
     _ -> buildList (buildAtomicWord f : args)
 
-encodeTask :: Lexicon -> Task -> TextBuilder
-encodeTask l Task{..} = buildTask (conjecture' : hypos')
+encodeTask :: Task -> TextBuilder
+encodeTask Task{..} = buildTask (conjecture' : hypos')
     where
-        conjecture' = encodeExpr l taskConjecture
-        hypos' = encodeExpr l . snd <$> taskHypotheses
+        conjecture' = encodeExpr taskConjecture
+        hypos' = encodeExpr . snd <$> taskHypotheses
 
-encodeExpr :: Lexicon -> Expr -> TextBuilder
-encodeExpr l = buildExpr . fmap encodeFreeVar
+encodeExpr :: Expr -> TextBuilder
+encodeExpr = buildExpr . fmap encodeFreeVar
     where
     buildExpr :: ExprOf EncodedVar -> TextBuilder
     buildExpr = \case
@@ -51,7 +50,7 @@ encodeExpr l = buildExpr . fmap encodeFreeVar
         NotEquals _pos e1 e2 ->
             buildExpr e1 <> text "!=" <> buildExpr e2
         Atomic _pos p es ->
-            let p' = Encoding.encodePredicate l p
+            let p' = Encoding.encodePredicate p
                 es' = buildExpr <$> toList es
             in buildApply p' es'
         PropositionalConstant IsBottom ->
@@ -80,7 +79,7 @@ encodeExpr l = buildExpr . fmap encodeFreeVar
             TermVar (FreeConst x) -> buildApply x (buildExpr <$> toList es)
             _ -> error ("encodeExpr: complex term as head of applicaition: " <> show e)
         TermSymbol _pos symb es ->
-            buildApply (Encoding.encodeSymbol l symb) (buildExpr <$> es)
+            buildApply (Encoding.encodeSymbol symb) (buildExpr <$> es)
         e@ReplaceFun{} ->
             error ("Precondition failed in encodeTerm, cannot encode terms with comprehensions directly: " <> show e)
         e@ReplacePred{} ->

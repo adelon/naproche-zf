@@ -43,7 +43,7 @@ data ScannedLexicalItem
     | ScanNoun LexicalPhrase Marker
     | ScanStructNoun LexicalPhrase Marker
     | ScanVerb LexicalPhrase Marker
-    | ScanRelationSymbol RelationSymbol Marker
+    | ScanRelationSymbol Token Marker
     | ScanFunctionSymbol Pattern Marker
     | ScanPrefixPredicate PrefixPredicate Marker
     | ScanStructOp Text -- we an use the command text as export name.
@@ -181,7 +181,7 @@ verbRE = toLexicalPhrase <$> (math var *> pat <* iff)
 funRE :: RE Token LexicalPhrase
 funRE = toLexicalPhrase <$> (the *> pat <* (is <|> comma))
 
-relationSymbolRE :: RE Token (RelationSymbol, Int)
+relationSymbolRE :: RE Token (Token, Int)
 relationSymbolRE = do
     beginMath
     var
@@ -416,18 +416,18 @@ extendLexicon [] lexicon = lexicon
 -- known irregular plurals are preserved.
 extendLexicon (scan : scans) lexicon@Lexicon{..} = case scan of
     ScanAdj item m -> if isAdjR item
-        then extendLexicon scans lexicon{lexiconAdjRs = insertR item m lexiconAdjRs}
-        else extendLexicon scans lexicon{lexiconAdjLs = insertR item m lexiconAdjLs}
+        then extendLexicon scans lexicon{lexiconAdjRs = insertItem (mkLexicalItem item m) lexiconAdjRs}
+        else extendLexicon scans lexicon{lexiconAdjLs = insertItem (mkLexicalItem item m) lexiconAdjLs}
     ScanFun item m ->
-        extendLexicon scans lexicon{lexiconFuns = insertR (guessNounPlural item) m lexiconFuns}
+        extendLexicon scans lexicon{lexiconFuns = insertItem (mkLexicalItemSgPl (guessNounPlural item) m) lexiconFuns}
     ScanVerb item m ->
-        extendLexicon scans lexicon{lexiconVerbs = insertR (guessVerbPlural item) m lexiconVerbs}
+        extendLexicon scans lexicon{lexiconVerbs = insertItem (mkLexicalItemSgPl (guessVerbPlural item) m) lexiconVerbs}
     ScanNoun item m ->
-        extendLexicon scans lexicon{lexiconNouns = insertR (guessNounPlural item) m lexiconNouns}
+        extendLexicon scans lexicon{lexiconNouns = insertItem (mkLexicalItemSgPl (guessNounPlural item) m) lexiconNouns}
     ScanStructNoun item m ->
-        extendLexicon scans lexicon{lexiconStructNouns = insertR (guessNounPlural item) m lexiconStructNouns}
+        extendLexicon scans lexicon{lexiconStructNouns = insertItem (mkLexicalItemSgPl (guessNounPlural item) m) lexiconStructNouns}
     ScanRelationSymbol item m ->
-        extendLexicon scans lexicon{lexiconRelationSymbols = insertR item m lexiconRelationSymbols}
+        extendLexicon scans lexicon{lexiconRelationSymbols = insertItem (RelationSymbol item m) lexiconRelationSymbols}
     ScanFunctionSymbol pat m ->
         if mixfixPatternExists pat lexiconMixfixTable
             then extendLexicon scans lexicon
@@ -435,9 +435,18 @@ extendLexicon (scan : scans) lexicon@Lexicon{..} = case scan of
                 { lexiconMixfixTable = Seq.adjust (Map.insert pat (MixfixItem pat m NonAssoc)) 9 lexiconMixfixTable
                 }
     ScanStructOp op ->
-        extendLexicon scans lexicon{lexiconStructFun = insertR (StructSymbol op) (Marker op) lexiconStructFun}
+        extendLexicon scans lexicon{lexiconStructFun = insertStruct (StructSymbol op) lexiconStructFun}
     ScanPrefixPredicate tok m ->
-        extendLexicon scans lexicon{lexiconPrefixPredicates = insertR tok m lexiconPrefixPredicates}
+        extendLexicon scans lexicon{lexiconPrefixPredicates = insertPrefix (tok, m) lexiconPrefixPredicates}
 
 mixfixPatternExists :: Pattern -> Seq (Map Pattern MixfixItem) -> Bool
 mixfixPatternExists pat table = any (Map.member pat) table
+
+insertItem :: Eq a => a -> [a] -> [a]
+insertItem item items = if item `elem` items then items else item : items
+
+insertStruct :: StructSymbol -> [StructSymbol] -> [StructSymbol]
+insertStruct item items = if item `elem` items then items else item : items
+
+insertPrefix :: (PrefixPredicate, Marker) -> [(PrefixPredicate, Marker)] -> [(PrefixPredicate, Marker)]
+insertPrefix item items = if fst item `elem` (fst <$> items) then items else item : items

@@ -9,7 +9,10 @@
     ( Abbreviation
         ( SymbolPredicate
             ( PredicateRelation
-                ( Command "EQUAL" )
+                ( RelationSymbol
+                    ( Command "EQUAL" )
+                    ( Marker "abbr_equal" )
+                )
             )
         )
         ( Scope
@@ -22,7 +25,10 @@
                 )
                 ( SymbolPredicate
                     ( PredicateRelation
-                        ( Symbol "=" )
+                        ( RelationSymbol
+                            ( Symbol "=" )
+                            ( Marker "eq" )
+                        )
                     )
                 )
                 [ TermVar
@@ -53,7 +59,10 @@
                     )
                     ( SymbolPredicate
                         ( PredicateRelation
-                            ( Command "EQUAL" )
+                            ( RelationSymbol
+                                ( Command "EQUAL" )
+                                ( Marker "abbr_equal" )
+                            )
                         )
                     )
                     [ TermVar
@@ -86,7 +95,10 @@
     ( Abbreviation
         ( SymbolPredicate
             ( PredicateRelation
-                ( Command "EQUALS" )
+                ( RelationSymbol
+                    ( Command "EQUALS" )
+                    ( Marker "defn_equals" )
+                )
             )
         )
         ( Scope
@@ -99,7 +111,10 @@
                 )
                 ( SymbolPredicate
                     ( PredicateRelation
-                        ( Symbol "=" )
+                        ( RelationSymbol
+                            ( Symbol "=" )
+                            ( Marker "eq" )
+                        )
                     )
                 )
                 [ TermVar
@@ -130,7 +145,10 @@
                     )
                     ( SymbolPredicate
                         ( PredicateRelation
-                            ( Command "EQUALS" )
+                            ( RelationSymbol
+                                ( Command "EQUALS" )
+                                ( Marker "defn_equals" )
+                            )
                         )
                     )
                     [ TermVar

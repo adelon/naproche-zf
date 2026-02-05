@@ -10,16 +10,15 @@
         ( DefnNoun
             ( NamedVar "x" )
             ( Noun
-                ( SgPl
-                    { sg =
-                        [ Just
-                            ( Word "bar" )
-                        ]
-                    , pl =
-                        [ Just
-                            ( Word "bars" )
-                        ]
-                    }
+                ( LexicalItemSgPl
+                    ( SgPl
+                        { sg = TokenCons
+                            ( Word "bar" ) End
+                        , pl = TokenCons
+                            ( Word "bars" ) End
+                        }
+                    )
+                    ( Marker "bar" )
                 ) []
             )
         )
@@ -34,8 +33,11 @@
                     ( ExprVar
                         ( NamedVar "x" ) :| []
                     ) Positive
-                    ( RelationSymbol
-                        ( Symbol "=" ) []
+                    ( Relation
+                        ( RelationSymbol
+                            ( Symbol "=" )
+                            ( Marker "eq" )
+                        ) []
                     )
                     ( ExprVar
                         ( NamedVar "x" ) :| []
@@ -62,9 +64,12 @@
                     , locColumn = 12
                     }
                 )
-                [ Just
-                    ( Word "foo" )
-                ] []
+                ( LexicalItem
+                    ( TokenCons
+                        ( Word "foo" ) End
+                    )
+                    ( Marker "foo" )
+                ) []
             )
         )
         ( StmtFormula
@@ -78,8 +83,11 @@
                     ( ExprVar
                         ( NamedVar "x" ) :| []
                     ) Positive
-                    ( RelationSymbol
-                        ( Symbol "=" ) []
+                    ( Relation
+                        ( RelationSymbol
+                            ( Symbol "=" )
+                            ( Marker "eq" )
+                        ) []
                     )
                     ( ExprVar
                         ( NamedVar "x" ) :| []
@@ -106,9 +114,12 @@
                     , locColumn = 12
                     }
                 )
-                [ Just
-                    ( Word "baz" )
-                ] []
+                ( LexicalItem
+                    ( TokenCons
+                        ( Word "baz" ) End
+                    )
+                    ( Marker "baz" )
+                ) []
             )
         )
         ( StmtFormula
@@ -122,8 +133,11 @@
                     ( ExprVar
                         ( NamedVar "x" ) :| []
                     ) Positive
-                    ( RelationSymbol
-                        ( Symbol "=" ) []
+                    ( Relation
+                        ( RelationSymbol
+                            ( Symbol "=" )
+                            ( Marker "eq" )
+                        ) []
                     )
                     ( ExprVar
                         ( NamedVar "x" ) :| []
@@ -146,16 +160,15 @@
                 [ NamedVar "y" ]
             ) NounPhrase ( [] )
             ( Noun
-                ( SgPl
-                    { sg =
-                        [ Just
-                            ( Word "bar" )
-                        ]
-                    , pl =
-                        [ Just
-                            ( Word "bars" )
-                        ]
-                    }
+                ( LexicalItemSgPl
+                    ( SgPl
+                        { sg = TokenCons
+                            ( Word "bar" ) End
+                        , pl = TokenCons
+                            ( Word "bars" ) End
+                        }
+                    )
+                    ( Marker "bar" )
                 ) []
             ) ( Nothing ) ( [] ) ( Nothing )
         ]
@@ -170,8 +183,11 @@
                     ( ExprVar
                         ( NamedVar "x" ) :| []
                     ) Positive
-                    ( RelationSymbol
-                        ( Symbol "=" ) []
+                    ( Relation
+                        ( RelationSymbol
+                            ( Symbol "=" )
+                            ( Marker "eq" )
+                        ) []
                     )
                     ( ExprVar
                         ( NamedVar "x" ) :| []
@@ -201,22 +217,24 @@
                         , locColumn = 19
                         }
                     )
-                    [ Just
-                        ( Word "foo" )
-                    ] []
+                    ( LexicalItem
+                        ( TokenCons
+                            ( Word "foo" ) End
+                        )
+                        ( Marker "foo" )
+                    ) []
                 ]
             )
             ( Noun
-                ( SgPl
-                    { sg =
-                        [ Just
-                            ( Word "bar" )
-                        ]
-                    , pl =
-                        [ Just
-                            ( Word "bars" )
-                        ]
-                    }
+                ( LexicalItemSgPl
+                    ( SgPl
+                        { sg = TokenCons
+                            ( Word "bar" ) End
+                        , pl = TokenCons
+                            ( Word "bars" ) End
+                        }
+                    )
+                    ( Marker "bar" )
                 ) []
             ) ( Nothing ) ( [] ) ( Nothing )
         ]
@@ -231,8 +249,11 @@
                     ( ExprVar
                         ( NamedVar "x" ) :| []
                     ) Positive
-                    ( RelationSymbol
-                        ( Symbol "=" ) []
+                    ( Relation
+                        ( RelationSymbol
+                            ( Symbol "=" )
+                            ( Marker "eq" )
+                        ) []
                     )
                     ( ExprVar
                         ( NamedVar "x" ) :| []
@@ -255,16 +276,15 @@
                 [ NamedVar "y" ]
             ) NounPhrase ( [] )
             ( Noun
-                ( SgPl
-                    { sg =
-                        [ Just
-                            ( Word "bar" )
-                        ]
-                    , pl =
-                        [ Just
-                            ( Word "bars" )
-                        ]
-                    }
+                ( LexicalItemSgPl
+                    ( SgPl
+                        { sg = TokenCons
+                            ( Word "bar" ) End
+                        , pl = TokenCons
+                            ( Word "bars" ) End
+                        }
+                    )
+                    ( Marker "bar" )
                 ) []
             ) ( Nothing ) ( [] )
             ( Just
@@ -290,9 +310,12 @@
                                     , locColumn = 41
                                     }
                                 )
-                                [ Just
-                                    ( Word "foo" )
-                                ] [] :| []
+                                ( LexicalItem
+                                    ( TokenCons
+                                        ( Word "foo" ) End
+                                    )
+                                    ( Marker "foo" )
+                                ) [] :| []
                             )
                         }
                     , stmt2 = StmtVerbPhrase
@@ -314,9 +337,12 @@
                                     , locColumn = 56
                                     }
                                 )
-                                [ Just
-                                    ( Word "baz" )
-                                ] [] :| []
+                                ( LexicalItem
+                                    ( TokenCons
+                                        ( Word "baz" ) End
+                                    )
+                                    ( Marker "baz" )
+                                ) [] :| []
                             )
                         }
                     }
@@ -334,8 +360,11 @@
                     ( ExprVar
                         ( NamedVar "x" ) :| []
                     ) Positive
-                    ( RelationSymbol
-                        ( Symbol "=" ) []
+                    ( Relation
+                        ( RelationSymbol
+                            ( Symbol "=" )
+                            ( Marker "eq" )
+                        ) []
                     )
                     ( ExprVar
                         ( NamedVar "x" ) :| []
@@ -367,8 +396,11 @@
                         ( ExprVar
                             ( NamedVar "x" ) :| []
                         ) Positive
-                        ( RelationSymbol
-                            ( Symbol "=" ) []
+                        ( Relation
+                            ( RelationSymbol
+                                ( Symbol "=" )
+                                ( Marker "eq" )
+                            ) []
                         )
                         ( ExprVar
                             ( NamedVar "y" ) :| []
@@ -393,16 +425,15 @@
                     ) :| []
                 , noun = NounPhrase ( [] )
                     ( Noun
-                        ( SgPl
-                            { sg =
-                                [ Just
-                                    ( Word "bar" )
-                                ]
-                            , pl =
-                                [ Just
-                                    ( Word "bars" )
-                                ]
-                            }
+                        ( LexicalItemSgPl
+                            ( SgPl
+                                { sg = TokenCons
+                                    ( Word "bar" ) End
+                                , pl = TokenCons
+                                    ( Word "bars" ) End
+                                }
+                            )
+                            ( Marker "bar" )
                         ) []
                     ) ( Nothing )
                     (
@@ -413,12 +444,15 @@
                                 , locColumn = 30
                                 }
                             )
-                            [ Just
-                                ( Word "equal" )
-                            , Just
-                                ( Word "to" )
-                            , Nothing
-                            ]
+                            ( LexicalItem
+                                ( TokenCons
+                                    ( Word "equal" )
+                                    ( TokenCons
+                                        ( Word "to" ) ( HoleCons End )
+                                    )
+                                )
+                                ( Marker "eq" )
+                            )
                             [ TermExpr
                                 ( Location
                                     { locFile = "test/examples/coord.tex"
@@ -464,9 +498,12 @@
                         , locColumn = 12
                         }
                     )
-                    [ Just
-                        ( Word "foo" )
-                    ] [] :|
+                    ( LexicalItem
+                        ( TokenCons
+                            ( Word "foo" ) End
+                        )
+                        ( Marker "foo" )
+                    ) [] :|
                     [ Adj
                         ( Location
                             { locFile = "test/examples/coord.tex"
@@ -474,9 +511,12 @@
                             , locColumn = 20
                             }
                         )
-                        [ Just
-                            ( Word "baz" )
-                        ] []
+                        ( LexicalItem
+                            ( TokenCons
+                                ( Word "baz" ) End
+                            )
+                            ( Marker "baz" )
+                        ) []
                     ]
                 )
             }
@@ -503,22 +543,24 @@
                         , locColumn = 19
                         }
                     )
-                    [ Just
-                        ( Word "foo" )
-                    ] []
+                    ( LexicalItem
+                        ( TokenCons
+                            ( Word "foo" ) End
+                        )
+                        ( Marker "foo" )
+                    ) []
                 ]
             )
             ( Noun
-                ( SgPl
-                    { sg =
-                        [ Just
-                            ( Word "bar" )
-                        ]
-                    , pl =
-                        [ Just
-                            ( Word "bars" )
-                        ]
-                    }
+                ( LexicalItemSgPl
+                    ( SgPl
+                        { sg = TokenCons
+                            ( Word "bar" ) End
+                        , pl = TokenCons
+                            ( Word "bars" ) End
+                        }
+                    )
+                    ( Marker "bar" )
                 ) []
             ) ( Nothing ) ( [] ) ( Nothing )
         ]
@@ -558,22 +600,24 @@
                             , locColumn = 26
                             }
                         )
-                        [ Just
-                            ( Word "foo" )
-                        ] []
+                        ( LexicalItem
+                            ( TokenCons
+                                ( Word "foo" ) End
+                            )
+                            ( Marker "foo" )
+                        ) []
                     ]
                 )
                 ( Noun
-                    ( SgPl
-                        { sg =
-                            [ Just
-                                ( Word "bar" )
-                            ]
-                        , pl =
-                            [ Just
-                                ( Word "bars" )
-                            ]
-                        }
+                    ( LexicalItemSgPl
+                        ( SgPl
+                            { sg = TokenCons
+                                ( Word "bar" ) End
+                            , pl = TokenCons
+                                ( Word "bars" ) End
+                            }
+                        )
+                        ( Marker "bar" )
                     ) []
                 ) ( Nothing ) ( [] ) ( Nothing )
             }

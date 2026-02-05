@@ -246,9 +246,9 @@ glossChain ch = Sem.makeConjunction <$> makeRels (conjuncts (splat ch))
             e1' <- glossExpr e1
             e2' <- glossExpr e2
             case rel of
-                Raw.RelationSymbol tok params -> do
+                Raw.Relation rel params -> do
                     params' <- glossExpr `each` params
-                    pure $ sign' $ Sem.Relation Nowhere tok (params' <> [e1',e2'])
+                    pure $ sign' $ Sem.Relation Nowhere rel (params' <> [e1',e2'])
                 Raw.RelationExpr e -> do
                             e' <- glossExpr e
                             pure (sign' (Sem.IsElementOf Nowhere (Sem.TermPair Nowhere e1' e2') e'))
@@ -340,7 +340,7 @@ glossAdjL (Raw.AdjL loc pat es) = do
 -- the term representing the subject, hence the parameter 'Sem.Expr'.
 glossAdjR :: Raw.AdjR -> Gloss (Sem.Term -> Sem.Formula)
 glossAdjR = \case
-    Raw.AdjR loc pat [e] | pat == unsafeReadPhrase "equal to ?" -> do
+    Raw.AdjR loc pat [e] | pat == Raw.mkLexicalItem (unsafeReadPhrase "equal to ?") "eq" -> do
         (e', quantify) <- glossTerm e
         pure $ \t -> quantify $ Sem.Equals Nowhere t e'
     Raw.AdjR loc pat es -> do
@@ -352,7 +352,7 @@ glossAdjR = \case
 
 glossAdj :: Raw.AdjOf Raw.Term -> Gloss (Sem.ExprOf VarSymbol -> Sem.Formula)
 glossAdj adj = case adj of
-    Raw.Adj loc pat [e] | pat == unsafeReadPhrase "equal to ?" -> do
+    Raw.Adj loc pat [e] | pat == Raw.mkLexicalItem (unsafeReadPhrase "equal to ?") "eq" -> do
         (e', quantify) <- glossTerm e
         pure $ \t -> quantify $ Sem.Equals loc  t e'
     Raw.Adj loc pat es -> do
@@ -381,7 +381,7 @@ glossNoun :: Raw.Noun -> Gloss (Sem.Term -> Sem.Formula)
 glossNoun (Raw.Noun pat es) = do
     (es', quantifies) <- unzip <$> glossTerm `each` es
     let quantify = compose $ reverse quantifies
-    pure case Sem.sg pat of
+    pure case Raw.sg (Raw.lexicalItemSgPlPhrase pat) of
         -- Everything is a set
         [Just (Sem.Word "set")] -> const Sem.Top
         _ -> \e' -> quantify (Sem.FormulaNoun Nowhere  e' pat es')
@@ -464,10 +464,10 @@ glossBound = \case
                 Positive -> id
                 Negative -> Sem.Not Nowhere
         bound <- case rel of
-            Raw.RelationSymbol rel' params -> do
+            Raw.Relation rel params -> do
                 params' <- glossExpr `each` params
                 pure $ \v -> sign' $
-                    Sem.Relation Nowhere rel' (params' <> [Sem.TermVar v, term'])
+                    Sem.Relation Nowhere rel (params' <> [Sem.TermVar v, term'])
             Raw.RelationExpr e -> do
                 e' <- glossExpr e
                 pure $ \v -> sign' $

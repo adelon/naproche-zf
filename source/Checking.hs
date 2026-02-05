@@ -128,9 +128,9 @@ initCheckingStructs = StructGraph.insert
 
 initAbbreviations :: HashMap Symbol (Scope Int ExprOf Void)
 initAbbreviations = HM.fromList
-    [ (SymbolPredicate (PredicateRelation (Command "notin")), toScope (isNotElementOf Nowhere (TermVar (B 0)) (TermVar (B 1))))
-    , (SymbolPredicate (PredicateVerb (unsafeReadPhraseSgPl "equal[s/] ?")), toScope (Equals Nowhere (TermVar (B 0))( TermVar (B 1))))
-    , (SymbolPredicate (PredicateNoun (unsafeReadPhraseSgPl "element[/s] of ?")), toScope (isElementOf (TermVar (B 0)) (TermVar (B 1))))
+    [ (SymbolPredicate (PredicateRelation NotElementSymbol), toScope (isNotElementOf Nowhere (TermVar (B 0)) (TermVar (B 1))))
+    , (SymbolPredicate (PredicateVerb (mkLexicalItemSgPl (unsafeReadPhraseSgPl "equal[s/] ?") "eq")), toScope (Equals Nowhere (TermVar (B 0))( TermVar (B 1))))
+    , (SymbolPredicate (PredicateNoun (mkLexicalItemSgPl (unsafeReadPhraseSgPl "element[/s] of ?") "elem")), toScope (isElementOf (TermVar (B 0)) (TermVar (B 1))))
     ]
 
 data CheckingError
@@ -695,7 +695,6 @@ byAssumption = locally do
 dumpTrainingData :: InsOrdMap Marker Formula -> NonEmpty Marker -> Checking
 dumpTrainingData facts ms = do
     let (picked, unpicked) = InsOrdMap.pickOutMap ms facts
-    lexicon <- gets checkingLexicon
     goals <- gets checkingGoals
     m@(Marker m_) <- gets blockLabel
     loc <- gets stepLocation
@@ -703,9 +702,9 @@ dumpTrainingData facts ms = do
     let dir = "premseldump"
     let makePath k = dir </> (Text.unpack m_ <> show (k :: Int)) <.> "txt"
     let dumpTrainingExample goal =
-            let conj = encodeConjecture lexicon m loc Direct goal
-                usefuls = encodeWithRole Tptp.AxiomUseful lexicon (InsOrdMap.toList picked)
-                redundants = encodeWithRole Tptp.AxiomRedundant lexicon (InsOrdMap.toList unpicked)
+            let conj = encodeConjecture m loc Direct goal
+                usefuls = encodeWithRole Tptp.AxiomUseful (InsOrdMap.toList picked)
+                redundants = encodeWithRole Tptp.AxiomRedundant (InsOrdMap.toList unpicked)
                 k = hash goal
                 example = Tptp.toTextNewline (Tptp.Task (conj : (usefuls <> redundants)))
             in do

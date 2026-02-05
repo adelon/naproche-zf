@@ -17,7 +17,10 @@
                 )
                 ( SymbolPredicate
                     ( PredicateRelation
-                        ( Command "in" )
+                        ( RelationSymbol
+                            ( Command "in" )
+                            ( Marker "elem" )
+                        )
                     )
                 )
                 [ TermSymbol
@@ -62,7 +65,10 @@
                 )
                 ( SymbolPredicate
                     ( PredicateRelation
-                        ( Command "in" )
+                        ( RelationSymbol
+                            ( Command "in" )
+                            ( Marker "elem" )
+                        )
                     )
                 )
                 [ TermSymbol

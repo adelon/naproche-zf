@@ -8,7 +8,10 @@
     ( Marker "subseteq" )
     ( DefnPredicate []
         ( PredicateRelation
-            ( Command "subseteq" )
+            ( RelationSymbol
+                ( Command "subseteq" )
+                ( Marker "subseteq" )
+            )
         )
         ( NamedVar "A" :|
             [ NamedVar "B" ]
@@ -22,7 +25,10 @@
             )
             ( SymbolPredicate
                 ( PredicateRelation
-                    ( Symbol "=" )
+                    ( RelationSymbol
+                        ( Symbol "=" )
+                        ( Marker "eq" )
+                    )
                 )
             )
             [ TermVar
@@ -247,7 +253,10 @@
             )
             ( SymbolPredicate
                 ( PredicateRelation
-                    ( Command "in" )
+                    ( RelationSymbol
+                        ( Command "in" )
+                        ( Marker "elem" )
+                    )
                 )
             )
             [ TermVar
@@ -321,7 +330,10 @@
                 )
                 ( SymbolPredicate
                     ( PredicateRelation
-                        ( Command "in" )
+                        ( RelationSymbol
+                            ( Command "in" )
+                            ( Marker "elem" )
+                        )
                     )
                 )
                 [ TermSymbol
@@ -373,7 +385,10 @@
                         )
                         ( SymbolPredicate
                             ( PredicateRelation
-                                ( Command "in" )
+                                ( RelationSymbol
+                                    ( Command "in" )
+                                    ( Marker "elem" )
+                                )
                             )
                         )
                         [ TermVar
@@ -390,7 +405,10 @@
                         )
                         ( SymbolPredicate
                             ( PredicateRelation
-                                ( Command "in" )
+                                ( RelationSymbol
+                                    ( Command "in" )
+                                    ( Marker "elem" )
+                                )
                             )
                         )
                         [ TermVar
@@ -427,7 +445,10 @@
                     )
                     ( SymbolPredicate
                         ( PredicateRelation
-                            ( Command "in" )
+                            ( RelationSymbol
+                                ( Command "in" )
+                                ( Marker "elem" )
+                            )
                         )
                     )
                     [ TermSymbol
@@ -506,7 +527,10 @@
                 )
                 ( SymbolPredicate
                     ( PredicateRelation
-                        ( Command "subseteq" )
+                        ( RelationSymbol
+                            ( Command "subseteq" )
+                            ( Marker "subseteq" )
+                        )
                     )
                 )
                 [ TermVar
@@ -525,7 +549,10 @@
             )
             ( SymbolPredicate
                 ( PredicateRelation
-                    ( Command "subseteq" )
+                    ( RelationSymbol
+                        ( Command "subseteq" )
+                        ( Marker "subseteq" )
+                    )
                 )
             )
             [ TermSymbol
@@ -663,7 +690,10 @@
                     )
                     ( SymbolPredicate
                         ( PredicateRelation
-                            ( Command "in" )
+                            ( RelationSymbol
+                                ( Command "in" )
+                                ( Marker "elem" )
+                            )
                         )
                     )
                     [ TermVar
@@ -681,7 +711,10 @@
                 )
                 ( SymbolPredicate
                     ( PredicateRelation
-                        ( Command "in" )
+                        ( RelationSymbol
+                            ( Command "in" )
+                            ( Marker "elem" )
+                        )
                     )
                 )
                 [ TermVar
@@ -720,7 +753,10 @@
                         )
                         ( SymbolPredicate
                             ( PredicateRelation
-                                ( Command "in" )
+                                ( RelationSymbol
+                                    ( Command "in" )
+                                    ( Marker "elem" )
+                                )
                             )
                         )
                         [ TermSymbol
@@ -783,7 +819,10 @@
                         )
                         ( SymbolPredicate
                             ( PredicateRelation
-                                ( Command "in" )
+                                ( RelationSymbol
+                                    ( Command "in" )
+                                    ( Marker "elem" )
+                                )
                             )
                         )
                         [ TermSymbol
@@ -828,7 +867,10 @@
                     )
                     ( SymbolPredicate
                         ( PredicateRelation
-                            ( Command "in" )
+                            ( RelationSymbol
+                                ( Command "in" )
+                                ( Marker "elem" )
+                            )
                         )
                     )
                     [ TermSymbol
@@ -976,7 +1018,10 @@
                     )
                     ( SymbolPredicate
                         ( PredicateRelation
-                            ( Command "in" )
+                            ( RelationSymbol
+                                ( Command "in" )
+                                ( Marker "elem" )
+                            )
                         )
                     )
                     [ TermVar
@@ -1013,7 +1058,10 @@
                 )
                 ( SymbolPredicate
                     ( PredicateRelation
-                        ( Command "in" )
+                        ( RelationSymbol
+                            ( Command "in" )
+                            ( Marker "elem" )
+                        )
                     )
                 )
                 [ TermSymbol
@@ -1079,7 +1127,10 @@
                         )
                         ( SymbolPredicate
                             ( PredicateRelation
-                                ( Command "in" )
+                                ( RelationSymbol
+                                    ( Command "in" )
+                                    ( Marker "elem" )
+                                )
                             )
                         )
                         [ TermSymbol
@@ -1142,7 +1193,10 @@
                         )
                         ( SymbolPredicate
                             ( PredicateRelation
-                                ( Command "in" )
+                                ( RelationSymbol
+                                    ( Command "in" )
+                                    ( Marker "elem" )
+                                )
                             )
                         )
                         [ TermSymbol
@@ -1187,7 +1241,10 @@
                     )
                     ( SymbolPredicate
                         ( PredicateRelation
-                            ( Command "in" )
+                            ( RelationSymbol
+                                ( Command "in" )
+                                ( Marker "elem" )
+                            )
                         )
                     )
                     [ TermSymbol
@@ -1305,7 +1362,10 @@
                     )
                     ( SymbolPredicate
                         ( PredicateRelation
-                            ( Command "in" )
+                            ( RelationSymbol
+                                ( Command "in" )
+                                ( Marker "elem" )
+                            )
                         )
                     )
                     [ TermVar
@@ -1323,7 +1383,10 @@
                 )
                 ( SymbolPredicate
                     ( PredicateRelation
-                        ( Command "in" )
+                        ( RelationSymbol
+                            ( Command "in" )
+                            ( Marker "elem" )
+                        )
                     )
                 )
                 [ TermSymbol
@@ -1397,7 +1460,10 @@
                         )
                         ( SymbolPredicate
                             ( PredicateRelation
-                                ( Command "in" )
+                                ( RelationSymbol
+                                    ( Command "in" )
+                                    ( Marker "elem" )
+                                )
                             )
                         )
                         [ TermSymbol
@@ -1468,7 +1534,10 @@
                         )
                         ( SymbolPredicate
                             ( PredicateRelation
-                                ( Command "in" )
+                                ( RelationSymbol
+                                    ( Command "in" )
+                                    ( Marker "elem" )
+                                )
                             )
                         )
                         [ TermSymbol
@@ -1513,7 +1582,10 @@
                     )
                     ( SymbolPredicate
                         ( PredicateRelation
-                            ( Command "in" )
+                            ( RelationSymbol
+                                ( Command "in" )
+                                ( Marker "elem" )
+                            )
                         )
                     )
                     [ TermSymbol
@@ -1630,7 +1702,10 @@
                     )
                     ( SymbolPredicate
                         ( PredicateRelation
-                            ( Command "in" )
+                            ( RelationSymbol
+                                ( Command "in" )
+                                ( Marker "elem" )
+                            )
                         )
                     )
                     [ TermVar
@@ -1666,7 +1741,10 @@
                     )
                     ( SymbolPredicate
                         ( PredicateRelation
-                            ( Command "in" )
+                            ( RelationSymbol
+                                ( Command "in" )
+                                ( Marker "elem" )
+                            )
                         )
                     )
                     [ TermSymbol
@@ -1789,7 +1867,10 @@
                 )
                 ( SymbolPredicate
                     ( PredicateRelation
-                        ( Command "in" )
+                        ( RelationSymbol
+                            ( Command "in" )
+                            ( Marker "elem" )
+                        )
                     )
                 )
                 [ TermVar

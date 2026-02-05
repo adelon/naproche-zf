@@ -33,28 +33,22 @@ import Syntax.Mixfix (Holey)
 data Lexicon = Lexicon
     { lexiconMixfixTable        :: Seq (Map Pattern MixfixItem)
     , lexiconConnectives        :: [[(Holey Token, Associativity)]]
-    , lexiconPrefixPredicates   :: LexicalItems PrefixPredicate
-    , lexiconStructFun          :: LexicalItems StructSymbol
-    , lexiconRelationSymbols    :: LexicalItems RelationSymbol
-    , lexiconVerbs              :: LexicalItems (SgPl LexicalPhrase)
-    , lexiconAdjLs              :: LexicalItems LexicalPhrase
-    , lexiconAdjRs              :: LexicalItems LexicalPhrase
-    , lexiconNouns              :: LexicalItems (SgPl LexicalPhrase)
-    , lexiconStructNouns        :: LexicalItems (SgPl LexicalPhrase)
-    , lexiconFuns               :: LexicalItems (SgPl LexicalPhrase)
+    , lexiconPrefixPredicates   :: [(PrefixPredicate, Marker)]
+    , lexiconStructFun          :: [StructSymbol]
+    , lexiconRelationSymbols    :: [RelationSymbol]
+    , lexiconVerbs              :: [LexicalItemSgPl]
+    , lexiconAdjLs              :: [LexicalItem]
+    , lexiconAdjRs              :: [LexicalItem]
+    , lexiconNouns              :: [LexicalItemSgPl]
+    , lexiconStructNouns        :: [LexicalItemSgPl]
+    , lexiconFuns               :: [LexicalItemSgPl]
     } deriving (Show, Eq)
 
 -- Projection returning the union of both left and right attributes.
 --
-lexiconAdjs :: Lexicon -> Map LexicalPhrase Marker
+lexiconAdjs :: Lexicon -> [LexicalItem]
 lexiconAdjs lexicon = lexiconAdjLs lexicon <> lexiconAdjRs lexicon
 
-lookupLexicalItem :: (Ord a, Show a) => a -> LexicalItems a -> Either String Marker
-lookupLexicalItem a items = case Map.lookup a items of
-    Just m -> Right m
-    Nothing -> Left (show a)
-
-type LexicalItems a = Map a Marker
 
 builtins :: Lexicon
 builtins = Lexicon
@@ -63,12 +57,12 @@ builtins = Lexicon
     , lexiconStructFun          = builtinStructOps
     , lexiconConnectives        = builtinConnectives
     , lexiconRelationSymbols    = builtinRelationSymbols
-    , lexiconAdjLs              = mempty
+    , lexiconAdjLs              = []
     , lexiconAdjRs              = builtinAdjRs
     , lexiconVerbs              = builtinVerbs
     , lexiconNouns              = builtinNouns
     , lexiconStructNouns        = builtinStructNouns
-    , lexiconFuns               = mempty
+    , lexiconFuns               = []
     }
 
 builtinMixfixTable :: Seq (Map Pattern MixfixItem)
@@ -122,26 +116,26 @@ prefixOps =
     ]
 
 
-builtinStructOps :: LexicalItems StructSymbol
-builtinStructOps = Map.fromList
-    [ (CarrierSymbol, "carrier")
+builtinStructOps :: [StructSymbol]
+builtinStructOps =
+    [ CarrierSymbol
     ]
 
 identifier :: Text -> MixfixItem
 identifier cmd = mkMixfixItem [Just (Command cmd)] (Marker cmd) NonAssoc
 
 
-builtinRelationSymbols :: LexicalItems RelationSymbol
-builtinRelationSymbols = Map.fromList
-    [ (Symbol "=", "eq")
-    , (Command "rless", "rless")
-    , (Command "neq", "neq")
-    , (ElementSymbol, "elem")
-    , (Command "notin", "notelem") -- Alternative to @\not\in@.
+builtinRelationSymbols :: [RelationSymbol]
+builtinRelationSymbols =
+    [ RelationSymbol (Symbol "=") "eq"
+    , RelationSymbol (Command "rless") "rless"
+    , RelationSymbol (Command "neq") "neq"
+    , ElementSymbol
+    , NotElementSymbol -- Alternative to @\not\in@.
     ]
 
-builtinPrefixPredicates :: LexicalItems PrefixPredicate
-builtinPrefixPredicates = Map.fromList
+builtinPrefixPredicates :: [(PrefixPredicate, Marker)]
+builtinPrefixPredicates =
     [ (PrefixPredicate "Cong" 4, "cong")
     , (PrefixPredicate "Betw" 3, "betw")
     ]
@@ -163,33 +157,35 @@ binOp tok assoc m = mkMixfixItem [Nothing, Just tok, Nothing] m assoc
 binOp' :: Token -> Associativity -> (Holey Token, Associativity)
 binOp' tok assoc = ([Nothing, Just tok, Nothing], assoc)
 
-builtinAdjRs :: LexicalItems LexicalPhrase
-builtinAdjRs = Map.fromList
-    [ (unsafeReadPhrase "equal to ?", "eq")
+builtinAdjRs :: [LexicalItem]
+builtinAdjRs =
+    [ mkLexicalItem (unsafeReadPhrase "equal to ?") "eq"
     ]
 
-builtinVerbs :: LexicalItems (SgPl LexicalPhrase)
-builtinVerbs = Map.fromList
-    [ (unsafeReadPhraseSgPl "equal[s/] ?", "eq")
+builtinVerbs :: [LexicalItemSgPl]
+builtinVerbs =
+    [ mkLexicalItemSgPl (unsafeReadPhraseSgPl "equal[s/] ?") "eq"
     ]
 
 
 -- Some of these do/should correspond to mathlib structures,
 -- e.g.: lattice, complete lattice, ring, etc.
 --
-builtinNouns :: LexicalItems (SgPl LexicalPhrase)
-builtinNouns = Map.mapKeys unsafeReadPhraseSgPl (Map.fromList
+builtinNouns :: [LexicalItemSgPl]
+builtinNouns = mkNoun <$>
     -- Nullary
     [ ("set[/s]", "set")
     , ("point[/s]", "point")
     , ("element[/s] of ?", "elem")
-    ])
+    ]
+    where
+        mkNoun (spec, m) = mkLexicalItemSgPl (unsafeReadPhraseSgPl spec) (Marker m)
 
-_Onesorted :: SgPl LexicalPhrase
-_Onesorted = unsafeReadPhraseSgPl "onesorted structure[/s]"
+_Onesorted :: LexicalItemSgPl
+_Onesorted = mkLexicalItemSgPl (unsafeReadPhraseSgPl "onesorted structure[/s]") "onesorted_structure"
 
-builtinStructNouns :: LexicalItems (SgPl LexicalPhrase)
-builtinStructNouns = Map.singleton _Onesorted "onesorted_structure"
+builtinStructNouns :: [LexicalItemSgPl]
+builtinStructNouns = [_Onesorted]
 
 
 -- | Naïve splitting of lexical phrases to insert a variable slot for names in noun phrases,

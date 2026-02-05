@@ -213,12 +213,12 @@ gloss file = do
         Right blocks' -> pure (blocks', lexicon)
 
 
-generateTasks :: (MonadIO io, MonadReader Options io) => FilePath -> io ([Internal.Task], Lexicon)
+generateTasks :: (MonadIO io, MonadReader Options io) => FilePath -> io [Internal.Task]
 generateTasks file = do
     dumpPremselTraining <- asks withDumpPremselTraining
     (blocks, lexicon) <- gloss file
     tasks <- liftIO (check dumpPremselTraining lexicon blocks)
-    pure (Internal.contractionTask <$> tasks, lexicon)
+    pure (Internal.contractionTask <$> tasks)
 
 prepareCache :: MonadIO io => FilePath -> io FilePath
 prepareCache file = do
@@ -234,7 +234,7 @@ prepareCache file = do
 
 prepareDumpTasks :: (MonadIO io, MonadReader Options io) => FilePath -> io [(Int, Tptp.Task)]
 prepareDumpTasks file = do
-    (tasks, lexicon) <- generateTasks file
+    tasks <- generateTasks file
     filterOption <- asks withFilter
     let filteredTasks = case filterOption of
             WithFilter -> filterTask <$> tasks
@@ -246,13 +246,13 @@ prepareDumpTasks file = do
         WithCache -> do
             cache <- prepareCache file
             filterM (\(_, task) -> notInCache cache task) indexedTasks
-    pure [(idx, encodeTask lexicon task) | (idx, task) <- indexedTasks']
+    pure [(idx, encodeTask task) | (idx, task) <- indexedTasks']
 
 
 encodeTasks :: (MonadIO io, MonadReader Options io) => FilePath -> io [Tptp.Task]
 encodeTasks file = do
-    (tasks, lexicon) <- generateTasks file
-    pure (encodeTask lexicon <$> tasks)
+    tasks <- generateTasks file
+    pure (encodeTask <$> tasks)
 
 data VerificationResult
     = VerificationSuccess
@@ -271,7 +271,7 @@ isFailure (_phi, _ans) = True
 
 verify :: (MonadUnliftIO io, MonadLogger io, MonadReader Options io) => ProverInstance -> FilePath -> io VerificationResult
 verify prover file = do
-    (tasks, lexicon) <- generateTasks file
+    tasks <- generateTasks file
     filterOption <- asks withFilter
     let filteredTasks = case filterOption of
             WithFilter -> filterTask <$> tasks
@@ -279,11 +279,11 @@ verify prover file = do
     cacheOption <- asks withCache
     answers <- case cacheOption of
         WithoutCache ->
-            pooledForConcurrently filteredTasks (runProver prover lexicon)
+            pooledForConcurrently filteredTasks (runProver prover)
         WithCache -> do
             cache <- prepareCache file
             filteredTasks' <- filterM (notInCache cache) filteredTasks
-            answers' <- pooledForConcurrently filteredTasks' (runProver prover lexicon)
+            answers' <- pooledForConcurrently filteredTasks' (runProver prover)
 
             -- MAYBE: use Seq.breakl
             let firstFailure = find (\(_, answer) -> isFailure answer) (List.zip filteredTasks' answers')

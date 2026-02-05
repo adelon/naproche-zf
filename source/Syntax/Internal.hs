@@ -3,6 +3,7 @@
 {-# LANGUAGE NoImplicitPrelude #-}
 {-# LANGUAGE StandaloneDeriving #-}
 {-# LANGUAGE TemplateHaskell #-}
+{-# LANGUAGE ViewPatterns #-}
 
 -- | Data types for the internal (semantic) syntax tree.
 module Syntax.Internal
@@ -15,7 +16,7 @@ module Syntax.Internal
 
 import Base
 import Syntax.Lexicon (pattern PairSymbol, pattern ConsSymbol)
-import Syntax.LexicalPhrase (LexicalPhrase, SgPl(..), unsafeReadPhrase, unsafeReadPhraseSgPl)
+import Syntax.LexicalPhrase (unsafeReadPhrase, unsafeReadPhraseSgPl)
 import Syntax.Token (Token(..))
 import Report.Location
 
@@ -27,7 +28,9 @@ import Syntax.Abstract
     , FunctionSymbol
     , MixfixItem(..)
     , Pattern(..)
-    , RelationSymbol
+    , LexicalItem
+    , LexicalItemSgPl
+    , RelationSymbol(..)
     , StructSymbol (..)
     , Relation
     , VarSymbol(..)
@@ -36,9 +39,16 @@ import Syntax.Abstract
     , Justification(..)
     , Marker(..)
     , markerFromToken
+    , lexicalItemMarker
+    , lexicalItemSgPlMarker
+    , mkLexicalItem
+    , mkLexicalItemSgPl
+    , relationSymbolMarker
+    , relationSymbolToken
     , mixfixMarker
     , mkMixfixItem
     , pattern CarrierSymbol, pattern ConsSymbol, pattern ElementSymbol
+    , pattern NotElementSymbol, pattern EqSymbol, pattern NeqSymbol, pattern SubseteqSymbol
     )
 
 import Bound
@@ -54,19 +64,19 @@ import Data.Set qualified as Set
 -- | 'Symbol's can be used as function and relation symbols.
 data Symbol
     = SymbolMixfix FunctionSymbol
-    | SymbolFun (SgPl LexicalPhrase)
+    | SymbolFun LexicalItemSgPl
     | SymbolInteger Int
     | SymbolPredicate Predicate
     deriving (Show, Eq, Ord, Generic, Hashable)
 
 
 data Predicate
-    = PredicateAdj LexicalPhrase
-    | PredicateVerb (SgPl LexicalPhrase)
-    | PredicateNoun (SgPl LexicalPhrase) -- ^ /@\<...\> is a \<...\>@/.
+    = PredicateAdj LexicalItem
+    | PredicateVerb LexicalItemSgPl
+    | PredicateNoun LexicalItemSgPl -- ^ /@\<...\> is a \<...\>@/.
     | PredicateRelation RelationSymbol
     | PredicateSymbol Text
-    | PredicateNounStruct (SgPl LexicalPhrase) -- ^ /@\<...\> is a \<...\>@/.
+    | PredicateNounStruct LexicalItemSgPl -- ^ /@\<...\> is a \<...\>@/.
     deriving (Show, Eq, Ord, Generic, Hashable)
 
 
@@ -267,20 +277,20 @@ pattern Atomic :: Location -> Predicate -> [ExprOf a] -> ExprOf a
 pattern Atomic loc symbol args = TermSymbol loc (SymbolPredicate symbol) args
 
 
-pattern FormulaAdj :: Location -> ExprOf a -> LexicalPhrase -> [ExprOf a] -> ExprOf a
+pattern FormulaAdj :: Location -> ExprOf a -> LexicalItem -> [ExprOf a] -> ExprOf a
 pattern FormulaAdj loc e adj es = Atomic loc (PredicateAdj adj) (e:es)
 
-pattern FormulaVerb :: Location -> ExprOf a -> SgPl LexicalPhrase -> [ExprOf a] -> ExprOf a
+pattern FormulaVerb :: Location -> ExprOf a -> LexicalItemSgPl -> [ExprOf a] -> ExprOf a
 pattern FormulaVerb loc e verb es = Atomic loc (PredicateVerb verb) (e:es)
 
-pattern FormulaNoun :: Location -> ExprOf a -> SgPl LexicalPhrase -> [ExprOf a] -> ExprOf a
+pattern FormulaNoun :: Location -> ExprOf a -> LexicalItemSgPl -> [ExprOf a] -> ExprOf a
 pattern FormulaNoun loc e noun es = Atomic loc (PredicateNoun noun) (e:es)
 
 relationNoun :: Location -> Expr -> Formula
-relationNoun loc arg = FormulaNoun loc arg (unsafeReadPhraseSgPl "relation[/s]") []
+relationNoun loc arg = FormulaNoun loc arg (mkLexicalItemSgPl (unsafeReadPhraseSgPl "relation[/s]") "relation") []
 
 rightUniqueAdj :: Location -> Expr -> Formula
-rightUniqueAdj loc arg = FormulaAdj loc arg (unsafeReadPhrase "right-unique") []
+rightUniqueAdj loc arg = FormulaAdj loc arg (mkLexicalItem (unsafeReadPhrase "right-unique") "rightunique") []
 
 -- | Untyped quantification.
 pattern Forall, Exists :: Scope VarSymbol ExprOf a -> ExprOf a
@@ -349,22 +359,30 @@ isNotElementOf loc e1 e2 = Not loc (IsElementOf loc e1 e2)
 
 -- | Subset relation (non-strict).
 pattern IsSubsetOf :: Location -> ExprOf a -> ExprOf a -> ExprOf a
-pattern IsSubsetOf loc e1 e2 = Atomic loc (PredicateRelation (Command "subseteq")) (e1 : [e2])
+pattern IsSubsetOf loc e1 e2 = Atomic loc (PredicateRelation SubseteqSymbol) (e1 : [e2])
+
+ordinalNoun :: LexicalItemSgPl
+ordinalNoun = mkLexicalItemSgPl (unsafeReadPhraseSgPl "ordinal[/s]") "ordinal"
+
+isOrdinalNoun :: LexicalItemSgPl -> Bool
+isOrdinalNoun noun = noun == ordinalNoun
 
 -- | Ordinal predicate.
 pattern IsOrd :: Location -> ExprOf a -> ExprOf a
-pattern IsOrd loc e1 = Atomic loc (PredicateNoun (SgPl [Just "ordinal"] [Just "ordinals"])) [e1]
+pattern IsOrd loc e1 <- Atomic loc (PredicateNoun (isOrdinalNoun -> True)) [e1]
+    where
+        IsOrd loc e1 = Atomic loc (PredicateNoun ordinalNoun) [e1]
 
 -- | Equality.
 pattern Equals :: Location -> ExprOf a -> ExprOf a -> ExprOf a
-pattern Equals loc e1 e2 = Atomic loc (PredicateRelation (Symbol "=")) (e1 : [e2])
+pattern Equals loc e1 e2 = Atomic loc (PredicateRelation EqSymbol) (e1 : [e2])
 
 equals :: ExprOf a -> ExprOf a -> ExprOf a
-equals e1 e2 = Atomic Nowhere (PredicateRelation (Symbol "=")) (e1 : [e2])
+equals e1 e2 = Atomic Nowhere (PredicateRelation EqSymbol) (e1 : [e2])
 
 -- | Disequality.
 pattern NotEquals :: Location -> ExprOf a -> ExprOf a -> ExprOf a
-pattern NotEquals loc e1 e2 = Atomic loc (PredicateRelation (Command "neq")) (e1 : [e2])
+pattern NotEquals loc e1 e2 = Atomic loc (PredicateRelation NeqSymbol) (e1 : [e2])
 
 pattern EmptySet :: Location -> ExprOf a
 pattern EmptySet loc =
@@ -440,7 +458,7 @@ deriving instance Ord  Lemma
 
 data Defn
     = DefnPredicate [Asm] Predicate (NonEmpty VarSymbol) Formula
-    | DefnFun [Asm] (SgPl LexicalPhrase) [VarSymbol] Term
+    | DefnFun [Asm] LexicalItemSgPl [VarSymbol] Term
     | DefnOp FunctionSymbol [VarSymbol] Term
 
 deriving instance Show Defn

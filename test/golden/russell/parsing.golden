@@ -10,16 +10,15 @@
         ( DefnAdj
             ( Just NounPhrase ( [] )
                 ( Noun
-                    ( SgPl
-                        { sg =
-                            [ Just
-                                ( Word "set" )
-                            ]
-                        , pl =
-                            [ Just
-                                ( Word "sets" )
-                            ]
-                        }
+                    ( LexicalItemSgPl
+                        ( SgPl
+                            { sg = TokenCons
+                                ( Word "set" ) End
+                            , pl = TokenCons
+                                ( Word "sets" ) End
+                            }
+                        )
+                        ( Marker "set" )
                     ) []
                 ) ( Nothing ) ( [] ) ( Nothing )
             )
@@ -31,9 +30,12 @@
                     , locColumn = 18
                     }
                 )
-                [ Just
-                    ( Word "universal" )
-                ] []
+                ( LexicalItem
+                    ( TokenCons
+                        ( Word "universal" ) End
+                    )
+                    ( Marker "universal_set" )
+                ) []
             )
         )
         ( StmtQuantPhrase
@@ -44,16 +46,15 @@
                 }
             , qp = QuantPhrase Universally NounPhrase ( [] )
                 ( Noun
-                    ( SgPl
-                        { sg =
-                            [ Just
-                                ( Word "set" )
-                            ]
-                        , pl =
-                            [ Just
-                                ( Word "sets" )
-                            ]
-                        }
+                    ( LexicalItemSgPl
+                        ( SgPl
+                            { sg = TokenCons
+                                ( Word "set" ) End
+                            , pl = TokenCons
+                                ( Word "sets" ) End
+                            }
+                        )
+                        ( Marker "set" )
                     ) []
                 )
                 (
@@ -70,8 +71,11 @@
                         ( ExprVar
                             ( NamedVar "x" ) :| []
                         ) Positive
-                        ( RelationSymbol
-                            ( Command "in" ) []
+                        ( Relation
+                            ( RelationSymbol
+                                ( Command "in" )
+                                ( Marker "elem" )
+                            ) []
                         )
                         ( ExprVar
                             ( NamedVar "V" ) :| []
@@ -111,22 +115,24 @@
                                 , locColumn = 21
                                 }
                             )
-                            [ Just
-                                ( Word "universal" )
-                            ] []
+                            ( LexicalItem
+                                ( TokenCons
+                                    ( Word "universal" ) End
+                                )
+                                ( Marker "universal_set" )
+                            ) []
                         ]
                     )
                     ( Noun
-                        ( SgPl
-                            { sg =
-                                [ Just
-                                    ( Word "set" )
-                                ]
-                            , pl =
-                                [ Just
-                                    ( Word "sets" )
-                                ]
-                            }
+                        ( LexicalItemSgPl
+                            ( SgPl
+                                { sg = TokenCons
+                                    ( Word "set" ) End
+                                , pl = TokenCons
+                                    ( Word "sets" ) End
+                                }
+                            )
+                            ( Marker "set" )
                         ) []
                     ) ( [] ) ( [] ) ( Nothing )
                 }
@@ -162,22 +168,24 @@
                         , locColumn = 12
                         }
                     )
-                    [ Just
-                        ( Word "universal" )
-                    ] []
+                    ( LexicalItem
+                        ( TokenCons
+                            ( Word "universal" ) End
+                        )
+                        ( Marker "universal_set" )
+                    ) []
                 ]
             )
             ( Noun
-                ( SgPl
-                    { sg =
-                        [ Just
-                            ( Word "set" )
-                        ]
-                    , pl =
-                        [ Just
-                            ( Word "sets" )
-                        ]
-                    }
+                ( LexicalItemSgPl
+                    ( SgPl
+                        { sg = TokenCons
+                            ( Word "set" ) End
+                        , pl = TokenCons
+                            ( Word "sets" ) End
+                        }
+                    )
+                    ( Marker "set" )
                 ) []
             )
             (
@@ -207,8 +215,11 @@
                                 ( ExprVar
                                     ( NamedVar "x" ) :| []
                                 ) Negative
-                                ( RelationSymbol
-                                    ( Command "in" ) []
+                                ( Relation
+                                    ( RelationSymbol
+                                        ( Command "in" )
+                                        ( Marker "elem" )
+                                    ) []
                                 )
                                 ( ExprVar
                                     ( NamedVar "x" ) :| []
@@ -238,8 +249,11 @@
                                     ( ExprVar
                                         ( NamedVar "R" ) :| []
                                     ) Positive
-                                    ( RelationSymbol
-                                        ( Command "in" ) []
+                                    ( Relation
+                                        ( RelationSymbol
+                                            ( Command "in" )
+                                            ( Marker "elem" )
+                                        ) []
                                     )
                                     ( ExprVar
                                         ( NamedVar "R" ) :| []
@@ -257,8 +271,11 @@
                                     ( ExprVar
                                         ( NamedVar "R" ) :| []
                                     ) Negative
-                                    ( RelationSymbol
-                                        ( Command "in" ) []
+                                    ( Relation
+                                        ( RelationSymbol
+                                            ( Command "in" )
+                                            ( Marker "elem" )
+                                        ) []
                                     )
                                     ( ExprVar
                                         ( NamedVar "R" ) :| []

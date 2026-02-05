@@ -8,16 +8,15 @@
     ( Marker "bar" )
     ( DefnPredicate []
         ( PredicateNoun
-            ( SgPl
-                { sg =
-                    [ Just
-                        ( Word "bar" )
-                    ]
-                , pl =
-                    [ Just
-                        ( Word "bars" )
-                    ]
-                }
+            ( LexicalItemSgPl
+                ( SgPl
+                    { sg = TokenCons
+                        ( Word "bar" ) End
+                    , pl = TokenCons
+                        ( Word "bars" ) End
+                    }
+                )
+                ( Marker "bar" )
             )
         )
         ( NamedVar "x" :| [] )
@@ -30,7 +29,10 @@
             )
             ( SymbolPredicate
                 ( PredicateRelation
-                    ( Symbol "=" )
+                    ( RelationSymbol
+                        ( Symbol "=" )
+                        ( Marker "eq" )
+                    )
                 )
             )
             [ TermVar
@@ -50,9 +52,12 @@
     ( Marker "foo" )
     ( DefnPredicate []
         ( PredicateAdj
-            [ Just
-                ( Word "foo" )
-            ]
+            ( LexicalItem
+                ( TokenCons
+                    ( Word "foo" ) End
+                )
+                ( Marker "foo" )
+            )
         )
         ( NamedVar "x" :| [] )
         ( TermSymbol
@@ -64,7 +69,10 @@
             )
             ( SymbolPredicate
                 ( PredicateRelation
-                    ( Symbol "=" )
+                    ( RelationSymbol
+                        ( Symbol "=" )
+                        ( Marker "eq" )
+                    )
                 )
             )
             [ TermVar
@@ -84,9 +92,12 @@
     ( Marker "baz" )
     ( DefnPredicate []
         ( PredicateAdj
-            [ Just
-                ( Word "baz" )
-            ]
+            ( LexicalItem
+                ( TokenCons
+                    ( Word "baz" ) End
+                )
+                ( Marker "baz" )
+            )
         )
         ( NamedVar "x" :| [] )
         ( TermSymbol
@@ -98,7 +109,10 @@
             )
             ( SymbolPredicate
                 ( PredicateRelation
-                    ( Symbol "=" )
+                    ( RelationSymbol
+                        ( Symbol "=" )
+                        ( Marker "eq" )
+                    )
                 )
             )
             [ TermVar
@@ -127,16 +141,15 @@
                 )
                 ( SymbolPredicate
                     ( PredicateNoun
-                        ( SgPl
-                            { sg =
-                                [ Just
-                                    ( Word "bar" )
-                                ]
-                            , pl =
-                                [ Just
-                                    ( Word "bars" )
-                                ]
-                            }
+                        ( LexicalItemSgPl
+                            ( SgPl
+                                { sg = TokenCons
+                                    ( Word "bar" ) End
+                                , pl = TokenCons
+                                    ( Word "bars" ) End
+                                }
+                            )
+                            ( Marker "bar" )
                         )
                     )
                 )
@@ -154,16 +167,15 @@
                 )
                 ( SymbolPredicate
                     ( PredicateNoun
-                        ( SgPl
-                            { sg =
-                                [ Just
-                                    ( Word "bar" )
-                                ]
-                            , pl =
-                                [ Just
-                                    ( Word "bars" )
-                                ]
-                            }
+                        ( LexicalItemSgPl
+                            ( SgPl
+                                { sg = TokenCons
+                                    ( Word "bar" ) End
+                                , pl = TokenCons
+                                    ( Word "bars" ) End
+                                }
+                            )
+                            ( Marker "bar" )
                         )
                     )
                 )
@@ -181,7 +193,10 @@
             )
             ( SymbolPredicate
                 ( PredicateRelation
-                    ( Symbol "=" )
+                    ( RelationSymbol
+                        ( Symbol "=" )
+                        ( Marker "eq" )
+                    )
                 )
             )
             [ TermVar
@@ -211,16 +226,15 @@
                     )
                     ( SymbolPredicate
                         ( PredicateNoun
-                            ( SgPl
-                                { sg =
-                                    [ Just
-                                        ( Word "bar" )
-                                    ]
-                                , pl =
-                                    [ Just
-                                        ( Word "bars" )
-                                    ]
-                                }
+                            ( LexicalItemSgPl
+                                ( SgPl
+                                    { sg = TokenCons
+                                        ( Word "bar" ) End
+                                    , pl = TokenCons
+                                        ( Word "bars" ) End
+                                    }
+                                )
+                                ( Marker "bar" )
                             )
                         )
                     )
@@ -237,9 +251,12 @@
                     )
                     ( SymbolPredicate
                         ( PredicateAdj
-                            [ Just
-                                ( Word "foo" )
-                            ]
+                            ( LexicalItem
+                                ( TokenCons
+                                    ( Word "foo" ) End
+                                )
+                                ( Marker "foo" )
+                            )
                         )
                     )
                     [ TermVar
@@ -258,16 +275,15 @@
                     )
                     ( SymbolPredicate
                         ( PredicateNoun
-                            ( SgPl
-                                { sg =
-                                    [ Just
-                                        ( Word "bar" )
-                                    ]
-                                , pl =
-                                    [ Just
-                                        ( Word "bars" )
-                                    ]
-                                }
+                            ( LexicalItemSgPl
+                                ( SgPl
+                                    { sg = TokenCons
+                                        ( Word "bar" ) End
+                                    , pl = TokenCons
+                                        ( Word "bars" ) End
+                                    }
+                                )
+                                ( Marker "bar" )
                             )
                         )
                     )
@@ -284,9 +300,12 @@
                     )
                     ( SymbolPredicate
                         ( PredicateAdj
-                            [ Just
-                                ( Word "foo" )
-                            ]
+                            ( LexicalItem
+                                ( TokenCons
+                                    ( Word "foo" ) End
+                                )
+                                ( Marker "foo" )
+                            )
                         )
                     )
                     [ TermVar
@@ -304,7 +323,10 @@
             )
             ( SymbolPredicate
                 ( PredicateRelation
-                    ( Symbol "=" )
+                    ( RelationSymbol
+                        ( Symbol "=" )
+                        ( Marker "eq" )
+                    )
                 )
             )
             [ TermVar
@@ -334,9 +356,12 @@
                     )
                     ( SymbolPredicate
                         ( PredicateAdj
-                            [ Just
-                                ( Word "foo" )
-                            ]
+                            ( LexicalItem
+                                ( TokenCons
+                                    ( Word "foo" ) End
+                                )
+                                ( Marker "foo" )
+                            )
                         )
                     )
                     [ TermVar
@@ -352,9 +377,12 @@
                     )
                     ( SymbolPredicate
                         ( PredicateAdj
-                            [ Just
-                                ( Word "baz" )
-                            ]
+                            ( LexicalItem
+                                ( TokenCons
+                                    ( Word "baz" ) End
+                                )
+                                ( Marker "baz" )
+                            )
                         )
                     )
                     [ TermVar
@@ -372,16 +400,15 @@
                 )
                 ( SymbolPredicate
                     ( PredicateNoun
-                        ( SgPl
-                            { sg =
-                                [ Just
-                                    ( Word "bar" )
-                                ]
-                            , pl =
-                                [ Just
-                                    ( Word "bars" )
-                                ]
-                            }
+                        ( LexicalItemSgPl
+                            ( SgPl
+                                { sg = TokenCons
+                                    ( Word "bar" ) End
+                                , pl = TokenCons
+                                    ( Word "bars" ) End
+                                }
+                            )
+                            ( Marker "bar" )
                         )
                     )
                 )
@@ -399,16 +426,15 @@
                 )
                 ( SymbolPredicate
                     ( PredicateNoun
-                        ( SgPl
-                            { sg =
-                                [ Just
-                                    ( Word "bar" )
-                                ]
-                            , pl =
-                                [ Just
-                                    ( Word "bars" )
-                                ]
-                            }
+                        ( LexicalItemSgPl
+                            ( SgPl
+                                { sg = TokenCons
+                                    ( Word "bar" ) End
+                                , pl = TokenCons
+                                    ( Word "bars" ) End
+                                }
+                            )
+                            ( Marker "bar" )
                         )
                     )
                 )
@@ -426,7 +452,10 @@
             )
             ( SymbolPredicate
                 ( PredicateRelation
-                    ( Symbol "=" )
+                    ( RelationSymbol
+                        ( Symbol "=" )
+                        ( Marker "eq" )
+                    )
                 )
             )
             [ TermVar
@@ -455,7 +484,10 @@
                 )
                 ( SymbolPredicate
                     ( PredicateRelation
-                        ( Symbol "=" )
+                        ( RelationSymbol
+                            ( Symbol "=" )
+                            ( Marker "eq" )
+                        )
                     )
                 )
                 [ TermVar
@@ -474,16 +506,15 @@
                     )
                     ( SymbolPredicate
                         ( PredicateNoun
-                            ( SgPl
-                                { sg =
-                                    [ Just
-                                        ( Word "bar" )
-                                    ]
-                                , pl =
-                                    [ Just
-                                        ( Word "bars" )
-                                    ]
-                                }
+                            ( LexicalItemSgPl
+                                ( SgPl
+                                    { sg = TokenCons
+                                        ( Word "bar" ) End
+                                    , pl = TokenCons
+                                        ( Word "bars" ) End
+                                    }
+                                )
+                                ( Marker "bar" )
                             )
                         )
                     )
@@ -500,7 +531,10 @@
                     )
                     ( SymbolPredicate
                         ( PredicateRelation
-                            ( Symbol "=" )
+                            ( RelationSymbol
+                                ( Symbol "=" )
+                                ( Marker "eq" )
+                            )
                         )
                     )
                     [ TermVar
@@ -531,9 +565,12 @@
                 )
                 ( SymbolPredicate
                     ( PredicateAdj
-                        [ Just
-                            ( Word "foo" )
-                        ]
+                        ( LexicalItem
+                            ( TokenCons
+                                ( Word "foo" ) End
+                            )
+                            ( Marker "foo" )
+                        )
                     )
                 )
                 [ TermVar
@@ -549,9 +586,12 @@
                 )
                 ( SymbolPredicate
                     ( PredicateAdj
-                        [ Just
-                            ( Word "baz" )
-                        ]
+                        ( LexicalItem
+                            ( TokenCons
+                                ( Word "baz" ) End
+                            )
+                            ( Marker "baz" )
+                        )
                     )
                 )
                 [ TermVar
@@ -580,16 +620,15 @@
                     )
                     ( SymbolPredicate
                         ( PredicateNoun
-                            ( SgPl
-                                { sg =
-                                    [ Just
-                                        ( Word "bar" )
-                                    ]
-                                , pl =
-                                    [ Just
-                                        ( Word "bars" )
-                                    ]
-                                }
+                            ( LexicalItemSgPl
+                                ( SgPl
+                                    { sg = TokenCons
+                                        ( Word "bar" ) End
+                                    , pl = TokenCons
+                                        ( Word "bars" ) End
+                                    }
+                                )
+                                ( Marker "bar" )
                             )
                         )
                     )
@@ -606,9 +645,12 @@
                     )
                     ( SymbolPredicate
                         ( PredicateAdj
-                            [ Just
-                                ( Word "foo" )
-                            ]
+                            ( LexicalItem
+                                ( TokenCons
+                                    ( Word "foo" ) End
+                                )
+                                ( Marker "foo" )
+                            )
                         )
                     )
                     [ TermVar
@@ -627,16 +669,15 @@
                     )
                     ( SymbolPredicate
                         ( PredicateNoun
-                            ( SgPl
-                                { sg =
-                                    [ Just
-                                        ( Word "bar" )
-                                    ]
-                                , pl =
-                                    [ Just
-                                        ( Word "bars" )
-                                    ]
-                                }
+                            ( LexicalItemSgPl
+                                ( SgPl
+                                    { sg = TokenCons
+                                        ( Word "bar" ) End
+                                    , pl = TokenCons
+                                        ( Word "bars" ) End
+                                    }
+                                )
+                                ( Marker "bar" )
                             )
                         )
                     )
@@ -653,9 +694,12 @@
                     )
                     ( SymbolPredicate
                         ( PredicateAdj
-                            [ Just
-                                ( Word "foo" )
-                            ]
+                            ( LexicalItem
+                                ( TokenCons
+                                    ( Word "foo" ) End
+                                )
+                                ( Marker "foo" )
+                            )
                         )
                     )
                     [ TermVar
@@ -675,16 +719,15 @@
                     )
                     ( SymbolPredicate
                         ( PredicateNoun
-                            ( SgPl
-                                { sg =
-                                    [ Just
-                                        ( Word "bar" )
-                                    ]
-                                , pl =
-                                    [ Just
-                                        ( Word "bars" )
-                                    ]
-                                }
+                            ( LexicalItemSgPl
+                                ( SgPl
+                                    { sg = TokenCons
+                                        ( Word "bar" ) End
+                                    , pl = TokenCons
+                                        ( Word "bars" ) End
+                                    }
+                                )
+                                ( Marker "bar" )
                             )
                         )
                     )
@@ -701,9 +744,12 @@
                     )
                     ( SymbolPredicate
                         ( PredicateAdj
-                            [ Just
-                                ( Word "foo" )
-                            ]
+                            ( LexicalItem
+                                ( TokenCons
+                                    ( Word "foo" ) End
+                                )
+                                ( Marker "foo" )
+                            )
                         )
                     )
                     [ TermVar
@@ -721,16 +767,15 @@
                     )
                     ( SymbolPredicate
                         ( PredicateNoun
-                            ( SgPl
-                                { sg =
-                                    [ Just
-                                        ( Word "bar" )
-                                    ]
-                                , pl =
-                                    [ Just
-                                        ( Word "bars" )
-                                    ]
-                                }
+                            ( LexicalItemSgPl
+                                ( SgPl
+                                    { sg = TokenCons
+                                        ( Word "bar" ) End
+                                    , pl = TokenCons
+                                        ( Word "bars" ) End
+                                    }
+                                )
+                                ( Marker "bar" )
                             )
                         )
                     )
@@ -747,9 +792,12 @@
                     )
                     ( SymbolPredicate
                         ( PredicateAdj
-                            [ Just
-                                ( Word "foo" )
-                            ]
+                            ( LexicalItem
+                                ( TokenCons
+                                    ( Word "foo" ) End
+                                )
+                                ( Marker "foo" )
+                            )
                         )
                     )
                     [ TermVar

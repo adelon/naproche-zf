@@ -6,7 +6,6 @@ module Encoding where
 import Base
 import Report.Location
 import Syntax.Internal
-import Syntax.Lexicon
 import Tptp.UnsortedFirstOrder qualified as Tptp
 
 import Bound
@@ -15,34 +14,34 @@ import Data.Text qualified as Text
 import TextBuilder
 
 
-encodeTask :: Lexicon -> Task -> Tptp.Task
-encodeTask l Task{..} = Tptp.Task (conjecture' : hypos')
+encodeTask :: Task -> Tptp.Task
+encodeTask Task{..} = Tptp.Task (conjecture' : hypos')
     where
-        conjecture' = encodeConjecture l taskConjectureLabel taskLocation taskDirectness taskConjecture
-        hypos' = encodeHypos l taskHypotheses
+        conjecture' = encodeConjecture taskConjectureLabel taskLocation taskDirectness taskConjecture
+        hypos' = encodeHypos taskHypotheses
 
 
-encodeConjecture :: Lexicon -> Marker -> Location -> Directness -> Formula -> Tptp.AnnotatedFormula
-encodeConjecture l (Marker str) loc directness f = Tptp.AnnotatedFormula (Tptp.NameAtomicWord (Tptp.AtomicWord str)) Tptp.Conjecture (encodeExpr l f) case directness of
+encodeConjecture :: Marker -> Location -> Directness -> Formula -> Tptp.AnnotatedFormula
+encodeConjecture (Marker str) loc directness f = Tptp.AnnotatedFormula (Tptp.NameAtomicWord (Tptp.AtomicWord str)) Tptp.Conjecture (encodeExpr f) case directness of
     Direct -> (Tptp.Source (locationToText loc))
     Indirect _ -> (Tptp.Source (locationToText loc <> " (indirect proof)"))
 
 -- NOTE: E's SInE will only filter out axioms and leave hypotheses fixed.
-encodeHypos :: Lexicon -> [(Marker, Formula)] -> [Tptp.AnnotatedFormula]
-encodeHypos l phis = [makeHypo  m (encodeExpr l phi) | (m,  phi) <- phis]
+encodeHypos :: [(Marker, Formula)] -> [Tptp.AnnotatedFormula]
+encodeHypos phis = [makeHypo  m (encodeExpr phi) | (m,  phi) <- phis]
     where
         makeHypo :: Marker -> TextBuilder -> Tptp.AnnotatedFormula
         makeHypo (Marker str) f' = Tptp.AnnotatedFormula (Tptp.NameAtomicWord (Tptp.AtomicWord str)) Tptp.Axiom f' (Tptp.Source "")
 
-encodeWithRole :: Tptp.Role -> Lexicon -> [(Marker, Formula)] -> [Tptp.AnnotatedFormula]
-encodeWithRole role l phis = [makeHypo  m (encodeExpr l phi) | (m,  phi) <- phis]
+encodeWithRole :: Tptp.Role -> [(Marker, Formula)] -> [Tptp.AnnotatedFormula]
+encodeWithRole role phis = [makeHypo  m (encodeExpr phi) | (m,  phi) <- phis]
     where
         makeHypo :: Marker -> TextBuilder -> Tptp.AnnotatedFormula
         makeHypo (Marker str) f' = Tptp.AnnotatedFormula (Tptp.NameAtomicWord (Tptp.AtomicWord str)) role f' (Tptp.Source "")
 
 
-encodeExpr :: Lexicon -> Expr -> TextBuilder
-encodeExpr l = buildExpr . fmap encodeFreeVar
+encodeExpr :: Expr -> TextBuilder
+encodeExpr = buildExpr . fmap encodeFreeVar
     where
     buildExpr :: ExprOf EncodedVar -> TextBuilder
     buildExpr = \case
@@ -51,7 +50,7 @@ encodeExpr l = buildExpr . fmap encodeFreeVar
         NotEquals _pos e1 e2 ->
             buildExpr e1 <> text "!=" <> buildExpr e2
         Atomic _pos p es ->
-            let p' = encodePredicate l p
+            let p' = encodePredicate p
                 es' = buildExpr <$> toList es
             in buildApply p' es'
         PropositionalConstant IsBottom ->
@@ -80,7 +79,7 @@ encodeExpr l = buildExpr . fmap encodeFreeVar
             TermVar (FreeConst x) -> buildApply x (buildExpr <$> toList es)
             _ -> error ("encodeExpr: complex term as head of applicaition: " <> show e)
         TermSymbol _pos symb es ->
-            buildApply (encodeSymbol l symb) (buildExpr <$> es)
+            buildApply (encodeSymbol symb) (buildExpr <$> es)
         e@ReplaceFun{} ->
             error ("Precondition failed in encodeTerm, cannot encode terms with comprehensions directly: " <> show e)
         e@ReplacePred{} ->
@@ -157,38 +156,37 @@ instantiator bv = TermVar (BoundVar (encodeBoundVar bv))
 
 
 
-encodeSymbol :: Lexicon -> Symbol -> Tptp.AtomicWord
-encodeSymbol l symb = atomicWordFromRightMarker case symb of
+encodeSymbol :: Symbol -> Tptp.AtomicWord
+encodeSymbol = \case
     SymbolMixfix op ->
-        Right (mixfixMarker op)
+        unMarker (mixfixMarker op)
     SymbolFun fun ->
-        lookupLexicalItem fun (lexiconFuns l)
+        unMarker (lexicalItemSgPlMarker fun)
     SymbolInteger n ->
-        Right (Marker (Text.pack (show n)))
+        unMarker (Marker (Text.pack (show n)))
     SymbolPredicate _ ->
         error "IMPOSSIBLE: predicates should already be translated"
 
 
-encodePredicate :: Lexicon -> Predicate -> Tptp.AtomicWord
-encodePredicate l p = atomicWordFromRightMarker case p of
+encodePredicate :: Predicate -> Tptp.AtomicWord
+encodePredicate = \case
     PredicateAdj adj ->
-        lookupLexicalItem adj (lexiconAdjs l)
+        unMarker (lexicalItemMarker adj)
     PredicateVerb verb ->
-        lookupLexicalItem verb (lexiconVerbs l)
+        unMarker (lexicalItemSgPlMarker verb)
     PredicateNoun noun ->
-        lookupLexicalItem noun (lexiconNouns l)
+        unMarker (lexicalItemSgPlMarker noun)
     PredicateRelation rel ->
-        lookupLexicalItem rel (lexiconRelationSymbols l)
+        unMarker (relationSymbolMarker rel)
     PredicateNounStruct noun ->
-        lookupLexicalItem noun (lexiconStructNouns l)
+        unMarker (lexicalItemSgPlMarker noun)
     PredicateSymbol symb ->
-        Right (Marker symb)
+        unMarker (Marker symb)
+
+unMarker :: Marker -> Tptp.AtomicWord
+unMarker (Marker m) = Tptp.AtomicWord m
 
 
-atomicWordFromRightMarker :: Either String Marker -> Tptp.AtomicWord
-atomicWordFromRightMarker = \case
-    Right (Marker m) -> Tptp.AtomicWord m
-    Left a -> error ("symbol not in lexicon" <> a)
 
 data EncodedVar
     = BoundVar Tptp.Variable

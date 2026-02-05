@@ -123,7 +123,7 @@ buildFormula lexi = \case
     PropositionalConstant IsTop -> "True"
     PropositionalConstant IsBottom -> "False"
     TermSymbolStruct f me ->
-        let f' = buildMarker ((?? error "unrecognized symbol") (Map.lookup f (lexiconStructFun lexi)))
+        let f' = buildMarker (Marker (unStructSymbol f))
             e = me ?? error "unannotated struct op"
         in char '(' <> f' <> buildFormula lexi e <> char ')'
 
@@ -165,12 +165,12 @@ buildSymbol _ (SymbolInteger i) = decimal i
 buildSymbol lexi symb = fromRightMarker case symb of
     SymbolMixfix f ->
         Right (mixfixMarker f)
-    SymbolFun f -> lookupLexicalItem f (lexiconFuns lexi)
-    SymbolPredicate (PredicateAdj f) -> lookupLexicalItem f (lexiconAdjs lexi)
-    SymbolPredicate (PredicateVerb f) -> lookupLexicalItem f (lexiconVerbs lexi)
-    SymbolPredicate (PredicateNoun f) -> lookupLexicalItem f (lexiconNouns lexi)
-    SymbolPredicate (PredicateRelation f) ->lookupLexicalItem f (lexiconRelationSymbols lexi)
-    SymbolPredicate (PredicateNounStruct f) -> lookupLexicalItem f (lexiconStructNouns lexi)
+    SymbolFun f -> Right (lexicalItemSgPlMarker f)
+    SymbolPredicate (PredicateAdj f) -> Right (lexicalItemMarker f)
+    SymbolPredicate (PredicateVerb f) -> Right (lexicalItemSgPlMarker f)
+    SymbolPredicate (PredicateNoun f) -> Right (lexicalItemSgPlMarker f)
+    SymbolPredicate (PredicateRelation f) -> Right (relationSymbolMarker f)
+    SymbolPredicate (PredicateNounStruct f) -> Right (lexicalItemSgPlMarker f)
     SymbolPredicate (PredicateSymbol f) -> Right (Marker f) -- HM.lookup f (lexiconPrefixPredicates lexi)
 
 
@@ -181,15 +181,15 @@ fromRightMarker = \case
 
 isEqSymbol :: Symbol -> Bool
 isEqSymbol = \case
-    SymbolPredicate (PredicateRelation (Symbol "=")) -> True
-    SymbolPredicate (PredicateVerb f) | f == (unsafeReadPhraseSgPl "equal[s/] ?") -> True
-    SymbolPredicate (PredicateAdj f) | f == (unsafeReadPhrase "equal to ?") -> True
+    SymbolPredicate (PredicateRelation EqSymbol) -> True
+    SymbolPredicate (PredicateVerb f) | f == mkLexicalItemSgPl (unsafeReadPhraseSgPl "equal[s/] ?") "eq" -> True
+    SymbolPredicate (PredicateAdj f) | f == mkLexicalItem (unsafeReadPhrase "equal to ?") "eq" -> True
     _ -> False
 
 isDiseqSymbol :: Symbol -> Bool
 isDiseqSymbol = \case
-    SymbolPredicate (PredicateRelation (Command "neq")) -> True
-    SymbolPredicate (PredicateAdj f) | f == (unsafeReadPhrase "distinct from ?") -> True
+    SymbolPredicate (PredicateRelation NeqSymbol) -> True
+    SymbolPredicate (PredicateAdj f) | f == mkLexicalItem (unsafeReadPhrase "distinct from ?") "neq" -> True
     _ -> False
 
 preamble :: TextBuilder
