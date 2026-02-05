@@ -2,15 +2,9 @@
 \section{Monoid}\label{form_sec_monoid}
 
 \begin{struct}\label{monoid}
-    A monoid $A$ is a semigroup equipped with
+    A monoid $A$ is a unital magma such that
     \begin{enumerate}
-        \item $\neutral$
-    \end{enumerate}
-    such that
-    \begin{enumerate}
-        \item\label{monoid_type} $\neutral[A]\in \carrier[A]$.
-        \item\label{monoid_right} for all $a\in \carrier[A]$ we have $\mul[A](a,\neutral[A]) = a$.
-        \item\label{monoid_left} for all $a\in \carrier[A]$ we have $\mul[A](\neutral[A], a) = a$.
+        \item\label{monoid_assoc} for all $a, b, c$ we have $\mul[A](a,\mul[A](b,c)) = \mul[A](\mul[A](a,b),c)$.
     \end{enumerate}
 \end{struct}
 

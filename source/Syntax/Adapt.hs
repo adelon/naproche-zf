@@ -15,12 +15,13 @@ import Data.Maybe (catMaybes)
 import Data.Set qualified as Set
 import Data.Sequence qualified as Seq
 import Data.Text qualified as Text
-import Text.Regex.Applicative
+import Text.Regex.Applicative qualified as RE
+import Text.Regex.Applicative (RE)
 
 scanChunk :: [Located Token] -> [ScannedLexicalItem]
 scanChunk ltoks =
     let toks = unLocated <$> ltoks
-        matchOrErr re env pos = match re toks ?? error ("could not find lexical pattern in " <> env <> " at " <> prettyLocation pos)
+        matchOrErr re env pos = RE.match re toks ?? error ("could not find lexical pattern in " <> env <> " at " <> prettyLocation pos)
     in case ltoks of
         Located{startPos = pos, unLocated = BeginEnv "definition"} : _ ->
             matchOrErr definition "definition" pos
@@ -50,65 +51,65 @@ data ScannedLexicalItem
     deriving (Show, Eq)
 
 skipUntilNextLexicalEnv :: RE Token [Token]
-skipUntilNextLexicalEnv = many (psym otherToken)
+skipUntilNextLexicalEnv = many (RE.psym otherToken)
     where
         otherToken tok = tok /= BeginEnv "definition" && tok /= BeginEnv "struct" && tok /= BeginEnv "abbreviation"
 
 notEndOfLexicalEnvToken :: RE Token Token
-notEndOfLexicalEnvToken = psym innerToken
+notEndOfLexicalEnvToken = RE.psym innerToken
     where
         innerToken tok = tok /= EndEnv "definition" && tok /= EndEnv "struct" && tok /= EndEnv "abbreviation"
 
 definition ::  RE Token [ScannedLexicalItem]
 definition = do
-    sym (BeginEnv "definition")
-    few notEndOfLexicalEnvToken
+    RE.sym (BeginEnv "definition")
+    RE.few notEndOfLexicalEnvToken
     m <- labelRE
-    few anySym
+    RE.few RE.anySym
     lexicalItem <- headRE
-    few anySym
-    sym (EndEnv "definition")
+    RE.few RE.anySym
+    RE.sym (EndEnv "definition")
     skipUntilNextLexicalEnv
     pure [lexicalItem m]
 
 abbreviation ::  RE Token [ScannedLexicalItem]
 abbreviation = do
-    sym (BeginEnv "abbreviation")
-    few anySym
+    RE.sym (BeginEnv "abbreviation")
+    RE.few RE.anySym
     m <- labelRE
-    few anySym
+    RE.few RE.anySym
     lexicalItem <- headRE
-    few anySym
-    sym (EndEnv "abbreviation")
+    RE.few RE.anySym
+    RE.sym (EndEnv "abbreviation")
     skipUntilNextLexicalEnv
     pure [lexicalItem m]
 
 signatureExtension ::  RE Token [ScannedLexicalItem]
 signatureExtension = do
-    sym (BeginEnv "signature")
-    few notEndOfLexicalEnvToken
+    RE.sym (BeginEnv "signature")
+    RE.few notEndOfLexicalEnvToken
     m <- labelRE
-    few anySym
+    RE.few RE.anySym
     lexicalItem <- headRE
-    few anySym
-    sym (EndEnv "signature")
+    RE.few RE.anySym
+    RE.sym (EndEnv "signature")
     skipUntilNextLexicalEnv
     pure [lexicalItem m]
 
 signatureExtensionAtom ::  RE Token [ScannedLexicalItem]
 signatureExtensionAtom = do
-    sym (BeginEnv "signatureatom")
-    few notEndOfLexicalEnvToken
+    RE.sym (BeginEnv "signatureatom")
+    RE.few notEndOfLexicalEnvToken
     m <- labelRE
-    few anySym
+    RE.few RE.anySym
     lexicalItem <- sigPred
-    few anySym
-    sym (EndEnv "signatureatom")
+    RE.few RE.anySym
+    RE.sym (EndEnv "signatureatom")
     skipUntilNextLexicalEnv
     pure [lexicalItem m]
 
 labelRE :: RE Token Marker
-labelRE = msym \case
+labelRE = RE.msym \case
     Label m -> Just (Marker m)
     _ -> Nothing
 
@@ -126,60 +127,60 @@ headRE = ScanNoun <$> nounRE
     <|> ScanPrefixPredicate <$> prefixPredicate
 
 sigPred :: RE Token (Marker -> ScannedLexicalItem)
-sigPred = ScanNoun . toLexicalPhrase <$> (math var *> can *> be *> an *> pat <* iff)
-    <|> ScanAdj . toLexicalPhrase <$> (math var *> can *> be *> pat <* iff)
+sigPred = ScanNoun . toLexicalPhrase <$> (math var *> can *> be *> an *> patRE <* iff)
+    <|> ScanAdj . toLexicalPhrase <$> (math var *> can *> be *> patRE <* iff)
     -- <|> ScanVerbInfinitive . toLexicalPhrase <$> (math var *> can *> pat <* iff)
 
 inductive :: RE Token [ScannedLexicalItem]
 inductive = do
-    sym (BeginEnv "inductive")
-    few notEndOfLexicalEnvToken
+    RE.sym (BeginEnv "inductive")
+    RE.few notEndOfLexicalEnvToken
     m <- labelRE
-    few anySym
+    RE.few RE.anySym
     lexicalItem <- functionSymbolInductive
-    few anySym
-    sym (EndEnv "inductive")
+    RE.few RE.anySym
+    RE.sym (EndEnv "inductive")
     skipUntilNextLexicalEnv
     pure [ScanFunctionSymbol lexicalItem m]
 
 structRE :: RE Token [ScannedLexicalItem]
 structRE = do
-    sym (BeginEnv "struct")
-    few anySym
+    RE.sym (BeginEnv "struct")
+    RE.few RE.anySym
     m <- labelRE
-    few anySym
+    RE.few RE.anySym
     lexicalItem <- ScanStructNoun . toLexicalPhrase <$> (an *> structPat <* math var)
-    few anySym
+    RE.few RE.anySym
     lexicalItems <- structOps <|> pure []
-    sym (EndEnv "struct")
+    RE.sym (EndEnv "struct")
     skipUntilNextLexicalEnv
     pure (lexicalItem m : lexicalItems)
 
 structOps :: RE Token [ScannedLexicalItem]
 structOps = do
-    sym (BeginEnv "enumerate")
+    RE.sym (BeginEnv "enumerate")
     lexicalItems <- many structOp
-    sym (EndEnv "enumerate")
-    few anySym
+    RE.sym (EndEnv "enumerate")
+    RE.few RE.anySym
     pure lexicalItems
 
 structOp :: RE Token ScannedLexicalItem
 structOp = do
-    sym (Command "item")
+    RE.sym (Command "item")
     op <- math command
     pure (ScanStructOp op)
 
 nounRE :: RE Token LexicalPhrase
-nounRE = toLexicalPhrase <$> (math var *> is *> an *> pat <* iff)
+nounRE = toLexicalPhrase <$> (math var *> is *> an *> patRE <* iff)
 
 adjRE :: RE Token LexicalPhrase
-adjRE = toLexicalPhrase <$> (math var *> is *> pat <* iff)
+adjRE = toLexicalPhrase <$> (math var *> is *> patRE <* iff)
 
 verbRE :: RE Token LexicalPhrase
-verbRE = toLexicalPhrase <$> (math var *> pat <* iff)
+verbRE = toLexicalPhrase <$> (math var *> patRE <* iff)
 
 funRE :: RE Token LexicalPhrase
-funRE = toLexicalPhrase <$> (the *> pat <* (is <|> comma))
+funRE = toLexicalPhrase <$> (the *> patRE <* (is <|> comma))
 
 relationSymbolRE :: RE Token (Token, Int)
 relationSymbolRE = do
@@ -194,14 +195,14 @@ relationSymbolRE = do
         where
         params :: RE Token Int
         params = do
-            vars <- many (sym InvisibleBraceL *> var <* sym InvisibleBraceR)
+            vars <- many (RE.sym InvisibleBraceL *> var <* RE.sym InvisibleBraceR)
             pure (length vars)
 
 functionSymbolRE :: RE Token Pattern
 functionSymbolRE = do
-    sym (BeginEnv "math")
-    toks <- few nonDefinitionKeyword
-    sym (Symbol "=")
+    RE.sym (BeginEnv "math")
+    toks <- RE.few nonDefinitionKeyword
+    RE.sym (Symbol "=")
     pure case toks of
             -- TODO proper error messages with more info (location, etc.)
             [] -> error "Malformed function pattern: no pattern"
@@ -215,9 +216,9 @@ functionSymbolRE = do
 
 functionSymbolInductive :: RE Token Pattern
 functionSymbolInductive = do
-    sym (BeginEnv "math")
-    toks <- few nonDefinitionKeyword
-    sym (Command "subseteq")
+    RE.sym (BeginEnv "math")
+    toks <- RE.few nonDefinitionKeyword
+    RE.sym (Command "subseteq")
     pure (patternFromHoley (fromToken <$> toks))
     where
         fromToken = \case
@@ -229,21 +230,21 @@ prefixPredicate = math prfx <* iff
     where
         prfx = do
             r <- command
-            args <- many (sym InvisibleBraceL *> var <* sym InvisibleBraceR)
+            args <- many (RE.sym InvisibleBraceL *> var <* RE.sym InvisibleBraceR)
             pure (PrefixPredicate r (length args))
 
 
 command :: RE Token Text
-command = msym \case
+command = RE.msym \case
     Command cmd -> Just cmd
     _ -> Nothing
 
 var :: RE Token Token
-var = psym isVar
+var = RE.psym isVar
 
 
 nonDefinitionKeyword :: RE Token Token
-nonDefinitionKeyword = psym (`notElem` keywords)
+nonDefinitionKeyword = RE.psym (`notElem` keywords)
     where
         keywords =
             [ Word "if"
@@ -255,51 +256,51 @@ nonDefinitionKeyword = psym (`notElem` keywords)
             ]
 
 
-pat :: RE Token [Token]
-pat = many (psym isLexicalPhraseToken <|> math var)
+patRE :: RE Token [Token]
+patRE = many (RE.psym isLexicalPhraseToken <|> math var)
 
 structPat :: RE Token [Token]
-structPat = many (psym isLexicalPhraseToken)
+structPat = many (RE.psym isLexicalPhraseToken)
 
 beginMath, endMath :: RE Token ()
-beginMath = void (sym (BeginEnv "math"))
-endMath = void (sym (EndEnv "math"))
+beginMath = void (RE.sym (BeginEnv "math"))
+endMath = void (RE.sym (EndEnv "math"))
 
 math :: RE Token a -> RE Token a
 math re = beginMath *> re <* endMath
 
 -- | We allow /conditional perfection/: the first /@if@/ in a definition is interpreted as /@iff@/.
 iff :: RE Token ()
-iff = void (sym (Word "if")) -- Using @void@ is faster (only requires recognition).
-    <|> void (sym (Word "iff"))
-    <|> void (string [Word "if", Word "and", Word "only", Word "if"])
-    <|> void (sym (Word "denote"))
-    <|> void (sym (Word "stand") *> sym (Word "for"))
+iff = void (RE.sym (Word "if")) -- Using @void@ is faster (only requires recognition).
+    <|> void (RE.sym (Word "iff"))
+    <|> void (RE.string [Word "if", Word "and", Word "only", Word "if"])
+    <|> void (RE.sym (Word "denote"))
+    <|> void (RE.sym (Word "stand") *> RE.sym (Word "for"))
 {-# INLINE iff #-}
 
 an :: RE Token ()
-an = void (sym (Word "a"))
-    <|> void (sym (Word "an"))
+an = void (RE.sym (Word "a"))
+    <|> void (RE.sym (Word "an"))
 {-# INLINE an #-}
 
 is :: RE Token ()
-is = void (sym (Word "is") <|> sym (Word "denotes"))
+is = void (RE.sym (Word "is") <|> RE.sym (Word "denotes"))
 {-# INLINE is #-}
 
 can :: RE Token ()
-can = void (sym (Word "can"))
+can = void (RE.sym (Word "can"))
 {-# INLINE can #-}
 
 be :: RE Token ()
-be = void (sym (Word "be"))
+be = void (RE.sym (Word "be"))
 {-# INLINE be #-}
 
 the :: RE Token ()
-the = void (sym (Word "the"))
+the = void (RE.sym (Word "the"))
 {-# INLINE the #-}
 
 comma :: RE Token ()
-comma = void (sym (Symbol ","))
+comma = void (RE.sym (Symbol ","))
 {-# INLINE comma #-}
 
 
@@ -354,7 +355,7 @@ toLexicalPhrase toks = component <$> toks
 
 
 symbol :: RE Token Token
-symbol = msym $ \tok -> case tok of
+symbol = RE.msym $ \tok -> case tok of
     Command _ -> Just tok
     Symbol _ -> Just tok
     _tok -> Nothing
@@ -415,38 +416,79 @@ extendLexicon [] lexicon = lexicon
 -- Note that we only consider 'sg' in the 'Ord' instance of SgPl, so that
 -- known irregular plurals are preserved.
 extendLexicon (scan : scans) lexicon@Lexicon{..} = case scan of
-    ScanAdj item m -> if isAdjR item
-        then extendLexicon scans lexicon{lexiconAdjRs = insertItem (mkLexicalItem item m) lexiconAdjRs}
-        else extendLexicon scans lexicon{lexiconAdjLs = insertItem (mkLexicalItem item m) lexiconAdjLs}
+    ScanAdj item m ->
+        let li = mkLexicalItem item m
+            pat = lexicalItemPattern li
+        in if isAdjR item
+            then
+                let (items', patterns') = insertItem pat li lexiconAdjRs lexiconAllPatterns
+                in extendLexicon scans lexicon{lexiconAdjRs = items', lexiconAllPatterns = patterns'}
+            else
+                let (items', patterns') = insertItem pat li lexiconAdjLs lexiconAllPatterns
+                in extendLexicon scans lexicon{lexiconAdjLs = items', lexiconAllPatterns = patterns'}
     ScanFun item m ->
-        extendLexicon scans lexicon{lexiconFuns = insertItem (mkLexicalItemSgPl (guessNounPlural item) m) lexiconFuns}
+        let li = mkLexicalItemSgPl (guessNounPlural item) m
+            pat = baseSgPlPattern li
+            (items', patterns') = insertItem pat li lexiconFuns lexiconAllPatterns
+        in extendLexicon scans lexicon{lexiconFuns = items', lexiconAllPatterns = patterns'}
     ScanVerb item m ->
-        extendLexicon scans lexicon{lexiconVerbs = insertItem (mkLexicalItemSgPl (guessVerbPlural item) m) lexiconVerbs}
+        let li = mkLexicalItemSgPl (guessVerbPlural item) m
+            pat = baseSgPlPattern li
+            (items', patterns') = insertItem pat li lexiconVerbs lexiconAllPatterns
+        in extendLexicon scans lexicon{lexiconVerbs = items', lexiconAllPatterns = patterns'}
     ScanNoun item m ->
-        extendLexicon scans lexicon{lexiconNouns = insertItem (mkLexicalItemSgPl (guessNounPlural item) m) lexiconNouns}
+        let li = mkLexicalItemSgPl (guessNounPlural item) m
+            pat = baseSgPlPattern li
+            (items', patterns') = insertItem pat li lexiconNouns lexiconAllPatterns
+        in extendLexicon scans lexicon{lexiconNouns = items', lexiconAllPatterns = patterns'}
     ScanStructNoun item m ->
-        extendLexicon scans lexicon{lexiconStructNouns = insertItem (mkLexicalItemSgPl (guessNounPlural item) m) lexiconStructNouns}
+        let li = mkLexicalItemSgPl (guessNounPlural item) m
+            pat = baseSgPlPattern li
+            (items', patterns') = insertItem pat li lexiconStructNouns lexiconAllPatterns
+        in extendLexicon scans lexicon{lexiconStructNouns = items', lexiconAllPatterns = patterns'}
     ScanRelationSymbol item m ->
-        extendLexicon scans lexicon{lexiconRelationSymbols = insertItem (RelationSymbol item m) lexiconRelationSymbols}
+        let sym = RelationSymbol item m
+            pat = relationSymbolPattern sym
+            (items', patterns') = insertItem pat sym lexiconRelationSymbols lexiconAllPatterns
+        in extendLexicon scans lexicon{lexiconRelationSymbols = items', lexiconAllPatterns = patterns'}
     ScanFunctionSymbol pat m ->
-        if mixfixPatternExists pat lexiconMixfixTable
+        if mixfixPatternExists pat lexiconAllPatterns
             then extendLexicon scans lexicon
             else extendLexicon scans lexicon
                 { lexiconMixfixTable = Seq.adjust (Map.insert pat (MixfixItem pat m NonAssoc)) 9 lexiconMixfixTable
+                , lexiconAllPatterns = Set.insert pat lexiconAllPatterns
                 }
     ScanStructOp op ->
-        extendLexicon scans lexicon{lexiconStructFun = insertStruct (StructSymbol op) lexiconStructFun}
+        let sym = StructSymbol op
+            pat = structSymbolPattern sym
+            (items', patterns') = insertStruct pat sym lexiconStructFun lexiconAllPatterns
+        in extendLexicon scans lexicon{lexiconStructFun = items', lexiconAllPatterns = patterns'}
     ScanPrefixPredicate tok m ->
-        extendLexicon scans lexicon{lexiconPrefixPredicates = insertPrefix (tok, m) lexiconPrefixPredicates}
+        let pat = prefixPattern tok
+            (items', patterns') = insertPrefix pat (tok, m) lexiconPrefixPredicates lexiconAllPatterns
+        in extendLexicon scans lexicon{lexiconPrefixPredicates = items', lexiconAllPatterns = patterns'}
 
-mixfixPatternExists :: Pattern -> Seq (Map Pattern MixfixItem) -> Bool
-mixfixPatternExists pat table = any (Map.member pat) table
+mixfixPatternExists :: Pattern -> Set Pattern -> Bool
+mixfixPatternExists pat patterns = Set.member pat patterns
 
-insertItem :: Eq a => a -> [a] -> [a]
-insertItem item items = if item `elem` items then items else item : items
+insertItem :: Pattern -> a -> [a] -> Set Pattern -> ([a], Set Pattern)
+insertItem pat item items patterns =
+    if Set.member pat patterns then warnExists pat (items, patterns) else (item : items, Set.insert pat patterns)
 
-insertStruct :: StructSymbol -> [StructSymbol] -> [StructSymbol]
-insertStruct item items = if item `elem` items then items else item : items
+insertStruct :: Pattern -> StructSymbol -> [StructSymbol] -> Set Pattern -> ([StructSymbol], Set Pattern)
+insertStruct pat item items patterns =
+    if Set.member pat patterns then warnExists pat (items, patterns) else (item : items, Set.insert pat patterns)
 
-insertPrefix :: (PrefixPredicate, Marker) -> [(PrefixPredicate, Marker)] -> [(PrefixPredicate, Marker)]
-insertPrefix item items = if fst item `elem` (fst <$> items) then items else item : items
+insertPrefix :: Pattern -> (PrefixPredicate, Marker) -> [(PrefixPredicate, Marker)] -> Set Pattern -> ([(PrefixPredicate, Marker)], Set Pattern)
+insertPrefix pat item items patterns =
+    if Set.member pat patterns then warnExists pat (items, patterns) else (item : items, Set.insert pat patterns)
+
+baseSgPlPattern :: LexicalItemSgPl -> Pattern
+baseSgPlPattern = sg . lexicalItemSgPlPattern
+
+prefixPattern :: PrefixPredicate -> Pattern
+prefixPattern (PrefixPredicate cmd _arity) =
+    TokenCons (Command cmd) End
+
+warnExists :: Pattern -> a -> a
+warnExists pat = trace ("WARNING: Lexical pattern already exists: " <> show pat)

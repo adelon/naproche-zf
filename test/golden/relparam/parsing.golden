@@ -54,7 +54,7 @@
                 , locColumn = 5
                 }
             , quant = Universally
-            , xs = NamedVar "x" :| []
+            , vars = NamedVar "x" :| []
             , b = Unbounded
             , suchThat = Nothing
             , stmt = StmtFormula
@@ -141,7 +141,7 @@
                 , locColumn = 5
                 }
             , quant = Universally
-            , xs = NamedVar "x" :| []
+            , vars = NamedVar "x" :| []
             , b = Unbounded
             , suchThat = Nothing
             , stmt = StmtFormula

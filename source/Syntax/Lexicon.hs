@@ -1,4 +1,5 @@
 {-# LANGUAGE NoImplicitPrelude #-}
+{-# LANGUAGE RecordWildCards #-}
 
 -- | The 'Lexicon' describes the part of the grammar that extensible/dynamic.
 --
@@ -42,6 +43,7 @@ data Lexicon = Lexicon
     , lexiconNouns              :: [LexicalItemSgPl]
     , lexiconStructNouns        :: [LexicalItemSgPl]
     , lexiconFuns               :: [LexicalItemSgPl]
+    , lexiconAllPatterns        :: Set Pattern
     } deriving (Show, Eq)
 
 -- Projection returning the union of both left and right attributes.
@@ -51,19 +53,36 @@ lexiconAdjs lexicon = lexiconAdjLs lexicon <> lexiconAdjRs lexicon
 
 
 builtins :: Lexicon
-builtins = Lexicon
-    { lexiconMixfixTable        = builtinMixfixTable
-    , lexiconPrefixPredicates   = builtinPrefixPredicates
-    , lexiconStructFun          = builtinStructOps
-    , lexiconConnectives        = builtinConnectives
-    , lexiconRelationSymbols    = builtinRelationSymbols
-    , lexiconAdjLs              = []
-    , lexiconAdjRs              = builtinAdjRs
-    , lexiconVerbs              = builtinVerbs
-    , lexiconNouns              = builtinNouns
-    , lexiconStructNouns        = builtinStructNouns
-    , lexiconFuns               = []
-    }
+builtins =
+    let base = Lexicon
+            { lexiconMixfixTable        = builtinMixfixTable
+            , lexiconPrefixPredicates   = builtinPrefixPredicates
+            , lexiconStructFun          = builtinStructOps
+            , lexiconConnectives        = builtinConnectives
+            , lexiconRelationSymbols    = builtinRelationSymbols
+            , lexiconAdjLs              = []
+            , lexiconAdjRs              = builtinAdjRs
+            , lexiconVerbs              = builtinVerbs
+            , lexiconNouns              = builtinNouns
+            , lexiconStructNouns        = builtinStructNouns
+            , lexiconFuns               = []
+            , lexiconAllPatterns        = mempty
+            }
+    in base{lexiconAllPatterns = lexiconPatterns base}
+
+lexiconPatterns :: Lexicon -> Set Pattern
+lexiconPatterns Lexicon{..} =
+    Set.unions
+        [ Set.fromList (concatMap Map.keys (toList lexiconMixfixTable))
+        , Set.fromList (lexicalItemPattern <$> lexiconAdjLs)
+        , Set.fromList (lexicalItemPattern <$> lexiconAdjRs)
+        , Set.fromList (sg . lexicalItemSgPlPattern <$> lexiconVerbs)
+        , Set.fromList (sg . lexicalItemSgPlPattern <$> lexiconNouns)
+        , Set.fromList (sg . lexicalItemSgPlPattern <$> lexiconStructNouns)
+        , Set.fromList (sg . lexicalItemSgPlPattern <$> lexiconFuns)
+        , Set.fromList (relationSymbolPattern <$> lexiconRelationSymbols)
+        , Set.fromList (structSymbolPattern <$> lexiconStructFun)
+        ]
 
 builtinMixfixTable :: Seq (Map Pattern MixfixItem)
 builtinMixfixTable = Seq.fromList $ Map.fromList . fmap toEntry <$> builtinMixfixLevels

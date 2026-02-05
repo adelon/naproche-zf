@@ -35,7 +35,7 @@
                     , locColumn = 35
                     }
                 , quant = Existentially
-                , xs = NamedVar "y" :| []
+                , vars = NamedVar "y" :| []
                 , b = Unbounded
                 , suchThat = Nothing
                 , stmt = StmtFormula
@@ -201,7 +201,7 @@
                 , locColumn = 5
                 }
             , quant = Universally
-            , xs = NamedVar "x" :| []
+            , vars = NamedVar "x" :| []
             , b = Unbounded
             , suchThat = Nothing
             , stmt = StmtNoun

@@ -208,6 +208,13 @@ relationSymbolToken (RelationSymbol tok _) = tok
 relationSymbolMarker :: RelationSymbol -> Marker
 relationSymbolMarker (RelationSymbol _ m) = m
 
+relationSymbolPattern :: RelationSymbol -> Pattern
+relationSymbolPattern rel =
+    HoleCons (TokenCons (relationSymbolToken rel) (HoleCons End))
+
+structSymbolPattern :: StructSymbol -> Pattern
+structSymbolPattern (StructSymbol c) = TokenCons (Command c) End
+
 patternToken :: Pattern -> Maybe Token
 patternToken = \case
     TokenCons tok End -> Just tok

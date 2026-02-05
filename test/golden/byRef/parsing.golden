@@ -177,7 +177,7 @@
                 , locColumn = 5
                 }
             , quant = Universally
-            , xs = NamedVar "d" :| []
+            , vars = NamedVar "d" :| []
             , b = Unbounded
             , suchThat = Nothing
             , stmt = StmtFormula
