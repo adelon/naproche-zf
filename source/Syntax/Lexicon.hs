@@ -27,7 +27,7 @@ import Data.Sequence qualified as Seq
 import Data.Set qualified as Set
 import Data.Map.Strict qualified as Map
 import Data.Text qualified as Text
-import Text.Earley.Mixfix (Holey, Associativity(..))
+import Syntax.Mixfix (Holey)
 
 
 data Lexicon = Lexicon

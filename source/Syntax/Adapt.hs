@@ -15,7 +15,6 @@ import Data.Maybe (catMaybes)
 import Data.Set qualified as Set
 import Data.Sequence qualified as Seq
 import Data.Text qualified as Text
-import Text.Earley.Mixfix (Associativity(..))
 import Text.Regex.Applicative
 
 scanChunk :: [Located Token] -> [ScannedLexicalItem]

@@ -16,7 +16,7 @@ import Data.Set qualified as Set
 import Data.List.NonEmpty qualified as NonEmpty
 import Data.Map.Strict qualified as Map
 import Text.Earley (Grammar, Prod, (<?>), rule, satisfy, terminal)
-import Text.Earley.Mixfix
+import Syntax.Mixfix
 
 
 grammar :: Lexicon -> Grammar r (Prod r Text (Located Token) Block)

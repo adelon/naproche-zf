@@ -37,7 +37,7 @@ import Data.List.NonEmpty qualified as NonEmpty
 import Data.Map as Export (Map)
 import Data.Maybe as Export hiding (mapMaybe, catMaybes)  -- Replaced by generalized form from "Data.Filtrable".
 import Data.Monoid (First(..))
-import Data.Sequence as Export (Seq(..), replicateA)
+import Data.Sequence as Export (Seq(..))
 import Data.Set as Export (Set)
 import Data.Set.Internal qualified as Set
 import Data.String as Export (IsString(..))

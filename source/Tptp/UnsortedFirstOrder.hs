@@ -27,10 +27,6 @@ isProperAtomicWord w = case Text.uncons w of
 -- | A TPTP variable, written as a word starting with an uppercase letter.
 newtype Variable = Variable Text deriving (Show, Eq, Ord, IsString)
 
-isVariable :: Text -> Bool
-isVariable var = case Text.uncons var of
-    Nothing -> False -- Variables must be nonempty.
-    Just (head, tail) -> isAsciiUpper head && Text.all isAsciiAlphaNumOrUnderscore tail
 
 
 data Role

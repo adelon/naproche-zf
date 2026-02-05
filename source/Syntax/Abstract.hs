@@ -51,6 +51,19 @@ data Expr
     deriving (Show, Eq, Ord)
 
 
+data LexicalItem = LexicalItem Pattern Marker deriving (Eq, Show, Ord)
+data LexicalItemSgPl = LexicalItemSgPl (SgPl Pattern) Marker deriving (Eq, Show, Ord)
+
+data Associativity
+  = LeftAssoc
+  | NonAssoc
+  | RightAssoc
+  deriving (Eq, Show, Ord)
+
+data MixfixItem = MixfixItem Pattern Marker Associativity deriving (Eq, Show, Ord)
+
+data Pattern = End | HoleCons Pattern | TokenCons Token Pattern deriving (Eq, Show, Ord)
+
 type FunctionSymbol = Holey Token
 
 type RelationSymbol = Token
