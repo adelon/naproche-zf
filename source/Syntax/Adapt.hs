@@ -14,8 +14,6 @@ import Data.Map.Strict qualified as Map
 import Data.Maybe (catMaybes)
 import Data.Set qualified as Set
 import Data.Sequence qualified as Seq
-import Data.HashSet qualified as HS
-import Data.HashMap.Strict qualified as HM
 import Data.Text qualified as Text
 import Text.Earley.Mixfix (Associativity(..))
 import Text.Regex.Applicative
@@ -394,22 +392,22 @@ isAdjR item = containsPreposition item || containsSlot item
         containsSlot = (Nothing `elem`)
 
 isPreposition :: Token -> Bool
-isPreposition w = HS.member w (HS.map Word prepositions)
+isPreposition w = Set.member w (Set.map Word prepositions)
 
 -- | Right-biased set insertion, keeping the original set
 -- when inserting already present elements. @insertR@ is unfortunately
 -- a hidden function, even in @Data.Set.Internal@, so we approximate it
 -- here. In theory one could avoid the indirection of first forming the singleton
 -- set on the rhs.
-insertR' :: Hashable a => a -> HashSet a -> HashSet a
-insertR' x xs = xs `HS.union` HS.singleton x -- @union@ is left-biased.
+insertR' :: Ord a => a -> Set a -> Set a
+insertR' x xs = xs `Set.union` Set.singleton x -- @union@ is left-biased.
 
 insertMapR :: Ord k => k -> a -> Map k a -> Map k a
 insertMapR k x xs = xs `Map.union` Map.singleton k x -- @union@ is left-biased.
 
 
-insertR :: Hashable k => k -> a -> HashMap k a -> HashMap k a
-insertR k x xs = xs `HM.union` HM.singleton k x -- @union@ is left-biased.
+insertR :: Ord k => k -> a -> Map k a -> Map k a
+insertR k x xs = xs `Map.union` Map.singleton k x -- @union@ is left-biased.
 
 -- | Takes the scanned lexical phrases and inserts them in the correct
 -- places in a lexicon.
@@ -432,11 +430,11 @@ extendLexicon (scan : scans) lexicon@Lexicon{..} = case scan of
     ScanRelationSymbol item m ->
         extendLexicon scans lexicon{lexiconRelationSymbols = insertR item m lexiconRelationSymbols}
     ScanFunctionSymbol item m ->
-        if item `HM.member` lexiconMixfixMarkers
+        if item `Map.member` lexiconMixfixMarkers
             then extendLexicon scans lexicon
             else extendLexicon scans lexicon
-                { lexiconMixfixTable = Seq.adjust (HM.insert item NonAssoc) 9 lexiconMixfixTable
-                , lexiconMixfixMarkers = HM.insert item m lexiconMixfixMarkers
+                { lexiconMixfixTable = Seq.adjust (Map.insert item NonAssoc) 9 lexiconMixfixTable
+                , lexiconMixfixMarkers = Map.insert item m lexiconMixfixMarkers
                 }
     ScanStructOp op ->
         extendLexicon scans lexicon{lexiconStructFun = insertR (StructSymbol op) (Marker op) lexiconStructFun}

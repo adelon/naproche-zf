@@ -8,7 +8,7 @@ import Report.Location
 
 import Bound.Scope
 import Bound.Var
-import Data.HashMap.Strict qualified as HM
+import Data.Map.Strict qualified as Map
 import Data.List.NonEmpty qualified as NonEmpty
 import TextBuilder
 import Data.List qualified as List
@@ -123,7 +123,7 @@ buildFormula lexi = \case
     PropositionalConstant IsTop -> "True"
     PropositionalConstant IsBottom -> "False"
     TermSymbolStruct f me ->
-        let f' = buildMarker ((?? error "unrecognized symbol") (HM.lookup f (lexiconStructFun lexi)))
+        let f' = buildMarker ((?? error "unrecognized symbol") (Map.lookup f (lexiconStructFun lexi)))
             e = me ?? error "unannotated struct op"
         in char '(' <> f' <> buildFormula lexi e <> char ')'
 

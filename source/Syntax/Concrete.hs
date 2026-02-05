@@ -12,9 +12,9 @@ import Syntax.Lexicon (Lexicon(..), lexiconAdjs, splitOnVariableSlot)
 import Syntax.Token
 import Report.Location
 
-import Data.HashSet qualified as HS
+import Data.Set qualified as Set
 import Data.List.NonEmpty qualified as NonEmpty
-import Data.HashMap.Strict qualified as HM
+import Data.Map.Strict qualified as Map
 import Text.Earley (Grammar, Prod, (<?>), rule, satisfy, terminal)
 import Text.Earley.Mixfix
 
@@ -23,11 +23,11 @@ grammar :: Lexicon -> Grammar r (Prod r Text (Located Token) Block)
 grammar lexicon@Lexicon{..} = mdo
     let makeOp :: ([Maybe Token], Associativity) -> ([Maybe (Prod r Text (Located Token) Token)], Associativity)
         makeOp (pat, assoc) = (map (fmap token) pat, assoc)
-        ops = map (map makeOp) (toList (HM.toList <$> lexiconMixfixTable))
+        ops = map (map makeOp) (toList (Map.toList <$> lexiconMixfixTable))
         conns = map (map makeOp) lexiconConnectives
 
     integer    <- rule (terminal maybeIntToken <?> "integer")
-    relator    <- rule $ unLocated <$> (satisfy (\ltok -> unLocated ltok `HM.member` lexiconRelationSymbols) <?> "relator")
+    relator    <- rule $ unLocated <$> (satisfy (\ltok -> unLocated ltok `Map.member` lexiconRelationSymbols) <?> "relator")
     varSymbol  <- rule (terminal maybeVarToken <?> "variable")
     varSymbols <- rule (commaList varSymbol)
     cmd        <- rule (terminal maybeCmdToken <?> "TEX command")
@@ -59,7 +59,7 @@ grammar lexicon@Lexicon{..} = mdo
     replacePredText     <- rule $ ExprReplacePred <$> varSymbol <* _pipe <*> (begin "text" *> _exists *> beginMath *> varSymbol <* _in) <*> expr <* endMath <* _suchThat <*> stmt <* end "text"
     replacePred         <- rule $ replacePredSymbolic <|> replacePredText
 
-    let exprStructOpOf ann = HS.foldr alg empty (HM.keysSet lexiconStructFun)
+    let exprStructOpOf ann = Set.foldr alg empty (Map.keysSet lexiconStructFun)
             where
                 alg s prod = prod <|> (ExprStructOp <$> structSymbol s <*> ann)
 
@@ -88,7 +88,7 @@ grammar lexicon@Lexicon{..} = mdo
     chainCons      <- rule $ ChainCons <$> exprs <*> relationSign <*> relation <*> chain
     chain          <- rule $ chainCons <|> chainBase
 
-    formulaPredicate  <- rule $ asum $ prefixPredicateOf FormulaPredicate expr <$> HM.keys lexiconPrefixPredicates
+    formulaPredicate  <- rule $ asum $ prefixPredicateOf FormulaPredicate expr <$> Map.keys lexiconPrefixPredicates
     formulaChain      <- rule $ FormulaChain <$> chain
     formulaBottom     <- rule $ PropositionalConstant IsBottom <$ command "bot" <?> "\"\\bot\""
     formulaTop        <- rule $ PropositionalConstant IsTop    <$ command "top" <?> "\"\\top\""
@@ -283,7 +283,7 @@ grammar lexicon@Lexicon{..} = mdo
     defnVerb <- rule $ DefnVerb <$> optional (_an *> nounPhrase) <*> var <*> verbVar
     defnNoun <- rule $ DefnNoun <$> var <* _is <* _an <*> nounVar
     defnRel <- rule $ DefnRel <$> (beginMath *> varSymbol) <*> relator <*> many (group varSymbol) <*> varSymbol <* endMath
-    defnSymbolicPredicate <- rule $ math $ asum $ prefixPredicateOf DefnSymbolicPredicate varSymbol <$> HM.keys lexiconPrefixPredicates
+    defnSymbolicPredicate <- rule $ math $ asum $ prefixPredicateOf DefnSymbolicPredicate varSymbol <$> Map.keys lexiconPrefixPredicates
     defnHead <- rule $ optional _write *> asum [defnAdj, defnVerb, defnNoun, defnRel, defnSymbolicPredicate]
 
     defnIf <- rule $ Defn <$> asms <*> defnHead <* (_iff <|> _if) <*> stmt <* _dot
@@ -504,7 +504,7 @@ phraseOf
     :: forall pat a b r. Locatable a
     => (Location -> pat -> [a] -> b)
     -> Lexicon
-    -> (Lexicon -> HashSet pat)
+    -> (Lexicon -> Set pat)
     -> (pat -> LexicalPhrase)
     -> Prod r Text (Located Token) a
     -> Prod r Text (Located Token) b
@@ -512,7 +512,7 @@ phraseOf constr lexicon selector proj arg =
     uncurry3 constr <$> asum (fmap make pats)
     where
         pats :: [pat]
-        pats = HS.toList (selector lexicon)
+        pats = Set.toList (selector lexicon)
 
         make :: pat -> Prod r Text (Located Token) (Location, pat, [a])
         make pat = (\(pos, args) -> (pos, pat, args)) <$> goPos (proj pat)
@@ -536,27 +536,27 @@ phraseOf constr lexicon selector proj arg =
             []           -> pure []
 
 adjLOf :: Locatable arg => Lexicon -> Prod r Text (Located Token) arg -> Prod r Text (Located Token) (AdjLOf arg)
-adjLOf lexicon arg = phraseOf AdjL lexicon (HM.keysSet . lexiconAdjLs) id arg <?> "a left adjective"
+adjLOf lexicon arg = phraseOf AdjL lexicon (Map.keysSet . lexiconAdjLs) id arg <?> "a left adjective"
 
 adjROf :: Locatable arg =>Lexicon -> Prod r Text (Located Token) arg -> Prod r Text (Located Token) (AdjROf arg)
-adjROf lexicon arg = phraseOf AdjR lexicon (HM.keysSet . lexiconAdjRs) id arg <?> "a right adjective"
+adjROf lexicon arg = phraseOf AdjR lexicon (Map.keysSet . lexiconAdjRs) id arg <?> "a right adjective"
 
 adjOf :: Locatable arg =>Lexicon -> Prod r Text (Located Token) arg -> Prod r Text (Located Token) (AdjOf arg)
-adjOf lexicon arg = phraseOf Adj lexicon (HM.keysSet . lexiconAdjs) id arg <?> "an adjective"
+adjOf lexicon arg = phraseOf Adj lexicon (Map.keysSet . lexiconAdjs) id arg <?> "an adjective"
 
 verbOf
     :: Locatable a => Lexicon
     -> (SgPl LexicalPhrase -> LexicalPhrase)
     -> Prod r Text (Located Token) a
     -> Prod r Text (Located Token) (VerbOf a)
-verbOf lexicon proj arg = phraseOf Verb lexicon (HM.keysSet . lexiconVerbs) proj arg
+verbOf lexicon proj arg = phraseOf Verb lexicon (Map.keysSet . lexiconVerbs) proj arg
 
 funOf
     :: Locatable a => Lexicon
     -> (SgPl LexicalPhrase -> LexicalPhrase)
     -> Prod r Text (Located Token) a
     -> Prod r Text (Located Token) (FunOf a)
-funOf lexicon proj arg = phraseOf Fun lexicon (HM.keysSet . lexiconFuns) proj arg <?> "functional phrase"
+funOf lexicon proj arg = phraseOf Fun lexicon (Map.keysSet . lexiconFuns) proj arg <?> "functional phrase"
 
 
 -- | A noun with a @t VarSymbol@ as name(s).
@@ -569,7 +569,7 @@ nounOf
 nounOf lexicon proj arg vars =
     (\(args1, xs, args2, pat) -> (Noun pat (args1 <> args2), xs)) <$> asum (fmap make pats) <?>  "a noun"
     where
-        pats = HM.keys (lexiconNouns lexicon)
+        pats = Map.keys (lexiconNouns lexicon)
         make pat =
             let (pat1, pat2) = splitOnVariableSlot (proj pat)
             in  (\args1 xs args2 -> (args1, xs, args2, pat)) <$> go pat1 <*> vars <*> go pat2
@@ -587,7 +587,7 @@ structNounOf
 structNounOf lexicon proj arg name =
     (\(_args1, xs, _args2, pat) -> (pat, xs)) <$> asum (fmap make pats) <?> "a structure noun"
     where
-        pats = HM.keys (lexiconStructNouns lexicon)
+        pats = Map.keys (lexiconStructNouns lexicon)
         make pat =
             let (pat1, pat2) = splitOnVariableSlot (proj pat)
             in  (\args1 xs args2 -> (args1, xs, args2, pat)) <$> go pat1 <*> name <*> go pat2

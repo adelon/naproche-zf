@@ -222,7 +222,7 @@ data AdjROf a
     deriving (Show, Eq, Ord)
 
 instance Locatable (AdjROf a) where
-    locate (AdjR loc _ _) = loc
+    locate (AdjR l _ _) = l
     locate (AttrRThat _) = Nowhere -- TODO
 
 -- | Adjectives for parts of the AST where adjectives are not used
@@ -277,10 +277,10 @@ data Term
 
 instance Locatable Term where
     locate :: Term -> Location
-    locate (TermExpr loc _) = loc
+    locate (TermExpr l _) = l
     locate (TermFun f) = f.loc
-    locate (TermIota loc _ _) = loc
-    locate (TermQuantified _ loc _) = loc
+    locate (TermIota l _ _) = l
+    locate (TermQuantified _ l _) = l
 
 
 data Stmt
@@ -297,7 +297,7 @@ data Stmt
 
 instance Locatable Stmt where
     locate :: Stmt -> Location
-    locate StmtFormula{loc = loc} = loc
+    locate StmtFormula{loc = p} = p
     locate StmtConnected{mloc = Just p} = p
     locate StmtConnected{mloc = Nothing, stmt1 = s} = locate s
     locate StmtVerbPhrase{args = a :| _} = locate a

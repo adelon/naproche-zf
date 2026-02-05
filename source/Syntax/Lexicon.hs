@@ -24,15 +24,15 @@ import Syntax.Abstract
 
 import Data.List qualified as List
 import Data.Sequence qualified as Seq
-import Data.HashSet qualified as Set
-import Data.HashMap.Strict qualified as HM
+import Data.Set qualified as Set
+import Data.Map.Strict qualified as Map
 import Data.Text qualified as Text
 import Text.Earley.Mixfix (Holey, Associativity(..))
 
 
 data Lexicon = Lexicon
-    { lexiconMixfixTable        :: Seq (HashMap (Holey Token) Associativity)
-    , lexiconMixfixMarkers      :: HashMap (Holey Token) Marker
+    { lexiconMixfixTable        :: Seq (Map (Holey Token) Associativity)
+    , lexiconMixfixMarkers      :: Map (Holey Token) Marker
     , lexiconConnectives        :: [[(Holey Token, Associativity)]]
     , lexiconPrefixPredicates   :: LexicalItems PrefixPredicate
     , lexiconStructFun          :: LexicalItems StructSymbol
@@ -47,20 +47,20 @@ data Lexicon = Lexicon
 
 -- Projection returning the union of both left and right attributes.
 --
-lexiconAdjs :: Lexicon -> HashMap LexicalPhrase Marker
+lexiconAdjs :: Lexicon -> Map LexicalPhrase Marker
 lexiconAdjs lexicon = lexiconAdjLs lexicon <> lexiconAdjRs lexicon
 
-lookupOp :: FunctionSymbol -> HashMap (Holey Token) Marker-> Either String Marker
-lookupOp f ops = case HM.lookup f ops of
+lookupOp :: FunctionSymbol -> Map (Holey Token) Marker-> Either String Marker
+lookupOp f ops = case Map.lookup f ops of
     Just m -> Right m
     Nothing -> Left (show f)
 
-lookupLexicalItem :: (Hashable a, Show a) => a -> LexicalItems a -> Either String Marker
-lookupLexicalItem a items = case HM.lookup a items of
+lookupLexicalItem :: (Ord a, Show a) => a -> LexicalItems a -> Either String Marker
+lookupLexicalItem a items = case Map.lookup a items of
     Just m -> Right m
     Nothing -> Left (show a)
 
-type LexicalItems a = HashMap a Marker
+type LexicalItems a = Map a Marker
 
 builtins :: Lexicon
 builtins = Lexicon
@@ -78,15 +78,15 @@ builtins = Lexicon
     , lexiconFuns               = mempty
     }
 
-builtinMixfixMarkers :: HashMap FunctionSymbol Marker
-builtinMixfixMarkers = HM.map snd (fold builtinMixfix)
+builtinMixfixMarkers :: Map FunctionSymbol Marker
+builtinMixfixMarkers = fmap snd (fold builtinMixfix)
 
-builtinMixfixTable :: Seq (HashMap (Holey Token) Associativity)
-builtinMixfixTable = fmap (HM.map fst) builtinMixfix
+builtinMixfixTable :: Seq (Map (Holey Token) Associativity)
+builtinMixfixTable = fmap (Map.map fst) builtinMixfix
 
 -- INVARIANT: 10 precedence levels for now.
-builtinMixfix :: Seq (HashMap FunctionSymbol (Associativity, Marker))
-builtinMixfix = Seq.fromList $ (HM.fromList <$>)
+builtinMixfix :: Seq (Map FunctionSymbol (Associativity, Marker))
+builtinMixfix = Seq.fromList $ (Map.fromList <$>)
     [ []
     , [binOp (Symbol "+") LeftAssoc "add", binOp (Command "union") LeftAssoc "union", binOp (Symbol "-") LeftAssoc "minus", binOp (Command "rminus") LeftAssoc "rminus", binOp (Command "monus") LeftAssoc "monus"]
     , [binOp (Command "relcomp") LeftAssoc "relcomp"]
@@ -131,7 +131,7 @@ prefixOps =
 
 
 builtinStructOps :: LexicalItems StructSymbol
-builtinStructOps = HM.fromList
+builtinStructOps = Map.fromList
     [ (CarrierSymbol, "carrier")
     ]
 
@@ -140,7 +140,7 @@ identifier cmd = ([Just (Command cmd)], (NonAssoc, Marker cmd))
 
 
 builtinRelationSymbols :: LexicalItems RelationSymbol
-builtinRelationSymbols = HM.fromList
+builtinRelationSymbols = Map.fromList
     [ (Symbol "=", "eq")
     , (Command "rless", "rless")
     , (Command "neq", "neq")
@@ -149,7 +149,7 @@ builtinRelationSymbols = HM.fromList
     ]
 
 builtinPrefixPredicates :: LexicalItems PrefixPredicate
-builtinPrefixPredicates = HM.fromList
+builtinPrefixPredicates = Map.fromList
     [ (PrefixPredicate "Cong" 4, "cong")
     , (PrefixPredicate "Betw" 3, "betw")
     ]
@@ -172,12 +172,12 @@ binOp' :: Token -> Associativity -> (Holey Token, Associativity)
 binOp' tok assoc = ([Nothing, Just tok, Nothing], assoc)
 
 builtinAdjRs :: LexicalItems LexicalPhrase
-builtinAdjRs = HM.fromList
+builtinAdjRs = Map.fromList
     [ (unsafeReadPhrase "equal to ?", "eq")
     ]
 
 builtinVerbs :: LexicalItems (SgPl LexicalPhrase)
-builtinVerbs = HM.fromList
+builtinVerbs = Map.fromList
     [ (unsafeReadPhraseSgPl "equal[s/] ?", "eq")
     ]
 
@@ -186,7 +186,7 @@ builtinVerbs = HM.fromList
 -- e.g.: lattice, complete lattice, ring, etc.
 --
 builtinNouns :: LexicalItems (SgPl LexicalPhrase)
-builtinNouns = HM.mapKeys unsafeReadPhraseSgPl (HM.fromList
+builtinNouns = Map.mapKeys unsafeReadPhraseSgPl (Map.fromList
     -- Nullary
     [ ("set[/s]", "set")
     , ("point[/s]", "point")
@@ -197,7 +197,7 @@ _Onesorted :: SgPl LexicalPhrase
 _Onesorted = unsafeReadPhraseSgPl "onesorted structure[/s]"
 
 builtinStructNouns :: LexicalItems (SgPl LexicalPhrase)
-builtinStructNouns = HM.singleton _Onesorted "onesorted_structure"
+builtinStructNouns = Map.singleton _Onesorted "onesorted_structure"
 
 
 -- | Naïve splitting of lexical phrases to insert a variable slot for names in noun phrases,
@@ -209,14 +209,14 @@ builtinStructNouns = HM.singleton _Onesorted "onesorted_structure"
 -- > (unsafeReadPhrase "linear form", unsafeReadPhrase "on ?")
 --
 splitOnVariableSlot :: LexicalPhrase -> (LexicalPhrase, LexicalPhrase)
-splitOnVariableSlot phrase = case prepositionIndices <> nonhyphenatedSlotIndices of
-    [] -> (phrase, []) -- Place variable slot at the end.
-    is -> List.splitAt (minimum is) phrase
+splitOnVariableSlot pat = case prepositionIndices <> nonhyphenatedSlotIndices of
+    [] -> (pat, []) -- Place variable slot at the end.
+    is -> List.splitAt (minimum is) pat
     where
         prepositionIndices, slotIndices, nonhyphenatedSlotIndices :: [Int] -- Ascending.
-        prepositionIndices = List.findIndices isPreposition phrase
-        slotIndices = List.findIndices isNothing phrase
-        nonhyphenatedSlotIndices = [i | i <- slotIndices, noHyphen (nth (i + 1) phrase)]
+        prepositionIndices = List.findIndices isPreposition pat
+        slotIndices = List.findIndices isNothing pat
+        nonhyphenatedSlotIndices = [i | i <- slotIndices, noHyphen (nth (i + 1) pat)]
 
         isPreposition :: Maybe Token -> Bool
         isPreposition = \case
@@ -236,7 +236,7 @@ splitOnVariableSlot phrase = case prepositionIndices <> nonhyphenatedSlotIndices
 -- selection of the prepositions found at
 -- https://en.wikipedia.org/wiki/List_of_English_prepositions.
 --
-prepositions :: HashSet Text
+prepositions :: Set Text
 prepositions = Set.fromList
     [ "about"
     , "above"

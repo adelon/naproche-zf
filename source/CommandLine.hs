@@ -11,9 +11,7 @@ import Version qualified
 import Control.Monad.Logger
 import Control.Monad.Reader
 import Data.Text.IO qualified as Text
-import Data.Text.Lazy.IO qualified as LazyText
 import Options.Applicative
-import Text.Pretty.Simple (pShowNoColor)
 import UnliftIO
 import UnliftIO.Directory
 import UnliftIO.Environment (lookupEnv)
