@@ -9,7 +9,7 @@
 module Checking where
 
 
-import Base
+import Base hiding (locally)
 import StructGraph
 import Syntax.Internal
 import Syntax.Lexicon
@@ -39,6 +39,16 @@ import UnliftIO.Directory
 type Checking = CheckingM ()
 type CheckingM = StateT CheckingState (WriterT (DList Task) IO)
 
+-- | Like 'Base.locally', but preserves the hypothesis counter so labels stay unique
+-- across nested local proof blocks.
+locally :: CheckingM a -> CheckingM a
+locally ma = do
+    st <- get
+    a <- ma
+    st' <- get
+    put st{checkingHypothesisCounter = checkingHypothesisCounter st'}
+    pure a
+
 check :: WithDumpPremselTraining -> Lexicon -> [Block] -> IO [Task]
 check dumpPremselTraining lexicon blocks = do
     tasks <- execWriterT (runStateT (checkBlocks blocks) initialCheckingState)
@@ -61,6 +71,7 @@ check dumpPremselTraining lexicon blocks = do
             , stepLocation = Nowhere
             , blockEndLocation = Nowhere
             , fixedVars = mempty
+            , checkingHypothesisCounter = 0
             }
 
 data WithDumpPremselTraining = WithoutDumpPremselTraining | WithDumpPremselTraining
@@ -74,13 +85,13 @@ data CheckingState = CheckingState
 
     , checkingDumpPremselTraining :: WithDumpPremselTraining
 
-    , checkingAssumptions :: [EncodedHypothesis]
+    , checkingAssumptions :: [Hypothesis]
     -- ^ Local assumptions (cached encoding).
     --
     , checkingGoals :: [Formula]
     -- ^ The current goals.
     --
-    , checkingFacts :: InsOrdMap Marker EncodedHypothesis
+    , checkingFacts :: InsOrdMap Marker Hypothesis
     -- ^ Axioms and proven results (cached encoding).
     --
     --
@@ -117,6 +128,7 @@ data CheckingState = CheckingState
     , blockLabel :: Marker -- ^ Label/marker of the current block
     , stepLocation :: Location -- ^ Location of the current proof step
     , blockEndLocation :: Location -- ^ Ending of the current proof block, useful for error messages for implicit QEDs.
+    , checkingHypothesisCounter :: Int -- ^ Counter for labeling local hypotheses within a proof.
     }
 
 initCheckingStructs :: StructGraph
@@ -165,7 +177,8 @@ assume asms = traverse_ go asms
         go = \case
             Asm phi -> do
                 phi' <- canonicalize phi
-                let hypo = encodeHypothesis phi'
+                marker <- nextHypothesisMarker
+                let hypo = encodeHypothesis marker phi'
                 modify \st ->
                     st{ checkingAssumptions = hypo : checkingAssumptions st
                     , fixedVars = freeVars phi' <> fixedVars st
@@ -181,7 +194,8 @@ instantiateStruct x sp = do
     let struct = lookupStruct structGraph sp
     let fixes = StructGraph.structSymbols struct structGraph
     let phi = (TermSymbol (stepLocation st) (SymbolPredicate (PredicateNounStruct sp)) [TermVar x])
-    let hypo = encodeHypothesis phi
+    marker <- nextHypothesisMarker
+    let hypo = encodeHypothesis marker phi
     --
     -- NOTE: this will always cause shadowing of operations, ideally this should be type-directed instead.
     let ops = HM.fromList [(op, x) | op <- Set.toList fixes]
@@ -207,36 +221,46 @@ setGoals goals = do
     goals <- traverse canonicalize goals
     modify $ \st -> st{checkingGoals = goals}
 
+nextHypothesisMarker :: CheckingM Marker
+nextHypothesisMarker = do
+    st <- get
+    let next = checkingHypothesisCounter st + 1
+    let Marker m = blockLabel st
+    let marker = Marker (m <> Text.pack (show next))
+    put st{checkingHypothesisCounter = next}
+    pure marker
+
 
 -- | Create (and add) tasks based on facts, local assumptions, and goals.
 tellTasks :: Checking
 tellTasks = do
     goals <- gets checkingGoals
     m <- gets blockLabel
-    facts <- liftA2 (<>) (gets checkingFacts) (withMarker m <$> gets checkingAssumptions)
+    facts <- gets checkingFacts
+    assumptions <- gets checkingAssumptions
     directness <- gets checkingDirectness
     loc <- gets stepLocation
-    let tasks = DList.fromList (Task directness (InsOrdMap.toList facts) m loc <$> goals)
+    let hypos = (snd <$> InsOrdMap.toList facts) <> assumptions
+    let tasks = DList.fromList (Task directness hypos m loc <$> goals)
     tell tasks
-
-withMarker :: Marker -> [v] -> InsOrdMap Marker v
-withMarker (Marker m) phis = InsOrdMap.fromList $ zipWith (\phi k -> (Marker (m <> Text.pack (show k)), phi)) phis ([1..] :: [Int])
 
 -- | Make a fact available to all future paragraphs.
 addFact :: Formula -> Checking
 addFact phi = do
     phi' <- canonicalize phi
     m <- gets blockLabel
-    modify $ \st -> st{checkingFacts = InsOrdMap.insert m (encodeHypothesis phi') (checkingFacts st)}
+    let hypo = encodeHypothesis m phi'
+    modify $ \st -> st{checkingFacts = InsOrdMap.insert m hypo (checkingFacts st)}
 
 
 -- | Make a fact available to all future paragraphs.
 addFacts :: InsOrdMap Marker Formula -> Checking
 addFacts phis = do
-    phis' <- forM phis \phi -> do
+    phis' <- forM (InsOrdMap.toList phis) \(m, phi) -> do
         phi' <- canonicalize phi
-        pure (encodeHypothesis phi')
-    modify $ \st -> st{checkingFacts = phis' <> (checkingFacts st)}
+        let hypo = encodeHypothesis m phi'
+        pure (m, hypo)
+    modify $ \st -> st{checkingFacts = InsOrdMap.fromList phis' <> (checkingFacts st)}
 
 
 
@@ -250,7 +274,7 @@ addFactWithAsms asms stmt = do
         let phi = case asms'' of
                 [] -> forallClosure mempty stmt'
                 _ -> forallClosure mempty (makeConjunction asms'' `Implies` stmt')
-            hypo = encodeHypothesis phi
+            hypo = encodeHypothesis m phi
         in st{checkingFacts = InsOrdMap.insert m hypo (checkingFacts st)}
 
 
@@ -377,7 +401,7 @@ withLabel loc marker ma = do
         then throwIO (DuplicateMarker loc marker)
         else put st{definedMarkers = HS.insert marker markers}
     -- Set the marker as the label of the current block and upate the step location.
-    modify \st -> st{blockLabel = marker, stepLocation = loc}
+    modify \st -> st{blockLabel = marker, stepLocation = loc, checkingHypothesisCounter = 0}
     ma
 
 -- | Verification of a lemma with a proof.
@@ -697,19 +721,18 @@ byAssumption :: Checking
 byAssumption = locally do
     modify (\st -> st{checkingFacts = mempty}) *> tellTasks
 
-dumpTrainingData :: InsOrdMap Marker EncodedHypothesis -> NonEmpty Marker -> Checking
+dumpTrainingData :: InsOrdMap Marker Hypothesis -> NonEmpty Marker -> Checking
 dumpTrainingData facts ms = do
     let (picked, unpicked) = InsOrdMap.pickOutMap ms facts
     goals <- gets checkingGoals
     m@(Marker m_) <- gets blockLabel
     loc <- gets stepLocation
-    _localFacts <- withMarker m <$> gets checkingAssumptions
     let dir = "premseldump"
     let makePath k = dir </> (Text.unpack m_ <> show (k :: Int)) <.> "txt"
     let dumpTrainingExample goal =
             let conj = encodeConjecture m loc Direct goal
-                usefuls = encodeWithRole Tptp.AxiomUseful (InsOrdMap.toList picked)
-                redundants = encodeWithRole Tptp.AxiomRedundant (InsOrdMap.toList unpicked)
+                usefuls = encodeWithRole Tptp.AxiomUseful (snd <$> InsOrdMap.toList picked)
+                redundants = encodeWithRole Tptp.AxiomRedundant (snd <$> InsOrdMap.toList unpicked)
                 k = hash goal
                 example = Tptp.toTextNewline (Tptp.Task (conj : (usefuls <> redundants)))
             in do
@@ -937,12 +960,13 @@ checkStructDefn StructDefn{..} = do
     let intro' = (m, intro)
     let inherit' = (Marker (m_ <> "inherit"), forallClosure mempty (isStruct structPhrase `Implies` makeConjunction [isStruct parent | parent <- toList structParents]))
     let elims' = [(marker, forallClosure mempty (isStruct structPhrase `Implies` phi)) | (marker, phi) <- structDefnAssumes]
-    rules' <- forM (InsOrdMap.fromList (intro' : inherit' : elims')) \phi -> do
+    rules' <- forM (InsOrdMap.toList (InsOrdMap.fromList (intro' : inherit' : elims'))) \(marker, phi) -> do
         phi' <- canonicalize phi
-        pure (encodeHypothesis phi')
+        pure (marker, encodeHypothesis marker phi')
+    let rules'' = InsOrdMap.fromList rules'
     put st
             { checkingStructs = StructGraph.insert structPhrase structAncestors' structDefnFixes (checkingStructs st)
-            , checkingFacts = rules' <> checkingFacts st
+            , checkingFacts = rules'' <> checkingFacts st
             }
 
 fixing :: NonEmpty VarSymbol -> Checking

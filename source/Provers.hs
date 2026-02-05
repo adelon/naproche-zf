@@ -10,7 +10,6 @@ import Base
 import Encoding
 import Syntax.Lexicon (Lexicon)
 import Syntax.Internal (Formula, Task(..), isIndirect)
-import Tptp.UnsortedFirstOrder qualified as Tptp
 
 import Control.Monad.Logger
 import Data.Text qualified as Text
@@ -134,17 +133,14 @@ timeDifferenceToText startTime endTime = nominalDiffTimeToText (diffUTCTime endT
 runProver :: (MonadIO io, MonadLogger io) => ProverInstance -> Task -> io (Formula, ProverAnswer)
 runProver prover@Prover{..} task = do
     startTime <- liftIO getCurrentTime
-    let tptp = encodeTask task
-    let tptp' = Tptp.toText tptp
+    let tptp' = encodeTaskText task
     (_exitCode, answer, answerErr) <- liftIO (readProcessWithExitCode proverPath proverArgs tptp')
     endTime <- liftIO getCurrentTime
     let duration = timeDifferenceToText startTime endTime
 
     logInfoN
-        let hypo = case tptp of
-                Tptp.Task (head : _) -> Tptp.Task [head]
-                _ -> Tptp.Task  []
-        in  duration <> " " <> Tptp.toText hypo
+        let conjLine = encodeConjectureLine (taskConjectureLabel task) (taskLocation task) (taskDirectness task) (taskConjecture task)
+        in  duration <> " " <> toText conjLine
 
     pure (taskConjecture task, recognizeAnswer prover task tptp' answer answerErr)
 

@@ -52,7 +52,7 @@ relevantClausesNaive p rs cs a =
         cs' = Map.keysSet (Map.difference ms rels)
         p' = p + (1 - p) / convergence
         a' = a `Map.union` rels
-        rs' = Set.unions (Set.map (symbols . hypothesisFormula . snd) (Map.keysSet rels)) `Set.union` rs
+        rs' = Set.unions (Set.map (symbols . hypothesisFormula) (Map.keysSet rels)) `Set.union` rs
     in
         if Map.null rels
             then a
@@ -64,7 +64,7 @@ clauseMarkNaive
     -> Hypothesis
     -> Float
 clauseMarkNaive rs c =
-    let cs = symbols (hypothesisFormula (snd c))
+    let cs = symbols (hypothesisFormula c)
         r = cs `Set.intersection` rs
         ir = cs `Set.difference` r
     in int2Float (Set.size r) / int2Float (Set.size r + Set.size ir)

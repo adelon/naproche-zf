@@ -643,26 +643,26 @@ data Task = Task
     , taskConjecture :: Formula
     } deriving (Show, Eq, Generic, Hashable)
 
--- | Cached encoding of a hypothesis formula (after boolean contraction).
--- Equality, ordering, and hashing ignore the cached encoding.
-data EncodedHypothesis = EncodedHypothesis
-    { hypothesisFormula :: Formula
+data Hypothesis = Hypothesis
+    { hypothesisMarker :: Marker
+    , hypothesisFormula :: Formula
     , hypothesisEncoded :: TextBuilder
+    , hypothesisLine :: TextBuilder
     }
 
-instance Show EncodedHypothesis where
-    show (EncodedHypothesis f _) = "EncodedHypothesis " <> show f
+instance Show Hypothesis where
+    show (Hypothesis marker formula _ _) =
+        "Hypothesis " <> show marker <> " " <> show formula
 
-instance Eq EncodedHypothesis where
-    EncodedHypothesis f _ == EncodedHypothesis f' _ = f == f'
+instance Eq Hypothesis where
+    Hypothesis m f _ _ == Hypothesis m' f' _ _ = (m, f) == (m', f')
 
-instance Ord EncodedHypothesis where
-    compare (EncodedHypothesis f _) (EncodedHypothesis f' _) = compare f f'
+instance Ord Hypothesis where
+    compare (Hypothesis m f _ _) (Hypothesis m' f' _ _) =
+        compare (m, f) (m', f')
 
-instance Hashable EncodedHypothesis where
-    hashWithSalt s (EncodedHypothesis f _) = hashWithSalt s f
-
-type Hypothesis = (Marker, EncodedHypothesis)
+instance Hashable Hypothesis where
+    hashWithSalt s (Hypothesis m f _ _) = hashWithSalt s (m, f)
 
 
 -- | Indicates whether a given proof is direct or indirect.

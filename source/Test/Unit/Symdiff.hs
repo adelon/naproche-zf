@@ -28,7 +28,7 @@ adjDisjointFrom :: LexicalItem
 adjDisjointFrom = mkLexicalItem [Just (Word "disjoint"), Just (Word "from"), Nothing] "disjoint"
 
 filtersWell :: Bool
-filtersWell = badFact `notElem` (hypothesisFormula . snd <$> taskHypotheses (filterTask symdiff))
+filtersWell = badFact `notElem` (hypothesisFormula <$> taskHypotheses (filterTask symdiff))
 
 
 badFact :: ExprOf a
@@ -41,8 +41,9 @@ symdiff =
         { taskDirectness = Direct
         , taskLocation = Nowhere
         , taskConjectureLabel = Marker "symdiff_test"
-        , taskHypotheses = zipWith (,) (Marker . Text.pack . show <$> ([1..] :: [Int]))
-            (encodeHypothesis <$>
+        , taskHypotheses = zipWith
+            encodeHypothesis
+            (Marker . Text.pack . show <$> ([1..] :: [Int]))
             [ Quantified Universally (Scope (TermSymbol Nowhere (SymbolPredicate (PredicateRelation EqSymbol)) [TermSymbol Nowhere (SymbolMixfix (mixfix [Nothing, Just (Command "inter"), Nothing])) [TermVar (B (NamedVar "A")), TermVar (B (NamedVar "A"))], TermVar (B (NamedVar "A"))]))
             , Quantified Universally (Scope (TermSymbol Nowhere (SymbolPredicate (PredicateRelation EqSymbol)) [TermSymbol Nowhere (SymbolMixfix (mixfix [Nothing, Just (Command "inter"), Nothing])) [TermVar (B (NamedVar "A")), TermVar (B (NamedVar "B"))], TermSymbol Nowhere (SymbolMixfix (mixfix [Nothing, Just (Command "inter"), Nothing])) [TermVar (B (NamedVar "B")), TermVar (B (NamedVar "A"))]]))
             , Quantified Universally (Scope (TermSymbol Nowhere (SymbolPredicate (PredicateRelation EqSymbol)) [TermSymbol Nowhere (SymbolMixfix (mixfix [Nothing, Just (Command "inter"), Nothing])) [TermVar (B (NamedVar "A")), TermSymbol Nowhere (SymbolMixfix (mixfix [Just (Command "emptyset")])) []], TermSymbol Nowhere (SymbolMixfix (mixfix [Just (Command "emptyset")])) []]))
@@ -110,7 +111,7 @@ symdiff =
             , Quantified Universally (Scope (Connected Equivalence (Not Nowhere (TermSymbol Nowhere (SymbolPredicate (PredicateAdj adjInhabited)) [TermSymbol Nowhere (SymbolMixfix (mixfix [Nothing, Just (Command "times"), Nothing])) [TermVar (B (NamedVar "X")), TermVar (B (NamedVar "Y"))]])) (Connected Disjunction (Not Nowhere (TermSymbol Nowhere (SymbolPredicate (PredicateAdj adjInhabited)) [TermVar (B (NamedVar "X"))])) (Not Nowhere (TermSymbol Nowhere (SymbolPredicate (PredicateAdj adjInhabited)) [TermVar (B (NamedVar "Y"))])))))
             , Quantified Universally (Scope (Quantified Universally (Scope (Connected Implication (TermSymbol Nowhere (SymbolPredicate (PredicateRelation ElementSymbol)) [TermVar (F (TermVar (B (NamedVar "y")))), TermVar (B (NamedVar "X"))]) (TermSymbol Nowhere (SymbolPredicate (PredicateRelation ElementSymbol)) [TermVar (F (TermVar (B (NamedVar "y")))), TermSymbol Nowhere (SymbolMixfix (mixfix [Just (Command "Cons"), Just InvisibleBraceL, Nothing, Just InvisibleBraceR, Just InvisibleBraceL, Nothing, Just InvisibleBraceR])) [TermVar (B (NamedVar "x")), TermVar (B (NamedVar "X"))]])))))
             , Quantified Universally (Scope (Not Nowhere (TermSymbol Nowhere (SymbolPredicate (PredicateRelation ElementSymbol)) [TermVar (B (NamedVar "a")), TermSymbol Nowhere (SymbolMixfix (mixfix [Just (Command "emptyset")])) []])))
-            ])
+            ]
         , taskConjecture =
             Quantified Universally (Scope (Connected Implication (TermSymbol Nowhere (SymbolPredicate (PredicateRelation ElementSymbol)) [TermVar (B (FreshVar 0)), TermSymbol Nowhere (SymbolMixfix (mixfix [Nothing, Just (Command "setminus"), Nothing])) [TermSymbol Nowhere (SymbolMixfix (mixfix [Nothing, Just (Command "union"), Nothing])) [TermVar (F (TermVar (NamedVar "x"))), TermVar (F (TermVar (NamedVar "y")))], TermSymbol Nowhere (SymbolMixfix (mixfix [Nothing, Just (Command "inter"), Nothing])) [TermVar (F (TermVar (NamedVar "y"))), TermVar (F (TermVar (NamedVar "x")))]]]) (TermSymbol Nowhere (SymbolPredicate (PredicateRelation ElementSymbol)) [TermVar (B (FreshVar 0)), TermSymbol Nowhere (SymbolMixfix (mixfix [Nothing, Just (Command "symdiff"), Nothing])) [TermVar (F (TermVar (NamedVar "x"))), TermVar (F (TermVar (NamedVar "y")))]])))
         }
