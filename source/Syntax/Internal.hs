@@ -643,7 +643,7 @@ data Task = Task
     , taskConjecture :: Formula
     } deriving (Show, Eq, Generic, Hashable)
 
--- | Cached encoding of a hypothesis formula.
+-- | Cached encoding of a hypothesis formula (after boolean contraction).
 -- Equality, ordering, and hashing ignore the cached encoding.
 data EncodedHypothesis = EncodedHypothesis
     { hypothesisFormula :: Formula

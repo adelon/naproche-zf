@@ -10,7 +10,6 @@ import Tptp.UnsortedFirstOrder qualified as Tptp
 
 import Bound
 import Bound.Scope
-import Data.Maybe (mapMaybe)
 import Data.Text qualified as Text
 import TextBuilder
 
@@ -22,19 +21,13 @@ encodeTask Task{..} = Tptp.Task (conjecture' : hypos')
         hypos' = encodeHypos taskHypotheses
 
 encodeHypothesis :: Formula -> EncodedHypothesis
-encodeHypothesis phi = EncodedHypothesis phi (encodeExpr phi)
+encodeHypothesis phi = EncodedHypothesis phi (encodeExpr (contraction phi))
 
 -- | Boolean contraction of a task.
 contractionTask :: Task -> Task
 contractionTask task = task
-    { taskHypotheses = mapMaybe contract (taskHypotheses task)
-    , taskConjecture = contraction (taskConjecture task)
+    { taskConjecture = contraction (taskConjecture task)
     }
-    where
-        contract :: Hypothesis -> Maybe Hypothesis
-        contract (m, hypo) = case contraction (hypothesisFormula hypo) of
-            Top -> Nothing
-            phi' -> Just (m, encodeHypothesis phi')
 
 
 encodeConjecture :: Marker -> Location -> Directness -> Formula -> Tptp.AnnotatedFormula
