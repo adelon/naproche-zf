@@ -11,6 +11,8 @@ import Tptp.UnsortedFirstOrder qualified as Tptp
 import Bound
 import Bound.Scope
 import Data.Text qualified as Text
+import Data.Text.IO qualified as TextIO
+import System.IO (Handle)
 import TextBuilder
 
 
@@ -24,7 +26,7 @@ encodeTaskBuilder :: Task -> TextBuilder
 encodeTaskBuilder Task{..} =
     buildTaskLines (conjectureLine : (hypothesisLine <$> taskHypotheses))
     where
-        conjectureLine = encodeConjectureLine taskConjectureLabel taskLocation taskDirectness taskConjecture
+        conjectureLine = encodeConjectureLineNewline taskConjectureLabel taskLocation taskDirectness taskConjecture
 
 encodeTaskText :: Task -> Text
 encodeTaskText = toText . encodeTaskBuilder
@@ -54,6 +56,9 @@ encodeConjecture (Marker str) loc directness f = Tptp.AnnotatedFormula (Tptp.Nam
 encodeConjectureLine :: Marker -> Location -> Directness -> Formula -> TextBuilder
 encodeConjectureLine m loc directness f = Tptp.buildAnnotatedFormula (encodeConjecture m loc directness f)
 
+encodeConjectureLineNewline :: Marker -> Location -> Directness -> Formula -> TextBuilder
+encodeConjectureLineNewline m loc directness f = encodeConjectureLine m loc directness f <> char '\n'
+
 -- NOTE: E's SInE will only filter out axioms and leave hypotheses fixed.
 encodeHypos :: [Hypothesis] -> [Tptp.AnnotatedFormula]
 encodeHypos phis = [makeHypo  (hypothesisMarker h) (hypothesisEncoded h) | h <- phis]
@@ -68,13 +73,20 @@ encodeWithRole role phis = [makeHypo  (hypothesisMarker h) (hypothesisEncoded h)
         makeHypo (Marker str) f' = Tptp.AnnotatedFormula (Tptp.NameAtomicWord (Tptp.AtomicWord str)) role f' (Tptp.Source "")
 
 buildHypothesisLine :: Marker -> Tptp.Role -> TextBuilder -> TextBuilder
-buildHypothesisLine m role encoded = Tptp.buildAnnotatedFormula (makeHypo m encoded)
+buildHypothesisLine m role encoded = Tptp.buildAnnotatedFormula (makeHypo m encoded) <> char '\n'
     where
         makeHypo :: Marker -> TextBuilder -> Tptp.AnnotatedFormula
         makeHypo (Marker str) f' = Tptp.AnnotatedFormula (Tptp.NameAtomicWord (Tptp.AtomicWord str)) role f' (Tptp.Source "")
 
 buildTaskLines :: [TextBuilder] -> TextBuilder
-buildTaskLines = intercalate (char '\n')
+buildTaskLines = mconcat
+
+writeTask :: Handle -> Task -> IO ()
+writeTask h Task{..} = do
+    writeBuilder (encodeConjectureLineNewline taskConjectureLabel taskLocation taskDirectness taskConjecture)
+    forM_ taskHypotheses (writeBuilder . hypothesisLine)
+    where
+        writeBuilder = TextIO.hPutStr h . toText
 
 
 encodeExpr :: Expr -> TextBuilder

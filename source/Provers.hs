@@ -10,10 +10,14 @@ import Base
 import Encoding
 import Syntax.Internal (Formula, Task(..), isIndirect)
 
+import Control.Exception (evaluate)
 import Control.Monad.Logger
 import Data.Text qualified as Text
+import Data.Text.IO qualified as TextIO
 import Data.Time
-import System.Process.Text (readProcessWithExitCode)
+import System.Exit (ExitCode)
+import System.IO (hClose)
+import System.Process (CreateProcess(..), StdStream(CreatePipe), createProcess, proc, waitForProcess)
 import TextBuilder
 
 type Prover = Verbosity -> TimeLimit -> MemoryLimit -> ProverInstance
@@ -132,8 +136,7 @@ timeDifferenceToText startTime endTime = nominalDiffTimeToText (diffUTCTime endT
 runProver :: (MonadIO io, MonadLogger io) => ProverInstance -> Task -> io (Formula, ProverAnswer)
 runProver prover@Prover{..} task = do
     startTime <- liftIO getCurrentTime
-    let tptp' = encodeTaskText task
-    (_exitCode, answer, answerErr) <- liftIO (readProcessWithExitCode proverPath proverArgs tptp')
+    (exitCode, answer, answerErr) <- liftIO (runProverProcess proverPath proverArgs task)
     endTime <- liftIO getCurrentTime
     let duration = timeDifferenceToText startTime endTime
 
@@ -141,12 +144,24 @@ runProver prover@Prover{..} task = do
         let conjLine = encodeConjectureLine (taskConjectureLabel task) (taskLocation task) (taskDirectness task) (taskConjecture task)
         in  duration <> " " <> toText conjLine
 
-    pure (taskConjecture task, recognizeAnswer prover task tptp' answer answerErr)
+    pure (taskConjecture task, recognizeAnswer prover task answer answerErr)
+
+runProverProcess :: FilePath -> [String] -> Task -> IO (ExitCode, Text, Text)
+runProverProcess path args task = do
+    (Just hin, Just hout, Just herr, ph) <-
+        createProcess (proc path args){std_in = CreatePipe, std_out = CreatePipe, std_err = CreatePipe}
+    writeTask hin task
+    hClose hin
+    out <- TextIO.hGetContents hout
+    err <- TextIO.hGetContents herr
+    _ <- evaluate (Text.length out + Text.length err)
+    exitCode <- waitForProcess ph
+    pure (exitCode, out, err)
 
 
 -- | Parse the answer of a prover based on the configured prefixes of responses.
-recognizeAnswer :: ProverInstance -> Task -> Text -> Text -> Text -> ProverAnswer
-recognizeAnswer Prover{..} task tptp answer answerErr =
+recognizeAnswer :: ProverInstance -> Task -> Text -> Text -> ProverAnswer
+recognizeAnswer Prover{..} task answer answerErr =
     let
         matches prefixes   = any (\l -> any (`Text.isPrefixOf` l) prefixes) (Text.lines answer)
         saidYes            = matches proverSaysYes
@@ -155,7 +170,7 @@ recognizeAnswer Prover{..} task tptp answer answerErr =
         warned             = matches proverWarnsContradiction
     in if
         | saidYes || (warned && isIndirect task) -> Yes
-        | saidNo -> No tptp
-        | doesNotKnow -> Uncertain tptp
-        | warned -> ContradictoryAxioms tptp
-        | otherwise -> Error (answer <> answerErr) tptp (Text.pack(show (taskConjectureLabel task)))
+        | saidNo -> No (encodeTaskText task)
+        | doesNotKnow -> Uncertain (encodeTaskText task)
+        | warned -> ContradictoryAxioms (encodeTaskText task)
+        | otherwise -> Error (answer <> answerErr) (encodeTaskText task) (Text.pack(show (taskConjectureLabel task)))
