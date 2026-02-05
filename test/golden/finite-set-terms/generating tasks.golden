@@ -3,7 +3,7 @@
     , taskHypotheses =
         [
             ( Marker "unit"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( Connected Equivalence
                         ( TermSymbol
@@ -121,7 +121,7 @@
             )
         ,
             ( Marker "cons"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( Connected Equivalence
                         ( TermSymbol

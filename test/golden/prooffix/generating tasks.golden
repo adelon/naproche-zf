@@ -33,7 +33,7 @@
     , taskHypotheses =
         [
             ( Marker "assumetest1"
-            , TermSymbol
+            , EncodedHypothesis TermSymbol
                 ( Location
                     { locFile = "<nowhere>"
                     , locLine = -1

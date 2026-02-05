@@ -3,7 +3,7 @@
     , taskHypotheses =
         [
             ( Marker "in_irrefl1"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( Connected Implication
                         ( TermSymbol

@@ -60,6 +60,7 @@ import Data.List qualified as List
 import Data.List.NonEmpty qualified as NonEmpty
 import Data.Maybe
 import Data.Set qualified as Set
+import TextBuilder (TextBuilder)
 
 -- | 'Symbol's can be used as function and relation symbols.
 data Symbol
@@ -636,11 +637,32 @@ data Block
 
 data Task = Task
     { taskDirectness :: Directness
-    , taskHypotheses :: [(Marker, Formula)] -- ^ No guarantees on order.
+    , taskHypotheses :: [Hypothesis] -- ^ No guarantees on order.
     , taskConjectureLabel :: Marker
     , taskLocation :: Location
     , taskConjecture :: Formula
     } deriving (Show, Eq, Generic, Hashable)
+
+-- | Cached encoding of a hypothesis formula.
+-- Equality, ordering, and hashing ignore the cached encoding.
+data EncodedHypothesis = EncodedHypothesis
+    { hypothesisFormula :: Formula
+    , hypothesisEncoded :: TextBuilder
+    }
+
+instance Show EncodedHypothesis where
+    show (EncodedHypothesis f _) = "EncodedHypothesis " <> show f
+
+instance Eq EncodedHypothesis where
+    EncodedHypothesis f _ == EncodedHypothesis f' _ = f == f'
+
+instance Ord EncodedHypothesis where
+    compare (EncodedHypothesis f _) (EncodedHypothesis f' _) = compare f f'
+
+instance Hashable EncodedHypothesis where
+    hashWithSalt s (EncodedHypothesis f _) = hashWithSalt s f
+
+type Hypothesis = (Marker, EncodedHypothesis)
 
 
 -- | Indicates whether a given proof is direct or indirect.
@@ -658,20 +680,6 @@ isIndirect :: Task -> Bool
 isIndirect task = case taskDirectness task of
     Indirect _ -> True
     Direct -> False
-
-
--- | Boolean contraction of a task.
-contractionTask :: Task -> Task
-contractionTask task = task
-    { taskHypotheses = mapMaybe contract (taskHypotheses task)
-    , taskConjecture = contraction (taskConjecture task)
-    }
-
-contract :: (Marker, Formula) -> Maybe (Marker, Formula)
-contract (m, phi) = case contraction phi of
-    Top -> Nothing
-    phi' -> Just (m, phi')
-
 
 
 -- | Full boolean contraction.

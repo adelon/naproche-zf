@@ -92,7 +92,7 @@
     , taskHypotheses =
         [
             ( Marker "dummy_abbr_test_adj"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( Connected Implication
                         ( Not
@@ -221,7 +221,7 @@
     , taskHypotheses =
         [
             ( Marker "dummy_abbr_test_noun"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( TermSymbol
                         ( Location
@@ -252,7 +252,7 @@
             )
         ,
             ( Marker "dummy_abbr_test_adj"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( Connected Implication
                         ( Not
@@ -396,7 +396,7 @@
     , taskHypotheses =
         [
             ( Marker "dummy_abbr_test_verb"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( Connected Implication
                         ( TermSymbol
@@ -454,7 +454,7 @@
             )
         ,
             ( Marker "dummy_abbr_test_noun"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( TermSymbol
                         ( Location
@@ -485,7 +485,7 @@
             )
         ,
             ( Marker "dummy_abbr_test_adj"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( Connected Implication
                         ( Not
@@ -645,7 +645,7 @@
     , taskHypotheses =
         [
             ( Marker "abbr_test_notin"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( Connected Implication
                         ( Not
@@ -719,7 +719,7 @@
             )
         ,
             ( Marker "dummy_abbr_test_verb"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( Connected Implication
                         ( TermSymbol
@@ -777,7 +777,7 @@
             )
         ,
             ( Marker "dummy_abbr_test_noun"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( TermSymbol
                         ( Location
@@ -808,7 +808,7 @@
             )
         ,
             ( Marker "dummy_abbr_test_adj"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( Connected Implication
                         ( Not
@@ -952,7 +952,7 @@
     , taskHypotheses =
         [
             ( Marker "abbr_test_elementof_is_in"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( Connected Implication
                         ( TermSymbol
@@ -1010,7 +1010,7 @@
             )
         ,
             ( Marker "abbr_test_notin"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( Connected Implication
                         ( Not
@@ -1084,7 +1084,7 @@
             )
         ,
             ( Marker "dummy_abbr_test_verb"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( Connected Implication
                         ( TermSymbol
@@ -1142,7 +1142,7 @@
             )
         ,
             ( Marker "dummy_abbr_test_noun"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( TermSymbol
                         ( Location
@@ -1173,7 +1173,7 @@
             )
         ,
             ( Marker "dummy_abbr_test_adj"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( Connected Implication
                         ( Not

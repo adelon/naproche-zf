@@ -3,7 +3,7 @@
     , taskHypotheses =
         [
             ( Marker "union_defn"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( Connected Equivalence
                         ( TermSymbol
@@ -110,7 +110,7 @@
             )
         ,
             ( Marker "ext"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( Connected Implication
                         ( Quantified Universally
@@ -278,7 +278,7 @@
     , taskHypotheses =
         [
             ( Marker "union_comm"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( TermSymbol
                         ( Location
@@ -353,7 +353,7 @@
             )
         ,
             ( Marker "union_defn"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( Connected Equivalence
                         ( TermSymbol
@@ -460,7 +460,7 @@
             )
         ,
             ( Marker "ext"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( Connected Implication
                         ( Quantified Universally
@@ -723,7 +723,7 @@
     , taskHypotheses =
         [
             ( Marker "union_comm"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( TermSymbol
                         ( Location
@@ -798,7 +798,7 @@
             )
         ,
             ( Marker "union_defn"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( Connected Equivalence
                         ( TermSymbol
@@ -905,7 +905,7 @@
             )
         ,
             ( Marker "ext"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( Connected Implication
                         ( Quantified Universally
@@ -1002,7 +1002,7 @@
             )
         ,
             ( Marker "union_assoc1"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( Connected Implication
                         ( TermSymbol
@@ -1326,7 +1326,7 @@
     , taskHypotheses =
         [
             ( Marker "union_comm"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( TermSymbol
                         ( Location
@@ -1401,7 +1401,7 @@
             )
         ,
             ( Marker "union_defn"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( Connected Equivalence
                         ( TermSymbol
@@ -1508,7 +1508,7 @@
             )
         ,
             ( Marker "ext"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( Connected Implication
                         ( Quantified Universally
@@ -1605,7 +1605,7 @@
             )
         ,
             ( Marker "union_assoc1"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( Connected Implication
                         ( TermSymbol
@@ -1763,7 +1763,7 @@
             )
         ,
             ( Marker "union_assoc2"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( Connected Implication
                         ( TermSymbol

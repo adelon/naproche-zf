@@ -3,7 +3,7 @@
     , taskHypotheses =
         [
             ( Marker "upperdim"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( Connected Implication
                         ( Connected Conjunction
@@ -310,7 +310,7 @@
             )
         ,
             ( Marker "innerpasch"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( Connected Implication
                         ( Connected Conjunction
@@ -641,7 +641,7 @@
             )
         ,
             ( Marker "betw_id"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( Connected Implication
                         ( Connected Conjunction
@@ -756,7 +756,7 @@
             )
         ,
             ( Marker "five_segment"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( Connected Implication
                         ( Connected Conjunction
@@ -1095,7 +1095,7 @@
             )
         ,
             ( Marker "ofs"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( Connected Implication
                         ( Connected Conjunction
@@ -1641,7 +1641,7 @@
             )
         ,
             ( Marker "segment_construction"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( Quantified Existentially
                         ( Scope
@@ -1754,7 +1754,7 @@
             )
         ,
             ( Marker "cong_id"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( Connected Implication
                         ( Connected Conjunction
@@ -1902,7 +1902,7 @@
             )
         ,
             ( Marker "cong_pseudotransitive"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( Connected Implication
                         ( Connected Conjunction
@@ -2112,7 +2112,7 @@
             )
         ,
             ( Marker "cong_refl_swap"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( Connected Implication
                         ( Connected Conjunction
@@ -2204,7 +2204,7 @@
             )
         ,
             ( Marker "collinear"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( Connected Equivalence
                         ( TermSymbol
@@ -2367,7 +2367,7 @@
             )
         ,
             ( Marker "cong_refl1"
-            , TermSymbol
+            , EncodedHypothesis TermSymbol
                 ( Location
                     { locFile = "<nowhere>"
                     , locLine = -1
@@ -2394,7 +2394,7 @@
             )
         ,
             ( Marker "cong_refl2"
-            , TermSymbol
+            , EncodedHypothesis TermSymbol
                 ( Location
                     { locFile = "<nowhere>"
                     , locLine = -1
@@ -2451,7 +2451,7 @@
     , taskHypotheses =
         [
             ( Marker "cong_refl"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( Connected Implication
                         ( Connected Conjunction
@@ -2543,7 +2543,7 @@
             )
         ,
             ( Marker "upperdim"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( Connected Implication
                         ( Connected Conjunction
@@ -2850,7 +2850,7 @@
             )
         ,
             ( Marker "innerpasch"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( Connected Implication
                         ( Connected Conjunction
@@ -3181,7 +3181,7 @@
             )
         ,
             ( Marker "betw_id"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( Connected Implication
                         ( Connected Conjunction
@@ -3296,7 +3296,7 @@
             )
         ,
             ( Marker "five_segment"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( Connected Implication
                         ( Connected Conjunction
@@ -3635,7 +3635,7 @@
             )
         ,
             ( Marker "ofs"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( Connected Implication
                         ( Connected Conjunction
@@ -4181,7 +4181,7 @@
             )
         ,
             ( Marker "segment_construction"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( Quantified Existentially
                         ( Scope
@@ -4294,7 +4294,7 @@
             )
         ,
             ( Marker "cong_id"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( Connected Implication
                         ( Connected Conjunction
@@ -4442,7 +4442,7 @@
             )
         ,
             ( Marker "cong_pseudotransitive"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( Connected Implication
                         ( Connected Conjunction
@@ -4652,7 +4652,7 @@
             )
         ,
             ( Marker "cong_refl_swap"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( Connected Implication
                         ( Connected Conjunction
@@ -4744,7 +4744,7 @@
             )
         ,
             ( Marker "collinear"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( Connected Equivalence
                         ( TermSymbol
@@ -4907,7 +4907,7 @@
             )
         ,
             ( Marker "cong_sym1"
-            , TermSymbol
+            , EncodedHypothesis TermSymbol
                 ( Location
                     { locFile = "<nowhere>"
                     , locLine = -1
@@ -4929,7 +4929,7 @@
             )
         ,
             ( Marker "cong_sym2"
-            , TermSymbol
+            , EncodedHypothesis TermSymbol
                 ( Location
                     { locFile = "<nowhere>"
                     , locLine = -1
@@ -4956,7 +4956,7 @@
             )
         ,
             ( Marker "cong_sym3"
-            , TermSymbol
+            , EncodedHypothesis TermSymbol
                 ( Location
                     { locFile = "<nowhere>"
                     , locLine = -1
@@ -4983,7 +4983,7 @@
             )
         ,
             ( Marker "cong_sym4"
-            , TermSymbol
+            , EncodedHypothesis TermSymbol
                 ( Location
                     { locFile = "<nowhere>"
                     , locLine = -1
@@ -5010,7 +5010,7 @@
             )
         ,
             ( Marker "cong_sym5"
-            , TermSymbol
+            , EncodedHypothesis TermSymbol
                 ( Location
                     { locFile = "<nowhere>"
                     , locLine = -1
@@ -5067,7 +5067,7 @@
     , taskHypotheses =
         [
             ( Marker "cong_sym"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( Connected Implication
                         ( Connected Conjunction
@@ -5247,7 +5247,7 @@
             )
         ,
             ( Marker "cong_refl"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( Connected Implication
                         ( Connected Conjunction
@@ -5339,7 +5339,7 @@
             )
         ,
             ( Marker "upperdim"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( Connected Implication
                         ( Connected Conjunction
@@ -5646,7 +5646,7 @@
             )
         ,
             ( Marker "innerpasch"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( Connected Implication
                         ( Connected Conjunction
@@ -5977,7 +5977,7 @@
             )
         ,
             ( Marker "betw_id"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( Connected Implication
                         ( Connected Conjunction
@@ -6092,7 +6092,7 @@
             )
         ,
             ( Marker "five_segment"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( Connected Implication
                         ( Connected Conjunction
@@ -6431,7 +6431,7 @@
             )
         ,
             ( Marker "ofs"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( Connected Implication
                         ( Connected Conjunction
@@ -6977,7 +6977,7 @@
             )
         ,
             ( Marker "segment_construction"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( Quantified Existentially
                         ( Scope
@@ -7090,7 +7090,7 @@
             )
         ,
             ( Marker "cong_id"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( Connected Implication
                         ( Connected Conjunction
@@ -7238,7 +7238,7 @@
             )
         ,
             ( Marker "cong_pseudotransitive"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( Connected Implication
                         ( Connected Conjunction
@@ -7448,7 +7448,7 @@
             )
         ,
             ( Marker "cong_refl_swap"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( Connected Implication
                         ( Connected Conjunction
@@ -7540,7 +7540,7 @@
             )
         ,
             ( Marker "collinear"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( Connected Equivalence
                         ( TermSymbol
@@ -7703,7 +7703,7 @@
             )
         ,
             ( Marker "cong_transitive1"
-            , TermSymbol
+            , EncodedHypothesis TermSymbol
                 ( Location
                     { locFile = "<nowhere>"
                     , locLine = -1
@@ -7730,7 +7730,7 @@
             )
         ,
             ( Marker "cong_transitive2"
-            , TermSymbol
+            , EncodedHypothesis TermSymbol
                 ( Location
                     { locFile = "<nowhere>"
                     , locLine = -1
@@ -7757,7 +7757,7 @@
             )
         ,
             ( Marker "cong_transitive3"
-            , TermSymbol
+            , EncodedHypothesis TermSymbol
                 ( Location
                     { locFile = "<nowhere>"
                     , locLine = -1
@@ -7784,7 +7784,7 @@
             )
         ,
             ( Marker "cong_transitive4"
-            , TermSymbol
+            , EncodedHypothesis TermSymbol
                 ( Location
                     { locFile = "<nowhere>"
                     , locLine = -1
@@ -7811,7 +7811,7 @@
             )
         ,
             ( Marker "cong_transitive5"
-            , TermSymbol
+            , EncodedHypothesis TermSymbol
                 ( Location
                     { locFile = "<nowhere>"
                     , locLine = -1
@@ -7838,7 +7838,7 @@
             )
         ,
             ( Marker "cong_transitive6"
-            , TermSymbol
+            , EncodedHypothesis TermSymbol
                 ( Location
                     { locFile = "<nowhere>"
                     , locLine = -1
@@ -7939,7 +7939,7 @@
     , taskHypotheses =
         [
             ( Marker "cong_transitive"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( Connected Implication
                         ( Connected Conjunction
@@ -8207,7 +8207,7 @@
             )
         ,
             ( Marker "cong_sym"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( Connected Implication
                         ( Connected Conjunction
@@ -8387,7 +8387,7 @@
             )
         ,
             ( Marker "cong_refl"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( Connected Implication
                         ( Connected Conjunction
@@ -8479,7 +8479,7 @@
             )
         ,
             ( Marker "upperdim"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( Connected Implication
                         ( Connected Conjunction
@@ -8786,7 +8786,7 @@
             )
         ,
             ( Marker "innerpasch"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( Connected Implication
                         ( Connected Conjunction
@@ -9117,7 +9117,7 @@
             )
         ,
             ( Marker "betw_id"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( Connected Implication
                         ( Connected Conjunction
@@ -9232,7 +9232,7 @@
             )
         ,
             ( Marker "five_segment"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( Connected Implication
                         ( Connected Conjunction
@@ -9571,7 +9571,7 @@
             )
         ,
             ( Marker "ofs"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( Connected Implication
                         ( Connected Conjunction
@@ -10117,7 +10117,7 @@
             )
         ,
             ( Marker "segment_construction"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( Quantified Existentially
                         ( Scope
@@ -10230,7 +10230,7 @@
             )
         ,
             ( Marker "cong_id"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( Connected Implication
                         ( Connected Conjunction
@@ -10378,7 +10378,7 @@
             )
         ,
             ( Marker "cong_pseudotransitive"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( Connected Implication
                         ( Connected Conjunction
@@ -10588,7 +10588,7 @@
             )
         ,
             ( Marker "cong_refl_swap"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( Connected Implication
                         ( Connected Conjunction
@@ -10680,7 +10680,7 @@
             )
         ,
             ( Marker "collinear"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( Connected Equivalence
                         ( TermSymbol
@@ -10843,7 +10843,7 @@
             )
         ,
             ( Marker "cong_shuffle_left1"
-            , TermSymbol
+            , EncodedHypothesis TermSymbol
                 ( Location
                     { locFile = "<nowhere>"
                     , locLine = -1
@@ -10870,7 +10870,7 @@
             )
         ,
             ( Marker "cong_shuffle_left2"
-            , TermSymbol
+            , EncodedHypothesis TermSymbol
                 ( Location
                     { locFile = "<nowhere>"
                     , locLine = -1
@@ -10897,7 +10897,7 @@
             )
         ,
             ( Marker "cong_shuffle_left3"
-            , TermSymbol
+            , EncodedHypothesis TermSymbol
                 ( Location
                     { locFile = "<nowhere>"
                     , locLine = -1
@@ -10924,7 +10924,7 @@
             )
         ,
             ( Marker "cong_shuffle_left4"
-            , TermSymbol
+            , EncodedHypothesis TermSymbol
                 ( Location
                     { locFile = "<nowhere>"
                     , locLine = -1
@@ -11003,7 +11003,7 @@
     , taskHypotheses =
         [
             ( Marker "cong_shuffle_left"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( Connected Implication
                         ( Connected Conjunction
@@ -11183,7 +11183,7 @@
             )
         ,
             ( Marker "cong_transitive"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( Connected Implication
                         ( Connected Conjunction
@@ -11451,7 +11451,7 @@
             )
         ,
             ( Marker "cong_sym"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( Connected Implication
                         ( Connected Conjunction
@@ -11631,7 +11631,7 @@
             )
         ,
             ( Marker "cong_refl"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( Connected Implication
                         ( Connected Conjunction
@@ -11723,7 +11723,7 @@
             )
         ,
             ( Marker "upperdim"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( Connected Implication
                         ( Connected Conjunction
@@ -12030,7 +12030,7 @@
             )
         ,
             ( Marker "innerpasch"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( Connected Implication
                         ( Connected Conjunction
@@ -12361,7 +12361,7 @@
             )
         ,
             ( Marker "betw_id"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( Connected Implication
                         ( Connected Conjunction
@@ -12476,7 +12476,7 @@
             )
         ,
             ( Marker "five_segment"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( Connected Implication
                         ( Connected Conjunction
@@ -12815,7 +12815,7 @@
             )
         ,
             ( Marker "ofs"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( Connected Implication
                         ( Connected Conjunction
@@ -13361,7 +13361,7 @@
             )
         ,
             ( Marker "segment_construction"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( Quantified Existentially
                         ( Scope
@@ -13474,7 +13474,7 @@
             )
         ,
             ( Marker "cong_id"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( Connected Implication
                         ( Connected Conjunction
@@ -13622,7 +13622,7 @@
             )
         ,
             ( Marker "cong_pseudotransitive"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( Connected Implication
                         ( Connected Conjunction
@@ -13832,7 +13832,7 @@
             )
         ,
             ( Marker "cong_refl_swap"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( Connected Implication
                         ( Connected Conjunction
@@ -13924,7 +13924,7 @@
             )
         ,
             ( Marker "collinear"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( Connected Equivalence
                         ( TermSymbol
@@ -14087,7 +14087,7 @@
             )
         ,
             ( Marker "cong_shuffle_right1"
-            , TermSymbol
+            , EncodedHypothesis TermSymbol
                 ( Location
                     { locFile = "<nowhere>"
                     , locLine = -1
@@ -14114,7 +14114,7 @@
             )
         ,
             ( Marker "cong_shuffle_right2"
-            , TermSymbol
+            , EncodedHypothesis TermSymbol
                 ( Location
                     { locFile = "<nowhere>"
                     , locLine = -1
@@ -14141,7 +14141,7 @@
             )
         ,
             ( Marker "cong_shuffle_right3"
-            , TermSymbol
+            , EncodedHypothesis TermSymbol
                 ( Location
                     { locFile = "<nowhere>"
                     , locLine = -1
@@ -14168,7 +14168,7 @@
             )
         ,
             ( Marker "cong_shuffle_right4"
-            , TermSymbol
+            , EncodedHypothesis TermSymbol
                 ( Location
                     { locFile = "<nowhere>"
                     , locLine = -1
@@ -14247,7 +14247,7 @@
     , taskHypotheses =
         [
             ( Marker "cong_shuffle_right"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( Connected Implication
                         ( Connected Conjunction
@@ -14427,7 +14427,7 @@
             )
         ,
             ( Marker "cong_shuffle_left"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( Connected Implication
                         ( Connected Conjunction
@@ -14607,7 +14607,7 @@
             )
         ,
             ( Marker "cong_transitive"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( Connected Implication
                         ( Connected Conjunction
@@ -14875,7 +14875,7 @@
             )
         ,
             ( Marker "cong_sym"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( Connected Implication
                         ( Connected Conjunction
@@ -15055,7 +15055,7 @@
             )
         ,
             ( Marker "cong_refl"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( Connected Implication
                         ( Connected Conjunction
@@ -15147,7 +15147,7 @@
             )
         ,
             ( Marker "upperdim"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( Connected Implication
                         ( Connected Conjunction
@@ -15454,7 +15454,7 @@
             )
         ,
             ( Marker "innerpasch"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( Connected Implication
                         ( Connected Conjunction
@@ -15785,7 +15785,7 @@
             )
         ,
             ( Marker "betw_id"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( Connected Implication
                         ( Connected Conjunction
@@ -15900,7 +15900,7 @@
             )
         ,
             ( Marker "five_segment"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( Connected Implication
                         ( Connected Conjunction
@@ -16239,7 +16239,7 @@
             )
         ,
             ( Marker "ofs"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( Connected Implication
                         ( Connected Conjunction
@@ -16785,7 +16785,7 @@
             )
         ,
             ( Marker "segment_construction"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( Quantified Existentially
                         ( Scope
@@ -16898,7 +16898,7 @@
             )
         ,
             ( Marker "cong_id"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( Connected Implication
                         ( Connected Conjunction
@@ -17046,7 +17046,7 @@
             )
         ,
             ( Marker "cong_pseudotransitive"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( Connected Implication
                         ( Connected Conjunction
@@ -17256,7 +17256,7 @@
             )
         ,
             ( Marker "cong_refl_swap"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( Connected Implication
                         ( Connected Conjunction
@@ -17348,7 +17348,7 @@
             )
         ,
             ( Marker "collinear"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( Connected Equivalence
                         ( TermSymbol
@@ -17511,7 +17511,7 @@
             )
         ,
             ( Marker "cong_zero1"
-            , TermSymbol
+            , EncodedHypothesis TermSymbol
                 ( Location
                     { locFile = "<nowhere>"
                     , locLine = -1
@@ -17538,7 +17538,7 @@
             )
         ,
             ( Marker "cong_zero2"
-            , TermSymbol
+            , EncodedHypothesis TermSymbol
                 ( Location
                     { locFile = "<nowhere>"
                     , locLine = -1

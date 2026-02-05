@@ -33,7 +33,7 @@
     , taskHypotheses =
         [
             ( Marker "trivial"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( TermSymbol
                         ( Location
@@ -95,7 +95,7 @@
     , taskHypotheses =
         [
             ( Marker "irrelevant"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( TermSymbol
                         ( Location
@@ -126,7 +126,7 @@
             )
         ,
             ( Marker "trivial"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( TermSymbol
                         ( Location
@@ -188,7 +188,7 @@
     , taskHypotheses =
         [
             ( Marker "trivial"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( TermSymbol
                         ( Location
@@ -250,7 +250,7 @@
     , taskHypotheses =
         [
             ( Marker "irrelevant"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( TermSymbol
                         ( Location
@@ -281,7 +281,7 @@
             )
         ,
             ( Marker "trivial"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( TermSymbol
                         ( Location
@@ -312,7 +312,7 @@
             )
         ,
             ( Marker "alsotrivial1"
-            , TermSymbol
+            , EncodedHypothesis TermSymbol
                 ( Location
                     { locFile = "<nowhere>"
                     , locLine = -1
@@ -366,7 +366,7 @@
     , taskHypotheses =
         [
             ( Marker "alsotrivial"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( TermSymbol
                         ( Location
@@ -397,7 +397,7 @@
             )
         ,
             ( Marker "irrelevant"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( TermSymbol
                         ( Location
@@ -428,7 +428,7 @@
             )
         ,
             ( Marker "trivial"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( TermSymbol
                         ( Location
@@ -490,7 +490,7 @@
     , taskHypotheses =
         [
             ( Marker "trivial"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( TermSymbol
                         ( Location
@@ -552,7 +552,7 @@
     , taskHypotheses =
         [
             ( Marker "alsotrivial"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( TermSymbol
                         ( Location
@@ -583,7 +583,7 @@
             )
         ,
             ( Marker "irrelevant"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( TermSymbol
                         ( Location
@@ -614,7 +614,7 @@
             )
         ,
             ( Marker "trivial"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( TermSymbol
                         ( Location
@@ -645,7 +645,7 @@
             )
         ,
             ( Marker "trivial_biconditionals1"
-            , Connected Equivalence
+            , EncodedHypothesis Connected Equivalence
                 ( TermSymbol
                     ( Location
                         { locFile = "<nowhere>"

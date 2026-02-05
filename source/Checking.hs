@@ -74,14 +74,14 @@ data CheckingState = CheckingState
 
     , checkingDumpPremselTraining :: WithDumpPremselTraining
 
-    , checkingAssumptions :: [Formula]
-    -- ^ Local assumption.
+    , checkingAssumptions :: [EncodedHypothesis]
+    -- ^ Local assumptions (cached encoding).
     --
     , checkingGoals :: [Formula]
     -- ^ The current goals.
     --
-    , checkingFacts :: InsOrdMap Marker Formula
-    -- ^ Axioms and proven results.
+    , checkingFacts :: InsOrdMap Marker EncodedHypothesis
+    -- ^ Axioms and proven results (cached encoding).
     --
     --
     , checkingDirectness :: Directness
@@ -165,8 +165,9 @@ assume asms = traverse_ go asms
         go = \case
             Asm phi -> do
                 phi' <- canonicalize phi
+                let hypo = encodeHypothesis phi'
                 modify \st ->
-                    st{ checkingAssumptions = phi' : checkingAssumptions st
+                    st{ checkingAssumptions = hypo : checkingAssumptions st
                     , fixedVars = freeVars phi' <> fixedVars st
                     }
             AsmStruct x sp ->
@@ -180,13 +181,14 @@ instantiateStruct x sp = do
     let struct = lookupStruct structGraph sp
     let fixes = StructGraph.structSymbols struct structGraph
     let phi = (TermSymbol (stepLocation st) (SymbolPredicate (PredicateNounStruct sp)) [TermVar x])
+    let hypo = encodeHypothesis phi
     --
     -- NOTE: this will always cause shadowing of operations, ideally this should be type-directed instead.
     let ops = HM.fromList [(op, x) | op <- Set.toList fixes]
     put st
             { instantiatedStructs = Set.insert x (instantiatedStructs st)
             , instantiatedStructOps = ops <> instantiatedStructOps st -- left-biased union
-            , checkingAssumptions = phi : checkingAssumptions st
+            , checkingAssumptions = hypo : checkingAssumptions st
             }
 
 
@@ -225,13 +227,15 @@ addFact :: Formula -> Checking
 addFact phi = do
     phi' <- canonicalize phi
     m <- gets blockLabel
-    modify $ \st -> st{checkingFacts = InsOrdMap.insert m phi' (checkingFacts st)}
+    modify $ \st -> st{checkingFacts = InsOrdMap.insert m (encodeHypothesis phi') (checkingFacts st)}
 
 
 -- | Make a fact available to all future paragraphs.
 addFacts :: InsOrdMap Marker Formula -> Checking
 addFacts phis = do
-    phis' <- forM phis canonicalize
+    phis' <- forM phis \phi -> do
+        phi' <- canonicalize phi
+        pure (encodeHypothesis phi')
     modify $ \st -> st{checkingFacts = phis' <> (checkingFacts st)}
 
 
@@ -246,7 +250,8 @@ addFactWithAsms asms stmt = do
         let phi = case asms'' of
                 [] -> forallClosure mempty stmt'
                 _ -> forallClosure mempty (makeConjunction asms'' `Implies` stmt')
-        in st{checkingFacts = InsOrdMap.insert m phi (checkingFacts st)}
+            hypo = encodeHypothesis phi
+        in st{checkingFacts = InsOrdMap.insert m hypo (checkingFacts st)}
 
 
 -- | Mark a proof as indirect. Intended to be used in a @locally do@ block.
@@ -692,7 +697,7 @@ byAssumption :: Checking
 byAssumption = locally do
     modify (\st -> st{checkingFacts = mempty}) *> tellTasks
 
-dumpTrainingData :: InsOrdMap Marker Formula -> NonEmpty Marker -> Checking
+dumpTrainingData :: InsOrdMap Marker EncodedHypothesis -> NonEmpty Marker -> Checking
 dumpTrainingData facts ms = do
     let (picked, unpicked) = InsOrdMap.pickOutMap ms facts
     goals <- gets checkingGoals
@@ -932,7 +937,9 @@ checkStructDefn StructDefn{..} = do
     let intro' = (m, intro)
     let inherit' = (Marker (m_ <> "inherit"), forallClosure mempty (isStruct structPhrase `Implies` makeConjunction [isStruct parent | parent <- toList structParents]))
     let elims' = [(marker, forallClosure mempty (isStruct structPhrase `Implies` phi)) | (marker, phi) <- structDefnAssumes]
-    rules' <- forM (InsOrdMap.fromList (intro' : inherit' : elims')) canonicalize
+    rules' <- forM (InsOrdMap.fromList (intro' : inherit' : elims')) \phi -> do
+        phi' <- canonicalize phi
+        pure (encodeHypothesis phi')
     put st
             { checkingStructs = StructGraph.insert structPhrase structAncestors' structDefnFixes (checkingStructs st)
             , checkingFacts = rules' <> checkingFacts st

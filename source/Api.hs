@@ -218,7 +218,7 @@ generateTasks file = do
     dumpPremselTraining <- asks withDumpPremselTraining
     (blocks, lexicon) <- gloss file
     tasks <- liftIO (check dumpPremselTraining lexicon blocks)
-    pure (Internal.contractionTask <$> tasks)
+    pure (contractionTask <$> tasks)
 
 prepareCache :: MonadIO io => FilePath -> io FilePath
 prepareCache file = do

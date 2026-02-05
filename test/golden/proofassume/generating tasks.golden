@@ -3,7 +3,7 @@
     , taskHypotheses =
         [
             ( Marker "assumetest1"
-            , TermSymbol
+            , EncodedHypothesis TermSymbol
                 ( Location
                     { locFile = "<nowhere>"
                     , locLine = -1
@@ -57,7 +57,7 @@
     , taskHypotheses =
         [
             ( Marker "assumetest1"
-            , TermSymbol
+            , EncodedHypothesis TermSymbol
                 ( Location
                     { locFile = "<nowhere>"
                     , locLine = -1
@@ -80,7 +80,7 @@
             )
         ,
             ( Marker "assumetest2"
-            , TermSymbol
+            , EncodedHypothesis TermSymbol
                 ( Location
                     { locFile = "<nowhere>"
                     , locLine = -1
@@ -134,7 +134,7 @@
     , taskHypotheses =
         [
             ( Marker "assumetest"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( Connected Implication
                         ( TermSymbol
@@ -192,7 +192,7 @@
             )
         ,
             ( Marker "assumetesttwo1"
-            , TermSymbol
+            , EncodedHypothesis TermSymbol
                 ( Location
                     { locFile = "<nowhere>"
                     , locLine = -1
@@ -215,7 +215,7 @@
             )
         ,
             ( Marker "assumetesttwo2"
-            , TermSymbol
+            , EncodedHypothesis TermSymbol
                 ( Location
                     { locFile = "<nowhere>"
                     , locLine = -1
@@ -269,7 +269,7 @@
     , taskHypotheses =
         [
             ( Marker "assumetest"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( Connected Implication
                         ( TermSymbol
@@ -327,7 +327,7 @@
             )
         ,
             ( Marker "assumetesttwo1"
-            , TermSymbol
+            , EncodedHypothesis TermSymbol
                 ( Location
                     { locFile = "<nowhere>"
                     , locLine = -1
@@ -350,7 +350,7 @@
             )
         ,
             ( Marker "assumetesttwo2"
-            , TermSymbol
+            , EncodedHypothesis TermSymbol
                 ( Location
                     { locFile = "<nowhere>"
                     , locLine = -1
@@ -373,7 +373,7 @@
             )
         ,
             ( Marker "assumetesttwo3"
-            , TermSymbol
+            , EncodedHypothesis TermSymbol
                 ( Location
                     { locFile = "<nowhere>"
                     , locLine = -1

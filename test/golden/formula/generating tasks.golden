@@ -68,7 +68,7 @@
     , taskHypotheses =
         [
             ( Marker "formula_test_forall"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( Connected Conjunction
                         ( TermSymbol
@@ -165,7 +165,7 @@
     , taskHypotheses =
         [
             ( Marker "formula_test_exists"
-            , Quantified Existentially
+            , EncodedHypothesis Quantified Existentially
                 ( Scope
                     ( TermSymbol
                         ( Location
@@ -196,7 +196,7 @@
             )
         ,
             ( Marker "formula_test_forall"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( Connected Conjunction
                         ( TermSymbol

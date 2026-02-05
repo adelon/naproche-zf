@@ -3,7 +3,7 @@
     , taskHypotheses =
         [
             ( Marker "lmao"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( TermSymbol
                         ( Location
@@ -45,7 +45,7 @@
             )
         ,
             ( Marker "preimg"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( TermSymbol
                         ( Location
@@ -116,7 +116,7 @@
             )
         ,
             ( Marker "fld"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( TermSymbol
                         ( Location
@@ -177,7 +177,7 @@
             )
         ,
             ( Marker "times"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( TermSymbol
                         ( Location
@@ -241,7 +241,7 @@
             )
         ,
             ( Marker "cons"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( TermSymbol
                         ( Location
@@ -312,7 +312,7 @@
             )
         ,
             ( Marker "pow"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( TermSymbol
                         ( Location
@@ -373,7 +373,7 @@
             )
         ,
             ( Marker "subseteq"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( Connected Equivalence
                         ( TermSymbol
@@ -506,7 +506,7 @@
     , taskHypotheses =
         [
             ( Marker "lmao"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( TermSymbol
                         ( Location
@@ -548,7 +548,7 @@
             )
         ,
             ( Marker "preimg"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( TermSymbol
                         ( Location
@@ -619,7 +619,7 @@
             )
         ,
             ( Marker "fld"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( TermSymbol
                         ( Location
@@ -680,7 +680,7 @@
             )
         ,
             ( Marker "times"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( TermSymbol
                         ( Location
@@ -744,7 +744,7 @@
             )
         ,
             ( Marker "cons"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( TermSymbol
                         ( Location
@@ -815,7 +815,7 @@
             )
         ,
             ( Marker "pow"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( TermSymbol
                         ( Location
@@ -876,7 +876,7 @@
             )
         ,
             ( Marker "subseteq"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( Connected Equivalence
                         ( TermSymbol
@@ -1088,7 +1088,7 @@
     , taskHypotheses =
         [
             ( Marker "fin"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( Connected Implication
                         ( Connected Conjunction
@@ -1240,7 +1240,7 @@
             )
         ,
             ( Marker "fin"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( TermSymbol
                         ( Location
@@ -1301,7 +1301,7 @@
             )
         ,
             ( Marker "fin"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( TermSymbol
                         ( Location
@@ -1370,7 +1370,7 @@
             )
         ,
             ( Marker "lmao"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( TermSymbol
                         ( Location
@@ -1412,7 +1412,7 @@
             )
         ,
             ( Marker "preimg"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( TermSymbol
                         ( Location
@@ -1483,7 +1483,7 @@
             )
         ,
             ( Marker "fld"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( TermSymbol
                         ( Location
@@ -1544,7 +1544,7 @@
             )
         ,
             ( Marker "times"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( TermSymbol
                         ( Location
@@ -1608,7 +1608,7 @@
             )
         ,
             ( Marker "cons"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( TermSymbol
                         ( Location
@@ -1679,7 +1679,7 @@
             )
         ,
             ( Marker "pow"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( TermSymbol
                         ( Location
@@ -1740,7 +1740,7 @@
             )
         ,
             ( Marker "subseteq"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( Connected Equivalence
                         ( TermSymbol
@@ -1810,7 +1810,7 @@
             )
         ,
             ( Marker "fin_mono1"
-            , TermSymbol
+            , EncodedHypothesis TermSymbol
                 ( Location
                     { locFile = "<nowhere>"
                     , locLine = -1
@@ -1902,7 +1902,7 @@
     , taskHypotheses =
         [
             ( Marker "fin_mono"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( Connected Implication
                         ( TermSymbol
@@ -1998,7 +1998,7 @@
             )
         ,
             ( Marker "fin"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( Connected Implication
                         ( Connected Conjunction
@@ -2150,7 +2150,7 @@
             )
         ,
             ( Marker "fin"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( TermSymbol
                         ( Location
@@ -2211,7 +2211,7 @@
             )
         ,
             ( Marker "fin"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( TermSymbol
                         ( Location
@@ -2280,7 +2280,7 @@
             )
         ,
             ( Marker "lmao"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( TermSymbol
                         ( Location
@@ -2322,7 +2322,7 @@
             )
         ,
             ( Marker "preimg"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( TermSymbol
                         ( Location
@@ -2393,7 +2393,7 @@
             )
         ,
             ( Marker "fld"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( TermSymbol
                         ( Location
@@ -2454,7 +2454,7 @@
             )
         ,
             ( Marker "times"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( TermSymbol
                         ( Location
@@ -2518,7 +2518,7 @@
             )
         ,
             ( Marker "cons"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( TermSymbol
                         ( Location
@@ -2589,7 +2589,7 @@
             )
         ,
             ( Marker "pow"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( TermSymbol
                         ( Location
@@ -2650,7 +2650,7 @@
             )
         ,
             ( Marker "subseteq"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( Connected Equivalence
                         ( TermSymbol
@@ -2832,7 +2832,7 @@
     , taskHypotheses =
         [
             ( Marker "fin_mono"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( Connected Implication
                         ( TermSymbol
@@ -2928,7 +2928,7 @@
             )
         ,
             ( Marker "fin"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( Connected Implication
                         ( Connected Conjunction
@@ -3080,7 +3080,7 @@
             )
         ,
             ( Marker "fin"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( TermSymbol
                         ( Location
@@ -3141,7 +3141,7 @@
             )
         ,
             ( Marker "fin"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( TermSymbol
                         ( Location
@@ -3210,7 +3210,7 @@
             )
         ,
             ( Marker "lmao"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( TermSymbol
                         ( Location
@@ -3252,7 +3252,7 @@
             )
         ,
             ( Marker "preimg"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( TermSymbol
                         ( Location
@@ -3323,7 +3323,7 @@
             )
         ,
             ( Marker "fld"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( TermSymbol
                         ( Location
@@ -3384,7 +3384,7 @@
             )
         ,
             ( Marker "times"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( TermSymbol
                         ( Location
@@ -3448,7 +3448,7 @@
             )
         ,
             ( Marker "cons"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( TermSymbol
                         ( Location
@@ -3519,7 +3519,7 @@
             )
         ,
             ( Marker "pow"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( TermSymbol
                         ( Location
@@ -3580,7 +3580,7 @@
             )
         ,
             ( Marker "subseteq"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( Connected Equivalence
                         ( TermSymbol
@@ -3924,7 +3924,7 @@
     , taskHypotheses =
         [
             ( Marker "tracl"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( Connected Implication
                         ( Connected Conjunction
@@ -4134,7 +4134,7 @@
             )
         ,
             ( Marker "tracl"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( Connected Implication
                         ( TermSymbol
@@ -4211,7 +4211,7 @@
             )
         ,
             ( Marker "tracl"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( TermSymbol
                         ( Location
@@ -4321,7 +4321,7 @@
             )
         ,
             ( Marker "fin_mono"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( Connected Implication
                         ( TermSymbol
@@ -4417,7 +4417,7 @@
             )
         ,
             ( Marker "fin"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( Connected Implication
                         ( Connected Conjunction
@@ -4569,7 +4569,7 @@
             )
         ,
             ( Marker "fin"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( TermSymbol
                         ( Location
@@ -4630,7 +4630,7 @@
             )
         ,
             ( Marker "fin"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( TermSymbol
                         ( Location
@@ -4699,7 +4699,7 @@
             )
         ,
             ( Marker "lmao"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( TermSymbol
                         ( Location
@@ -4741,7 +4741,7 @@
             )
         ,
             ( Marker "preimg"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( TermSymbol
                         ( Location
@@ -4812,7 +4812,7 @@
             )
         ,
             ( Marker "fld"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( TermSymbol
                         ( Location
@@ -4873,7 +4873,7 @@
             )
         ,
             ( Marker "times"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( TermSymbol
                         ( Location
@@ -4937,7 +4937,7 @@
             )
         ,
             ( Marker "cons"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( TermSymbol
                         ( Location
@@ -5008,7 +5008,7 @@
             )
         ,
             ( Marker "pow"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( TermSymbol
                         ( Location
@@ -5069,7 +5069,7 @@
             )
         ,
             ( Marker "subseteq"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( Connected Equivalence
                         ( TermSymbol
@@ -5297,7 +5297,7 @@
     , taskHypotheses =
         [
             ( Marker "tracl"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( Connected Implication
                         ( Connected Conjunction
@@ -5507,7 +5507,7 @@
             )
         ,
             ( Marker "tracl"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( Connected Implication
                         ( TermSymbol
@@ -5584,7 +5584,7 @@
             )
         ,
             ( Marker "tracl"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( TermSymbol
                         ( Location
@@ -5694,7 +5694,7 @@
             )
         ,
             ( Marker "fin_mono"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( Connected Implication
                         ( TermSymbol
@@ -5790,7 +5790,7 @@
             )
         ,
             ( Marker "fin"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( Connected Implication
                         ( Connected Conjunction
@@ -5942,7 +5942,7 @@
             )
         ,
             ( Marker "fin"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( TermSymbol
                         ( Location
@@ -6003,7 +6003,7 @@
             )
         ,
             ( Marker "fin"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( TermSymbol
                         ( Location
@@ -6072,7 +6072,7 @@
             )
         ,
             ( Marker "lmao"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( TermSymbol
                         ( Location
@@ -6114,7 +6114,7 @@
             )
         ,
             ( Marker "preimg"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( TermSymbol
                         ( Location
@@ -6185,7 +6185,7 @@
             )
         ,
             ( Marker "fld"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( TermSymbol
                         ( Location
@@ -6246,7 +6246,7 @@
             )
         ,
             ( Marker "times"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( TermSymbol
                         ( Location
@@ -6310,7 +6310,7 @@
             )
         ,
             ( Marker "cons"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( TermSymbol
                         ( Location
@@ -6381,7 +6381,7 @@
             )
         ,
             ( Marker "pow"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( TermSymbol
                         ( Location
@@ -6442,7 +6442,7 @@
             )
         ,
             ( Marker "subseteq"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( Connected Equivalence
                         ( TermSymbol
@@ -6786,7 +6786,7 @@
     , taskHypotheses =
         [
             ( Marker "quasirefltracl"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( Connected Implication
                         ( Connected Conjunction
@@ -6996,7 +6996,7 @@
             )
         ,
             ( Marker "quasirefltracl"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( Connected Implication
                         ( TermSymbol
@@ -7121,7 +7121,7 @@
             )
         ,
             ( Marker "quasirefltracl"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( TermSymbol
                         ( Location
@@ -7231,7 +7231,7 @@
             )
         ,
             ( Marker "tracl"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( Connected Implication
                         ( Connected Conjunction
@@ -7441,7 +7441,7 @@
             )
         ,
             ( Marker "tracl"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( Connected Implication
                         ( TermSymbol
@@ -7518,7 +7518,7 @@
             )
         ,
             ( Marker "tracl"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( TermSymbol
                         ( Location
@@ -7628,7 +7628,7 @@
             )
         ,
             ( Marker "fin_mono"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( Connected Implication
                         ( TermSymbol
@@ -7724,7 +7724,7 @@
             )
         ,
             ( Marker "fin"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( Connected Implication
                         ( Connected Conjunction
@@ -7876,7 +7876,7 @@
             )
         ,
             ( Marker "fin"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( TermSymbol
                         ( Location
@@ -7937,7 +7937,7 @@
             )
         ,
             ( Marker "fin"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( TermSymbol
                         ( Location
@@ -8006,7 +8006,7 @@
             )
         ,
             ( Marker "lmao"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( TermSymbol
                         ( Location
@@ -8048,7 +8048,7 @@
             )
         ,
             ( Marker "preimg"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( TermSymbol
                         ( Location
@@ -8119,7 +8119,7 @@
             )
         ,
             ( Marker "fld"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( TermSymbol
                         ( Location
@@ -8180,7 +8180,7 @@
             )
         ,
             ( Marker "times"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( TermSymbol
                         ( Location
@@ -8244,7 +8244,7 @@
             )
         ,
             ( Marker "cons"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( TermSymbol
                         ( Location
@@ -8315,7 +8315,7 @@
             )
         ,
             ( Marker "pow"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( TermSymbol
                         ( Location
@@ -8376,7 +8376,7 @@
             )
         ,
             ( Marker "subseteq"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( Connected Equivalence
                         ( TermSymbol
@@ -8547,7 +8547,7 @@
     , taskHypotheses =
         [
             ( Marker "quasirefltracl"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( Connected Implication
                         ( Connected Conjunction
@@ -8757,7 +8757,7 @@
             )
         ,
             ( Marker "quasirefltracl"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( Connected Implication
                         ( TermSymbol
@@ -8882,7 +8882,7 @@
             )
         ,
             ( Marker "quasirefltracl"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( TermSymbol
                         ( Location
@@ -8992,7 +8992,7 @@
             )
         ,
             ( Marker "tracl"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( Connected Implication
                         ( Connected Conjunction
@@ -9202,7 +9202,7 @@
             )
         ,
             ( Marker "tracl"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( Connected Implication
                         ( TermSymbol
@@ -9279,7 +9279,7 @@
             )
         ,
             ( Marker "tracl"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( TermSymbol
                         ( Location
@@ -9389,7 +9389,7 @@
             )
         ,
             ( Marker "fin_mono"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( Connected Implication
                         ( TermSymbol
@@ -9485,7 +9485,7 @@
             )
         ,
             ( Marker "fin"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( Connected Implication
                         ( Connected Conjunction
@@ -9637,7 +9637,7 @@
             )
         ,
             ( Marker "fin"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( TermSymbol
                         ( Location
@@ -9698,7 +9698,7 @@
             )
         ,
             ( Marker "fin"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( TermSymbol
                         ( Location
@@ -9767,7 +9767,7 @@
             )
         ,
             ( Marker "lmao"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( TermSymbol
                         ( Location
@@ -9809,7 +9809,7 @@
             )
         ,
             ( Marker "preimg"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( TermSymbol
                         ( Location
@@ -9880,7 +9880,7 @@
             )
         ,
             ( Marker "fld"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( TermSymbol
                         ( Location
@@ -9941,7 +9941,7 @@
             )
         ,
             ( Marker "times"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( TermSymbol
                         ( Location
@@ -10005,7 +10005,7 @@
             )
         ,
             ( Marker "cons"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( TermSymbol
                         ( Location
@@ -10076,7 +10076,7 @@
             )
         ,
             ( Marker "pow"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( TermSymbol
                         ( Location
@@ -10137,7 +10137,7 @@
             )
         ,
             ( Marker "subseteq"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( Connected Equivalence
                         ( TermSymbol
@@ -10405,7 +10405,7 @@
     , taskHypotheses =
         [
             ( Marker "refltracl"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( Connected Implication
                         ( Connected Conjunction
@@ -10635,7 +10635,7 @@
             )
         ,
             ( Marker "refltracl"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( Connected Implication
                         ( TermSymbol
@@ -10751,7 +10751,7 @@
             )
         ,
             ( Marker "refltracl"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( TermSymbol
                         ( Location
@@ -10833,7 +10833,7 @@
             )
         ,
             ( Marker "quasirefltracl"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( Connected Implication
                         ( Connected Conjunction
@@ -11043,7 +11043,7 @@
             )
         ,
             ( Marker "quasirefltracl"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( Connected Implication
                         ( TermSymbol
@@ -11168,7 +11168,7 @@
             )
         ,
             ( Marker "quasirefltracl"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( TermSymbol
                         ( Location
@@ -11278,7 +11278,7 @@
             )
         ,
             ( Marker "tracl"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( Connected Implication
                         ( Connected Conjunction
@@ -11488,7 +11488,7 @@
             )
         ,
             ( Marker "tracl"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( Connected Implication
                         ( TermSymbol
@@ -11565,7 +11565,7 @@
             )
         ,
             ( Marker "tracl"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( TermSymbol
                         ( Location
@@ -11675,7 +11675,7 @@
             )
         ,
             ( Marker "fin_mono"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( Connected Implication
                         ( TermSymbol
@@ -11771,7 +11771,7 @@
             )
         ,
             ( Marker "fin"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( Connected Implication
                         ( Connected Conjunction
@@ -11923,7 +11923,7 @@
             )
         ,
             ( Marker "fin"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( TermSymbol
                         ( Location
@@ -11984,7 +11984,7 @@
             )
         ,
             ( Marker "fin"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( TermSymbol
                         ( Location
@@ -12053,7 +12053,7 @@
             )
         ,
             ( Marker "lmao"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( TermSymbol
                         ( Location
@@ -12095,7 +12095,7 @@
             )
         ,
             ( Marker "preimg"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( TermSymbol
                         ( Location
@@ -12166,7 +12166,7 @@
             )
         ,
             ( Marker "fld"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( TermSymbol
                         ( Location
@@ -12227,7 +12227,7 @@
             )
         ,
             ( Marker "times"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( TermSymbol
                         ( Location
@@ -12291,7 +12291,7 @@
             )
         ,
             ( Marker "cons"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( TermSymbol
                         ( Location
@@ -12362,7 +12362,7 @@
             )
         ,
             ( Marker "pow"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( TermSymbol
                         ( Location
@@ -12423,7 +12423,7 @@
             )
         ,
             ( Marker "subseteq"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( Connected Equivalence
                         ( TermSymbol
@@ -12597,7 +12597,7 @@
     , taskHypotheses =
         [
             ( Marker "refltracl"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( Connected Implication
                         ( Connected Conjunction
@@ -12827,7 +12827,7 @@
             )
         ,
             ( Marker "refltracl"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( Connected Implication
                         ( TermSymbol
@@ -12943,7 +12943,7 @@
             )
         ,
             ( Marker "refltracl"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( TermSymbol
                         ( Location
@@ -13025,7 +13025,7 @@
             )
         ,
             ( Marker "quasirefltracl"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( Connected Implication
                         ( Connected Conjunction
@@ -13235,7 +13235,7 @@
             )
         ,
             ( Marker "quasirefltracl"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( Connected Implication
                         ( TermSymbol
@@ -13360,7 +13360,7 @@
             )
         ,
             ( Marker "quasirefltracl"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( TermSymbol
                         ( Location
@@ -13470,7 +13470,7 @@
             )
         ,
             ( Marker "tracl"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( Connected Implication
                         ( Connected Conjunction
@@ -13680,7 +13680,7 @@
             )
         ,
             ( Marker "tracl"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( Connected Implication
                         ( TermSymbol
@@ -13757,7 +13757,7 @@
             )
         ,
             ( Marker "tracl"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( TermSymbol
                         ( Location
@@ -13867,7 +13867,7 @@
             )
         ,
             ( Marker "fin_mono"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( Connected Implication
                         ( TermSymbol
@@ -13963,7 +13963,7 @@
             )
         ,
             ( Marker "fin"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( Connected Implication
                         ( Connected Conjunction
@@ -14115,7 +14115,7 @@
             )
         ,
             ( Marker "fin"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( TermSymbol
                         ( Location
@@ -14176,7 +14176,7 @@
             )
         ,
             ( Marker "fin"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( TermSymbol
                         ( Location
@@ -14245,7 +14245,7 @@
             )
         ,
             ( Marker "lmao"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( TermSymbol
                         ( Location
@@ -14287,7 +14287,7 @@
             )
         ,
             ( Marker "preimg"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( TermSymbol
                         ( Location
@@ -14358,7 +14358,7 @@
             )
         ,
             ( Marker "fld"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( TermSymbol
                         ( Location
@@ -14419,7 +14419,7 @@
             )
         ,
             ( Marker "times"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( TermSymbol
                         ( Location
@@ -14483,7 +14483,7 @@
             )
         ,
             ( Marker "cons"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( TermSymbol
                         ( Location
@@ -14554,7 +14554,7 @@
             )
         ,
             ( Marker "pow"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( TermSymbol
                         ( Location
@@ -14615,7 +14615,7 @@
             )
         ,
             ( Marker "subseteq"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( Connected Equivalence
                         ( TermSymbol

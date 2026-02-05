@@ -33,7 +33,7 @@
     , taskHypotheses =
         [
             ( Marker "prop1"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( TermSymbol
                         ( Location
@@ -95,7 +95,7 @@
     , taskHypotheses =
         [
             ( Marker "prop1"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( TermSymbol
                         ( Location
@@ -157,7 +157,7 @@
     , taskHypotheses =
         [
             ( Marker "prop1"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( TermSymbol
                         ( Location
@@ -227,7 +227,7 @@
     , taskHypotheses =
         [
             ( Marker "prop3"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( TermSymbol
                         ( Location
@@ -258,7 +258,7 @@
             )
         ,
             ( Marker "prop2"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( TermSymbol
                         ( Location
@@ -289,7 +289,7 @@
             )
         ,
             ( Marker "prop1"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( TermSymbol
                         ( Location
@@ -320,7 +320,7 @@
             )
         ,
             ( Marker "prop41"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( TermSymbol
                         ( Location
@@ -382,7 +382,7 @@
     , taskHypotheses =
         [
             ( Marker "prop4"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( TermSymbol
                         ( Location
@@ -413,7 +413,7 @@
             )
         ,
             ( Marker "prop3"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( TermSymbol
                         ( Location
@@ -444,7 +444,7 @@
             )
         ,
             ( Marker "prop2"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( TermSymbol
                         ( Location
@@ -475,7 +475,7 @@
             )
         ,
             ( Marker "prop1"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( TermSymbol
                         ( Location

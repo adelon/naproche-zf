@@ -3,7 +3,7 @@
     , taskHypotheses =
         [
             ( Marker "unit"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( Connected Equivalence
                         ( TermSymbol
@@ -121,7 +121,7 @@
             )
         ,
             ( Marker "times"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( Quantified Universally
                         ( Scope
@@ -320,7 +320,7 @@
             )
         ,
             ( Marker "cons"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( Connected Equivalence
                         ( TermSymbol
@@ -564,7 +564,7 @@
     , taskHypotheses =
         [
             ( Marker "pair_emptyset_in_times_unit"
-            , TermSymbol
+            , EncodedHypothesis TermSymbol
                 ( Location
                     { locFile = "<nowhere>"
                     , locLine = -1
@@ -686,7 +686,7 @@
             )
         ,
             ( Marker "unit"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( Connected Equivalence
                         ( TermSymbol
@@ -804,7 +804,7 @@
             )
         ,
             ( Marker "times"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( Quantified Universally
                         ( Scope
@@ -1003,7 +1003,7 @@
             )
         ,
             ( Marker "cons"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( Connected Equivalence
                         ( TermSymbol
@@ -1331,7 +1331,7 @@
     , taskHypotheses =
         [
             ( Marker "suc"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( Connected Equivalence
                         ( TermSymbol
@@ -1487,7 +1487,7 @@
             )
         ,
             ( Marker "pair_emptyset_in_times_unit"
-            , TermSymbol
+            , EncodedHypothesis TermSymbol
                 ( Location
                     { locFile = "<nowhere>"
                     , locLine = -1
@@ -1609,7 +1609,7 @@
             )
         ,
             ( Marker "unit"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( Connected Equivalence
                         ( TermSymbol
@@ -1727,7 +1727,7 @@
             )
         ,
             ( Marker "times"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( Quantified Universally
                         ( Scope
@@ -1926,7 +1926,7 @@
             )
         ,
             ( Marker "cons"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( Connected Equivalence
                         ( TermSymbol

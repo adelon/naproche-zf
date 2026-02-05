@@ -3,7 +3,7 @@
     , taskHypotheses =
         [
             ( Marker "relation"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( Connected Equivalence
                         ( TermSymbol
@@ -75,7 +75,7 @@
             )
         ,
             ( Marker "rightunique"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( Connected Equivalence
                         ( TermSymbol
@@ -143,7 +143,7 @@
             )
         ,
             ( Marker "dom"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( TermSymbol
                         ( Location
@@ -193,7 +193,7 @@
             )
         ,
             ( Marker "apply"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( TermSymbol
                         ( Location
@@ -253,7 +253,7 @@
             )
         ,
             ( Marker "definefunctiontest1"
-            , TermSymbol
+            , EncodedHypothesis TermSymbol
                 ( Location
                     { locFile = "test/examples/proofdefinefunction.tex"
                     , locLine = 26
@@ -280,7 +280,7 @@
             )
         ,
             ( Marker "definefunctiontest2"
-            , TermSymbol
+            , EncodedHypothesis TermSymbol
                 ( Location
                     { locFile = "test/examples/proofdefinefunction.tex"
                     , locLine = 26
@@ -303,7 +303,7 @@
             )
         ,
             ( Marker "definefunctiontest3"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( Connected Implication
                         ( TermSymbol
@@ -394,7 +394,7 @@
             )
         ,
             ( Marker "definefunctiontest4"
-            , TermSymbol
+            , EncodedHypothesis TermSymbol
                 ( Location
                     { locFile = "test/examples/proofdefinefunction.tex"
                     , locLine = 26

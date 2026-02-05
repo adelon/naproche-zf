@@ -10,6 +10,7 @@ import Tptp.UnsortedFirstOrder qualified as Tptp
 
 import Bound
 import Bound.Scope
+import Data.Maybe (mapMaybe)
 import Data.Text qualified as Text
 import TextBuilder
 
@@ -20,6 +21,21 @@ encodeTask Task{..} = Tptp.Task (conjecture' : hypos')
         conjecture' = encodeConjecture taskConjectureLabel taskLocation taskDirectness taskConjecture
         hypos' = encodeHypos taskHypotheses
 
+encodeHypothesis :: Formula -> EncodedHypothesis
+encodeHypothesis phi = EncodedHypothesis phi (encodeExpr phi)
+
+-- | Boolean contraction of a task.
+contractionTask :: Task -> Task
+contractionTask task = task
+    { taskHypotheses = mapMaybe contract (taskHypotheses task)
+    , taskConjecture = contraction (taskConjecture task)
+    }
+    where
+        contract :: Hypothesis -> Maybe Hypothesis
+        contract (m, hypo) = case contraction (hypothesisFormula hypo) of
+            Top -> Nothing
+            phi' -> Just (m, encodeHypothesis phi')
+
 
 encodeConjecture :: Marker -> Location -> Directness -> Formula -> Tptp.AnnotatedFormula
 encodeConjecture (Marker str) loc directness f = Tptp.AnnotatedFormula (Tptp.NameAtomicWord (Tptp.AtomicWord str)) Tptp.Conjecture (encodeExpr f) case directness of
@@ -27,14 +43,14 @@ encodeConjecture (Marker str) loc directness f = Tptp.AnnotatedFormula (Tptp.Nam
     Indirect _ -> (Tptp.Source (locationToText loc <> " (indirect proof)"))
 
 -- NOTE: E's SInE will only filter out axioms and leave hypotheses fixed.
-encodeHypos :: [(Marker, Formula)] -> [Tptp.AnnotatedFormula]
-encodeHypos phis = [makeHypo  m (encodeExpr phi) | (m,  phi) <- phis]
+encodeHypos :: [Hypothesis] -> [Tptp.AnnotatedFormula]
+encodeHypos phis = [makeHypo  m (hypothesisEncoded hypo) | (m,  hypo) <- phis]
     where
         makeHypo :: Marker -> TextBuilder -> Tptp.AnnotatedFormula
         makeHypo (Marker str) f' = Tptp.AnnotatedFormula (Tptp.NameAtomicWord (Tptp.AtomicWord str)) Tptp.Axiom f' (Tptp.Source "")
 
-encodeWithRole :: Tptp.Role -> [(Marker, Formula)] -> [Tptp.AnnotatedFormula]
-encodeWithRole role phis = [makeHypo  m (encodeExpr phi) | (m,  phi) <- phis]
+encodeWithRole :: Tptp.Role -> [Hypothesis] -> [Tptp.AnnotatedFormula]
+encodeWithRole role phis = [makeHypo  m (hypothesisEncoded hypo) | (m,  hypo) <- phis]
     where
         makeHypo :: Marker -> TextBuilder -> Tptp.AnnotatedFormula
         makeHypo (Marker str) f' = Tptp.AnnotatedFormula (Tptp.NameAtomicWord (Tptp.AtomicWord str)) role f' (Tptp.Source "")

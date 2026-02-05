@@ -41,7 +41,7 @@
     , taskHypotheses =
         [
             ( Marker "dummy_abbr_test"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( TermSymbol
                         ( Location

@@ -36,23 +36,23 @@ filterTask Task{taskDirectness = directness, taskConjectureLabel = label, taskCo
         }
 
 
-relevantFacts :: Float -> ExprOf a -> Set (Marker, Expr) -> Map (Marker, Expr) Float
+relevantFacts :: Float -> ExprOf a -> Set Hypothesis -> Map Hypothesis Float
 relevantFacts p conjecture cs = relevantClausesNaive p (symbols conjecture) cs Map.empty
 
 
 relevantClausesNaive
     :: Float -- ^ Pass mark
     -> Set Symbol -- ^ Relevant symbols
-    -> Set (Marker, Expr) -- ^ working irrelevant facts
-    -> Map (Marker, Expr) Float -- ^ Accumulator of relevant facts
-    -> Map (Marker, Expr) Float -- ^ Final relevant facts
+    -> Set Hypothesis -- ^ working irrelevant facts
+    -> Map Hypothesis Float -- ^ Accumulator of relevant facts
+    -> Map Hypothesis Float -- ^ Final relevant facts
 relevantClausesNaive p rs cs a =
     let ms = Map.fromSet (clauseMarkNaive rs) cs
         rels = Map.filter (p <=) ms
         cs' = Map.keysSet (Map.difference ms rels)
         p' = p + (1 - p) / convergence
         a' = a `Map.union` rels
-        rs' = Set.unions (Set.map (symbols . snd) (Map.keysSet rels)) `Set.union` rs
+        rs' = Set.unions (Set.map (symbols . hypothesisFormula . snd) (Map.keysSet rels)) `Set.union` rs
     in
         if Map.null rels
             then a
@@ -61,10 +61,10 @@ relevantClausesNaive p rs cs a =
 
 clauseMarkNaive
     :: Set Symbol
-    -> (Marker, Expr)
+    -> Hypothesis
     -> Float
 clauseMarkNaive rs c =
-    let cs = symbols (snd c)
+    let cs = symbols (hypothesisFormula (snd c))
         r = cs `Set.intersection` rs
         ir = cs `Set.difference` r
     in int2Float (Set.size r) / int2Float (Set.size r + Set.size ir)

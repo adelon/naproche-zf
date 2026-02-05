@@ -38,7 +38,7 @@ encodeTask :: Task -> TextBuilder
 encodeTask Task{..} = buildTask (conjecture' : hypos')
     where
         conjecture' = encodeExpr taskConjecture
-        hypos' = encodeExpr . snd <$> taskHypotheses
+        hypos' = encodeExpr . hypothesisFormula . snd <$> taskHypotheses
 
 encodeExpr :: Expr -> TextBuilder
 encodeExpr = buildExpr . fmap encodeFreeVar

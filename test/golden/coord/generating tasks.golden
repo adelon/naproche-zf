@@ -3,7 +3,7 @@
     , taskHypotheses =
         [
             ( Marker "baz"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( Connected Equivalence
                         ( TermSymbol
@@ -71,7 +71,7 @@
             )
         ,
             ( Marker "foo"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( Connected Equivalence
                         ( TermSymbol
@@ -139,7 +139,7 @@
             )
         ,
             ( Marker "bar"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( Connected Equivalence
                         ( TermSymbol
@@ -211,7 +211,7 @@
             )
         ,
             ( Marker "nouns1"
-            , TermSymbol
+            , EncodedHypothesis TermSymbol
                 ( Location
                     { locFile = "<nowhere>"
                     , locLine = -1
@@ -238,7 +238,7 @@
             )
         ,
             ( Marker "nouns2"
-            , TermSymbol
+            , EncodedHypothesis TermSymbol
                 ( Location
                     { locFile = "<nowhere>"
                     , locLine = -1
@@ -296,7 +296,7 @@
     , taskHypotheses =
         [
             ( Marker "nouns"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( Connected Implication
                         ( Connected Conjunction
@@ -385,7 +385,7 @@
             )
         ,
             ( Marker "baz"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( Connected Equivalence
                         ( TermSymbol
@@ -453,7 +453,7 @@
             )
         ,
             ( Marker "foo"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( Connected Equivalence
                         ( TermSymbol
@@ -521,7 +521,7 @@
             )
         ,
             ( Marker "bar"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( Connected Equivalence
                         ( TermSymbol
@@ -593,7 +593,7 @@
             )
         ,
             ( Marker "adj_nouns1"
-            , Connected Conjunction
+            , EncodedHypothesis Connected Conjunction
                 ( TermSymbol
                     ( Location
                         { locFile = "<nowhere>"
@@ -643,7 +643,7 @@
             )
         ,
             ( Marker "adj_nouns2"
-            , Connected Conjunction
+            , EncodedHypothesis Connected Conjunction
                 ( TermSymbol
                     ( Location
                         { locFile = "<nowhere>"
@@ -724,7 +724,7 @@
     , taskHypotheses =
         [
             ( Marker "adj_nouns"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( Connected Implication
                         ( Connected Conjunction
@@ -863,7 +863,7 @@
             )
         ,
             ( Marker "nouns"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( Connected Implication
                         ( Connected Conjunction
@@ -952,7 +952,7 @@
             )
         ,
             ( Marker "baz"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( Connected Equivalence
                         ( TermSymbol
@@ -1020,7 +1020,7 @@
             )
         ,
             ( Marker "foo"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( Connected Equivalence
                         ( TermSymbol
@@ -1088,7 +1088,7 @@
             )
         ,
             ( Marker "bar"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( Connected Equivalence
                         ( TermSymbol
@@ -1160,7 +1160,7 @@
             )
         ,
             ( Marker "nouns_suchthat1"
-            , TermSymbol
+            , EncodedHypothesis TermSymbol
                 ( Location
                     { locFile = "<nowhere>"
                     , locLine = -1
@@ -1187,7 +1187,7 @@
             )
         ,
             ( Marker "nouns_suchthat2"
-            , TermSymbol
+            , EncodedHypothesis TermSymbol
                 ( Location
                     { locFile = "<nowhere>"
                     , locLine = -1
@@ -1214,7 +1214,7 @@
             )
         ,
             ( Marker "nouns_suchthat3"
-            , Connected Conjunction
+            , EncodedHypothesis Connected Conjunction
                 ( TermSymbol
                     ( Location
                         { locFile = "test/examples/coord.tex"
@@ -1291,7 +1291,7 @@
     , taskHypotheses =
         [
             ( Marker "nouns_suchthat"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( Connected Implication
                         ( Connected Conjunction
@@ -1430,7 +1430,7 @@
             )
         ,
             ( Marker "adj_nouns"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( Connected Implication
                         ( Connected Conjunction
@@ -1569,7 +1569,7 @@
             )
         ,
             ( Marker "nouns"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( Connected Implication
                         ( Connected Conjunction
@@ -1658,7 +1658,7 @@
             )
         ,
             ( Marker "baz"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( Connected Equivalence
                         ( TermSymbol
@@ -1726,7 +1726,7 @@
             )
         ,
             ( Marker "foo"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( Connected Equivalence
                         ( TermSymbol
@@ -1794,7 +1794,7 @@
             )
         ,
             ( Marker "bar"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( Connected Equivalence
                         ( TermSymbol
@@ -1947,7 +1947,7 @@
     , taskHypotheses =
         [
             ( Marker "noun_verb"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( Connected Equivalence
                         ( TermSymbol
@@ -2034,7 +2034,7 @@
             )
         ,
             ( Marker "nouns_suchthat"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( Connected Implication
                         ( Connected Conjunction
@@ -2173,7 +2173,7 @@
             )
         ,
             ( Marker "adj_nouns"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( Connected Implication
                         ( Connected Conjunction
@@ -2312,7 +2312,7 @@
             )
         ,
             ( Marker "nouns"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( Connected Implication
                         ( Connected Conjunction
@@ -2401,7 +2401,7 @@
             )
         ,
             ( Marker "baz"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( Connected Equivalence
                         ( TermSymbol
@@ -2469,7 +2469,7 @@
             )
         ,
             ( Marker "foo"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( Connected Equivalence
                         ( TermSymbol
@@ -2537,7 +2537,7 @@
             )
         ,
             ( Marker "bar"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( Connected Equivalence
                         ( TermSymbol
@@ -2663,7 +2663,7 @@
     , taskHypotheses =
         [
             ( Marker "adjs"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( Connected Conjunction
                         ( TermSymbol
@@ -2717,7 +2717,7 @@
             )
         ,
             ( Marker "noun_verb"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( Connected Equivalence
                         ( TermSymbol
@@ -2804,7 +2804,7 @@
             )
         ,
             ( Marker "nouns_suchthat"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( Connected Implication
                         ( Connected Conjunction
@@ -2943,7 +2943,7 @@
             )
         ,
             ( Marker "adj_nouns"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( Connected Implication
                         ( Connected Conjunction
@@ -3082,7 +3082,7 @@
             )
         ,
             ( Marker "nouns"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( Connected Implication
                         ( Connected Conjunction
@@ -3171,7 +3171,7 @@
             )
         ,
             ( Marker "baz"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( Connected Equivalence
                         ( TermSymbol
@@ -3239,7 +3239,7 @@
             )
         ,
             ( Marker "foo"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( Connected Equivalence
                         ( TermSymbol
@@ -3307,7 +3307,7 @@
             )
         ,
             ( Marker "bar"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( Connected Equivalence
                         ( TermSymbol
@@ -3379,7 +3379,7 @@
             )
         ,
             ( Marker "are_nouns1"
-            , Connected Conjunction
+            , EncodedHypothesis Connected Conjunction
                 ( TermSymbol
                     ( Location
                         { locFile = "<nowhere>"
@@ -3429,7 +3429,7 @@
             )
         ,
             ( Marker "are_nouns2"
-            , Connected Conjunction
+            , EncodedHypothesis Connected Conjunction
                 ( TermSymbol
                     ( Location
                         { locFile = "<nowhere>"

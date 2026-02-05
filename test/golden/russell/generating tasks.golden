@@ -40,7 +40,7 @@
     , taskHypotheses =
         [
             ( Marker "universal_set"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( Connected Equivalence
                         ( TermSymbol
@@ -112,7 +112,7 @@
             )
         ,
             ( Marker "no_universal_set1"
-            , Not
+            , EncodedHypothesis Not
                 ( Location
                     { locFile = "test/examples/russell.tex"
                     , locLine = 11
@@ -231,7 +231,7 @@
     , taskHypotheses =
         [
             ( Marker "universal_set"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( Connected Equivalence
                         ( TermSymbol
@@ -303,7 +303,7 @@
             )
         ,
             ( Marker "no_universal_set1"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( Connected Equivalence
                         ( TermSymbol
@@ -400,7 +400,7 @@
             )
         ,
             ( Marker "no_universal_set2"
-            , TermSymbol
+            , EncodedHypothesis TermSymbol
                 ( Location
                     { locFile = "test/examples/russell.tex"
                     , locLine = 12
@@ -423,7 +423,7 @@
             )
         ,
             ( Marker "no_universal_set3"
-            , Not
+            , EncodedHypothesis Not
                 ( Location
                     { locFile = "test/examples/russell.tex"
                     , locLine = 11
@@ -567,7 +567,7 @@
     , taskHypotheses =
         [
             ( Marker "universal_set"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( Connected Equivalence
                         ( TermSymbol
@@ -639,7 +639,7 @@
             )
         ,
             ( Marker "no_universal_set1"
-            , Connected Equivalence
+            , EncodedHypothesis Connected Equivalence
                 ( TermSymbol
                     ( Location
                         { locFile = "<nowhere>"
@@ -693,7 +693,7 @@
             )
         ,
             ( Marker "no_universal_set2"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( Connected Equivalence
                         ( TermSymbol
@@ -790,7 +790,7 @@
             )
         ,
             ( Marker "no_universal_set3"
-            , TermSymbol
+            , EncodedHypothesis TermSymbol
                 ( Location
                     { locFile = "test/examples/russell.tex"
                     , locLine = 12
@@ -813,7 +813,7 @@
             )
         ,
             ( Marker "no_universal_set4"
-            , Not
+            , EncodedHypothesis Not
                 ( Location
                     { locFile = "test/examples/russell.tex"
                     , locLine = 11
@@ -907,7 +907,7 @@
     , taskHypotheses =
         [
             ( Marker "universal_set"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( Connected Equivalence
                         ( TermSymbol
@@ -979,11 +979,11 @@
             )
         ,
             ( Marker "no_universal_set1"
-            , PropositionalConstant IsBottom
+            , EncodedHypothesis PropositionalConstant IsBottom
             )
         ,
             ( Marker "no_universal_set2"
-            , Connected Equivalence
+            , EncodedHypothesis Connected Equivalence
                 ( TermSymbol
                     ( Location
                         { locFile = "<nowhere>"
@@ -1037,7 +1037,7 @@
             )
         ,
             ( Marker "no_universal_set3"
-            , Quantified Universally
+            , EncodedHypothesis Quantified Universally
                 ( Scope
                     ( Connected Equivalence
                         ( TermSymbol
@@ -1134,7 +1134,7 @@
             )
         ,
             ( Marker "no_universal_set4"
-            , TermSymbol
+            , EncodedHypothesis TermSymbol
                 ( Location
                     { locFile = "test/examples/russell.tex"
                     , locLine = 12
@@ -1157,7 +1157,7 @@
             )
         ,
             ( Marker "no_universal_set5"
-            , Not
+            , EncodedHypothesis Not
                 ( Location
                     { locFile = "test/examples/russell.tex"
                     , locLine = 11
