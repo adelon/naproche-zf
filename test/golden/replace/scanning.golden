@@ -1,21 +1,21 @@
 [ ScanFunctionSymbol
-    [ Nothing
-    , Just
-        ( Command "times" )
-    , Nothing
-    ]
+    ( HoleCons
+        ( TokenCons
+            ( Command "times" ) ( HoleCons End )
+        )
+    )
     ( Marker "times" )
 , ScanFunctionSymbol
-    [ Just
-        ( Command "unit" )
-    ]
+    ( TokenCons
+        ( Command "unit" ) End
+    )
     ( Marker "unit" )
 , ScanFunctionSymbol
-    [ Just
+    ( TokenCons
         ( Command "suc" )
-    , Just InvisibleBraceL
-    , Nothing
-    , Just InvisibleBraceR
-    ]
+        ( TokenCons InvisibleBraceL
+            ( HoleCons ( TokenCons InvisibleBraceR End ) )
+        )
+    )
     ( Marker "suc" )
 ]

@@ -21,9 +21,12 @@ import Report.Location
 
 import Syntax.Abstract
     ( Chain(..)
+    , Associativity(..)
     , Connective(..)
     , VarSymbol(..)
     , FunctionSymbol
+    , MixfixItem(..)
+    , Pattern(..)
     , RelationSymbol
     , StructSymbol (..)
     , Relation
@@ -32,6 +35,9 @@ import Syntax.Abstract
     , StructPhrase
     , Justification(..)
     , Marker(..)
+    , markerFromToken
+    , mixfixMarker
+    , mkMixfixItem
     , pattern CarrierSymbol, pattern ConsSymbol, pattern ElementSymbol
     )
 
@@ -249,7 +255,10 @@ pattern TermOp :: Location -> FunctionSymbol -> [ExprOf a] -> ExprOf a
 pattern TermOp loc op es = TermSymbol loc (SymbolMixfix op) es
 
 pattern TermConst :: Location -> Token -> ExprOf a
-pattern TermConst loc c = TermOp loc [Just c] []
+pattern TermConst loc c <- TermOp loc (MixfixItem (TokenCons c End) _ NonAssoc) []
+    where
+        TermConst loc c =
+            TermOp loc (MixfixItem (TokenCons c End) (markerFromToken c) NonAssoc) []
 
 pattern TermPair :: Location -> ExprOf a -> ExprOf a -> ExprOf a
 pattern TermPair loc e1 e2 = TermOp loc PairSymbol [e1, e2]
@@ -358,7 +367,10 @@ pattern NotEquals :: Location -> ExprOf a -> ExprOf a -> ExprOf a
 pattern NotEquals loc e1 e2 = Atomic loc (PredicateRelation (Command "neq")) (e1 : [e2])
 
 pattern EmptySet :: Location -> ExprOf a
-pattern EmptySet loc = TermSymbol loc (SymbolMixfix [Just (Command "emptyset")]) []
+pattern EmptySet loc =
+    TermSymbol loc
+        (SymbolMixfix (MixfixItem (TokenCons (Command "emptyset") End) "emptyset" NonAssoc))
+        []
 
 makeConjunction :: [ExprOf a] -> ExprOf a
 makeConjunction = \case

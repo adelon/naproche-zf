@@ -30,15 +30,21 @@
                         }
                     )
                     ( SymbolMixfix
-                        [ Just
-                            ( Command "cons" )
-                        , Just InvisibleBraceL
-                        , Nothing
-                        , Just InvisibleBraceR
-                        , Just InvisibleBraceL
-                        , Nothing
-                        , Just InvisibleBraceR
-                        ]
+                        ( MixfixItem
+                            ( TokenCons
+                                ( Command "cons" )
+                                ( TokenCons InvisibleBraceL
+                                    ( HoleCons
+                                        ( TokenCons InvisibleBraceR
+                                            ( TokenCons InvisibleBraceL
+                                                ( HoleCons ( TokenCons InvisibleBraceR End ) )
+                                            )
+                                        )
+                                    )
+                                )
+                            )
+                            ( Marker "cons" ) NonAssoc
+                        )
                     )
                     [ TermVar
                         ( NamedVar "y" )
@@ -96,11 +102,14 @@
     )
     ( Marker "times" )
     ( DefnOp
-        [ Nothing
-        , Just
-            ( Command "times" )
-        , Nothing
-        ]
+        ( MixfixItem
+            ( HoleCons
+                ( TokenCons
+                    ( Command "times" ) ( HoleCons End )
+                )
+            )
+            ( Marker "times" ) RightAssoc
+        )
         [ NamedVar "A"
         , NamedVar "B"
         ]
@@ -126,15 +135,21 @@
                         }
                     )
                     ( SymbolMixfix
-                        [ Just
-                            ( Command "pair" )
-                        , Just InvisibleBraceL
-                        , Nothing
-                        , Just InvisibleBraceR
-                        , Just InvisibleBraceL
-                        , Nothing
-                        , Just InvisibleBraceR
-                        ]
+                        ( MixfixItem
+                            ( TokenCons
+                                ( Command "pair" )
+                                ( TokenCons InvisibleBraceL
+                                    ( HoleCons
+                                        ( TokenCons InvisibleBraceR
+                                            ( TokenCons InvisibleBraceL
+                                                ( HoleCons ( TokenCons InvisibleBraceR End ) )
+                                            )
+                                        )
+                                    )
+                                )
+                            )
+                            ( Marker "pair" ) NonAssoc
+                        )
                     )
                     [ TermVar
                         ( B
@@ -159,9 +174,12 @@
     )
     ( Marker "unit" )
     ( DefnOp
-        [ Just
-            ( Command "unit" )
-        ] []
+        ( MixfixItem
+            ( TokenCons
+                ( Command "unit" ) End
+            )
+            ( Marker "unit" ) NonAssoc
+        ) []
         ( TermSymbol
             ( Location
                 { locFile = "<nowhere>"
@@ -170,15 +188,21 @@
                 }
             )
             ( SymbolMixfix
-                [ Just
-                    ( Command "cons" )
-                , Just InvisibleBraceL
-                , Nothing
-                , Just InvisibleBraceR
-                , Just InvisibleBraceL
-                , Nothing
-                , Just InvisibleBraceR
-                ]
+                ( MixfixItem
+                    ( TokenCons
+                        ( Command "cons" )
+                        ( TokenCons InvisibleBraceL
+                            ( HoleCons
+                                ( TokenCons InvisibleBraceR
+                                    ( TokenCons InvisibleBraceL
+                                        ( HoleCons ( TokenCons InvisibleBraceR End ) )
+                                    )
+                                )
+                            )
+                        )
+                    )
+                    ( Marker "cons" ) NonAssoc
+                )
             )
             [ TermSymbol
                 ( Location
@@ -188,9 +212,12 @@
                     }
                 )
                 ( SymbolMixfix
-                    [ Just
-                        ( Command "emptyset" )
-                    ]
+                    ( MixfixItem
+                        ( TokenCons
+                            ( Command "emptyset" ) End
+                        )
+                        ( Marker "emptyset" ) NonAssoc
+                    )
                 ) []
             , TermSymbol
                 ( Location
@@ -200,9 +227,12 @@
                     }
                 )
                 ( SymbolMixfix
-                    [ Just
-                        ( Command "emptyset" )
-                    ]
+                    ( MixfixItem
+                        ( TokenCons
+                            ( Command "emptyset" ) End
+                        )
+                        ( Marker "emptyset" ) NonAssoc
+                    )
                 ) []
             ]
         )
@@ -236,15 +266,21 @@
                     }
                 )
                 ( SymbolMixfix
-                    [ Just
-                        ( Command "pair" )
-                    , Just InvisibleBraceL
-                    , Nothing
-                    , Just InvisibleBraceR
-                    , Just InvisibleBraceL
-                    , Nothing
-                    , Just InvisibleBraceR
-                    ]
+                    ( MixfixItem
+                        ( TokenCons
+                            ( Command "pair" )
+                            ( TokenCons InvisibleBraceL
+                                ( HoleCons
+                                    ( TokenCons InvisibleBraceR
+                                        ( TokenCons InvisibleBraceL
+                                            ( HoleCons ( TokenCons InvisibleBraceR End ) )
+                                        )
+                                    )
+                                )
+                            )
+                        )
+                        ( Marker "pair" ) NonAssoc
+                    )
                 )
                 [ TermSymbol
                     ( Location
@@ -254,9 +290,12 @@
                         }
                     )
                     ( SymbolMixfix
-                        [ Just
-                            ( Command "emptyset" )
-                        ]
+                        ( MixfixItem
+                            ( TokenCons
+                                ( Command "emptyset" ) End
+                            )
+                            ( Marker "emptyset" ) NonAssoc
+                        )
                     ) []
                 , TermSymbol
                     ( Location
@@ -266,9 +305,12 @@
                         }
                     )
                     ( SymbolMixfix
-                        [ Just
-                            ( Command "emptyset" )
-                        ]
+                        ( MixfixItem
+                            ( TokenCons
+                                ( Command "emptyset" ) End
+                            )
+                            ( Marker "emptyset" ) NonAssoc
+                        )
                     ) []
                 ]
             , TermSymbol
@@ -279,11 +321,14 @@
                     }
                 )
                 ( SymbolMixfix
-                    [ Nothing
-                    , Just
-                        ( Command "times" )
-                    , Nothing
-                    ]
+                    ( MixfixItem
+                        ( HoleCons
+                            ( TokenCons
+                                ( Command "times" ) ( HoleCons End )
+                            )
+                        )
+                        ( Marker "times" ) RightAssoc
+                    )
                 )
                 [ TermSymbol
                     ( Location
@@ -293,9 +338,12 @@
                         }
                     )
                     ( SymbolMixfix
-                        [ Just
-                            ( Command "unit" )
-                        ]
+                        ( MixfixItem
+                            ( TokenCons
+                                ( Command "unit" ) End
+                            )
+                            ( Marker "unit" ) NonAssoc
+                        )
                     ) []
                 , TermSymbol
                     ( Location
@@ -305,9 +353,12 @@
                         }
                     )
                     ( SymbolMixfix
-                        [ Just
-                            ( Command "unit" )
-                        ]
+                        ( MixfixItem
+                            ( TokenCons
+                                ( Command "unit" ) End
+                            )
+                            ( Marker "unit" ) NonAssoc
+                        )
                     ) []
                 ]
             ]
@@ -322,12 +373,15 @@
     )
     ( Marker "suc" )
     ( DefnOp
-        [ Just
-            ( Command "suc" )
-        , Just InvisibleBraceL
-        , Nothing
-        , Just InvisibleBraceR
-        ]
+        ( MixfixItem
+            ( TokenCons
+                ( Command "suc" )
+                ( TokenCons InvisibleBraceL
+                    ( HoleCons ( TokenCons InvisibleBraceR End ) )
+                )
+            )
+            ( Marker "suc" ) NonAssoc
+        )
         [ NamedVar "a" ]
         ( ReplacePred
             ( NamedVar "y" )
@@ -357,15 +411,21 @@
                             }
                         )
                         ( SymbolMixfix
-                            [ Just
-                                ( Command "cons" )
-                            , Just InvisibleBraceL
-                            , Nothing
-                            , Just InvisibleBraceR
-                            , Just InvisibleBraceL
-                            , Nothing
-                            , Just InvisibleBraceR
-                            ]
+                            ( MixfixItem
+                                ( TokenCons
+                                    ( Command "cons" )
+                                    ( TokenCons InvisibleBraceL
+                                        ( HoleCons
+                                            ( TokenCons InvisibleBraceR
+                                                ( TokenCons InvisibleBraceL
+                                                    ( HoleCons ( TokenCons InvisibleBraceR End ) )
+                                                )
+                                            )
+                                        )
+                                    )
+                                )
+                                ( Marker "cons" ) NonAssoc
+                            )
                         )
                         [ TermVar ( B ReplacementDomVar )
                         , TermSymbol
@@ -376,9 +436,12 @@
                                 }
                             )
                             ( SymbolMixfix
-                                [ Just
-                                    ( Command "emptyset" )
-                                ]
+                                ( MixfixItem
+                                    ( TokenCons
+                                        ( Command "emptyset" ) End
+                                    )
+                                    ( Marker "emptyset" ) NonAssoc
+                                )
                             ) []
                         ]
                     ]
@@ -415,11 +478,14 @@
                     }
                 )
                 ( SymbolMixfix
-                    [ Nothing
-                    , Just
-                        ( Command "times" )
-                    , Nothing
-                    ]
+                    ( MixfixItem
+                        ( HoleCons
+                            ( TokenCons
+                                ( Command "times" ) ( HoleCons End )
+                            )
+                        )
+                        ( Marker "times" ) RightAssoc
+                    )
                 )
                 [ TermVar
                     ( NamedVar "A" )
@@ -448,15 +514,21 @@
                             }
                         )
                         ( SymbolMixfix
-                            [ Just
-                                ( Command "pair" )
-                            , Just InvisibleBraceL
-                            , Nothing
-                            , Just InvisibleBraceR
-                            , Just InvisibleBraceL
-                            , Nothing
-                            , Just InvisibleBraceR
-                            ]
+                            ( MixfixItem
+                                ( TokenCons
+                                    ( Command "pair" )
+                                    ( TokenCons InvisibleBraceL
+                                        ( HoleCons
+                                            ( TokenCons InvisibleBraceR
+                                                ( TokenCons InvisibleBraceL
+                                                    ( HoleCons ( TokenCons InvisibleBraceR End ) )
+                                                )
+                                            )
+                                        )
+                                    )
+                                )
+                                ( Marker "pair" ) NonAssoc
+                            )
                         )
                         [ TermVar
                             ( B

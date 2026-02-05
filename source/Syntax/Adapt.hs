@@ -44,7 +44,7 @@ data ScannedLexicalItem
     | ScanStructNoun LexicalPhrase Marker
     | ScanVerb LexicalPhrase Marker
     | ScanRelationSymbol RelationSymbol Marker
-    | ScanFunctionSymbol FunctionSymbol Marker
+    | ScanFunctionSymbol Pattern Marker
     | ScanPrefixPredicate PrefixPredicate Marker
     | ScanStructOp Text -- we an use the command text as export name.
     deriving (Show, Eq)
@@ -197,7 +197,7 @@ relationSymbolRE = do
             vars <- many (sym InvisibleBraceL *> var <* sym InvisibleBraceR)
             pure (length vars)
 
-functionSymbolRE :: RE Token FunctionSymbol
+functionSymbolRE :: RE Token Pattern
 functionSymbolRE = do
     sym (BeginEnv "math")
     toks <- few nonDefinitionKeyword
@@ -207,18 +207,18 @@ functionSymbolRE = do
             [] -> error "Malformed function pattern: no pattern"
             [Variable _] -> error "Malformed function: bare variable. This will cause infinite left recursion in the grammar and cause the parser to hang!"
             [Variable _, ParenL, Variable _, ParenR] -> error "Malformed function: redefinition of function application. The notation _(_) is reserved for set-theoretic function application."
-            _ -> fromToken <$> toks
+            _ -> patternFromHoley (fromToken <$> toks)
     where
         fromToken = \case
             Variable _ -> Nothing -- Variables become slots.
             tok -> Just tok -- Everything else is part of the pattern.
 
-functionSymbolInductive :: RE Token FunctionSymbol
+functionSymbolInductive :: RE Token Pattern
 functionSymbolInductive = do
     sym (BeginEnv "math")
     toks <- few nonDefinitionKeyword
     sym (Command "subseteq")
-    pure (fromToken <$> toks)
+    pure (patternFromHoley (fromToken <$> toks))
     where
         fromToken = \case
             Variable _ -> Nothing -- Variables become slots.
@@ -428,14 +428,16 @@ extendLexicon (scan : scans) lexicon@Lexicon{..} = case scan of
         extendLexicon scans lexicon{lexiconStructNouns = insertR (guessNounPlural item) m lexiconStructNouns}
     ScanRelationSymbol item m ->
         extendLexicon scans lexicon{lexiconRelationSymbols = insertR item m lexiconRelationSymbols}
-    ScanFunctionSymbol item m ->
-        if item `Map.member` lexiconMixfixMarkers
+    ScanFunctionSymbol pat m ->
+        if mixfixPatternExists pat lexiconMixfixTable
             then extendLexicon scans lexicon
             else extendLexicon scans lexicon
-                { lexiconMixfixTable = Seq.adjust (Map.insert item NonAssoc) 9 lexiconMixfixTable
-                , lexiconMixfixMarkers = Map.insert item m lexiconMixfixMarkers
+                { lexiconMixfixTable = Seq.adjust (Map.insert pat (MixfixItem pat m NonAssoc)) 9 lexiconMixfixTable
                 }
     ScanStructOp op ->
         extendLexicon scans lexicon{lexiconStructFun = insertR (StructSymbol op) (Marker op) lexiconStructFun}
     ScanPrefixPredicate tok m ->
         extendLexicon scans lexicon{lexiconPrefixPredicates = insertR tok m lexiconPrefixPredicates}
+
+mixfixPatternExists :: Pattern -> Seq (Map Pattern MixfixItem) -> Bool
+mixfixPatternExists pat table = any (Map.member pat) table

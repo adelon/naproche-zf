@@ -43,18 +43,24 @@
     ( Marker "pow" )
     ( DefnOp
         ( SymbolPattern
-            [ Just
-                ( Command "pow" )
-            , Just InvisibleBraceL
-            , Nothing
-            , Just InvisibleBraceR
-            ]
+            ( MixfixItem
+                ( TokenCons
+                    ( Command "pow" )
+                    ( TokenCons InvisibleBraceL
+                        ( HoleCons ( TokenCons InvisibleBraceR End ) )
+                    )
+                )
+                ( Marker "pow" ) NonAssoc
+            )
             [ NamedVar "A" ]
         )
         ( ExprOp
-            [ Just
-                ( Command "emptyset" )
-            ] []
+            ( MixfixItem
+                ( TokenCons
+                    ( Command "emptyset" ) End
+                )
+                ( Marker "emptyset" ) NonAssoc
+            ) []
         )
     )
 , BlockDefn
@@ -67,23 +73,32 @@
     ( Marker "cons" )
     ( DefnOp
         ( SymbolPattern
-            [ Just
-                ( Command "cons" )
-            , Just InvisibleBraceL
-            , Nothing
-            , Just InvisibleBraceR
-            , Just InvisibleBraceL
-            , Nothing
-            , Just InvisibleBraceR
-            ]
+            ( MixfixItem
+                ( TokenCons
+                    ( Command "cons" )
+                    ( TokenCons InvisibleBraceL
+                        ( HoleCons
+                            ( TokenCons InvisibleBraceR
+                                ( TokenCons InvisibleBraceL
+                                    ( HoleCons ( TokenCons InvisibleBraceR End ) )
+                                )
+                            )
+                        )
+                    )
+                )
+                ( Marker "cons" ) NonAssoc
+            )
             [ NamedVar "a"
             , NamedVar "B"
             ]
         )
         ( ExprOp
-            [ Just
-                ( Command "emptyset" )
-            ] []
+            ( MixfixItem
+                ( TokenCons
+                    ( Command "emptyset" ) End
+                )
+                ( Marker "emptyset" ) NonAssoc
+            ) []
         )
     )
 , BlockDefn
@@ -96,19 +111,25 @@
     ( Marker "times" )
     ( DefnOp
         ( SymbolPattern
-            [ Nothing
-            , Just
-                ( Command "times" )
-            , Nothing
-            ]
+            ( MixfixItem
+                ( HoleCons
+                    ( TokenCons
+                        ( Command "times" ) ( HoleCons End )
+                    )
+                )
+                ( Marker "times" ) RightAssoc
+            )
             [ NamedVar "A"
             , NamedVar "B"
             ]
         )
         ( ExprOp
-            [ Just
-                ( Command "emptyset" )
-            ] []
+            ( MixfixItem
+                ( TokenCons
+                    ( Command "emptyset" ) End
+                )
+                ( Marker "emptyset" ) NonAssoc
+            ) []
         )
     )
 , BlockDefn
@@ -121,18 +142,24 @@
     ( Marker "fld" )
     ( DefnOp
         ( SymbolPattern
-            [ Just
-                ( Command "fld" )
-            , Just InvisibleBraceL
-            , Nothing
-            , Just InvisibleBraceR
-            ]
+            ( MixfixItem
+                ( TokenCons
+                    ( Command "fld" )
+                    ( TokenCons InvisibleBraceL
+                        ( HoleCons ( TokenCons InvisibleBraceR End ) )
+                    )
+                )
+                ( Marker "fld" ) NonAssoc
+            )
             [ NamedVar "R" ]
         )
         ( ExprOp
-            [ Just
-                ( Command "emptyset" )
-            ] []
+            ( MixfixItem
+                ( TokenCons
+                    ( Command "emptyset" ) End
+                )
+                ( Marker "emptyset" ) NonAssoc
+            ) []
         )
     )
 , BlockDefn
@@ -145,23 +172,32 @@
     ( Marker "preimg" )
     ( DefnOp
         ( SymbolPattern
-            [ Just
-                ( Command "preimg" )
-            , Just InvisibleBraceL
-            , Nothing
-            , Just InvisibleBraceR
-            , Just InvisibleBraceL
-            , Nothing
-            , Just InvisibleBraceR
-            ]
+            ( MixfixItem
+                ( TokenCons
+                    ( Command "preimg" )
+                    ( TokenCons InvisibleBraceL
+                        ( HoleCons
+                            ( TokenCons InvisibleBraceR
+                                ( TokenCons InvisibleBraceL
+                                    ( HoleCons ( TokenCons InvisibleBraceR End ) )
+                                )
+                            )
+                        )
+                    )
+                )
+                ( Marker "preimg" ) NonAssoc
+            )
             [ NamedVar "R"
             , NamedVar "A"
             ]
         )
         ( ExprOp
-            [ Just
-                ( Command "emptyset" )
-            ] []
+            ( MixfixItem
+                ( TokenCons
+                    ( Command "emptyset" ) End
+                )
+                ( Marker "emptyset" ) NonAssoc
+            ) []
         )
     )
 , BlockAxiom
@@ -188,9 +224,12 @@
                         ( Command "in" ) []
                     )
                     ( ExprOp
-                        [ Just
-                            ( Command "emptyset" )
-                        ] [] :| []
+                        ( MixfixItem
+                            ( TokenCons
+                                ( Command "emptyset" ) End
+                            )
+                            ( Marker "emptyset" ) NonAssoc
+                        ) [] :| []
                     )
                 )
             }
@@ -206,20 +245,26 @@
     ( Marker "fin" )
     ( Inductive
         { inductiveSymbolPattern = SymbolPattern
-            [ Just
-                ( Command "fin" )
-            , Just InvisibleBraceL
-            , Nothing
-            , Just InvisibleBraceR
-            ]
+            ( MixfixItem
+                ( TokenCons
+                    ( Command "fin" )
+                    ( TokenCons InvisibleBraceL
+                        ( HoleCons ( TokenCons InvisibleBraceR End ) )
+                    )
+                )
+                ( Marker "fin" ) NonAssoc
+            )
             [ NamedVar "A" ]
         , inductiveDomain = ExprOp
-            [ Just
-                ( Command "pow" )
-            , Just InvisibleBraceL
-            , Nothing
-            , Just InvisibleBraceR
-            ]
+            ( MixfixItem
+                ( TokenCons
+                    ( Command "pow" )
+                    ( TokenCons InvisibleBraceL
+                        ( HoleCons ( TokenCons InvisibleBraceR End ) )
+                    )
+                )
+                ( Marker "pow" ) NonAssoc
+            )
             [ ExprVar
                 ( NamedVar "A" )
             ]
@@ -228,20 +273,26 @@
             , introResult = FormulaChain
                 ( ChainBase
                     ( ExprOp
-                        [ Just
-                            ( Command "emptyset" )
-                        ] [] :| []
+                        ( MixfixItem
+                            ( TokenCons
+                                ( Command "emptyset" ) End
+                            )
+                            ( Marker "emptyset" ) NonAssoc
+                        ) [] :| []
                     ) Positive
                     ( RelationSymbol
                         ( Command "in" ) []
                     )
                     ( ExprOp
-                        [ Just
-                            ( Command "fin" )
-                        , Just InvisibleBraceL
-                        , Nothing
-                        , Just InvisibleBraceR
-                        ]
+                        ( MixfixItem
+                            ( TokenCons
+                                ( Command "fin" )
+                                ( TokenCons InvisibleBraceL
+                                    ( HoleCons ( TokenCons InvisibleBraceR End ) )
+                                )
+                            )
+                            ( Marker "fin" ) NonAssoc
+                        )
                         [ ExprVar
                             ( NamedVar "A" )
                         ] :| []
@@ -271,12 +322,15 @@
                                 ( Command "in" ) []
                             )
                             ( ExprOp
-                                [ Just
-                                    ( Command "fin" )
-                                , Just InvisibleBraceL
-                                , Nothing
-                                , Just InvisibleBraceR
-                                ]
+                                ( MixfixItem
+                                    ( TokenCons
+                                        ( Command "fin" )
+                                        ( TokenCons InvisibleBraceL
+                                            ( HoleCons ( TokenCons InvisibleBraceR End ) )
+                                        )
+                                    )
+                                    ( Marker "fin" ) NonAssoc
+                                )
                                 [ ExprVar
                                     ( NamedVar "A" )
                                 ] :| []
@@ -286,15 +340,21 @@
                 , introResult = FormulaChain
                     ( ChainBase
                         ( ExprOp
-                            [ Just
-                                ( Command "cons" )
-                            , Just InvisibleBraceL
-                            , Nothing
-                            , Just InvisibleBraceR
-                            , Just InvisibleBraceL
-                            , Nothing
-                            , Just InvisibleBraceR
-                            ]
+                            ( MixfixItem
+                                ( TokenCons
+                                    ( Command "cons" )
+                                    ( TokenCons InvisibleBraceL
+                                        ( HoleCons
+                                            ( TokenCons InvisibleBraceR
+                                                ( TokenCons InvisibleBraceL
+                                                    ( HoleCons ( TokenCons InvisibleBraceR End ) )
+                                                )
+                                            )
+                                        )
+                                    )
+                                )
+                                ( Marker "cons" ) NonAssoc
+                            )
                             [ ExprVar
                                 ( NamedVar "a" )
                             , ExprVar
@@ -305,12 +365,15 @@
                             ( Command "in" ) []
                         )
                         ( ExprOp
-                            [ Just
-                                ( Command "fin" )
-                            , Just InvisibleBraceL
-                            , Nothing
-                            , Just InvisibleBraceR
-                            ]
+                            ( MixfixItem
+                                ( TokenCons
+                                    ( Command "fin" )
+                                    ( TokenCons InvisibleBraceL
+                                        ( HoleCons ( TokenCons InvisibleBraceR End ) )
+                                    )
+                                )
+                                ( Marker "fin" ) NonAssoc
+                            )
                             [ ExprVar
                                 ( NamedVar "A" )
                             ] :| []
@@ -377,12 +440,15 @@
             , formula = FormulaChain
                 ( ChainBase
                     ( ExprOp
-                        [ Just
-                            ( Command "fin" )
-                        , Just InvisibleBraceL
-                        , Nothing
-                        , Just InvisibleBraceR
-                        ]
+                        ( MixfixItem
+                            ( TokenCons
+                                ( Command "fin" )
+                                ( TokenCons InvisibleBraceL
+                                    ( HoleCons ( TokenCons InvisibleBraceR End ) )
+                                )
+                            )
+                            ( Marker "fin" ) NonAssoc
+                        )
                         [ ExprVar
                             ( NamedVar "A" )
                         ] :| []
@@ -391,12 +457,15 @@
                         ( Command "subseteq" ) []
                     )
                     ( ExprOp
-                        [ Just
-                            ( Command "fin" )
-                        , Just InvisibleBraceL
-                        , Nothing
-                        , Just InvisibleBraceR
-                        ]
+                        ( MixfixItem
+                            ( TokenCons
+                                ( Command "fin" )
+                                ( TokenCons InvisibleBraceL
+                                    ( HoleCons ( TokenCons InvisibleBraceR End ) )
+                                )
+                            )
+                            ( Marker "fin" ) NonAssoc
+                        )
                         [ ExprVar
                             ( NamedVar "B" )
                         ] :| []
@@ -415,36 +484,48 @@
     ( Marker "tracl" )
     ( Inductive
         { inductiveSymbolPattern = SymbolPattern
-            [ Just
-                ( Command "tracl" )
-            , Just InvisibleBraceL
-            , Nothing
-            , Just InvisibleBraceR
-            ]
+            ( MixfixItem
+                ( TokenCons
+                    ( Command "tracl" )
+                    ( TokenCons InvisibleBraceL
+                        ( HoleCons ( TokenCons InvisibleBraceR End ) )
+                    )
+                )
+                ( Marker "tracl" ) NonAssoc
+            )
             [ NamedVar "R" ]
         , inductiveDomain = ExprOp
-            [ Nothing
-            , Just
-                ( Command "times" )
-            , Nothing
-            ]
+            ( MixfixItem
+                ( HoleCons
+                    ( TokenCons
+                        ( Command "times" ) ( HoleCons End )
+                    )
+                )
+                ( Marker "times" ) RightAssoc
+            )
             [ ExprOp
-                [ Just
-                    ( Command "fld" )
-                , Just InvisibleBraceL
-                , Nothing
-                , Just InvisibleBraceR
-                ]
+                ( MixfixItem
+                    ( TokenCons
+                        ( Command "fld" )
+                        ( TokenCons InvisibleBraceL
+                            ( HoleCons ( TokenCons InvisibleBraceR End ) )
+                        )
+                    )
+                    ( Marker "fld" ) NonAssoc
+                )
                 [ ExprVar
                     ( NamedVar "R" )
                 ]
             , ExprOp
-                [ Just
-                    ( Command "fld" )
-                , Just InvisibleBraceL
-                , Nothing
-                , Just InvisibleBraceR
-                ]
+                ( MixfixItem
+                    ( TokenCons
+                        ( Command "fld" )
+                        ( TokenCons InvisibleBraceL
+                            ( HoleCons ( TokenCons InvisibleBraceR End ) )
+                        )
+                    )
+                    ( Marker "fld" ) NonAssoc
+                )
                 [ ExprVar
                     ( NamedVar "R" )
                 ]
@@ -473,12 +554,15 @@
                         ( Command "in" ) []
                     )
                     ( ExprOp
-                        [ Just
-                            ( Command "tracl" )
-                        , Just InvisibleBraceL
-                        , Nothing
-                        , Just InvisibleBraceR
-                        ]
+                        ( MixfixItem
+                            ( TokenCons
+                                ( Command "tracl" )
+                                ( TokenCons InvisibleBraceL
+                                    ( HoleCons ( TokenCons InvisibleBraceR End ) )
+                                )
+                            )
+                            ( Marker "tracl" ) NonAssoc
+                        )
                         [ ExprVar
                             ( NamedVar "R" )
                         ] :| []
@@ -490,15 +574,21 @@
                     [ FormulaChain
                         ( ChainBase
                             ( ExprOp
-                                [ Just
-                                    ( Command "pair" )
-                                , Just InvisibleBraceL
-                                , Nothing
-                                , Just InvisibleBraceR
-                                , Just InvisibleBraceL
-                                , Nothing
-                                , Just InvisibleBraceR
-                                ]
+                                ( MixfixItem
+                                    ( TokenCons
+                                        ( Command "pair" )
+                                        ( TokenCons InvisibleBraceL
+                                            ( HoleCons
+                                                ( TokenCons InvisibleBraceR
+                                                    ( TokenCons InvisibleBraceL
+                                                        ( HoleCons ( TokenCons InvisibleBraceR End ) )
+                                                    )
+                                                )
+                                            )
+                                        )
+                                    )
+                                    ( Marker "pair" ) NonAssoc
+                                )
                                 [ ExprVar
                                     ( NamedVar "a" )
                                 , ExprVar
@@ -509,12 +599,15 @@
                                 ( Command "in" ) []
                             )
                             ( ExprOp
-                                [ Just
-                                    ( Command "tracl" )
-                                , Just InvisibleBraceL
-                                , Nothing
-                                , Just InvisibleBraceR
-                                ]
+                                ( MixfixItem
+                                    ( TokenCons
+                                        ( Command "tracl" )
+                                        ( TokenCons InvisibleBraceL
+                                            ( HoleCons ( TokenCons InvisibleBraceR End ) )
+                                        )
+                                    )
+                                    ( Marker "tracl" ) NonAssoc
+                                )
                                 [ ExprVar
                                     ( NamedVar "R" )
                                 ] :| []
@@ -523,15 +616,21 @@
                     , FormulaChain
                         ( ChainBase
                             ( ExprOp
-                                [ Just
-                                    ( Command "pair" )
-                                , Just InvisibleBraceL
-                                , Nothing
-                                , Just InvisibleBraceR
-                                , Just InvisibleBraceL
-                                , Nothing
-                                , Just InvisibleBraceR
-                                ]
+                                ( MixfixItem
+                                    ( TokenCons
+                                        ( Command "pair" )
+                                        ( TokenCons InvisibleBraceL
+                                            ( HoleCons
+                                                ( TokenCons InvisibleBraceR
+                                                    ( TokenCons InvisibleBraceL
+                                                        ( HoleCons ( TokenCons InvisibleBraceR End ) )
+                                                    )
+                                                )
+                                            )
+                                        )
+                                    )
+                                    ( Marker "pair" ) NonAssoc
+                                )
                                 [ ExprVar
                                     ( NamedVar "b" )
                                 , ExprVar
@@ -549,15 +648,21 @@
                 , introResult = FormulaChain
                     ( ChainBase
                         ( ExprOp
-                            [ Just
-                                ( Command "pair" )
-                            , Just InvisibleBraceL
-                            , Nothing
-                            , Just InvisibleBraceR
-                            , Just InvisibleBraceL
-                            , Nothing
-                            , Just InvisibleBraceR
-                            ]
+                            ( MixfixItem
+                                ( TokenCons
+                                    ( Command "pair" )
+                                    ( TokenCons InvisibleBraceL
+                                        ( HoleCons
+                                            ( TokenCons InvisibleBraceR
+                                                ( TokenCons InvisibleBraceL
+                                                    ( HoleCons ( TokenCons InvisibleBraceR End ) )
+                                                )
+                                            )
+                                        )
+                                    )
+                                )
+                                ( Marker "pair" ) NonAssoc
+                            )
                             [ ExprVar
                                 ( NamedVar "a" )
                             , ExprVar
@@ -568,12 +673,15 @@
                             ( Command "in" ) []
                         )
                         ( ExprOp
-                            [ Just
-                                ( Command "tracl" )
-                            , Just InvisibleBraceL
-                            , Nothing
-                            , Just InvisibleBraceR
-                            ]
+                            ( MixfixItem
+                                ( TokenCons
+                                    ( Command "tracl" )
+                                    ( TokenCons InvisibleBraceL
+                                        ( HoleCons ( TokenCons InvisibleBraceR End ) )
+                                    )
+                                )
+                                ( Marker "tracl" ) NonAssoc
+                            )
                             [ ExprVar
                                 ( NamedVar "R" )
                             ] :| []
@@ -593,36 +701,48 @@
     ( Marker "quasirefltracl" )
     ( Inductive
         { inductiveSymbolPattern = SymbolPattern
-            [ Just
-                ( Command "qrefltracl" )
-            , Just InvisibleBraceL
-            , Nothing
-            , Just InvisibleBraceR
-            ]
+            ( MixfixItem
+                ( TokenCons
+                    ( Command "qrefltracl" )
+                    ( TokenCons InvisibleBraceL
+                        ( HoleCons ( TokenCons InvisibleBraceR End ) )
+                    )
+                )
+                ( Marker "quasirefltracl" ) NonAssoc
+            )
             [ NamedVar "R" ]
         , inductiveDomain = ExprOp
-            [ Nothing
-            , Just
-                ( Command "times" )
-            , Nothing
-            ]
+            ( MixfixItem
+                ( HoleCons
+                    ( TokenCons
+                        ( Command "times" ) ( HoleCons End )
+                    )
+                )
+                ( Marker "times" ) RightAssoc
+            )
             [ ExprOp
-                [ Just
-                    ( Command "fld" )
-                , Just InvisibleBraceL
-                , Nothing
-                , Just InvisibleBraceR
-                ]
+                ( MixfixItem
+                    ( TokenCons
+                        ( Command "fld" )
+                        ( TokenCons InvisibleBraceL
+                            ( HoleCons ( TokenCons InvisibleBraceR End ) )
+                        )
+                    )
+                    ( Marker "fld" ) NonAssoc
+                )
                 [ ExprVar
                     ( NamedVar "R" )
                 ]
             , ExprOp
-                [ Just
-                    ( Command "fld" )
-                , Just InvisibleBraceL
-                , Nothing
-                , Just InvisibleBraceR
-                ]
+                ( MixfixItem
+                    ( TokenCons
+                        ( Command "fld" )
+                        ( TokenCons InvisibleBraceL
+                            ( HoleCons ( TokenCons InvisibleBraceR End ) )
+                        )
+                    )
+                    ( Marker "fld" ) NonAssoc
+                )
                 [ ExprVar
                     ( NamedVar "R" )
                 ]
@@ -638,12 +758,15 @@
                             ( Command "in" ) []
                         )
                         ( ExprOp
-                            [ Just
-                                ( Command "fld" )
-                            , Just InvisibleBraceL
-                            , Nothing
-                            , Just InvisibleBraceR
-                            ]
+                            ( MixfixItem
+                                ( TokenCons
+                                    ( Command "fld" )
+                                    ( TokenCons InvisibleBraceL
+                                        ( HoleCons ( TokenCons InvisibleBraceR End ) )
+                                    )
+                                )
+                                ( Marker "fld" ) NonAssoc
+                            )
                             [ ExprVar
                                 ( NamedVar "R" )
                             ] :| []
@@ -653,15 +776,21 @@
             , introResult = FormulaChain
                 ( ChainBase
                     ( ExprOp
-                        [ Just
-                            ( Command "pair" )
-                        , Just InvisibleBraceL
-                        , Nothing
-                        , Just InvisibleBraceR
-                        , Just InvisibleBraceL
-                        , Nothing
-                        , Just InvisibleBraceR
-                        ]
+                        ( MixfixItem
+                            ( TokenCons
+                                ( Command "pair" )
+                                ( TokenCons InvisibleBraceL
+                                    ( HoleCons
+                                        ( TokenCons InvisibleBraceR
+                                            ( TokenCons InvisibleBraceL
+                                                ( HoleCons ( TokenCons InvisibleBraceR End ) )
+                                            )
+                                        )
+                                    )
+                                )
+                            )
+                            ( Marker "pair" ) NonAssoc
+                        )
                         [ ExprVar
                             ( NamedVar "a" )
                         , ExprVar
@@ -672,12 +801,15 @@
                         ( Command "in" ) []
                     )
                     ( ExprOp
-                        [ Just
-                            ( Command "qrefltracl" )
-                        , Just InvisibleBraceL
-                        , Nothing
-                        , Just InvisibleBraceR
-                        ]
+                        ( MixfixItem
+                            ( TokenCons
+                                ( Command "qrefltracl" )
+                                ( TokenCons InvisibleBraceL
+                                    ( HoleCons ( TokenCons InvisibleBraceR End ) )
+                                )
+                            )
+                            ( Marker "quasirefltracl" ) NonAssoc
+                        )
                         [ ExprVar
                             ( NamedVar "R" )
                         ] :| []
@@ -689,15 +821,21 @@
                     [ FormulaChain
                         ( ChainBase
                             ( ExprOp
-                                [ Just
-                                    ( Command "pair" )
-                                , Just InvisibleBraceL
-                                , Nothing
-                                , Just InvisibleBraceR
-                                , Just InvisibleBraceL
-                                , Nothing
-                                , Just InvisibleBraceR
-                                ]
+                                ( MixfixItem
+                                    ( TokenCons
+                                        ( Command "pair" )
+                                        ( TokenCons InvisibleBraceL
+                                            ( HoleCons
+                                                ( TokenCons InvisibleBraceR
+                                                    ( TokenCons InvisibleBraceL
+                                                        ( HoleCons ( TokenCons InvisibleBraceR End ) )
+                                                    )
+                                                )
+                                            )
+                                        )
+                                    )
+                                    ( Marker "pair" ) NonAssoc
+                                )
                                 [ ExprVar
                                     ( NamedVar "a" )
                                 , ExprVar
@@ -708,12 +846,15 @@
                                 ( Command "in" ) []
                             )
                             ( ExprOp
-                                [ Just
-                                    ( Command "qrefltracl" )
-                                , Just InvisibleBraceL
-                                , Nothing
-                                , Just InvisibleBraceR
-                                ]
+                                ( MixfixItem
+                                    ( TokenCons
+                                        ( Command "qrefltracl" )
+                                        ( TokenCons InvisibleBraceL
+                                            ( HoleCons ( TokenCons InvisibleBraceR End ) )
+                                        )
+                                    )
+                                    ( Marker "quasirefltracl" ) NonAssoc
+                                )
                                 [ ExprVar
                                     ( NamedVar "R" )
                                 ] :| []
@@ -722,15 +863,21 @@
                     , FormulaChain
                         ( ChainBase
                             ( ExprOp
-                                [ Just
-                                    ( Command "pair" )
-                                , Just InvisibleBraceL
-                                , Nothing
-                                , Just InvisibleBraceR
-                                , Just InvisibleBraceL
-                                , Nothing
-                                , Just InvisibleBraceR
-                                ]
+                                ( MixfixItem
+                                    ( TokenCons
+                                        ( Command "pair" )
+                                        ( TokenCons InvisibleBraceL
+                                            ( HoleCons
+                                                ( TokenCons InvisibleBraceR
+                                                    ( TokenCons InvisibleBraceL
+                                                        ( HoleCons ( TokenCons InvisibleBraceR End ) )
+                                                    )
+                                                )
+                                            )
+                                        )
+                                    )
+                                    ( Marker "pair" ) NonAssoc
+                                )
                                 [ ExprVar
                                     ( NamedVar "b" )
                                 , ExprVar
@@ -748,15 +895,21 @@
                 , introResult = FormulaChain
                     ( ChainBase
                         ( ExprOp
-                            [ Just
-                                ( Command "pair" )
-                            , Just InvisibleBraceL
-                            , Nothing
-                            , Just InvisibleBraceR
-                            , Just InvisibleBraceL
-                            , Nothing
-                            , Just InvisibleBraceR
-                            ]
+                            ( MixfixItem
+                                ( TokenCons
+                                    ( Command "pair" )
+                                    ( TokenCons InvisibleBraceL
+                                        ( HoleCons
+                                            ( TokenCons InvisibleBraceR
+                                                ( TokenCons InvisibleBraceL
+                                                    ( HoleCons ( TokenCons InvisibleBraceR End ) )
+                                                )
+                                            )
+                                        )
+                                    )
+                                )
+                                ( Marker "pair" ) NonAssoc
+                            )
                             [ ExprVar
                                 ( NamedVar "a" )
                             , ExprVar
@@ -767,12 +920,15 @@
                             ( Command "in" ) []
                         )
                         ( ExprOp
-                            [ Just
-                                ( Command "qrefltracl" )
-                            , Just InvisibleBraceL
-                            , Nothing
-                            , Just InvisibleBraceR
-                            ]
+                            ( MixfixItem
+                                ( TokenCons
+                                    ( Command "qrefltracl" )
+                                    ( TokenCons InvisibleBraceL
+                                        ( HoleCons ( TokenCons InvisibleBraceR End ) )
+                                    )
+                                )
+                                ( Marker "quasirefltracl" ) NonAssoc
+                            )
                             [ ExprVar
                                 ( NamedVar "R" )
                             ] :| []
@@ -792,24 +948,33 @@
     ( Marker "refltracl" )
     ( Inductive
         { inductiveSymbolPattern = SymbolPattern
-            [ Just
-                ( Command "refltracl" )
-            , Just InvisibleBraceL
-            , Nothing
-            , Just InvisibleBraceR
-            , Just InvisibleBraceL
-            , Nothing
-            , Just InvisibleBraceR
-            ]
+            ( MixfixItem
+                ( TokenCons
+                    ( Command "refltracl" )
+                    ( TokenCons InvisibleBraceL
+                        ( HoleCons
+                            ( TokenCons InvisibleBraceR
+                                ( TokenCons InvisibleBraceL
+                                    ( HoleCons ( TokenCons InvisibleBraceR End ) )
+                                )
+                            )
+                        )
+                    )
+                )
+                ( Marker "refltracl" ) NonAssoc
+            )
             [ NamedVar "A"
             , NamedVar "R"
             ]
         , inductiveDomain = ExprOp
-            [ Nothing
-            , Just
-                ( Command "times" )
-            , Nothing
-            ]
+            ( MixfixItem
+                ( HoleCons
+                    ( TokenCons
+                        ( Command "times" ) ( HoleCons End )
+                    )
+                )
+                ( Marker "times" ) RightAssoc
+            )
             [ ExprVar
                 ( NamedVar "A" )
             , ExprVar
@@ -833,15 +998,21 @@
             , introResult = FormulaChain
                 ( ChainBase
                     ( ExprOp
-                        [ Just
-                            ( Command "pair" )
-                        , Just InvisibleBraceL
-                        , Nothing
-                        , Just InvisibleBraceR
-                        , Just InvisibleBraceL
-                        , Nothing
-                        , Just InvisibleBraceR
-                        ]
+                        ( MixfixItem
+                            ( TokenCons
+                                ( Command "pair" )
+                                ( TokenCons InvisibleBraceL
+                                    ( HoleCons
+                                        ( TokenCons InvisibleBraceR
+                                            ( TokenCons InvisibleBraceL
+                                                ( HoleCons ( TokenCons InvisibleBraceR End ) )
+                                            )
+                                        )
+                                    )
+                                )
+                            )
+                            ( Marker "pair" ) NonAssoc
+                        )
                         [ ExprVar
                             ( NamedVar "a" )
                         , ExprVar
@@ -852,15 +1023,21 @@
                         ( Command "in" ) []
                     )
                     ( ExprOp
-                        [ Just
-                            ( Command "refltracl" )
-                        , Just InvisibleBraceL
-                        , Nothing
-                        , Just InvisibleBraceR
-                        , Just InvisibleBraceL
-                        , Nothing
-                        , Just InvisibleBraceR
-                        ]
+                        ( MixfixItem
+                            ( TokenCons
+                                ( Command "refltracl" )
+                                ( TokenCons InvisibleBraceL
+                                    ( HoleCons
+                                        ( TokenCons InvisibleBraceR
+                                            ( TokenCons InvisibleBraceL
+                                                ( HoleCons ( TokenCons InvisibleBraceR End ) )
+                                            )
+                                        )
+                                    )
+                                )
+                            )
+                            ( Marker "refltracl" ) NonAssoc
+                        )
                         [ ExprVar
                             ( NamedVar "A" )
                         , ExprVar
@@ -874,15 +1051,21 @@
                     [ FormulaChain
                         ( ChainBase
                             ( ExprOp
-                                [ Just
-                                    ( Command "pair" )
-                                , Just InvisibleBraceL
-                                , Nothing
-                                , Just InvisibleBraceR
-                                , Just InvisibleBraceL
-                                , Nothing
-                                , Just InvisibleBraceR
-                                ]
+                                ( MixfixItem
+                                    ( TokenCons
+                                        ( Command "pair" )
+                                        ( TokenCons InvisibleBraceL
+                                            ( HoleCons
+                                                ( TokenCons InvisibleBraceR
+                                                    ( TokenCons InvisibleBraceL
+                                                        ( HoleCons ( TokenCons InvisibleBraceR End ) )
+                                                    )
+                                                )
+                                            )
+                                        )
+                                    )
+                                    ( Marker "pair" ) NonAssoc
+                                )
                                 [ ExprVar
                                     ( NamedVar "a" )
                                 , ExprVar
@@ -893,15 +1076,21 @@
                                 ( Command "in" ) []
                             )
                             ( ExprOp
-                                [ Just
-                                    ( Command "refltracl" )
-                                , Just InvisibleBraceL
-                                , Nothing
-                                , Just InvisibleBraceR
-                                , Just InvisibleBraceL
-                                , Nothing
-                                , Just InvisibleBraceR
-                                ]
+                                ( MixfixItem
+                                    ( TokenCons
+                                        ( Command "refltracl" )
+                                        ( TokenCons InvisibleBraceL
+                                            ( HoleCons
+                                                ( TokenCons InvisibleBraceR
+                                                    ( TokenCons InvisibleBraceL
+                                                        ( HoleCons ( TokenCons InvisibleBraceR End ) )
+                                                    )
+                                                )
+                                            )
+                                        )
+                                    )
+                                    ( Marker "refltracl" ) NonAssoc
+                                )
                                 [ ExprVar
                                     ( NamedVar "A" )
                                 , ExprVar
@@ -912,15 +1101,21 @@
                     , FormulaChain
                         ( ChainBase
                             ( ExprOp
-                                [ Just
-                                    ( Command "pair" )
-                                , Just InvisibleBraceL
-                                , Nothing
-                                , Just InvisibleBraceR
-                                , Just InvisibleBraceL
-                                , Nothing
-                                , Just InvisibleBraceR
-                                ]
+                                ( MixfixItem
+                                    ( TokenCons
+                                        ( Command "pair" )
+                                        ( TokenCons InvisibleBraceL
+                                            ( HoleCons
+                                                ( TokenCons InvisibleBraceR
+                                                    ( TokenCons InvisibleBraceL
+                                                        ( HoleCons ( TokenCons InvisibleBraceR End ) )
+                                                    )
+                                                )
+                                            )
+                                        )
+                                    )
+                                    ( Marker "pair" ) NonAssoc
+                                )
                                 [ ExprVar
                                     ( NamedVar "b" )
                                 , ExprVar
@@ -938,15 +1133,21 @@
                 , introResult = FormulaChain
                     ( ChainBase
                         ( ExprOp
-                            [ Just
-                                ( Command "pair" )
-                            , Just InvisibleBraceL
-                            , Nothing
-                            , Just InvisibleBraceR
-                            , Just InvisibleBraceL
-                            , Nothing
-                            , Just InvisibleBraceR
-                            ]
+                            ( MixfixItem
+                                ( TokenCons
+                                    ( Command "pair" )
+                                    ( TokenCons InvisibleBraceL
+                                        ( HoleCons
+                                            ( TokenCons InvisibleBraceR
+                                                ( TokenCons InvisibleBraceL
+                                                    ( HoleCons ( TokenCons InvisibleBraceR End ) )
+                                                )
+                                            )
+                                        )
+                                    )
+                                )
+                                ( Marker "pair" ) NonAssoc
+                            )
                             [ ExprVar
                                 ( NamedVar "a" )
                             , ExprVar
@@ -957,15 +1158,21 @@
                             ( Command "in" ) []
                         )
                         ( ExprOp
-                            [ Just
-                                ( Command "refltracl" )
-                            , Just InvisibleBraceL
-                            , Nothing
-                            , Just InvisibleBraceR
-                            , Just InvisibleBraceL
-                            , Nothing
-                            , Just InvisibleBraceR
-                            ]
+                            ( MixfixItem
+                                ( TokenCons
+                                    ( Command "refltracl" )
+                                    ( TokenCons InvisibleBraceL
+                                        ( HoleCons
+                                            ( TokenCons InvisibleBraceR
+                                                ( TokenCons InvisibleBraceL
+                                                    ( HoleCons ( TokenCons InvisibleBraceR End ) )
+                                                )
+                                            )
+                                        )
+                                    )
+                                )
+                                ( Marker "refltracl" ) NonAssoc
+                            )
                             [ ExprVar
                                 ( NamedVar "A" )
                             , ExprVar
@@ -987,20 +1194,26 @@
     ( Marker "acc" )
     ( Inductive
         { inductiveSymbolPattern = SymbolPattern
-            [ Just
-                ( Command "acc" )
-            , Just InvisibleBraceL
-            , Nothing
-            , Just InvisibleBraceR
-            ]
+            ( MixfixItem
+                ( TokenCons
+                    ( Command "acc" )
+                    ( TokenCons InvisibleBraceL
+                        ( HoleCons ( TokenCons InvisibleBraceR End ) )
+                    )
+                )
+                ( Marker "acc" ) NonAssoc
+            )
             [ NamedVar "R" ]
         , inductiveDomain = ExprOp
-            [ Just
-                ( Command "fld" )
-            , Just InvisibleBraceL
-            , Nothing
-            , Just InvisibleBraceR
-            ]
+            ( MixfixItem
+                ( TokenCons
+                    ( Command "fld" )
+                    ( TokenCons InvisibleBraceL
+                        ( HoleCons ( TokenCons InvisibleBraceR End ) )
+                    )
+                )
+                ( Marker "fld" ) NonAssoc
+            )
             [ ExprVar
                 ( NamedVar "R" )
             ]
@@ -1015,12 +1228,15 @@
                             ( Command "in" ) []
                         )
                         ( ExprOp
-                            [ Just
-                                ( Command "fld" )
-                            , Just InvisibleBraceL
-                            , Nothing
-                            , Just InvisibleBraceR
-                            ]
+                            ( MixfixItem
+                                ( TokenCons
+                                    ( Command "fld" )
+                                    ( TokenCons InvisibleBraceL
+                                        ( HoleCons ( TokenCons InvisibleBraceR End ) )
+                                    )
+                                )
+                                ( Marker "fld" ) NonAssoc
+                            )
                             [ ExprVar
                                 ( NamedVar "R" )
                             ] :| []
@@ -1029,15 +1245,21 @@
                 , FormulaChain
                     ( ChainBase
                         ( ExprOp
-                            [ Just
-                                ( Command "preimg" )
-                            , Just InvisibleBraceL
-                            , Nothing
-                            , Just InvisibleBraceR
-                            , Just InvisibleBraceL
-                            , Nothing
-                            , Just InvisibleBraceR
-                            ]
+                            ( MixfixItem
+                                ( TokenCons
+                                    ( Command "preimg" )
+                                    ( TokenCons InvisibleBraceL
+                                        ( HoleCons
+                                            ( TokenCons InvisibleBraceR
+                                                ( TokenCons InvisibleBraceL
+                                                    ( HoleCons ( TokenCons InvisibleBraceR End ) )
+                                                )
+                                            )
+                                        )
+                                    )
+                                )
+                                ( Marker "preimg" ) NonAssoc
+                            )
                             [ ExprVar
                                 ( NamedVar "R" )
                             , ExprFiniteSet
@@ -1050,19 +1272,25 @@
                             ( Command "in" ) []
                         )
                         ( ExprOp
-                            [ Just
-                                ( Command "pow" )
-                            , Just InvisibleBraceL
-                            , Nothing
-                            , Just InvisibleBraceR
-                            ]
+                            ( MixfixItem
+                                ( TokenCons
+                                    ( Command "pow" )
+                                    ( TokenCons InvisibleBraceL
+                                        ( HoleCons ( TokenCons InvisibleBraceR End ) )
+                                    )
+                                )
+                                ( Marker "pow" ) NonAssoc
+                            )
                             [ ExprOp
-                                [ Just
-                                    ( Command "acc" )
-                                , Just InvisibleBraceL
-                                , Nothing
-                                , Just InvisibleBraceR
-                                ]
+                                ( MixfixItem
+                                    ( TokenCons
+                                        ( Command "acc" )
+                                        ( TokenCons InvisibleBraceL
+                                            ( HoleCons ( TokenCons InvisibleBraceR End ) )
+                                        )
+                                    )
+                                    ( Marker "acc" ) NonAssoc
+                                )
                                 [ ExprVar
                                     ( NamedVar "R" )
                                 ]
@@ -1079,12 +1307,15 @@
                         ( Command "in" ) []
                     )
                     ( ExprOp
-                        [ Just
-                            ( Command "acc" )
-                        , Just InvisibleBraceL
-                        , Nothing
-                        , Just InvisibleBraceR
-                        ]
+                        ( MixfixItem
+                            ( TokenCons
+                                ( Command "acc" )
+                                ( TokenCons InvisibleBraceL
+                                    ( HoleCons ( TokenCons InvisibleBraceR End ) )
+                                )
+                            )
+                            ( Marker "acc" ) NonAssoc
+                        )
                         [ ExprVar
                             ( NamedVar "R" )
                         ] :| []

@@ -7,15 +7,21 @@
     )
     ( Marker "apply" )
     ( DefnOp
-        [ Just
-            ( Command "apply" )
-        , Just InvisibleBraceL
-        , Nothing
-        , Just InvisibleBraceR
-        , Just InvisibleBraceL
-        , Nothing
-        , Just InvisibleBraceR
-        ]
+        ( MixfixItem
+            ( TokenCons
+                ( Command "apply" )
+                ( TokenCons InvisibleBraceL
+                    ( HoleCons
+                        ( TokenCons InvisibleBraceR
+                            ( TokenCons InvisibleBraceL
+                                ( HoleCons ( TokenCons InvisibleBraceR End ) )
+                            )
+                        )
+                    )
+                )
+            )
+            ( Marker "apply" ) NonAssoc
+        )
         [ NamedVar "f"
         , NamedVar "x"
         ]
@@ -32,12 +38,15 @@
     )
     ( Marker "dom" )
     ( DefnOp
-        [ Just
-            ( Command "dom" )
-        , Just InvisibleBraceL
-        , Nothing
-        , Just InvisibleBraceR
-        ]
+        ( MixfixItem
+            ( TokenCons
+                ( Command "dom" )
+                ( TokenCons InvisibleBraceL
+                    ( HoleCons ( TokenCons InvisibleBraceR End ) )
+                )
+            )
+            ( Marker "dom" ) NonAssoc
+        )
         [ NamedVar "f" ]
         ( TermVar
             ( NamedVar "f" )

@@ -31,8 +31,7 @@ import Syntax.Mixfix (Holey)
 
 
 data Lexicon = Lexicon
-    { lexiconMixfixTable        :: Seq (Map (Holey Token) Associativity)
-    , lexiconMixfixMarkers      :: Map (Holey Token) Marker
+    { lexiconMixfixTable        :: Seq (Map Pattern MixfixItem)
     , lexiconConnectives        :: [[(Holey Token, Associativity)]]
     , lexiconPrefixPredicates   :: LexicalItems PrefixPredicate
     , lexiconStructFun          :: LexicalItems StructSymbol
@@ -50,11 +49,6 @@ data Lexicon = Lexicon
 lexiconAdjs :: Lexicon -> Map LexicalPhrase Marker
 lexiconAdjs lexicon = lexiconAdjLs lexicon <> lexiconAdjRs lexicon
 
-lookupOp :: FunctionSymbol -> Map (Holey Token) Marker-> Either String Marker
-lookupOp f ops = case Map.lookup f ops of
-    Just m -> Right m
-    Nothing -> Left (show f)
-
 lookupLexicalItem :: (Ord a, Show a) => a -> LexicalItems a -> Either String Marker
 lookupLexicalItem a items = case Map.lookup a items of
     Just m -> Right m
@@ -65,7 +59,6 @@ type LexicalItems a = Map a Marker
 builtins :: Lexicon
 builtins = Lexicon
     { lexiconMixfixTable        = builtinMixfixTable
-    , lexiconMixfixMarkers      = builtinMixfixMarkers
     , lexiconPrefixPredicates   = builtinPrefixPredicates
     , lexiconStructFun          = builtinStructOps
     , lexiconConnectives        = builtinConnectives
@@ -78,15 +71,14 @@ builtins = Lexicon
     , lexiconFuns               = mempty
     }
 
-builtinMixfixMarkers :: Map FunctionSymbol Marker
-builtinMixfixMarkers = fmap snd (fold builtinMixfix)
-
-builtinMixfixTable :: Seq (Map (Holey Token) Associativity)
-builtinMixfixTable = fmap (Map.map fst) builtinMixfix
+builtinMixfixTable :: Seq (Map Pattern MixfixItem)
+builtinMixfixTable = Seq.fromList $ Map.fromList . fmap toEntry <$> builtinMixfixLevels
+    where
+        toEntry item@(MixfixItem pat _ _) = (pat, item)
 
 -- INVARIANT: 10 precedence levels for now.
-builtinMixfix :: Seq (Map FunctionSymbol (Associativity, Marker))
-builtinMixfix = Seq.fromList $ (Map.fromList <$>)
+builtinMixfixLevels :: [[MixfixItem]]
+builtinMixfixLevels =
     [ []
     , [binOp (Symbol "+") LeftAssoc "add", binOp (Command "union") LeftAssoc "union", binOp (Symbol "-") LeftAssoc "minus", binOp (Command "rminus") LeftAssoc "rminus", binOp (Command "monus") LeftAssoc "monus"]
     , [binOp (Command "relcomp") LeftAssoc "relcomp"]
@@ -99,7 +91,7 @@ builtinMixfix = Seq.fromList $ (Map.fromList <$>)
     , builtinIdentifiers
     ]
     where
-        builtinIdentifiers :: [(FunctionSymbol, (Associativity, Marker))]
+        builtinIdentifiers :: [MixfixItem]
         builtinIdentifiers = identifier <$>
             [ "emptyset"
             , "naturals"
@@ -112,21 +104,21 @@ builtinMixfix = Seq.fromList $ (Map.fromList <$>)
             ]
 
 
-prefixOps :: [(FunctionSymbol, (Associativity, Marker))]
+prefixOps :: [MixfixItem]
 prefixOps =
-    [ ([Just (Command "rfrac"), Just InvisibleBraceL, Nothing, Just InvisibleBraceR, Just InvisibleBraceL, Nothing, Just InvisibleBraceR], (NonAssoc, "rfrac"))
-    , ([Just (Command "exp"), Just InvisibleBraceL, Nothing, Just InvisibleBraceR, Just InvisibleBraceL, Nothing, Just InvisibleBraceR], (NonAssoc, "exp"))
-    , ([Just (Command "unions"), Just InvisibleBraceL, Nothing, Just InvisibleBraceR], (NonAssoc, "unions"))
-    , ([Just (Command "cumul"), Just InvisibleBraceL, Nothing, Just InvisibleBraceR], (NonAssoc, "cumul"))
-    , ([Just (Command "fst"), Just InvisibleBraceL, Nothing, Just InvisibleBraceR], (NonAssoc, "fst"))
-    , ([Just (Command "snd"), Just InvisibleBraceL, Nothing, Just InvisibleBraceR], (NonAssoc, "snd"))
-    , ([Just (Command "pow"), Just InvisibleBraceL, Nothing, Just InvisibleBraceR], (NonAssoc, "pow"))
-    , ([Just (Command "neg"), Just InvisibleBraceL, Nothing, Just InvisibleBraceR], (NonAssoc, "neg"))
-    , ([Just (Command "inv"), Just InvisibleBraceL, Nothing, Just InvisibleBraceR], (NonAssoc, "inv"))
-    , ([Just (Command "abs"), Just InvisibleBraceL, Nothing, Just InvisibleBraceR], (NonAssoc, "abs"))
-    , (ConsSymbol, (NonAssoc, "cons"))
-    , (PairSymbol, (NonAssoc, "pair"))
-    -- NOTE Is now defined and hence no longer necessary , (ApplySymbol, (NonAssoc, "apply"))
+    [ mkMixfixItem [Just (Command "rfrac"), Just InvisibleBraceL, Nothing, Just InvisibleBraceR, Just InvisibleBraceL, Nothing, Just InvisibleBraceR] "rfrac" NonAssoc
+    , mkMixfixItem [Just (Command "exp"), Just InvisibleBraceL, Nothing, Just InvisibleBraceR, Just InvisibleBraceL, Nothing, Just InvisibleBraceR] "exp" NonAssoc
+    , mkMixfixItem [Just (Command "unions"), Just InvisibleBraceL, Nothing, Just InvisibleBraceR] "unions" NonAssoc
+    , mkMixfixItem [Just (Command "cumul"), Just InvisibleBraceL, Nothing, Just InvisibleBraceR] "cumul" NonAssoc
+    , mkMixfixItem [Just (Command "fst"), Just InvisibleBraceL, Nothing, Just InvisibleBraceR] "fst" NonAssoc
+    , mkMixfixItem [Just (Command "snd"), Just InvisibleBraceL, Nothing, Just InvisibleBraceR] "snd" NonAssoc
+    , mkMixfixItem [Just (Command "pow"), Just InvisibleBraceL, Nothing, Just InvisibleBraceR] "pow" NonAssoc
+    , mkMixfixItem [Just (Command "neg"), Just InvisibleBraceL, Nothing, Just InvisibleBraceR] "neg" NonAssoc
+    , mkMixfixItem [Just (Command "inv"), Just InvisibleBraceL, Nothing, Just InvisibleBraceR] "inv" NonAssoc
+    , mkMixfixItem [Just (Command "abs"), Just InvisibleBraceL, Nothing, Just InvisibleBraceR] "abs" NonAssoc
+    , ConsSymbol
+    , PairSymbol
+    -- NOTE Is now defined and hence no longer necessary , ApplySymbol
     ]
 
 
@@ -135,8 +127,8 @@ builtinStructOps = Map.fromList
     [ (CarrierSymbol, "carrier")
     ]
 
-identifier :: Text -> (Holey Token, (Associativity, Marker))
-identifier cmd = ([Just (Command cmd)], (NonAssoc, Marker cmd))
+identifier :: Text -> MixfixItem
+identifier cmd = mkMixfixItem [Just (Command cmd)] (Marker cmd) NonAssoc
 
 
 builtinRelationSymbols :: LexicalItems RelationSymbol
@@ -165,8 +157,8 @@ builtinConnectives =
     ]
 
 
-binOp :: Token -> Associativity -> Marker -> (Holey Token, (Associativity, Marker))
-binOp tok assoc m = ([Nothing, Just tok, Nothing], (assoc, m))
+binOp :: Token -> Associativity -> Marker -> MixfixItem
+binOp tok assoc m = mkMixfixItem [Nothing, Just tok, Nothing] m assoc
 
 binOp' :: Token -> Associativity -> (Holey Token, Associativity)
 binOp' tok assoc = ([Nothing, Just tok, Nothing], assoc)

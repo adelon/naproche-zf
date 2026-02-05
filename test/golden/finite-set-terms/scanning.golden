@@ -1,6 +1,6 @@
 [ ScanFunctionSymbol
-    [ Just
-        ( Command "unit" )
-    ]
+    ( TokenCons
+        ( Command "unit" ) End
+    )
     ( Marker "unit" )
 ]

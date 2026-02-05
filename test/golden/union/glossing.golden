@@ -117,11 +117,14 @@
                         }
                     )
                     ( SymbolMixfix
-                        [ Nothing
-                        , Just
-                            ( Command "union" )
-                        , Nothing
-                        ]
+                        ( MixfixItem
+                            ( HoleCons
+                                ( TokenCons
+                                    ( Command "union" ) ( HoleCons End )
+                                )
+                            )
+                            ( Marker "union" ) LeftAssoc
+                        )
                     )
                     [ TermVar
                         ( NamedVar "A" )
@@ -199,11 +202,14 @@
                     }
                 )
                 ( SymbolMixfix
-                    [ Nothing
-                    , Just
-                        ( Command "union" )
-                    , Nothing
-                    ]
+                    ( MixfixItem
+                        ( HoleCons
+                            ( TokenCons
+                                ( Command "union" ) ( HoleCons End )
+                            )
+                        )
+                        ( Marker "union" ) LeftAssoc
+                    )
                 )
                 [ TermVar
                     ( NamedVar "A" )
@@ -218,11 +224,14 @@
                     }
                 )
                 ( SymbolMixfix
-                    [ Nothing
-                    , Just
-                        ( Command "union" )
-                    , Nothing
-                    ]
+                    ( MixfixItem
+                        ( HoleCons
+                            ( TokenCons
+                                ( Command "union" ) ( HoleCons End )
+                            )
+                        )
+                        ( Marker "union" ) LeftAssoc
+                    )
                 )
                 [ TermVar
                     ( NamedVar "B" )
@@ -261,11 +270,14 @@
                     }
                 )
                 ( SymbolMixfix
-                    [ Nothing
-                    , Just
-                        ( Command "union" )
-                    , Nothing
-                    ]
+                    ( MixfixItem
+                        ( HoleCons
+                            ( TokenCons
+                                ( Command "union" ) ( HoleCons End )
+                            )
+                        )
+                        ( Marker "union" ) LeftAssoc
+                    )
                 )
                 [ TermSymbol
                     ( Location
@@ -275,11 +287,14 @@
                         }
                     )
                     ( SymbolMixfix
-                        [ Nothing
-                        , Just
-                            ( Command "union" )
-                        , Nothing
-                        ]
+                        ( MixfixItem
+                            ( HoleCons
+                                ( TokenCons
+                                    ( Command "union" ) ( HoleCons End )
+                                )
+                            )
+                            ( Marker "union" ) LeftAssoc
+                        )
                     )
                     [ TermVar
                         ( NamedVar "A" )
@@ -297,11 +312,14 @@
                     }
                 )
                 ( SymbolMixfix
-                    [ Nothing
-                    , Just
-                        ( Command "union" )
-                    , Nothing
-                    ]
+                    ( MixfixItem
+                        ( HoleCons
+                            ( TokenCons
+                                ( Command "union" ) ( HoleCons End )
+                            )
+                        )
+                        ( Marker "union" ) LeftAssoc
+                    )
                 )
                 [ TermVar
                     ( NamedVar "A" )
@@ -313,11 +331,14 @@
                         }
                     )
                     ( SymbolMixfix
-                        [ Nothing
-                        , Just
-                            ( Command "union" )
-                        , Nothing
-                        ]
+                        ( MixfixItem
+                            ( HoleCons
+                                ( TokenCons
+                                    ( Command "union" ) ( HoleCons End )
+                                )
+                            )
+                            ( Marker "union" ) LeftAssoc
+                        )
                     )
                     [ TermVar
                         ( NamedVar "B" )
@@ -375,11 +396,14 @@
                                 }
                             )
                             ( SymbolMixfix
-                                [ Nothing
-                                , Just
-                                    ( Command "union" )
-                                , Nothing
-                                ]
+                                ( MixfixItem
+                                    ( HoleCons
+                                        ( TokenCons
+                                            ( Command "union" ) ( HoleCons End )
+                                        )
+                                    )
+                                    ( Marker "union" ) LeftAssoc
+                                )
                             )
                             [ TermSymbol
                                 ( Location
@@ -389,11 +413,14 @@
                                     }
                                 )
                                 ( SymbolMixfix
-                                    [ Nothing
-                                    , Just
-                                        ( Command "union" )
-                                    , Nothing
-                                    ]
+                                    ( MixfixItem
+                                        ( HoleCons
+                                            ( TokenCons
+                                                ( Command "union" ) ( HoleCons End )
+                                            )
+                                        )
+                                        ( Marker "union" ) LeftAssoc
+                                    )
                                 )
                                 [ TermVar
                                     ( F
@@ -441,11 +468,14 @@
                                 }
                             )
                             ( SymbolMixfix
-                                [ Nothing
-                                , Just
-                                    ( Command "union" )
-                                , Nothing
-                                ]
+                                ( MixfixItem
+                                    ( HoleCons
+                                        ( TokenCons
+                                            ( Command "union" ) ( HoleCons End )
+                                        )
+                                    )
+                                    ( Marker "union" ) LeftAssoc
+                                )
                             )
                             [ TermVar
                                 ( F
@@ -461,11 +491,14 @@
                                     }
                                 )
                                 ( SymbolMixfix
-                                    [ Nothing
-                                    , Just
-                                        ( Command "union" )
-                                    , Nothing
-                                    ]
+                                    ( MixfixItem
+                                        ( HoleCons
+                                            ( TokenCons
+                                                ( Command "union" ) ( HoleCons End )
+                                            )
+                                        )
+                                        ( Marker "union" ) LeftAssoc
+                                    )
                                 )
                                 [ TermVar
                                     ( F
@@ -520,11 +553,14 @@
                                     }
                                 )
                                 ( SymbolMixfix
-                                    [ Nothing
-                                    , Just
-                                        ( Command "union" )
-                                    , Nothing
-                                    ]
+                                    ( MixfixItem
+                                        ( HoleCons
+                                            ( TokenCons
+                                                ( Command "union" ) ( HoleCons End )
+                                            )
+                                        )
+                                        ( Marker "union" ) LeftAssoc
+                                    )
                                 )
                                 [ TermVar
                                     ( F
@@ -540,11 +576,14 @@
                                         }
                                     )
                                     ( SymbolMixfix
-                                        [ Nothing
-                                        , Just
-                                            ( Command "union" )
-                                        , Nothing
-                                        ]
+                                        ( MixfixItem
+                                            ( HoleCons
+                                                ( TokenCons
+                                                    ( Command "union" ) ( HoleCons End )
+                                                )
+                                            )
+                                            ( Marker "union" ) LeftAssoc
+                                        )
                                     )
                                     [ TermVar
                                         ( F
@@ -586,11 +625,14 @@
                                     }
                                 )
                                 ( SymbolMixfix
-                                    [ Nothing
-                                    , Just
-                                        ( Command "union" )
-                                    , Nothing
-                                    ]
+                                    ( MixfixItem
+                                        ( HoleCons
+                                            ( TokenCons
+                                                ( Command "union" ) ( HoleCons End )
+                                            )
+                                        )
+                                        ( Marker "union" ) LeftAssoc
+                                    )
                                 )
                                 [ TermSymbol
                                     ( Location
@@ -600,11 +642,14 @@
                                         }
                                     )
                                     ( SymbolMixfix
-                                        [ Nothing
-                                        , Just
-                                            ( Command "union" )
-                                        , Nothing
-                                        ]
+                                        ( MixfixItem
+                                            ( HoleCons
+                                                ( TokenCons
+                                                    ( Command "union" ) ( HoleCons End )
+                                                )
+                                            )
+                                            ( Marker "union" ) LeftAssoc
+                                        )
                                     )
                                     [ TermVar
                                         ( F

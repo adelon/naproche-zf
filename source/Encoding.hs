@@ -160,7 +160,7 @@ instantiator bv = TermVar (BoundVar (encodeBoundVar bv))
 encodeSymbol :: Lexicon -> Symbol -> Tptp.AtomicWord
 encodeSymbol l symb = atomicWordFromRightMarker case symb of
     SymbolMixfix op ->
-        lookupOp op (lexiconMixfixMarkers l)
+        Right (mixfixMarker op)
     SymbolFun fun ->
         lookupLexicalItem fun (lexiconFuns l)
     SymbolInteger n ->

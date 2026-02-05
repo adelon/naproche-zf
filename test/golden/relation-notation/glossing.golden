@@ -28,15 +28,21 @@
                         }
                     )
                     ( SymbolMixfix
-                        [ Just
-                            ( Command "pair" )
-                        , Just InvisibleBraceL
-                        , Nothing
-                        , Just InvisibleBraceR
-                        , Just InvisibleBraceL
-                        , Nothing
-                        , Just InvisibleBraceR
-                        ]
+                        ( MixfixItem
+                            ( TokenCons
+                                ( Command "pair" )
+                                ( TokenCons InvisibleBraceL
+                                    ( HoleCons
+                                        ( TokenCons InvisibleBraceR
+                                            ( TokenCons InvisibleBraceL
+                                                ( HoleCons ( TokenCons InvisibleBraceR End ) )
+                                            )
+                                        )
+                                    )
+                                )
+                            )
+                            ( Marker "pair" ) NonAssoc
+                        )
                     )
                     [ TermVar
                         ( NamedVar "x" )
@@ -67,15 +73,21 @@
                         }
                     )
                     ( SymbolMixfix
-                        [ Just
-                            ( Command "pair" )
-                        , Just InvisibleBraceL
-                        , Nothing
-                        , Just InvisibleBraceR
-                        , Just InvisibleBraceL
-                        , Nothing
-                        , Just InvisibleBraceR
-                        ]
+                        ( MixfixItem
+                            ( TokenCons
+                                ( Command "pair" )
+                                ( TokenCons InvisibleBraceL
+                                    ( HoleCons
+                                        ( TokenCons InvisibleBraceR
+                                            ( TokenCons InvisibleBraceL
+                                                ( HoleCons ( TokenCons InvisibleBraceR End ) )
+                                            )
+                                        )
+                                    )
+                                )
+                            )
+                            ( Marker "pair" ) NonAssoc
+                        )
                     )
                     [ TermVar
                         ( NamedVar "x" )

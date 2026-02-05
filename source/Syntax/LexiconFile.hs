@@ -8,7 +8,6 @@ import Syntax.Abstract
 import Data.Char (isAlphaNum, isAsciiLower, isLetter, isDigit)
 import Data.Text qualified as Text
 import Data.Text.IO qualified as Text
-import Text.Earley.Mixfix (Holey)
 import Text.Megaparsec hiding (Token, Label, label)
 import Text.Megaparsec.Char qualified as Char
 import UnliftIO.Directory
@@ -54,5 +53,5 @@ tokenSingle :: LexiconFileParser Token
 tokenSingle = Command <$> (single '\\' *> takeWhile1P Nothing (\x -> isAlphaNum x))
 
 -- TODO allow spaces
-tokenPattern :: LexiconFileParser (Holey Token)
-tokenPattern = some (Just <$> tokenSingle <|> Nothing <$ single '?')
+tokenPattern :: LexiconFileParser Pattern
+tokenPattern = patternFromHoley <$> some (Just <$> tokenSingle <|> Nothing <$ single '?')

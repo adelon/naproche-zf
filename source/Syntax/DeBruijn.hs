@@ -15,9 +15,12 @@ import Syntax.Token (Token(..))
 
 import Syntax.Abstract
     ( Chain(..)
+    , Associativity(..)
     , Connective(..)
     , VarSymbol(..)
     , FunctionSymbol
+    , MixfixItem(..)
+    , Pattern(..)
     , RelationSymbol
     , StructSymbol (..)
     , Relation
@@ -25,6 +28,7 @@ import Syntax.Abstract
     , StructPhrase
     , Justification(..)
     , Marker(..)
+    , markerFromToken
     , pattern CarrierSymbol, pattern ConsSymbol, pattern ElementSymbol
     )
 
@@ -312,7 +316,9 @@ pattern TermOp :: FunctionSymbol -> [Expr] -> Expr
 pattern TermOp op es = TermSymbol (SymbolMixfix op) es
 
 pattern TermConst :: Token -> Expr
-pattern TermConst c = TermOp [Just c] []
+pattern TermConst c <- TermOp (MixfixItem (TokenCons c End) _ NonAssoc) []
+    where
+        TermConst c = TermOp (MixfixItem (TokenCons c End) (markerFromToken c) NonAssoc) []
 
 pattern TermPair :: Expr -> Expr -> Expr
 pattern TermPair e1 e2 = TermOp PairSymbol [e1, e2]
@@ -432,7 +438,10 @@ pattern NotEquals :: Expr -> Expr -> Expr
 pattern NotEquals e1 e2 = Atomic (PredicateRelation (Command "neq")) (e1 : [e2])
 
 pattern EmptySet :: Expr
-pattern EmptySet = TermSymbol (SymbolMixfix [Just (Command "emptyset")]) []
+pattern EmptySet =
+    TermSymbol
+        (SymbolMixfix (MixfixItem (TokenCons (Command "emptyset") End) "emptyset" NonAssoc))
+        []
 
 makeConjunction :: [Expr] -> Expr
 makeConjunction = \case

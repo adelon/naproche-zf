@@ -39,7 +39,7 @@ instance Locatable VarSymbol where
 data Expr
     = ExprVar VarSymbol
     | ExprInteger Int
-    | ExprOp FunctionSymbol [Expr]
+    | ExprOp MixfixItem [Expr]
     | ExprStructOp StructSymbol (Maybe Expr)
     | ExprFiniteSet (NonEmpty Expr)
     | ExprSep VarSymbol Expr Stmt
@@ -58,13 +58,13 @@ data Associativity
   = LeftAssoc
   | NonAssoc
   | RightAssoc
-  deriving (Eq, Show, Ord)
+  deriving (Eq, Show, Ord, Generic, Hashable)
 
-data MixfixItem = MixfixItem Pattern Marker Associativity deriving (Eq, Show, Ord)
+data MixfixItem = MixfixItem Pattern Marker Associativity deriving (Eq, Show, Ord, Generic, Hashable)
 
-data Pattern = End | HoleCons Pattern | TokenCons Token Pattern deriving (Eq, Show, Ord)
+data Pattern = End | HoleCons Pattern | TokenCons Token Pattern deriving (Eq, Show, Ord, Generic, Hashable)
 
-type FunctionSymbol = Holey Token
+type FunctionSymbol = MixfixItem
 
 type RelationSymbol = Token
 
@@ -76,24 +76,96 @@ pattern NotElementSymbol = Command "notin"
 
 -- | The predefined @cons@ function symbol used for desugaring finite set expressions.
 pattern ConsSymbol :: FunctionSymbol
-pattern ConsSymbol = [Just (Command "cons"), Just InvisibleBraceL, Nothing, Just InvisibleBraceR, Just InvisibleBraceL, Nothing, Just InvisibleBraceR]
+pattern ConsSymbol =
+    MixfixItem
+        (TokenCons (Command "cons")
+            (TokenCons InvisibleBraceL
+                (HoleCons
+                    (TokenCons InvisibleBraceR
+                        (TokenCons InvisibleBraceL
+                            (HoleCons
+                                (TokenCons InvisibleBraceR End)))))))
+        "cons"
+        NonAssoc
 
 -- | The predefined @pair@ function symbol used for desugaring tuple notation..
 pattern PairSymbol :: FunctionSymbol
-pattern PairSymbol = [Just (Command "pair"), Just InvisibleBraceL, Nothing, Just InvisibleBraceR, Just InvisibleBraceL, Nothing, Just InvisibleBraceR]
+pattern PairSymbol =
+    MixfixItem
+        (TokenCons (Command "pair")
+            (TokenCons InvisibleBraceL
+                (HoleCons
+                    (TokenCons InvisibleBraceR
+                        (TokenCons InvisibleBraceL
+                            (HoleCons
+                                (TokenCons InvisibleBraceR End)))))))
+        "pair"
+        NonAssoc
 
 -- | Function application /@f(x)@/ desugars to /@\apply{f}{x}@/.
 pattern ApplySymbol :: FunctionSymbol
-pattern ApplySymbol = [Just (Command "apply"), Just InvisibleBraceL, Nothing, Just InvisibleBraceR, Just InvisibleBraceL, Nothing, Just InvisibleBraceR]
+pattern ApplySymbol =
+    MixfixItem
+        (TokenCons (Command "apply")
+            (TokenCons InvisibleBraceL
+                (HoleCons
+                    (TokenCons InvisibleBraceR
+                        (TokenCons InvisibleBraceL
+                            (HoleCons
+                                (TokenCons InvisibleBraceR End)))))))
+        "apply"
+        NonAssoc
 
 pattern DomSymbol :: FunctionSymbol
-pattern DomSymbol = [Just (Command "dom"), Just InvisibleBraceL, Nothing, Just InvisibleBraceR]
+pattern DomSymbol =
+    MixfixItem
+        (TokenCons (Command "dom")
+            (TokenCons InvisibleBraceL
+                (HoleCons
+                    (TokenCons InvisibleBraceR End))))
+        "dom"
+        NonAssoc
 
 pattern CarrierSymbol :: StructSymbol
 pattern CarrierSymbol = StructSymbol "carrier"
 
+patternFromHoley :: Holey Token -> Pattern
+patternFromHoley = foldr step End
+    where
+        step = \case
+            Nothing -> HoleCons
+            Just tok -> TokenCons tok
+
+patternToHoley :: Pattern -> Holey Token
+patternToHoley = \case
+    End -> []
+    HoleCons pat -> Nothing : patternToHoley pat
+    TokenCons tok pat -> Just tok : patternToHoley pat
+
+mixfixPattern :: MixfixItem -> Pattern
+mixfixPattern (MixfixItem pat _ _) = pat
+
+mixfixMarker :: MixfixItem -> Marker
+mixfixMarker (MixfixItem _ m _) = m
+
+mixfixAssoc :: MixfixItem -> Associativity
+mixfixAssoc (MixfixItem _ _ assoc) = assoc
+
+mkMixfixItem :: Holey Token -> Marker -> Associativity -> MixfixItem
+mkMixfixItem pat m assoc = MixfixItem (patternFromHoley pat) m assoc
+
+markerFromToken :: Token -> Marker
+markerFromToken = \case
+    Word w -> Marker w
+    Symbol s -> Marker s
+    Command c -> Marker c
+    Integer n -> Marker (Text.pack (show n))
+    tok -> error ("markerFromToken: unsupported token " <> show tok)
+
 pattern ExprConst :: Token -> Expr
-pattern ExprConst c = ExprOp [Just c] []
+pattern ExprConst c <- ExprOp (MixfixItem (TokenCons c End) _ NonAssoc) []
+    where
+        ExprConst c = ExprOp (MixfixItem (TokenCons c End) (markerFromToken c) NonAssoc) []
 
 pattern ExprApp :: Expr -> Expr -> Expr
 pattern ExprApp e1 e2 = ExprOp ApplySymbol [e1, e2]

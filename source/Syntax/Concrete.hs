@@ -21,10 +21,13 @@ import Syntax.Mixfix
 
 grammar :: Lexicon -> Grammar r (Prod r Text (Located Token) Block)
 grammar lexicon@Lexicon{..} = mdo
-    let makeOp :: ([Maybe Token], Associativity) -> ([Maybe (Prod r Text (Located Token) Token)], Associativity)
-        makeOp (pat, assoc) = (map (fmap token) pat, assoc)
-        ops = map (map makeOp) (toList (Map.toList <$> lexiconMixfixTable))
-        conns = map (map makeOp) lexiconConnectives
+    let patternToProd :: Pattern -> Holey (Prod r Text (Located Token) Token)
+        patternToProd pat = map (fmap token) (patternToHoley pat)
+        makeMixfixOp item = (patternToProd (mixfixPattern item), mixfixAssoc item, \_ args -> ExprOp item args)
+        mixfixItems = toList (Map.elems <$> lexiconMixfixTable)
+        mixfixOps = map (map makeMixfixOp) mixfixItems
+        makeConn (pat, assoc) = (map (fmap token) pat, assoc)
+        conns = map (map makeConn) lexiconConnectives
 
     integer    <- rule (terminal maybeIntToken <?> "integer")
     relator    <- rule $ unLocated <$> (satisfy (\ltok -> unLocated ltok `Map.member` lexiconRelationSymbols) <?> "relator")
@@ -78,7 +81,7 @@ grammar lexicon@Lexicon{..} = mdo
     exprFinSet  <- rule $ brace $ ExprFiniteSet <$> exprs
     exprBase    <- rule $ asum [exprVar, exprInteger, exprStructOp, exprParen, exprTuple, exprSep, exprReplace, exprFinSet]
     exprApp     <- rule $ ExprApp <$> exprBase <*> (paren expr <|> exprTuple)
-    expr        <- mixfixExpression ops (exprBase <|> exprApp) ExprOp
+    expr        <- mixfixExpressionSeparate mixfixOps (exprBase <|> exprApp)
     exprs       <- rule $ commaList expr
 
     relationSign   <- rule $ pure Positive <|> (Negative <$ command "not")
@@ -318,7 +321,7 @@ grammar lexicon@Lexicon{..} = mdo
     inductive          <- rule $ uncurry Inductive <$> inductiveHead <*> enumerated1 inductiveIntro
 
     signatureAdj      <- rule $ SignatureAdj <$> var <* _can <* _be <*> adjOf lexicon var
-    symbolicPattern   <- symbolicPatternOf ops varSymbol
+    symbolicPattern   <- symbolicPatternOf mixfixItems varSymbol
     signatureSymbolic <- rule $ SignatureSymbolic <$> math symbolicPattern <* _is <* _an <*> nounPhrase
     signature         <- rule $ (,) <$> asms <* optional _then <*> (signatureAdj <|> signatureSymbolic) <* _dot
 
@@ -598,20 +601,23 @@ structNounOf lexicon proj arg name =
 
 
 symbolicPatternOf
-    :: forall r. [[(Holey (Prod r Text (Located Token) Token), Associativity)]]
+    :: forall r. [[MixfixItem]]
     -> Prod r Text (Located Token) VarSymbol
     -> Grammar r (Prod r Text (Located Token) SymbolPattern)
 symbolicPatternOf ops varSymbol = rule $ asum
-    [ go op
+    [ go item
     | ops' <- ops
-    , (op, _assoc) <- ops'
+    , item <- ops'
     ] <?> "a symbolic pattern"
     where
-        go :: Holey (Prod r Text (Located Token) Token) -> Prod r Text (Located Token) SymbolPattern
-        go [] = pure $ SymbolPattern [] []
-        go (head : tail) = case head of
-            Just symb -> (\s (SymbolPattern op vs) -> SymbolPattern (Just s : op) vs) <$> symb <*> go tail
-            Nothing -> (\v (SymbolPattern op vs) -> SymbolPattern (Nothing : op) (v : vs)) <$> varSymbol <*> go tail
+        go :: MixfixItem -> Prod r Text (Located Token) SymbolPattern
+        go item = SymbolPattern item <$> parseVars (mixfixPattern item)
+
+        parseVars :: Pattern -> Prod r Text (Located Token) [VarSymbol]
+        parseVars = \case
+            End -> pure []
+            TokenCons tok pat -> token tok *> parseVars pat
+            HoleCons pat -> (:) <$> varSymbol <*> parseVars pat
 
 
 makeNounPhrase

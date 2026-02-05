@@ -30,9 +30,12 @@
                                     }
                                 )
                                 ( SymbolMixfix
-                                    [ Just
-                                        ( Command "unit" )
-                                    ]
+                                    ( MixfixItem
+                                        ( TokenCons
+                                            ( Command "unit" ) End
+                                        )
+                                        ( Marker "unit" ) NonAssoc
+                                    )
                                 ) []
                             ]
                         )
@@ -61,9 +64,12 @@
                                         }
                                     )
                                     ( SymbolMixfix
-                                        [ Just
-                                            ( Command "emptyset" )
-                                        ]
+                                        ( MixfixItem
+                                            ( TokenCons
+                                                ( Command "emptyset" ) End
+                                            )
+                                            ( Marker "emptyset" ) NonAssoc
+                                        )
                                     ) []
                                 ]
                             )
@@ -91,9 +97,12 @@
                                         }
                                     )
                                     ( SymbolMixfix
-                                        [ Just
-                                            ( Command "emptyset" )
-                                        ]
+                                        ( MixfixItem
+                                            ( TokenCons
+                                                ( Command "emptyset" ) End
+                                            )
+                                            ( Marker "emptyset" ) NonAssoc
+                                        )
                                     ) []
                                 ]
                             )
@@ -132,11 +141,14 @@
                                             }
                                         )
                                         ( SymbolMixfix
-                                            [ Nothing
-                                            , Just
-                                                ( Command "times" )
-                                            , Nothing
-                                            ]
+                                            ( MixfixItem
+                                                ( HoleCons
+                                                    ( TokenCons
+                                                        ( Command "times" ) ( HoleCons End )
+                                                    )
+                                                )
+                                                ( Marker "times" ) RightAssoc
+                                            )
                                         )
                                         [ TermVar
                                             ( F
@@ -242,15 +254,21 @@
                                                         }
                                                     )
                                                     ( SymbolMixfix
-                                                        [ Just
-                                                            ( Command "pair" )
-                                                        , Just InvisibleBraceL
-                                                        , Nothing
-                                                        , Just InvisibleBraceR
-                                                        , Just InvisibleBraceL
-                                                        , Nothing
-                                                        , Just InvisibleBraceR
-                                                        ]
+                                                        ( MixfixItem
+                                                            ( TokenCons
+                                                                ( Command "pair" )
+                                                                ( TokenCons InvisibleBraceL
+                                                                    ( HoleCons
+                                                                        ( TokenCons InvisibleBraceR
+                                                                            ( TokenCons InvisibleBraceL
+                                                                                ( HoleCons ( TokenCons InvisibleBraceR End ) )
+                                                                            )
+                                                                        )
+                                                                    )
+                                                                )
+                                                            )
+                                                            ( Marker "pair" ) NonAssoc
+                                                        )
                                                     )
                                                     [ TermVar
                                                         ( B
@@ -308,15 +326,21 @@
                                     }
                                 )
                                 ( SymbolMixfix
-                                    [ Just
-                                        ( Command "cons" )
-                                    , Just InvisibleBraceL
-                                    , Nothing
-                                    , Just InvisibleBraceR
-                                    , Just InvisibleBraceL
-                                    , Nothing
-                                    , Just InvisibleBraceR
-                                    ]
+                                    ( MixfixItem
+                                        ( TokenCons
+                                            ( Command "cons" )
+                                            ( TokenCons InvisibleBraceL
+                                                ( HoleCons
+                                                    ( TokenCons InvisibleBraceR
+                                                        ( TokenCons InvisibleBraceL
+                                                            ( HoleCons ( TokenCons InvisibleBraceR End ) )
+                                                        )
+                                                    )
+                                                )
+                                            )
+                                        )
+                                        ( Marker "cons" ) NonAssoc
+                                    )
                                 )
                                 [ TermVar
                                     ( B
@@ -405,15 +429,21 @@
                 }
             )
             ( SymbolMixfix
-                [ Just
-                    ( Command "pair" )
-                , Just InvisibleBraceL
-                , Nothing
-                , Just InvisibleBraceR
-                , Just InvisibleBraceL
-                , Nothing
-                , Just InvisibleBraceR
-                ]
+                ( MixfixItem
+                    ( TokenCons
+                        ( Command "pair" )
+                        ( TokenCons InvisibleBraceL
+                            ( HoleCons
+                                ( TokenCons InvisibleBraceR
+                                    ( TokenCons InvisibleBraceL
+                                        ( HoleCons ( TokenCons InvisibleBraceR End ) )
+                                    )
+                                )
+                            )
+                        )
+                    )
+                    ( Marker "pair" ) NonAssoc
+                )
             )
             [ TermSymbol
                 ( Location
@@ -423,9 +453,12 @@
                     }
                 )
                 ( SymbolMixfix
-                    [ Just
-                        ( Command "emptyset" )
-                    ]
+                    ( MixfixItem
+                        ( TokenCons
+                            ( Command "emptyset" ) End
+                        )
+                        ( Marker "emptyset" ) NonAssoc
+                    )
                 ) []
             , TermSymbol
                 ( Location
@@ -435,9 +468,12 @@
                     }
                 )
                 ( SymbolMixfix
-                    [ Just
-                        ( Command "emptyset" )
-                    ]
+                    ( MixfixItem
+                        ( TokenCons
+                            ( Command "emptyset" ) End
+                        )
+                        ( Marker "emptyset" ) NonAssoc
+                    )
                 ) []
             ]
         , TermSymbol
@@ -448,11 +484,14 @@
                 }
             )
             ( SymbolMixfix
-                [ Nothing
-                , Just
-                    ( Command "times" )
-                , Nothing
-                ]
+                ( MixfixItem
+                    ( HoleCons
+                        ( TokenCons
+                            ( Command "times" ) ( HoleCons End )
+                        )
+                    )
+                    ( Marker "times" ) RightAssoc
+                )
             )
             [ TermSymbol
                 ( Location
@@ -462,9 +501,12 @@
                     }
                 )
                 ( SymbolMixfix
-                    [ Just
-                        ( Command "unit" )
-                    ]
+                    ( MixfixItem
+                        ( TokenCons
+                            ( Command "unit" ) End
+                        )
+                        ( Marker "unit" ) NonAssoc
+                    )
                 ) []
             , TermSymbol
                 ( Location
@@ -474,9 +516,12 @@
                     }
                 )
                 ( SymbolMixfix
-                    [ Just
-                        ( Command "unit" )
-                    ]
+                    ( MixfixItem
+                        ( TokenCons
+                            ( Command "unit" ) End
+                        )
+                        ( Marker "unit" ) NonAssoc
+                    )
                 ) []
             ]
         ]
@@ -506,15 +551,21 @@
                         }
                     )
                     ( SymbolMixfix
-                        [ Just
-                            ( Command "pair" )
-                        , Just InvisibleBraceL
-                        , Nothing
-                        , Just InvisibleBraceR
-                        , Just InvisibleBraceL
-                        , Nothing
-                        , Just InvisibleBraceR
-                        ]
+                        ( MixfixItem
+                            ( TokenCons
+                                ( Command "pair" )
+                                ( TokenCons InvisibleBraceL
+                                    ( HoleCons
+                                        ( TokenCons InvisibleBraceR
+                                            ( TokenCons InvisibleBraceL
+                                                ( HoleCons ( TokenCons InvisibleBraceR End ) )
+                                            )
+                                        )
+                                    )
+                                )
+                            )
+                            ( Marker "pair" ) NonAssoc
+                        )
                     )
                     [ TermSymbol
                         ( Location
@@ -524,9 +575,12 @@
                             }
                         )
                         ( SymbolMixfix
-                            [ Just
-                                ( Command "emptyset" )
-                            ]
+                            ( MixfixItem
+                                ( TokenCons
+                                    ( Command "emptyset" ) End
+                                )
+                                ( Marker "emptyset" ) NonAssoc
+                            )
                         ) []
                     , TermSymbol
                         ( Location
@@ -536,9 +590,12 @@
                             }
                         )
                         ( SymbolMixfix
-                            [ Just
-                                ( Command "emptyset" )
-                            ]
+                            ( MixfixItem
+                                ( TokenCons
+                                    ( Command "emptyset" ) End
+                                )
+                                ( Marker "emptyset" ) NonAssoc
+                            )
                         ) []
                     ]
                 , TermSymbol
@@ -549,11 +606,14 @@
                         }
                     )
                     ( SymbolMixfix
-                        [ Nothing
-                        , Just
-                            ( Command "times" )
-                        , Nothing
-                        ]
+                        ( MixfixItem
+                            ( HoleCons
+                                ( TokenCons
+                                    ( Command "times" ) ( HoleCons End )
+                                )
+                            )
+                            ( Marker "times" ) RightAssoc
+                        )
                     )
                     [ TermSymbol
                         ( Location
@@ -563,9 +623,12 @@
                             }
                         )
                         ( SymbolMixfix
-                            [ Just
-                                ( Command "unit" )
-                            ]
+                            ( MixfixItem
+                                ( TokenCons
+                                    ( Command "unit" ) End
+                                )
+                                ( Marker "unit" ) NonAssoc
+                            )
                         ) []
                     , TermSymbol
                         ( Location
@@ -575,9 +638,12 @@
                             }
                         )
                         ( SymbolMixfix
-                            [ Just
-                                ( Command "unit" )
-                            ]
+                            ( MixfixItem
+                                ( TokenCons
+                                    ( Command "unit" ) End
+                                )
+                                ( Marker "unit" ) NonAssoc
+                            )
                         ) []
                     ]
                 ]
@@ -611,9 +677,12 @@
                                     }
                                 )
                                 ( SymbolMixfix
-                                    [ Just
-                                        ( Command "unit" )
-                                    ]
+                                    ( MixfixItem
+                                        ( TokenCons
+                                            ( Command "unit" ) End
+                                        )
+                                        ( Marker "unit" ) NonAssoc
+                                    )
                                 ) []
                             ]
                         )
@@ -642,9 +711,12 @@
                                         }
                                     )
                                     ( SymbolMixfix
-                                        [ Just
-                                            ( Command "emptyset" )
-                                        ]
+                                        ( MixfixItem
+                                            ( TokenCons
+                                                ( Command "emptyset" ) End
+                                            )
+                                            ( Marker "emptyset" ) NonAssoc
+                                        )
                                     ) []
                                 ]
                             )
@@ -672,9 +744,12 @@
                                         }
                                     )
                                     ( SymbolMixfix
-                                        [ Just
-                                            ( Command "emptyset" )
-                                        ]
+                                        ( MixfixItem
+                                            ( TokenCons
+                                                ( Command "emptyset" ) End
+                                            )
+                                            ( Marker "emptyset" ) NonAssoc
+                                        )
                                     ) []
                                 ]
                             )
@@ -713,11 +788,14 @@
                                             }
                                         )
                                         ( SymbolMixfix
-                                            [ Nothing
-                                            , Just
-                                                ( Command "times" )
-                                            , Nothing
-                                            ]
+                                            ( MixfixItem
+                                                ( HoleCons
+                                                    ( TokenCons
+                                                        ( Command "times" ) ( HoleCons End )
+                                                    )
+                                                )
+                                                ( Marker "times" ) RightAssoc
+                                            )
                                         )
                                         [ TermVar
                                             ( F
@@ -823,15 +901,21 @@
                                                         }
                                                     )
                                                     ( SymbolMixfix
-                                                        [ Just
-                                                            ( Command "pair" )
-                                                        , Just InvisibleBraceL
-                                                        , Nothing
-                                                        , Just InvisibleBraceR
-                                                        , Just InvisibleBraceL
-                                                        , Nothing
-                                                        , Just InvisibleBraceR
-                                                        ]
+                                                        ( MixfixItem
+                                                            ( TokenCons
+                                                                ( Command "pair" )
+                                                                ( TokenCons InvisibleBraceL
+                                                                    ( HoleCons
+                                                                        ( TokenCons InvisibleBraceR
+                                                                            ( TokenCons InvisibleBraceL
+                                                                                ( HoleCons ( TokenCons InvisibleBraceR End ) )
+                                                                            )
+                                                                        )
+                                                                    )
+                                                                )
+                                                            )
+                                                            ( Marker "pair" ) NonAssoc
+                                                        )
                                                     )
                                                     [ TermVar
                                                         ( B
@@ -889,15 +973,21 @@
                                     }
                                 )
                                 ( SymbolMixfix
-                                    [ Just
-                                        ( Command "cons" )
-                                    , Just InvisibleBraceL
-                                    , Nothing
-                                    , Just InvisibleBraceR
-                                    , Just InvisibleBraceL
-                                    , Nothing
-                                    , Just InvisibleBraceR
-                                    ]
+                                    ( MixfixItem
+                                        ( TokenCons
+                                            ( Command "cons" )
+                                            ( TokenCons InvisibleBraceL
+                                                ( HoleCons
+                                                    ( TokenCons InvisibleBraceR
+                                                        ( TokenCons InvisibleBraceL
+                                                            ( HoleCons ( TokenCons InvisibleBraceR End ) )
+                                                        )
+                                                    )
+                                                )
+                                            )
+                                        )
+                                        ( Marker "cons" ) NonAssoc
+                                    )
                                 )
                                 [ TermVar
                                     ( B
@@ -1021,15 +1111,21 @@
                                             }
                                         )
                                         ( SymbolMixfix
-                                            [ Just
-                                                ( Command "cons" )
-                                            , Just InvisibleBraceL
-                                            , Nothing
-                                            , Just InvisibleBraceR
-                                            , Just InvisibleBraceL
-                                            , Nothing
-                                            , Just InvisibleBraceR
-                                            ]
+                                            ( MixfixItem
+                                                ( TokenCons
+                                                    ( Command "cons" )
+                                                    ( TokenCons InvisibleBraceL
+                                                        ( HoleCons
+                                                            ( TokenCons InvisibleBraceR
+                                                                ( TokenCons InvisibleBraceL
+                                                                    ( HoleCons ( TokenCons InvisibleBraceR End ) )
+                                                                )
+                                                            )
+                                                        )
+                                                    )
+                                                )
+                                                ( Marker "cons" ) NonAssoc
+                                            )
                                         )
                                         [ TermVar
                                             ( F
@@ -1047,9 +1143,12 @@
                                                 }
                                             )
                                             ( SymbolMixfix
-                                                [ Just
-                                                    ( Command "emptyset" )
-                                                ]
+                                                ( MixfixItem
+                                                    ( TokenCons
+                                                        ( Command "emptyset" ) End
+                                                    )
+                                                    ( Marker "emptyset" ) NonAssoc
+                                                )
                                             ) []
                                         ]
                                     ]
@@ -1078,15 +1177,21 @@
                                             }
                                         )
                                         ( SymbolMixfix
-                                            [ Just
-                                                ( Command "cons" )
-                                            , Just InvisibleBraceL
-                                            , Nothing
-                                            , Just InvisibleBraceR
-                                            , Just InvisibleBraceL
-                                            , Nothing
-                                            , Just InvisibleBraceR
-                                            ]
+                                            ( MixfixItem
+                                                ( TokenCons
+                                                    ( Command "cons" )
+                                                    ( TokenCons InvisibleBraceL
+                                                        ( HoleCons
+                                                            ( TokenCons InvisibleBraceR
+                                                                ( TokenCons InvisibleBraceL
+                                                                    ( HoleCons ( TokenCons InvisibleBraceR End ) )
+                                                                )
+                                                            )
+                                                        )
+                                                    )
+                                                )
+                                                ( Marker "cons" ) NonAssoc
+                                            )
                                         )
                                         [ TermVar
                                             ( F
@@ -1104,9 +1209,12 @@
                                                 }
                                             )
                                             ( SymbolMixfix
-                                                [ Just
-                                                    ( Command "emptyset" )
-                                                ]
+                                                ( MixfixItem
+                                                    ( TokenCons
+                                                        ( Command "emptyset" ) End
+                                                    )
+                                                    ( Marker "emptyset" ) NonAssoc
+                                                )
                                             ) []
                                         ]
                                     ]
@@ -1172,12 +1280,15 @@
                                     }
                                 )
                                 ( SymbolMixfix
-                                    [ Just
-                                        ( Command "suc" )
-                                    , Just InvisibleBraceL
-                                    , Nothing
-                                    , Just InvisibleBraceR
-                                    ]
+                                    ( MixfixItem
+                                        ( TokenCons
+                                            ( Command "suc" )
+                                            ( TokenCons InvisibleBraceL
+                                                ( HoleCons ( TokenCons InvisibleBraceR End ) )
+                                            )
+                                        )
+                                        ( Marker "suc" ) NonAssoc
+                                    )
                                 )
                                 [ TermVar
                                     ( B
@@ -1243,15 +1354,21 @@
                                                 }
                                             )
                                             ( SymbolMixfix
-                                                [ Just
-                                                    ( Command "cons" )
-                                                , Just InvisibleBraceL
-                                                , Nothing
-                                                , Just InvisibleBraceR
-                                                , Just InvisibleBraceL
-                                                , Nothing
-                                                , Just InvisibleBraceR
-                                                ]
+                                                ( MixfixItem
+                                                    ( TokenCons
+                                                        ( Command "cons" )
+                                                        ( TokenCons InvisibleBraceL
+                                                            ( HoleCons
+                                                                ( TokenCons InvisibleBraceR
+                                                                    ( TokenCons InvisibleBraceL
+                                                                        ( HoleCons ( TokenCons InvisibleBraceR End ) )
+                                                                    )
+                                                                )
+                                                            )
+                                                        )
+                                                    )
+                                                    ( Marker "cons" ) NonAssoc
+                                                )
                                             )
                                             [ TermVar
                                                 ( B
@@ -1265,9 +1382,12 @@
                                                     }
                                                 )
                                                 ( SymbolMixfix
-                                                    [ Just
-                                                        ( Command "emptyset" )
-                                                    ]
+                                                    ( MixfixItem
+                                                        ( TokenCons
+                                                            ( Command "emptyset" ) End
+                                                        )
+                                                        ( Marker "emptyset" ) NonAssoc
+                                                    )
                                                 ) []
                                             ]
                                         ]
@@ -1300,15 +1420,21 @@
                         }
                     )
                     ( SymbolMixfix
-                        [ Just
-                            ( Command "pair" )
-                        , Just InvisibleBraceL
-                        , Nothing
-                        , Just InvisibleBraceR
-                        , Just InvisibleBraceL
-                        , Nothing
-                        , Just InvisibleBraceR
-                        ]
+                        ( MixfixItem
+                            ( TokenCons
+                                ( Command "pair" )
+                                ( TokenCons InvisibleBraceL
+                                    ( HoleCons
+                                        ( TokenCons InvisibleBraceR
+                                            ( TokenCons InvisibleBraceL
+                                                ( HoleCons ( TokenCons InvisibleBraceR End ) )
+                                            )
+                                        )
+                                    )
+                                )
+                            )
+                            ( Marker "pair" ) NonAssoc
+                        )
                     )
                     [ TermSymbol
                         ( Location
@@ -1318,9 +1444,12 @@
                             }
                         )
                         ( SymbolMixfix
-                            [ Just
-                                ( Command "emptyset" )
-                            ]
+                            ( MixfixItem
+                                ( TokenCons
+                                    ( Command "emptyset" ) End
+                                )
+                                ( Marker "emptyset" ) NonAssoc
+                            )
                         ) []
                     , TermSymbol
                         ( Location
@@ -1330,9 +1459,12 @@
                             }
                         )
                         ( SymbolMixfix
-                            [ Just
-                                ( Command "emptyset" )
-                            ]
+                            ( MixfixItem
+                                ( TokenCons
+                                    ( Command "emptyset" ) End
+                                )
+                                ( Marker "emptyset" ) NonAssoc
+                            )
                         ) []
                     ]
                 , TermSymbol
@@ -1343,11 +1475,14 @@
                         }
                     )
                     ( SymbolMixfix
-                        [ Nothing
-                        , Just
-                            ( Command "times" )
-                        , Nothing
-                        ]
+                        ( MixfixItem
+                            ( HoleCons
+                                ( TokenCons
+                                    ( Command "times" ) ( HoleCons End )
+                                )
+                            )
+                            ( Marker "times" ) RightAssoc
+                        )
                     )
                     [ TermSymbol
                         ( Location
@@ -1357,9 +1492,12 @@
                             }
                         )
                         ( SymbolMixfix
-                            [ Just
-                                ( Command "unit" )
-                            ]
+                            ( MixfixItem
+                                ( TokenCons
+                                    ( Command "unit" ) End
+                                )
+                                ( Marker "unit" ) NonAssoc
+                            )
                         ) []
                     , TermSymbol
                         ( Location
@@ -1369,9 +1507,12 @@
                             }
                         )
                         ( SymbolMixfix
-                            [ Just
-                                ( Command "unit" )
-                            ]
+                            ( MixfixItem
+                                ( TokenCons
+                                    ( Command "unit" ) End
+                                )
+                                ( Marker "unit" ) NonAssoc
+                            )
                         ) []
                     ]
                 ]
@@ -1405,9 +1546,12 @@
                                     }
                                 )
                                 ( SymbolMixfix
-                                    [ Just
-                                        ( Command "unit" )
-                                    ]
+                                    ( MixfixItem
+                                        ( TokenCons
+                                            ( Command "unit" ) End
+                                        )
+                                        ( Marker "unit" ) NonAssoc
+                                    )
                                 ) []
                             ]
                         )
@@ -1436,9 +1580,12 @@
                                         }
                                     )
                                     ( SymbolMixfix
-                                        [ Just
-                                            ( Command "emptyset" )
-                                        ]
+                                        ( MixfixItem
+                                            ( TokenCons
+                                                ( Command "emptyset" ) End
+                                            )
+                                            ( Marker "emptyset" ) NonAssoc
+                                        )
                                     ) []
                                 ]
                             )
@@ -1466,9 +1613,12 @@
                                         }
                                     )
                                     ( SymbolMixfix
-                                        [ Just
-                                            ( Command "emptyset" )
-                                        ]
+                                        ( MixfixItem
+                                            ( TokenCons
+                                                ( Command "emptyset" ) End
+                                            )
+                                            ( Marker "emptyset" ) NonAssoc
+                                        )
                                     ) []
                                 ]
                             )
@@ -1507,11 +1657,14 @@
                                             }
                                         )
                                         ( SymbolMixfix
-                                            [ Nothing
-                                            , Just
-                                                ( Command "times" )
-                                            , Nothing
-                                            ]
+                                            ( MixfixItem
+                                                ( HoleCons
+                                                    ( TokenCons
+                                                        ( Command "times" ) ( HoleCons End )
+                                                    )
+                                                )
+                                                ( Marker "times" ) RightAssoc
+                                            )
                                         )
                                         [ TermVar
                                             ( F
@@ -1617,15 +1770,21 @@
                                                         }
                                                     )
                                                     ( SymbolMixfix
-                                                        [ Just
-                                                            ( Command "pair" )
-                                                        , Just InvisibleBraceL
-                                                        , Nothing
-                                                        , Just InvisibleBraceR
-                                                        , Just InvisibleBraceL
-                                                        , Nothing
-                                                        , Just InvisibleBraceR
-                                                        ]
+                                                        ( MixfixItem
+                                                            ( TokenCons
+                                                                ( Command "pair" )
+                                                                ( TokenCons InvisibleBraceL
+                                                                    ( HoleCons
+                                                                        ( TokenCons InvisibleBraceR
+                                                                            ( TokenCons InvisibleBraceL
+                                                                                ( HoleCons ( TokenCons InvisibleBraceR End ) )
+                                                                            )
+                                                                        )
+                                                                    )
+                                                                )
+                                                            )
+                                                            ( Marker "pair" ) NonAssoc
+                                                        )
                                                     )
                                                     [ TermVar
                                                         ( B
@@ -1683,15 +1842,21 @@
                                     }
                                 )
                                 ( SymbolMixfix
-                                    [ Just
-                                        ( Command "cons" )
-                                    , Just InvisibleBraceL
-                                    , Nothing
-                                    , Just InvisibleBraceR
-                                    , Just InvisibleBraceL
-                                    , Nothing
-                                    , Just InvisibleBraceR
-                                    ]
+                                    ( MixfixItem
+                                        ( TokenCons
+                                            ( Command "cons" )
+                                            ( TokenCons InvisibleBraceL
+                                                ( HoleCons
+                                                    ( TokenCons InvisibleBraceR
+                                                        ( TokenCons InvisibleBraceL
+                                                            ( HoleCons ( TokenCons InvisibleBraceR End ) )
+                                                        )
+                                                    )
+                                                )
+                                            )
+                                        )
+                                        ( Marker "cons" ) NonAssoc
+                                    )
                                 )
                                 [ TermVar
                                     ( B
@@ -1787,11 +1952,14 @@
                             }
                         )
                         ( SymbolMixfix
-                            [ Nothing
-                            , Just
-                                ( Command "times" )
-                            , Nothing
-                            ]
+                            ( MixfixItem
+                                ( HoleCons
+                                    ( TokenCons
+                                        ( Command "times" ) ( HoleCons End )
+                                    )
+                                )
+                                ( Marker "times" ) RightAssoc
+                            )
                         )
                         [ TermVar
                             ( F
@@ -1889,15 +2057,21 @@
                                         }
                                     )
                                     ( SymbolMixfix
-                                        [ Just
-                                            ( Command "pair" )
-                                        , Just InvisibleBraceL
-                                        , Nothing
-                                        , Just InvisibleBraceR
-                                        , Just InvisibleBraceL
-                                        , Nothing
-                                        , Just InvisibleBraceR
-                                        ]
+                                        ( MixfixItem
+                                            ( TokenCons
+                                                ( Command "pair" )
+                                                ( TokenCons InvisibleBraceL
+                                                    ( HoleCons
+                                                        ( TokenCons InvisibleBraceR
+                                                            ( TokenCons InvisibleBraceL
+                                                                ( HoleCons ( TokenCons InvisibleBraceR End ) )
+                                                            )
+                                                        )
+                                                    )
+                                                )
+                                            )
+                                            ( Marker "pair" ) NonAssoc
+                                        )
                                     )
                                     [ TermVar
                                         ( B

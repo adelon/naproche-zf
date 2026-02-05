@@ -25,15 +25,21 @@
                             ( Command "in" ) []
                         )
                         ( ExprOp
-                            [ Just
-                                ( Command "cons" )
-                            , Just InvisibleBraceL
-                            , Nothing
-                            , Just InvisibleBraceR
-                            , Just InvisibleBraceL
-                            , Nothing
-                            , Just InvisibleBraceR
-                            ]
+                            ( MixfixItem
+                                ( TokenCons
+                                    ( Command "cons" )
+                                    ( TokenCons InvisibleBraceL
+                                        ( HoleCons
+                                            ( TokenCons InvisibleBraceR
+                                                ( TokenCons InvisibleBraceL
+                                                    ( HoleCons ( TokenCons InvisibleBraceR End ) )
+                                                )
+                                            )
+                                        )
+                                    )
+                                )
+                                ( Marker "cons" ) NonAssoc
+                            )
                             [ ExprVar
                                 ( NamedVar "y" )
                             , ExprVar
@@ -97,15 +103,21 @@
     ( Marker "unit" )
     ( DefnOp
         ( SymbolPattern
-            [ Just
-                ( Command "unit" )
-            ] []
+            ( MixfixItem
+                ( TokenCons
+                    ( Command "unit" ) End
+                )
+                ( Marker "unit" ) NonAssoc
+            ) []
         )
         ( ExprFiniteSet
             ( ExprOp
-                [ Just
-                    ( Command "emptyset" )
-                ] [] :| []
+                ( MixfixItem
+                    ( TokenCons
+                        ( Command "emptyset" ) End
+                    )
+                    ( Marker "emptyset" ) NonAssoc
+                ) [] :| []
             )
         )
     )
@@ -127,17 +139,23 @@
             , formula = FormulaChain
                 ( ChainBase
                     ( ExprOp
-                        [ Just
-                            ( Command "emptyset" )
-                        ] [] :| []
+                        ( MixfixItem
+                            ( TokenCons
+                                ( Command "emptyset" ) End
+                            )
+                            ( Marker "emptyset" ) NonAssoc
+                        ) [] :| []
                     ) Positive
                     ( RelationSymbol
                         ( Command "in" ) []
                     )
                     ( ExprOp
-                        [ Just
-                            ( Command "unit" )
-                        ] [] :| []
+                        ( MixfixItem
+                            ( TokenCons
+                                ( Command "unit" ) End
+                            )
+                            ( Marker "unit" ) NonAssoc
+                        ) [] :| []
                     )
                 )
             }

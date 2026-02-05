@@ -2,91 +2,100 @@
     ( Command "subseteq" )
     ( Marker "subseteq" )
 , ScanFunctionSymbol
-    [ Just
+    ( TokenCons
         ( Command "pow" )
-    , Just InvisibleBraceL
-    , Nothing
-    , Just InvisibleBraceR
-    ]
+        ( TokenCons InvisibleBraceL
+            ( HoleCons ( TokenCons InvisibleBraceR End ) )
+        )
+    )
     ( Marker "pow" )
 , ScanFunctionSymbol
-    [ Just
+    ( TokenCons
         ( Command "cons" )
-    , Just InvisibleBraceL
-    , Nothing
-    , Just InvisibleBraceR
-    , Just InvisibleBraceL
-    , Nothing
-    , Just InvisibleBraceR
-    ]
+        ( TokenCons InvisibleBraceL
+            ( HoleCons
+                ( TokenCons InvisibleBraceR
+                    ( TokenCons InvisibleBraceL
+                        ( HoleCons ( TokenCons InvisibleBraceR End ) )
+                    )
+                )
+            )
+        )
+    )
     ( Marker "cons" )
 , ScanFunctionSymbol
-    [ Nothing
-    , Just
-        ( Command "times" )
-    , Nothing
-    ]
+    ( HoleCons
+        ( TokenCons
+            ( Command "times" ) ( HoleCons End )
+        )
+    )
     ( Marker "times" )
 , ScanFunctionSymbol
-    [ Just
+    ( TokenCons
         ( Command "fld" )
-    , Just InvisibleBraceL
-    , Nothing
-    , Just InvisibleBraceR
-    ]
+        ( TokenCons InvisibleBraceL
+            ( HoleCons ( TokenCons InvisibleBraceR End ) )
+        )
+    )
     ( Marker "fld" )
 , ScanFunctionSymbol
-    [ Just
+    ( TokenCons
         ( Command "preimg" )
-    , Just InvisibleBraceL
-    , Nothing
-    , Just InvisibleBraceR
-    , Just InvisibleBraceL
-    , Nothing
-    , Just InvisibleBraceR
-    ]
+        ( TokenCons InvisibleBraceL
+            ( HoleCons
+                ( TokenCons InvisibleBraceR
+                    ( TokenCons InvisibleBraceL
+                        ( HoleCons ( TokenCons InvisibleBraceR End ) )
+                    )
+                )
+            )
+        )
+    )
     ( Marker "preimg" )
 , ScanFunctionSymbol
-    [ Just
+    ( TokenCons
         ( Command "fin" )
-    , Just InvisibleBraceL
-    , Nothing
-    , Just InvisibleBraceR
-    ]
+        ( TokenCons InvisibleBraceL
+            ( HoleCons ( TokenCons InvisibleBraceR End ) )
+        )
+    )
     ( Marker "fin" )
 , ScanFunctionSymbol
-    [ Just
+    ( TokenCons
         ( Command "tracl" )
-    , Just InvisibleBraceL
-    , Nothing
-    , Just InvisibleBraceR
-    ]
+        ( TokenCons InvisibleBraceL
+            ( HoleCons ( TokenCons InvisibleBraceR End ) )
+        )
+    )
     ( Marker "tracl" )
 , ScanFunctionSymbol
-    [ Just
+    ( TokenCons
         ( Command "qrefltracl" )
-    , Just InvisibleBraceL
-    , Nothing
-    , Just InvisibleBraceR
-    ]
+        ( TokenCons InvisibleBraceL
+            ( HoleCons ( TokenCons InvisibleBraceR End ) )
+        )
+    )
     ( Marker "quasirefltracl" )
 , ScanFunctionSymbol
-    [ Just
+    ( TokenCons
         ( Command "refltracl" )
-    , Just InvisibleBraceL
-    , Nothing
-    , Just InvisibleBraceR
-    , Just InvisibleBraceL
-    , Nothing
-    , Just InvisibleBraceR
-    ]
+        ( TokenCons InvisibleBraceL
+            ( HoleCons
+                ( TokenCons InvisibleBraceR
+                    ( TokenCons InvisibleBraceL
+                        ( HoleCons ( TokenCons InvisibleBraceR End ) )
+                    )
+                )
+            )
+        )
+    )
     ( Marker "refltracl" )
 , ScanFunctionSymbol
-    [ Just
+    ( TokenCons
         ( Command "acc" )
-    , Just InvisibleBraceL
-    , Nothing
-    , Just InvisibleBraceR
-    ]
+        ( TokenCons InvisibleBraceL
+            ( HoleCons ( TokenCons InvisibleBraceR End ) )
+        )
+    )
     ( Marker "acc" )
 ]

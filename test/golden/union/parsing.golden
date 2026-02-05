@@ -129,11 +129,14 @@
                             ( Command "in" ) []
                         )
                         ( ExprOp
-                            [ Nothing
-                            , Just
-                                ( Command "union" )
-                            , Nothing
-                            ]
+                            ( MixfixItem
+                                ( HoleCons
+                                    ( TokenCons
+                                        ( Command "union" ) ( HoleCons End )
+                                    )
+                                )
+                                ( Marker "union" ) LeftAssoc
+                            )
                             [ ExprVar
                                 ( NamedVar "A" )
                             , ExprVar
@@ -205,11 +208,14 @@
             , formula = FormulaChain
                 ( ChainBase
                     ( ExprOp
-                        [ Nothing
-                        , Just
-                            ( Command "union" )
-                        , Nothing
-                        ]
+                        ( MixfixItem
+                            ( HoleCons
+                                ( TokenCons
+                                    ( Command "union" ) ( HoleCons End )
+                                )
+                            )
+                            ( Marker "union" ) LeftAssoc
+                        )
                         [ ExprVar
                             ( NamedVar "A" )
                         , ExprVar
@@ -220,11 +226,14 @@
                         ( Symbol "=" ) []
                     )
                     ( ExprOp
-                        [ Nothing
-                        , Just
-                            ( Command "union" )
-                        , Nothing
-                        ]
+                        ( MixfixItem
+                            ( HoleCons
+                                ( TokenCons
+                                    ( Command "union" ) ( HoleCons End )
+                                )
+                            )
+                            ( Marker "union" ) LeftAssoc
+                        )
                         [ ExprVar
                             ( NamedVar "B" )
                         , ExprVar
@@ -253,17 +262,23 @@
             , formula = FormulaChain
                 ( ChainBase
                     ( ExprOp
-                        [ Nothing
-                        , Just
-                            ( Command "union" )
-                        , Nothing
-                        ]
+                        ( MixfixItem
+                            ( HoleCons
+                                ( TokenCons
+                                    ( Command "union" ) ( HoleCons End )
+                                )
+                            )
+                            ( Marker "union" ) LeftAssoc
+                        )
                         [ ExprOp
-                            [ Nothing
-                            , Just
-                                ( Command "union" )
-                            , Nothing
-                            ]
+                            ( MixfixItem
+                                ( HoleCons
+                                    ( TokenCons
+                                        ( Command "union" ) ( HoleCons End )
+                                    )
+                                )
+                                ( Marker "union" ) LeftAssoc
+                            )
                             [ ExprVar
                                 ( NamedVar "A" )
                             , ExprVar
@@ -277,19 +292,25 @@
                         ( Symbol "=" ) []
                     )
                     ( ExprOp
-                        [ Nothing
-                        , Just
-                            ( Command "union" )
-                        , Nothing
-                        ]
+                        ( MixfixItem
+                            ( HoleCons
+                                ( TokenCons
+                                    ( Command "union" ) ( HoleCons End )
+                                )
+                            )
+                            ( Marker "union" ) LeftAssoc
+                        )
                         [ ExprVar
                             ( NamedVar "A" )
                         , ExprOp
-                            [ Nothing
-                            , Just
-                                ( Command "union" )
-                            , Nothing
-                            ]
+                            ( MixfixItem
+                                ( HoleCons
+                                    ( TokenCons
+                                        ( Command "union" ) ( HoleCons End )
+                                    )
+                                )
+                                ( Marker "union" ) LeftAssoc
+                            )
                             [ ExprVar
                                 ( NamedVar "B" )
                             , ExprVar
@@ -349,17 +370,23 @@
                                 ( Command "in" ) []
                             )
                             ( ExprOp
-                                [ Nothing
-                                , Just
-                                    ( Command "union" )
-                                , Nothing
-                                ]
+                                ( MixfixItem
+                                    ( HoleCons
+                                        ( TokenCons
+                                            ( Command "union" ) ( HoleCons End )
+                                        )
+                                    )
+                                    ( Marker "union" ) LeftAssoc
+                                )
                                 [ ExprOp
-                                    [ Nothing
-                                    , Just
-                                        ( Command "union" )
-                                    , Nothing
-                                    ]
+                                    ( MixfixItem
+                                        ( HoleCons
+                                            ( TokenCons
+                                                ( Command "union" ) ( HoleCons End )
+                                            )
+                                        )
+                                        ( Marker "union" ) LeftAssoc
+                                    )
                                     [ ExprVar
                                         ( NamedVar "A" )
                                     , ExprVar
@@ -386,19 +413,25 @@
                                 ( Command "in" ) []
                             )
                             ( ExprOp
-                                [ Nothing
-                                , Just
-                                    ( Command "union" )
-                                , Nothing
-                                ]
+                                ( MixfixItem
+                                    ( HoleCons
+                                        ( TokenCons
+                                            ( Command "union" ) ( HoleCons End )
+                                        )
+                                    )
+                                    ( Marker "union" ) LeftAssoc
+                                )
                                 [ ExprVar
                                     ( NamedVar "A" )
                                 , ExprOp
-                                    [ Nothing
-                                    , Just
-                                        ( Command "union" )
-                                    , Nothing
-                                    ]
+                                    ( MixfixItem
+                                        ( HoleCons
+                                            ( TokenCons
+                                                ( Command "union" ) ( HoleCons End )
+                                            )
+                                        )
+                                        ( Marker "union" ) LeftAssoc
+                                    )
                                     [ ExprVar
                                         ( NamedVar "B" )
                                     , ExprVar
@@ -452,19 +485,25 @@
                                     ( Command "in" ) []
                                 )
                                 ( ExprOp
-                                    [ Nothing
-                                    , Just
-                                        ( Command "union" )
-                                    , Nothing
-                                    ]
+                                    ( MixfixItem
+                                        ( HoleCons
+                                            ( TokenCons
+                                                ( Command "union" ) ( HoleCons End )
+                                            )
+                                        )
+                                        ( Marker "union" ) LeftAssoc
+                                    )
                                     [ ExprVar
                                         ( NamedVar "A" )
                                     , ExprOp
-                                        [ Nothing
-                                        , Just
-                                            ( Command "union" )
-                                        , Nothing
-                                        ]
+                                        ( MixfixItem
+                                            ( HoleCons
+                                                ( TokenCons
+                                                    ( Command "union" ) ( HoleCons End )
+                                                )
+                                            )
+                                            ( Marker "union" ) LeftAssoc
+                                        )
                                         [ ExprVar
                                             ( NamedVar "B" )
                                         , ExprVar
@@ -489,17 +528,23 @@
                                     ( Command "in" ) []
                                 )
                                 ( ExprOp
-                                    [ Nothing
-                                    , Just
-                                        ( Command "union" )
-                                    , Nothing
-                                    ]
+                                    ( MixfixItem
+                                        ( HoleCons
+                                            ( TokenCons
+                                                ( Command "union" ) ( HoleCons End )
+                                            )
+                                        )
+                                        ( Marker "union" ) LeftAssoc
+                                    )
                                     [ ExprOp
-                                        [ Nothing
-                                        , Just
-                                            ( Command "union" )
-                                        , Nothing
-                                        ]
+                                        ( MixfixItem
+                                            ( HoleCons
+                                                ( TokenCons
+                                                    ( Command "union" ) ( HoleCons End )
+                                                )
+                                            )
+                                            ( Marker "union" ) LeftAssoc
+                                        )
                                         [ ExprVar
                                             ( NamedVar "A" )
                                         , ExprVar

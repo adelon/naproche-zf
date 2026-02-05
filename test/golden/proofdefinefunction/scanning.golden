@@ -1,21 +1,24 @@
 [ ScanFunctionSymbol
-    [ Just
+    ( TokenCons
         ( Command "apply" )
-    , Just InvisibleBraceL
-    , Nothing
-    , Just InvisibleBraceR
-    , Just InvisibleBraceL
-    , Nothing
-    , Just InvisibleBraceR
-    ]
+        ( TokenCons InvisibleBraceL
+            ( HoleCons
+                ( TokenCons InvisibleBraceR
+                    ( TokenCons InvisibleBraceL
+                        ( HoleCons ( TokenCons InvisibleBraceR End ) )
+                    )
+                )
+            )
+        )
+    )
     ( Marker "apply" )
 , ScanFunctionSymbol
-    [ Just
+    ( TokenCons
         ( Command "dom" )
-    , Just InvisibleBraceL
-    , Nothing
-    , Just InvisibleBraceR
-    ]
+        ( TokenCons InvisibleBraceL
+            ( HoleCons ( TokenCons InvisibleBraceR End ) )
+        )
+    )
     ( Marker "dom" )
 , ScanAdj
     [ Just
