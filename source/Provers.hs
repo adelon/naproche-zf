@@ -8,7 +8,6 @@ module Provers where
 
 import Base
 import Encoding
-import Syntax.Lexicon (Lexicon)
 import Syntax.Internal (Formula, Task(..), isIndirect)
 
 import Control.Monad.Logger

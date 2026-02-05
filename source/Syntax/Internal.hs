@@ -58,7 +58,6 @@ import Data.Hashable.Lifted
 import Data.HashMap.Strict qualified as HM
 import Data.List qualified as List
 import Data.List.NonEmpty qualified as NonEmpty
-import Data.Maybe
 import Data.Set qualified as Set
 import TextBuilder (TextBuilder)
 
