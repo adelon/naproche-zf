@@ -189,6 +189,8 @@ shiftReplacement offset y minIndex0 (ReplExpr bindings value cond) =
 
 
 -- | Substitute all free occurrences of a variable with given name and index with a new expression.
+-- For matching names, indices above the target are decremented, i.e. this substitution
+-- closes the gap created by replacing one binder occurrence.
 substitute
     :: VarSymbol -- ^ Target variable name
     -> Int -- ^ Target variable index
@@ -197,7 +199,11 @@ substitute
     -> Expr
 substitute targetName targetIndex new = go where
     go = \case
-        xi@(Var x i) -> if x == targetName && i == targetIndex then new else xi
+        Var x i
+            | x /= targetName -> Var x i
+            | i == targetIndex -> new
+            | i < targetIndex -> Var x i
+            | otherwise -> Var x (i - 1)
         Lambda x body ->
             let targetIndex' = if x == targetName then targetIndex + 1 else targetIndex
                 newShifted = shift 1 x 0 new
@@ -252,11 +258,7 @@ betaReduce = \case
                 argument' = betaReduce argument
              in case function' of
                     Lambda x e ->
-                        let shiftedArgument = shift 1 x 0 argument'
-                            substitutedBody = substitute x 0 shiftedArgument e
-                            unshiftedBody = shift (-1) x 0 substitutedBody
-                            e' = betaReduce unshiftedBody
-                         in e'
+                        betaReduce (substitute x 0 argument' e)
                     _ -> Apply function' argument'
 
         TermSymbol sym args ->
@@ -286,15 +288,13 @@ alphaReduce e0 = case e0 of
     Lambda binder e ->
         let shiftedBody = shift 1 defaultVarSymbol 0 e
             substitutedBody = substitute binder 0 (Var defaultVarSymbol 0) shiftedBody
-            unshiftedBody = shift (-1) binder 0 substitutedBody
-            e' = alphaReduce unshiftedBody
+            e' = alphaReduce substitutedBody
             in Lambda defaultVarSymbol e'
 
     Quantified q binder e ->
         let shiftedBody = shift 1 defaultVarSymbol 0 e
             substitutedBody = substitute binder 0 (Var defaultVarSymbol 0) shiftedBody
-            unshiftedBody = shift (-1) binder 0 substitutedBody
-            e' = alphaReduce unshiftedBody
+            e' = alphaReduce substitutedBody
             in Quantified q defaultVarSymbol e'
     Replacement repl -> Replacement (alphaReduceReplacement repl)
     Apply f a -> Apply (alphaReduce f) (alphaReduce a)
@@ -312,8 +312,7 @@ alphaReduceReplacement (ReplExpr bindings0 value0 cond0) = case bindings0 of
     ((binder, domain) : rest) ->
         let shiftedRepl = shiftReplacement 1 defaultVarSymbol 0 (ReplExpr rest value0 cond0)
             substitutedRepl = substituteReplacement binder 0 (Var defaultVarSymbol 0) shiftedRepl
-            unshiftedRepl = shiftReplacement (-1) binder 0 substitutedRepl
-            ReplExpr bindings' value' cond' = alphaReduceReplacement unshiftedRepl
+            ReplExpr bindings' value' cond' = alphaReduceReplacement substitutedRepl
         in  ReplExpr ((defaultVarSymbol, alphaReduce domain) : bindings') value' cond'
 
 

@@ -24,9 +24,20 @@ unitTests = testGroup "Terms with indexed names"
             expected = Var "x" 0
         actual `shouldBe` expected
     , testCase "shift does not affect variables with different names" shiftDifferent
+    , testCase "shift commutes for distinct variable names (shift_comm)" shiftCommDistinct
+    , testCase "nested shifts on same name satisfy shift_shift law" shiftShiftLawSpecialCase
     , testCase "substitute simple variable replacement" substSimple
+    , testCase "substitute decrements higher indices of the same name" substUnshiftHigherIndices
     , testCase "substitute is capture-avoiding when binder matches (no replacement under binder)" substShadow
     , testCase "substitute into lambda with different binder works and replacement gets inserted" substLambda
+    , testCase "subst x k (x[k]) (shift x k t) = t (subst_shift_id)" substShiftIdLawSpecialCase
+    , testCase "subst x k (shift x k v) (shift x k t) = t (subst_shift)" substShiftLawSpecialCase
+    , testCase "subst x k u (shift x k v) = v (subst_shift_cancel)" substShiftCancelLawSpecialCase
+    , testCase "shift-substitute distributivity when j < k (shift_subst_distrib)" shiftSubstDistribLtCase
+    , testCase "shift-substitute distributivity when j >= k (shift_subst_distrib)" shiftSubstDistribGeCase
+    , testCase "shift and substitution commute for distinct names (shift_subst_diff)" shiftSubstDiffLawSpecialCase
+    , testCase "substitution composition for same name (subst_subst)" substSubstLawSpecialCase
+    , testCase "substitution composition for distinct names (subst_subst_diff)" substSubstDiffLawSpecialCase
     , testCase "betaReduce performs beta-reduction (capture-avoiding substitution)" betaReduceSimple
     , testCase "alphaReduce renames binders to fresh name '_'" alphaReduceLambda
     , testCase "shift increments only free occurrences under multiple nested binders" shiftNested
@@ -37,15 +48,12 @@ unitTests = testGroup "Terms with indexed names"
     , testCase "alphaReduce deeply nested binders" alphaReduceDeep
     , testCase "freeVars: replacement with no binders" freeVarsReplacementSimple
     , testCase "freeVars: replacement with binders that correctly shadow" freeVarsReplacementShadow
-    , testCase "freeVars: domains not under binder scope" do
-        let bs = [("x", Apply (Var "X" 0) (Var "x" 0))] -- since x appears in its own domain, it is not bound there
-            r = ReplExpr bs (Var "x" 0) (Var "z" 0)
-            expected = Set.fromList ["X","x", "z"]
-        freeVarsReplacement r `shouldBe` expected
+    , testCase "freeVars: domains not under binder scope" freeVarsReplacementDomainScope
     , testCase "shift: shift inside Replacement (value and condition)" shiftReplacementSimple
     , testCase "shift: shift respects binder inside replacement" shiftReplacementBinder
 
     , testCase "substitute: replacement value and condition" substReplacementSimple
+    , testCase "substitute: replacement also decrements higher indices (built-in unshift)" substReplacementUnshiftHigherIndices
     , testCase "substitute: replacement binder shadows target" substReplacementShadow
     , testCase "substitute: replacement binder forces shifting of replacementExpr" substReplacementShift
     , testCase "substitute: replacement with multiple binders and partial shadowing" substReplacementMultiShadow
@@ -115,6 +123,31 @@ shiftDifferent = do
         expected = Var "x" 0
     actual `shouldBe` expected
 
+shiftCommDistinct :: Assertion
+shiftCommDistinct = do
+    let term =
+            Apply
+                (Lambda "y" (Apply (Var "x" 0) (Var "y" 0)))
+                (Lambda "x" (Apply (Var "x" 0) (Var "y" 1)))
+        lhs = shift 1 "x" 0 (shift 1 "y" 1 term)
+        rhs = shift 1 "y" 1 (shift 1 "x" 0 term)
+    lhs `shouldBe` rhs
+
+shiftShiftLawSpecialCase :: Assertion
+shiftShiftLawSpecialCase = do
+    let k = 1
+        j = 3
+        term = Lambda "x" (Apply (Var "x" 2) (Apply (Var "x" 1) (Var "z" 0)))
+        lhs = shift 1 "x" j (shift 1 "x" k term)
+        rhs = shift 1 "x" k (shift 1 "x" (j - 1) term)
+    lhs `shouldBe` rhs
+
+substUnshiftHigherIndices :: Assertion
+substUnshiftHigherIndices = do
+    let replacement = Var "z" 0
+    substitute "x" 1 replacement (Var "x" 3) `shouldBe` Var "x" 2
+    substitute "x" 1 replacement (Var "x" 0) `shouldBe` Var "x" 0
+
 -- | Substitution test: replace Var "x" 0 with Var "z" 0
 substSimple :: Assertion
 substSimple = do
@@ -150,6 +183,86 @@ substLambda = do
         -- Expect Lambda y. z[0]  (replacement unaffected by y because replacement name /= y)
         expected = Lambda "y" (Var "z" 0)
     actual `shouldBe` expected
+
+substShiftIdLawSpecialCase :: Assertion
+substShiftIdLawSpecialCase = do
+    let term = Apply (Var "x" 1) (Lambda "x" (Apply (Var "x" 1) (Var "x" 0)))
+        lhs = substitute "x" 0 (Var "x" 0) (shift 1 "x" 0 term)
+    lhs `shouldBe` term
+
+substShiftLawSpecialCase :: Assertion
+substShiftLawSpecialCase = do
+    let k = 1
+        v = Lambda "x" (Apply (Var "x" 0) (Var "x" 2))
+        t = Apply (Var "x" 2) (Lambda "y" (Apply (Var "x" 1) (Var "y" 0)))
+        lhs = substitute "x" k (shift 1 "x" k v) (shift 1 "x" k t)
+    lhs `shouldBe` t
+
+substShiftCancelLawSpecialCase :: Assertion
+substShiftCancelLawSpecialCase = do
+    let k = 1
+        u = Lambda "x" (Var "x" 0)
+        v = Apply (Var "x" 1) (Apply (Var "x" 3) (Var "w" 0))
+        lhs = substitute "x" k u (shift 1 "x" k v)
+    lhs `shouldBe` v
+
+shiftSubstDistribLtCase :: Assertion
+shiftSubstDistribLtCase = do
+    let j = 0
+        k = 1
+        v = Var "u" 0
+        t = Apply (Var "x" 0) (Lambda "x" (Apply (Var "x" 1) (Var "x" 0)))
+        lhs = shift 1 "x" k (substitute "x" j v t)
+        rhs = substitute "x" (if j < k then j else j + 1)
+                (shift 1 "x" k v)
+                (shift 1 "x" (if j < k then k + 1 else k) t)
+    lhs `shouldBe` rhs
+
+shiftSubstDistribGeCase :: Assertion
+shiftSubstDistribGeCase = do
+    let j = 1
+        k = 1
+        v = Apply (Var "x" 0) (Var "u" 0)
+        t = Apply (Var "x" 2) (Lambda "x" (Apply (Var "x" 2) (Var "x" 1)))
+        lhs = shift 1 "x" k (substitute "x" j v t)
+        rhs = substitute "x" (if j < k then j else j + 1)
+                (shift 1 "x" k v)
+                (shift 1 "x" (if j < k then k + 1 else k) t)
+    lhs `shouldBe` rhs
+
+shiftSubstDiffLawSpecialCase :: Assertion
+shiftSubstDiffLawSpecialCase = do
+    let v = Apply (Var "x" 0) (Var "z" 0)
+        t = Apply (Var "y" 0) (Lambda "y" (Apply (Var "y" 0) (Var "x" 1)))
+        lhs = shift 1 "x" 1 (substitute "y" 0 v t)
+        rhs = substitute "y" 0 (shift 1 "x" 1 v) (shift 1 "x" 1 t)
+    lhs `shouldBe` rhs
+
+substSubstLawSpecialCase :: Assertion
+substSubstLawSpecialCase = do
+    let i = 0
+        k = 1
+        u = Apply (Var "x" 0) (Var "a" 0)
+        v = Lambda "x" (Apply (Var "x" 1) (Var "b" 0))
+        t = Apply (Var "x" 0) (Apply (Var "x" 2) (Lambda "x" (Var "x" 1)))
+        lhs = substitute "x" k v (substitute "x" i u t)
+        rhs = substitute "x" i
+                (substitute "x" k v u)
+                (substitute "x" (k + 1) (shift 1 "x" i v) t)
+    lhs `shouldBe` rhs
+
+substSubstDiffLawSpecialCase :: Assertion
+substSubstDiffLawSpecialCase = do
+    let j = 1
+        k = 0
+        u = Apply (Var "x" 0) (Var "y" 1)
+        v = Lambda "y" (Apply (Var "y" 0) (Var "x" 1))
+        t = Apply (Var "y" 2) (Lambda "x" (Apply (Var "x" 0) (Var "y" 1)))
+        lhs = substitute "x" k v (substitute "y" j u t)
+        rhs = substitute "y" j
+                (substitute "x" k v u)
+                (substitute "x" k (shift 1 "y" j v) t)
+    lhs `shouldBe` rhs
 
 -- 	| β-reduction test: @(Lambda x. x) y  ==> y@
 betaReduceSimple :: Assertion
@@ -230,8 +343,8 @@ substDeepShadow = do
 -- Substitute x[0] := y[0] into:
 --   Lambda a. Lambda b. Var x 0
 --
--- Replacement y[0] must be shifted by 1 when crossing binder b, then by 1 again
--- when crossing binder a. Result: Var "y" 2.
+-- Replacement y[0] is shifted across binders a and b, but only variables named
+-- after those binders are affected. Since replacement variable is y, it remains y[0].
 substMultiBinder :: Assertion
 substMultiBinder = do
     let replacement = Var "y" 0
@@ -246,7 +359,7 @@ substMultiBinder = do
 --
 -- Call-by-value here:
 -- Step 1: Lambda x. Lambda x. x[0] applied to y:
---   substitute x[0] := y shifted
+--   substitute x[0] := y
 -- But inner binder x shadows, so body stays Lambda x. x[0].
 betaReduceNested :: Assertion
 betaReduceNested =
@@ -323,6 +436,14 @@ substReplacementSimple = do
     let r = ReplExpr [dummyBinder] (Var "x" 0) (Var "y" 0)
         actual   = substituteReplacement "x" 0 (Var "z" 0) r
         expected = ReplExpr [dummyBinder] (Var "z" 0) (Var "y" 0)
+    actual `shouldBe` expected
+
+substReplacementUnshiftHigherIndices :: Assertion
+substReplacementUnshiftHigherIndices = do
+    let bs = [("x", Var "A" 0)]
+        r = ReplExpr bs (Var "x" 2) (Var "x" 1)
+        actual = substituteReplacement "x" 0 (Var "z" 0) r
+        expected = ReplExpr bs (Var "x" 1) (Var "z" 0)
     actual `shouldBe` expected
 
 
