@@ -136,7 +136,7 @@ timeDifferenceToText startTime endTime = nominalDiffTimeToText (diffUTCTime endT
 runProver :: (MonadIO io, MonadLogger io) => ProverInstance -> Task -> io (Formula, ProverAnswer)
 runProver prover@Prover{..} task = do
     startTime <- liftIO getCurrentTime
-    (exitCode, answer, answerErr) <- liftIO (runProverProcess proverPath proverArgs task)
+    (_exitCode, answer, answerErr) <- liftIO (runProverProcess proverPath proverArgs task)
     endTime <- liftIO getCurrentTime
     let duration = timeDifferenceToText startTime endTime
 

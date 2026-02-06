@@ -246,9 +246,9 @@ glossChain ch = Sem.makeConjunction <$> makeRels (conjuncts (splat ch))
             e1' <- glossExpr e1
             e2' <- glossExpr e2
             case rel of
-                Raw.Relation rel params -> do
+                Raw.Relation rel' params -> do
                     params' <- glossExpr `each` params
-                    pure $ sign' $ Sem.Relation Nowhere rel (params' <> [e1',e2'])
+                    pure $ sign' $ Sem.Relation Nowhere rel' (params' <> [e1',e2'])
                 Raw.RelationExpr e -> do
                             e' <- glossExpr e
                             pure (sign' (Sem.IsElementOf Nowhere (Sem.TermPair Nowhere e1' e2') e'))
@@ -340,10 +340,10 @@ glossAdjL (Raw.AdjL loc pat es) = do
 -- the term representing the subject, hence the parameter 'Sem.Expr'.
 glossAdjR :: Raw.AdjR -> Gloss (Sem.Term -> Sem.Formula)
 glossAdjR = \case
-    Raw.AdjR loc pat [e] | pat == Raw.mkLexicalItem (unsafeReadPhrase "equal to ?") "eq" -> do
+    Raw.AdjR _loc pat [e] | pat == Raw.mkLexicalItem (unsafeReadPhrase "equal to ?") "eq" -> do
         (e', quantify) <- glossTerm e
         pure $ \t -> quantify $ Sem.Equals Nowhere t e'
-    Raw.AdjR loc pat es -> do
+    Raw.AdjR _loc pat es -> do
         (es', quantifies) <- unzip <$> glossTerm `each` es
         let quantify = compose $ reverse quantifies
         pure $ \t -> quantify $ Sem.FormulaAdj Nowhere t pat es'
@@ -396,15 +396,15 @@ glossFun (Raw.Fun loc phrase es) = do
 
 glossTerm :: Raw.Term -> Gloss (Sem.Term, Sem.Formula -> Sem.Formula)
 glossTerm = \case
-    Raw.TermExpr loc e ->
+    Raw.TermExpr _loc e ->
         (, id) <$> glossExpr e
     Raw.TermFun f ->
         glossFun f
-    Raw.TermIota loc x stmt -> do
-        stmt' <- glossStmt stmt
+    Raw.TermIota _loc _x stmt -> do
+        _stmt' <- glossStmt stmt
         _TODO "glossTerm TermIota"
         --pure (Sem.Iota x (abstract1 x stmt'), id)
-    Raw.TermQuantified quantifier loc np -> do
+    Raw.TermQuantified quantifier _loc np -> do
         quantify <- glossQuantifier quantifier
         (mkConstraint, maySuchThat) <- glossNPMaybe np
         v <- freshVar
@@ -416,14 +416,14 @@ glossTerm = \case
 
 glossStmt :: Raw.Stmt -> Gloss Sem.Formula
 glossStmt = \case
-    Raw.StmtFormula loc f -> glossFormula f
+    Raw.StmtFormula _loc f -> glossFormula f
     Raw.StmtNeg loc s -> Sem.Not loc <$> glossStmt s
     Raw.StmtVerbPhrase ts vp -> do
         (ts', quantifies) <- NonEmpty.unzip <$> glossTerm `each` ts
         vp' <- glossVP vp
         let phi = Sem.makeConjunction (vp' <$> toList ts')
         pure (compose quantifies phi)
-    Raw.StmtNoun loc ts np -> do
+    Raw.StmtNoun _loc ts np -> do
         (ts', quantifies) <- NonEmpty.unzip <$> glossTerm `each` ts
         (np', maySuchThat) <- glossNPMaybe np
         let andSuchThat phi = case maySuchThat of
@@ -434,16 +434,16 @@ glossStmt = \case
     Raw.StmtStruct loc t sp -> do
         (t', quantify) <- glossTerm t
         pure (quantify (Sem.TermSymbol loc (Sem.SymbolPredicate (Sem.PredicateNounStruct sp)) [t']))
-    Raw.StmtConnected conn mpos s1 s2 -> glossConnective conn <*> glossStmt s1 <*> glossStmt s2
-    Raw.StmtQuantPhrase loc (Raw.QuantPhrase quantifier np) f -> do
+    Raw.StmtConnected conn _mpos s1 s2 -> glossConnective conn <*> glossStmt s1 <*> glossStmt s2
+    Raw.StmtQuantPhrase _loc (Raw.QuantPhrase quantifier np) f -> do
         (vars, constraints) <- glossNPList np
         f' <- glossStmt f
         quantify <- glossQuantifier quantifier
         pure (quantify vars [constraints] f')
-    Raw.StmtExists loc np -> do
+    Raw.StmtExists _loc np -> do
         (vars, constraints) <- glossNPList np
         pure (Sem.makeExists vars constraints)
-    Raw.SymbolicQuantified loc quant vs bound suchThat have -> do
+    Raw.SymbolicQuantified _loc quant vs bound suchThat have -> do
         quantify <- glossQuantifier quant
         bound' <- glossBound bound
         suchThatConstraints <- maybeToList <$> glossStmt `each` suchThat
@@ -464,10 +464,10 @@ glossBound = \case
                 Positive -> id
                 Negative -> Sem.Not Nowhere
         bound <- case rel of
-            Raw.Relation rel params -> do
+            Raw.Relation rel' params -> do
                 params' <- glossExpr `each` params
                 pure $ \v -> sign' $
-                    Sem.Relation Nowhere rel (params' <> [Sem.TermVar v, term'])
+                    Sem.Relation Nowhere rel' (params' <> [Sem.TermVar v, term'])
             Raw.RelationExpr e -> do
                 e' <- glossExpr e
                 pure $ \v -> sign' $
@@ -552,7 +552,7 @@ glossLemma (Raw.Lemma asms f) = Sem.Lemma <$> glossAsms asms <*> glossStmt f
 glossDefn :: Raw.Defn -> Gloss Sem.Defn
 glossDefn = \case
     Raw.Defn asms h f -> glossDefnHead h <*> glossAsms asms <*> glossStmt f
-    Raw.DefnFun asms (Raw.Fun loc fun vs) _ e -> do
+    Raw.DefnFun asms (Raw.Fun _loc fun vs) _ e -> do
         asms' <- glossAsms asms
         e' <- case e of
             -- TODO improve error handling or make grammar stricter
@@ -568,13 +568,13 @@ glossDefn = \case
 glossDefnHead :: Raw.DefnHead -> Gloss ([Sem.Asm] -> Sem.Formula -> Sem.Defn)
 glossDefnHead = \case
     -- TODO add info from NP.
-    Raw.DefnAdj _mnp v (Raw.Adj loc adj vs) -> do
+    Raw.DefnAdj _mnp v (Raw.Adj _loc adj vs) -> do
         pure $ \asms f -> Sem.DefnPredicate asms (Sem.PredicateAdj adj) (v :| vs) f
         --mnp' <- glossNPMaybe `each` mnp
         --pure $ case mnp' of
         --    Nothing  -> \asms f -> Sem.DefnPredicate asms (Sem.PredicateAdj adj') (v :| vs) f
         --    Just np' -> \asms f -> Sem.DefnPredicate asms (Sem.PredicateAdj adj') (v :| vs) (Sem.FormulaAnd (np' v) f)
-    Raw.DefnVerb _mnp v (Raw.Verb loc verb vs) ->
+    Raw.DefnVerb _mnp v (Raw.Verb _loc verb vs) ->
         pure $ \asms f -> Sem.DefnPredicate asms (Sem.PredicateVerb verb) (v :| vs) f
     Raw.DefnNoun v (Raw.Noun noun vs) ->
         pure $ \asms f -> Sem.DefnPredicate asms (Sem.PredicateNoun noun) (v :| vs) f
@@ -685,9 +685,9 @@ glossCalc = \case
 
 glossSignature :: Raw.Signature -> Gloss Sem.Signature
 glossSignature sig = case sig of
-    Raw.SignatureAdj v (Raw.Adj loc adj vs) ->
+    Raw.SignatureAdj v (Raw.Adj _loc adj vs) ->
         pure $ Sem.SignaturePredicate (Sem.PredicateAdj adj) (v :| vs)
-    Raw.SignatureVerb v (Raw.Verb loc verb vs) ->
+    Raw.SignatureVerb v (Raw.Verb _loc verb vs) ->
         pure $ Sem.SignaturePredicate (Sem.PredicateVerb verb) (v :| vs)
     Raw.SignatureNoun v (Raw.Noun noun vs) ->
         pure $ Sem.SignaturePredicate (Sem.PredicateNoun noun) (v :| vs)
@@ -722,15 +722,15 @@ annotateCarrierFormula lbl = \case
 
 glossAbbreviation :: Raw.Abbreviation -> Gloss Sem.Abbreviation
 glossAbbreviation = \case
-    Raw.AbbreviationAdj x (Raw.Adj loc adj xs) stmt ->
+    Raw.AbbreviationAdj x (Raw.Adj _loc adj xs) stmt ->
         makeAbbrStmt (Sem.SymbolPredicate (Sem.PredicateAdj adj)) (x : xs) stmt
-    Raw.AbbreviationVerb x (Raw.Verb loc verb xs) stmt ->
+    Raw.AbbreviationVerb x (Raw.Verb _loc verb xs) stmt ->
         makeAbbrStmt (Sem.SymbolPredicate (Sem.PredicateVerb verb)) (x : xs) stmt
     Raw.AbbreviationNoun x (Raw.Noun noun xs) stmt ->
         makeAbbrStmt (Sem.SymbolPredicate (Sem.PredicateNoun noun)) (x : xs) stmt
     Raw.AbbreviationRel x rel params y stmt ->
         makeAbbrStmt (Sem.SymbolPredicate (Sem.PredicateRelation rel)) (params <> [x, y]) stmt
-    Raw.AbbreviationFun (Raw.Fun loc fun xs) t ->
+    Raw.AbbreviationFun (Raw.Fun _loc fun xs) t ->
         makeAbbrTerm (Sem.SymbolFun fun) xs t
     Raw.AbbreviationEq (Raw.SymbolPattern op xs) e ->
         makeAbbrExpr (Sem.SymbolMixfix op) xs e

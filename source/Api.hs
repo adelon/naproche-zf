@@ -297,8 +297,8 @@ dumpTask file tptp = liftIO (Text.writeFile file (Tptp.toText tptp))
 
 exportMegalodon :: (MonadUnliftIO io) => FilePath -> io Text
 exportMegalodon file = do
-    (blocks, lexicon) <- gloss file
-    pure (Megalodon.encodeBlocks lexicon blocks)
+    (blocks, _lexicon) <- gloss file
+    pure (Megalodon.encodeBlocks blocks)
 
 
 
