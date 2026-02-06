@@ -4,21 +4,21 @@ fof(no_universal_set1,axiom,~~?[X0]:universal_set(X0)).
 ------------------
 fof(no_universal_set,conjecture,elem(fR,fR)<=>~elem(fR,fR),"test/examples/russell.tex 14:5 (indirect proof)").
 fof(universal_set,axiom,![XV]:(universal_set(XV)<=>![Xx]:elem(Xx,XV))).
-fof(no_universal_set1,axiom,![Xx]:(elem(Xx,fR)<=>(elem(Xx,fV)&~elem(Xx,Xx)))).
+fof(no_universal_set3,axiom,![Xx]:(elem(Xx,fR)<=>(elem(Xx,fV)&~elem(Xx,Xx)))).
 fof(no_universal_set2,axiom,universal_set(fV)).
-fof(no_universal_set3,axiom,~~?[X0]:universal_set(X0)).
+fof(no_universal_set1,axiom,~~?[X0]:universal_set(X0)).
 ------------------
 fof(no_universal_set,conjecture,$false,"test/examples/russell.tex 15:5 (indirect proof)").
 fof(universal_set,axiom,![XV]:(universal_set(XV)<=>![Xx]:elem(Xx,XV))).
-fof(no_universal_set1,axiom,elem(fR,fR)<=>~elem(fR,fR)).
-fof(no_universal_set2,axiom,![Xx]:(elem(Xx,fR)<=>(elem(Xx,fV)&~elem(Xx,Xx)))).
-fof(no_universal_set3,axiom,universal_set(fV)).
-fof(no_universal_set4,axiom,~~?[X0]:universal_set(X0)).
+fof(no_universal_set4,axiom,elem(fR,fR)<=>~elem(fR,fR)).
+fof(no_universal_set3,axiom,![Xx]:(elem(Xx,fR)<=>(elem(Xx,fV)&~elem(Xx,Xx)))).
+fof(no_universal_set2,axiom,universal_set(fV)).
+fof(no_universal_set1,axiom,~~?[X0]:universal_set(X0)).
 ------------------
 fof(no_universal_set,conjecture,$false,"test/examples/russell.tex 16:1 (indirect proof)").
 fof(universal_set,axiom,![XV]:(universal_set(XV)<=>![Xx]:elem(Xx,XV))).
-fof(no_universal_set1,axiom,$false).
-fof(no_universal_set2,axiom,elem(fR,fR)<=>~elem(fR,fR)).
+fof(no_universal_set5,axiom,$false).
+fof(no_universal_set4,axiom,elem(fR,fR)<=>~elem(fR,fR)).
 fof(no_universal_set3,axiom,![Xx]:(elem(Xx,fR)<=>(elem(Xx,fV)&~elem(Xx,Xx)))).
-fof(no_universal_set4,axiom,universal_set(fV)).
-fof(no_universal_set5,axiom,~~?[X0]:universal_set(X0)).
+fof(no_universal_set2,axiom,universal_set(fV)).
+fof(no_universal_set1,axiom,~~?[X0]:universal_set(X0)).

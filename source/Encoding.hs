@@ -32,8 +32,11 @@ encodeTaskText :: Task -> Text
 encodeTaskText = toText . encodeTaskBuilder
 
 encodeHypothesis :: Marker -> Formula -> Hypothesis
-encodeHypothesis m phi =
-    let encoded = encodeExpr (contraction phi)
+encodeHypothesis m phi = encodeHypothesisContracted m phi (contraction phi)
+
+encodeHypothesisContracted :: Marker -> Formula -> Formula -> Hypothesis
+encodeHypothesisContracted m phi phiContracted =
+    let encoded = encodeExpr phiContracted
     in Hypothesis
         { hypothesisMarker = m
         , hypothesisFormula = phi

@@ -66,61 +66,58 @@
 , Task
     { taskDirectness = Direct
     , taskHypotheses =
-        [
-            ( Marker "formula_test_forall"
-            , EncodedHypothesis Quantified Universally
-                ( Scope
-                    ( Connected Conjunction
-                        ( TermSymbol
-                            ( Location
-                                { locFile = "<nowhere>"
-                                , locLine = -1
-                                , locColumn = -1
-                                }
-                            )
-                            ( SymbolPredicate
-                                ( PredicateRelation
-                                    ( RelationSymbol
-                                        ( Symbol "=" )
-                                        ( Marker "eq" )
-                                    )
-                                )
-                            )
-                            [ TermVar
-                                ( B
-                                    ( NamedVar "x" )
-                                )
-                            , TermVar
-                                ( B
-                                    ( NamedVar "x" )
-                                )
-                            ]
+        [ Hypothesis Marker "formula_test_forall" Quantified Universally
+            ( Scope
+                ( Connected Conjunction
+                    ( TermSymbol
+                        ( Location
+                            { locFile = "<nowhere>"
+                            , locLine = -1
+                            , locColumn = -1
+                            }
                         )
-                        ( TermSymbol
-                            ( Location
-                                { locFile = "<nowhere>"
-                                , locLine = -1
-                                , locColumn = -1
-                                }
-                            )
-                            ( SymbolPredicate
-                                ( PredicateRelation
-                                    ( RelationSymbol
-                                        ( Symbol "=" )
-                                        ( Marker "eq" )
-                                    )
+                        ( SymbolPredicate
+                            ( PredicateRelation
+                                ( RelationSymbol
+                                    ( Symbol "=" )
+                                    ( Marker "eq" )
                                 )
                             )
-                            [ TermVar
-                                ( B
-                                    ( NamedVar "y" )
-                                )
-                            , TermVar
-                                ( B
-                                    ( NamedVar "y" )
-                                )
-                            ]
                         )
+                        [ TermVar
+                            ( B
+                                ( NamedVar "x" )
+                            )
+                        , TermVar
+                            ( B
+                                ( NamedVar "x" )
+                            )
+                        ]
+                    )
+                    ( TermSymbol
+                        ( Location
+                            { locFile = "<nowhere>"
+                            , locLine = -1
+                            , locColumn = -1
+                            }
+                        )
+                        ( SymbolPredicate
+                            ( PredicateRelation
+                                ( RelationSymbol
+                                    ( Symbol "=" )
+                                    ( Marker "eq" )
+                                )
+                            )
+                        )
+                        [ TermVar
+                            ( B
+                                ( NamedVar "y" )
+                            )
+                        , TermVar
+                            ( B
+                                ( NamedVar "y" )
+                            )
+                        ]
                     )
                 )
             )
@@ -163,10 +160,37 @@
 , Task
     { taskDirectness = Direct
     , taskHypotheses =
-        [
-            ( Marker "formula_test_exists"
-            , EncodedHypothesis Quantified Existentially
-                ( Scope
+        [ Hypothesis Marker "formula_test_exists" Quantified Existentially
+            ( Scope
+                ( TermSymbol
+                    ( Location
+                        { locFile = "<nowhere>"
+                        , locLine = -1
+                        , locColumn = -1
+                        }
+                    )
+                    ( SymbolPredicate
+                        ( PredicateRelation
+                            ( RelationSymbol
+                                ( Symbol "=" )
+                                ( Marker "eq" )
+                            )
+                        )
+                    )
+                    [ TermVar
+                        ( B
+                            ( NamedVar "x" )
+                        )
+                    , TermVar
+                        ( B
+                            ( NamedVar "y" )
+                        )
+                    ]
+                )
+            )
+        , Hypothesis Marker "formula_test_forall" Quantified Universally
+            ( Scope
+                ( Connected Conjunction
                     ( TermSymbol
                         ( Location
                             { locFile = "<nowhere>"
@@ -188,67 +212,34 @@
                             )
                         , TermVar
                             ( B
-                                ( NamedVar "y" )
+                                ( NamedVar "x" )
                             )
                         ]
                     )
-                )
-            )
-        ,
-            ( Marker "formula_test_forall"
-            , EncodedHypothesis Quantified Universally
-                ( Scope
-                    ( Connected Conjunction
-                        ( TermSymbol
-                            ( Location
-                                { locFile = "<nowhere>"
-                                , locLine = -1
-                                , locColumn = -1
-                                }
-                            )
-                            ( SymbolPredicate
-                                ( PredicateRelation
-                                    ( RelationSymbol
-                                        ( Symbol "=" )
-                                        ( Marker "eq" )
-                                    )
-                                )
-                            )
-                            [ TermVar
-                                ( B
-                                    ( NamedVar "x" )
-                                )
-                            , TermVar
-                                ( B
-                                    ( NamedVar "x" )
-                                )
-                            ]
+                    ( TermSymbol
+                        ( Location
+                            { locFile = "<nowhere>"
+                            , locLine = -1
+                            , locColumn = -1
+                            }
                         )
-                        ( TermSymbol
-                            ( Location
-                                { locFile = "<nowhere>"
-                                , locLine = -1
-                                , locColumn = -1
-                                }
-                            )
-                            ( SymbolPredicate
-                                ( PredicateRelation
-                                    ( RelationSymbol
-                                        ( Symbol "=" )
-                                        ( Marker "eq" )
-                                    )
+                        ( SymbolPredicate
+                            ( PredicateRelation
+                                ( RelationSymbol
+                                    ( Symbol "=" )
+                                    ( Marker "eq" )
                                 )
                             )
-                            [ TermVar
-                                ( B
-                                    ( NamedVar "y" )
-                                )
-                            , TermVar
-                                ( B
-                                    ( NamedVar "y" )
-                                )
-                            ]
                         )
+                        [ TermVar
+                            ( B
+                                ( NamedVar "y" )
+                            )
+                        , TermVar
+                            ( B
+                                ( NamedVar "y" )
+                            )
+                        ]
                     )
                 )
             )

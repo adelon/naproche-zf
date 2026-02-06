@@ -31,29 +31,26 @@
 , Task
     { taskDirectness = Direct
     , taskHypotheses =
-        [
-            ( Marker "assumetest1"
-            , EncodedHypothesis TermSymbol
-                ( Location
-                    { locFile = "<nowhere>"
-                    , locLine = -1
-                    , locColumn = -1
-                    }
-                )
-                ( SymbolPredicate
-                    ( PredicateRelation
-                        ( RelationSymbol
-                            ( Symbol "=" )
-                            ( Marker "eq" )
-                        )
+        [ Hypothesis Marker "assumetest1" TermSymbol
+            ( Location
+                { locFile = "<nowhere>"
+                , locLine = -1
+                , locColumn = -1
+                }
+            )
+            ( SymbolPredicate
+                ( PredicateRelation
+                    ( RelationSymbol
+                        ( Symbol "=" )
+                        ( Marker "eq" )
                     )
                 )
-                [ TermVar
-                    ( NamedVar "x" )
-                , TermVar
-                    ( NamedVar "x" )
-                ]
             )
+            [ TermVar
+                ( NamedVar "x" )
+            , TermVar
+                ( NamedVar "x" )
+            ]
         ]
     , taskConjectureLabel = Marker "assumetest"
     , taskLocation = Location

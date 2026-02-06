@@ -1,11 +1,46 @@
 [ Task
     { taskDirectness = Direct
     , taskHypotheses =
-        [
-            ( Marker "unit"
-            , EncodedHypothesis Quantified Universally
-                ( Scope
-                    ( Connected Equivalence
+        [ Hypothesis Marker "unit" Quantified Universally
+            ( Scope
+                ( Connected Equivalence
+                    ( TermSymbol
+                        ( Location
+                            { locFile = "<nowhere>"
+                            , locLine = -1
+                            , locColumn = -1
+                            }
+                        )
+                        ( SymbolPredicate
+                            ( PredicateRelation
+                                ( RelationSymbol
+                                    ( Command "in" )
+                                    ( Marker "elem" )
+                                )
+                            )
+                        )
+                        [ TermVar
+                            ( B
+                                ( NamedVar "any" )
+                            )
+                        , TermSymbol
+                            ( Location
+                                { locFile = "test/examples/replace.tex"
+                                , locLine = 9
+                                , locColumn = 1
+                                }
+                            )
+                            ( SymbolMixfix
+                                ( MixfixItem
+                                    ( TokenCons
+                                        ( Command "unit" ) End
+                                    )
+                                    ( Marker "unit" ) NonAssoc
+                                )
+                            ) []
+                        ]
+                    )
+                    ( Connected Disjunction
                         ( TermSymbol
                             ( Location
                                 { locFile = "<nowhere>"
@@ -27,22 +62,65 @@
                                 )
                             , TermSymbol
                                 ( Location
-                                    { locFile = "test/examples/replace.tex"
-                                    , locLine = 9
-                                    , locColumn = 1
+                                    { locFile = "<nowhere>"
+                                    , locLine = -1
+                                    , locColumn = -1
                                     }
                                 )
                                 ( SymbolMixfix
                                     ( MixfixItem
                                         ( TokenCons
-                                            ( Command "unit" ) End
+                                            ( Command "emptyset" ) End
                                         )
-                                        ( Marker "unit" ) NonAssoc
+                                        ( Marker "emptyset" ) NonAssoc
                                     )
                                 ) []
                             ]
                         )
-                        ( Connected Disjunction
+                        ( TermSymbol
+                            ( Location
+                                { locFile = "test/examples/replace.tex"
+                                , locLine = 9
+                                , locColumn = 1
+                                }
+                            )
+                            ( SymbolPredicate
+                                ( PredicateRelation
+                                    ( RelationSymbol
+                                        ( Symbol "=" )
+                                        ( Marker "eq" )
+                                    )
+                                )
+                            )
+                            [ TermVar
+                                ( B
+                                    ( NamedVar "any" )
+                                )
+                            , TermSymbol
+                                ( Location
+                                    { locFile = "<nowhere>"
+                                    , locLine = -1
+                                    , locColumn = -1
+                                    }
+                                )
+                                ( SymbolMixfix
+                                    ( MixfixItem
+                                        ( TokenCons
+                                            ( Command "emptyset" ) End
+                                        )
+                                        ( Marker "emptyset" ) NonAssoc
+                                    )
+                                ) []
+                            ]
+                        )
+                    )
+                )
+            )
+        , Hypothesis Marker "times" Quantified Universally
+            ( Scope
+                ( Quantified Universally
+                    ( Scope
+                        ( Connected Equivalence
                             ( TermSymbol
                                 ( Location
                                     { locFile = "<nowhere>"
@@ -60,7 +138,7 @@
                                 )
                                 [ TermVar
                                     ( B
-                                        ( NamedVar "any" )
+                                        ( NamedVar "frv" )
                                     )
                                 , TermSymbol
                                     ( Location
@@ -71,186 +149,69 @@
                                     )
                                     ( SymbolMixfix
                                         ( MixfixItem
-                                            ( TokenCons
-                                                ( Command "emptyset" ) End
+                                            ( HoleCons
+                                                ( TokenCons
+                                                    ( Command "times" ) ( HoleCons End )
+                                                )
                                             )
-                                            ( Marker "emptyset" ) NonAssoc
-                                        )
-                                    ) []
-                                ]
-                            )
-                            ( TermSymbol
-                                ( Location
-                                    { locFile = "test/examples/replace.tex"
-                                    , locLine = 9
-                                    , locColumn = 1
-                                    }
-                                )
-                                ( SymbolPredicate
-                                    ( PredicateRelation
-                                        ( RelationSymbol
-                                            ( Symbol "=" )
-                                            ( Marker "eq" )
-                                        )
-                                    )
-                                )
-                                [ TermVar
-                                    ( B
-                                        ( NamedVar "any" )
-                                    )
-                                , TermSymbol
-                                    ( Location
-                                        { locFile = "<nowhere>"
-                                        , locLine = -1
-                                        , locColumn = -1
-                                        }
-                                    )
-                                    ( SymbolMixfix
-                                        ( MixfixItem
-                                            ( TokenCons
-                                                ( Command "emptyset" ) End
-                                            )
-                                            ( Marker "emptyset" ) NonAssoc
-                                        )
-                                    ) []
-                                ]
-                            )
-                        )
-                    )
-                )
-            )
-        ,
-            ( Marker "times"
-            , EncodedHypothesis Quantified Universally
-                ( Scope
-                    ( Quantified Universally
-                        ( Scope
-                            ( Connected Equivalence
-                                ( TermSymbol
-                                    ( Location
-                                        { locFile = "<nowhere>"
-                                        , locLine = -1
-                                        , locColumn = -1
-                                        }
-                                    )
-                                    ( SymbolPredicate
-                                        ( PredicateRelation
-                                            ( RelationSymbol
-                                                ( Command "in" )
-                                                ( Marker "elem" )
-                                            )
+                                            ( Marker "times" ) RightAssoc
                                         )
                                     )
                                     [ TermVar
-                                        ( B
-                                            ( NamedVar "frv" )
-                                        )
-                                    , TermSymbol
-                                        ( Location
-                                            { locFile = "<nowhere>"
-                                            , locLine = -1
-                                            , locColumn = -1
-                                            }
-                                        )
-                                        ( SymbolMixfix
-                                            ( MixfixItem
-                                                ( HoleCons
-                                                    ( TokenCons
-                                                        ( Command "times" ) ( HoleCons End )
-                                                    )
-                                                )
-                                                ( Marker "times" ) RightAssoc
-                                            )
-                                        )
-                                        [ TermVar
-                                            ( F
-                                                ( TermVar
-                                                    ( B
-                                                        ( NamedVar "A" )
-                                                    )
+                                        ( F
+                                            ( TermVar
+                                                ( B
+                                                    ( NamedVar "A" )
                                                 )
                                             )
-                                        , TermVar
-                                            ( F
-                                                ( TermVar
-                                                    ( B
-                                                        ( NamedVar "B" )
-                                                    )
+                                        )
+                                    , TermVar
+                                        ( F
+                                            ( TermVar
+                                                ( B
+                                                    ( NamedVar "B" )
                                                 )
                                             )
-                                        ]
+                                        )
                                     ]
-                                )
-                                ( Quantified Existentially
-                                    ( Scope
+                                ]
+                            )
+                            ( Quantified Existentially
+                                ( Scope
+                                    ( Connected Conjunction
                                         ( Connected Conjunction
-                                            ( Connected Conjunction
-                                                ( TermSymbol
-                                                    ( Location
-                                                        { locFile = "<nowhere>"
-                                                        , locLine = -1
-                                                        , locColumn = -1
-                                                        }
-                                                    )
-                                                    ( SymbolPredicate
-                                                        ( PredicateRelation
-                                                            ( RelationSymbol
-                                                                ( Command "in" )
-                                                                ( Marker "elem" )
-                                                            )
+                                            ( TermSymbol
+                                                ( Location
+                                                    { locFile = "<nowhere>"
+                                                    , locLine = -1
+                                                    , locColumn = -1
+                                                    }
+                                                )
+                                                ( SymbolPredicate
+                                                    ( PredicateRelation
+                                                        ( RelationSymbol
+                                                            ( Command "in" )
+                                                            ( Marker "elem" )
                                                         )
                                                     )
-                                                    [ TermVar
-                                                        ( B
-                                                            ( NamedVar "a" )
-                                                        )
-                                                    , TermVar
-                                                        ( F
-                                                            ( TermVar
-                                                                ( F
-                                                                    ( TermVar
-                                                                        ( B
-                                                                            ( NamedVar "A" )
-                                                                        )
+                                                )
+                                                [ TermVar
+                                                    ( B
+                                                        ( NamedVar "a" )
+                                                    )
+                                                , TermVar
+                                                    ( F
+                                                        ( TermVar
+                                                            ( F
+                                                                ( TermVar
+                                                                    ( B
+                                                                        ( NamedVar "A" )
                                                                     )
                                                                 )
                                                             )
                                                         )
-                                                    ]
-                                                )
-                                                ( TermSymbol
-                                                    ( Location
-                                                        { locFile = "<nowhere>"
-                                                        , locLine = -1
-                                                        , locColumn = -1
-                                                        }
                                                     )
-                                                    ( SymbolPredicate
-                                                        ( PredicateRelation
-                                                            ( RelationSymbol
-                                                                ( Command "in" )
-                                                                ( Marker "elem" )
-                                                            )
-                                                        )
-                                                    )
-                                                    [ TermVar
-                                                        ( B
-                                                            ( NamedVar "b" )
-                                                        )
-                                                    , TermVar
-                                                        ( F
-                                                            ( TermVar
-                                                                ( F
-                                                                    ( TermVar
-                                                                        ( B
-                                                                            ( NamedVar "B" )
-                                                                        )
-                                                                    )
-                                                                )
-                                                            )
-                                                        )
-                                                    ]
-                                                )
+                                                ]
                                             )
                                             ( TermSymbol
                                                 ( Location
@@ -262,54 +223,87 @@
                                                 ( SymbolPredicate
                                                     ( PredicateRelation
                                                         ( RelationSymbol
-                                                            ( Symbol "=" )
-                                                            ( Marker "eq" )
+                                                            ( Command "in" )
+                                                            ( Marker "elem" )
                                                         )
                                                     )
                                                 )
-                                                [ TermSymbol
-                                                    ( Location
-                                                        { locFile = "<nowhere>"
-                                                        , locLine = -1
-                                                        , locColumn = -1
-                                                        }
+                                                [ TermVar
+                                                    ( B
+                                                        ( NamedVar "b" )
                                                     )
-                                                    ( SymbolMixfix
-                                                        ( MixfixItem
-                                                            ( TokenCons
-                                                                ( Command "pair" )
-                                                                ( TokenCons InvisibleBraceL
-                                                                    ( HoleCons
-                                                                        ( TokenCons InvisibleBraceR
-                                                                            ( TokenCons InvisibleBraceL
-                                                                                ( HoleCons ( TokenCons InvisibleBraceR End ) )
-                                                                            )
-                                                                        )
-                                                                    )
-                                                                )
-                                                            )
-                                                            ( Marker "pair" ) NonAssoc
-                                                        )
-                                                    )
-                                                    [ TermVar
-                                                        ( B
-                                                            ( NamedVar "a" )
-                                                        )
-                                                    , TermVar
-                                                        ( B
-                                                            ( NamedVar "b" )
-                                                        )
-                                                    ]
                                                 , TermVar
                                                     ( F
                                                         ( TermVar
-                                                            ( B
-                                                                ( NamedVar "frv" )
+                                                            ( F
+                                                                ( TermVar
+                                                                    ( B
+                                                                        ( NamedVar "B" )
+                                                                    )
+                                                                )
                                                             )
                                                         )
                                                     )
                                                 ]
                                             )
+                                        )
+                                        ( TermSymbol
+                                            ( Location
+                                                { locFile = "<nowhere>"
+                                                , locLine = -1
+                                                , locColumn = -1
+                                                }
+                                            )
+                                            ( SymbolPredicate
+                                                ( PredicateRelation
+                                                    ( RelationSymbol
+                                                        ( Symbol "=" )
+                                                        ( Marker "eq" )
+                                                    )
+                                                )
+                                            )
+                                            [ TermSymbol
+                                                ( Location
+                                                    { locFile = "<nowhere>"
+                                                    , locLine = -1
+                                                    , locColumn = -1
+                                                    }
+                                                )
+                                                ( SymbolMixfix
+                                                    ( MixfixItem
+                                                        ( TokenCons
+                                                            ( Command "pair" )
+                                                            ( TokenCons InvisibleBraceL
+                                                                ( HoleCons
+                                                                    ( TokenCons InvisibleBraceR
+                                                                        ( TokenCons InvisibleBraceL
+                                                                            ( HoleCons ( TokenCons InvisibleBraceR End ) )
+                                                                        )
+                                                                    )
+                                                                )
+                                                            )
+                                                        )
+                                                        ( Marker "pair" ) NonAssoc
+                                                    )
+                                                )
+                                                [ TermVar
+                                                    ( B
+                                                        ( NamedVar "a" )
+                                                    )
+                                                , TermVar
+                                                    ( B
+                                                        ( NamedVar "b" )
+                                                    )
+                                                ]
+                                            , TermVar
+                                                ( F
+                                                    ( TermVar
+                                                        ( B
+                                                            ( NamedVar "frv" )
+                                                        )
+                                                    )
+                                                )
+                                            ]
                                         )
                                     )
                                 )
@@ -318,11 +312,89 @@
                     )
                 )
             )
-        ,
-            ( Marker "cons"
-            , EncodedHypothesis Quantified Universally
-                ( Scope
-                    ( Connected Equivalence
+        , Hypothesis Marker "cons" Quantified Universally
+            ( Scope
+                ( Connected Equivalence
+                    ( TermSymbol
+                        ( Location
+                            { locFile = "<nowhere>"
+                            , locLine = -1
+                            , locColumn = -1
+                            }
+                        )
+                        ( SymbolPredicate
+                            ( PredicateRelation
+                                ( RelationSymbol
+                                    ( Command "in" )
+                                    ( Marker "elem" )
+                                )
+                            )
+                        )
+                        [ TermVar
+                            ( B
+                                ( NamedVar "x" )
+                            )
+                        , TermSymbol
+                            ( Location
+                                { locFile = "<nowhere>"
+                                , locLine = -1
+                                , locColumn = -1
+                                }
+                            )
+                            ( SymbolMixfix
+                                ( MixfixItem
+                                    ( TokenCons
+                                        ( Command "cons" )
+                                        ( TokenCons InvisibleBraceL
+                                            ( HoleCons
+                                                ( TokenCons InvisibleBraceR
+                                                    ( TokenCons InvisibleBraceL
+                                                        ( HoleCons ( TokenCons InvisibleBraceR End ) )
+                                                    )
+                                                )
+                                            )
+                                        )
+                                    )
+                                    ( Marker "cons" ) NonAssoc
+                                )
+                            )
+                            [ TermVar
+                                ( B
+                                    ( NamedVar "y" )
+                                )
+                            , TermVar
+                                ( B
+                                    ( NamedVar "X" )
+                                )
+                            ]
+                        ]
+                    )
+                    ( Connected Disjunction
+                        ( TermSymbol
+                            ( Location
+                                { locFile = "<nowhere>"
+                                , locLine = -1
+                                , locColumn = -1
+                                }
+                            )
+                            ( SymbolPredicate
+                                ( PredicateRelation
+                                    ( RelationSymbol
+                                        ( Symbol "=" )
+                                        ( Marker "eq" )
+                                    )
+                                )
+                            )
+                            [ TermVar
+                                ( B
+                                    ( NamedVar "x" )
+                                )
+                            , TermVar
+                                ( B
+                                    ( NamedVar "y" )
+                                )
+                            ]
+                        )
                         ( TermSymbol
                             ( Location
                                 { locFile = "<nowhere>"
@@ -342,92 +414,11 @@
                                 ( B
                                     ( NamedVar "x" )
                                 )
-                            , TermSymbol
-                                ( Location
-                                    { locFile = "<nowhere>"
-                                    , locLine = -1
-                                    , locColumn = -1
-                                    }
+                            , TermVar
+                                ( B
+                                    ( NamedVar "X" )
                                 )
-                                ( SymbolMixfix
-                                    ( MixfixItem
-                                        ( TokenCons
-                                            ( Command "cons" )
-                                            ( TokenCons InvisibleBraceL
-                                                ( HoleCons
-                                                    ( TokenCons InvisibleBraceR
-                                                        ( TokenCons InvisibleBraceL
-                                                            ( HoleCons ( TokenCons InvisibleBraceR End ) )
-                                                        )
-                                                    )
-                                                )
-                                            )
-                                        )
-                                        ( Marker "cons" ) NonAssoc
-                                    )
-                                )
-                                [ TermVar
-                                    ( B
-                                        ( NamedVar "y" )
-                                    )
-                                , TermVar
-                                    ( B
-                                        ( NamedVar "X" )
-                                    )
-                                ]
                             ]
-                        )
-                        ( Connected Disjunction
-                            ( TermSymbol
-                                ( Location
-                                    { locFile = "<nowhere>"
-                                    , locLine = -1
-                                    , locColumn = -1
-                                    }
-                                )
-                                ( SymbolPredicate
-                                    ( PredicateRelation
-                                        ( RelationSymbol
-                                            ( Symbol "=" )
-                                            ( Marker "eq" )
-                                        )
-                                    )
-                                )
-                                [ TermVar
-                                    ( B
-                                        ( NamedVar "x" )
-                                    )
-                                , TermVar
-                                    ( B
-                                        ( NamedVar "y" )
-                                    )
-                                ]
-                            )
-                            ( TermSymbol
-                                ( Location
-                                    { locFile = "<nowhere>"
-                                    , locLine = -1
-                                    , locColumn = -1
-                                    }
-                                )
-                                ( SymbolPredicate
-                                    ( PredicateRelation
-                                        ( RelationSymbol
-                                            ( Command "in" )
-                                            ( Marker "elem" )
-                                        )
-                                    )
-                                )
-                                [ TermVar
-                                    ( B
-                                        ( NamedVar "x" )
-                                    )
-                                , TermVar
-                                    ( B
-                                        ( NamedVar "X" )
-                                    )
-                                ]
-                            )
                         )
                     )
                 )
@@ -562,21 +553,43 @@
 , Task
     { taskDirectness = Direct
     , taskHypotheses =
-        [
-            ( Marker "pair_emptyset_in_times_unit"
-            , EncodedHypothesis TermSymbol
+        [ Hypothesis Marker "pair_emptyset_in_times_unit" TermSymbol
+            ( Location
+                { locFile = "<nowhere>"
+                , locLine = -1
+                , locColumn = -1
+                }
+            )
+            ( SymbolPredicate
+                ( PredicateRelation
+                    ( RelationSymbol
+                        ( Command "in" )
+                        ( Marker "elem" )
+                    )
+                )
+            )
+            [ TermSymbol
                 ( Location
                     { locFile = "<nowhere>"
                     , locLine = -1
                     , locColumn = -1
                     }
                 )
-                ( SymbolPredicate
-                    ( PredicateRelation
-                        ( RelationSymbol
-                            ( Command "in" )
-                            ( Marker "elem" )
+                ( SymbolMixfix
+                    ( MixfixItem
+                        ( TokenCons
+                            ( Command "pair" )
+                            ( TokenCons InvisibleBraceL
+                                ( HoleCons
+                                    ( TokenCons InvisibleBraceR
+                                        ( TokenCons InvisibleBraceL
+                                            ( HoleCons ( TokenCons InvisibleBraceR End ) )
+                                        )
+                                    )
+                                )
+                            )
                         )
+                        ( Marker "pair" ) NonAssoc
                     )
                 )
                 [ TermSymbol
@@ -589,51 +602,11 @@
                     ( SymbolMixfix
                         ( MixfixItem
                             ( TokenCons
-                                ( Command "pair" )
-                                ( TokenCons InvisibleBraceL
-                                    ( HoleCons
-                                        ( TokenCons InvisibleBraceR
-                                            ( TokenCons InvisibleBraceL
-                                                ( HoleCons ( TokenCons InvisibleBraceR End ) )
-                                            )
-                                        )
-                                    )
-                                )
+                                ( Command "emptyset" ) End
                             )
-                            ( Marker "pair" ) NonAssoc
+                            ( Marker "emptyset" ) NonAssoc
                         )
-                    )
-                    [ TermSymbol
-                        ( Location
-                            { locFile = "<nowhere>"
-                            , locLine = -1
-                            , locColumn = -1
-                            }
-                        )
-                        ( SymbolMixfix
-                            ( MixfixItem
-                                ( TokenCons
-                                    ( Command "emptyset" ) End
-                                )
-                                ( Marker "emptyset" ) NonAssoc
-                            )
-                        ) []
-                    , TermSymbol
-                        ( Location
-                            { locFile = "<nowhere>"
-                            , locLine = -1
-                            , locColumn = -1
-                            }
-                        )
-                        ( SymbolMixfix
-                            ( MixfixItem
-                                ( TokenCons
-                                    ( Command "emptyset" ) End
-                                )
-                                ( Marker "emptyset" ) NonAssoc
-                            )
-                        ) []
-                    ]
+                    ) []
                 , TermSymbol
                     ( Location
                         { locFile = "<nowhere>"
@@ -643,52 +616,102 @@
                     )
                     ( SymbolMixfix
                         ( MixfixItem
-                            ( HoleCons
-                                ( TokenCons
-                                    ( Command "times" ) ( HoleCons End )
-                                )
+                            ( TokenCons
+                                ( Command "emptyset" ) End
                             )
-                            ( Marker "times" ) RightAssoc
+                            ( Marker "emptyset" ) NonAssoc
                         )
-                    )
-                    [ TermSymbol
-                        ( Location
-                            { locFile = "<nowhere>"
-                            , locLine = -1
-                            , locColumn = -1
-                            }
-                        )
-                        ( SymbolMixfix
-                            ( MixfixItem
-                                ( TokenCons
-                                    ( Command "unit" ) End
-                                )
-                                ( Marker "unit" ) NonAssoc
-                            )
-                        ) []
-                    , TermSymbol
-                        ( Location
-                            { locFile = "<nowhere>"
-                            , locLine = -1
-                            , locColumn = -1
-                            }
-                        )
-                        ( SymbolMixfix
-                            ( MixfixItem
-                                ( TokenCons
-                                    ( Command "unit" ) End
-                                )
-                                ( Marker "unit" ) NonAssoc
-                            )
-                        ) []
-                    ]
+                    ) []
                 ]
-            )
-        ,
-            ( Marker "unit"
-            , EncodedHypothesis Quantified Universally
-                ( Scope
-                    ( Connected Equivalence
+            , TermSymbol
+                ( Location
+                    { locFile = "<nowhere>"
+                    , locLine = -1
+                    , locColumn = -1
+                    }
+                )
+                ( SymbolMixfix
+                    ( MixfixItem
+                        ( HoleCons
+                            ( TokenCons
+                                ( Command "times" ) ( HoleCons End )
+                            )
+                        )
+                        ( Marker "times" ) RightAssoc
+                    )
+                )
+                [ TermSymbol
+                    ( Location
+                        { locFile = "<nowhere>"
+                        , locLine = -1
+                        , locColumn = -1
+                        }
+                    )
+                    ( SymbolMixfix
+                        ( MixfixItem
+                            ( TokenCons
+                                ( Command "unit" ) End
+                            )
+                            ( Marker "unit" ) NonAssoc
+                        )
+                    ) []
+                , TermSymbol
+                    ( Location
+                        { locFile = "<nowhere>"
+                        , locLine = -1
+                        , locColumn = -1
+                        }
+                    )
+                    ( SymbolMixfix
+                        ( MixfixItem
+                            ( TokenCons
+                                ( Command "unit" ) End
+                            )
+                            ( Marker "unit" ) NonAssoc
+                        )
+                    ) []
+                ]
+            ]
+        , Hypothesis Marker "unit" Quantified Universally
+            ( Scope
+                ( Connected Equivalence
+                    ( TermSymbol
+                        ( Location
+                            { locFile = "<nowhere>"
+                            , locLine = -1
+                            , locColumn = -1
+                            }
+                        )
+                        ( SymbolPredicate
+                            ( PredicateRelation
+                                ( RelationSymbol
+                                    ( Command "in" )
+                                    ( Marker "elem" )
+                                )
+                            )
+                        )
+                        [ TermVar
+                            ( B
+                                ( NamedVar "any" )
+                            )
+                        , TermSymbol
+                            ( Location
+                                { locFile = "test/examples/replace.tex"
+                                , locLine = 9
+                                , locColumn = 1
+                                }
+                            )
+                            ( SymbolMixfix
+                                ( MixfixItem
+                                    ( TokenCons
+                                        ( Command "unit" ) End
+                                    )
+                                    ( Marker "unit" ) NonAssoc
+                                )
+                            ) []
+                        ]
+                    )
+                    ( Connected Disjunction
                         ( TermSymbol
                             ( Location
                                 { locFile = "<nowhere>"
@@ -710,22 +733,65 @@
                                 )
                             , TermSymbol
                                 ( Location
-                                    { locFile = "test/examples/replace.tex"
-                                    , locLine = 9
-                                    , locColumn = 1
+                                    { locFile = "<nowhere>"
+                                    , locLine = -1
+                                    , locColumn = -1
                                     }
                                 )
                                 ( SymbolMixfix
                                     ( MixfixItem
                                         ( TokenCons
-                                            ( Command "unit" ) End
+                                            ( Command "emptyset" ) End
                                         )
-                                        ( Marker "unit" ) NonAssoc
+                                        ( Marker "emptyset" ) NonAssoc
                                     )
                                 ) []
                             ]
                         )
-                        ( Connected Disjunction
+                        ( TermSymbol
+                            ( Location
+                                { locFile = "test/examples/replace.tex"
+                                , locLine = 9
+                                , locColumn = 1
+                                }
+                            )
+                            ( SymbolPredicate
+                                ( PredicateRelation
+                                    ( RelationSymbol
+                                        ( Symbol "=" )
+                                        ( Marker "eq" )
+                                    )
+                                )
+                            )
+                            [ TermVar
+                                ( B
+                                    ( NamedVar "any" )
+                                )
+                            , TermSymbol
+                                ( Location
+                                    { locFile = "<nowhere>"
+                                    , locLine = -1
+                                    , locColumn = -1
+                                    }
+                                )
+                                ( SymbolMixfix
+                                    ( MixfixItem
+                                        ( TokenCons
+                                            ( Command "emptyset" ) End
+                                        )
+                                        ( Marker "emptyset" ) NonAssoc
+                                    )
+                                ) []
+                            ]
+                        )
+                    )
+                )
+            )
+        , Hypothesis Marker "times" Quantified Universally
+            ( Scope
+                ( Quantified Universally
+                    ( Scope
+                        ( Connected Equivalence
                             ( TermSymbol
                                 ( Location
                                     { locFile = "<nowhere>"
@@ -743,7 +809,7 @@
                                 )
                                 [ TermVar
                                     ( B
-                                        ( NamedVar "any" )
+                                        ( NamedVar "frv" )
                                     )
                                 , TermSymbol
                                     ( Location
@@ -754,186 +820,69 @@
                                     )
                                     ( SymbolMixfix
                                         ( MixfixItem
-                                            ( TokenCons
-                                                ( Command "emptyset" ) End
+                                            ( HoleCons
+                                                ( TokenCons
+                                                    ( Command "times" ) ( HoleCons End )
+                                                )
                                             )
-                                            ( Marker "emptyset" ) NonAssoc
-                                        )
-                                    ) []
-                                ]
-                            )
-                            ( TermSymbol
-                                ( Location
-                                    { locFile = "test/examples/replace.tex"
-                                    , locLine = 9
-                                    , locColumn = 1
-                                    }
-                                )
-                                ( SymbolPredicate
-                                    ( PredicateRelation
-                                        ( RelationSymbol
-                                            ( Symbol "=" )
-                                            ( Marker "eq" )
-                                        )
-                                    )
-                                )
-                                [ TermVar
-                                    ( B
-                                        ( NamedVar "any" )
-                                    )
-                                , TermSymbol
-                                    ( Location
-                                        { locFile = "<nowhere>"
-                                        , locLine = -1
-                                        , locColumn = -1
-                                        }
-                                    )
-                                    ( SymbolMixfix
-                                        ( MixfixItem
-                                            ( TokenCons
-                                                ( Command "emptyset" ) End
-                                            )
-                                            ( Marker "emptyset" ) NonAssoc
-                                        )
-                                    ) []
-                                ]
-                            )
-                        )
-                    )
-                )
-            )
-        ,
-            ( Marker "times"
-            , EncodedHypothesis Quantified Universally
-                ( Scope
-                    ( Quantified Universally
-                        ( Scope
-                            ( Connected Equivalence
-                                ( TermSymbol
-                                    ( Location
-                                        { locFile = "<nowhere>"
-                                        , locLine = -1
-                                        , locColumn = -1
-                                        }
-                                    )
-                                    ( SymbolPredicate
-                                        ( PredicateRelation
-                                            ( RelationSymbol
-                                                ( Command "in" )
-                                                ( Marker "elem" )
-                                            )
+                                            ( Marker "times" ) RightAssoc
                                         )
                                     )
                                     [ TermVar
-                                        ( B
-                                            ( NamedVar "frv" )
-                                        )
-                                    , TermSymbol
-                                        ( Location
-                                            { locFile = "<nowhere>"
-                                            , locLine = -1
-                                            , locColumn = -1
-                                            }
-                                        )
-                                        ( SymbolMixfix
-                                            ( MixfixItem
-                                                ( HoleCons
-                                                    ( TokenCons
-                                                        ( Command "times" ) ( HoleCons End )
-                                                    )
-                                                )
-                                                ( Marker "times" ) RightAssoc
-                                            )
-                                        )
-                                        [ TermVar
-                                            ( F
-                                                ( TermVar
-                                                    ( B
-                                                        ( NamedVar "A" )
-                                                    )
+                                        ( F
+                                            ( TermVar
+                                                ( B
+                                                    ( NamedVar "A" )
                                                 )
                                             )
-                                        , TermVar
-                                            ( F
-                                                ( TermVar
-                                                    ( B
-                                                        ( NamedVar "B" )
-                                                    )
+                                        )
+                                    , TermVar
+                                        ( F
+                                            ( TermVar
+                                                ( B
+                                                    ( NamedVar "B" )
                                                 )
                                             )
-                                        ]
+                                        )
                                     ]
-                                )
-                                ( Quantified Existentially
-                                    ( Scope
+                                ]
+                            )
+                            ( Quantified Existentially
+                                ( Scope
+                                    ( Connected Conjunction
                                         ( Connected Conjunction
-                                            ( Connected Conjunction
-                                                ( TermSymbol
-                                                    ( Location
-                                                        { locFile = "<nowhere>"
-                                                        , locLine = -1
-                                                        , locColumn = -1
-                                                        }
-                                                    )
-                                                    ( SymbolPredicate
-                                                        ( PredicateRelation
-                                                            ( RelationSymbol
-                                                                ( Command "in" )
-                                                                ( Marker "elem" )
-                                                            )
+                                            ( TermSymbol
+                                                ( Location
+                                                    { locFile = "<nowhere>"
+                                                    , locLine = -1
+                                                    , locColumn = -1
+                                                    }
+                                                )
+                                                ( SymbolPredicate
+                                                    ( PredicateRelation
+                                                        ( RelationSymbol
+                                                            ( Command "in" )
+                                                            ( Marker "elem" )
                                                         )
                                                     )
-                                                    [ TermVar
-                                                        ( B
-                                                            ( NamedVar "a" )
-                                                        )
-                                                    , TermVar
-                                                        ( F
-                                                            ( TermVar
-                                                                ( F
-                                                                    ( TermVar
-                                                                        ( B
-                                                                            ( NamedVar "A" )
-                                                                        )
+                                                )
+                                                [ TermVar
+                                                    ( B
+                                                        ( NamedVar "a" )
+                                                    )
+                                                , TermVar
+                                                    ( F
+                                                        ( TermVar
+                                                            ( F
+                                                                ( TermVar
+                                                                    ( B
+                                                                        ( NamedVar "A" )
                                                                     )
                                                                 )
                                                             )
                                                         )
-                                                    ]
-                                                )
-                                                ( TermSymbol
-                                                    ( Location
-                                                        { locFile = "<nowhere>"
-                                                        , locLine = -1
-                                                        , locColumn = -1
-                                                        }
                                                     )
-                                                    ( SymbolPredicate
-                                                        ( PredicateRelation
-                                                            ( RelationSymbol
-                                                                ( Command "in" )
-                                                                ( Marker "elem" )
-                                                            )
-                                                        )
-                                                    )
-                                                    [ TermVar
-                                                        ( B
-                                                            ( NamedVar "b" )
-                                                        )
-                                                    , TermVar
-                                                        ( F
-                                                            ( TermVar
-                                                                ( F
-                                                                    ( TermVar
-                                                                        ( B
-                                                                            ( NamedVar "B" )
-                                                                        )
-                                                                    )
-                                                                )
-                                                            )
-                                                        )
-                                                    ]
-                                                )
+                                                ]
                                             )
                                             ( TermSymbol
                                                 ( Location
@@ -945,54 +894,87 @@
                                                 ( SymbolPredicate
                                                     ( PredicateRelation
                                                         ( RelationSymbol
-                                                            ( Symbol "=" )
-                                                            ( Marker "eq" )
+                                                            ( Command "in" )
+                                                            ( Marker "elem" )
                                                         )
                                                     )
                                                 )
-                                                [ TermSymbol
-                                                    ( Location
-                                                        { locFile = "<nowhere>"
-                                                        , locLine = -1
-                                                        , locColumn = -1
-                                                        }
+                                                [ TermVar
+                                                    ( B
+                                                        ( NamedVar "b" )
                                                     )
-                                                    ( SymbolMixfix
-                                                        ( MixfixItem
-                                                            ( TokenCons
-                                                                ( Command "pair" )
-                                                                ( TokenCons InvisibleBraceL
-                                                                    ( HoleCons
-                                                                        ( TokenCons InvisibleBraceR
-                                                                            ( TokenCons InvisibleBraceL
-                                                                                ( HoleCons ( TokenCons InvisibleBraceR End ) )
-                                                                            )
-                                                                        )
-                                                                    )
-                                                                )
-                                                            )
-                                                            ( Marker "pair" ) NonAssoc
-                                                        )
-                                                    )
-                                                    [ TermVar
-                                                        ( B
-                                                            ( NamedVar "a" )
-                                                        )
-                                                    , TermVar
-                                                        ( B
-                                                            ( NamedVar "b" )
-                                                        )
-                                                    ]
                                                 , TermVar
                                                     ( F
                                                         ( TermVar
-                                                            ( B
-                                                                ( NamedVar "frv" )
+                                                            ( F
+                                                                ( TermVar
+                                                                    ( B
+                                                                        ( NamedVar "B" )
+                                                                    )
+                                                                )
                                                             )
                                                         )
                                                     )
                                                 ]
                                             )
+                                        )
+                                        ( TermSymbol
+                                            ( Location
+                                                { locFile = "<nowhere>"
+                                                , locLine = -1
+                                                , locColumn = -1
+                                                }
+                                            )
+                                            ( SymbolPredicate
+                                                ( PredicateRelation
+                                                    ( RelationSymbol
+                                                        ( Symbol "=" )
+                                                        ( Marker "eq" )
+                                                    )
+                                                )
+                                            )
+                                            [ TermSymbol
+                                                ( Location
+                                                    { locFile = "<nowhere>"
+                                                    , locLine = -1
+                                                    , locColumn = -1
+                                                    }
+                                                )
+                                                ( SymbolMixfix
+                                                    ( MixfixItem
+                                                        ( TokenCons
+                                                            ( Command "pair" )
+                                                            ( TokenCons InvisibleBraceL
+                                                                ( HoleCons
+                                                                    ( TokenCons InvisibleBraceR
+                                                                        ( TokenCons InvisibleBraceL
+                                                                            ( HoleCons ( TokenCons InvisibleBraceR End ) )
+                                                                        )
+                                                                    )
+                                                                )
+                                                            )
+                                                        )
+                                                        ( Marker "pair" ) NonAssoc
+                                                    )
+                                                )
+                                                [ TermVar
+                                                    ( B
+                                                        ( NamedVar "a" )
+                                                    )
+                                                , TermVar
+                                                    ( B
+                                                        ( NamedVar "b" )
+                                                    )
+                                                ]
+                                            , TermVar
+                                                ( F
+                                                    ( TermVar
+                                                        ( B
+                                                            ( NamedVar "frv" )
+                                                        )
+                                                    )
+                                                )
+                                            ]
                                         )
                                     )
                                 )
@@ -1001,11 +983,89 @@
                     )
                 )
             )
-        ,
-            ( Marker "cons"
-            , EncodedHypothesis Quantified Universally
-                ( Scope
-                    ( Connected Equivalence
+        , Hypothesis Marker "cons" Quantified Universally
+            ( Scope
+                ( Connected Equivalence
+                    ( TermSymbol
+                        ( Location
+                            { locFile = "<nowhere>"
+                            , locLine = -1
+                            , locColumn = -1
+                            }
+                        )
+                        ( SymbolPredicate
+                            ( PredicateRelation
+                                ( RelationSymbol
+                                    ( Command "in" )
+                                    ( Marker "elem" )
+                                )
+                            )
+                        )
+                        [ TermVar
+                            ( B
+                                ( NamedVar "x" )
+                            )
+                        , TermSymbol
+                            ( Location
+                                { locFile = "<nowhere>"
+                                , locLine = -1
+                                , locColumn = -1
+                                }
+                            )
+                            ( SymbolMixfix
+                                ( MixfixItem
+                                    ( TokenCons
+                                        ( Command "cons" )
+                                        ( TokenCons InvisibleBraceL
+                                            ( HoleCons
+                                                ( TokenCons InvisibleBraceR
+                                                    ( TokenCons InvisibleBraceL
+                                                        ( HoleCons ( TokenCons InvisibleBraceR End ) )
+                                                    )
+                                                )
+                                            )
+                                        )
+                                    )
+                                    ( Marker "cons" ) NonAssoc
+                                )
+                            )
+                            [ TermVar
+                                ( B
+                                    ( NamedVar "y" )
+                                )
+                            , TermVar
+                                ( B
+                                    ( NamedVar "X" )
+                                )
+                            ]
+                        ]
+                    )
+                    ( Connected Disjunction
+                        ( TermSymbol
+                            ( Location
+                                { locFile = "<nowhere>"
+                                , locLine = -1
+                                , locColumn = -1
+                                }
+                            )
+                            ( SymbolPredicate
+                                ( PredicateRelation
+                                    ( RelationSymbol
+                                        ( Symbol "=" )
+                                        ( Marker "eq" )
+                                    )
+                                )
+                            )
+                            [ TermVar
+                                ( B
+                                    ( NamedVar "x" )
+                                )
+                            , TermVar
+                                ( B
+                                    ( NamedVar "y" )
+                                )
+                            ]
+                        )
                         ( TermSymbol
                             ( Location
                                 { locFile = "<nowhere>"
@@ -1025,92 +1085,11 @@
                                 ( B
                                     ( NamedVar "x" )
                                 )
-                            , TermSymbol
-                                ( Location
-                                    { locFile = "<nowhere>"
-                                    , locLine = -1
-                                    , locColumn = -1
-                                    }
+                            , TermVar
+                                ( B
+                                    ( NamedVar "X" )
                                 )
-                                ( SymbolMixfix
-                                    ( MixfixItem
-                                        ( TokenCons
-                                            ( Command "cons" )
-                                            ( TokenCons InvisibleBraceL
-                                                ( HoleCons
-                                                    ( TokenCons InvisibleBraceR
-                                                        ( TokenCons InvisibleBraceL
-                                                            ( HoleCons ( TokenCons InvisibleBraceR End ) )
-                                                        )
-                                                    )
-                                                )
-                                            )
-                                        )
-                                        ( Marker "cons" ) NonAssoc
-                                    )
-                                )
-                                [ TermVar
-                                    ( B
-                                        ( NamedVar "y" )
-                                    )
-                                , TermVar
-                                    ( B
-                                        ( NamedVar "X" )
-                                    )
-                                ]
                             ]
-                        )
-                        ( Connected Disjunction
-                            ( TermSymbol
-                                ( Location
-                                    { locFile = "<nowhere>"
-                                    , locLine = -1
-                                    , locColumn = -1
-                                    }
-                                )
-                                ( SymbolPredicate
-                                    ( PredicateRelation
-                                        ( RelationSymbol
-                                            ( Symbol "=" )
-                                            ( Marker "eq" )
-                                        )
-                                    )
-                                )
-                                [ TermVar
-                                    ( B
-                                        ( NamedVar "x" )
-                                    )
-                                , TermVar
-                                    ( B
-                                        ( NamedVar "y" )
-                                    )
-                                ]
-                            )
-                            ( TermSymbol
-                                ( Location
-                                    { locFile = "<nowhere>"
-                                    , locLine = -1
-                                    , locColumn = -1
-                                    }
-                                )
-                                ( SymbolPredicate
-                                    ( PredicateRelation
-                                        ( RelationSymbol
-                                            ( Command "in" )
-                                            ( Marker "elem" )
-                                        )
-                                    )
-                                )
-                                [ TermVar
-                                    ( B
-                                        ( NamedVar "x" )
-                                    )
-                                , TermVar
-                                    ( B
-                                        ( NamedVar "X" )
-                                    )
-                                ]
-                            )
                         )
                     )
                 )
@@ -1329,109 +1308,135 @@
 , Task
     { taskDirectness = Direct
     , taskHypotheses =
-        [
-            ( Marker "suc"
-            , EncodedHypothesis Quantified Universally
-                ( Scope
-                    ( Connected Equivalence
-                        ( TermSymbol
+        [ Hypothesis Marker "suc" Quantified Universally
+            ( Scope
+                ( Connected Equivalence
+                    ( TermSymbol
+                        ( Location
+                            { locFile = "<nowhere>"
+                            , locLine = -1
+                            , locColumn = -1
+                            }
+                        )
+                        ( SymbolPredicate
+                            ( PredicateRelation
+                                ( RelationSymbol
+                                    ( Command "in" )
+                                    ( Marker "elem" )
+                                )
+                            )
+                        )
+                        [ TermVar
+                            ( B
+                                ( FreshVar 1 )
+                            )
+                        , TermSymbol
                             ( Location
                                 { locFile = "<nowhere>"
                                 , locLine = -1
                                 , locColumn = -1
                                 }
                             )
-                            ( SymbolPredicate
-                                ( PredicateRelation
-                                    ( RelationSymbol
-                                        ( Command "in" )
-                                        ( Marker "elem" )
+                            ( SymbolMixfix
+                                ( MixfixItem
+                                    ( TokenCons
+                                        ( Command "suc" )
+                                        ( TokenCons InvisibleBraceL
+                                            ( HoleCons ( TokenCons InvisibleBraceR End ) )
+                                        )
                                     )
+                                    ( Marker "suc" ) NonAssoc
                                 )
                             )
                             [ TermVar
                                 ( B
-                                    ( FreshVar 1 )
+                                    ( NamedVar "a" )
                                 )
-                            , TermSymbol
-                                ( Location
-                                    { locFile = "<nowhere>"
-                                    , locLine = -1
-                                    , locColumn = -1
-                                    }
-                                )
-                                ( SymbolMixfix
-                                    ( MixfixItem
-                                        ( TokenCons
-                                            ( Command "suc" )
-                                            ( TokenCons InvisibleBraceL
-                                                ( HoleCons ( TokenCons InvisibleBraceR End ) )
+                            ]
+                        ]
+                    )
+                    ( Quantified Existentially
+                        ( Scope
+                            ( Connected Conjunction
+                                ( TermSymbol
+                                    ( Location
+                                        { locFile = "<nowhere>"
+                                        , locLine = -1
+                                        , locColumn = -1
+                                        }
+                                    )
+                                    ( SymbolPredicate
+                                        ( PredicateRelation
+                                            ( RelationSymbol
+                                                ( Command "in" )
+                                                ( Marker "elem" )
                                             )
                                         )
-                                        ( Marker "suc" ) NonAssoc
                                     )
+                                    [ TermVar
+                                        ( B
+                                            ( FreshVar 0 )
+                                        )
+                                    , TermVar
+                                        ( F
+                                            ( TermVar
+                                                ( B
+                                                    ( NamedVar "a" )
+                                                )
+                                            )
+                                        )
+                                    ]
                                 )
-                                [ TermVar
-                                    ( B
-                                        ( NamedVar "a" )
+                                ( TermSymbol
+                                    ( Location
+                                        { locFile = "<nowhere>"
+                                        , locLine = -1
+                                        , locColumn = -1
+                                        }
                                     )
-                                ]
-                            ]
-                        )
-                        ( Quantified Existentially
-                            ( Scope
-                                ( Connected Conjunction
-                                    ( TermSymbol
+                                    ( SymbolPredicate
+                                        ( PredicateRelation
+                                            ( RelationSymbol
+                                                ( Symbol "=" )
+                                                ( Marker "eq" )
+                                            )
+                                        )
+                                    )
+                                    [ TermVar
+                                        ( F
+                                            ( TermVar
+                                                ( B
+                                                    ( FreshVar 1 )
+                                                )
+                                            )
+                                        )
+                                    , TermSymbol
                                         ( Location
                                             { locFile = "<nowhere>"
                                             , locLine = -1
                                             , locColumn = -1
                                             }
                                         )
-                                        ( SymbolPredicate
-                                            ( PredicateRelation
-                                                ( RelationSymbol
-                                                    ( Command "in" )
-                                                    ( Marker "elem" )
+                                        ( SymbolMixfix
+                                            ( MixfixItem
+                                                ( TokenCons
+                                                    ( Command "cons" )
+                                                    ( TokenCons InvisibleBraceL
+                                                        ( HoleCons
+                                                            ( TokenCons InvisibleBraceR
+                                                                ( TokenCons InvisibleBraceL
+                                                                    ( HoleCons ( TokenCons InvisibleBraceR End ) )
+                                                                )
+                                                            )
+                                                        )
+                                                    )
                                                 )
+                                                ( Marker "cons" ) NonAssoc
                                             )
                                         )
                                         [ TermVar
                                             ( B
                                                 ( FreshVar 0 )
-                                            )
-                                        , TermVar
-                                            ( F
-                                                ( TermVar
-                                                    ( B
-                                                        ( NamedVar "a" )
-                                                    )
-                                                )
-                                            )
-                                        ]
-                                    )
-                                    ( TermSymbol
-                                        ( Location
-                                            { locFile = "<nowhere>"
-                                            , locLine = -1
-                                            , locColumn = -1
-                                            }
-                                        )
-                                        ( SymbolPredicate
-                                            ( PredicateRelation
-                                                ( RelationSymbol
-                                                    ( Symbol "=" )
-                                                    ( Marker "eq" )
-                                                )
-                                            )
-                                        )
-                                        [ TermVar
-                                            ( F
-                                                ( TermVar
-                                                    ( B
-                                                        ( FreshVar 1 )
-                                                    )
-                                                )
                                             )
                                         , TermSymbol
                                             ( Location
@@ -1443,63 +1448,56 @@
                                             ( SymbolMixfix
                                                 ( MixfixItem
                                                     ( TokenCons
-                                                        ( Command "cons" )
-                                                        ( TokenCons InvisibleBraceL
-                                                            ( HoleCons
-                                                                ( TokenCons InvisibleBraceR
-                                                                    ( TokenCons InvisibleBraceL
-                                                                        ( HoleCons ( TokenCons InvisibleBraceR End ) )
-                                                                    )
-                                                                )
-                                                            )
-                                                        )
+                                                        ( Command "emptyset" ) End
                                                     )
-                                                    ( Marker "cons" ) NonAssoc
+                                                    ( Marker "emptyset" ) NonAssoc
                                                 )
-                                            )
-                                            [ TermVar
-                                                ( B
-                                                    ( FreshVar 0 )
-                                                )
-                                            , TermSymbol
-                                                ( Location
-                                                    { locFile = "<nowhere>"
-                                                    , locLine = -1
-                                                    , locColumn = -1
-                                                    }
-                                                )
-                                                ( SymbolMixfix
-                                                    ( MixfixItem
-                                                        ( TokenCons
-                                                            ( Command "emptyset" ) End
-                                                        )
-                                                        ( Marker "emptyset" ) NonAssoc
-                                                    )
-                                                ) []
-                                            ]
+                                            ) []
                                         ]
-                                    )
+                                    ]
                                 )
                             )
                         )
                     )
                 )
             )
-        ,
-            ( Marker "pair_emptyset_in_times_unit"
-            , EncodedHypothesis TermSymbol
+        , Hypothesis Marker "pair_emptyset_in_times_unit" TermSymbol
+            ( Location
+                { locFile = "<nowhere>"
+                , locLine = -1
+                , locColumn = -1
+                }
+            )
+            ( SymbolPredicate
+                ( PredicateRelation
+                    ( RelationSymbol
+                        ( Command "in" )
+                        ( Marker "elem" )
+                    )
+                )
+            )
+            [ TermSymbol
                 ( Location
                     { locFile = "<nowhere>"
                     , locLine = -1
                     , locColumn = -1
                     }
                 )
-                ( SymbolPredicate
-                    ( PredicateRelation
-                        ( RelationSymbol
-                            ( Command "in" )
-                            ( Marker "elem" )
+                ( SymbolMixfix
+                    ( MixfixItem
+                        ( TokenCons
+                            ( Command "pair" )
+                            ( TokenCons InvisibleBraceL
+                                ( HoleCons
+                                    ( TokenCons InvisibleBraceR
+                                        ( TokenCons InvisibleBraceL
+                                            ( HoleCons ( TokenCons InvisibleBraceR End ) )
+                                        )
+                                    )
+                                )
+                            )
                         )
+                        ( Marker "pair" ) NonAssoc
                     )
                 )
                 [ TermSymbol
@@ -1512,51 +1510,11 @@
                     ( SymbolMixfix
                         ( MixfixItem
                             ( TokenCons
-                                ( Command "pair" )
-                                ( TokenCons InvisibleBraceL
-                                    ( HoleCons
-                                        ( TokenCons InvisibleBraceR
-                                            ( TokenCons InvisibleBraceL
-                                                ( HoleCons ( TokenCons InvisibleBraceR End ) )
-                                            )
-                                        )
-                                    )
-                                )
+                                ( Command "emptyset" ) End
                             )
-                            ( Marker "pair" ) NonAssoc
+                            ( Marker "emptyset" ) NonAssoc
                         )
-                    )
-                    [ TermSymbol
-                        ( Location
-                            { locFile = "<nowhere>"
-                            , locLine = -1
-                            , locColumn = -1
-                            }
-                        )
-                        ( SymbolMixfix
-                            ( MixfixItem
-                                ( TokenCons
-                                    ( Command "emptyset" ) End
-                                )
-                                ( Marker "emptyset" ) NonAssoc
-                            )
-                        ) []
-                    , TermSymbol
-                        ( Location
-                            { locFile = "<nowhere>"
-                            , locLine = -1
-                            , locColumn = -1
-                            }
-                        )
-                        ( SymbolMixfix
-                            ( MixfixItem
-                                ( TokenCons
-                                    ( Command "emptyset" ) End
-                                )
-                                ( Marker "emptyset" ) NonAssoc
-                            )
-                        ) []
-                    ]
+                    ) []
                 , TermSymbol
                     ( Location
                         { locFile = "<nowhere>"
@@ -1566,52 +1524,102 @@
                     )
                     ( SymbolMixfix
                         ( MixfixItem
-                            ( HoleCons
-                                ( TokenCons
-                                    ( Command "times" ) ( HoleCons End )
-                                )
+                            ( TokenCons
+                                ( Command "emptyset" ) End
                             )
-                            ( Marker "times" ) RightAssoc
+                            ( Marker "emptyset" ) NonAssoc
                         )
-                    )
-                    [ TermSymbol
-                        ( Location
-                            { locFile = "<nowhere>"
-                            , locLine = -1
-                            , locColumn = -1
-                            }
-                        )
-                        ( SymbolMixfix
-                            ( MixfixItem
-                                ( TokenCons
-                                    ( Command "unit" ) End
-                                )
-                                ( Marker "unit" ) NonAssoc
-                            )
-                        ) []
-                    , TermSymbol
-                        ( Location
-                            { locFile = "<nowhere>"
-                            , locLine = -1
-                            , locColumn = -1
-                            }
-                        )
-                        ( SymbolMixfix
-                            ( MixfixItem
-                                ( TokenCons
-                                    ( Command "unit" ) End
-                                )
-                                ( Marker "unit" ) NonAssoc
-                            )
-                        ) []
-                    ]
+                    ) []
                 ]
-            )
-        ,
-            ( Marker "unit"
-            , EncodedHypothesis Quantified Universally
-                ( Scope
-                    ( Connected Equivalence
+            , TermSymbol
+                ( Location
+                    { locFile = "<nowhere>"
+                    , locLine = -1
+                    , locColumn = -1
+                    }
+                )
+                ( SymbolMixfix
+                    ( MixfixItem
+                        ( HoleCons
+                            ( TokenCons
+                                ( Command "times" ) ( HoleCons End )
+                            )
+                        )
+                        ( Marker "times" ) RightAssoc
+                    )
+                )
+                [ TermSymbol
+                    ( Location
+                        { locFile = "<nowhere>"
+                        , locLine = -1
+                        , locColumn = -1
+                        }
+                    )
+                    ( SymbolMixfix
+                        ( MixfixItem
+                            ( TokenCons
+                                ( Command "unit" ) End
+                            )
+                            ( Marker "unit" ) NonAssoc
+                        )
+                    ) []
+                , TermSymbol
+                    ( Location
+                        { locFile = "<nowhere>"
+                        , locLine = -1
+                        , locColumn = -1
+                        }
+                    )
+                    ( SymbolMixfix
+                        ( MixfixItem
+                            ( TokenCons
+                                ( Command "unit" ) End
+                            )
+                            ( Marker "unit" ) NonAssoc
+                        )
+                    ) []
+                ]
+            ]
+        , Hypothesis Marker "unit" Quantified Universally
+            ( Scope
+                ( Connected Equivalence
+                    ( TermSymbol
+                        ( Location
+                            { locFile = "<nowhere>"
+                            , locLine = -1
+                            , locColumn = -1
+                            }
+                        )
+                        ( SymbolPredicate
+                            ( PredicateRelation
+                                ( RelationSymbol
+                                    ( Command "in" )
+                                    ( Marker "elem" )
+                                )
+                            )
+                        )
+                        [ TermVar
+                            ( B
+                                ( NamedVar "any" )
+                            )
+                        , TermSymbol
+                            ( Location
+                                { locFile = "test/examples/replace.tex"
+                                , locLine = 9
+                                , locColumn = 1
+                                }
+                            )
+                            ( SymbolMixfix
+                                ( MixfixItem
+                                    ( TokenCons
+                                        ( Command "unit" ) End
+                                    )
+                                    ( Marker "unit" ) NonAssoc
+                                )
+                            ) []
+                        ]
+                    )
+                    ( Connected Disjunction
                         ( TermSymbol
                             ( Location
                                 { locFile = "<nowhere>"
@@ -1633,22 +1641,65 @@
                                 )
                             , TermSymbol
                                 ( Location
-                                    { locFile = "test/examples/replace.tex"
-                                    , locLine = 9
-                                    , locColumn = 1
+                                    { locFile = "<nowhere>"
+                                    , locLine = -1
+                                    , locColumn = -1
                                     }
                                 )
                                 ( SymbolMixfix
                                     ( MixfixItem
                                         ( TokenCons
-                                            ( Command "unit" ) End
+                                            ( Command "emptyset" ) End
                                         )
-                                        ( Marker "unit" ) NonAssoc
+                                        ( Marker "emptyset" ) NonAssoc
                                     )
                                 ) []
                             ]
                         )
-                        ( Connected Disjunction
+                        ( TermSymbol
+                            ( Location
+                                { locFile = "test/examples/replace.tex"
+                                , locLine = 9
+                                , locColumn = 1
+                                }
+                            )
+                            ( SymbolPredicate
+                                ( PredicateRelation
+                                    ( RelationSymbol
+                                        ( Symbol "=" )
+                                        ( Marker "eq" )
+                                    )
+                                )
+                            )
+                            [ TermVar
+                                ( B
+                                    ( NamedVar "any" )
+                                )
+                            , TermSymbol
+                                ( Location
+                                    { locFile = "<nowhere>"
+                                    , locLine = -1
+                                    , locColumn = -1
+                                    }
+                                )
+                                ( SymbolMixfix
+                                    ( MixfixItem
+                                        ( TokenCons
+                                            ( Command "emptyset" ) End
+                                        )
+                                        ( Marker "emptyset" ) NonAssoc
+                                    )
+                                ) []
+                            ]
+                        )
+                    )
+                )
+            )
+        , Hypothesis Marker "times" Quantified Universally
+            ( Scope
+                ( Quantified Universally
+                    ( Scope
+                        ( Connected Equivalence
                             ( TermSymbol
                                 ( Location
                                     { locFile = "<nowhere>"
@@ -1666,7 +1717,7 @@
                                 )
                                 [ TermVar
                                     ( B
-                                        ( NamedVar "any" )
+                                        ( NamedVar "frv" )
                                     )
                                 , TermSymbol
                                     ( Location
@@ -1677,186 +1728,69 @@
                                     )
                                     ( SymbolMixfix
                                         ( MixfixItem
-                                            ( TokenCons
-                                                ( Command "emptyset" ) End
+                                            ( HoleCons
+                                                ( TokenCons
+                                                    ( Command "times" ) ( HoleCons End )
+                                                )
                                             )
-                                            ( Marker "emptyset" ) NonAssoc
-                                        )
-                                    ) []
-                                ]
-                            )
-                            ( TermSymbol
-                                ( Location
-                                    { locFile = "test/examples/replace.tex"
-                                    , locLine = 9
-                                    , locColumn = 1
-                                    }
-                                )
-                                ( SymbolPredicate
-                                    ( PredicateRelation
-                                        ( RelationSymbol
-                                            ( Symbol "=" )
-                                            ( Marker "eq" )
-                                        )
-                                    )
-                                )
-                                [ TermVar
-                                    ( B
-                                        ( NamedVar "any" )
-                                    )
-                                , TermSymbol
-                                    ( Location
-                                        { locFile = "<nowhere>"
-                                        , locLine = -1
-                                        , locColumn = -1
-                                        }
-                                    )
-                                    ( SymbolMixfix
-                                        ( MixfixItem
-                                            ( TokenCons
-                                                ( Command "emptyset" ) End
-                                            )
-                                            ( Marker "emptyset" ) NonAssoc
-                                        )
-                                    ) []
-                                ]
-                            )
-                        )
-                    )
-                )
-            )
-        ,
-            ( Marker "times"
-            , EncodedHypothesis Quantified Universally
-                ( Scope
-                    ( Quantified Universally
-                        ( Scope
-                            ( Connected Equivalence
-                                ( TermSymbol
-                                    ( Location
-                                        { locFile = "<nowhere>"
-                                        , locLine = -1
-                                        , locColumn = -1
-                                        }
-                                    )
-                                    ( SymbolPredicate
-                                        ( PredicateRelation
-                                            ( RelationSymbol
-                                                ( Command "in" )
-                                                ( Marker "elem" )
-                                            )
+                                            ( Marker "times" ) RightAssoc
                                         )
                                     )
                                     [ TermVar
-                                        ( B
-                                            ( NamedVar "frv" )
-                                        )
-                                    , TermSymbol
-                                        ( Location
-                                            { locFile = "<nowhere>"
-                                            , locLine = -1
-                                            , locColumn = -1
-                                            }
-                                        )
-                                        ( SymbolMixfix
-                                            ( MixfixItem
-                                                ( HoleCons
-                                                    ( TokenCons
-                                                        ( Command "times" ) ( HoleCons End )
-                                                    )
-                                                )
-                                                ( Marker "times" ) RightAssoc
-                                            )
-                                        )
-                                        [ TermVar
-                                            ( F
-                                                ( TermVar
-                                                    ( B
-                                                        ( NamedVar "A" )
-                                                    )
+                                        ( F
+                                            ( TermVar
+                                                ( B
+                                                    ( NamedVar "A" )
                                                 )
                                             )
-                                        , TermVar
-                                            ( F
-                                                ( TermVar
-                                                    ( B
-                                                        ( NamedVar "B" )
-                                                    )
+                                        )
+                                    , TermVar
+                                        ( F
+                                            ( TermVar
+                                                ( B
+                                                    ( NamedVar "B" )
                                                 )
                                             )
-                                        ]
+                                        )
                                     ]
-                                )
-                                ( Quantified Existentially
-                                    ( Scope
+                                ]
+                            )
+                            ( Quantified Existentially
+                                ( Scope
+                                    ( Connected Conjunction
                                         ( Connected Conjunction
-                                            ( Connected Conjunction
-                                                ( TermSymbol
-                                                    ( Location
-                                                        { locFile = "<nowhere>"
-                                                        , locLine = -1
-                                                        , locColumn = -1
-                                                        }
-                                                    )
-                                                    ( SymbolPredicate
-                                                        ( PredicateRelation
-                                                            ( RelationSymbol
-                                                                ( Command "in" )
-                                                                ( Marker "elem" )
-                                                            )
+                                            ( TermSymbol
+                                                ( Location
+                                                    { locFile = "<nowhere>"
+                                                    , locLine = -1
+                                                    , locColumn = -1
+                                                    }
+                                                )
+                                                ( SymbolPredicate
+                                                    ( PredicateRelation
+                                                        ( RelationSymbol
+                                                            ( Command "in" )
+                                                            ( Marker "elem" )
                                                         )
                                                     )
-                                                    [ TermVar
-                                                        ( B
-                                                            ( NamedVar "a" )
-                                                        )
-                                                    , TermVar
-                                                        ( F
-                                                            ( TermVar
-                                                                ( F
-                                                                    ( TermVar
-                                                                        ( B
-                                                                            ( NamedVar "A" )
-                                                                        )
+                                                )
+                                                [ TermVar
+                                                    ( B
+                                                        ( NamedVar "a" )
+                                                    )
+                                                , TermVar
+                                                    ( F
+                                                        ( TermVar
+                                                            ( F
+                                                                ( TermVar
+                                                                    ( B
+                                                                        ( NamedVar "A" )
                                                                     )
                                                                 )
                                                             )
                                                         )
-                                                    ]
-                                                )
-                                                ( TermSymbol
-                                                    ( Location
-                                                        { locFile = "<nowhere>"
-                                                        , locLine = -1
-                                                        , locColumn = -1
-                                                        }
                                                     )
-                                                    ( SymbolPredicate
-                                                        ( PredicateRelation
-                                                            ( RelationSymbol
-                                                                ( Command "in" )
-                                                                ( Marker "elem" )
-                                                            )
-                                                        )
-                                                    )
-                                                    [ TermVar
-                                                        ( B
-                                                            ( NamedVar "b" )
-                                                        )
-                                                    , TermVar
-                                                        ( F
-                                                            ( TermVar
-                                                                ( F
-                                                                    ( TermVar
-                                                                        ( B
-                                                                            ( NamedVar "B" )
-                                                                        )
-                                                                    )
-                                                                )
-                                                            )
-                                                        )
-                                                    ]
-                                                )
+                                                ]
                                             )
                                             ( TermSymbol
                                                 ( Location
@@ -1868,54 +1802,87 @@
                                                 ( SymbolPredicate
                                                     ( PredicateRelation
                                                         ( RelationSymbol
-                                                            ( Symbol "=" )
-                                                            ( Marker "eq" )
+                                                            ( Command "in" )
+                                                            ( Marker "elem" )
                                                         )
                                                     )
                                                 )
-                                                [ TermSymbol
-                                                    ( Location
-                                                        { locFile = "<nowhere>"
-                                                        , locLine = -1
-                                                        , locColumn = -1
-                                                        }
+                                                [ TermVar
+                                                    ( B
+                                                        ( NamedVar "b" )
                                                     )
-                                                    ( SymbolMixfix
-                                                        ( MixfixItem
-                                                            ( TokenCons
-                                                                ( Command "pair" )
-                                                                ( TokenCons InvisibleBraceL
-                                                                    ( HoleCons
-                                                                        ( TokenCons InvisibleBraceR
-                                                                            ( TokenCons InvisibleBraceL
-                                                                                ( HoleCons ( TokenCons InvisibleBraceR End ) )
-                                                                            )
-                                                                        )
-                                                                    )
-                                                                )
-                                                            )
-                                                            ( Marker "pair" ) NonAssoc
-                                                        )
-                                                    )
-                                                    [ TermVar
-                                                        ( B
-                                                            ( NamedVar "a" )
-                                                        )
-                                                    , TermVar
-                                                        ( B
-                                                            ( NamedVar "b" )
-                                                        )
-                                                    ]
                                                 , TermVar
                                                     ( F
                                                         ( TermVar
-                                                            ( B
-                                                                ( NamedVar "frv" )
+                                                            ( F
+                                                                ( TermVar
+                                                                    ( B
+                                                                        ( NamedVar "B" )
+                                                                    )
+                                                                )
                                                             )
                                                         )
                                                     )
                                                 ]
                                             )
+                                        )
+                                        ( TermSymbol
+                                            ( Location
+                                                { locFile = "<nowhere>"
+                                                , locLine = -1
+                                                , locColumn = -1
+                                                }
+                                            )
+                                            ( SymbolPredicate
+                                                ( PredicateRelation
+                                                    ( RelationSymbol
+                                                        ( Symbol "=" )
+                                                        ( Marker "eq" )
+                                                    )
+                                                )
+                                            )
+                                            [ TermSymbol
+                                                ( Location
+                                                    { locFile = "<nowhere>"
+                                                    , locLine = -1
+                                                    , locColumn = -1
+                                                    }
+                                                )
+                                                ( SymbolMixfix
+                                                    ( MixfixItem
+                                                        ( TokenCons
+                                                            ( Command "pair" )
+                                                            ( TokenCons InvisibleBraceL
+                                                                ( HoleCons
+                                                                    ( TokenCons InvisibleBraceR
+                                                                        ( TokenCons InvisibleBraceL
+                                                                            ( HoleCons ( TokenCons InvisibleBraceR End ) )
+                                                                        )
+                                                                    )
+                                                                )
+                                                            )
+                                                        )
+                                                        ( Marker "pair" ) NonAssoc
+                                                    )
+                                                )
+                                                [ TermVar
+                                                    ( B
+                                                        ( NamedVar "a" )
+                                                    )
+                                                , TermVar
+                                                    ( B
+                                                        ( NamedVar "b" )
+                                                    )
+                                                ]
+                                            , TermVar
+                                                ( F
+                                                    ( TermVar
+                                                        ( B
+                                                            ( NamedVar "frv" )
+                                                        )
+                                                    )
+                                                )
+                                            ]
                                         )
                                     )
                                 )
@@ -1924,11 +1891,89 @@
                     )
                 )
             )
-        ,
-            ( Marker "cons"
-            , EncodedHypothesis Quantified Universally
-                ( Scope
-                    ( Connected Equivalence
+        , Hypothesis Marker "cons" Quantified Universally
+            ( Scope
+                ( Connected Equivalence
+                    ( TermSymbol
+                        ( Location
+                            { locFile = "<nowhere>"
+                            , locLine = -1
+                            , locColumn = -1
+                            }
+                        )
+                        ( SymbolPredicate
+                            ( PredicateRelation
+                                ( RelationSymbol
+                                    ( Command "in" )
+                                    ( Marker "elem" )
+                                )
+                            )
+                        )
+                        [ TermVar
+                            ( B
+                                ( NamedVar "x" )
+                            )
+                        , TermSymbol
+                            ( Location
+                                { locFile = "<nowhere>"
+                                , locLine = -1
+                                , locColumn = -1
+                                }
+                            )
+                            ( SymbolMixfix
+                                ( MixfixItem
+                                    ( TokenCons
+                                        ( Command "cons" )
+                                        ( TokenCons InvisibleBraceL
+                                            ( HoleCons
+                                                ( TokenCons InvisibleBraceR
+                                                    ( TokenCons InvisibleBraceL
+                                                        ( HoleCons ( TokenCons InvisibleBraceR End ) )
+                                                    )
+                                                )
+                                            )
+                                        )
+                                    )
+                                    ( Marker "cons" ) NonAssoc
+                                )
+                            )
+                            [ TermVar
+                                ( B
+                                    ( NamedVar "y" )
+                                )
+                            , TermVar
+                                ( B
+                                    ( NamedVar "X" )
+                                )
+                            ]
+                        ]
+                    )
+                    ( Connected Disjunction
+                        ( TermSymbol
+                            ( Location
+                                { locFile = "<nowhere>"
+                                , locLine = -1
+                                , locColumn = -1
+                                }
+                            )
+                            ( SymbolPredicate
+                                ( PredicateRelation
+                                    ( RelationSymbol
+                                        ( Symbol "=" )
+                                        ( Marker "eq" )
+                                    )
+                                )
+                            )
+                            [ TermVar
+                                ( B
+                                    ( NamedVar "x" )
+                                )
+                            , TermVar
+                                ( B
+                                    ( NamedVar "y" )
+                                )
+                            ]
+                        )
                         ( TermSymbol
                             ( Location
                                 { locFile = "<nowhere>"
@@ -1948,92 +1993,11 @@
                                 ( B
                                     ( NamedVar "x" )
                                 )
-                            , TermSymbol
-                                ( Location
-                                    { locFile = "<nowhere>"
-                                    , locLine = -1
-                                    , locColumn = -1
-                                    }
+                            , TermVar
+                                ( B
+                                    ( NamedVar "X" )
                                 )
-                                ( SymbolMixfix
-                                    ( MixfixItem
-                                        ( TokenCons
-                                            ( Command "cons" )
-                                            ( TokenCons InvisibleBraceL
-                                                ( HoleCons
-                                                    ( TokenCons InvisibleBraceR
-                                                        ( TokenCons InvisibleBraceL
-                                                            ( HoleCons ( TokenCons InvisibleBraceR End ) )
-                                                        )
-                                                    )
-                                                )
-                                            )
-                                        )
-                                        ( Marker "cons" ) NonAssoc
-                                    )
-                                )
-                                [ TermVar
-                                    ( B
-                                        ( NamedVar "y" )
-                                    )
-                                , TermVar
-                                    ( B
-                                        ( NamedVar "X" )
-                                    )
-                                ]
                             ]
-                        )
-                        ( Connected Disjunction
-                            ( TermSymbol
-                                ( Location
-                                    { locFile = "<nowhere>"
-                                    , locLine = -1
-                                    , locColumn = -1
-                                    }
-                                )
-                                ( SymbolPredicate
-                                    ( PredicateRelation
-                                        ( RelationSymbol
-                                            ( Symbol "=" )
-                                            ( Marker "eq" )
-                                        )
-                                    )
-                                )
-                                [ TermVar
-                                    ( B
-                                        ( NamedVar "x" )
-                                    )
-                                , TermVar
-                                    ( B
-                                        ( NamedVar "y" )
-                                    )
-                                ]
-                            )
-                            ( TermSymbol
-                                ( Location
-                                    { locFile = "<nowhere>"
-                                    , locLine = -1
-                                    , locColumn = -1
-                                    }
-                                )
-                                ( SymbolPredicate
-                                    ( PredicateRelation
-                                        ( RelationSymbol
-                                            ( Command "in" )
-                                            ( Marker "elem" )
-                                        )
-                                    )
-                                )
-                                [ TermVar
-                                    ( B
-                                        ( NamedVar "x" )
-                                    )
-                                , TermVar
-                                    ( B
-                                        ( NamedVar "X" )
-                                    )
-                                ]
-                            )
                         )
                     )
                 )

@@ -31,35 +31,32 @@
 , Task
     { taskDirectness = Direct
     , taskHypotheses =
-        [
-            ( Marker "prop1"
-            , EncodedHypothesis Quantified Universally
-                ( Scope
-                    ( TermSymbol
-                        ( Location
-                            { locFile = "<nowhere>"
-                            , locLine = -1
-                            , locColumn = -1
-                            }
-                        )
-                        ( SymbolPredicate
-                            ( PredicateRelation
-                                ( RelationSymbol
-                                    ( Symbol "=" )
-                                    ( Marker "eq" )
-                                )
-                            )
-                        )
-                        [ TermVar
-                            ( B
-                                ( NamedVar "a" )
-                            )
-                        , TermVar
-                            ( B
-                                ( NamedVar "a" )
-                            )
-                        ]
+        [ Hypothesis Marker "prop1" Quantified Universally
+            ( Scope
+                ( TermSymbol
+                    ( Location
+                        { locFile = "<nowhere>"
+                        , locLine = -1
+                        , locColumn = -1
+                        }
                     )
+                    ( SymbolPredicate
+                        ( PredicateRelation
+                            ( RelationSymbol
+                                ( Symbol "=" )
+                                ( Marker "eq" )
+                            )
+                        )
+                    )
+                    [ TermVar
+                        ( B
+                            ( NamedVar "a" )
+                        )
+                    , TermVar
+                        ( B
+                            ( NamedVar "a" )
+                        )
+                    ]
                 )
             )
         ]
@@ -93,35 +90,32 @@
 , Task
     { taskDirectness = Direct
     , taskHypotheses =
-        [
-            ( Marker "prop1"
-            , EncodedHypothesis Quantified Universally
-                ( Scope
-                    ( TermSymbol
-                        ( Location
-                            { locFile = "<nowhere>"
-                            , locLine = -1
-                            , locColumn = -1
-                            }
-                        )
-                        ( SymbolPredicate
-                            ( PredicateRelation
-                                ( RelationSymbol
-                                    ( Symbol "=" )
-                                    ( Marker "eq" )
-                                )
-                            )
-                        )
-                        [ TermVar
-                            ( B
-                                ( NamedVar "a" )
-                            )
-                        , TermVar
-                            ( B
-                                ( NamedVar "a" )
-                            )
-                        ]
+        [ Hypothesis Marker "prop1" Quantified Universally
+            ( Scope
+                ( TermSymbol
+                    ( Location
+                        { locFile = "<nowhere>"
+                        , locLine = -1
+                        , locColumn = -1
+                        }
                     )
+                    ( SymbolPredicate
+                        ( PredicateRelation
+                            ( RelationSymbol
+                                ( Symbol "=" )
+                                ( Marker "eq" )
+                            )
+                        )
+                    )
+                    [ TermVar
+                        ( B
+                            ( NamedVar "a" )
+                        )
+                    , TermVar
+                        ( B
+                            ( NamedVar "a" )
+                        )
+                    ]
                 )
             )
         ]
@@ -155,35 +149,32 @@
 , Task
     { taskDirectness = Direct
     , taskHypotheses =
-        [
-            ( Marker "prop1"
-            , EncodedHypothesis Quantified Universally
-                ( Scope
-                    ( TermSymbol
-                        ( Location
-                            { locFile = "<nowhere>"
-                            , locLine = -1
-                            , locColumn = -1
-                            }
-                        )
-                        ( SymbolPredicate
-                            ( PredicateRelation
-                                ( RelationSymbol
-                                    ( Symbol "=" )
-                                    ( Marker "eq" )
-                                )
-                            )
-                        )
-                        [ TermVar
-                            ( B
-                                ( NamedVar "a" )
-                            )
-                        , TermVar
-                            ( B
-                                ( NamedVar "a" )
-                            )
-                        ]
+        [ Hypothesis Marker "prop1" Quantified Universally
+            ( Scope
+                ( TermSymbol
+                    ( Location
+                        { locFile = "<nowhere>"
+                        , locLine = -1
+                        , locColumn = -1
+                        }
                     )
+                    ( SymbolPredicate
+                        ( PredicateRelation
+                            ( RelationSymbol
+                                ( Symbol "=" )
+                                ( Marker "eq" )
+                            )
+                        )
+                    )
+                    [ TermVar
+                        ( B
+                            ( NamedVar "a" )
+                        )
+                    , TermVar
+                        ( B
+                            ( NamedVar "a" )
+                        )
+                    ]
                 )
             )
         ]
@@ -225,128 +216,116 @@
 , Task
     { taskDirectness = Direct
     , taskHypotheses =
-        [
-            ( Marker "prop3"
-            , EncodedHypothesis Quantified Universally
-                ( Scope
-                    ( TermSymbol
-                        ( Location
-                            { locFile = "<nowhere>"
-                            , locLine = -1
-                            , locColumn = -1
-                            }
-                        )
-                        ( SymbolPredicate
-                            ( PredicateRelation
-                                ( RelationSymbol
-                                    ( Symbol "=" )
-                                    ( Marker "eq" )
-                                )
-                            )
-                        )
-                        [ TermVar
-                            ( B
-                                ( NamedVar "c" )
-                            )
-                        , TermVar
-                            ( B
-                                ( NamedVar "c" )
-                            )
-                        ]
+        [ Hypothesis Marker "prop3" Quantified Universally
+            ( Scope
+                ( TermSymbol
+                    ( Location
+                        { locFile = "<nowhere>"
+                        , locLine = -1
+                        , locColumn = -1
+                        }
                     )
+                    ( SymbolPredicate
+                        ( PredicateRelation
+                            ( RelationSymbol
+                                ( Symbol "=" )
+                                ( Marker "eq" )
+                            )
+                        )
+                    )
+                    [ TermVar
+                        ( B
+                            ( NamedVar "c" )
+                        )
+                    , TermVar
+                        ( B
+                            ( NamedVar "c" )
+                        )
+                    ]
                 )
             )
-        ,
-            ( Marker "prop2"
-            , EncodedHypothesis Quantified Universally
-                ( Scope
-                    ( TermSymbol
-                        ( Location
-                            { locFile = "<nowhere>"
-                            , locLine = -1
-                            , locColumn = -1
-                            }
-                        )
-                        ( SymbolPredicate
-                            ( PredicateRelation
-                                ( RelationSymbol
-                                    ( Symbol "=" )
-                                    ( Marker "eq" )
-                                )
-                            )
-                        )
-                        [ TermVar
-                            ( B
-                                ( NamedVar "b" )
-                            )
-                        , TermVar
-                            ( B
-                                ( NamedVar "b" )
-                            )
-                        ]
+        , Hypothesis Marker "prop2" Quantified Universally
+            ( Scope
+                ( TermSymbol
+                    ( Location
+                        { locFile = "<nowhere>"
+                        , locLine = -1
+                        , locColumn = -1
+                        }
                     )
+                    ( SymbolPredicate
+                        ( PredicateRelation
+                            ( RelationSymbol
+                                ( Symbol "=" )
+                                ( Marker "eq" )
+                            )
+                        )
+                    )
+                    [ TermVar
+                        ( B
+                            ( NamedVar "b" )
+                        )
+                    , TermVar
+                        ( B
+                            ( NamedVar "b" )
+                        )
+                    ]
                 )
             )
-        ,
-            ( Marker "prop1"
-            , EncodedHypothesis Quantified Universally
-                ( Scope
-                    ( TermSymbol
-                        ( Location
-                            { locFile = "<nowhere>"
-                            , locLine = -1
-                            , locColumn = -1
-                            }
-                        )
-                        ( SymbolPredicate
-                            ( PredicateRelation
-                                ( RelationSymbol
-                                    ( Symbol "=" )
-                                    ( Marker "eq" )
-                                )
-                            )
-                        )
-                        [ TermVar
-                            ( B
-                                ( NamedVar "a" )
-                            )
-                        , TermVar
-                            ( B
-                                ( NamedVar "a" )
-                            )
-                        ]
+        , Hypothesis Marker "prop1" Quantified Universally
+            ( Scope
+                ( TermSymbol
+                    ( Location
+                        { locFile = "<nowhere>"
+                        , locLine = -1
+                        , locColumn = -1
+                        }
                     )
+                    ( SymbolPredicate
+                        ( PredicateRelation
+                            ( RelationSymbol
+                                ( Symbol "=" )
+                                ( Marker "eq" )
+                            )
+                        )
+                    )
+                    [ TermVar
+                        ( B
+                            ( NamedVar "a" )
+                        )
+                    , TermVar
+                        ( B
+                            ( NamedVar "a" )
+                        )
+                    ]
                 )
             )
-        ,
-            ( Marker "prop41"
-            , EncodedHypothesis Quantified Universally
-                ( Scope
-                    ( TermSymbol
-                        ( Location
-                            { locFile = "<nowhere>"
-                            , locLine = -1
-                            , locColumn = -1
-                            }
-                        )
-                        ( SymbolPredicate
-                            ( PredicateRelation
-                                ( RelationSymbol
-                                    ( Symbol "=" )
-                                    ( Marker "eq" )
-                                )
-                            )
-                        )
-                        [ TermVar
-                            ( B
-                                ( NamedVar "d" )
-                            )
-                        , TermVar
-                            ( B
-                                ( NamedVar "d" )
-                            )
-                        ]
+        , Hypothesis Marker "prop41" Quantified Universally
+            ( Scope
+                ( TermSymbol
+                    ( Location
+                        { locFile = "<nowhere>"
+                        , locLine = -1
+                        , locColumn = -1
+                        }
                     )
+                    ( SymbolPredicate
+                        ( PredicateRelation
+                            ( RelationSymbol
+                                ( Symbol "=" )
+                                ( Marker "eq" )
+                            )
+                        )
+                    )
+                    [ TermVar
+                        ( B
+                            ( NamedVar "d" )
+                        )
+                    , TermVar
+                        ( B
+                            ( NamedVar "d" )
+                        )
+                    ]
                 )
             )
         ]
@@ -380,128 +359,116 @@
 , Task
     { taskDirectness = Direct
     , taskHypotheses =
-        [
-            ( Marker "prop4"
-            , EncodedHypothesis Quantified Universally
-                ( Scope
-                    ( TermSymbol
-                        ( Location
-                            { locFile = "<nowhere>"
-                            , locLine = -1
-                            , locColumn = -1
-                            }
-                        )
-                        ( SymbolPredicate
-                            ( PredicateRelation
-                                ( RelationSymbol
-                                    ( Symbol "=" )
-                                    ( Marker "eq" )
-                                )
-                            )
-                        )
-                        [ TermVar
-                            ( B
-                                ( NamedVar "e" )
-                            )
-                        , TermVar
-                            ( B
-                                ( NamedVar "e" )
-                            )
-                        ]
+        [ Hypothesis Marker "prop4" Quantified Universally
+            ( Scope
+                ( TermSymbol
+                    ( Location
+                        { locFile = "<nowhere>"
+                        , locLine = -1
+                        , locColumn = -1
+                        }
                     )
+                    ( SymbolPredicate
+                        ( PredicateRelation
+                            ( RelationSymbol
+                                ( Symbol "=" )
+                                ( Marker "eq" )
+                            )
+                        )
+                    )
+                    [ TermVar
+                        ( B
+                            ( NamedVar "e" )
+                        )
+                    , TermVar
+                        ( B
+                            ( NamedVar "e" )
+                        )
+                    ]
                 )
             )
-        ,
-            ( Marker "prop3"
-            , EncodedHypothesis Quantified Universally
-                ( Scope
-                    ( TermSymbol
-                        ( Location
-                            { locFile = "<nowhere>"
-                            , locLine = -1
-                            , locColumn = -1
-                            }
-                        )
-                        ( SymbolPredicate
-                            ( PredicateRelation
-                                ( RelationSymbol
-                                    ( Symbol "=" )
-                                    ( Marker "eq" )
-                                )
-                            )
-                        )
-                        [ TermVar
-                            ( B
-                                ( NamedVar "c" )
-                            )
-                        , TermVar
-                            ( B
-                                ( NamedVar "c" )
-                            )
-                        ]
+        , Hypothesis Marker "prop3" Quantified Universally
+            ( Scope
+                ( TermSymbol
+                    ( Location
+                        { locFile = "<nowhere>"
+                        , locLine = -1
+                        , locColumn = -1
+                        }
                     )
+                    ( SymbolPredicate
+                        ( PredicateRelation
+                            ( RelationSymbol
+                                ( Symbol "=" )
+                                ( Marker "eq" )
+                            )
+                        )
+                    )
+                    [ TermVar
+                        ( B
+                            ( NamedVar "c" )
+                        )
+                    , TermVar
+                        ( B
+                            ( NamedVar "c" )
+                        )
+                    ]
                 )
             )
-        ,
-            ( Marker "prop2"
-            , EncodedHypothesis Quantified Universally
-                ( Scope
-                    ( TermSymbol
-                        ( Location
-                            { locFile = "<nowhere>"
-                            , locLine = -1
-                            , locColumn = -1
-                            }
-                        )
-                        ( SymbolPredicate
-                            ( PredicateRelation
-                                ( RelationSymbol
-                                    ( Symbol "=" )
-                                    ( Marker "eq" )
-                                )
-                            )
-                        )
-                        [ TermVar
-                            ( B
-                                ( NamedVar "b" )
-                            )
-                        , TermVar
-                            ( B
-                                ( NamedVar "b" )
-                            )
-                        ]
+        , Hypothesis Marker "prop2" Quantified Universally
+            ( Scope
+                ( TermSymbol
+                    ( Location
+                        { locFile = "<nowhere>"
+                        , locLine = -1
+                        , locColumn = -1
+                        }
                     )
+                    ( SymbolPredicate
+                        ( PredicateRelation
+                            ( RelationSymbol
+                                ( Symbol "=" )
+                                ( Marker "eq" )
+                            )
+                        )
+                    )
+                    [ TermVar
+                        ( B
+                            ( NamedVar "b" )
+                        )
+                    , TermVar
+                        ( B
+                            ( NamedVar "b" )
+                        )
+                    ]
                 )
             )
-        ,
-            ( Marker "prop1"
-            , EncodedHypothesis Quantified Universally
-                ( Scope
-                    ( TermSymbol
-                        ( Location
-                            { locFile = "<nowhere>"
-                            , locLine = -1
-                            , locColumn = -1
-                            }
-                        )
-                        ( SymbolPredicate
-                            ( PredicateRelation
-                                ( RelationSymbol
-                                    ( Symbol "=" )
-                                    ( Marker "eq" )
-                                )
-                            )
-                        )
-                        [ TermVar
-                            ( B
-                                ( NamedVar "a" )
-                            )
-                        , TermVar
-                            ( B
-                                ( NamedVar "a" )
-                            )
-                        ]
+        , Hypothesis Marker "prop1" Quantified Universally
+            ( Scope
+                ( TermSymbol
+                    ( Location
+                        { locFile = "<nowhere>"
+                        , locLine = -1
+                        , locColumn = -1
+                        }
                     )
+                    ( SymbolPredicate
+                        ( PredicateRelation
+                            ( RelationSymbol
+                                ( Symbol "=" )
+                                ( Marker "eq" )
+                            )
+                        )
+                    )
+                    [ TermVar
+                        ( B
+                            ( NamedVar "a" )
+                        )
+                    , TermVar
+                        ( B
+                            ( NamedVar "a" )
+                        )
+                    ]
                 )
             )
         ]

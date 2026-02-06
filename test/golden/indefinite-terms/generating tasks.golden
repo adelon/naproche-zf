@@ -11,7 +11,12 @@
     }
 , Task
     { taskDirectness = Direct
-    , taskHypotheses = []
+    , taskHypotheses =
+        [ Hypothesis Marker "indefinite_test_forall" Quantified Universally
+            ( Scope
+                ( Connected Implication ( PropositionalConstant IsTop ) ( PropositionalConstant IsTop ) )
+            )
+        ]
     , taskConjectureLabel = Marker "indefinite_test_exists"
     , taskLocation = Location
         { locFile = "test/examples/indefinite-terms.tex"

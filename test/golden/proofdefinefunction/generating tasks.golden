@@ -1,150 +1,291 @@
 [ Task
     { taskDirectness = Direct
     , taskHypotheses =
-        [
-            ( Marker "relation"
-            , EncodedHypothesis Quantified Universally
-                ( Scope
-                    ( Connected Equivalence
-                        ( TermSymbol
-                            ( Location
-                                { locFile = "test/examples/proofdefinefunction.tex"
-                                , locLine = 18
-                                , locColumn = 1
-                                }
-                            )
-                            ( SymbolPredicate
-                                ( PredicateNoun
-                                    ( LexicalItemSgPl
-                                        ( SgPl
-                                            { sg = TokenCons
-                                                ( Word "relation" ) End
-                                            , pl = TokenCons
-                                                ( Word "relations" ) End
-                                            }
-                                        )
-                                        ( Marker "relation" )
-                                    )
-                                )
-                            )
-                            [ TermVar
-                                ( B
-                                    ( NamedVar "f" )
-                                )
-                            ]
+        [ Hypothesis Marker "relation" Quantified Universally
+            ( Scope
+                ( Connected Equivalence
+                    ( TermSymbol
+                        ( Location
+                            { locFile = "test/examples/proofdefinefunction.tex"
+                            , locLine = 18
+                            , locColumn = 1
+                            }
                         )
-                        ( Quantified Universally
-                            ( Scope
-                                ( TermSymbol
-                                    ( Location
-                                        { locFile = "<nowhere>"
-                                        , locLine = -1
-                                        , locColumn = -1
+                        ( SymbolPredicate
+                            ( PredicateNoun
+                                ( LexicalItemSgPl
+                                    ( SgPl
+                                        { sg = TokenCons
+                                            ( Word "relation" ) End
+                                        , pl = TokenCons
+                                            ( Word "relations" ) End
                                         }
                                     )
-                                    ( SymbolPredicate
-                                        ( PredicateRelation
-                                            ( RelationSymbol
-                                                ( Symbol "=" )
-                                                ( Marker "eq" )
+                                    ( Marker "relation" )
+                                )
+                            )
+                        )
+                        [ TermVar
+                            ( B
+                                ( NamedVar "f" )
+                            )
+                        ]
+                    )
+                    ( Quantified Universally
+                        ( Scope
+                            ( TermSymbol
+                                ( Location
+                                    { locFile = "<nowhere>"
+                                    , locLine = -1
+                                    , locColumn = -1
+                                    }
+                                )
+                                ( SymbolPredicate
+                                    ( PredicateRelation
+                                        ( RelationSymbol
+                                            ( Symbol "=" )
+                                            ( Marker "eq" )
+                                        )
+                                    )
+                                )
+                                [ TermVar
+                                    ( F
+                                        ( TermVar
+                                            ( B
+                                                ( NamedVar "f" )
                                             )
                                         )
                                     )
-                                    [ TermVar
-                                        ( F
-                                            ( TermVar
-                                                ( B
-                                                    ( NamedVar "f" )
-                                                )
+                                , TermVar
+                                    ( F
+                                        ( TermVar
+                                            ( B
+                                                ( NamedVar "f" )
                                             )
                                         )
-                                    , TermVar
-                                        ( F
-                                            ( TermVar
-                                                ( B
-                                                    ( NamedVar "f" )
-                                                )
-                                            )
-                                        )
-                                    ]
-                                )
+                                    )
+                                ]
                             )
                         )
                     )
                 )
             )
-        ,
-            ( Marker "rightunique"
-            , EncodedHypothesis Quantified Universally
-                ( Scope
-                    ( Connected Equivalence
-                        ( TermSymbol
-                            ( Location
-                                { locFile = "test/examples/proofdefinefunction.tex"
-                                , locLine = 13
-                                , locColumn = 1
-                                }
-                            )
-                            ( SymbolPredicate
-                                ( PredicateAdj
-                                    ( LexicalItem
-                                        ( TokenCons
-                                            ( Word "right-unique" ) End
-                                        )
-                                        ( Marker "rightunique" )
-                                    )
-                                )
-                            )
-                            [ TermVar
-                                ( B
-                                    ( NamedVar "f" )
-                                )
-                            ]
+        , Hypothesis Marker "rightunique" Quantified Universally
+            ( Scope
+                ( Connected Equivalence
+                    ( TermSymbol
+                        ( Location
+                            { locFile = "test/examples/proofdefinefunction.tex"
+                            , locLine = 13
+                            , locColumn = 1
+                            }
                         )
-                        ( Quantified Universally
-                            ( Scope
-                                ( TermSymbol
-                                    ( Location
-                                        { locFile = "<nowhere>"
-                                        , locLine = -1
-                                        , locColumn = -1
-                                        }
+                        ( SymbolPredicate
+                            ( PredicateAdj
+                                ( LexicalItem
+                                    ( TokenCons
+                                        ( Word "right-unique" ) End
                                     )
-                                    ( SymbolPredicate
-                                        ( PredicateRelation
-                                            ( RelationSymbol
-                                                ( Symbol "=" )
-                                                ( Marker "eq" )
-                                            )
-                                        )
-                                    )
-                                    [ TermVar
-                                        ( F
-                                            ( TermVar
-                                                ( B
-                                                    ( NamedVar "f" )
-                                                )
-                                            )
-                                        )
-                                    , TermVar
-                                        ( F
-                                            ( TermVar
-                                                ( B
-                                                    ( NamedVar "f" )
-                                                )
-                                            )
-                                        )
-                                    ]
+                                    ( Marker "rightunique" )
                                 )
+                            )
+                        )
+                        [ TermVar
+                            ( B
+                                ( NamedVar "f" )
+                            )
+                        ]
+                    )
+                    ( Quantified Universally
+                        ( Scope
+                            ( TermSymbol
+                                ( Location
+                                    { locFile = "<nowhere>"
+                                    , locLine = -1
+                                    , locColumn = -1
+                                    }
+                                )
+                                ( SymbolPredicate
+                                    ( PredicateRelation
+                                        ( RelationSymbol
+                                            ( Symbol "=" )
+                                            ( Marker "eq" )
+                                        )
+                                    )
+                                )
+                                [ TermVar
+                                    ( F
+                                        ( TermVar
+                                            ( B
+                                                ( NamedVar "f" )
+                                            )
+                                        )
+                                    )
+                                , TermVar
+                                    ( F
+                                        ( TermVar
+                                            ( B
+                                                ( NamedVar "f" )
+                                            )
+                                        )
+                                    )
+                                ]
                             )
                         )
                     )
                 )
             )
-        ,
-            ( Marker "dom"
-            , EncodedHypothesis Quantified Universally
-                ( Scope
+        , Hypothesis Marker "dom" Quantified Universally
+            ( Scope
+                ( TermSymbol
+                    ( Location
+                        { locFile = "<nowhere>"
+                        , locLine = -1
+                        , locColumn = -1
+                        }
+                    )
+                    ( SymbolPredicate
+                        ( PredicateRelation
+                            ( RelationSymbol
+                                ( Symbol "=" )
+                                ( Marker "eq" )
+                            )
+                        )
+                    )
+                    [ TermSymbol
+                        ( Location
+                            { locFile = "<nowhere>"
+                            , locLine = -1
+                            , locColumn = -1
+                            }
+                        )
+                        ( SymbolMixfix
+                            ( MixfixItem
+                                ( TokenCons
+                                    ( Command "dom" )
+                                    ( TokenCons InvisibleBraceL
+                                        ( HoleCons ( TokenCons InvisibleBraceR End ) )
+                                    )
+                                )
+                                ( Marker "dom" ) NonAssoc
+                            )
+                        )
+                        [ TermVar
+                            ( B
+                                ( NamedVar "f" )
+                            )
+                        ]
+                    , TermVar
+                        ( B
+                            ( NamedVar "f" )
+                        )
+                    ]
+                )
+            )
+        , Hypothesis Marker "apply" Quantified Universally
+            ( Scope
+                ( TermSymbol
+                    ( Location
+                        { locFile = "<nowhere>"
+                        , locLine = -1
+                        , locColumn = -1
+                        }
+                    )
+                    ( SymbolPredicate
+                        ( PredicateRelation
+                            ( RelationSymbol
+                                ( Symbol "=" )
+                                ( Marker "eq" )
+                            )
+                        )
+                    )
+                    [ TermSymbol
+                        ( Location
+                            { locFile = "<nowhere>"
+                            , locLine = -1
+                            , locColumn = -1
+                            }
+                        )
+                        ( SymbolMixfix
+                            ( MixfixItem
+                                ( TokenCons
+                                    ( Command "apply" )
+                                    ( TokenCons InvisibleBraceL
+                                        ( HoleCons
+                                            ( TokenCons InvisibleBraceR
+                                                ( TokenCons InvisibleBraceL
+                                                    ( HoleCons ( TokenCons InvisibleBraceR End ) )
+                                                )
+                                            )
+                                        )
+                                    )
+                                )
+                                ( Marker "apply" ) NonAssoc
+                            )
+                        )
+                        [ TermVar
+                            ( B
+                                ( NamedVar "f" )
+                            )
+                        , TermVar
+                            ( B
+                                ( NamedVar "x" )
+                            )
+                        ]
+                    , TermVar
+                        ( B
+                            ( NamedVar "x" )
+                        )
+                    ]
+                )
+            )
+        , Hypothesis Marker "definefunctiontest4" TermSymbol
+            ( Location
+                { locFile = "test/examples/proofdefinefunction.tex"
+                , locLine = 26
+                , locColumn = 5
+                }
+            )
+            ( SymbolPredicate
+                ( PredicateNoun
+                    ( LexicalItemSgPl
+                        ( SgPl
+                            { sg = TokenCons
+                                ( Word "relation" ) End
+                            , pl = TokenCons
+                                ( Word "relations" ) End
+                            }
+                        )
+                        ( Marker "relation" )
+                    )
+                )
+            )
+            [ TermVar
+                ( NamedVar "f" )
+            ]
+        , Hypothesis Marker "definefunctiontest3" TermSymbol
+            ( Location
+                { locFile = "test/examples/proofdefinefunction.tex"
+                , locLine = 26
+                , locColumn = 5
+                }
+            )
+            ( SymbolPredicate
+                ( PredicateAdj
+                    ( LexicalItem
+                        ( TokenCons
+                            ( Word "right-unique" ) End
+                        )
+                        ( Marker "rightunique" )
+                    )
+                )
+            )
+            [ TermVar
+                ( NamedVar "f" )
+            ]
+        , Hypothesis Marker "definefunctiontest2" Quantified Universally
+            ( Scope
+                ( Connected Implication
                     ( TermSymbol
                         ( Location
                             { locFile = "<nowhere>"
@@ -155,46 +296,23 @@
                         ( SymbolPredicate
                             ( PredicateRelation
                                 ( RelationSymbol
-                                    ( Symbol "=" )
-                                    ( Marker "eq" )
+                                    ( Command "in" )
+                                    ( Marker "elem" )
                                 )
                             )
                         )
-                        [ TermSymbol
-                            ( Location
-                                { locFile = "<nowhere>"
-                                , locLine = -1
-                                , locColumn = -1
-                                }
-                            )
-                            ( SymbolMixfix
-                                ( MixfixItem
-                                    ( TokenCons
-                                        ( Command "dom" )
-                                        ( TokenCons InvisibleBraceL
-                                            ( HoleCons ( TokenCons InvisibleBraceR End ) )
-                                        )
-                                    )
-                                    ( Marker "dom" ) NonAssoc
-                                )
-                            )
-                            [ TermVar
-                                ( B
-                                    ( NamedVar "f" )
-                                )
-                            ]
-                        , TermVar
+                        [ TermVar
                             ( B
-                                ( NamedVar "f" )
+                                ( NamedVar "z" )
+                            )
+                        , TermVar
+                            ( F
+                                ( TermVar
+                                    ( NamedVar "x" )
+                                )
                             )
                         ]
                     )
-                )
-            )
-        ,
-            ( Marker "apply"
-            , EncodedHypothesis Quantified Universally
-                ( Scope
                     ( TermSymbol
                         ( Location
                             { locFile = "<nowhere>"
@@ -235,205 +353,63 @@
                                 )
                             )
                             [ TermVar
-                                ( B
-                                    ( NamedVar "f" )
+                                ( F
+                                    ( TermVar
+                                        ( NamedVar "f" )
+                                    )
                                 )
                             , TermVar
                                 ( B
-                                    ( NamedVar "x" )
+                                    ( NamedVar "z" )
                                 )
                             ]
                         , TermVar
                             ( B
-                                ( NamedVar "x" )
+                                ( NamedVar "z" )
                             )
                         ]
                     )
                 )
             )
-        ,
-            ( Marker "definefunctiontest1"
-            , EncodedHypothesis TermSymbol
+        , Hypothesis Marker "definefunctiontest1" TermSymbol
+            ( Location
+                { locFile = "test/examples/proofdefinefunction.tex"
+                , locLine = 26
+                , locColumn = 5
+                }
+            )
+            ( SymbolPredicate
+                ( PredicateRelation
+                    ( RelationSymbol
+                        ( Symbol "=" )
+                        ( Marker "eq" )
+                    )
+                )
+            )
+            [ TermSymbol
                 ( Location
-                    { locFile = "test/examples/proofdefinefunction.tex"
-                    , locLine = 26
-                    , locColumn = 5
+                    { locFile = "<nowhere>"
+                    , locLine = -1
+                    , locColumn = -1
                     }
                 )
-                ( SymbolPredicate
-                    ( PredicateNoun
-                        ( LexicalItemSgPl
-                            ( SgPl
-                                { sg = TokenCons
-                                    ( Word "relation" ) End
-                                , pl = TokenCons
-                                    ( Word "relations" ) End
-                                }
+                ( SymbolMixfix
+                    ( MixfixItem
+                        ( TokenCons
+                            ( Command "dom" )
+                            ( TokenCons InvisibleBraceL
+                                ( HoleCons ( TokenCons InvisibleBraceR End ) )
                             )
-                            ( Marker "relation" )
                         )
+                        ( Marker "dom" ) NonAssoc
                     )
                 )
                 [ TermVar
                     ( NamedVar "f" )
                 ]
-            )
-        ,
-            ( Marker "definefunctiontest2"
-            , EncodedHypothesis TermSymbol
-                ( Location
-                    { locFile = "test/examples/proofdefinefunction.tex"
-                    , locLine = 26
-                    , locColumn = 5
-                    }
-                )
-                ( SymbolPredicate
-                    ( PredicateAdj
-                        ( LexicalItem
-                            ( TokenCons
-                                ( Word "right-unique" ) End
-                            )
-                            ( Marker "rightunique" )
-                        )
-                    )
-                )
-                [ TermVar
-                    ( NamedVar "f" )
-                ]
-            )
-        ,
-            ( Marker "definefunctiontest3"
-            , EncodedHypothesis Quantified Universally
-                ( Scope
-                    ( Connected Implication
-                        ( TermSymbol
-                            ( Location
-                                { locFile = "<nowhere>"
-                                , locLine = -1
-                                , locColumn = -1
-                                }
-                            )
-                            ( SymbolPredicate
-                                ( PredicateRelation
-                                    ( RelationSymbol
-                                        ( Command "in" )
-                                        ( Marker "elem" )
-                                    )
-                                )
-                            )
-                            [ TermVar
-                                ( B
-                                    ( NamedVar "z" )
-                                )
-                            , TermVar
-                                ( F
-                                    ( TermVar
-                                        ( NamedVar "x" )
-                                    )
-                                )
-                            ]
-                        )
-                        ( TermSymbol
-                            ( Location
-                                { locFile = "<nowhere>"
-                                , locLine = -1
-                                , locColumn = -1
-                                }
-                            )
-                            ( SymbolPredicate
-                                ( PredicateRelation
-                                    ( RelationSymbol
-                                        ( Symbol "=" )
-                                        ( Marker "eq" )
-                                    )
-                                )
-                            )
-                            [ TermSymbol
-                                ( Location
-                                    { locFile = "<nowhere>"
-                                    , locLine = -1
-                                    , locColumn = -1
-                                    }
-                                )
-                                ( SymbolMixfix
-                                    ( MixfixItem
-                                        ( TokenCons
-                                            ( Command "apply" )
-                                            ( TokenCons InvisibleBraceL
-                                                ( HoleCons
-                                                    ( TokenCons InvisibleBraceR
-                                                        ( TokenCons InvisibleBraceL
-                                                            ( HoleCons ( TokenCons InvisibleBraceR End ) )
-                                                        )
-                                                    )
-                                                )
-                                            )
-                                        )
-                                        ( Marker "apply" ) NonAssoc
-                                    )
-                                )
-                                [ TermVar
-                                    ( F
-                                        ( TermVar
-                                            ( NamedVar "f" )
-                                        )
-                                    )
-                                , TermVar
-                                    ( B
-                                        ( NamedVar "z" )
-                                    )
-                                ]
-                            , TermVar
-                                ( B
-                                    ( NamedVar "z" )
-                                )
-                            ]
-                        )
-                    )
-                )
-            )
-        ,
-            ( Marker "definefunctiontest4"
-            , EncodedHypothesis TermSymbol
-                ( Location
-                    { locFile = "test/examples/proofdefinefunction.tex"
-                    , locLine = 26
-                    , locColumn = 5
-                    }
-                )
-                ( SymbolPredicate
-                    ( PredicateRelation
-                        ( RelationSymbol
-                            ( Symbol "=" )
-                            ( Marker "eq" )
-                        )
-                    )
-                )
-                [ TermSymbol
-                    ( Location
-                        { locFile = "<nowhere>"
-                        , locLine = -1
-                        , locColumn = -1
-                        }
-                    )
-                    ( SymbolMixfix
-                        ( MixfixItem
-                            ( TokenCons
-                                ( Command "dom" )
-                                ( TokenCons InvisibleBraceL
-                                    ( HoleCons ( TokenCons InvisibleBraceR End ) )
-                                )
-                            )
-                            ( Marker "dom" ) NonAssoc
-                        )
-                    )
-                    [ TermVar
-                        ( NamedVar "f" )
-                    ]
-                , TermVar
-                    ( NamedVar "x" )
-                ]
-            )
+            , TermVar
+                ( NamedVar "x" )
+            ]
         ]
     , taskConjectureLabel = Marker "definefunctiontest"
     , taskLocation = Location

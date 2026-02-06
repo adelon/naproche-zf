@@ -1,38 +1,37 @@
 [ Task
     { taskDirectness = Direct
     , taskHypotheses =
-        [
-            ( Marker "in_irrefl1"
-            , EncodedHypothesis Quantified Universally
-                ( Scope
-                    ( Connected Implication
-                        ( TermSymbol
-                            ( Location
-                                { locFile = "<nowhere>"
-                                , locLine = -1
-                                , locColumn = -1
-                                }
-                            )
-                            ( SymbolPredicate
-                                ( PredicateRelation
-                                    ( RelationSymbol
-                                        ( Command "in" )
-                                        ( Marker "elem" )
-                                    )
-                                )
-                            )
-                            [ TermVar
-                                ( B
-                                    ( NamedVar "IndAntecedent" )
-                                )
-                            , TermVar
-                                ( F
-                                    ( TermVar
-                                        ( NamedVar "A" )
-                                    )
-                                )
-                            ]
+        [ Hypothesis Marker "in_irrefl1" Quantified Universally
+            ( Scope
+                ( Connected Implication
+                    ( TermSymbol
+                        ( Location
+                            { locFile = "<nowhere>"
+                            , locLine = -1
+                            , locColumn = -1
+                            }
                         )
+                        ( SymbolPredicate
+                            ( PredicateRelation
+                                ( RelationSymbol
+                                    ( Command "in" )
+                                    ( Marker "elem" )
+                                )
+                            )
+                        )
+                        [ TermVar
+                            ( B
+                                ( NamedVar "IndAntecedent" )
+                            )
+                        , TermVar
+                            ( F
+                                ( TermVar
+                                    ( NamedVar "A" )
+                                )
+                            )
+                        ]
+                    )
+                    ( Connected Implication ( PropositionalConstant IsTop )
                         ( Not
                             ( Location
                                 { locFile = "<nowhere>"

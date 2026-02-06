@@ -39,35 +39,32 @@
 , Task
     { taskDirectness = Direct
     , taskHypotheses =
-        [
-            ( Marker "dummy_abbr_test"
-            , EncodedHypothesis Quantified Universally
-                ( Scope
-                    ( TermSymbol
-                        ( Location
-                            { locFile = "<nowhere>"
-                            , locLine = -1
-                            , locColumn = -1
-                            }
-                        )
-                        ( SymbolPredicate
-                            ( PredicateRelation
-                                ( RelationSymbol
-                                    ( Symbol "=" )
-                                    ( Marker "eq" )
-                                )
-                            )
-                        )
-                        [ TermVar
-                            ( B
-                                ( NamedVar "x" )
-                            )
-                        , TermVar
-                            ( B
-                                ( NamedVar "x" )
-                            )
-                        ]
+        [ Hypothesis Marker "dummy_abbr_test" Quantified Universally
+            ( Scope
+                ( TermSymbol
+                    ( Location
+                        { locFile = "<nowhere>"
+                        , locLine = -1
+                        , locColumn = -1
+                        }
                     )
+                    ( SymbolPredicate
+                        ( PredicateRelation
+                            ( RelationSymbol
+                                ( Symbol "=" )
+                                ( Marker "eq" )
+                            )
+                        )
+                    )
+                    [ TermVar
+                        ( B
+                            ( NamedVar "x" )
+                        )
+                    , TermVar
+                        ( B
+                            ( NamedVar "x" )
+                        )
+                    ]
                 )
             )
         ]

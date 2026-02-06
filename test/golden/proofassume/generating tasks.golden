@@ -1,29 +1,26 @@
 [ Task
     { taskDirectness = Direct
     , taskHypotheses =
-        [
-            ( Marker "assumetest1"
-            , EncodedHypothesis TermSymbol
-                ( Location
-                    { locFile = "<nowhere>"
-                    , locLine = -1
-                    , locColumn = -1
-                    }
-                )
-                ( SymbolPredicate
-                    ( PredicateRelation
-                        ( RelationSymbol
-                            ( Command "in" )
-                            ( Marker "elem" )
-                        )
+        [ Hypothesis Marker "assumetest1" TermSymbol
+            ( Location
+                { locFile = "<nowhere>"
+                , locLine = -1
+                , locColumn = -1
+                }
+            )
+            ( SymbolPredicate
+                ( PredicateRelation
+                    ( RelationSymbol
+                        ( Command "in" )
+                        ( Marker "elem" )
                     )
                 )
-                [ TermVar
-                    ( NamedVar "x" )
-                , TermVar
-                    ( NamedVar "y" )
-                ]
             )
+            [ TermVar
+                ( NamedVar "x" )
+            , TermVar
+                ( NamedVar "y" )
+            ]
         ]
     , taskConjectureLabel = Marker "assumetest"
     , taskLocation = Location
@@ -55,52 +52,46 @@
 , Task
     { taskDirectness = Direct
     , taskHypotheses =
-        [
-            ( Marker "assumetest1"
-            , EncodedHypothesis TermSymbol
-                ( Location
-                    { locFile = "<nowhere>"
-                    , locLine = -1
-                    , locColumn = -1
-                    }
-                )
-                ( SymbolPredicate
-                    ( PredicateRelation
-                        ( RelationSymbol
-                            ( Command "in" )
-                            ( Marker "elem" )
-                        )
+        [ Hypothesis Marker "assumetest2" TermSymbol
+            ( Location
+                { locFile = "<nowhere>"
+                , locLine = -1
+                , locColumn = -1
+                }
+            )
+            ( SymbolPredicate
+                ( PredicateRelation
+                    ( RelationSymbol
+                        ( Command "in" )
+                        ( Marker "elem" )
                     )
                 )
-                [ TermVar
-                    ( NamedVar "x" )
-                , TermVar
-                    ( NamedVar "y" )
-                ]
             )
-        ,
-            ( Marker "assumetest2"
-            , EncodedHypothesis TermSymbol
-                ( Location
-                    { locFile = "<nowhere>"
-                    , locLine = -1
-                    , locColumn = -1
-                    }
-                )
-                ( SymbolPredicate
-                    ( PredicateRelation
-                        ( RelationSymbol
-                            ( Command "in" )
-                            ( Marker "elem" )
-                        )
+            [ TermVar
+                ( NamedVar "x" )
+            , TermVar
+                ( NamedVar "y" )
+            ]
+        , Hypothesis Marker "assumetest1" TermSymbol
+            ( Location
+                { locFile = "<nowhere>"
+                , locLine = -1
+                , locColumn = -1
+                }
+            )
+            ( SymbolPredicate
+                ( PredicateRelation
+                    ( RelationSymbol
+                        ( Command "in" )
+                        ( Marker "elem" )
                     )
                 )
-                [ TermVar
-                    ( NamedVar "x" )
-                , TermVar
-                    ( NamedVar "y" )
-                ]
             )
+            [ TermVar
+                ( NamedVar "x" )
+            , TermVar
+                ( NamedVar "y" )
+            ]
         ]
     , taskConjectureLabel = Marker "assumetest"
     , taskLocation = Location
@@ -132,110 +123,101 @@
 , Task
     { taskDirectness = Direct
     , taskHypotheses =
-        [
-            ( Marker "assumetest"
-            , EncodedHypothesis Quantified Universally
-                ( Scope
-                    ( Connected Implication
-                        ( TermSymbol
-                            ( Location
-                                { locFile = "<nowhere>"
-                                , locLine = -1
-                                , locColumn = -1
-                                }
-                            )
-                            ( SymbolPredicate
-                                ( PredicateRelation
-                                    ( RelationSymbol
-                                        ( Command "in" )
-                                        ( Marker "elem" )
-                                    )
-                                )
-                            )
-                            [ TermVar
-                                ( B
-                                    ( NamedVar "x" )
-                                )
-                            , TermVar
-                                ( B
-                                    ( NamedVar "y" )
-                                )
-                            ]
+        [ Hypothesis Marker "assumetest" Quantified Universally
+            ( Scope
+                ( Connected Implication
+                    ( TermSymbol
+                        ( Location
+                            { locFile = "<nowhere>"
+                            , locLine = -1
+                            , locColumn = -1
+                            }
                         )
-                        ( TermSymbol
-                            ( Location
-                                { locFile = "<nowhere>"
-                                , locLine = -1
-                                , locColumn = -1
-                                }
-                            )
-                            ( SymbolPredicate
-                                ( PredicateRelation
-                                    ( RelationSymbol
-                                        ( Command "in" )
-                                        ( Marker "elem" )
-                                    )
+                        ( SymbolPredicate
+                            ( PredicateRelation
+                                ( RelationSymbol
+                                    ( Command "in" )
+                                    ( Marker "elem" )
                                 )
                             )
-                            [ TermVar
-                                ( B
-                                    ( NamedVar "x" )
-                                )
-                            , TermVar
-                                ( B
-                                    ( NamedVar "y" )
-                                )
-                            ]
                         )
+                        [ TermVar
+                            ( B
+                                ( NamedVar "x" )
+                            )
+                        , TermVar
+                            ( B
+                                ( NamedVar "y" )
+                            )
+                        ]
+                    )
+                    ( TermSymbol
+                        ( Location
+                            { locFile = "<nowhere>"
+                            , locLine = -1
+                            , locColumn = -1
+                            }
+                        )
+                        ( SymbolPredicate
+                            ( PredicateRelation
+                                ( RelationSymbol
+                                    ( Command "in" )
+                                    ( Marker "elem" )
+                                )
+                            )
+                        )
+                        [ TermVar
+                            ( B
+                                ( NamedVar "x" )
+                            )
+                        , TermVar
+                            ( B
+                                ( NamedVar "y" )
+                            )
+                        ]
                     )
                 )
             )
-        ,
-            ( Marker "assumetesttwo1"
-            , EncodedHypothesis TermSymbol
-                ( Location
-                    { locFile = "<nowhere>"
-                    , locLine = -1
-                    , locColumn = -1
-                    }
-                )
-                ( SymbolPredicate
-                    ( PredicateRelation
-                        ( RelationSymbol
-                            ( Command "in" )
-                            ( Marker "elem" )
-                        )
+        , Hypothesis Marker "assumetesttwo2" TermSymbol
+            ( Location
+                { locFile = "<nowhere>"
+                , locLine = -1
+                , locColumn = -1
+                }
+            )
+            ( SymbolPredicate
+                ( PredicateRelation
+                    ( RelationSymbol
+                        ( Command "in" )
+                        ( Marker "elem" )
                     )
                 )
-                [ TermVar
-                    ( NamedVar "x" )
-                , TermVar
-                    ( NamedVar "y" )
-                ]
             )
-        ,
-            ( Marker "assumetesttwo2"
-            , EncodedHypothesis TermSymbol
-                ( Location
-                    { locFile = "<nowhere>"
-                    , locLine = -1
-                    , locColumn = -1
-                    }
-                )
-                ( SymbolPredicate
-                    ( PredicateRelation
-                        ( RelationSymbol
-                            ( Command "in" )
-                            ( Marker "elem" )
-                        )
+            [ TermVar
+                ( NamedVar "x" )
+            , TermVar
+                ( NamedVar "y" )
+            ]
+        , Hypothesis Marker "assumetesttwo1" TermSymbol
+            ( Location
+                { locFile = "<nowhere>"
+                , locLine = -1
+                , locColumn = -1
+                }
+            )
+            ( SymbolPredicate
+                ( PredicateRelation
+                    ( RelationSymbol
+                        ( Command "in" )
+                        ( Marker "elem" )
                     )
                 )
-                [ TermVar
-                    ( NamedVar "a" )
-                , TermVar
-                    ( NamedVar "b" )
-                ]
             )
+            [ TermVar
+                ( NamedVar "a" )
+            , TermVar
+                ( NamedVar "b" )
+            ]
         ]
     , taskConjectureLabel = Marker "assumetesttwo"
     , taskLocation = Location
@@ -267,133 +249,121 @@
 , Task
     { taskDirectness = Direct
     , taskHypotheses =
-        [
-            ( Marker "assumetest"
-            , EncodedHypothesis Quantified Universally
-                ( Scope
-                    ( Connected Implication
-                        ( TermSymbol
-                            ( Location
-                                { locFile = "<nowhere>"
-                                , locLine = -1
-                                , locColumn = -1
-                                }
-                            )
-                            ( SymbolPredicate
-                                ( PredicateRelation
-                                    ( RelationSymbol
-                                        ( Command "in" )
-                                        ( Marker "elem" )
-                                    )
-                                )
-                            )
-                            [ TermVar
-                                ( B
-                                    ( NamedVar "x" )
-                                )
-                            , TermVar
-                                ( B
-                                    ( NamedVar "y" )
-                                )
-                            ]
+        [ Hypothesis Marker "assumetest" Quantified Universally
+            ( Scope
+                ( Connected Implication
+                    ( TermSymbol
+                        ( Location
+                            { locFile = "<nowhere>"
+                            , locLine = -1
+                            , locColumn = -1
+                            }
                         )
-                        ( TermSymbol
-                            ( Location
-                                { locFile = "<nowhere>"
-                                , locLine = -1
-                                , locColumn = -1
-                                }
-                            )
-                            ( SymbolPredicate
-                                ( PredicateRelation
-                                    ( RelationSymbol
-                                        ( Command "in" )
-                                        ( Marker "elem" )
-                                    )
+                        ( SymbolPredicate
+                            ( PredicateRelation
+                                ( RelationSymbol
+                                    ( Command "in" )
+                                    ( Marker "elem" )
                                 )
                             )
-                            [ TermVar
-                                ( B
-                                    ( NamedVar "x" )
-                                )
-                            , TermVar
-                                ( B
-                                    ( NamedVar "y" )
-                                )
-                            ]
                         )
+                        [ TermVar
+                            ( B
+                                ( NamedVar "x" )
+                            )
+                        , TermVar
+                            ( B
+                                ( NamedVar "y" )
+                            )
+                        ]
+                    )
+                    ( TermSymbol
+                        ( Location
+                            { locFile = "<nowhere>"
+                            , locLine = -1
+                            , locColumn = -1
+                            }
+                        )
+                        ( SymbolPredicate
+                            ( PredicateRelation
+                                ( RelationSymbol
+                                    ( Command "in" )
+                                    ( Marker "elem" )
+                                )
+                            )
+                        )
+                        [ TermVar
+                            ( B
+                                ( NamedVar "x" )
+                            )
+                        , TermVar
+                            ( B
+                                ( NamedVar "y" )
+                            )
+                        ]
                     )
                 )
             )
-        ,
-            ( Marker "assumetesttwo1"
-            , EncodedHypothesis TermSymbol
-                ( Location
-                    { locFile = "<nowhere>"
-                    , locLine = -1
-                    , locColumn = -1
-                    }
-                )
-                ( SymbolPredicate
-                    ( PredicateRelation
-                        ( RelationSymbol
-                            ( Command "in" )
-                            ( Marker "elem" )
-                        )
+        , Hypothesis Marker "assumetesttwo3" TermSymbol
+            ( Location
+                { locFile = "<nowhere>"
+                , locLine = -1
+                , locColumn = -1
+                }
+            )
+            ( SymbolPredicate
+                ( PredicateRelation
+                    ( RelationSymbol
+                        ( Command "in" )
+                        ( Marker "elem" )
                     )
                 )
-                [ TermVar
-                    ( NamedVar "x" )
-                , TermVar
-                    ( NamedVar "y" )
-                ]
             )
-        ,
-            ( Marker "assumetesttwo2"
-            , EncodedHypothesis TermSymbol
-                ( Location
-                    { locFile = "<nowhere>"
-                    , locLine = -1
-                    , locColumn = -1
-                    }
-                )
-                ( SymbolPredicate
-                    ( PredicateRelation
-                        ( RelationSymbol
-                            ( Command "in" )
-                            ( Marker "elem" )
-                        )
+            [ TermVar
+                ( NamedVar "x" )
+            , TermVar
+                ( NamedVar "y" )
+            ]
+        , Hypothesis Marker "assumetesttwo2" TermSymbol
+            ( Location
+                { locFile = "<nowhere>"
+                , locLine = -1
+                , locColumn = -1
+                }
+            )
+            ( SymbolPredicate
+                ( PredicateRelation
+                    ( RelationSymbol
+                        ( Command "in" )
+                        ( Marker "elem" )
                     )
                 )
-                [ TermVar
-                    ( NamedVar "x" )
-                , TermVar
-                    ( NamedVar "y" )
-                ]
             )
-        ,
-            ( Marker "assumetesttwo3"
-            , EncodedHypothesis TermSymbol
-                ( Location
-                    { locFile = "<nowhere>"
-                    , locLine = -1
-                    , locColumn = -1
-                    }
-                )
-                ( SymbolPredicate
-                    ( PredicateRelation
-                        ( RelationSymbol
-                            ( Command "in" )
-                            ( Marker "elem" )
-                        )
+            [ TermVar
+                ( NamedVar "x" )
+            , TermVar
+                ( NamedVar "y" )
+            ]
+        , Hypothesis Marker "assumetesttwo1" TermSymbol
+            ( Location
+                { locFile = "<nowhere>"
+                , locLine = -1
+                , locColumn = -1
+                }
+            )
+            ( SymbolPredicate
+                ( PredicateRelation
+                    ( RelationSymbol
+                        ( Command "in" )
+                        ( Marker "elem" )
                     )
                 )
-                [ TermVar
-                    ( NamedVar "a" )
-                , TermVar
-                    ( NamedVar "b" )
-                ]
             )
+            [ TermVar
+                ( NamedVar "a" )
+            , TermVar
+                ( NamedVar "b" )
+            ]
         ]
     , taskConjectureLabel = Marker "assumetesttwo"
     , taskLocation = Location

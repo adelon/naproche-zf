@@ -38,38 +38,37 @@
             )
         )
     , taskHypotheses =
-        [
-            ( Marker "universal_set"
-            , EncodedHypothesis Quantified Universally
-                ( Scope
-                    ( Connected Equivalence
-                        ( TermSymbol
-                            ( Location
-                                { locFile = "test/examples/russell.tex"
-                                , locLine = 1
-                                , locColumn = 1
-                                }
-                            )
-                            ( SymbolPredicate
-                                ( PredicateAdj
-                                    ( LexicalItem
-                                        ( TokenCons
-                                            ( Word "universal" ) End
-                                        )
-                                        ( Marker "universal_set" )
-                                    )
-                                )
-                            )
-                            [ TermVar
-                                ( B
-                                    ( NamedVar "V" )
-                                )
-                            ]
+        [ Hypothesis Marker "universal_set" Quantified Universally
+            ( Scope
+                ( Connected Equivalence
+                    ( TermSymbol
+                        ( Location
+                            { locFile = "test/examples/russell.tex"
+                            , locLine = 1
+                            , locColumn = 1
+                            }
                         )
-                        ( Quantified Universally
-                            ( Scope
-                                ( Quantified Universally
-                                    ( Scope
+                        ( SymbolPredicate
+                            ( PredicateAdj
+                                ( LexicalItem
+                                    ( TokenCons
+                                        ( Word "universal" ) End
+                                    )
+                                    ( Marker "universal_set" )
+                                )
+                            )
+                        )
+                        [ TermVar
+                            ( B
+                                ( NamedVar "V" )
+                            )
+                        ]
+                    )
+                    ( Quantified Universally
+                        ( Scope
+                            ( Quantified Universally
+                                ( Scope
+                                    ( Connected Implication ( PropositionalConstant IsTop )
                                         ( TermSymbol
                                             ( Location
                                                 { locFile = "<nowhere>"
@@ -110,24 +109,23 @@
                     )
                 )
             )
-        ,
-            ( Marker "no_universal_set1"
-            , EncodedHypothesis Not
+        , Hypothesis Marker "no_universal_set1" Not
+            ( Location
+                { locFile = "test/examples/russell.tex"
+                , locLine = 11
+                , locColumn = 5
+                }
+            )
+            ( Not
                 ( Location
                     { locFile = "test/examples/russell.tex"
-                    , locLine = 11
-                    , locColumn = 5
+                    , locLine = 8
+                    , locColumn = 18
                     }
                 )
-                ( Not
-                    ( Location
-                        { locFile = "test/examples/russell.tex"
-                        , locLine = 8
-                        , locColumn = 18
-                        }
-                    )
-                    ( Quantified Existentially
-                        ( Scope
+                ( Quantified Existentially
+                    ( Scope
+                        ( Connected Conjunction ( PropositionalConstant IsTop )
                             ( TermSymbol
                                 ( Location
                                     { locFile = "test/examples/russell.tex"
@@ -229,38 +227,37 @@
             )
         )
     , taskHypotheses =
-        [
-            ( Marker "universal_set"
-            , EncodedHypothesis Quantified Universally
-                ( Scope
-                    ( Connected Equivalence
-                        ( TermSymbol
-                            ( Location
-                                { locFile = "test/examples/russell.tex"
-                                , locLine = 1
-                                , locColumn = 1
-                                }
-                            )
-                            ( SymbolPredicate
-                                ( PredicateAdj
-                                    ( LexicalItem
-                                        ( TokenCons
-                                            ( Word "universal" ) End
-                                        )
-                                        ( Marker "universal_set" )
-                                    )
-                                )
-                            )
-                            [ TermVar
-                                ( B
-                                    ( NamedVar "V" )
-                                )
-                            ]
+        [ Hypothesis Marker "universal_set" Quantified Universally
+            ( Scope
+                ( Connected Equivalence
+                    ( TermSymbol
+                        ( Location
+                            { locFile = "test/examples/russell.tex"
+                            , locLine = 1
+                            , locColumn = 1
+                            }
                         )
-                        ( Quantified Universally
-                            ( Scope
-                                ( Quantified Universally
-                                    ( Scope
+                        ( SymbolPredicate
+                            ( PredicateAdj
+                                ( LexicalItem
+                                    ( TokenCons
+                                        ( Word "universal" ) End
+                                    )
+                                    ( Marker "universal_set" )
+                                )
+                            )
+                        )
+                        [ TermVar
+                            ( B
+                                ( NamedVar "V" )
+                            )
+                        ]
+                    )
+                    ( Quantified Universally
+                        ( Scope
+                            ( Quantified Universally
+                                ( Scope
+                                    ( Connected Implication ( PropositionalConstant IsTop )
                                         ( TermSymbol
                                             ( Location
                                                 { locFile = "<nowhere>"
@@ -301,11 +298,37 @@
                     )
                 )
             )
-        ,
-            ( Marker "no_universal_set1"
-            , EncodedHypothesis Quantified Universally
-                ( Scope
-                    ( Connected Equivalence
+        , Hypothesis Marker "no_universal_set3" Quantified Universally
+            ( Scope
+                ( Connected Equivalence
+                    ( TermSymbol
+                        ( Location
+                            { locFile = "<nowhere>"
+                            , locLine = -1
+                            , locColumn = -1
+                            }
+                        )
+                        ( SymbolPredicate
+                            ( PredicateRelation
+                                ( RelationSymbol
+                                    ( Command "in" )
+                                    ( Marker "elem" )
+                                )
+                            )
+                        )
+                        [ TermVar
+                            ( B
+                                ( NamedVar "x" )
+                            )
+                        , TermVar
+                            ( F
+                                ( TermVar
+                                    ( NamedVar "R" )
+                                )
+                            )
+                        ]
+                    )
+                    ( Connected Conjunction
                         ( TermSymbol
                             ( Location
                                 { locFile = "<nowhere>"
@@ -328,12 +351,18 @@
                             , TermVar
                                 ( F
                                     ( TermVar
-                                        ( NamedVar "R" )
+                                        ( NamedVar "V" )
                                     )
                                 )
                             ]
                         )
-                        ( Connected Conjunction
+                        ( Not
+                            ( Location
+                                { locFile = "<nowhere>"
+                                , locLine = -1
+                                , locColumn = -1
+                                }
+                            )
                             ( TermSymbol
                                 ( Location
                                     { locFile = "<nowhere>"
@@ -354,53 +383,17 @@
                                         ( NamedVar "x" )
                                     )
                                 , TermVar
-                                    ( F
-                                        ( TermVar
-                                            ( NamedVar "V" )
-                                        )
+                                    ( B
+                                        ( NamedVar "x" )
                                     )
                                 ]
-                            )
-                            ( Not
-                                ( Location
-                                    { locFile = "<nowhere>"
-                                    , locLine = -1
-                                    , locColumn = -1
-                                    }
-                                )
-                                ( TermSymbol
-                                    ( Location
-                                        { locFile = "<nowhere>"
-                                        , locLine = -1
-                                        , locColumn = -1
-                                        }
-                                    )
-                                    ( SymbolPredicate
-                                        ( PredicateRelation
-                                            ( RelationSymbol
-                                                ( Command "in" )
-                                                ( Marker "elem" )
-                                            )
-                                        )
-                                    )
-                                    [ TermVar
-                                        ( B
-                                            ( NamedVar "x" )
-                                        )
-                                    , TermVar
-                                        ( B
-                                            ( NamedVar "x" )
-                                        )
-                                    ]
-                                )
                             )
                         )
                     )
                 )
             )
-        ,
-            ( Marker "no_universal_set2"
-            , EncodedHypothesis TermSymbol
+        , Hypothesis Marker "no_universal_set2" Connected Conjunction ( PropositionalConstant IsTop )
+            ( TermSymbol
                 ( Location
                     { locFile = "test/examples/russell.tex"
                     , locLine = 12
@@ -421,24 +414,23 @@
                     ( NamedVar "V" )
                 ]
             )
-        ,
-            ( Marker "no_universal_set3"
-            , EncodedHypothesis Not
+        , Hypothesis Marker "no_universal_set1" Not
+            ( Location
+                { locFile = "test/examples/russell.tex"
+                , locLine = 11
+                , locColumn = 5
+                }
+            )
+            ( Not
                 ( Location
                     { locFile = "test/examples/russell.tex"
-                    , locLine = 11
-                    , locColumn = 5
+                    , locLine = 8
+                    , locColumn = 18
                     }
                 )
-                ( Not
-                    ( Location
-                        { locFile = "test/examples/russell.tex"
-                        , locLine = 8
-                        , locColumn = 18
-                        }
-                    )
-                    ( Quantified Existentially
-                        ( Scope
+                ( Quantified Existentially
+                    ( Scope
+                        ( Connected Conjunction ( PropositionalConstant IsTop )
                             ( TermSymbol
                                 ( Location
                                     { locFile = "test/examples/russell.tex"
@@ -565,38 +557,37 @@
             )
         )
     , taskHypotheses =
-        [
-            ( Marker "universal_set"
-            , EncodedHypothesis Quantified Universally
-                ( Scope
-                    ( Connected Equivalence
-                        ( TermSymbol
-                            ( Location
-                                { locFile = "test/examples/russell.tex"
-                                , locLine = 1
-                                , locColumn = 1
-                                }
-                            )
-                            ( SymbolPredicate
-                                ( PredicateAdj
-                                    ( LexicalItem
-                                        ( TokenCons
-                                            ( Word "universal" ) End
-                                        )
-                                        ( Marker "universal_set" )
-                                    )
-                                )
-                            )
-                            [ TermVar
-                                ( B
-                                    ( NamedVar "V" )
-                                )
-                            ]
+        [ Hypothesis Marker "universal_set" Quantified Universally
+            ( Scope
+                ( Connected Equivalence
+                    ( TermSymbol
+                        ( Location
+                            { locFile = "test/examples/russell.tex"
+                            , locLine = 1
+                            , locColumn = 1
+                            }
                         )
-                        ( Quantified Universally
-                            ( Scope
-                                ( Quantified Universally
-                                    ( Scope
+                        ( SymbolPredicate
+                            ( PredicateAdj
+                                ( LexicalItem
+                                    ( TokenCons
+                                        ( Word "universal" ) End
+                                    )
+                                    ( Marker "universal_set" )
+                                )
+                            )
+                        )
+                        [ TermVar
+                            ( B
+                                ( NamedVar "V" )
+                            )
+                        ]
+                    )
+                    ( Quantified Universally
+                        ( Scope
+                            ( Quantified Universally
+                                ( Scope
+                                    ( Connected Implication ( PropositionalConstant IsTop )
                                         ( TermSymbol
                                             ( Location
                                                 { locFile = "<nowhere>"
@@ -637,9 +628,35 @@
                     )
                 )
             )
-        ,
-            ( Marker "no_universal_set1"
-            , EncodedHypothesis Connected Equivalence
+        , Hypothesis Marker "no_universal_set4" Connected Equivalence
+            ( TermSymbol
+                ( Location
+                    { locFile = "<nowhere>"
+                    , locLine = -1
+                    , locColumn = -1
+                    }
+                )
+                ( SymbolPredicate
+                    ( PredicateRelation
+                        ( RelationSymbol
+                            ( Command "in" )
+                            ( Marker "elem" )
+                        )
+                    )
+                )
+                [ TermVar
+                    ( NamedVar "R" )
+                , TermVar
+                    ( NamedVar "R" )
+                ]
+            )
+            ( Not
+                ( Location
+                    { locFile = "<nowhere>"
+                    , locLine = -1
+                    , locColumn = -1
+                    }
+                )
                 ( TermSymbol
                     ( Location
                         { locFile = "<nowhere>"
@@ -661,13 +678,10 @@
                         ( NamedVar "R" )
                     ]
                 )
-                ( Not
-                    ( Location
-                        { locFile = "<nowhere>"
-                        , locLine = -1
-                        , locColumn = -1
-                        }
-                    )
+            )
+        , Hypothesis Marker "no_universal_set3" Quantified Universally
+            ( Scope
+                ( Connected Equivalence
                     ( TermSymbol
                         ( Location
                             { locFile = "<nowhere>"
@@ -684,18 +698,18 @@
                             )
                         )
                         [ TermVar
-                            ( NamedVar "R" )
+                            ( B
+                                ( NamedVar "x" )
+                            )
                         , TermVar
-                            ( NamedVar "R" )
+                            ( F
+                                ( TermVar
+                                    ( NamedVar "R" )
+                                )
+                            )
                         ]
                     )
-                )
-            )
-        ,
-            ( Marker "no_universal_set2"
-            , EncodedHypothesis Quantified Universally
-                ( Scope
-                    ( Connected Equivalence
+                    ( Connected Conjunction
                         ( TermSymbol
                             ( Location
                                 { locFile = "<nowhere>"
@@ -718,12 +732,18 @@
                             , TermVar
                                 ( F
                                     ( TermVar
-                                        ( NamedVar "R" )
+                                        ( NamedVar "V" )
                                     )
                                 )
                             ]
                         )
-                        ( Connected Conjunction
+                        ( Not
+                            ( Location
+                                { locFile = "<nowhere>"
+                                , locLine = -1
+                                , locColumn = -1
+                                }
+                            )
                             ( TermSymbol
                                 ( Location
                                     { locFile = "<nowhere>"
@@ -744,53 +764,17 @@
                                         ( NamedVar "x" )
                                     )
                                 , TermVar
-                                    ( F
-                                        ( TermVar
-                                            ( NamedVar "V" )
-                                        )
+                                    ( B
+                                        ( NamedVar "x" )
                                     )
                                 ]
-                            )
-                            ( Not
-                                ( Location
-                                    { locFile = "<nowhere>"
-                                    , locLine = -1
-                                    , locColumn = -1
-                                    }
-                                )
-                                ( TermSymbol
-                                    ( Location
-                                        { locFile = "<nowhere>"
-                                        , locLine = -1
-                                        , locColumn = -1
-                                        }
-                                    )
-                                    ( SymbolPredicate
-                                        ( PredicateRelation
-                                            ( RelationSymbol
-                                                ( Command "in" )
-                                                ( Marker "elem" )
-                                            )
-                                        )
-                                    )
-                                    [ TermVar
-                                        ( B
-                                            ( NamedVar "x" )
-                                        )
-                                    , TermVar
-                                        ( B
-                                            ( NamedVar "x" )
-                                        )
-                                    ]
-                                )
                             )
                         )
                     )
                 )
             )
-        ,
-            ( Marker "no_universal_set3"
-            , EncodedHypothesis TermSymbol
+        , Hypothesis Marker "no_universal_set2" Connected Conjunction ( PropositionalConstant IsTop )
+            ( TermSymbol
                 ( Location
                     { locFile = "test/examples/russell.tex"
                     , locLine = 12
@@ -811,24 +795,23 @@
                     ( NamedVar "V" )
                 ]
             )
-        ,
-            ( Marker "no_universal_set4"
-            , EncodedHypothesis Not
+        , Hypothesis Marker "no_universal_set1" Not
+            ( Location
+                { locFile = "test/examples/russell.tex"
+                , locLine = 11
+                , locColumn = 5
+                }
+            )
+            ( Not
                 ( Location
                     { locFile = "test/examples/russell.tex"
-                    , locLine = 11
-                    , locColumn = 5
+                    , locLine = 8
+                    , locColumn = 18
                     }
                 )
-                ( Not
-                    ( Location
-                        { locFile = "test/examples/russell.tex"
-                        , locLine = 8
-                        , locColumn = 18
-                        }
-                    )
-                    ( Quantified Existentially
-                        ( Scope
+                ( Quantified Existentially
+                    ( Scope
+                        ( Connected Conjunction ( PropositionalConstant IsTop )
                             ( TermSymbol
                                 ( Location
                                     { locFile = "test/examples/russell.tex"
@@ -905,38 +888,37 @@
             )
         )
     , taskHypotheses =
-        [
-            ( Marker "universal_set"
-            , EncodedHypothesis Quantified Universally
-                ( Scope
-                    ( Connected Equivalence
-                        ( TermSymbol
-                            ( Location
-                                { locFile = "test/examples/russell.tex"
-                                , locLine = 1
-                                , locColumn = 1
-                                }
-                            )
-                            ( SymbolPredicate
-                                ( PredicateAdj
-                                    ( LexicalItem
-                                        ( TokenCons
-                                            ( Word "universal" ) End
-                                        )
-                                        ( Marker "universal_set" )
-                                    )
-                                )
-                            )
-                            [ TermVar
-                                ( B
-                                    ( NamedVar "V" )
-                                )
-                            ]
+        [ Hypothesis Marker "universal_set" Quantified Universally
+            ( Scope
+                ( Connected Equivalence
+                    ( TermSymbol
+                        ( Location
+                            { locFile = "test/examples/russell.tex"
+                            , locLine = 1
+                            , locColumn = 1
+                            }
                         )
-                        ( Quantified Universally
-                            ( Scope
-                                ( Quantified Universally
-                                    ( Scope
+                        ( SymbolPredicate
+                            ( PredicateAdj
+                                ( LexicalItem
+                                    ( TokenCons
+                                        ( Word "universal" ) End
+                                    )
+                                    ( Marker "universal_set" )
+                                )
+                            )
+                        )
+                        [ TermVar
+                            ( B
+                                ( NamedVar "V" )
+                            )
+                        ]
+                    )
+                    ( Quantified Universally
+                        ( Scope
+                            ( Quantified Universally
+                                ( Scope
+                                    ( Connected Implication ( PropositionalConstant IsTop )
                                         ( TermSymbol
                                             ( Location
                                                 { locFile = "<nowhere>"
@@ -977,13 +959,36 @@
                     )
                 )
             )
-        ,
-            ( Marker "no_universal_set1"
-            , EncodedHypothesis PropositionalConstant IsBottom
+        , Hypothesis Marker "no_universal_set5" PropositionalConstant IsBottom
+        , Hypothesis Marker "no_universal_set4" Connected Equivalence
+            ( TermSymbol
+                ( Location
+                    { locFile = "<nowhere>"
+                    , locLine = -1
+                    , locColumn = -1
+                    }
+                )
+                ( SymbolPredicate
+                    ( PredicateRelation
+                        ( RelationSymbol
+                            ( Command "in" )
+                            ( Marker "elem" )
+                        )
+                    )
+                )
+                [ TermVar
+                    ( NamedVar "R" )
+                , TermVar
+                    ( NamedVar "R" )
+                ]
             )
-        ,
-            ( Marker "no_universal_set2"
-            , EncodedHypothesis Connected Equivalence
+            ( Not
+                ( Location
+                    { locFile = "<nowhere>"
+                    , locLine = -1
+                    , locColumn = -1
+                    }
+                )
                 ( TermSymbol
                     ( Location
                         { locFile = "<nowhere>"
@@ -1005,13 +1010,10 @@
                         ( NamedVar "R" )
                     ]
                 )
-                ( Not
-                    ( Location
-                        { locFile = "<nowhere>"
-                        , locLine = -1
-                        , locColumn = -1
-                        }
-                    )
+            )
+        , Hypothesis Marker "no_universal_set3" Quantified Universally
+            ( Scope
+                ( Connected Equivalence
                     ( TermSymbol
                         ( Location
                             { locFile = "<nowhere>"
@@ -1028,18 +1030,18 @@
                             )
                         )
                         [ TermVar
-                            ( NamedVar "R" )
+                            ( B
+                                ( NamedVar "x" )
+                            )
                         , TermVar
-                            ( NamedVar "R" )
+                            ( F
+                                ( TermVar
+                                    ( NamedVar "R" )
+                                )
+                            )
                         ]
                     )
-                )
-            )
-        ,
-            ( Marker "no_universal_set3"
-            , EncodedHypothesis Quantified Universally
-                ( Scope
-                    ( Connected Equivalence
+                    ( Connected Conjunction
                         ( TermSymbol
                             ( Location
                                 { locFile = "<nowhere>"
@@ -1062,12 +1064,18 @@
                             , TermVar
                                 ( F
                                     ( TermVar
-                                        ( NamedVar "R" )
+                                        ( NamedVar "V" )
                                     )
                                 )
                             ]
                         )
-                        ( Connected Conjunction
+                        ( Not
+                            ( Location
+                                { locFile = "<nowhere>"
+                                , locLine = -1
+                                , locColumn = -1
+                                }
+                            )
                             ( TermSymbol
                                 ( Location
                                     { locFile = "<nowhere>"
@@ -1088,53 +1096,17 @@
                                         ( NamedVar "x" )
                                     )
                                 , TermVar
-                                    ( F
-                                        ( TermVar
-                                            ( NamedVar "V" )
-                                        )
+                                    ( B
+                                        ( NamedVar "x" )
                                     )
                                 ]
-                            )
-                            ( Not
-                                ( Location
-                                    { locFile = "<nowhere>"
-                                    , locLine = -1
-                                    , locColumn = -1
-                                    }
-                                )
-                                ( TermSymbol
-                                    ( Location
-                                        { locFile = "<nowhere>"
-                                        , locLine = -1
-                                        , locColumn = -1
-                                        }
-                                    )
-                                    ( SymbolPredicate
-                                        ( PredicateRelation
-                                            ( RelationSymbol
-                                                ( Command "in" )
-                                                ( Marker "elem" )
-                                            )
-                                        )
-                                    )
-                                    [ TermVar
-                                        ( B
-                                            ( NamedVar "x" )
-                                        )
-                                    , TermVar
-                                        ( B
-                                            ( NamedVar "x" )
-                                        )
-                                    ]
-                                )
                             )
                         )
                     )
                 )
             )
-        ,
-            ( Marker "no_universal_set4"
-            , EncodedHypothesis TermSymbol
+        , Hypothesis Marker "no_universal_set2" Connected Conjunction ( PropositionalConstant IsTop )
+            ( TermSymbol
                 ( Location
                     { locFile = "test/examples/russell.tex"
                     , locLine = 12
@@ -1155,24 +1127,23 @@
                     ( NamedVar "V" )
                 ]
             )
-        ,
-            ( Marker "no_universal_set5"
-            , EncodedHypothesis Not
+        , Hypothesis Marker "no_universal_set1" Not
+            ( Location
+                { locFile = "test/examples/russell.tex"
+                , locLine = 11
+                , locColumn = 5
+                }
+            )
+            ( Not
                 ( Location
                     { locFile = "test/examples/russell.tex"
-                    , locLine = 11
-                    , locColumn = 5
+                    , locLine = 8
+                    , locColumn = 18
                     }
                 )
-                ( Not
-                    ( Location
-                        { locFile = "test/examples/russell.tex"
-                        , locLine = 8
-                        , locColumn = 18
-                        }
-                    )
-                    ( Quantified Existentially
-                        ( Scope
+                ( Quantified Existentially
+                    ( Scope
+                        ( Connected Conjunction ( PropositionalConstant IsTop )
                             ( TermSymbol
                                 ( Location
                                     { locFile = "test/examples/russell.tex"

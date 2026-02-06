@@ -177,12 +177,17 @@ assume asms = traverse_ go asms
         go = \case
             Asm phi -> do
                 phi' <- canonicalize phi
-                marker <- nextHypothesisMarker
-                let hypo = encodeHypothesis marker phi'
-                modify \st ->
-                    st{ checkingAssumptions = hypo : checkingAssumptions st
-                    , fixedVars = freeVars phi' <> fixedVars st
-                    }
+                let phiContracted = contraction phi'
+                let addFixed st = st{fixedVars = freeVars phi' <> fixedVars st}
+                case phiContracted of
+                    Top -> modify addFixed
+                    _ -> do
+                        marker <- nextHypothesisMarker
+                        let hypo = encodeHypothesisContracted marker phi' phiContracted
+                        modify \st ->
+                            (addFixed st)
+                                { checkingAssumptions = hypo : checkingAssumptions st
+                                }
             AsmStruct x sp ->
                 instantiateStruct x sp
 
@@ -194,16 +199,22 @@ instantiateStruct x sp = do
     let struct = lookupStruct structGraph sp
     let fixes = StructGraph.structSymbols struct structGraph
     let phi = (TermSymbol (stepLocation st) (SymbolPredicate (PredicateNounStruct sp)) [TermVar x])
-    marker <- nextHypothesisMarker
-    let hypo = encodeHypothesis marker phi
+    let phiContracted = contraction phi
     --
     -- NOTE: this will always cause shadowing of operations, ideally this should be type-directed instead.
     let ops = HM.fromList [(op, x) | op <- Set.toList fixes]
-    put st
+    let st' = st
             { instantiatedStructs = Set.insert x (instantiatedStructs st)
             , instantiatedStructOps = ops <> instantiatedStructOps st -- left-biased union
-            , checkingAssumptions = hypo : checkingAssumptions st
             }
+    case phiContracted of
+        Top -> put st'
+        _ -> do
+            marker <- nextHypothesisMarker
+            let hypo = encodeHypothesisContracted marker phi phiContracted
+            put st'
+                { checkingAssumptions = hypo : checkingAssumptions st
+                }
 
 
 lookupStruct :: StructGraph -> StructPhrase -> Struct

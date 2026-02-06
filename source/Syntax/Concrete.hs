@@ -122,15 +122,19 @@ grammar lexicon@Lexicon{..} = mdo
     verbPl   <- rule $ verbOf lexicon pl term
     verbVar  <- rule $ verbOf lexicon sg var
 
-    noun      <- rule $ nounOf lexicon sg term nounName -- Noun with optional variable name.
-    nounList  <- rule $ nounOf lexicon sg term nounNames -- Noun with a list of names.
-    nounVar   <- rule $ fst <$> nounOf lexicon sg var (pure Nameless) -- No names in defined nouns.
-    nounPl    <- rule $ nounOf lexicon pl term nounNames
-    nounPlMay <- rule $ nounOf lexicon pl term nounName
+    let nounTrieSg = nounTrieOf sg lexiconNouns
+        nounTriePl = nounTrieOf pl lexiconNouns
+        structNounTrieSg = nounTrieOf sg lexiconStructNouns
+
+    noun      <- rule $ nounOfTrie nounTrieSg term nounName -- Noun with optional variable name.
+    nounList  <- rule $ nounOfTrie nounTrieSg term nounNames -- Noun with a list of names.
+    nounVar   <- rule $ fst <$> nounOfTrie nounTrieSg var (pure Nameless) -- No names in defined nouns.
+    nounPl    <- rule $ nounOfTrie nounTriePl term nounNames
+    nounPlMay <- rule $ nounOfTrie nounTriePl term nounName
 
 
-    structNoun <- rule $ structNounOf lexicon sg var var
-    structNounNameless <- rule $ fst <$> structNounOf lexicon sg var (pure Nameless)
+    structNoun <- rule $ structNounOfTrie structNounTrieSg var var
+    structNounNameless <- rule $ fst <$> structNounOfTrie structNounTrieSg var (pure Nameless)
 
 
     fun      <- rule $ funOf lexicon sg term
@@ -514,31 +518,16 @@ phraseOf
     -> Prod r Text (Located Token) a
     -> Prod r Text (Located Token) b
 phraseOf constr lexicon selector proj arg =
-    uncurry3 constr <$> asum (fmap make pats)
+    uncurry3 constr <$> buildPhraseTrie arg trie
     where
         pats :: [pat]
         pats = selector lexicon
 
-        make :: pat -> Prod r Text (Located Token) (Location, pat, [a])
-        make pat = (\(pos, args) -> (pos, pat, args)) <$> goPos (proj pat)
-
-        goPos :: LexicalPhrase -> Prod r Text (Located Token) (Location, [a])
-        goPos = \case
-            Just w : ws  -> (,) <$> tokenPos w <*> go ws
-            Nothing : ws -> do
-                a <- arg
-                rest <- go ws
-                pure (locate a, a : rest)
-            []           -> error "phraseOf.goPos: empty phrase"
-
-        go :: LexicalPhrase -> Prod r Text (Located Token) [a]
-        go = \case
-            Just w : ws  -> tokenPos w *> go ws
-            Nothing : ws -> do
-                a <- arg
-                rest <- go ws
-                pure (a : rest)
-            []           -> pure []
+        trie :: Trie PhraseStep pat
+        trie = trieFromList
+            [ (phraseSteps (proj pat), pat)
+            | pat <- pats
+            ]
 
 adjLOf :: Locatable arg => Lexicon -> Prod r Text (Located Token) arg -> Prod r Text (Located Token) (AdjLOf arg)
 adjLOf lexicon arg = phraseOf AdjL lexicon lexiconAdjLs lexicalItemPhrase arg <?> "a left adjective"
@@ -566,40 +555,193 @@ funOf lexicon proj arg = phraseOf Fun lexicon lexiconFuns (proj . lexicalItemSgP
 
 -- | A noun with a @t VarSymbol@ as name(s).
 nounOf
-    :: Locatable arg =>  Lexicon
+    :: Lexicon
     -> (SgPl LexicalPhrase -> LexicalPhrase)
     -> Prod r Text (Located Token) arg
     -> Prod r Text (Located Token) (t VarSymbol)
     -> Prod r Text (Located Token) (NounOf arg, t VarSymbol)
 nounOf lexicon proj arg vars =
-    (\(args1, xs, args2, pat) -> (Noun pat (args1 <> args2), xs)) <$> asum (fmap make pats) <?>  "a noun"
-    where
-        pats = lexiconNouns lexicon
-        make pat =
-            let (pat1, pat2) = splitOnVariableSlot (proj (lexicalItemSgPlPhrase pat))
-            in  (\args1 xs args2 -> (args1, xs, args2, pat)) <$> go pat1 <*> vars <*> go pat2
-        go = \case
-            Just w : ws  -> token w *> go ws
-            Nothing : ws -> (:) <$> arg <*> go ws
-            []           -> pure []
+    nounOfTrie (nounTrieOf proj (lexiconNouns lexicon)) arg vars
+
+nounOfTrie
+    :: Trie NounStep LexicalItemSgPl
+    -> Prod r Text (Located Token) arg
+    -> Prod r Text (Located Token) (t VarSymbol)
+    -> Prod r Text (Located Token) (NounOf arg, t VarSymbol)
+nounOfTrie trie arg vars =
+    (\(pat, args, xs) -> (Noun pat args, xs))
+        <$> buildNounTrie arg vars trie
+        <?> "a noun"
+
+nounTrieOf
+    :: (SgPl LexicalPhrase -> LexicalPhrase)
+    -> [LexicalItemSgPl]
+    -> Trie NounStep LexicalItemSgPl
+nounTrieOf proj pats = trieFromList
+    [ (nounStepsWithSlot (proj (lexicalItemSgPlPhrase pat)), pat)
+    | pat <- pats
+    ]
+
+structNounOfTrie
+    :: Trie NounStep LexicalItemSgPl
+    -> Prod r Text (Located Token) arg
+    -> Prod r Text (Located Token) name
+    -> Prod r Text (Located Token) (StructPhrase, name)
+structNounOfTrie trie arg name =
+    (\(pat, _args, xs) -> (pat, xs))
+        <$> buildNounTrie arg name trie
+        <?> "a structure noun"
 
 structNounOf
-    :: Locatable arg => Lexicon
+    :: Lexicon
     -> (SgPl LexicalPhrase -> LexicalPhrase)
     -> Prod r Text (Located Token) arg
     -> Prod r Text (Located Token) name
     -> Prod r Text (Located Token) (StructPhrase, name)
 structNounOf lexicon proj arg name =
-    (\(_args1, xs, _args2, pat) -> (pat, xs)) <$> asum (fmap make pats) <?> "a structure noun"
+    structNounOfTrie (nounTrieOf proj (lexiconStructNouns lexicon)) arg name
+
+-- Trie helpers for lexically-defined phrases.
+
+data PhraseStep
+    = PhraseTok Token
+    | PhraseHole
+    deriving (Eq, Ord)
+
+data NounStep
+    = NounTok Token
+    | NounHole
+    | NounVar
+    deriving (Eq, Ord)
+
+data Trie k v = Trie
+    { trieValues :: [v]
+    , trieEdges  :: [(k, Trie k v)]
+    }
+
+emptyTrie :: Trie k v
+emptyTrie = Trie [] []
+
+insertTrie :: Eq k => [k] -> v -> Trie k v -> Trie k v
+insertTrie [] v Trie{trieValues = vs, trieEdges = es} =
+    Trie (vs <> [v]) es
+insertTrie (k:ks) v Trie{trieValues = vs, trieEdges = es} =
+    Trie vs (go es)
     where
-        pats = lexiconStructNouns lexicon
-        make pat =
-            let (pat1, pat2) = splitOnVariableSlot (proj (lexicalItemSgPlPhrase pat))
-            in  (\args1 xs args2 -> (args1, xs, args2, pat)) <$> go pat1 <*> name <*> go pat2
         go = \case
-            Just w : ws  -> token w *> go ws
-            Nothing : ws -> (:) <$> arg <*> go ws
-            []           -> pure []
+            [] -> [(k, insertTrie ks v emptyTrie)]
+            (k', child) : rest
+                | k == k'   -> (k', insertTrie ks v child) : rest
+                | otherwise -> (k', child) : go rest
+
+trieFromList :: Eq k => [([k], v)] -> Trie k v
+trieFromList = foldl' (\tr (k, v) -> insertTrie k v tr) emptyTrie
+
+phraseSteps :: LexicalPhrase -> [PhraseStep]
+phraseSteps = map \case
+    Just tok -> PhraseTok tok
+    Nothing  -> PhraseHole
+
+nounSteps :: LexicalPhrase -> [NounStep]
+nounSteps = map \case
+    Just tok -> NounTok tok
+    Nothing  -> NounHole
+
+nounStepsWithSlot :: LexicalPhrase -> [NounStep]
+nounStepsWithSlot pat =
+    let (pat1, pat2) = splitOnVariableSlot pat
+    in nounSteps pat1 <> [NounVar] <> nounSteps pat2
+
+data PhraseAcc a = PhraseAcc
+    { phraseLoc  :: Maybe Location
+    , phraseArgs :: [a] -> [a]
+    }
+
+emptyPhraseAcc :: PhraseAcc a
+emptyPhraseAcc = PhraseAcc Nothing id
+
+setPhraseLoc :: Location -> PhraseAcc a -> PhraseAcc a
+setPhraseLoc _loc acc@PhraseAcc{phraseLoc = Just _} = acc
+setPhraseLoc loc PhraseAcc{phraseLoc = Nothing, phraseArgs = args} =
+    PhraseAcc (Just loc) args
+
+addPhraseArg :: Locatable a => a -> PhraseAcc a -> PhraseAcc a
+addPhraseArg a PhraseAcc{phraseLoc = loc, phraseArgs = args} =
+    PhraseAcc (loc <|> Just (locate a)) (args . (a :))
+
+finalizePhraseAcc :: PhraseAcc a -> (Location, [a])
+finalizePhraseAcc PhraseAcc{phraseLoc = Just loc, phraseArgs = args} =
+    (loc, args [])
+finalizePhraseAcc PhraseAcc{phraseLoc = Nothing} =
+    impossible "phraseOf: empty phrase"
+
+data NounAcc a name = NounAcc
+    { nounArgs :: [a] -> [a]
+    , nounName :: Maybe name
+    }
+
+emptyNounAcc :: NounAcc a name
+emptyNounAcc = NounAcc id Nothing
+
+addNounArg :: a -> NounAcc a name -> NounAcc a name
+addNounArg a NounAcc{nounArgs = args, nounName = name} =
+    NounAcc (args . (a :)) name
+
+setNounName :: name -> NounAcc a name -> NounAcc a name
+setNounName name NounAcc{nounArgs = args, nounName = Nothing} =
+    NounAcc args (Just name)
+setNounName _ acc@NounAcc{nounName = Just _} = acc
+
+finalizeNounAcc :: NounAcc a name -> ([a], name)
+finalizeNounAcc NounAcc{nounArgs = args, nounName = Just name} =
+    (args [], name)
+finalizeNounAcc NounAcc{nounName = Nothing} =
+    impossible "nounOf: missing variable slot"
+
+buildPhraseTrie
+    :: Locatable a
+    => Prod r Text (Located Token) a
+    -> Trie PhraseStep pat
+    -> Prod r Text (Located Token) (Location, pat, [a])
+buildPhraseTrie arg trie =
+    let stepParser = \case
+            PhraseTok tok -> setPhraseLoc <$> tokenPos tok
+            PhraseHole    -> addPhraseArg <$> arg
+        finish f =
+            let (acc, pat) = f emptyPhraseAcc
+                (loc, args) = finalizePhraseAcc acc
+            in (loc, pat, args)
+    in finish <$> buildTrieProd stepParser trie
+
+buildTrieProd
+    :: (step -> Prod r Text (Located Token) (acc -> acc))
+    -> Trie step pat
+    -> Prod r Text (Located Token) (acc -> (acc, pat))
+buildTrieProd stepParser = go
+    where
+        go Trie{trieValues = pats, trieEdges = edges} =
+            let leafs = asum [pure (\acc -> (acc, pat)) | pat <- pats]
+                edgesProds = asum
+                    [ liftA2 (\f g -> g . f) (stepParser step) (go sub)
+                    | (step, sub) <- edges
+                    ]
+            in leafs <|> edgesProds
+
+buildNounTrie
+    :: Prod r Text (Located Token) a
+    -> Prod r Text (Located Token) name
+    -> Trie NounStep pat
+    -> Prod r Text (Located Token) (pat, [a], name)
+buildNounTrie arg vars trie =
+    let stepParser = \case
+            NounTok tok -> const id <$> token tok
+            NounHole    -> addNounArg <$> arg
+            NounVar     -> setNounName <$> vars
+        finish f =
+            let (acc, pat) = f emptyNounAcc
+                (args, name) = finalizeNounAcc acc
+            in (pat, args, name)
+    in finish <$> buildTrieProd stepParser trie
 
 
 symbolicPatternOf

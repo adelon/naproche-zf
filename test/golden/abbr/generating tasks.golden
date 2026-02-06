@@ -90,90 +90,87 @@
 , Task
     { taskDirectness = Direct
     , taskHypotheses =
-        [
-            ( Marker "dummy_abbr_test_adj"
-            , EncodedHypothesis Quantified Universally
-                ( Scope
-                    ( Connected Implication
-                        ( Not
-                            ( Location
-                                { locFile = "test/examples/abbr.tex"
-                                , locLine = 2
-                                , locColumn = 35
-                                }
-                            )
-                            ( Quantified Existentially
-                                ( Scope
-                                    ( TermSymbol
-                                        ( Location
-                                            { locFile = "<nowhere>"
-                                            , locLine = -1
-                                            , locColumn = -1
-                                            }
-                                        )
-                                        ( SymbolPredicate
-                                            ( PredicateRelation
-                                                ( RelationSymbol
-                                                    ( Command "in" )
-                                                    ( Marker "elem" )
-                                                )
-                                            )
-                                        )
-                                        [ TermVar
-                                            ( B
-                                                ( NamedVar "y" )
-                                            )
-                                        , TermVar
-                                            ( F
-                                                ( TermVar
-                                                    ( B
-                                                        ( NamedVar "x" )
-                                                    )
-                                                )
-                                            )
-                                        ]
+        [ Hypothesis Marker "dummy_abbr_test_adj" Quantified Universally
+            ( Scope
+                ( Connected Implication
+                    ( Not
+                        ( Location
+                            { locFile = "test/examples/abbr.tex"
+                            , locLine = 2
+                            , locColumn = 35
+                            }
+                        )
+                        ( Quantified Existentially
+                            ( Scope
+                                ( TermSymbol
+                                    ( Location
+                                        { locFile = "<nowhere>"
+                                        , locLine = -1
+                                        , locColumn = -1
+                                        }
                                     )
+                                    ( SymbolPredicate
+                                        ( PredicateRelation
+                                            ( RelationSymbol
+                                                ( Command "in" )
+                                                ( Marker "elem" )
+                                            )
+                                        )
+                                    )
+                                    [ TermVar
+                                        ( B
+                                            ( NamedVar "y" )
+                                        )
+                                    , TermVar
+                                        ( F
+                                            ( TermVar
+                                                ( B
+                                                    ( NamedVar "x" )
+                                                )
+                                            )
+                                        )
+                                    ]
                                 )
                             )
                         )
-                        ( Not
-                            ( Location
-                                { locFile = "test/examples/abbr.tex"
-                                , locLine = 2
-                                , locColumn = 35
-                                }
-                            )
-                            ( Quantified Existentially
-                                ( Scope
-                                    ( TermSymbol
-                                        ( Location
-                                            { locFile = "<nowhere>"
-                                            , locLine = -1
-                                            , locColumn = -1
-                                            }
-                                        )
-                                        ( SymbolPredicate
-                                            ( PredicateRelation
-                                                ( RelationSymbol
-                                                    ( Command "in" )
-                                                    ( Marker "elem" )
-                                                )
-                                            )
-                                        )
-                                        [ TermVar
-                                            ( B
-                                                ( NamedVar "y" )
-                                            )
-                                        , TermVar
-                                            ( F
-                                                ( TermVar
-                                                    ( B
-                                                        ( NamedVar "x" )
-                                                    )
-                                                )
-                                            )
-                                        ]
+                    )
+                    ( Not
+                        ( Location
+                            { locFile = "test/examples/abbr.tex"
+                            , locLine = 2
+                            , locColumn = 35
+                            }
+                        )
+                        ( Quantified Existentially
+                            ( Scope
+                                ( TermSymbol
+                                    ( Location
+                                        { locFile = "<nowhere>"
+                                        , locLine = -1
+                                        , locColumn = -1
+                                        }
                                     )
+                                    ( SymbolPredicate
+                                        ( PredicateRelation
+                                            ( RelationSymbol
+                                                ( Command "in" )
+                                                ( Marker "elem" )
+                                            )
+                                        )
+                                    )
+                                    [ TermVar
+                                        ( B
+                                            ( NamedVar "y" )
+                                        )
+                                    , TermVar
+                                        ( F
+                                            ( TermVar
+                                                ( B
+                                                    ( NamedVar "x" )
+                                                )
+                                            )
+                                        )
+                                    ]
                                 )
                             )
                         )
@@ -219,121 +216,115 @@
 , Task
     { taskDirectness = Direct
     , taskHypotheses =
-        [
-            ( Marker "dummy_abbr_test_noun"
-            , EncodedHypothesis Quantified Universally
-                ( Scope
-                    ( TermSymbol
-                        ( Location
-                            { locFile = "<nowhere>"
-                            , locLine = -1
-                            , locColumn = -1
-                            }
-                        )
-                        ( SymbolPredicate
-                            ( PredicateRelation
-                                ( RelationSymbol
-                                    ( Symbol "=" )
-                                    ( Marker "eq" )
-                                )
-                            )
-                        )
-                        [ TermVar
-                            ( B
-                                ( NamedVar "x" )
-                            )
-                        , TermVar
-                            ( B
-                                ( NamedVar "x" )
-                            )
-                        ]
+        [ Hypothesis Marker "dummy_abbr_test_noun" Quantified Universally
+            ( Scope
+                ( TermSymbol
+                    ( Location
+                        { locFile = "<nowhere>"
+                        , locLine = -1
+                        , locColumn = -1
+                        }
                     )
+                    ( SymbolPredicate
+                        ( PredicateRelation
+                            ( RelationSymbol
+                                ( Symbol "=" )
+                                ( Marker "eq" )
+                            )
+                        )
+                    )
+                    [ TermVar
+                        ( B
+                            ( NamedVar "x" )
+                        )
+                    , TermVar
+                        ( B
+                            ( NamedVar "x" )
+                        )
+                    ]
                 )
             )
-        ,
-            ( Marker "dummy_abbr_test_adj"
-            , EncodedHypothesis Quantified Universally
-                ( Scope
-                    ( Connected Implication
-                        ( Not
-                            ( Location
-                                { locFile = "test/examples/abbr.tex"
-                                , locLine = 2
-                                , locColumn = 35
-                                }
-                            )
-                            ( Quantified Existentially
-                                ( Scope
-                                    ( TermSymbol
-                                        ( Location
-                                            { locFile = "<nowhere>"
-                                            , locLine = -1
-                                            , locColumn = -1
-                                            }
-                                        )
-                                        ( SymbolPredicate
-                                            ( PredicateRelation
-                                                ( RelationSymbol
-                                                    ( Command "in" )
-                                                    ( Marker "elem" )
-                                                )
-                                            )
-                                        )
-                                        [ TermVar
-                                            ( B
-                                                ( NamedVar "y" )
-                                            )
-                                        , TermVar
-                                            ( F
-                                                ( TermVar
-                                                    ( B
-                                                        ( NamedVar "x" )
-                                                    )
-                                                )
-                                            )
-                                        ]
+        , Hypothesis Marker "dummy_abbr_test_adj" Quantified Universally
+            ( Scope
+                ( Connected Implication
+                    ( Not
+                        ( Location
+                            { locFile = "test/examples/abbr.tex"
+                            , locLine = 2
+                            , locColumn = 35
+                            }
+                        )
+                        ( Quantified Existentially
+                            ( Scope
+                                ( TermSymbol
+                                    ( Location
+                                        { locFile = "<nowhere>"
+                                        , locLine = -1
+                                        , locColumn = -1
+                                        }
                                     )
+                                    ( SymbolPredicate
+                                        ( PredicateRelation
+                                            ( RelationSymbol
+                                                ( Command "in" )
+                                                ( Marker "elem" )
+                                            )
+                                        )
+                                    )
+                                    [ TermVar
+                                        ( B
+                                            ( NamedVar "y" )
+                                        )
+                                    , TermVar
+                                        ( F
+                                            ( TermVar
+                                                ( B
+                                                    ( NamedVar "x" )
+                                                )
+                                            )
+                                        )
+                                    ]
                                 )
                             )
                         )
-                        ( Not
-                            ( Location
-                                { locFile = "test/examples/abbr.tex"
-                                , locLine = 2
-                                , locColumn = 35
-                                }
-                            )
-                            ( Quantified Existentially
-                                ( Scope
-                                    ( TermSymbol
-                                        ( Location
-                                            { locFile = "<nowhere>"
-                                            , locLine = -1
-                                            , locColumn = -1
-                                            }
-                                        )
-                                        ( SymbolPredicate
-                                            ( PredicateRelation
-                                                ( RelationSymbol
-                                                    ( Command "in" )
-                                                    ( Marker "elem" )
-                                                )
-                                            )
-                                        )
-                                        [ TermVar
-                                            ( B
-                                                ( NamedVar "y" )
-                                            )
-                                        , TermVar
-                                            ( F
-                                                ( TermVar
-                                                    ( B
-                                                        ( NamedVar "x" )
-                                                    )
-                                                )
-                                            )
-                                        ]
+                    )
+                    ( Not
+                        ( Location
+                            { locFile = "test/examples/abbr.tex"
+                            , locLine = 2
+                            , locColumn = 35
+                            }
+                        )
+                        ( Quantified Existentially
+                            ( Scope
+                                ( TermSymbol
+                                    ( Location
+                                        { locFile = "<nowhere>"
+                                        , locLine = -1
+                                        , locColumn = -1
+                                        }
                                     )
+                                    ( SymbolPredicate
+                                        ( PredicateRelation
+                                            ( RelationSymbol
+                                                ( Command "in" )
+                                                ( Marker "elem" )
+                                            )
+                                        )
+                                    )
+                                    [ TermVar
+                                        ( B
+                                            ( NamedVar "y" )
+                                        )
+                                    , TermVar
+                                        ( F
+                                            ( TermVar
+                                                ( B
+                                                    ( NamedVar "x" )
+                                                )
+                                            )
+                                        )
+                                    ]
                                 )
                             )
                         )
@@ -394,68 +385,9 @@
 , Task
     { taskDirectness = Direct
     , taskHypotheses =
-        [
-            ( Marker "dummy_abbr_test_verb"
-            , EncodedHypothesis Quantified Universally
-                ( Scope
-                    ( Connected Implication
-                        ( TermSymbol
-                            ( Location
-                                { locFile = "<nowhere>"
-                                , locLine = -1
-                                , locColumn = -1
-                                }
-                            )
-                            ( SymbolPredicate
-                                ( PredicateRelation
-                                    ( RelationSymbol
-                                        ( Symbol "=" )
-                                        ( Marker "eq" )
-                                    )
-                                )
-                            )
-                            [ TermVar
-                                ( B
-                                    ( NamedVar "x" )
-                                )
-                            , TermVar
-                                ( B
-                                    ( NamedVar "y" )
-                                )
-                            ]
-                        )
-                        ( TermSymbol
-                            ( Location
-                                { locFile = "<nowhere>"
-                                , locLine = -1
-                                , locColumn = -1
-                                }
-                            )
-                            ( SymbolPredicate
-                                ( PredicateRelation
-                                    ( RelationSymbol
-                                        ( Symbol "=" )
-                                        ( Marker "eq" )
-                                    )
-                                )
-                            )
-                            [ TermVar
-                                ( B
-                                    ( NamedVar "x" )
-                                )
-                            , TermVar
-                                ( B
-                                    ( NamedVar "y" )
-                                )
-                            ]
-                        )
-                    )
-                )
-            )
-        ,
-            ( Marker "dummy_abbr_test_noun"
-            , EncodedHypothesis Quantified Universally
-                ( Scope
+        [ Hypothesis Marker "dummy_abbr_test_verb" Quantified Universally
+            ( Scope
+                ( Connected Implication
                     ( TermSymbol
                         ( Location
                             { locFile = "<nowhere>"
@@ -477,96 +409,146 @@
                             )
                         , TermVar
                             ( B
+                                ( NamedVar "y" )
+                            )
+                        ]
+                    )
+                    ( TermSymbol
+                        ( Location
+                            { locFile = "<nowhere>"
+                            , locLine = -1
+                            , locColumn = -1
+                            }
+                        )
+                        ( SymbolPredicate
+                            ( PredicateRelation
+                                ( RelationSymbol
+                                    ( Symbol "=" )
+                                    ( Marker "eq" )
+                                )
+                            )
+                        )
+                        [ TermVar
+                            ( B
                                 ( NamedVar "x" )
+                            )
+                        , TermVar
+                            ( B
+                                ( NamedVar "y" )
                             )
                         ]
                     )
                 )
             )
-        ,
-            ( Marker "dummy_abbr_test_adj"
-            , EncodedHypothesis Quantified Universally
-                ( Scope
-                    ( Connected Implication
-                        ( Not
-                            ( Location
-                                { locFile = "test/examples/abbr.tex"
-                                , locLine = 2
-                                , locColumn = 35
-                                }
+        , Hypothesis Marker "dummy_abbr_test_noun" Quantified Universally
+            ( Scope
+                ( TermSymbol
+                    ( Location
+                        { locFile = "<nowhere>"
+                        , locLine = -1
+                        , locColumn = -1
+                        }
+                    )
+                    ( SymbolPredicate
+                        ( PredicateRelation
+                            ( RelationSymbol
+                                ( Symbol "=" )
+                                ( Marker "eq" )
                             )
-                            ( Quantified Existentially
-                                ( Scope
-                                    ( TermSymbol
-                                        ( Location
-                                            { locFile = "<nowhere>"
-                                            , locLine = -1
-                                            , locColumn = -1
-                                            }
-                                        )
-                                        ( SymbolPredicate
-                                            ( PredicateRelation
-                                                ( RelationSymbol
-                                                    ( Command "in" )
-                                                    ( Marker "elem" )
-                                                )
-                                            )
-                                        )
-                                        [ TermVar
-                                            ( B
-                                                ( NamedVar "y" )
-                                            )
-                                        , TermVar
-                                            ( F
-                                                ( TermVar
-                                                    ( B
-                                                        ( NamedVar "x" )
-                                                    )
-                                                )
-                                            )
-                                        ]
+                        )
+                    )
+                    [ TermVar
+                        ( B
+                            ( NamedVar "x" )
+                        )
+                    , TermVar
+                        ( B
+                            ( NamedVar "x" )
+                        )
+                    ]
+                )
+            )
+        , Hypothesis Marker "dummy_abbr_test_adj" Quantified Universally
+            ( Scope
+                ( Connected Implication
+                    ( Not
+                        ( Location
+                            { locFile = "test/examples/abbr.tex"
+                            , locLine = 2
+                            , locColumn = 35
+                            }
+                        )
+                        ( Quantified Existentially
+                            ( Scope
+                                ( TermSymbol
+                                    ( Location
+                                        { locFile = "<nowhere>"
+                                        , locLine = -1
+                                        , locColumn = -1
+                                        }
                                     )
+                                    ( SymbolPredicate
+                                        ( PredicateRelation
+                                            ( RelationSymbol
+                                                ( Command "in" )
+                                                ( Marker "elem" )
+                                            )
+                                        )
+                                    )
+                                    [ TermVar
+                                        ( B
+                                            ( NamedVar "y" )
+                                        )
+                                    , TermVar
+                                        ( F
+                                            ( TermVar
+                                                ( B
+                                                    ( NamedVar "x" )
+                                                )
+                                            )
+                                        )
+                                    ]
                                 )
                             )
                         )
-                        ( Not
-                            ( Location
-                                { locFile = "test/examples/abbr.tex"
-                                , locLine = 2
-                                , locColumn = 35
-                                }
-                            )
-                            ( Quantified Existentially
-                                ( Scope
-                                    ( TermSymbol
-                                        ( Location
-                                            { locFile = "<nowhere>"
-                                            , locLine = -1
-                                            , locColumn = -1
-                                            }
-                                        )
-                                        ( SymbolPredicate
-                                            ( PredicateRelation
-                                                ( RelationSymbol
-                                                    ( Command "in" )
-                                                    ( Marker "elem" )
-                                                )
-                                            )
-                                        )
-                                        [ TermVar
-                                            ( B
-                                                ( NamedVar "y" )
-                                            )
-                                        , TermVar
-                                            ( F
-                                                ( TermVar
-                                                    ( B
-                                                        ( NamedVar "x" )
-                                                    )
-                                                )
-                                            )
-                                        ]
+                    )
+                    ( Not
+                        ( Location
+                            { locFile = "test/examples/abbr.tex"
+                            , locLine = 2
+                            , locColumn = 35
+                            }
+                        )
+                        ( Quantified Existentially
+                            ( Scope
+                                ( TermSymbol
+                                    ( Location
+                                        { locFile = "<nowhere>"
+                                        , locLine = -1
+                                        , locColumn = -1
+                                        }
                                     )
+                                    ( SymbolPredicate
+                                        ( PredicateRelation
+                                            ( RelationSymbol
+                                                ( Command "in" )
+                                                ( Marker "elem" )
+                                            )
+                                        )
+                                    )
+                                    [ TermVar
+                                        ( B
+                                            ( NamedVar "y" )
+                                        )
+                                    , TermVar
+                                        ( F
+                                            ( TermVar
+                                                ( B
+                                                    ( NamedVar "x" )
+                                                )
+                                            )
+                                        )
+                                    ]
                                 )
                             )
                         )
@@ -643,85 +625,16 @@
 , Task
     { taskDirectness = Direct
     , taskHypotheses =
-        [
-            ( Marker "abbr_test_notin"
-            , EncodedHypothesis Quantified Universally
-                ( Scope
-                    ( Connected Implication
-                        ( Not
-                            ( Location
-                                { locFile = "<nowhere>"
-                                , locLine = -1
-                                , locColumn = -1
-                                }
-                            )
-                            ( TermSymbol
-                                ( Location
-                                    { locFile = "<nowhere>"
-                                    , locLine = -1
-                                    , locColumn = -1
-                                    }
-                                )
-                                ( SymbolPredicate
-                                    ( PredicateRelation
-                                        ( RelationSymbol
-                                            ( Command "in" )
-                                            ( Marker "elem" )
-                                        )
-                                    )
-                                )
-                                [ TermVar
-                                    ( B
-                                        ( NamedVar "x" )
-                                    )
-                                , TermVar
-                                    ( B
-                                        ( NamedVar "y" )
-                                    )
-                                ]
-                            )
+        [ Hypothesis Marker "abbr_test_notin" Quantified Universally
+            ( Scope
+                ( Connected Implication
+                    ( Not
+                        ( Location
+                            { locFile = "<nowhere>"
+                            , locLine = -1
+                            , locColumn = -1
+                            }
                         )
-                        ( Not
-                            ( Location
-                                { locFile = "<nowhere>"
-                                , locLine = -1
-                                , locColumn = -1
-                                }
-                            )
-                            ( TermSymbol
-                                ( Location
-                                    { locFile = "<nowhere>"
-                                    , locLine = -1
-                                    , locColumn = -1
-                                    }
-                                )
-                                ( SymbolPredicate
-                                    ( PredicateRelation
-                                        ( RelationSymbol
-                                            ( Command "in" )
-                                            ( Marker "elem" )
-                                        )
-                                    )
-                                )
-                                [ TermVar
-                                    ( B
-                                        ( NamedVar "x" )
-                                    )
-                                , TermVar
-                                    ( B
-                                        ( NamedVar "y" )
-                                    )
-                                ]
-                            )
-                        )
-                    )
-                )
-            )
-        ,
-            ( Marker "dummy_abbr_test_verb"
-            , EncodedHypothesis Quantified Universally
-                ( Scope
-                    ( Connected Implication
                         ( TermSymbol
                             ( Location
                                 { locFile = "<nowhere>"
@@ -732,8 +645,8 @@
                             ( SymbolPredicate
                                 ( PredicateRelation
                                     ( RelationSymbol
-                                        ( Symbol "=" )
-                                        ( Marker "eq" )
+                                        ( Command "in" )
+                                        ( Marker "elem" )
                                     )
                                 )
                             )
@@ -747,6 +660,14 @@
                                 )
                             ]
                         )
+                    )
+                    ( Not
+                        ( Location
+                            { locFile = "<nowhere>"
+                            , locLine = -1
+                            , locColumn = -1
+                            }
+                        )
                         ( TermSymbol
                             ( Location
                                 { locFile = "<nowhere>"
@@ -757,8 +678,8 @@
                             ( SymbolPredicate
                                 ( PredicateRelation
                                     ( RelationSymbol
-                                        ( Symbol "=" )
-                                        ( Marker "eq" )
+                                        ( Command "in" )
+                                        ( Marker "elem" )
                                     )
                                 )
                             )
@@ -775,10 +696,9 @@
                     )
                 )
             )
-        ,
-            ( Marker "dummy_abbr_test_noun"
-            , EncodedHypothesis Quantified Universally
-                ( Scope
+        , Hypothesis Marker "dummy_abbr_test_verb" Quantified Universally
+            ( Scope
+                ( Connected Implication
                     ( TermSymbol
                         ( Location
                             { locFile = "<nowhere>"
@@ -800,96 +720,146 @@
                             )
                         , TermVar
                             ( B
+                                ( NamedVar "y" )
+                            )
+                        ]
+                    )
+                    ( TermSymbol
+                        ( Location
+                            { locFile = "<nowhere>"
+                            , locLine = -1
+                            , locColumn = -1
+                            }
+                        )
+                        ( SymbolPredicate
+                            ( PredicateRelation
+                                ( RelationSymbol
+                                    ( Symbol "=" )
+                                    ( Marker "eq" )
+                                )
+                            )
+                        )
+                        [ TermVar
+                            ( B
                                 ( NamedVar "x" )
+                            )
+                        , TermVar
+                            ( B
+                                ( NamedVar "y" )
                             )
                         ]
                     )
                 )
             )
-        ,
-            ( Marker "dummy_abbr_test_adj"
-            , EncodedHypothesis Quantified Universally
-                ( Scope
-                    ( Connected Implication
-                        ( Not
-                            ( Location
-                                { locFile = "test/examples/abbr.tex"
-                                , locLine = 2
-                                , locColumn = 35
-                                }
+        , Hypothesis Marker "dummy_abbr_test_noun" Quantified Universally
+            ( Scope
+                ( TermSymbol
+                    ( Location
+                        { locFile = "<nowhere>"
+                        , locLine = -1
+                        , locColumn = -1
+                        }
+                    )
+                    ( SymbolPredicate
+                        ( PredicateRelation
+                            ( RelationSymbol
+                                ( Symbol "=" )
+                                ( Marker "eq" )
                             )
-                            ( Quantified Existentially
-                                ( Scope
-                                    ( TermSymbol
-                                        ( Location
-                                            { locFile = "<nowhere>"
-                                            , locLine = -1
-                                            , locColumn = -1
-                                            }
-                                        )
-                                        ( SymbolPredicate
-                                            ( PredicateRelation
-                                                ( RelationSymbol
-                                                    ( Command "in" )
-                                                    ( Marker "elem" )
-                                                )
-                                            )
-                                        )
-                                        [ TermVar
-                                            ( B
-                                                ( NamedVar "y" )
-                                            )
-                                        , TermVar
-                                            ( F
-                                                ( TermVar
-                                                    ( B
-                                                        ( NamedVar "x" )
-                                                    )
-                                                )
-                                            )
-                                        ]
+                        )
+                    )
+                    [ TermVar
+                        ( B
+                            ( NamedVar "x" )
+                        )
+                    , TermVar
+                        ( B
+                            ( NamedVar "x" )
+                        )
+                    ]
+                )
+            )
+        , Hypothesis Marker "dummy_abbr_test_adj" Quantified Universally
+            ( Scope
+                ( Connected Implication
+                    ( Not
+                        ( Location
+                            { locFile = "test/examples/abbr.tex"
+                            , locLine = 2
+                            , locColumn = 35
+                            }
+                        )
+                        ( Quantified Existentially
+                            ( Scope
+                                ( TermSymbol
+                                    ( Location
+                                        { locFile = "<nowhere>"
+                                        , locLine = -1
+                                        , locColumn = -1
+                                        }
                                     )
+                                    ( SymbolPredicate
+                                        ( PredicateRelation
+                                            ( RelationSymbol
+                                                ( Command "in" )
+                                                ( Marker "elem" )
+                                            )
+                                        )
+                                    )
+                                    [ TermVar
+                                        ( B
+                                            ( NamedVar "y" )
+                                        )
+                                    , TermVar
+                                        ( F
+                                            ( TermVar
+                                                ( B
+                                                    ( NamedVar "x" )
+                                                )
+                                            )
+                                        )
+                                    ]
                                 )
                             )
                         )
-                        ( Not
-                            ( Location
-                                { locFile = "test/examples/abbr.tex"
-                                , locLine = 2
-                                , locColumn = 35
-                                }
-                            )
-                            ( Quantified Existentially
-                                ( Scope
-                                    ( TermSymbol
-                                        ( Location
-                                            { locFile = "<nowhere>"
-                                            , locLine = -1
-                                            , locColumn = -1
-                                            }
-                                        )
-                                        ( SymbolPredicate
-                                            ( PredicateRelation
-                                                ( RelationSymbol
-                                                    ( Command "in" )
-                                                    ( Marker "elem" )
-                                                )
-                                            )
-                                        )
-                                        [ TermVar
-                                            ( B
-                                                ( NamedVar "y" )
-                                            )
-                                        , TermVar
-                                            ( F
-                                                ( TermVar
-                                                    ( B
-                                                        ( NamedVar "x" )
-                                                    )
-                                                )
-                                            )
-                                        ]
+                    )
+                    ( Not
+                        ( Location
+                            { locFile = "test/examples/abbr.tex"
+                            , locLine = 2
+                            , locColumn = 35
+                            }
+                        )
+                        ( Quantified Existentially
+                            ( Scope
+                                ( TermSymbol
+                                    ( Location
+                                        { locFile = "<nowhere>"
+                                        , locLine = -1
+                                        , locColumn = -1
+                                        }
                                     )
+                                    ( SymbolPredicate
+                                        ( PredicateRelation
+                                            ( RelationSymbol
+                                                ( Command "in" )
+                                                ( Marker "elem" )
+                                            )
+                                        )
+                                    )
+                                    [ TermVar
+                                        ( B
+                                            ( NamedVar "y" )
+                                        )
+                                    , TermVar
+                                        ( F
+                                            ( TermVar
+                                                ( B
+                                                    ( NamedVar "x" )
+                                                )
+                                            )
+                                        )
+                                    ]
                                 )
                             )
                         )
@@ -950,11 +920,71 @@
 , Task
     { taskDirectness = Direct
     , taskHypotheses =
-        [
-            ( Marker "abbr_test_elementof_is_in"
-            , EncodedHypothesis Quantified Universally
-                ( Scope
-                    ( Connected Implication
+        [ Hypothesis Marker "abbr_test_elementof_is_in" Quantified Universally
+            ( Scope
+                ( Connected Implication
+                    ( TermSymbol
+                        ( Location
+                            { locFile = "<nowhere>"
+                            , locLine = -1
+                            , locColumn = -1
+                            }
+                        )
+                        ( SymbolPredicate
+                            ( PredicateRelation
+                                ( RelationSymbol
+                                    ( Command "in" )
+                                    ( Marker "elem" )
+                                )
+                            )
+                        )
+                        [ TermVar
+                            ( B
+                                ( NamedVar "x" )
+                            )
+                        , TermVar
+                            ( B
+                                ( NamedVar "y" )
+                            )
+                        ]
+                    )
+                    ( TermSymbol
+                        ( Location
+                            { locFile = "<nowhere>"
+                            , locLine = -1
+                            , locColumn = -1
+                            }
+                        )
+                        ( SymbolPredicate
+                            ( PredicateRelation
+                                ( RelationSymbol
+                                    ( Command "in" )
+                                    ( Marker "elem" )
+                                )
+                            )
+                        )
+                        [ TermVar
+                            ( B
+                                ( NamedVar "x" )
+                            )
+                        , TermVar
+                            ( B
+                                ( NamedVar "y" )
+                            )
+                        ]
+                    )
+                )
+            )
+        , Hypothesis Marker "abbr_test_notin" Quantified Universally
+            ( Scope
+                ( Connected Implication
+                    ( Not
+                        ( Location
+                            { locFile = "<nowhere>"
+                            , locLine = -1
+                            , locColumn = -1
+                            }
+                        )
                         ( TermSymbol
                             ( Location
                                 { locFile = "<nowhere>"
@@ -980,6 +1010,14 @@
                                 )
                             ]
                         )
+                    )
+                    ( Not
+                        ( Location
+                            { locFile = "<nowhere>"
+                            , locLine = -1
+                            , locColumn = -1
+                            }
+                        )
                         ( TermSymbol
                             ( Location
                                 { locFile = "<nowhere>"
@@ -1008,142 +1046,9 @@
                     )
                 )
             )
-        ,
-            ( Marker "abbr_test_notin"
-            , EncodedHypothesis Quantified Universally
-                ( Scope
-                    ( Connected Implication
-                        ( Not
-                            ( Location
-                                { locFile = "<nowhere>"
-                                , locLine = -1
-                                , locColumn = -1
-                                }
-                            )
-                            ( TermSymbol
-                                ( Location
-                                    { locFile = "<nowhere>"
-                                    , locLine = -1
-                                    , locColumn = -1
-                                    }
-                                )
-                                ( SymbolPredicate
-                                    ( PredicateRelation
-                                        ( RelationSymbol
-                                            ( Command "in" )
-                                            ( Marker "elem" )
-                                        )
-                                    )
-                                )
-                                [ TermVar
-                                    ( B
-                                        ( NamedVar "x" )
-                                    )
-                                , TermVar
-                                    ( B
-                                        ( NamedVar "y" )
-                                    )
-                                ]
-                            )
-                        )
-                        ( Not
-                            ( Location
-                                { locFile = "<nowhere>"
-                                , locLine = -1
-                                , locColumn = -1
-                                }
-                            )
-                            ( TermSymbol
-                                ( Location
-                                    { locFile = "<nowhere>"
-                                    , locLine = -1
-                                    , locColumn = -1
-                                    }
-                                )
-                                ( SymbolPredicate
-                                    ( PredicateRelation
-                                        ( RelationSymbol
-                                            ( Command "in" )
-                                            ( Marker "elem" )
-                                        )
-                                    )
-                                )
-                                [ TermVar
-                                    ( B
-                                        ( NamedVar "x" )
-                                    )
-                                , TermVar
-                                    ( B
-                                        ( NamedVar "y" )
-                                    )
-                                ]
-                            )
-                        )
-                    )
-                )
-            )
-        ,
-            ( Marker "dummy_abbr_test_verb"
-            , EncodedHypothesis Quantified Universally
-                ( Scope
-                    ( Connected Implication
-                        ( TermSymbol
-                            ( Location
-                                { locFile = "<nowhere>"
-                                , locLine = -1
-                                , locColumn = -1
-                                }
-                            )
-                            ( SymbolPredicate
-                                ( PredicateRelation
-                                    ( RelationSymbol
-                                        ( Symbol "=" )
-                                        ( Marker "eq" )
-                                    )
-                                )
-                            )
-                            [ TermVar
-                                ( B
-                                    ( NamedVar "x" )
-                                )
-                            , TermVar
-                                ( B
-                                    ( NamedVar "y" )
-                                )
-                            ]
-                        )
-                        ( TermSymbol
-                            ( Location
-                                { locFile = "<nowhere>"
-                                , locLine = -1
-                                , locColumn = -1
-                                }
-                            )
-                            ( SymbolPredicate
-                                ( PredicateRelation
-                                    ( RelationSymbol
-                                        ( Symbol "=" )
-                                        ( Marker "eq" )
-                                    )
-                                )
-                            )
-                            [ TermVar
-                                ( B
-                                    ( NamedVar "x" )
-                                )
-                            , TermVar
-                                ( B
-                                    ( NamedVar "y" )
-                                )
-                            ]
-                        )
-                    )
-                )
-            )
-        ,
-            ( Marker "dummy_abbr_test_noun"
-            , EncodedHypothesis Quantified Universally
-                ( Scope
+        , Hypothesis Marker "dummy_abbr_test_verb" Quantified Universally
+            ( Scope
+                ( Connected Implication
                     ( TermSymbol
                         ( Location
                             { locFile = "<nowhere>"
@@ -1165,96 +1070,146 @@
                             )
                         , TermVar
                             ( B
+                                ( NamedVar "y" )
+                            )
+                        ]
+                    )
+                    ( TermSymbol
+                        ( Location
+                            { locFile = "<nowhere>"
+                            , locLine = -1
+                            , locColumn = -1
+                            }
+                        )
+                        ( SymbolPredicate
+                            ( PredicateRelation
+                                ( RelationSymbol
+                                    ( Symbol "=" )
+                                    ( Marker "eq" )
+                                )
+                            )
+                        )
+                        [ TermVar
+                            ( B
                                 ( NamedVar "x" )
+                            )
+                        , TermVar
+                            ( B
+                                ( NamedVar "y" )
                             )
                         ]
                     )
                 )
             )
-        ,
-            ( Marker "dummy_abbr_test_adj"
-            , EncodedHypothesis Quantified Universally
-                ( Scope
-                    ( Connected Implication
-                        ( Not
-                            ( Location
-                                { locFile = "test/examples/abbr.tex"
-                                , locLine = 2
-                                , locColumn = 35
-                                }
+        , Hypothesis Marker "dummy_abbr_test_noun" Quantified Universally
+            ( Scope
+                ( TermSymbol
+                    ( Location
+                        { locFile = "<nowhere>"
+                        , locLine = -1
+                        , locColumn = -1
+                        }
+                    )
+                    ( SymbolPredicate
+                        ( PredicateRelation
+                            ( RelationSymbol
+                                ( Symbol "=" )
+                                ( Marker "eq" )
                             )
-                            ( Quantified Existentially
-                                ( Scope
-                                    ( TermSymbol
-                                        ( Location
-                                            { locFile = "<nowhere>"
-                                            , locLine = -1
-                                            , locColumn = -1
-                                            }
-                                        )
-                                        ( SymbolPredicate
-                                            ( PredicateRelation
-                                                ( RelationSymbol
-                                                    ( Command "in" )
-                                                    ( Marker "elem" )
-                                                )
-                                            )
-                                        )
-                                        [ TermVar
-                                            ( B
-                                                ( NamedVar "y" )
-                                            )
-                                        , TermVar
-                                            ( F
-                                                ( TermVar
-                                                    ( B
-                                                        ( NamedVar "x" )
-                                                    )
-                                                )
-                                            )
-                                        ]
+                        )
+                    )
+                    [ TermVar
+                        ( B
+                            ( NamedVar "x" )
+                        )
+                    , TermVar
+                        ( B
+                            ( NamedVar "x" )
+                        )
+                    ]
+                )
+            )
+        , Hypothesis Marker "dummy_abbr_test_adj" Quantified Universally
+            ( Scope
+                ( Connected Implication
+                    ( Not
+                        ( Location
+                            { locFile = "test/examples/abbr.tex"
+                            , locLine = 2
+                            , locColumn = 35
+                            }
+                        )
+                        ( Quantified Existentially
+                            ( Scope
+                                ( TermSymbol
+                                    ( Location
+                                        { locFile = "<nowhere>"
+                                        , locLine = -1
+                                        , locColumn = -1
+                                        }
                                     )
+                                    ( SymbolPredicate
+                                        ( PredicateRelation
+                                            ( RelationSymbol
+                                                ( Command "in" )
+                                                ( Marker "elem" )
+                                            )
+                                        )
+                                    )
+                                    [ TermVar
+                                        ( B
+                                            ( NamedVar "y" )
+                                        )
+                                    , TermVar
+                                        ( F
+                                            ( TermVar
+                                                ( B
+                                                    ( NamedVar "x" )
+                                                )
+                                            )
+                                        )
+                                    ]
                                 )
                             )
                         )
-                        ( Not
-                            ( Location
-                                { locFile = "test/examples/abbr.tex"
-                                , locLine = 2
-                                , locColumn = 35
-                                }
-                            )
-                            ( Quantified Existentially
-                                ( Scope
-                                    ( TermSymbol
-                                        ( Location
-                                            { locFile = "<nowhere>"
-                                            , locLine = -1
-                                            , locColumn = -1
-                                            }
-                                        )
-                                        ( SymbolPredicate
-                                            ( PredicateRelation
-                                                ( RelationSymbol
-                                                    ( Command "in" )
-                                                    ( Marker "elem" )
-                                                )
-                                            )
-                                        )
-                                        [ TermVar
-                                            ( B
-                                                ( NamedVar "y" )
-                                            )
-                                        , TermVar
-                                            ( F
-                                                ( TermVar
-                                                    ( B
-                                                        ( NamedVar "x" )
-                                                    )
-                                                )
-                                            )
-                                        ]
+                    )
+                    ( Not
+                        ( Location
+                            { locFile = "test/examples/abbr.tex"
+                            , locLine = 2
+                            , locColumn = 35
+                            }
+                        )
+                        ( Quantified Existentially
+                            ( Scope
+                                ( TermSymbol
+                                    ( Location
+                                        { locFile = "<nowhere>"
+                                        , locLine = -1
+                                        , locColumn = -1
+                                        }
                                     )
+                                    ( SymbolPredicate
+                                        ( PredicateRelation
+                                            ( RelationSymbol
+                                                ( Command "in" )
+                                                ( Marker "elem" )
+                                            )
+                                        )
+                                    )
+                                    [ TermVar
+                                        ( B
+                                            ( NamedVar "y" )
+                                        )
+                                    , TermVar
+                                        ( F
+                                            ( TermVar
+                                                ( B
+                                                    ( NamedVar "x" )
+                                                )
+                                            )
+                                        )
+                                    ]
                                 )
                             )
                         )
