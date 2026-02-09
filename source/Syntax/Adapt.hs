@@ -25,8 +25,8 @@ scanChunk ltoks =
     in case ltoks of
         Located{startPos = pos, unLocated = BeginEnv "definition"} : _ ->
             matchOrErr definition "definition" pos
-        -- TODO Located{startPos = pos, unLocated = BeginEnv "signature"} : _ ->
-        --    matchOrErr signatureExtension "signature" pos
+        Located{startPos = pos, unLocated = BeginEnv "signature"} : _ ->
+            matchOrErr signatureExtension "signature" pos
         Located{startPos = pos, unLocated = BeginEnv "abbreviation"} : _ ->
             matchOrErr abbreviation "abbreviation" pos
         Located{startPos = pos, unLocated = (BeginEnv "struct")} :_ ->
@@ -90,7 +90,7 @@ signatureExtension = do
     RE.few notEndOfLexicalEnvToken
     m <- labelRE
     RE.few RE.anySym
-    lexicalItem <- headRE
+    lexicalItem <- sigHeadRE
     RE.few RE.anySym
     RE.sym (EndEnv "signature")
     skipUntilNextLexicalEnv
@@ -125,6 +125,16 @@ headRE = ScanNoun <$> nounRE
     <|> ScanRelationSymbol . fst <$> relationSymbolRE
     <|> ScanFunctionSymbol <$> functionSymbolRE
     <|> ScanPrefixPredicate <$> prefixPredicate
+
+sigHeadRE :: RE Token (Marker -> ScannedLexicalItem)
+sigHeadRE = ScanFunctionSymbol <$> sigFunctionSymbolRE
+
+sigFunctionSymbolRE :: RE Token Pattern
+sigFunctionSymbolRE = do
+    RE.sym (BeginEnv "math")
+    toks <- RE.few nonDefinitionKeyword
+    RE.sym (EndEnv "math")
+    pure (makeFunctionSymbol toks)
 
 sigPred :: RE Token (Marker -> ScannedLexicalItem)
 sigPred = ScanNoun . toLexicalPhrase <$> (math var *> can *> be *> an *> patRE <* iff)
@@ -203,12 +213,15 @@ functionSymbolRE = do
     RE.sym (BeginEnv "math")
     toks <- RE.few nonDefinitionKeyword
     RE.sym (Symbol "=")
-    pure case toks of
-            -- TODO proper error messages with more info (location, etc.)
-            [] -> error "Malformed function pattern: no pattern"
-            [Variable _] -> error "Malformed function: bare variable. This will cause infinite left recursion in the grammar and cause the parser to hang!"
-            [Variable _, ParenL, Variable _, ParenR] -> error "Malformed function: redefinition of function application. The notation _(_) is reserved for set-theoretic function application."
-            _ -> patternFromHoley (fromToken <$> toks)
+    pure (makeFunctionSymbol toks)
+
+makeFunctionSymbol :: [Token] -> Pattern
+makeFunctionSymbol = \case
+    -- TODO proper error messages with more info (location, etc.)
+    [] -> error "Malformed function pattern: no pattern"
+    [Variable _] -> error "Malformed function: bare variable. This will cause infinite left recursion in the grammar and cause the parser to hang!"
+    [Variable _, ParenL, Variable _, ParenR] -> error "Malformed function: redefinition of function application. The notation _(_) is reserved for set-theoretic function application."
+    toks -> patternFromHoley (fromToken <$> toks)
     where
         fromToken = \case
             Variable _ -> Nothing -- Variables become slots.
