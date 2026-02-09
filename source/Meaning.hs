@@ -788,8 +788,8 @@ glossBlock = \case
         pure $ Sem.BlockDefn loc marker defn'
     Raw.BlockAbbr loc marker abbr ->
         Sem.BlockAbbr loc marker <$> glossAbbreviation abbr
-    Raw.BlockSig loc asms sig ->
-        Sem.BlockSig loc <$> glossAsms asms <*> glossSignature sig
+    Raw.BlockSig loc marker asms sig ->
+        Sem.BlockSig loc marker <$> glossAsms asms <*> glossSignature sig
     Raw.BlockStruct loc m structDefn ->
         Sem.BlockStruct loc m <$> glossStructDefn structDefn
     Raw.BlockData _pos _ ->

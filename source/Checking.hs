@@ -391,8 +391,8 @@ checkBlocks = \case
         checkBlocks blocks
     BlockProof startLoc _endLoc _proof : _ ->
         throwWithMarker (ProofWithoutPrecedingTheorem startLoc)
-    BlockSig _pos asms sig : blocks -> do
-        checkSig asms sig
+    BlockSig loc marker asms sig : blocks -> do
+        withLabel loc marker (checkSig asms sig)
         checkBlocks blocks
     BlockInductive loc marker inductiveDefn : blocks -> do
         withLabel loc marker (checkInductive inductiveDefn)

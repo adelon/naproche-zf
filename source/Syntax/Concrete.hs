@@ -430,7 +430,7 @@ grammar lexicon@Lexicon{..} = mdo
     blockAbbr   <- rule $ uncurry3 BlockAbbr      <$> envPos "abbreviation" abbreviation
     blockData   <- rule $ uncurry  BlockData      <$> envPos_ "datatype" datatype
     blockInd    <- rule $ uncurry3 BlockInductive <$> envPos "inductive" inductive
-    blockSig    <- rule $ (\(p, (a, s)) -> BlockSig p a s) <$> envPos_ "signature" signature
+    blockSig    <- rule $ (\(p, m, (a, s)) -> BlockSig p m a s) <$> envPos "signature" signature
     blockStruct <- rule $ uncurry3 BlockStruct    <$> envPos "struct" structDefn
     block       <- rule $ asum [blockAxiom, blockLemma, blockDefn, blockAbbr, blockData, blockInd, blockSig, blockStruct, blockProof]
 

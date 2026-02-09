@@ -630,7 +630,7 @@ data Block
     | BlockAbbr Location Marker Abbreviation
     | BlockStruct Location Marker StructDefn
     | BlockInductive Location Marker Inductive
-    | BlockSig Location [Asm] Signature
+    | BlockSig Location Marker [Asm] Signature
     deriving (Show, Eq, Ord)
 
 

@@ -655,6 +655,6 @@ data Block
     | BlockAbbr Location Marker Abbreviation
     | BlockData Location Datatype
     | BlockInductive Location Marker Inductive
-    | BlockSig Location [Asm] Signature
+    | BlockSig Location Marker [Asm] Signature
     | BlockStruct Location Marker StructDefn
     deriving (Show, Eq, Ord)

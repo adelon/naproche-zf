@@ -652,7 +652,7 @@ data Block
     | BlockAbbr SourcePos Marker Abbreviation
     | BlockStruct SourcePos Marker StructDefn
     | BlockInductive SourcePos Marker Inductive
-    | BlockSig SourcePos [Asm] Signature
+    | BlockSig SourcePos Marker [Asm] Signature
     deriving (Show, Eq, Ord)
 
 data Task = Task
