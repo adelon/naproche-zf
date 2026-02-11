@@ -94,19 +94,20 @@ constructTheoryGraph root = fmap snd (go mempty (TheoryGraph.singleton root) roo
 -- the current directory, the library directory, and the Naproche root directory.
 findAndReadFile :: MonadIO io => FilePath -> io Text
 findAndReadFile path = do
-    homeDir     <- getHomeDirectory
-    currentDir  <- getCurrentDirectory
-    userLib     <- (?? (homeDir </> "formalizations"))   <$> lookupEnv "NAPROCHE_LIB"
-    srcLib      <- (?? (homeDir </> "code/naproche-zf/library"))  <$> lookupEnv "NAPROCHE_SCR_LIB"
+    currentDir <- getCurrentDirectory
+    libraryDir <- (?? (currentDir </> "library")) <$> lookupEnv "NAPROCHE_LIB"
 
     existsCurrent     <- doesFileExist (currentDir </> path)
-    existsUserLib     <- doesFileExist (userLib </> path)
-    existsScrLib      <- doesFileExist (srcLib </> path)
+    existsUserLib     <- doesFileExist (libraryDir </> path)
     liftIO if
         | existsCurrent     -> Text.readFile (currentDir </> path)
-        | existsUserLib     -> Text.readFile (userLib </> path)
-        | existsScrLib      -> Text.readFile (srcLib </> path)
-        | otherwise         -> error ("Could not find file: " <> path)
+        | existsUserLib     -> Text.readFile (libraryDir </> path)
+        | otherwise         -> error $ unlines
+            [ "Could not find file from relative path: " <> path
+            , "Searched in:"
+            , "  " <> currentDir </> path
+            , "  " <> libraryDir </> path <> " (which you can override by setting the NAPROCHE_LIB environment variable)"
+            ]
 
 
 -- | Throws a 'ParseException' when tokenizing fails.

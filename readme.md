@@ -98,13 +98,10 @@ cd latex && xelatex stdlib.tex
 
 ### Setting up other formalization environments
 
-When looking for imported files, the following list of base directories is considered
-(in descending priority):
+When looking for imported files, the following list of base directories is considered (in descending priority):
 
-- the current working directory in the command line
-- the user library directory, set with the environment variable `NAPROCHE_LIB`, defaulting to `~/formalizations`
-- the source code library directory, set with the environment variable `NAPROCHE_SCR_LIB`, defaulting to `~/code/naproche-zf/library`
-- the source code examples directory, set with the environment variable `NAPROCHE_SCR_EXAMPLES`, defaulting to `~/code/naproche-zf/examples`
+- the current working directory `.`
+- the directory `./library`, which you can override with the environment variable `NAPROCHE_LIB`
 
 
 ### Running the tests
