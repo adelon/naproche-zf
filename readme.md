@@ -48,7 +48,7 @@ Download the source code release and follow the instructions in Vampire’s `REA
 If you have multiple versions of Vampire installed, you can export the `$NAPROCHE_ZF_VAMPIRE` environment variable to choose a specific version,
 e.g. by adding
 ```
-export NAPROCHE_ZFVAMPIRE="/absolute/path/to/vampire"
+export NAPROCHE_ZF_VAMPIRE="/absolute/path/to/vampire"
 ```
 to your shell configuration.
 
