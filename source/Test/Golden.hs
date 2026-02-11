@@ -136,7 +136,7 @@ encodingTasks = makeGoldenTest "encoding tasks" $ \Triple{..} -> do
 
 verification :: (MonadUnliftIO io, MonadReader Api.Options io) => io TestTree
 verification = makeGoldenTest "verification" $ \Triple{..} -> do
-    vampirePathPath <- (?? "vampire") <$> lookupEnv "NAPROCHE_VAMPIRE"
+    vampirePathPath <- (?? "vampire") <$> lookupEnv "NAPROCHE_ZF_VAMPIRE"
     let defaultProverInstance = Provers.vampire vampirePathPath Provers.Silent Provers.defaultTimeLimit Provers.defaultMemoryLimit
     answers <- runNoLoggingT (Api.verify defaultProverInstance input)
     liftIO (LazyTextIO.writeFile output (pShowNoColor answers))

@@ -45,10 +45,10 @@ Currently the library uses [Vampire 5.0.0](https://github.com/vprover/vampire/re
 
 If there are no binaries for your platform, you can install Vampire by compiling from source.
 Download the source code release and follow the instructions in Vampire’s `README.md` and make sure that the resulting binary is available as `vampire` on your `$PATH` (running `vampire --version` should tell you the right version).
-If you have multiple versions of Vampire installed, you can export the `$NAPROCHE_VAMPIRE` environment variable to choose a specific version,
+If you have multiple versions of Vampire installed, you can export the `$NAPROCHE_ZF_VAMPIRE` environment variable to choose a specific version,
 e.g. by adding
 ```
-export NAPROCHE_VAMPIRE="/absolute/path/to/vampire"
+export NAPROCHE_ZFVAMPIRE="/absolute/path/to/vampire"
 ```
 to your shell configuration.
 
@@ -58,7 +58,7 @@ You can usually install a reasonably up-to-date version of E via your system’s
 (e.g. via `apt-get install eprover` on Ubuntu and `brew install eprover` on macOS).
 Alternatively, you can build E [from source](https://github.com/eprover/eprover).
 By default whichever `eprover` is on your `$PATH` will be used,
-but you can override the default executable using the `NAPROCHE_EPROVER` environment variable.
+but you can override the default executable using the `NAPROCHE_ZF_EPROVER` environment variable.
 
 ### Building
 

@@ -59,8 +59,8 @@ run = do
             -- If the environment variable is undefined we fall back to the
             -- a globally installed E executable.
             liftIO (Text.putStrLn "\ESC[1;96mStart of verification.\ESC[0m")
-            vampirePathPath <- (?? "vampire") <$> lookupEnv "NAPROCHE_VAMPIRE"
-            eproverPath <- (?? "eprover") <$> lookupEnv "NAPROCHE_EPROVER"
+            vampirePathPath <- (?? "vampire") <$> lookupEnv "NAPROCHE_ZF_VAMPIRE"
+            eproverPath <- (?? "eprover") <$> lookupEnv "NAPROCHE_ZF_EPROVER"
             let prover = case withProver opts of
                     WithVampire -> Provers.vampire vampirePathPath
                     WithEprover -> Provers.eprover eproverPath
