@@ -42,3 +42,4 @@ haddocks/
 stack.yaml.lock
 *.svg
 check/
+*.ps
