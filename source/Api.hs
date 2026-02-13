@@ -151,24 +151,34 @@ parseWith file emitBlock = do
         -- LATER replace with a more helpful error message, like actually showing the cycle properly
         Left cyc -> error ("could not linearize theory graph (likely due to circular dependencies):\n" <> show cyc)
         Right theoryChain -> do
-            -- Pass 1: gather lexical extensions from all chunks to build the final parser.
-            lexicon <- foldM
-                (\accLexicon theoryFile -> do
-                    chunks <- tokenizeChunks theoryFile
-                    pure (adaptChunks chunks accLexicon)
-                )
-                builtins
-                theoryChain
+            -- Tokenize once and reuse the cached chunks for both lexicon adaptation
+            -- and parsing.
+            chunksByFile <- traverse tokenizeChunks theoryChain
+            let chunksByFileList = toList chunksByFile
+
+            -- Build the final lexicon strictly so parsing does not force a retained
+            -- adaptation thunk over the entire chunk cache.
+            let lexicon = foldl' (flip adaptChunks) builtins chunksByFileList
 
             let parseChunk :: [Located Token] -> ([Raw.Block], Report Text [Located Token])
                 parseChunk = fullParses (parser (grammar lexicon))
 
-            -- Pass 2: parse and emit one block at a time.
-            for_ theoryChain \theoryFile -> do
-                chunks <- tokenizeChunks theoryFile
-                for_ chunks \toks -> do
-                    blocks <- parseChunkResult (parseChunk toks)
-                    liftIO (traverse_ emitBlock blocks)
+            -- Consume cached chunks left-to-right so processed prefixes can be
+            -- garbage collected as we advance.
+            let parseFiles = \case
+                    [] -> skip
+                    chunks : restFiles -> do
+                        parseChunks chunks
+                        parseFiles restFiles
+
+                parseChunks = \case
+                    [] -> skip
+                    toks : restChunks -> do
+                        blocks <- parseChunkResult (parseChunk toks)
+                        liftIO (traverse_ emitBlock blocks)
+                        parseChunks restChunks
+
+            lexicon `seq` parseFiles chunksByFileList
 
 parseChunkResult :: MonadIO io => ([Raw.Block], Report Text [Located Token]) -> io [Raw.Block]
 parseChunkResult result = case result of
