@@ -31,9 +31,9 @@
                         ( Scope
                             ( TermSymbol
                                 ( Location
-                                    { locFile = "<nowhere>"
-                                    , locLine = -1
-                                    , locColumn = -1
+                                    { locFile = "test/examples/coord.tex"
+                                    , locLine = 10
+                                    , locColumn = 23
                                     }
                                 )
                                 ( SymbolPredicate
@@ -96,9 +96,9 @@
                         ( Scope
                             ( TermSymbol
                                 ( Location
-                                    { locFile = "<nowhere>"
-                                    , locLine = -1
-                                    , locColumn = -1
+                                    { locFile = "test/examples/coord.tex"
+                                    , locLine = 6
+                                    , locColumn = 23
                                     }
                                 )
                                 ( SymbolPredicate
@@ -165,9 +165,9 @@
                         ( Scope
                             ( TermSymbol
                                 ( Location
-                                    { locFile = "<nowhere>"
-                                    , locLine = -1
-                                    , locColumn = -1
+                                    { locFile = "test/examples/coord.tex"
+                                    , locLine = 2
+                                    , locColumn = 25
                                     }
                                 )
                                 ( SymbolPredicate
@@ -202,9 +202,9 @@
             )
         , Hypothesis Marker "nouns2" TermSymbol
             ( Location
-                { locFile = "<nowhere>"
-                , locLine = -1
-                , locColumn = -1
+                { locFile = "test/examples/coord.tex"
+                , locLine = 14
+                , locColumn = 19
                 }
             )
             ( SymbolPredicate
@@ -226,9 +226,9 @@
             ]
         , Hypothesis Marker "nouns1" TermSymbol
             ( Location
-                { locFile = "<nowhere>"
-                , locLine = -1
-                , locColumn = -1
+                { locFile = "test/examples/coord.tex"
+                , locLine = 14
+                , locColumn = 19
                 }
             )
             ( SymbolPredicate
@@ -257,9 +257,9 @@
         }
     , taskConjecture = TermSymbol
         ( Location
-            { locFile = "<nowhere>"
-            , locLine = -1
-            , locColumn = -1
+            { locFile = "test/examples/coord.tex"
+            , locLine = 15
+            , locColumn = 13
             }
         )
         ( SymbolPredicate
@@ -285,9 +285,9 @@
                     ( Connected Conjunction
                         ( TermSymbol
                             ( Location
-                                { locFile = "<nowhere>"
-                                , locLine = -1
-                                , locColumn = -1
+                                { locFile = "test/examples/coord.tex"
+                                , locLine = 14
+                                , locColumn = 19
                                 }
                             )
                             ( SymbolPredicate
@@ -312,9 +312,9 @@
                         )
                         ( TermSymbol
                             ( Location
-                                { locFile = "<nowhere>"
-                                , locLine = -1
-                                , locColumn = -1
+                                { locFile = "test/examples/coord.tex"
+                                , locLine = 14
+                                , locColumn = 19
                                 }
                             )
                             ( SymbolPredicate
@@ -340,9 +340,9 @@
                     )
                     ( TermSymbol
                         ( Location
-                            { locFile = "<nowhere>"
-                            , locLine = -1
-                            , locColumn = -1
+                            { locFile = "test/examples/coord.tex"
+                            , locLine = 15
+                            , locColumn = 13
                             }
                         )
                         ( SymbolPredicate
@@ -395,9 +395,9 @@
                         ( Scope
                             ( TermSymbol
                                 ( Location
-                                    { locFile = "<nowhere>"
-                                    , locLine = -1
-                                    , locColumn = -1
+                                    { locFile = "test/examples/coord.tex"
+                                    , locLine = 10
+                                    , locColumn = 23
                                     }
                                 )
                                 ( SymbolPredicate
@@ -460,9 +460,9 @@
                         ( Scope
                             ( TermSymbol
                                 ( Location
-                                    { locFile = "<nowhere>"
-                                    , locLine = -1
-                                    , locColumn = -1
+                                    { locFile = "test/examples/coord.tex"
+                                    , locLine = 6
+                                    , locColumn = 23
                                     }
                                 )
                                 ( SymbolPredicate
@@ -529,9 +529,9 @@
                         ( Scope
                             ( TermSymbol
                                 ( Location
-                                    { locFile = "<nowhere>"
-                                    , locLine = -1
-                                    , locColumn = -1
+                                    { locFile = "test/examples/coord.tex"
+                                    , locLine = 2
+                                    , locColumn = 25
                                     }
                                 )
                                 ( SymbolPredicate
@@ -567,9 +567,9 @@
         , Hypothesis Marker "adj_nouns2" Connected Conjunction
             ( TermSymbol
                 ( Location
-                    { locFile = "<nowhere>"
-                    , locLine = -1
-                    , locColumn = -1
+                    { locFile = "test/examples/coord.tex"
+                    , locLine = 19
+                    , locColumn = 23
                     }
                 )
                 ( SymbolPredicate
@@ -614,9 +614,9 @@
         , Hypothesis Marker "adj_nouns1" Connected Conjunction
             ( TermSymbol
                 ( Location
-                    { locFile = "<nowhere>"
-                    , locLine = -1
-                    , locColumn = -1
+                    { locFile = "test/examples/coord.tex"
+                    , locLine = 19
+                    , locColumn = 23
                     }
                 )
                 ( SymbolPredicate
@@ -667,9 +667,9 @@
         }
     , taskConjecture = TermSymbol
         ( Location
-            { locFile = "<nowhere>"
-            , locLine = -1
-            , locColumn = -1
+            { locFile = "test/examples/coord.tex"
+            , locLine = 20
+            , locColumn = 13
             }
         )
         ( SymbolPredicate
@@ -696,9 +696,9 @@
                         ( Connected Conjunction
                             ( TermSymbol
                                 ( Location
-                                    { locFile = "<nowhere>"
-                                    , locLine = -1
-                                    , locColumn = -1
+                                    { locFile = "test/examples/coord.tex"
+                                    , locLine = 19
+                                    , locColumn = 23
                                     }
                                 )
                                 ( SymbolPredicate
@@ -748,9 +748,9 @@
                         ( Connected Conjunction
                             ( TermSymbol
                                 ( Location
-                                    { locFile = "<nowhere>"
-                                    , locLine = -1
-                                    , locColumn = -1
+                                    { locFile = "test/examples/coord.tex"
+                                    , locLine = 19
+                                    , locColumn = 23
                                     }
                                 )
                                 ( SymbolPredicate
@@ -800,9 +800,9 @@
                     )
                     ( TermSymbol
                         ( Location
-                            { locFile = "<nowhere>"
-                            , locLine = -1
-                            , locColumn = -1
+                            { locFile = "test/examples/coord.tex"
+                            , locLine = 20
+                            , locColumn = 13
                             }
                         )
                         ( SymbolPredicate
@@ -831,9 +831,9 @@
                     ( Connected Conjunction
                         ( TermSymbol
                             ( Location
-                                { locFile = "<nowhere>"
-                                , locLine = -1
-                                , locColumn = -1
+                                { locFile = "test/examples/coord.tex"
+                                , locLine = 14
+                                , locColumn = 19
                                 }
                             )
                             ( SymbolPredicate
@@ -858,9 +858,9 @@
                         )
                         ( TermSymbol
                             ( Location
-                                { locFile = "<nowhere>"
-                                , locLine = -1
-                                , locColumn = -1
+                                { locFile = "test/examples/coord.tex"
+                                , locLine = 14
+                                , locColumn = 19
                                 }
                             )
                             ( SymbolPredicate
@@ -886,9 +886,9 @@
                     )
                     ( TermSymbol
                         ( Location
-                            { locFile = "<nowhere>"
-                            , locLine = -1
-                            , locColumn = -1
+                            { locFile = "test/examples/coord.tex"
+                            , locLine = 15
+                            , locColumn = 13
                             }
                         )
                         ( SymbolPredicate
@@ -941,9 +941,9 @@
                         ( Scope
                             ( TermSymbol
                                 ( Location
-                                    { locFile = "<nowhere>"
-                                    , locLine = -1
-                                    , locColumn = -1
+                                    { locFile = "test/examples/coord.tex"
+                                    , locLine = 10
+                                    , locColumn = 23
                                     }
                                 )
                                 ( SymbolPredicate
@@ -1006,9 +1006,9 @@
                         ( Scope
                             ( TermSymbol
                                 ( Location
-                                    { locFile = "<nowhere>"
-                                    , locLine = -1
-                                    , locColumn = -1
+                                    { locFile = "test/examples/coord.tex"
+                                    , locLine = 6
+                                    , locColumn = 23
                                     }
                                 )
                                 ( SymbolPredicate
@@ -1075,9 +1075,9 @@
                         ( Scope
                             ( TermSymbol
                                 ( Location
-                                    { locFile = "<nowhere>"
-                                    , locLine = -1
-                                    , locColumn = -1
+                                    { locFile = "test/examples/coord.tex"
+                                    , locLine = 2
+                                    , locColumn = 25
                                     }
                                 )
                                 ( SymbolPredicate
@@ -1112,9 +1112,9 @@
             )
         , Hypothesis Marker "nouns_suchthat3" TermSymbol
             ( Location
-                { locFile = "<nowhere>"
-                , locLine = -1
-                , locColumn = -1
+                { locFile = "test/examples/coord.tex"
+                , locLine = 25
+                , locColumn = 19
                 }
             )
             ( SymbolPredicate
@@ -1136,9 +1136,9 @@
             ]
         , Hypothesis Marker "nouns_suchthat2" TermSymbol
             ( Location
-                { locFile = "<nowhere>"
-                , locLine = -1
-                , locColumn = -1
+                { locFile = "test/examples/coord.tex"
+                , locLine = 25
+                , locColumn = 19
                 }
             )
             ( SymbolPredicate
@@ -1210,9 +1210,9 @@
         }
     , taskConjecture = TermSymbol
         ( Location
-            { locFile = "<nowhere>"
-            , locLine = -1
-            , locColumn = -1
+            { locFile = "test/examples/coord.tex"
+            , locLine = 26
+            , locColumn = 13
             }
         )
         ( SymbolPredicate
@@ -1287,9 +1287,9 @@
                             )
                             ( TermSymbol
                                 ( Location
-                                    { locFile = "<nowhere>"
-                                    , locLine = -1
-                                    , locColumn = -1
+                                    { locFile = "test/examples/coord.tex"
+                                    , locLine = 25
+                                    , locColumn = 19
                                     }
                                 )
                                 ( SymbolPredicate
@@ -1315,9 +1315,9 @@
                         )
                         ( TermSymbol
                             ( Location
-                                { locFile = "<nowhere>"
-                                , locLine = -1
-                                , locColumn = -1
+                                { locFile = "test/examples/coord.tex"
+                                , locLine = 25
+                                , locColumn = 19
                                 }
                             )
                             ( SymbolPredicate
@@ -1343,9 +1343,9 @@
                     )
                     ( TermSymbol
                         ( Location
-                            { locFile = "<nowhere>"
-                            , locLine = -1
-                            , locColumn = -1
+                            { locFile = "test/examples/coord.tex"
+                            , locLine = 26
+                            , locColumn = 13
                             }
                         )
                         ( SymbolPredicate
@@ -1375,9 +1375,9 @@
                         ( Connected Conjunction
                             ( TermSymbol
                                 ( Location
-                                    { locFile = "<nowhere>"
-                                    , locLine = -1
-                                    , locColumn = -1
+                                    { locFile = "test/examples/coord.tex"
+                                    , locLine = 19
+                                    , locColumn = 23
                                     }
                                 )
                                 ( SymbolPredicate
@@ -1427,9 +1427,9 @@
                         ( Connected Conjunction
                             ( TermSymbol
                                 ( Location
-                                    { locFile = "<nowhere>"
-                                    , locLine = -1
-                                    , locColumn = -1
+                                    { locFile = "test/examples/coord.tex"
+                                    , locLine = 19
+                                    , locColumn = 23
                                     }
                                 )
                                 ( SymbolPredicate
@@ -1479,9 +1479,9 @@
                     )
                     ( TermSymbol
                         ( Location
-                            { locFile = "<nowhere>"
-                            , locLine = -1
-                            , locColumn = -1
+                            { locFile = "test/examples/coord.tex"
+                            , locLine = 20
+                            , locColumn = 13
                             }
                         )
                         ( SymbolPredicate
@@ -1510,9 +1510,9 @@
                     ( Connected Conjunction
                         ( TermSymbol
                             ( Location
-                                { locFile = "<nowhere>"
-                                , locLine = -1
-                                , locColumn = -1
+                                { locFile = "test/examples/coord.tex"
+                                , locLine = 14
+                                , locColumn = 19
                                 }
                             )
                             ( SymbolPredicate
@@ -1537,9 +1537,9 @@
                         )
                         ( TermSymbol
                             ( Location
-                                { locFile = "<nowhere>"
-                                , locLine = -1
-                                , locColumn = -1
+                                { locFile = "test/examples/coord.tex"
+                                , locLine = 14
+                                , locColumn = 19
                                 }
                             )
                             ( SymbolPredicate
@@ -1565,9 +1565,9 @@
                     )
                     ( TermSymbol
                         ( Location
-                            { locFile = "<nowhere>"
-                            , locLine = -1
-                            , locColumn = -1
+                            { locFile = "test/examples/coord.tex"
+                            , locLine = 15
+                            , locColumn = 13
                             }
                         )
                         ( SymbolPredicate
@@ -1620,9 +1620,9 @@
                         ( Scope
                             ( TermSymbol
                                 ( Location
-                                    { locFile = "<nowhere>"
-                                    , locLine = -1
-                                    , locColumn = -1
+                                    { locFile = "test/examples/coord.tex"
+                                    , locLine = 10
+                                    , locColumn = 23
                                     }
                                 )
                                 ( SymbolPredicate
@@ -1685,9 +1685,9 @@
                         ( Scope
                             ( TermSymbol
                                 ( Location
-                                    { locFile = "<nowhere>"
-                                    , locLine = -1
-                                    , locColumn = -1
+                                    { locFile = "test/examples/coord.tex"
+                                    , locLine = 6
+                                    , locColumn = 23
                                     }
                                 )
                                 ( SymbolPredicate
@@ -1754,9 +1754,9 @@
                         ( Scope
                             ( TermSymbol
                                 ( Location
-                                    { locFile = "<nowhere>"
-                                    , locLine = -1
-                                    , locColumn = -1
+                                    { locFile = "test/examples/coord.tex"
+                                    , locLine = 2
+                                    , locColumn = 25
                                     }
                                 )
                                 ( SymbolPredicate
@@ -1799,9 +1799,9 @@
     , taskConjecture = Connected Equivalence
         ( TermSymbol
             ( Location
-                { locFile = "<nowhere>"
-                , locLine = -1
-                , locColumn = -1
+                { locFile = "test/examples/coord.tex"
+                , locLine = 31
+                , locColumn = 8
                 }
             )
             ( SymbolPredicate
@@ -1821,9 +1821,9 @@
         ( Connected Conjunction
             ( TermSymbol
                 ( Location
-                    { locFile = "<nowhere>"
-                    , locLine = -1
-                    , locColumn = -1
+                    { locFile = "test/examples/coord.tex"
+                    , locLine = 31
+                    , locColumn = 26
                     }
                 )
                 ( SymbolPredicate
@@ -1875,9 +1875,9 @@
                 ( Connected Equivalence
                     ( TermSymbol
                         ( Location
-                            { locFile = "<nowhere>"
-                            , locLine = -1
-                            , locColumn = -1
+                            { locFile = "test/examples/coord.tex"
+                            , locLine = 31
+                            , locColumn = 8
                             }
                         )
                         ( SymbolPredicate
@@ -1901,9 +1901,9 @@
                     ( Connected Conjunction
                         ( TermSymbol
                             ( Location
-                                { locFile = "<nowhere>"
-                                , locLine = -1
-                                , locColumn = -1
+                                { locFile = "test/examples/coord.tex"
+                                , locLine = 31
+                                , locColumn = 26
                                 }
                             )
                             ( SymbolPredicate
@@ -2009,9 +2009,9 @@
                             )
                             ( TermSymbol
                                 ( Location
-                                    { locFile = "<nowhere>"
-                                    , locLine = -1
-                                    , locColumn = -1
+                                    { locFile = "test/examples/coord.tex"
+                                    , locLine = 25
+                                    , locColumn = 19
                                     }
                                 )
                                 ( SymbolPredicate
@@ -2037,9 +2037,9 @@
                         )
                         ( TermSymbol
                             ( Location
-                                { locFile = "<nowhere>"
-                                , locLine = -1
-                                , locColumn = -1
+                                { locFile = "test/examples/coord.tex"
+                                , locLine = 25
+                                , locColumn = 19
                                 }
                             )
                             ( SymbolPredicate
@@ -2065,9 +2065,9 @@
                     )
                     ( TermSymbol
                         ( Location
-                            { locFile = "<nowhere>"
-                            , locLine = -1
-                            , locColumn = -1
+                            { locFile = "test/examples/coord.tex"
+                            , locLine = 26
+                            , locColumn = 13
                             }
                         )
                         ( SymbolPredicate
@@ -2097,9 +2097,9 @@
                         ( Connected Conjunction
                             ( TermSymbol
                                 ( Location
-                                    { locFile = "<nowhere>"
-                                    , locLine = -1
-                                    , locColumn = -1
+                                    { locFile = "test/examples/coord.tex"
+                                    , locLine = 19
+                                    , locColumn = 23
                                     }
                                 )
                                 ( SymbolPredicate
@@ -2149,9 +2149,9 @@
                         ( Connected Conjunction
                             ( TermSymbol
                                 ( Location
-                                    { locFile = "<nowhere>"
-                                    , locLine = -1
-                                    , locColumn = -1
+                                    { locFile = "test/examples/coord.tex"
+                                    , locLine = 19
+                                    , locColumn = 23
                                     }
                                 )
                                 ( SymbolPredicate
@@ -2201,9 +2201,9 @@
                     )
                     ( TermSymbol
                         ( Location
-                            { locFile = "<nowhere>"
-                            , locLine = -1
-                            , locColumn = -1
+                            { locFile = "test/examples/coord.tex"
+                            , locLine = 20
+                            , locColumn = 13
                             }
                         )
                         ( SymbolPredicate
@@ -2232,9 +2232,9 @@
                     ( Connected Conjunction
                         ( TermSymbol
                             ( Location
-                                { locFile = "<nowhere>"
-                                , locLine = -1
-                                , locColumn = -1
+                                { locFile = "test/examples/coord.tex"
+                                , locLine = 14
+                                , locColumn = 19
                                 }
                             )
                             ( SymbolPredicate
@@ -2259,9 +2259,9 @@
                         )
                         ( TermSymbol
                             ( Location
-                                { locFile = "<nowhere>"
-                                , locLine = -1
-                                , locColumn = -1
+                                { locFile = "test/examples/coord.tex"
+                                , locLine = 14
+                                , locColumn = 19
                                 }
                             )
                             ( SymbolPredicate
@@ -2287,9 +2287,9 @@
                     )
                     ( TermSymbol
                         ( Location
-                            { locFile = "<nowhere>"
-                            , locLine = -1
-                            , locColumn = -1
+                            { locFile = "test/examples/coord.tex"
+                            , locLine = 15
+                            , locColumn = 13
                             }
                         )
                         ( SymbolPredicate
@@ -2342,9 +2342,9 @@
                         ( Scope
                             ( TermSymbol
                                 ( Location
-                                    { locFile = "<nowhere>"
-                                    , locLine = -1
-                                    , locColumn = -1
+                                    { locFile = "test/examples/coord.tex"
+                                    , locLine = 10
+                                    , locColumn = 23
                                     }
                                 )
                                 ( SymbolPredicate
@@ -2407,9 +2407,9 @@
                         ( Scope
                             ( TermSymbol
                                 ( Location
-                                    { locFile = "<nowhere>"
-                                    , locLine = -1
-                                    , locColumn = -1
+                                    { locFile = "test/examples/coord.tex"
+                                    , locLine = 6
+                                    , locColumn = 23
                                     }
                                 )
                                 ( SymbolPredicate
@@ -2476,9 +2476,9 @@
                         ( Scope
                             ( TermSymbol
                                 ( Location
-                                    { locFile = "<nowhere>"
-                                    , locLine = -1
-                                    , locColumn = -1
+                                    { locFile = "test/examples/coord.tex"
+                                    , locLine = 2
+                                    , locColumn = 25
                                     }
                                 )
                                 ( SymbolPredicate
@@ -2621,9 +2621,9 @@
                 ( Connected Equivalence
                     ( TermSymbol
                         ( Location
-                            { locFile = "<nowhere>"
-                            , locLine = -1
-                            , locColumn = -1
+                            { locFile = "test/examples/coord.tex"
+                            , locLine = 31
+                            , locColumn = 8
                             }
                         )
                         ( SymbolPredicate
@@ -2647,9 +2647,9 @@
                     ( Connected Conjunction
                         ( TermSymbol
                             ( Location
-                                { locFile = "<nowhere>"
-                                , locLine = -1
-                                , locColumn = -1
+                                { locFile = "test/examples/coord.tex"
+                                , locLine = 31
+                                , locColumn = 26
                                 }
                             )
                             ( SymbolPredicate
@@ -2755,9 +2755,9 @@
                             )
                             ( TermSymbol
                                 ( Location
-                                    { locFile = "<nowhere>"
-                                    , locLine = -1
-                                    , locColumn = -1
+                                    { locFile = "test/examples/coord.tex"
+                                    , locLine = 25
+                                    , locColumn = 19
                                     }
                                 )
                                 ( SymbolPredicate
@@ -2783,9 +2783,9 @@
                         )
                         ( TermSymbol
                             ( Location
-                                { locFile = "<nowhere>"
-                                , locLine = -1
-                                , locColumn = -1
+                                { locFile = "test/examples/coord.tex"
+                                , locLine = 25
+                                , locColumn = 19
                                 }
                             )
                             ( SymbolPredicate
@@ -2811,9 +2811,9 @@
                     )
                     ( TermSymbol
                         ( Location
-                            { locFile = "<nowhere>"
-                            , locLine = -1
-                            , locColumn = -1
+                            { locFile = "test/examples/coord.tex"
+                            , locLine = 26
+                            , locColumn = 13
                             }
                         )
                         ( SymbolPredicate
@@ -2843,9 +2843,9 @@
                         ( Connected Conjunction
                             ( TermSymbol
                                 ( Location
-                                    { locFile = "<nowhere>"
-                                    , locLine = -1
-                                    , locColumn = -1
+                                    { locFile = "test/examples/coord.tex"
+                                    , locLine = 19
+                                    , locColumn = 23
                                     }
                                 )
                                 ( SymbolPredicate
@@ -2895,9 +2895,9 @@
                         ( Connected Conjunction
                             ( TermSymbol
                                 ( Location
-                                    { locFile = "<nowhere>"
-                                    , locLine = -1
-                                    , locColumn = -1
+                                    { locFile = "test/examples/coord.tex"
+                                    , locLine = 19
+                                    , locColumn = 23
                                     }
                                 )
                                 ( SymbolPredicate
@@ -2947,9 +2947,9 @@
                     )
                     ( TermSymbol
                         ( Location
-                            { locFile = "<nowhere>"
-                            , locLine = -1
-                            , locColumn = -1
+                            { locFile = "test/examples/coord.tex"
+                            , locLine = 20
+                            , locColumn = 13
                             }
                         )
                         ( SymbolPredicate
@@ -2978,9 +2978,9 @@
                     ( Connected Conjunction
                         ( TermSymbol
                             ( Location
-                                { locFile = "<nowhere>"
-                                , locLine = -1
-                                , locColumn = -1
+                                { locFile = "test/examples/coord.tex"
+                                , locLine = 14
+                                , locColumn = 19
                                 }
                             )
                             ( SymbolPredicate
@@ -3005,9 +3005,9 @@
                         )
                         ( TermSymbol
                             ( Location
-                                { locFile = "<nowhere>"
-                                , locLine = -1
-                                , locColumn = -1
+                                { locFile = "test/examples/coord.tex"
+                                , locLine = 14
+                                , locColumn = 19
                                 }
                             )
                             ( SymbolPredicate
@@ -3033,9 +3033,9 @@
                     )
                     ( TermSymbol
                         ( Location
-                            { locFile = "<nowhere>"
-                            , locLine = -1
-                            , locColumn = -1
+                            { locFile = "test/examples/coord.tex"
+                            , locLine = 15
+                            , locColumn = 13
                             }
                         )
                         ( SymbolPredicate
@@ -3088,9 +3088,9 @@
                         ( Scope
                             ( TermSymbol
                                 ( Location
-                                    { locFile = "<nowhere>"
-                                    , locLine = -1
-                                    , locColumn = -1
+                                    { locFile = "test/examples/coord.tex"
+                                    , locLine = 10
+                                    , locColumn = 23
                                     }
                                 )
                                 ( SymbolPredicate
@@ -3153,9 +3153,9 @@
                         ( Scope
                             ( TermSymbol
                                 ( Location
-                                    { locFile = "<nowhere>"
-                                    , locLine = -1
-                                    , locColumn = -1
+                                    { locFile = "test/examples/coord.tex"
+                                    , locLine = 6
+                                    , locColumn = 23
                                     }
                                 )
                                 ( SymbolPredicate
@@ -3222,9 +3222,9 @@
                         ( Scope
                             ( TermSymbol
                                 ( Location
-                                    { locFile = "<nowhere>"
-                                    , locLine = -1
-                                    , locColumn = -1
+                                    { locFile = "test/examples/coord.tex"
+                                    , locLine = 2
+                                    , locColumn = 25
                                     }
                                 )
                                 ( SymbolPredicate
@@ -3260,9 +3260,9 @@
         , Hypothesis Marker "are_nouns2" Connected Conjunction
             ( TermSymbol
                 ( Location
-                    { locFile = "<nowhere>"
-                    , locLine = -1
-                    , locColumn = -1
+                    { locFile = "test/examples/coord.tex"
+                    , locLine = 40
+                    , locColumn = 23
                     }
                 )
                 ( SymbolPredicate
@@ -3307,9 +3307,9 @@
         , Hypothesis Marker "are_nouns1" Connected Conjunction
             ( TermSymbol
                 ( Location
-                    { locFile = "<nowhere>"
-                    , locLine = -1
-                    , locColumn = -1
+                    { locFile = "test/examples/coord.tex"
+                    , locLine = 40
+                    , locColumn = 23
                     }
                 )
                 ( SymbolPredicate
@@ -3362,9 +3362,9 @@
         ( Connected Conjunction
             ( TermSymbol
                 ( Location
-                    { locFile = "<nowhere>"
-                    , locLine = -1
-                    , locColumn = -1
+                    { locFile = "test/examples/coord.tex"
+                    , locLine = 41
+                    , locColumn = 30
                     }
                 )
                 ( SymbolPredicate
@@ -3410,9 +3410,9 @@
         ( Connected Conjunction
             ( TermSymbol
                 ( Location
-                    { locFile = "<nowhere>"
-                    , locLine = -1
-                    , locColumn = -1
+                    { locFile = "test/examples/coord.tex"
+                    , locLine = 41
+                    , locColumn = 30
                     }
                 )
                 ( SymbolPredicate

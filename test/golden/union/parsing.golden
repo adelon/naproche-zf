@@ -22,17 +22,18 @@
                     { conn = Equivalence
                     , mloc = Nothing
                     , stmt1 = StmtFormula
-                        { loc = Location
-                            { locFile = "test/examples/union.tex"
-                            , locLine = 2
-                            , locColumn = 33
-                            }
-                        , formula = FormulaChain
+                        { formula = FormulaChain
                             ( ChainBase
                                 ( ExprVar
                                     ( NamedVar "a" ) :| []
                                 ) Positive
                                 ( Relation
+                                    ( Location
+                                        { locFile = "test/examples/union.tex"
+                                        , locLine = 2
+                                        , locColumn = 35
+                                        }
+                                    )
                                     ( RelationSymbol
                                         ( Command "in" )
                                         ( Marker "elem" )
@@ -44,17 +45,18 @@
                             )
                         }
                     , stmt2 = StmtFormula
-                        { loc = Location
-                            { locFile = "test/examples/union.tex"
-                            , locLine = 2
-                            , locColumn = 46
-                            }
-                        , formula = FormulaChain
+                        { formula = FormulaChain
                             ( ChainBase
                                 ( ExprVar
                                     ( NamedVar "a" ) :| []
                                 ) Positive
                                 ( Relation
+                                    ( Location
+                                        { locFile = "test/examples/union.tex"
+                                        , locLine = 2
+                                        , locColumn = 48
+                                        }
+                                    )
                                     ( RelationSymbol
                                         ( Command "in" )
                                         ( Marker "elem" )
@@ -70,17 +72,18 @@
             )
         ]
         ( StmtFormula
-            { loc = Location
-                { locFile = "test/examples/union.tex"
-                , locLine = 3
-                , locColumn = 10
-                }
-            , formula = FormulaChain
+            { formula = FormulaChain
                 ( ChainBase
                     ( ExprVar
                         ( NamedVar "A" ) :| []
                     ) Positive
                     ( Relation
+                        ( Location
+                            { locFile = "test/examples/union.tex"
+                            , locLine = 3
+                            , locColumn = 13
+                            }
+                        )
                         ( RelationSymbol
                             ( Symbol "=" )
                             ( Marker "eq" )
@@ -107,6 +110,12 @@
                 [ NamedVar "B" ]
             ) NounPhrase ( [] )
             ( Noun
+                ( Location
+                    { locFile = "test/examples/union.tex"
+                    , locLine = 7
+                    , locColumn = 19
+                    }
+                )
                 ( LexicalItemSgPl
                     ( SgPl
                         { sg = TokenCons
@@ -123,23 +132,30 @@
             { conn = Equivalence
             , mloc = Nothing
             , stmt1 = StmtFormula
-                { loc = Location
-                    { locFile = "test/examples/union.tex"
-                    , locLine = 8
-                    , locColumn = 5
-                    }
-                , formula = FormulaChain
+                { formula = FormulaChain
                     ( ChainBase
                         ( ExprVar
                             ( NamedVar "a" ) :| []
                         ) Positive
                         ( Relation
+                            ( Location
+                                { locFile = "test/examples/union.tex"
+                                , locLine = 8
+                                , locColumn = 7
+                                }
+                            )
                             ( RelationSymbol
                                 ( Command "in" )
                                 ( Marker "elem" )
                             ) []
                         )
                         ( ExprOp
+                            ( Location
+                                { locFile = "test/examples/union.tex"
+                                , locLine = 8
+                                , locColumn = 11
+                                }
+                            )
                             ( MixfixItem
                                 ( HoleCons
                                     ( TokenCons
@@ -160,17 +176,18 @@
                 { conn = Disjunction
                 , mloc = Nothing
                 , stmt1 = StmtFormula
-                    { loc = Location
-                        { locFile = "test/examples/union.tex"
-                        , locLine = 8
-                        , locColumn = 26
-                        }
-                    , formula = FormulaChain
+                    { formula = FormulaChain
                         ( ChainBase
                             ( ExprVar
                                 ( NamedVar "a" ) :| []
                             ) Positive
                             ( Relation
+                                ( Location
+                                    { locFile = "test/examples/union.tex"
+                                    , locLine = 8
+                                    , locColumn = 28
+                                    }
+                                )
                                 ( RelationSymbol
                                     ( Command "in" )
                                     ( Marker "elem" )
@@ -182,17 +199,18 @@
                         )
                     }
                 , stmt2 = StmtFormula
-                    { loc = Location
-                        { locFile = "test/examples/union.tex"
-                        , locLine = 8
-                        , locColumn = 38
-                        }
-                    , formula = FormulaChain
+                    { formula = FormulaChain
                         ( ChainBase
                             ( ExprVar
                                 ( NamedVar "a" ) :| []
                             ) Positive
                             ( Relation
+                                ( Location
+                                    { locFile = "test/examples/union.tex"
+                                    , locLine = 8
+                                    , locColumn = 40
+                                    }
+                                )
                                 ( RelationSymbol
                                     ( Command "in" )
                                     ( Marker "elem" )
@@ -217,14 +235,15 @@
     ( Marker "union_comm" )
     ( Lemma []
         ( StmtFormula
-            { loc = Location
-                { locFile = "test/examples/union.tex"
-                , locLine = 12
-                , locColumn = 5
-                }
-            , formula = FormulaChain
+            { formula = FormulaChain
                 ( ChainBase
                     ( ExprOp
+                        ( Location
+                            { locFile = "test/examples/union.tex"
+                            , locLine = 12
+                            , locColumn = 6
+                            }
+                        )
                         ( MixfixItem
                             ( HoleCons
                                 ( TokenCons
@@ -240,12 +259,24 @@
                         ] :| []
                     ) Positive
                     ( Relation
+                        ( Location
+                            { locFile = "test/examples/union.tex"
+                            , locLine = 12
+                            , locColumn = 16
+                            }
+                        )
                         ( RelationSymbol
                             ( Symbol "=" )
                             ( Marker "eq" )
                         ) []
                     )
                     ( ExprOp
+                        ( Location
+                            { locFile = "test/examples/union.tex"
+                            , locLine = 12
+                            , locColumn = 18
+                            }
+                        )
                         ( MixfixItem
                             ( HoleCons
                                 ( TokenCons
@@ -274,14 +305,15 @@
     ( Marker "union_assoc" )
     ( Lemma []
         ( StmtFormula
-            { loc = Location
-                { locFile = "test/examples/union.tex"
-                , locLine = 16
-                , locColumn = 5
-                }
-            , formula = FormulaChain
+            { formula = FormulaChain
                 ( ChainBase
                     ( ExprOp
+                        ( Location
+                            { locFile = "test/examples/union.tex"
+                            , locLine = 16
+                            , locColumn = 7
+                            }
+                        )
                         ( MixfixItem
                             ( HoleCons
                                 ( TokenCons
@@ -291,6 +323,12 @@
                             ( Marker "union" ) LeftAssoc
                         )
                         [ ExprOp
+                            ( Location
+                                { locFile = "test/examples/union.tex"
+                                , locLine = 16
+                                , locColumn = 7
+                                }
+                            )
                             ( MixfixItem
                                 ( HoleCons
                                     ( TokenCons
@@ -309,12 +347,24 @@
                         ] :| []
                     ) Positive
                     ( Relation
+                        ( Location
+                            { locFile = "test/examples/union.tex"
+                            , locLine = 16
+                            , locColumn = 26
+                            }
+                        )
                         ( RelationSymbol
                             ( Symbol "=" )
                             ( Marker "eq" )
                         ) []
                     )
                     ( ExprOp
+                        ( Location
+                            { locFile = "test/examples/union.tex"
+                            , locLine = 16
+                            , locColumn = 28
+                            }
+                        )
                         ( MixfixItem
                             ( HoleCons
                                 ( TokenCons
@@ -326,6 +376,12 @@
                         [ ExprVar
                             ( NamedVar "A" )
                         , ExprOp
+                            ( Location
+                                { locFile = "test/examples/union.tex"
+                                , locLine = 16
+                                , locColumn = 37
+                                }
+                            )
                             ( MixfixItem
                                 ( HoleCons
                                     ( TokenCons
@@ -379,23 +435,30 @@
                         }
                     )
                 , stmt1 = StmtFormula
-                    { loc = Location
-                        { locFile = "test/examples/union.tex"
-                        , locLine = 19
-                        , locColumn = 28
-                        }
-                    , formula = FormulaChain
+                    { formula = FormulaChain
                         ( ChainBase
                             ( ExprVar
                                 ( NamedVar "a" ) :| []
                             ) Positive
                             ( Relation
+                                ( Location
+                                    { locFile = "test/examples/union.tex"
+                                    , locLine = 19
+                                    , locColumn = 30
+                                    }
+                                )
                                 ( RelationSymbol
                                     ( Command "in" )
                                     ( Marker "elem" )
                                 ) []
                             )
                             ( ExprOp
+                                ( Location
+                                    { locFile = "test/examples/union.tex"
+                                    , locLine = 19
+                                    , locColumn = 35
+                                    }
+                                )
                                 ( MixfixItem
                                     ( HoleCons
                                         ( TokenCons
@@ -405,6 +468,12 @@
                                     ( Marker "union" ) LeftAssoc
                                 )
                                 [ ExprOp
+                                    ( Location
+                                        { locFile = "test/examples/union.tex"
+                                        , locLine = 19
+                                        , locColumn = 35
+                                        }
+                                    )
                                     ( MixfixItem
                                         ( HoleCons
                                             ( TokenCons
@@ -425,23 +494,30 @@
                         )
                     }
                 , stmt2 = StmtFormula
-                    { loc = Location
-                        { locFile = "test/examples/union.tex"
-                        , locLine = 19
-                        , locColumn = 61
-                        }
-                    , formula = FormulaChain
+                    { formula = FormulaChain
                         ( ChainBase
                             ( ExprVar
                                 ( NamedVar "a" ) :| []
                             ) Positive
                             ( Relation
+                                ( Location
+                                    { locFile = "test/examples/union.tex"
+                                    , locLine = 19
+                                    , locColumn = 63
+                                    }
+                                )
                                 ( RelationSymbol
                                     ( Command "in" )
                                     ( Marker "elem" )
                                 ) []
                             )
                             ( ExprOp
+                                ( Location
+                                    { locFile = "test/examples/union.tex"
+                                    , locLine = 19
+                                    , locColumn = 67
+                                    }
+                                )
                                 ( MixfixItem
                                     ( HoleCons
                                         ( TokenCons
@@ -453,6 +529,12 @@
                                 [ ExprVar
                                     ( NamedVar "A" )
                                 , ExprOp
+                                    ( Location
+                                        { locFile = "test/examples/union.tex"
+                                        , locLine = 19
+                                        , locColumn = 76
+                                        }
+                                    )
                                     ( MixfixItem
                                         ( HoleCons
                                             ( TokenCons
@@ -500,23 +582,30 @@
                             }
                         )
                     , stmt1 = StmtFormula
-                        { loc = Location
-                            { locFile = "test/examples/union.tex"
-                            , locLine = 20
-                            , locColumn = 28
-                            }
-                        , formula = FormulaChain
+                        { formula = FormulaChain
                             ( ChainBase
                                 ( ExprVar
                                     ( NamedVar "a" ) :| []
                                 ) Positive
                                 ( Relation
+                                    ( Location
+                                        { locFile = "test/examples/union.tex"
+                                        , locLine = 20
+                                        , locColumn = 30
+                                        }
+                                    )
                                     ( RelationSymbol
                                         ( Command "in" )
                                         ( Marker "elem" )
                                     ) []
                                 )
                                 ( ExprOp
+                                    ( Location
+                                        { locFile = "test/examples/union.tex"
+                                        , locLine = 20
+                                        , locColumn = 34
+                                        }
+                                    )
                                     ( MixfixItem
                                         ( HoleCons
                                             ( TokenCons
@@ -528,6 +617,12 @@
                                     [ ExprVar
                                         ( NamedVar "A" )
                                     , ExprOp
+                                        ( Location
+                                            { locFile = "test/examples/union.tex"
+                                            , locLine = 20
+                                            , locColumn = 43
+                                            }
+                                        )
                                         ( MixfixItem
                                             ( HoleCons
                                                 ( TokenCons
@@ -546,23 +641,30 @@
                             )
                         }
                     , stmt2 = StmtFormula
-                        { loc = Location
-                            { locFile = "test/examples/union.tex"
-                            , locLine = 20
-                            , locColumn = 61
-                            }
-                        , formula = FormulaChain
+                        { formula = FormulaChain
                             ( ChainBase
                                 ( ExprVar
                                     ( NamedVar "a" ) :| []
                                 ) Positive
                                 ( Relation
+                                    ( Location
+                                        { locFile = "test/examples/union.tex"
+                                        , locLine = 20
+                                        , locColumn = 63
+                                        }
+                                    )
                                     ( RelationSymbol
                                         ( Command "in" )
                                         ( Marker "elem" )
                                     ) []
                                 )
                                 ( ExprOp
+                                    ( Location
+                                        { locFile = "test/examples/union.tex"
+                                        , locLine = 20
+                                        , locColumn = 68
+                                        }
+                                    )
                                     ( MixfixItem
                                         ( HoleCons
                                             ( TokenCons
@@ -572,6 +674,12 @@
                                         ( Marker "union" ) LeftAssoc
                                     )
                                     [ ExprOp
+                                        ( Location
+                                            { locFile = "test/examples/union.tex"
+                                            , locLine = 20
+                                            , locColumn = 68
+                                            }
+                                        )
                                         ( MixfixItem
                                             ( HoleCons
                                                 ( TokenCons

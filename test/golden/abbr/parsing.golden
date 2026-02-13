@@ -39,17 +39,18 @@
                 , b = Unbounded
                 , suchThat = Nothing
                 , stmt = StmtFormula
-                    { loc = Location
-                        { locFile = "test/examples/abbr.tex"
-                        , locLine = 2
-                        , locColumn = 52
-                        }
-                    , formula = FormulaChain
+                    { formula = FormulaChain
                         ( ChainBase
                             ( ExprVar
                                 ( NamedVar "y" ) :| []
                             ) Positive
                             ( Relation
+                                ( Location
+                                    { locFile = "test/examples/abbr.tex"
+                                    , locLine = 2
+                                    , locColumn = 54
+                                    }
+                                )
                                 ( RelationSymbol
                                     ( Command "in" )
                                     ( Marker "elem" )
@@ -84,12 +85,6 @@
                 )
             , stmt1 = StmtVerbPhrase
                 { args = TermExpr
-                    ( Location
-                        { locFile = "test/examples/abbr.tex"
-                        , locLine = 6
-                        , locColumn = 7
-                        }
-                    )
                     ( ExprVar
                         ( NamedVar "x" )
                     ) :| []
@@ -111,12 +106,6 @@
                 }
             , stmt2 = StmtVerbPhrase
                 { args = TermExpr
-                    ( Location
-                        { locFile = "test/examples/abbr.tex"
-                        , locLine = 6
-                        , locColumn = 26
-                        }
-                    )
                     ( ExprVar
                         ( NamedVar "x" )
                     ) :| []
@@ -150,6 +139,12 @@
     ( AbbreviationNoun
         ( NamedVar "x" )
         ( Noun
+            ( Location
+                { locFile = "test/examples/abbr.tex"
+                , locLine = 12
+                , locColumn = 14
+                }
+            )
             ( LexicalItemSgPl
                 ( SgPl
                     { sg = TokenCons
@@ -162,17 +157,18 @@
             ) []
         )
         ( StmtFormula
-            { loc = Location
-                { locFile = "test/examples/abbr.tex"
-                , locLine = 12
-                , locColumn = 27
-                }
-            , formula = FormulaChain
+            { formula = FormulaChain
                 ( ChainBase
                     ( ExprVar
                         ( NamedVar "x" ) :| []
                     ) Positive
                     ( Relation
+                        ( Location
+                            { locFile = "test/examples/abbr.tex"
+                            , locLine = 12
+                            , locColumn = 30
+                            }
+                        )
                         ( RelationSymbol
                             ( Symbol "=" )
                             ( Marker "eq" )
@@ -205,23 +201,18 @@
             , b = Unbounded
             , suchThat = Nothing
             , stmt = StmtNoun
-                { loc = Location
-                    { locFile = "test/examples/abbr.tex"
-                    , locLine = 16
-                    , locColumn = 25
-                    }
-                , args = TermExpr
-                    ( Location
-                        { locFile = "test/examples/abbr.tex"
-                        , locLine = 16
-                        , locColumn = 25
-                        }
-                    )
+                { args = TermExpr
                     ( ExprVar
                         ( NamedVar "x" )
                     ) :| []
                 , noun = NounPhrase ( [] )
                     ( Noun
+                        ( Location
+                            { locFile = "test/examples/abbr.tex"
+                            , locLine = 16
+                            , locColumn = 34
+                            }
+                        )
                         ( LexicalItemSgPl
                             ( SgPl
                                 { sg = TokenCons
@@ -273,17 +264,18 @@
             [ NamedVar "y" ]
         )
         ( StmtFormula
-            { loc = Location
-                { locFile = "test/examples/abbr.tex"
-                , locLine = 22
-                , locColumn = 30
-                }
-            , formula = FormulaChain
+            { formula = FormulaChain
                 ( ChainBase
                     ( ExprVar
                         ( NamedVar "x" ) :| []
                     ) Positive
                     ( Relation
+                        ( Location
+                            { locFile = "test/examples/abbr.tex"
+                            , locLine = 22
+                            , locColumn = 33
+                            }
+                        )
                         ( RelationSymbol
                             ( Symbol "=" )
                             ( Marker "eq" )
@@ -316,12 +308,6 @@
                 )
             , stmt1 = StmtVerbPhrase
                 { args = TermExpr
-                    ( Location
-                        { locFile = "test/examples/abbr.tex"
-                        , locLine = 26
-                        , locColumn = 8
-                        }
-                    )
                     ( ExprVar
                         ( NamedVar "x" )
                     ) :| []
@@ -350,12 +336,6 @@
                             ( Marker "converges" )
                         )
                         [ TermExpr
-                            ( Location
-                                { locFile = "test/examples/abbr.tex"
-                                , locLine = 26
-                                , locColumn = 25
-                                }
-                            )
                             ( ExprVar
                                 ( NamedVar "y" )
                             )
@@ -363,17 +343,18 @@
                     )
                 }
             , stmt2 = StmtFormula
-                { loc = Location
-                    { locFile = "test/examples/abbr.tex"
-                    , locLine = 26
-                    , locColumn = 35
-                    }
-                , formula = FormulaChain
+                { formula = FormulaChain
                     ( ChainBase
                         ( ExprVar
                             ( NamedVar "x" ) :| []
                         ) Positive
                         ( Relation
+                            ( Location
+                                { locFile = "test/examples/abbr.tex"
+                                , locLine = 26
+                                , locColumn = 38
+                                }
+                            )
                             ( RelationSymbol
                                 ( Symbol "=" )
                                 ( Marker "eq" )
@@ -406,17 +387,18 @@
                     }
                 )
             , stmt1 = StmtFormula
-                { loc = Location
-                    { locFile = "test/examples/abbr.tex"
-                    , locLine = 32
-                    , locColumn = 7
-                    }
-                , formula = FormulaChain
+                { formula = FormulaChain
                     ( ChainBase
                         ( ExprVar
                             ( NamedVar "x" ) :| []
                         ) Positive
                         ( Relation
+                            ( Location
+                                { locFile = "test/examples/abbr.tex"
+                                , locLine = 32
+                                , locColumn = 9
+                                }
+                            )
                             ( RelationSymbol
                                 ( Command "notin" )
                                 ( Marker "notelem" )
@@ -428,17 +410,18 @@
                     )
                 }
             , stmt2 = StmtFormula
-                { loc = Location
-                    { locFile = "test/examples/abbr.tex"
-                    , locLine = 32
-                    , locColumn = 25
-                    }
-                , formula = FormulaChain
+                { formula = FormulaChain
                     ( ChainBase
                         ( ExprVar
                             ( NamedVar "x" ) :| []
                         ) Negative
                         ( Relation
+                            ( Location
+                                { locFile = "test/examples/abbr.tex"
+                                , locLine = 32
+                                , locColumn = 31
+                                }
+                            )
                             ( RelationSymbol
                                 ( Command "in" )
                                 ( Marker "elem" )
@@ -471,23 +454,18 @@
                     }
                 )
             , stmt1 = StmtNoun
-                { loc = Location
-                    { locFile = "test/examples/abbr.tex"
-                    , locLine = 38
-                    , locColumn = 8
-                    }
-                , args = TermExpr
-                    ( Location
-                        { locFile = "test/examples/abbr.tex"
-                        , locLine = 38
-                        , locColumn = 8
-                        }
-                    )
+                { args = TermExpr
                     ( ExprVar
                         ( NamedVar "x" )
                     ) :| []
                 , noun = NounPhrase ( [] )
                     ( Noun
+                        ( Location
+                            { locFile = "test/examples/abbr.tex"
+                            , locLine = 38
+                            , locColumn = 18
+                            }
+                        )
                         ( LexicalItemSgPl
                             ( SgPl
                                 { sg = TokenCons
@@ -505,12 +483,6 @@
                             ( Marker "elem" )
                         )
                         [ TermExpr
-                            ( Location
-                                { locFile = "test/examples/abbr.tex"
-                                , locLine = 38
-                                , locColumn = 29
-                                }
-                            )
                             ( ExprVar
                                 ( NamedVar "y" )
                             )
@@ -518,17 +490,18 @@
                     ) ( Nothing ) ( [] ) ( Nothing )
                 }
             , stmt2 = StmtFormula
-                { loc = Location
-                    { locFile = "test/examples/abbr.tex"
-                    , locLine = 38
-                    , locColumn = 39
-                    }
-                , formula = FormulaChain
+                { formula = FormulaChain
                     ( ChainBase
                         ( ExprVar
                             ( NamedVar "x" ) :| []
                         ) Positive
                         ( Relation
+                            ( Location
+                                { locFile = "test/examples/abbr.tex"
+                                , locLine = 38
+                                , locColumn = 41
+                                }
+                            )
                             ( RelationSymbol
                                 ( Command "in" )
                                 ( Marker "elem" )
@@ -562,12 +535,6 @@
                 )
             , stmt1 = StmtVerbPhrase
                 { args = TermExpr
-                    ( Location
-                        { locFile = "test/examples/abbr.tex"
-                        , locLine = 44
-                        , locColumn = 8
-                        }
-                    )
                     ( ExprVar
                         ( NamedVar "x" )
                     ) :| []
@@ -590,12 +557,6 @@
                             ( Marker "eq" )
                         )
                         [ TermExpr
-                            ( Location
-                                { locFile = "test/examples/abbr.tex"
-                                , locLine = 44
-                                , locColumn = 19
-                                }
-                            )
                             ( ExprVar
                                 ( NamedVar "y" )
                             )
@@ -603,17 +564,18 @@
                     )
                 }
             , stmt2 = StmtFormula
-                { loc = Location
-                    { locFile = "test/examples/abbr.tex"
-                    , locLine = 44
-                    , locColumn = 29
-                    }
-                , formula = FormulaChain
+                { formula = FormulaChain
                     ( ChainBase
                         ( ExprVar
                             ( NamedVar "x" ) :| []
                         ) Positive
                         ( Relation
+                            ( Location
+                                { locFile = "test/examples/abbr.tex"
+                                , locLine = 44
+                                , locColumn = 32
+                                }
+                            )
                             ( RelationSymbol
                                 ( Symbol "=" )
                                 ( Marker "eq" )

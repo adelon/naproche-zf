@@ -8,22 +8,35 @@
     ( Marker "formula_test_forall" )
     ( Lemma []
         ( StmtFormula
-            { loc = Location
-                { locFile = "test/examples/formula.tex"
-                , locLine = 2
-                , locColumn = 5
-                }
-            , formula = FormulaQuantified Universally
+            { formula = FormulaQuantified
+                ( Location
+                    { locFile = "test/examples/formula.tex"
+                    , locLine = 2
+                    , locColumn = 6
+                    }
+                ) Universally
                 ( NamedVar "x" :|
                     [ NamedVar "y" ]
                 ) Unbounded
-                ( Connected Conjunction
+                ( Connected
+                    ( Location
+                        { locFile = "test/examples/formula.tex"
+                        , locLine = 2
+                        , locColumn = 20
+                        }
+                    ) Conjunction
                     ( FormulaChain
                         ( ChainBase
                             ( ExprVar
                                 ( NamedVar "x" ) :| []
                             ) Positive
                             ( Relation
+                                ( Location
+                                    { locFile = "test/examples/formula.tex"
+                                    , locLine = 2
+                                    , locColumn = 22
+                                    }
+                                )
                                 ( RelationSymbol
                                     ( Symbol "=" )
                                     ( Marker "eq" )
@@ -40,6 +53,12 @@
                                 ( NamedVar "y" ) :| []
                             ) Positive
                             ( Relation
+                                ( Location
+                                    { locFile = "test/examples/formula.tex"
+                                    , locLine = 2
+                                    , locColumn = 33
+                                    }
+                                )
                                 ( RelationSymbol
                                     ( Symbol "=" )
                                     ( Marker "eq" )
@@ -64,12 +83,13 @@
     ( Marker "formula_test_exists" )
     ( Lemma []
         ( StmtFormula
-            { loc = Location
-                { locFile = "test/examples/formula.tex"
-                , locLine = 6
-                , locColumn = 5
-                }
-            , formula = FormulaQuantified Existentially
+            { formula = FormulaQuantified
+                ( Location
+                    { locFile = "test/examples/formula.tex"
+                    , locLine = 6
+                    , locColumn = 6
+                    }
+                ) Existentially
                 ( NamedVar "x" :|
                     [ NamedVar "y" ]
                 ) Unbounded
@@ -79,6 +99,12 @@
                             ( NamedVar "x" ) :| []
                         ) Positive
                         ( Relation
+                            ( Location
+                                { locFile = "test/examples/formula.tex"
+                                , locLine = 6
+                                , locColumn = 22
+                                }
+                            )
                             ( RelationSymbol
                                 ( Symbol "=" )
                                 ( Marker "eq" )
@@ -105,12 +131,13 @@
             { conn = Equivalence
             , mloc = Nothing
             , stmt1 = StmtFormula
-                { loc = Location
-                    { locFile = "test/examples/formula.tex"
-                    , locLine = 10
-                    , locColumn = 5
-                    }
-                , formula = FormulaQuantified Existentially
+                { formula = FormulaQuantified
+                    ( Location
+                        { locFile = "test/examples/formula.tex"
+                        , locLine = 10
+                        , locColumn = 6
+                        }
+                    ) Existentially
                     ( NamedVar "x" :|
                         [ NamedVar "y" ]
                     ) Unbounded
@@ -120,6 +147,12 @@
                                 ( NamedVar "x" ) :| []
                             ) Positive
                             ( Relation
+                                ( Location
+                                    { locFile = "test/examples/formula.tex"
+                                    , locLine = 10
+                                    , locColumn = 22
+                                    }
+                                )
                                 ( RelationSymbol
                                     ( Symbol "=" )
                                     ( Marker "eq" )
@@ -138,12 +171,13 @@
                     , locColumn = 42
                     }
                 , stmt = StmtFormula
-                    { loc = Location
-                        { locFile = "test/examples/formula.tex"
-                        , locLine = 10
-                        , locColumn = 46
-                        }
-                    , formula = FormulaQuantified Existentially
+                    { formula = FormulaQuantified
+                        ( Location
+                            { locFile = "test/examples/formula.tex"
+                            , locLine = 10
+                            , locColumn = 47
+                            }
+                        ) Existentially
                         ( NamedVar "x" :| [] ) Unbounded
                         ( FormulaChain
                             ( ChainBase
@@ -151,6 +185,12 @@
                                     ( NamedVar "x" ) :| []
                                 ) Positive
                                 ( Relation
+                                    ( Location
+                                        { locFile = "test/examples/formula.tex"
+                                        , locLine = 10
+                                        , locColumn = 60
+                                        }
+                                    )
                                     ( RelationSymbol
                                         ( Command "neq" )
                                         ( Marker "neq" )

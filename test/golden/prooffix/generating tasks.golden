@@ -9,9 +9,9 @@
         }
     , taskConjecture = TermSymbol
         ( Location
-            { locFile = "<nowhere>"
-            , locLine = -1
-            , locColumn = -1
+            { locFile = "test/examples/prooffix.tex"
+            , locLine = 6
+            , locColumn = 13
             }
         )
         ( SymbolPredicate
@@ -33,9 +33,9 @@
     , taskHypotheses =
         [ Hypothesis Marker "assumetest1" TermSymbol
             ( Location
-                { locFile = "<nowhere>"
-                , locLine = -1
-                , locColumn = -1
+                { locFile = "test/examples/prooffix.tex"
+                , locLine = 6
+                , locColumn = 13
                 }
             )
             ( SymbolPredicate
@@ -60,9 +60,9 @@
         }
     , taskConjecture = TermSymbol
         ( Location
-            { locFile = "<nowhere>"
-            , locLine = -1
-            , locColumn = -1
+            { locFile = "test/examples/prooffix.tex"
+            , locLine = 2
+            , locColumn = 28
             }
         )
         ( SymbolPredicate

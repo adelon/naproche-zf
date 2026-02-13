@@ -10,6 +10,12 @@
         ( DefnAdj
             ( Just NounPhrase ( [] )
                 ( Noun
+                    ( Location
+                        { locFile = "test/examples/russell.tex"
+                        , locLine = 2
+                        , locColumn = 7
+                        }
+                    )
                     ( LexicalItemSgPl
                         ( SgPl
                             { sg = TokenCons
@@ -46,6 +52,12 @@
                 }
             , qp = QuantPhrase Universally NounPhrase ( [] )
                 ( Noun
+                    ( Location
+                        { locFile = "test/examples/russell.tex"
+                        , locLine = 4
+                        , locColumn = 13
+                        }
+                    )
                     ( LexicalItemSgPl
                         ( SgPl
                             { sg = TokenCons
@@ -61,17 +73,18 @@
                     [ NamedVar "x" ]
                 ) ( [] ) ( Nothing )
             , stmt = StmtFormula
-                { loc = Location
-                    { locFile = "test/examples/russell.tex"
-                    , locLine = 4
-                    , locColumn = 30
-                    }
-                , formula = FormulaChain
+                { formula = FormulaChain
                     ( ChainBase
                         ( ExprVar
                             ( NamedVar "x" ) :| []
                         ) Positive
                         ( Relation
+                            ( Location
+                                { locFile = "test/examples/russell.tex"
+                                , locLine = 4
+                                , locColumn = 32
+                                }
+                            )
                             ( RelationSymbol
                                 ( Command "in" )
                                 ( Marker "elem" )
@@ -124,6 +137,12 @@
                         ]
                     )
                     ( Noun
+                        ( Location
+                            { locFile = "test/examples/russell.tex"
+                            , locLine = 8
+                            , locColumn = 31
+                            }
+                        )
                         ( LexicalItemSgPl
                             ( SgPl
                                 { sg = TokenCons
@@ -177,6 +196,12 @@
                 ]
             )
             ( Noun
+                ( Location
+                    { locFile = "test/examples/russell.tex"
+                    , locLine = 12
+                    , locColumn = 22
+                    }
+                )
                 ( LexicalItemSgPl
                     ( SgPl
                         { sg = TokenCons
@@ -200,22 +225,29 @@
                 )
                 ( NamedVar "R" )
                 ( ExprSep
+                    ( Location
+                        { locFile = "test/examples/russell.tex"
+                        , locLine = 13
+                        , locColumn = 14
+                        }
+                    )
                     ( NamedVar "x" )
                     ( ExprVar
                         ( NamedVar "V" )
                     )
                     ( StmtFormula
-                        { loc = Location
-                            { locFile = "<nowhere>"
-                            , locLine = -1
-                            , locColumn = -1
-                            }
-                        , formula = FormulaChain
+                        { formula = FormulaChain
                             ( ChainBase
                                 ( ExprVar
                                     ( NamedVar "x" ) :| []
                                 ) Negative
                                 ( Relation
+                                    ( Location
+                                        { locFile = "test/examples/russell.tex"
+                                        , locLine = 13
+                                        , locColumn = 34
+                                        }
+                                    )
                                     ( RelationSymbol
                                         ( Command "in" )
                                         ( Marker "elem" )
@@ -239,17 +271,18 @@
                         { conn = Equivalence
                         , mloc = Nothing
                         , stmt1 = StmtFormula
-                            { loc = Location
-                                { locFile = "test/examples/russell.tex"
-                                , locLine = 14
-                                , locColumn = 10
-                                }
-                            , formula = FormulaChain
+                            { formula = FormulaChain
                                 ( ChainBase
                                     ( ExprVar
                                         ( NamedVar "R" ) :| []
                                     ) Positive
                                     ( Relation
+                                        ( Location
+                                            { locFile = "test/examples/russell.tex"
+                                            , locLine = 14
+                                            , locColumn = 12
+                                            }
+                                        )
                                         ( RelationSymbol
                                             ( Command "in" )
                                             ( Marker "elem" )
@@ -261,17 +294,18 @@
                                 )
                             }
                         , stmt2 = StmtFormula
-                            { loc = Location
-                                { locFile = "test/examples/russell.tex"
-                                , locLine = 14
-                                , locColumn = 23
-                                }
-                            , formula = FormulaChain
+                            { formula = FormulaChain
                                 ( ChainBase
                                     ( ExprVar
                                         ( NamedVar "R" ) :| []
                                     ) Negative
                                     ( Relation
+                                        ( Location
+                                            { locFile = "test/examples/russell.tex"
+                                            , locLine = 14
+                                            , locColumn = 29
+                                            }
+                                        )
                                         ( RelationSymbol
                                             ( Command "in" )
                                             ( Marker "elem" )
@@ -292,12 +326,13 @@
                             }
                         ) Nothing
                         ( StmtFormula
-                            { loc = Location
-                                { locFile = "test/examples/russell.tex"
-                                , locLine = 15
-                                , locColumn = 5
-                                }
-                            , formula = PropositionalConstant IsBottom
+                            { formula = PropositionalConstant
+                                ( Location
+                                    { locFile = "test/examples/russell.tex"
+                                    , locLine = 15
+                                    , locColumn = 5
+                                    }
+                                ) IsBottom
                             }
                         ) JustificationEmpty ( Qed Nothing JustificationEmpty )
                     )

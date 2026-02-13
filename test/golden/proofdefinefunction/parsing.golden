@@ -83,17 +83,18 @@
             )
         )
         ( StmtFormula
-            { loc = Location
-                { locFile = "test/examples/proofdefinefunction.tex"
-                , locLine = 14
-                , locColumn = 29
-                }
-            , formula = FormulaChain
+            { formula = FormulaChain
                 ( ChainBase
                     ( ExprVar
                         ( NamedVar "f" ) :| []
                     ) Positive
                     ( Relation
+                        ( Location
+                            { locFile = "test/examples/proofdefinefunction.tex"
+                            , locLine = 14
+                            , locColumn = 31
+                            }
+                        )
                         ( RelationSymbol
                             ( Symbol "=" )
                             ( Marker "eq" )
@@ -118,6 +119,12 @@
         ( DefnNoun
             ( NamedVar "f" )
             ( Noun
+                ( Location
+                    { locFile = "test/examples/proofdefinefunction.tex"
+                    , locLine = 19
+                    , locColumn = 14
+                    }
+                )
                 ( LexicalItemSgPl
                     ( SgPl
                         { sg = TokenCons
@@ -131,17 +138,18 @@
             )
         )
         ( StmtFormula
-            { loc = Location
-                { locFile = "test/examples/proofdefinefunction.tex"
-                , locLine = 19
-                , locColumn = 27
-                }
-            , formula = FormulaChain
+            { formula = FormulaChain
                 ( ChainBase
                     ( ExprVar
                         ( NamedVar "f" ) :| []
                     ) Positive
                     ( Relation
+                        ( Location
+                            { locFile = "test/examples/proofdefinefunction.tex"
+                            , locLine = 19
+                            , locColumn = 29
+                            }
+                        )
                         ( RelationSymbol
                             ( Symbol "=" )
                             ( Marker "eq" )
@@ -173,17 +181,18 @@
                     }
                 )
             , stmt1 = StmtFormula
-                { loc = Location
-                    { locFile = "test/examples/proofdefinefunction.tex"
-                    , locLine = 23
-                    , locColumn = 8
-                    }
-                , formula = FormulaChain
+                { formula = FormulaChain
                     ( ChainBase
                         ( ExprVar
                             ( NamedVar "x" ) :| []
                         ) Positive
                         ( Relation
+                            ( Location
+                                { locFile = "test/examples/proofdefinefunction.tex"
+                                , locLine = 23
+                                , locColumn = 10
+                                }
+                            )
                             ( RelationSymbol
                                 ( Command "in" )
                                 ( Marker "elem" )
@@ -195,17 +204,18 @@
                     )
                 }
             , stmt2 = StmtFormula
-                { loc = Location
-                    { locFile = "test/examples/proofdefinefunction.tex"
-                    , locLine = 23
-                    , locColumn = 23
-                    }
-                , formula = FormulaChain
+                { formula = FormulaChain
                     ( ChainBase
                         ( ExprVar
                             ( NamedVar "x" ) :| []
                         ) Positive
                         ( Relation
+                            ( Location
+                                { locFile = "test/examples/proofdefinefunction.tex"
+                                , locLine = 23
+                                , locColumn = 25
+                                }
+                            )
                             ( RelationSymbol
                                 ( Command "in" )
                                 ( Marker "elem" )

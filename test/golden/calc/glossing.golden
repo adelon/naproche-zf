@@ -9,9 +9,9 @@
     ( Lemma []
         ( TermSymbol
             ( Location
-                { locFile = "<nowhere>"
-                , locLine = -1
-                , locColumn = -1
+                { locFile = "test/examples/calc.tex"
+                , locLine = 2
+                , locColumn = 8
                 }
             )
             ( SymbolPredicate
@@ -40,9 +40,9 @@
     ( Lemma []
         ( TermSymbol
             ( Location
-                { locFile = "<nowhere>"
-                , locLine = -1
-                , locColumn = -1
+                { locFile = "test/examples/calc.tex"
+                , locLine = 6
+                , locColumn = 8
                 }
             )
             ( SymbolPredicate
@@ -71,9 +71,9 @@
     ( Lemma []
         ( TermSymbol
             ( Location
-                { locFile = "<nowhere>"
-                , locLine = -1
-                , locColumn = -1
+                { locFile = "test/examples/calc.tex"
+                , locLine = 10
+                , locColumn = 8
                 }
             )
             ( SymbolPredicate
@@ -146,9 +146,9 @@
     ( Lemma []
         ( TermSymbol
             ( Location
-                { locFile = "<nowhere>"
-                , locLine = -1
-                , locColumn = -1
+                { locFile = "test/examples/calc.tex"
+                , locLine = 23
+                , locColumn = 8
                 }
             )
             ( SymbolPredicate
@@ -189,9 +189,9 @@
         ( Biconditionals
             ( TermSymbol
                 ( Location
-                    { locFile = "<nowhere>"
-                    , locLine = -1
-                    , locColumn = -1
+                    { locFile = "test/examples/calc.tex"
+                    , locLine = 27
+                    , locColumn = 11
                     }
                 )
                 ( SymbolPredicate
@@ -215,9 +215,9 @@
                 [
                     ( TermSymbol
                         ( Location
-                            { locFile = "<nowhere>"
-                            , locLine = -1
-                            , locColumn = -1
+                            { locFile = "test/examples/calc.tex"
+                            , locLine = 30
+                            , locColumn = 21
                             }
                         )
                         ( SymbolPredicate

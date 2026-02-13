@@ -8,17 +8,18 @@
     ( Marker "prop1" )
     ( Lemma []
         ( StmtFormula
-            { loc = Location
-                { locFile = "test/examples/byRef.tex"
-                , locLine = 2
-                , locColumn = 5
-                }
-            , formula = FormulaChain
+            { formula = FormulaChain
                 ( ChainBase
                     ( ExprVar
                         ( NamedVar "a" ) :| []
                     ) Positive
                     ( Relation
+                        ( Location
+                            { locFile = "test/examples/byRef.tex"
+                            , locLine = 2
+                            , locColumn = 8
+                            }
+                        )
                         ( RelationSymbol
                             ( Symbol "=" )
                             ( Marker "eq" )
@@ -41,17 +42,18 @@
     ( Marker "prop2" )
     ( Lemma []
         ( StmtFormula
-            { loc = Location
-                { locFile = "test/examples/byRef.tex"
-                , locLine = 6
-                , locColumn = 5
-                }
-            , formula = FormulaChain
+            { formula = FormulaChain
                 ( ChainBase
                     ( ExprVar
                         ( NamedVar "b" ) :| []
                     ) Positive
                     ( Relation
+                        ( Location
+                            { locFile = "test/examples/byRef.tex"
+                            , locLine = 6
+                            , locColumn = 8
+                            }
+                        )
                         ( RelationSymbol
                             ( Symbol "=" )
                             ( Marker "eq" )
@@ -74,17 +76,18 @@
     ( Marker "prop3" )
     ( Lemma []
         ( StmtFormula
-            { loc = Location
-                { locFile = "test/examples/byRef.tex"
-                , locLine = 10
-                , locColumn = 5
-                }
-            , formula = FormulaChain
+            { formula = FormulaChain
                 ( ChainBase
                     ( ExprVar
                         ( NamedVar "c" ) :| []
                     ) Positive
                     ( Relation
+                        ( Location
+                            { locFile = "test/examples/byRef.tex"
+                            , locLine = 10
+                            , locColumn = 8
+                            }
+                        )
                         ( RelationSymbol
                             ( Symbol "=" )
                             ( Marker "eq" )
@@ -133,17 +136,18 @@
     ( Marker "prop4" )
     ( Lemma []
         ( StmtFormula
-            { loc = Location
-                { locFile = "test/examples/byRef.tex"
-                , locLine = 17
-                , locColumn = 5
-                }
-            , formula = FormulaChain
+            { formula = FormulaChain
                 ( ChainBase
                     ( ExprVar
                         ( NamedVar "e" ) :| []
                     ) Positive
                     ( Relation
+                        ( Location
+                            { locFile = "test/examples/byRef.tex"
+                            , locLine = 17
+                            , locColumn = 8
+                            }
+                        )
                         ( RelationSymbol
                             ( Symbol "=" )
                             ( Marker "eq" )
@@ -181,17 +185,18 @@
             , b = Unbounded
             , suchThat = Nothing
             , stmt = StmtFormula
-                { loc = Location
-                    { locFile = "test/examples/byRef.tex"
-                    , locLine = 20
-                    , locColumn = 25
-                    }
-                , formula = FormulaChain
+                { formula = FormulaChain
                     ( ChainBase
                         ( ExprVar
                             ( NamedVar "d" ) :| []
                         ) Positive
                         ( Relation
+                            ( Location
+                                { locFile = "test/examples/byRef.tex"
+                                , locLine = 20
+                                , locColumn = 28
+                                }
+                            )
                             ( RelationSymbol
                                 ( Symbol "=" )
                                 ( Marker "eq" )
@@ -224,17 +229,18 @@
     ( Marker "prop5" )
     ( Lemma []
         ( StmtFormula
-            { loc = Location
-                { locFile = "test/examples/byRef.tex"
-                , locLine = 24
-                , locColumn = 5
-                }
-            , formula = FormulaChain
+            { formula = FormulaChain
                 ( ChainBase
                     ( ExprVar
                         ( NamedVar "f" ) :| []
                     ) Positive
                     ( Relation
+                        ( Location
+                            { locFile = "test/examples/byRef.tex"
+                            , locLine = 24
+                            , locColumn = 8
+                            }
+                        )
                         ( RelationSymbol
                             ( Symbol "=" )
                             ( Marker "eq" )

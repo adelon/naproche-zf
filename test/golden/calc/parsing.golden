@@ -8,17 +8,18 @@
     ( Marker "trivial" )
     ( Lemma []
         ( StmtFormula
-            { loc = Location
-                { locFile = "test/examples/calc.tex"
-                , locLine = 2
-                , locColumn = 5
-                }
-            , formula = FormulaChain
+            { formula = FormulaChain
                 ( ChainBase
                     ( ExprVar
                         ( NamedVar "x" ) :| []
                     ) Positive
                     ( Relation
+                        ( Location
+                            { locFile = "test/examples/calc.tex"
+                            , locLine = 2
+                            , locColumn = 8
+                            }
+                        )
                         ( RelationSymbol
                             ( Symbol "=" )
                             ( Marker "eq" )
@@ -41,17 +42,18 @@
     ( Marker "irrelevant" )
     ( Lemma []
         ( StmtFormula
-            { loc = Location
-                { locFile = "test/examples/calc.tex"
-                , locLine = 6
-                , locColumn = 5
-                }
-            , formula = FormulaChain
+            { formula = FormulaChain
                 ( ChainBase
                     ( ExprVar
                         ( NamedVar "z" ) :| []
                     ) Positive
                     ( Relation
+                        ( Location
+                            { locFile = "test/examples/calc.tex"
+                            , locLine = 6
+                            , locColumn = 8
+                            }
+                        )
                         ( RelationSymbol
                             ( Symbol "=" )
                             ( Marker "eq" )
@@ -74,17 +76,18 @@
     ( Marker "alsotrivial" )
     ( Lemma []
         ( StmtFormula
-            { loc = Location
-                { locFile = "test/examples/calc.tex"
-                , locLine = 10
-                , locColumn = 5
-                }
-            , formula = FormulaChain
+            { formula = FormulaChain
                 ( ChainBase
                     ( ExprVar
                         ( NamedVar "y" ) :| []
                     ) Positive
                     ( Relation
+                        ( Location
+                            { locFile = "test/examples/calc.tex"
+                            , locLine = 10
+                            , locColumn = 8
+                            }
+                        )
                         ( RelationSymbol
                             ( Symbol "=" )
                             ( Marker "eq" )
@@ -146,17 +149,18 @@
     ( Marker "trivial_biconditionals" )
     ( Lemma []
         ( StmtFormula
-            { loc = Location
-                { locFile = "test/examples/calc.tex"
-                , locLine = 23
-                , locColumn = 5
-                }
-            , formula = FormulaChain
+            { formula = FormulaChain
                 ( ChainBase
                     ( ExprVar
                         ( NamedVar "y" ) :| []
                     ) Positive
                     ( Relation
+                        ( Location
+                            { locFile = "test/examples/calc.tex"
+                            , locLine = 23
+                            , locColumn = 8
+                            }
+                        )
                         ( RelationSymbol
                             ( Symbol "=" )
                             ( Marker "eq" )
@@ -190,6 +194,12 @@
                         ( NamedVar "y" ) :| []
                     ) Positive
                     ( Relation
+                        ( Location
+                            { locFile = "test/examples/calc.tex"
+                            , locLine = 27
+                            , locColumn = 11
+                            }
+                        )
                         ( RelationSymbol
                             ( Symbol "=" )
                             ( Marker "eq" )
@@ -201,7 +211,13 @@
                 )
             )
             (
-                ( PropositionalConstant IsTop
+                ( PropositionalConstant
+                    ( Location
+                        { locFile = "test/examples/calc.tex"
+                        , locLine = 28
+                        , locColumn = 19
+                        }
+                    ) IsTop
                 , JustificationEmpty
                 ) :|
                 [
@@ -211,6 +227,12 @@
                                 ( NamedVar "y" ) :| []
                             ) Positive
                             ( Relation
+                                ( Location
+                                    { locFile = "test/examples/calc.tex"
+                                    , locLine = 30
+                                    , locColumn = 21
+                                    }
+                                )
                                 ( RelationSymbol
                                     ( Symbol "=" )
                                     ( Marker "eq" )

@@ -15,17 +15,18 @@
         [ NamedVar "y" ]
         ( NamedVar "z" )
         ( StmtFormula
-            { loc = Location
-                { locFile = "test/examples/relparam.tex"
-                , locLine = 3
-                , locColumn = 24
-                }
-            , formula = FormulaChain
+            { formula = FormulaChain
                 ( ChainBase
                     ( ExprVar
                         ( NamedVar "x" ) :| []
                     ) Positive
                     ( Relation
+                        ( Location
+                            { locFile = "test/examples/relparam.tex"
+                            , locLine = 3
+                            , locColumn = 27
+                            }
+                        )
                         ( RelationSymbol
                             ( Symbol "=" )
                             ( Marker "eq" )
@@ -58,17 +59,18 @@
             , b = Unbounded
             , suchThat = Nothing
             , stmt = StmtFormula
-                { loc = Location
-                    { locFile = "test/examples/relparam.tex"
-                    , locLine = 7
-                    , locColumn = 25
-                    }
-                , formula = FormulaChain
+                { formula = FormulaChain
                     ( ChainBase
                         ( ExprVar
                             ( NamedVar "x" ) :| []
                         ) Positive
                         ( Relation
+                            ( Location
+                                { locFile = "test/examples/relparam.tex"
+                                , locLine = 7
+                                , locColumn = 27
+                                }
+                            )
                             ( RelationSymbol
                                 ( Command "EQUAL" )
                                 ( Marker "abbr_equal" )
@@ -102,17 +104,18 @@
         [ NamedVar "y" ]
         ( NamedVar "z" )
         ( StmtFormula
-            { loc = Location
-                { locFile = "test/examples/relparam.tex"
-                , locLine = 12
-                , locColumn = 25
-                }
-            , formula = FormulaChain
+            { formula = FormulaChain
                 ( ChainBase
                     ( ExprVar
                         ( NamedVar "x" ) :| []
                     ) Positive
                     ( Relation
+                        ( Location
+                            { locFile = "test/examples/relparam.tex"
+                            , locLine = 12
+                            , locColumn = 28
+                            }
+                        )
                         ( RelationSymbol
                             ( Symbol "=" )
                             ( Marker "eq" )
@@ -145,17 +148,18 @@
             , b = Unbounded
             , suchThat = Nothing
             , stmt = StmtFormula
-                { loc = Location
-                    { locFile = "test/examples/relparam.tex"
-                    , locLine = 16
-                    , locColumn = 25
-                    }
-                , formula = FormulaChain
+                { formula = FormulaChain
                     ( ChainBase
                         ( ExprVar
                             ( NamedVar "x" ) :| []
                         ) Positive
                         ( Relation
+                            ( Location
+                                { locFile = "test/examples/relparam.tex"
+                                , locLine = 16
+                                , locColumn = 27
+                                }
+                            )
                             ( RelationSymbol
                                 ( Command "EQUALS" )
                                 ( Marker "defn_equals" )

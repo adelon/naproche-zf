@@ -10,9 +10,9 @@
     , taskConjecture = Connected Implication
         ( TermSymbol
             ( Location
-                { locFile = "<nowhere>"
-                , locLine = -1
-                , locColumn = -1
+                { locFile = "test/examples/relation-notation.tex"
+                , locLine = 2
+                , locColumn = 10
                 }
             )
             ( SymbolPredicate
@@ -25,9 +25,9 @@
             )
             [ TermSymbol
                 ( Location
-                    { locFile = "<nowhere>"
-                    , locLine = -1
-                    , locColumn = -1
+                    { locFile = "test/examples/relation-notation.tex"
+                    , locLine = 2
+                    , locColumn = 10
                     }
                 )
                 ( SymbolMixfix
@@ -58,9 +58,9 @@
         )
         ( TermSymbol
             ( Location
-                { locFile = "<nowhere>"
-                , locLine = -1
-                , locColumn = -1
+                { locFile = "test/examples/relation-notation.tex"
+                , locLine = 2
+                , locColumn = 33
                 }
             )
             ( SymbolPredicate
@@ -73,9 +73,9 @@
             )
             [ TermSymbol
                 ( Location
-                    { locFile = "<nowhere>"
-                    , locLine = -1
-                    , locColumn = -1
+                    { locFile = "test/examples/relation-notation.tex"
+                    , locLine = 2
+                    , locColumn = 33
                     }
                 )
                 ( SymbolMixfix

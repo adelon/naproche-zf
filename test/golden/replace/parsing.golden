@@ -11,23 +11,30 @@
             { conn = Equivalence
             , mloc = Nothing
             , stmt1 = StmtFormula
-                { loc = Location
-                    { locFile = "test/examples/replace.tex"
-                    , locLine = 2
-                    , locColumn = 5
-                    }
-                , formula = FormulaChain
+                { formula = FormulaChain
                     ( ChainBase
                         ( ExprVar
                             ( NamedVar "x" ) :| []
                         ) Positive
                         ( Relation
+                            ( Location
+                                { locFile = "test/examples/replace.tex"
+                                , locLine = 2
+                                , locColumn = 7
+                                }
+                            )
                             ( RelationSymbol
                                 ( Command "in" )
                                 ( Marker "elem" )
                             ) []
                         )
                         ( ExprOp
+                            ( Location
+                                { locFile = "test/examples/replace.tex"
+                                , locLine = 2
+                                , locColumn = 11
+                                }
+                            )
                             ( MixfixItem
                                 ( TokenCons
                                     ( Command "cons" )
@@ -55,17 +62,18 @@
                 { conn = Disjunction
                 , mloc = Nothing
                 , stmt1 = StmtFormula
-                    { loc = Location
-                        { locFile = "test/examples/replace.tex"
-                        , locLine = 2
-                        , locColumn = 28
-                        }
-                    , formula = FormulaChain
+                    { formula = FormulaChain
                         ( ChainBase
                             ( ExprVar
                                 ( NamedVar "x" ) :| []
                             ) Positive
                             ( Relation
+                                ( Location
+                                    { locFile = "test/examples/replace.tex"
+                                    , locLine = 2
+                                    , locColumn = 31
+                                    }
+                                )
                                 ( RelationSymbol
                                     ( Symbol "=" )
                                     ( Marker "eq" )
@@ -77,17 +85,18 @@
                         )
                     }
                 , stmt2 = StmtFormula
-                    { loc = Location
-                        { locFile = "test/examples/replace.tex"
-                        , locLine = 2
-                        , locColumn = 39
-                        }
-                    , formula = FormulaChain
+                    { formula = FormulaChain
                         ( ChainBase
                             ( ExprVar
                                 ( NamedVar "x" ) :| []
                             ) Positive
                             ( Relation
+                                ( Location
+                                    { locFile = "test/examples/replace.tex"
+                                    , locLine = 2
+                                    , locColumn = 41
+                                    }
+                                )
                                 ( RelationSymbol
                                     ( Command "in" )
                                     ( Marker "elem" )
@@ -125,7 +134,19 @@
             ]
         )
         ( ExprReplace
+            ( Location
+                { locFile = "test/examples/replace.tex"
+                , locLine = 6
+                , locColumn = 18
+                }
+            )
             ( ExprOp
+                ( Location
+                    { locFile = "test/examples/replace.tex"
+                    , locLine = 6
+                    , locColumn = 21
+                    }
+                )
                 ( MixfixItem
                     ( TokenCons
                         ( Command "pair" )
@@ -179,7 +200,19 @@
             ) []
         )
         ( ExprFiniteSet
+            ( Location
+                { locFile = "test/examples/replace.tex"
+                , locLine = 10
+                , locColumn = 14
+                }
+            )
             ( ExprOp
+                ( Location
+                    { locFile = "test/examples/replace.tex"
+                    , locLine = 10
+                    , locColumn = 16
+                    }
+                )
                 ( MixfixItem
                     ( TokenCons
                         ( Command "emptyset" ) End
@@ -199,14 +232,15 @@
     ( Marker "pair_emptyset_in_times_unit" )
     ( Lemma []
         ( StmtFormula
-            { loc = Location
-                { locFile = "test/examples/replace.tex"
-                , locLine = 14
-                , locColumn = 5
-                }
-            , formula = FormulaChain
+            { formula = FormulaChain
                 ( ChainBase
                     ( ExprOp
+                        ( Location
+                            { locFile = "test/examples/replace.tex"
+                            , locLine = 14
+                            , locColumn = 6
+                            }
+                        )
                         ( MixfixItem
                             ( TokenCons
                                 ( Command "pair" )
@@ -223,6 +257,12 @@
                             ( Marker "pair" ) NonAssoc
                         )
                         [ ExprOp
+                            ( Location
+                                { locFile = "test/examples/replace.tex"
+                                , locLine = 14
+                                , locColumn = 7
+                                }
+                            )
                             ( MixfixItem
                                 ( TokenCons
                                     ( Command "emptyset" ) End
@@ -230,6 +270,12 @@
                                 ( Marker "emptyset" ) NonAssoc
                             ) []
                         , ExprOp
+                            ( Location
+                                { locFile = "test/examples/replace.tex"
+                                , locLine = 14
+                                , locColumn = 17
+                                }
+                            )
                             ( MixfixItem
                                 ( TokenCons
                                     ( Command "emptyset" ) End
@@ -239,12 +285,24 @@
                         ] :| []
                     ) Positive
                     ( Relation
+                        ( Location
+                            { locFile = "test/examples/replace.tex"
+                            , locLine = 14
+                            , locColumn = 27
+                            }
+                        )
                         ( RelationSymbol
                             ( Command "in" )
                             ( Marker "elem" )
                         ) []
                     )
                     ( ExprOp
+                        ( Location
+                            { locFile = "test/examples/replace.tex"
+                            , locLine = 14
+                            , locColumn = 31
+                            }
+                        )
                         ( MixfixItem
                             ( HoleCons
                                 ( TokenCons
@@ -254,6 +312,12 @@
                             ( Marker "times" ) RightAssoc
                         )
                         [ ExprOp
+                            ( Location
+                                { locFile = "test/examples/replace.tex"
+                                , locLine = 14
+                                , locColumn = 31
+                                }
+                            )
                             ( MixfixItem
                                 ( TokenCons
                                     ( Command "unit" ) End
@@ -261,6 +325,12 @@
                                 ( Marker "unit" ) NonAssoc
                             ) []
                         , ExprOp
+                            ( Location
+                                { locFile = "test/examples/replace.tex"
+                                , locLine = 14
+                                , locColumn = 42
+                                }
+                            )
                             ( MixfixItem
                                 ( TokenCons
                                     ( Command "unit" ) End
@@ -295,29 +365,42 @@
             [ NamedVar "a" ]
         )
         ( ExprReplacePred
+            ( Location
+                { locFile = "test/examples/replace.tex"
+                , locLine = 20
+                , locColumn = 16
+                }
+            )
             ( NamedVar "y" )
             ( NamedVar "x" )
             ( ExprVar
                 ( NamedVar "a" )
             )
             ( StmtFormula
-                { loc = Location
-                    { locFile = "<nowhere>"
-                    , locLine = -1
-                    , locColumn = -1
-                    }
-                , formula = FormulaChain
+                { formula = FormulaChain
                     ( ChainBase
                         ( ExprVar
                             ( NamedVar "y" ) :| []
                         ) Positive
                         ( Relation
+                            ( Location
+                                { locFile = "test/examples/replace.tex"
+                                , locLine = 20
+                                , locColumn = 44
+                                }
+                            )
                             ( RelationSymbol
                                 ( Symbol "=" )
                                 ( Marker "eq" )
                             ) []
                         )
                         ( ExprFiniteSet
+                            ( Location
+                                { locFile = "test/examples/replace.tex"
+                                , locLine = 20
+                                , locColumn = 46
+                                }
+                            )
                             ( ExprVar
                                 ( NamedVar "x" ) :| []
                             ) :| []
@@ -337,14 +420,15 @@
     ( Marker "times_replacement_test" )
     ( Lemma []
         ( StmtFormula
-            { loc = Location
-                { locFile = "test/examples/replace.tex"
-                , locLine = 26
-                , locColumn = 5
-                }
-            , formula = FormulaChain
+            { formula = FormulaChain
                 ( ChainBase
                     ( ExprOp
+                        ( Location
+                            { locFile = "test/examples/replace.tex"
+                            , locLine = 26
+                            , locColumn = 6
+                            }
+                        )
                         ( MixfixItem
                             ( HoleCons
                                 ( TokenCons
@@ -360,13 +444,31 @@
                         ] :| []
                     ) Positive
                     ( Relation
+                        ( Location
+                            { locFile = "test/examples/replace.tex"
+                            , locLine = 26
+                            , locColumn = 16
+                            }
+                        )
                         ( RelationSymbol
                             ( Symbol "=" )
                             ( Marker "eq" )
                         ) []
                     )
                     ( ExprReplace
+                        ( Location
+                            { locFile = "test/examples/replace.tex"
+                            , locLine = 26
+                            , locColumn = 18
+                            }
+                        )
                         ( ExprOp
+                            ( Location
+                                { locFile = "test/examples/replace.tex"
+                                , locLine = 26
+                                , locColumn = 21
+                                }
+                            )
                             ( MixfixItem
                                 ( TokenCons
                                     ( Command "pair" )

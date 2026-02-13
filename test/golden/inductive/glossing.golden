@@ -18,9 +18,9 @@
         )
         ( TermSymbol
             ( Location
-                { locFile = "<nowhere>"
-                , locLine = -1
-                , locColumn = -1
+                { locFile = "test/examples/inductive.tex"
+                , locLine = 4
+                , locColumn = 27
                 }
             )
             ( SymbolPredicate
@@ -59,9 +59,9 @@
         [ NamedVar "A" ]
         ( TermSymbol
             ( Location
-                { locFile = "<nowhere>"
-                , locLine = -1
-                , locColumn = -1
+                { locFile = "test/examples/inductive.tex"
+                , locLine = 8
+                , locColumn = 16
                 }
             )
             ( SymbolMixfix
@@ -103,9 +103,9 @@
         ]
         ( TermSymbol
             ( Location
-                { locFile = "<nowhere>"
-                , locLine = -1
-                , locColumn = -1
+                { locFile = "test/examples/inductive.tex"
+                , locLine = 12
+                , locColumn = 20
                 }
             )
             ( SymbolMixfix
@@ -140,9 +140,9 @@
         ]
         ( TermSymbol
             ( Location
-                { locFile = "<nowhere>"
-                , locLine = -1
-                , locColumn = -1
+                { locFile = "test/examples/inductive.tex"
+                , locLine = 16
+                , locColumn = 18
                 }
             )
             ( SymbolMixfix
@@ -176,9 +176,9 @@
         [ NamedVar "R" ]
         ( TermSymbol
             ( Location
-                { locFile = "<nowhere>"
-                , locLine = -1
-                , locColumn = -1
+                { locFile = "test/examples/inductive.tex"
+                , locLine = 20
+                , locColumn = 16
                 }
             )
             ( SymbolMixfix
@@ -220,9 +220,9 @@
         ]
         ( TermSymbol
             ( Location
-                { locFile = "<nowhere>"
-                , locLine = -1
-                , locColumn = -1
+                { locFile = "test/examples/inductive.tex"
+                , locLine = 24
+                , locColumn = 22
                 }
             )
             ( SymbolMixfix
@@ -246,9 +246,9 @@
     ( Axiom []
         ( TermSymbol
             ( Location
-                { locFile = "<nowhere>"
-                , locLine = -1
-                , locColumn = -1
+                { locFile = "test/examples/inductive.tex"
+                , locLine = 28
+                , locColumn = 7
                 }
             )
             ( SymbolPredicate
@@ -263,9 +263,9 @@
                 ( NamedVar "x" )
             , TermSymbol
                 ( Location
-                    { locFile = "<nowhere>"
-                    , locLine = -1
-                    , locColumn = -1
+                    { locFile = "test/examples/inductive.tex"
+                    , locLine = 28
+                    , locColumn = 10
                     }
                 )
                 ( SymbolMixfix
@@ -300,9 +300,9 @@
             [ NamedVar "A" ]
         , inductiveDomain = TermSymbol
             ( Location
-                { locFile = "<nowhere>"
-                , locLine = -1
-                , locColumn = -1
+                { locFile = "test/examples/inductive.tex"
+                , locLine = 32
+                , locColumn = 29
                 }
             )
             ( SymbolMixfix
@@ -323,9 +323,9 @@
             { introConditions = []
             , introResult = TermSymbol
                 ( Location
-                    { locFile = "<nowhere>"
-                    , locLine = -1
-                    , locColumn = -1
+                    { locFile = "test/examples/inductive.tex"
+                    , locLine = 34
+                    , locColumn = 26
                     }
                 )
                 ( SymbolPredicate
@@ -338,9 +338,9 @@
                 )
                 [ TermSymbol
                     ( Location
-                        { locFile = "<nowhere>"
-                        , locLine = -1
-                        , locColumn = -1
+                        { locFile = "test/examples/inductive.tex"
+                        , locLine = 34
+                        , locColumn = 16
                         }
                     )
                     ( SymbolMixfix
@@ -353,9 +353,9 @@
                     ) []
                 , TermSymbol
                     ( Location
-                        { locFile = "<nowhere>"
-                        , locLine = -1
-                        , locColumn = -1
+                        { locFile = "test/examples/inductive.tex"
+                        , locLine = 34
+                        , locColumn = 29
                         }
                     )
                     ( SymbolMixfix
@@ -378,9 +378,9 @@
                 { introConditions =
                     [ TermSymbol
                         ( Location
-                            { locFile = "<nowhere>"
-                            , locLine = -1
-                            , locColumn = -1
+                            { locFile = "test/examples/inductive.tex"
+                            , locLine = 35
+                            , locColumn = 20
                             }
                         )
                         ( SymbolPredicate
@@ -398,9 +398,9 @@
                         ]
                     , TermSymbol
                         ( Location
-                            { locFile = "<nowhere>"
-                            , locLine = -1
-                            , locColumn = -1
+                            { locFile = "test/examples/inductive.tex"
+                            , locLine = 35
+                            , locColumn = 33
                             }
                         )
                         ( SymbolPredicate
@@ -415,9 +415,9 @@
                             ( NamedVar "B" )
                         , TermSymbol
                             ( Location
-                                { locFile = "<nowhere>"
-                                , locLine = -1
-                                , locColumn = -1
+                                { locFile = "test/examples/inductive.tex"
+                                , locLine = 35
+                                , locColumn = 36
                                 }
                             )
                             ( SymbolMixfix
@@ -438,9 +438,9 @@
                     ]
                 , introResult = TermSymbol
                     ( Location
-                        { locFile = "<nowhere>"
-                        , locLine = -1
-                        , locColumn = -1
+                        { locFile = "test/examples/inductive.tex"
+                        , locLine = 35
+                        , locColumn = 63
                         }
                     )
                     ( SymbolPredicate
@@ -453,9 +453,9 @@
                     )
                     [ TermSymbol
                         ( Location
-                            { locFile = "<nowhere>"
-                            , locLine = -1
-                            , locColumn = -1
+                            { locFile = "test/examples/inductive.tex"
+                            , locLine = 35
+                            , locColumn = 52
                             }
                         )
                         ( SymbolMixfix
@@ -482,9 +482,9 @@
                         ]
                     , TermSymbol
                         ( Location
-                            { locFile = "<nowhere>"
-                            , locLine = -1
-                            , locColumn = -1
+                            { locFile = "test/examples/inductive.tex"
+                            , locLine = 35
+                            , locColumn = 66
                             }
                         )
                         ( SymbolMixfix
@@ -520,9 +520,9 @@
         , Asm
             ( TermSymbol
                 ( Location
-                    { locFile = "<nowhere>"
-                    , locLine = -1
-                    , locColumn = -1
+                    { locFile = "test/examples/inductive.tex"
+                    , locLine = 41
+                    , locColumn = 15
                     }
                 )
                 ( SymbolPredicate
@@ -542,9 +542,9 @@
         ]
         ( TermSymbol
             ( Location
-                { locFile = "<nowhere>"
-                , locLine = -1
-                , locColumn = -1
+                { locFile = "test/examples/inductive.tex"
+                , locLine = 42
+                , locColumn = 18
                 }
             )
             ( SymbolPredicate
@@ -557,9 +557,9 @@
             )
             [ TermSymbol
                 ( Location
-                    { locFile = "<nowhere>"
-                    , locLine = -1
-                    , locColumn = -1
+                    { locFile = "test/examples/inductive.tex"
+                    , locLine = 42
+                    , locColumn = 11
                     }
                 )
                 ( SymbolMixfix
@@ -578,9 +578,9 @@
                 ]
             , TermSymbol
                 ( Location
-                    { locFile = "<nowhere>"
-                    , locLine = -1
-                    , locColumn = -1
+                    { locFile = "test/examples/inductive.tex"
+                    , locLine = 42
+                    , locColumn = 27
                     }
                 )
                 ( SymbolMixfix
@@ -621,9 +621,9 @@
             [ NamedVar "R" ]
         , inductiveDomain = TermSymbol
             ( Location
-                { locFile = "<nowhere>"
-                , locLine = -1
-                , locColumn = -1
+                { locFile = "test/examples/inductive.tex"
+                , locLine = 46
+                , locColumn = 31
                 }
             )
             ( SymbolMixfix
@@ -638,9 +638,9 @@
             )
             [ TermSymbol
                 ( Location
-                    { locFile = "<nowhere>"
-                    , locLine = -1
-                    , locColumn = -1
+                    { locFile = "test/examples/inductive.tex"
+                    , locLine = 46
+                    , locColumn = 31
                     }
                 )
                 ( SymbolMixfix
@@ -659,9 +659,9 @@
                 ]
             , TermSymbol
                 ( Location
-                    { locFile = "<nowhere>"
-                    , locLine = -1
-                    , locColumn = -1
+                    { locFile = "test/examples/inductive.tex"
+                    , locLine = 46
+                    , locColumn = 44
                     }
                 )
                 ( SymbolMixfix
@@ -683,9 +683,9 @@
             { introConditions =
                 [ TermSymbol
                     ( Location
-                        { locFile = "<nowhere>"
-                        , locLine = -1
-                        , locColumn = -1
+                        { locFile = "test/examples/inductive.tex"
+                        , locLine = 48
+                        , locColumn = 20
                         }
                     )
                     ( SymbolPredicate
@@ -704,9 +704,9 @@
                 ]
             , introResult = TermSymbol
                 ( Location
-                    { locFile = "<nowhere>"
-                    , locLine = -1
-                    , locColumn = -1
+                    { locFile = "test/examples/inductive.tex"
+                    , locLine = 48
+                    , locColumn = 35
                     }
                 )
                 ( SymbolPredicate
@@ -721,9 +721,9 @@
                     ( NamedVar "w" )
                 , TermSymbol
                     ( Location
-                        { locFile = "<nowhere>"
-                        , locLine = -1
-                        , locColumn = -1
+                        { locFile = "test/examples/inductive.tex"
+                        , locLine = 48
+                        , locColumn = 38
                         }
                     )
                     ( SymbolMixfix
@@ -746,9 +746,9 @@
                 { introConditions =
                     [ TermSymbol
                         ( Location
-                            { locFile = "<nowhere>"
-                            , locLine = -1
-                            , locColumn = -1
+                            { locFile = "test/examples/inductive.tex"
+                            , locLine = 49
+                            , locColumn = 25
                             }
                         )
                         ( SymbolPredicate
@@ -761,9 +761,9 @@
                         )
                         [ TermSymbol
                             ( Location
-                                { locFile = "<nowhere>"
-                                , locLine = -1
-                                , locColumn = -1
+                                { locFile = "test/examples/inductive.tex"
+                                , locLine = 49
+                                , locColumn = 19
                                 }
                             )
                             ( SymbolMixfix
@@ -790,9 +790,9 @@
                             ]
                         , TermSymbol
                             ( Location
-                                { locFile = "<nowhere>"
-                                , locLine = -1
-                                , locColumn = -1
+                                { locFile = "test/examples/inductive.tex"
+                                , locLine = 49
+                                , locColumn = 28
                                 }
                             )
                             ( SymbolMixfix
@@ -812,9 +812,9 @@
                         ]
                     , TermSymbol
                         ( Location
-                            { locFile = "<nowhere>"
-                            , locLine = -1
-                            , locColumn = -1
+                            { locFile = "test/examples/inductive.tex"
+                            , locLine = 49
+                            , locColumn = 49
                             }
                         )
                         ( SymbolPredicate
@@ -827,9 +827,9 @@
                         )
                         [ TermSymbol
                             ( Location
-                                { locFile = "<nowhere>"
-                                , locLine = -1
-                                , locColumn = -1
+                                { locFile = "test/examples/inductive.tex"
+                                , locLine = 49
+                                , locColumn = 44
                                 }
                             )
                             ( SymbolMixfix
@@ -860,9 +860,9 @@
                     ]
                 , introResult = TermSymbol
                     ( Location
-                        { locFile = "<nowhere>"
-                        , locLine = -1
-                        , locColumn = -1
+                        { locFile = "test/examples/inductive.tex"
+                        , locLine = 49
+                        , locColumn = 68
                         }
                     )
                     ( SymbolPredicate
@@ -875,9 +875,9 @@
                     )
                     [ TermSymbol
                         ( Location
-                            { locFile = "<nowhere>"
-                            , locLine = -1
-                            , locColumn = -1
+                            { locFile = "test/examples/inductive.tex"
+                            , locLine = 49
+                            , locColumn = 63
                             }
                         )
                         ( SymbolMixfix
@@ -904,9 +904,9 @@
                         ]
                     , TermSymbol
                         ( Location
-                            { locFile = "<nowhere>"
-                            , locLine = -1
-                            , locColumn = -1
+                            { locFile = "test/examples/inductive.tex"
+                            , locLine = 49
+                            , locColumn = 71
                             }
                         )
                         ( SymbolMixfix
@@ -949,9 +949,9 @@
             [ NamedVar "R" ]
         , inductiveDomain = TermSymbol
             ( Location
-                { locFile = "<nowhere>"
-                , locLine = -1
-                , locColumn = -1
+                { locFile = "test/examples/inductive.tex"
+                , locLine = 54
+                , locColumn = 36
                 }
             )
             ( SymbolMixfix
@@ -966,9 +966,9 @@
             )
             [ TermSymbol
                 ( Location
-                    { locFile = "<nowhere>"
-                    , locLine = -1
-                    , locColumn = -1
+                    { locFile = "test/examples/inductive.tex"
+                    , locLine = 54
+                    , locColumn = 36
                     }
                 )
                 ( SymbolMixfix
@@ -987,9 +987,9 @@
                 ]
             , TermSymbol
                 ( Location
-                    { locFile = "<nowhere>"
-                    , locLine = -1
-                    , locColumn = -1
+                    { locFile = "test/examples/inductive.tex"
+                    , locLine = 54
+                    , locColumn = 49
                     }
                 )
                 ( SymbolMixfix
@@ -1011,9 +1011,9 @@
             { introConditions =
                 [ TermSymbol
                     ( Location
-                        { locFile = "<nowhere>"
-                        , locLine = -1
-                        , locColumn = -1
+                        { locFile = "test/examples/inductive.tex"
+                        , locLine = 56
+                        , locColumn = 20
                         }
                     )
                     ( SymbolPredicate
@@ -1028,9 +1028,9 @@
                         ( NamedVar "a" )
                     , TermSymbol
                         ( Location
-                            { locFile = "<nowhere>"
-                            , locLine = -1
-                            , locColumn = -1
+                            { locFile = "test/examples/inductive.tex"
+                            , locLine = 56
+                            , locColumn = 23
                             }
                         )
                         ( SymbolMixfix
@@ -1051,9 +1051,9 @@
                 ]
             , introResult = TermSymbol
                 ( Location
-                    { locFile = "<nowhere>"
-                    , locLine = -1
-                    , locColumn = -1
+                    { locFile = "test/examples/inductive.tex"
+                    , locLine = 56
+                    , locColumn = 44
                     }
                 )
                 ( SymbolPredicate
@@ -1066,9 +1066,9 @@
                 )
                 [ TermSymbol
                     ( Location
-                        { locFile = "<nowhere>"
-                        , locLine = -1
-                        , locColumn = -1
+                        { locFile = "test/examples/inductive.tex"
+                        , locLine = 56
+                        , locColumn = 39
                         }
                     )
                     ( SymbolMixfix
@@ -1095,9 +1095,9 @@
                     ]
                 , TermSymbol
                     ( Location
-                        { locFile = "<nowhere>"
-                        , locLine = -1
-                        , locColumn = -1
+                        { locFile = "test/examples/inductive.tex"
+                        , locLine = 56
+                        , locColumn = 47
                         }
                     )
                     ( SymbolMixfix
@@ -1120,9 +1120,9 @@
                 { introConditions =
                     [ TermSymbol
                         ( Location
-                            { locFile = "<nowhere>"
-                            , locLine = -1
-                            , locColumn = -1
+                            { locFile = "test/examples/inductive.tex"
+                            , locLine = 57
+                            , locColumn = 25
                             }
                         )
                         ( SymbolPredicate
@@ -1135,9 +1135,9 @@
                         )
                         [ TermSymbol
                             ( Location
-                                { locFile = "<nowhere>"
-                                , locLine = -1
-                                , locColumn = -1
+                                { locFile = "test/examples/inductive.tex"
+                                , locLine = 57
+                                , locColumn = 19
                                 }
                             )
                             ( SymbolMixfix
@@ -1164,9 +1164,9 @@
                             ]
                         , TermSymbol
                             ( Location
-                                { locFile = "<nowhere>"
-                                , locLine = -1
-                                , locColumn = -1
+                                { locFile = "test/examples/inductive.tex"
+                                , locLine = 57
+                                , locColumn = 28
                                 }
                             )
                             ( SymbolMixfix
@@ -1186,9 +1186,9 @@
                         ]
                     , TermSymbol
                         ( Location
-                            { locFile = "<nowhere>"
-                            , locLine = -1
-                            , locColumn = -1
+                            { locFile = "test/examples/inductive.tex"
+                            , locLine = 57
+                            , locColumn = 54
                             }
                         )
                         ( SymbolPredicate
@@ -1201,9 +1201,9 @@
                         )
                         [ TermSymbol
                             ( Location
-                                { locFile = "<nowhere>"
-                                , locLine = -1
-                                , locColumn = -1
+                                { locFile = "test/examples/inductive.tex"
+                                , locLine = 57
+                                , locColumn = 49
                                 }
                             )
                             ( SymbolMixfix
@@ -1234,9 +1234,9 @@
                     ]
                 , introResult = TermSymbol
                     ( Location
-                        { locFile = "<nowhere>"
-                        , locLine = -1
-                        , locColumn = -1
+                        { locFile = "test/examples/inductive.tex"
+                        , locLine = 57
+                        , locColumn = 73
                         }
                     )
                     ( SymbolPredicate
@@ -1249,9 +1249,9 @@
                     )
                     [ TermSymbol
                         ( Location
-                            { locFile = "<nowhere>"
-                            , locLine = -1
-                            , locColumn = -1
+                            { locFile = "test/examples/inductive.tex"
+                            , locLine = 57
+                            , locColumn = 68
                             }
                         )
                         ( SymbolMixfix
@@ -1278,9 +1278,9 @@
                         ]
                     , TermSymbol
                         ( Location
-                            { locFile = "<nowhere>"
-                            , locLine = -1
-                            , locColumn = -1
+                            { locFile = "test/examples/inductive.tex"
+                            , locLine = 57
+                            , locColumn = 76
                             }
                         )
                         ( SymbolMixfix
@@ -1331,9 +1331,9 @@
             ]
         , inductiveDomain = TermSymbol
             ( Location
-                { locFile = "<nowhere>"
-                , locLine = -1
-                , locColumn = -1
+                { locFile = "test/examples/inductive.tex"
+                , locLine = 62
+                , locColumn = 39
                 }
             )
             ( SymbolMixfix
@@ -1355,9 +1355,9 @@
             { introConditions =
                 [ TermSymbol
                     ( Location
-                        { locFile = "<nowhere>"
-                        , locLine = -1
-                        , locColumn = -1
+                        { locFile = "test/examples/inductive.tex"
+                        , locLine = 64
+                        , locColumn = 20
                         }
                     )
                     ( SymbolPredicate
@@ -1376,9 +1376,9 @@
                 ]
             , introResult = TermSymbol
                 ( Location
-                    { locFile = "<nowhere>"
-                    , locLine = -1
-                    , locColumn = -1
+                    { locFile = "test/examples/inductive.tex"
+                    , locLine = 64
+                    , locColumn = 39
                     }
                 )
                 ( SymbolPredicate
@@ -1391,9 +1391,9 @@
                 )
                 [ TermSymbol
                     ( Location
-                        { locFile = "<nowhere>"
-                        , locLine = -1
-                        , locColumn = -1
+                        { locFile = "test/examples/inductive.tex"
+                        , locLine = 64
+                        , locColumn = 34
                         }
                     )
                     ( SymbolMixfix
@@ -1420,9 +1420,9 @@
                     ]
                 , TermSymbol
                     ( Location
-                        { locFile = "<nowhere>"
-                        , locLine = -1
-                        , locColumn = -1
+                        { locFile = "test/examples/inductive.tex"
+                        , locLine = 64
+                        , locColumn = 42
                         }
                     )
                     ( SymbolMixfix
@@ -1453,9 +1453,9 @@
                 { introConditions =
                     [ TermSymbol
                         ( Location
-                            { locFile = "<nowhere>"
-                            , locLine = -1
-                            , locColumn = -1
+                            { locFile = "test/examples/inductive.tex"
+                            , locLine = 65
+                            , locColumn = 25
                             }
                         )
                         ( SymbolPredicate
@@ -1468,9 +1468,9 @@
                         )
                         [ TermSymbol
                             ( Location
-                                { locFile = "<nowhere>"
-                                , locLine = -1
-                                , locColumn = -1
+                                { locFile = "test/examples/inductive.tex"
+                                , locLine = 65
+                                , locColumn = 19
                                 }
                             )
                             ( SymbolMixfix
@@ -1497,9 +1497,9 @@
                             ]
                         , TermSymbol
                             ( Location
-                                { locFile = "<nowhere>"
-                                , locLine = -1
-                                , locColumn = -1
+                                { locFile = "test/examples/inductive.tex"
+                                , locLine = 65
+                                , locColumn = 28
                                 }
                             )
                             ( SymbolMixfix
@@ -1527,9 +1527,9 @@
                         ]
                     , TermSymbol
                         ( Location
-                            { locFile = "<nowhere>"
-                            , locLine = -1
-                            , locColumn = -1
+                            { locFile = "test/examples/inductive.tex"
+                            , locLine = 65
+                            , locColumn = 56
                             }
                         )
                         ( SymbolPredicate
@@ -1542,9 +1542,9 @@
                         )
                         [ TermSymbol
                             ( Location
-                                { locFile = "<nowhere>"
-                                , locLine = -1
-                                , locColumn = -1
+                                { locFile = "test/examples/inductive.tex"
+                                , locLine = 65
+                                , locColumn = 51
                                 }
                             )
                             ( SymbolMixfix
@@ -1575,9 +1575,9 @@
                     ]
                 , introResult = TermSymbol
                     ( Location
-                        { locFile = "<nowhere>"
-                        , locLine = -1
-                        , locColumn = -1
+                        { locFile = "test/examples/inductive.tex"
+                        , locLine = 65
+                        , locColumn = 75
                         }
                     )
                     ( SymbolPredicate
@@ -1590,9 +1590,9 @@
                     )
                     [ TermSymbol
                         ( Location
-                            { locFile = "<nowhere>"
-                            , locLine = -1
-                            , locColumn = -1
+                            { locFile = "test/examples/inductive.tex"
+                            , locLine = 65
+                            , locColumn = 70
                             }
                         )
                         ( SymbolMixfix
@@ -1619,9 +1619,9 @@
                         ]
                     , TermSymbol
                         ( Location
-                            { locFile = "<nowhere>"
-                            , locLine = -1
-                            , locColumn = -1
+                            { locFile = "test/examples/inductive.tex"
+                            , locLine = 65
+                            , locColumn = 78
                             }
                         )
                         ( SymbolMixfix
@@ -1672,9 +1672,9 @@
             [ NamedVar "R" ]
         , inductiveDomain = TermSymbol
             ( Location
-                { locFile = "<nowhere>"
-                , locLine = -1
-                , locColumn = -1
+                { locFile = "test/examples/inductive.tex"
+                , locLine = 70
+                , locColumn = 30
                 }
             )
             ( SymbolMixfix
@@ -1695,9 +1695,9 @@
             { introConditions =
                 [ TermSymbol
                     ( Location
-                        { locFile = "<nowhere>"
-                        , locLine = -1
-                        , locColumn = -1
+                        { locFile = "test/examples/inductive.tex"
+                        , locLine = 72
+                        , locColumn = 20
                         }
                     )
                     ( SymbolPredicate
@@ -1712,9 +1712,9 @@
                         ( NamedVar "a" )
                     , TermSymbol
                         ( Location
-                            { locFile = "<nowhere>"
-                            , locLine = -1
-                            , locColumn = -1
+                            { locFile = "test/examples/inductive.tex"
+                            , locLine = 72
+                            , locColumn = 23
                             }
                         )
                         ( SymbolMixfix
@@ -1734,9 +1734,9 @@
                     ]
                 , TermSymbol
                     ( Location
-                        { locFile = "<nowhere>"
-                        , locLine = -1
-                        , locColumn = -1
+                        { locFile = "test/examples/inductive.tex"
+                        , locLine = 72
+                        , locColumn = 54
                         }
                     )
                     ( SymbolPredicate
@@ -1749,9 +1749,9 @@
                     )
                     [ TermSymbol
                         ( Location
-                            { locFile = "<nowhere>"
-                            , locLine = -1
-                            , locColumn = -1
+                            { locFile = "test/examples/inductive.tex"
+                            , locLine = 72
+                            , locColumn = 37
                             }
                         )
                         ( SymbolMixfix
@@ -1775,9 +1775,9 @@
                             ( NamedVar "R" )
                         , TermSymbol
                             ( Location
-                                { locFile = "<nowhere>"
-                                , locLine = -1
-                                , locColumn = -1
+                                { locFile = "test/examples/inductive.tex"
+                                , locLine = 72
+                                , locColumn = 48
                                 }
                             )
                             ( SymbolMixfix
@@ -1801,9 +1801,9 @@
                                 ( NamedVar "a" )
                             , TermSymbol
                                 ( Location
-                                    { locFile = "<nowhere>"
-                                    , locLine = -1
-                                    , locColumn = -1
+                                    { locFile = "test/examples/inductive.tex"
+                                    , locLine = 72
+                                    , locColumn = 48
                                     }
                                 )
                                 ( SymbolMixfix
@@ -1818,9 +1818,9 @@
                         ]
                     , TermSymbol
                         ( Location
-                            { locFile = "<nowhere>"
-                            , locLine = -1
-                            , locColumn = -1
+                            { locFile = "test/examples/inductive.tex"
+                            , locLine = 72
+                            , locColumn = 57
                             }
                         )
                         ( SymbolMixfix
@@ -1836,9 +1836,9 @@
                         )
                         [ TermSymbol
                             ( Location
-                                { locFile = "<nowhere>"
-                                , locLine = -1
-                                , locColumn = -1
+                                { locFile = "test/examples/inductive.tex"
+                                , locLine = 72
+                                , locColumn = 62
                                 }
                             )
                             ( SymbolMixfix
@@ -1860,9 +1860,9 @@
                 ]
             , introResult = TermSymbol
                 ( Location
-                    { locFile = "<nowhere>"
-                    , locLine = -1
-                    , locColumn = -1
+                    { locFile = "test/examples/inductive.tex"
+                    , locLine = 72
+                    , locColumn = 80
                     }
                 )
                 ( SymbolPredicate
@@ -1877,9 +1877,9 @@
                     ( NamedVar "a" )
                 , TermSymbol
                     ( Location
-                        { locFile = "<nowhere>"
-                        , locLine = -1
-                        , locColumn = -1
+                        { locFile = "test/examples/inductive.tex"
+                        , locLine = 72
+                        , locColumn = 83
                         }
                     )
                     ( SymbolMixfix

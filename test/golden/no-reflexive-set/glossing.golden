@@ -12,16 +12,16 @@
                 ( Connected Implication ( PropositionalConstant IsTop )
                     ( Not
                         ( Location
-                            { locFile = "<nowhere>"
-                            , locLine = -1
-                            , locColumn = -1
+                            { locFile = "test/examples/no-reflexive-set.tex"
+                            , locLine = 2
+                            , locColumn = 36
                             }
                         )
                         ( TermSymbol
                             ( Location
-                                { locFile = "<nowhere>"
-                                , locLine = -1
-                                , locColumn = -1
+                                { locFile = "test/examples/no-reflexive-set.tex"
+                                , locLine = 2
+                                , locColumn = 36
                                 }
                             )
                             ( SymbolPredicate

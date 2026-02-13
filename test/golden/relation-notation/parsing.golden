@@ -17,17 +17,18 @@
                     }
                 )
             , stmt1 = StmtFormula
-                { loc = Location
-                    { locFile = "test/examples/relation-notation.tex"
-                    , locLine = 2
-                    , locColumn = 8
-                    }
-                , formula = FormulaChain
+                { formula = FormulaChain
                     ( ChainBase
                         ( ExprVar
                             ( NamedVar "x" ) :| []
                         ) Positive
                         ( RelationExpr
+                            ( Location
+                                { locFile = "test/examples/relation-notation.tex"
+                                , locLine = 2
+                                , locColumn = 10
+                                }
+                            )
                             ( ExprVar
                                 ( NamedVar "R" )
                             )
@@ -38,17 +39,18 @@
                     )
                 }
             , stmt2 = StmtFormula
-                { loc = Location
-                    { locFile = "test/examples/relation-notation.tex"
-                    , locLine = 2
-                    , locColumn = 31
-                    }
-                , formula = FormulaChain
+                { formula = FormulaChain
                     ( ChainBase
                         ( ExprVar
                             ( NamedVar "x" ) :| []
                         ) Positive
                         ( RelationExpr
+                            ( Location
+                                { locFile = "test/examples/relation-notation.tex"
+                                , locLine = 2
+                                , locColumn = 33
+                                }
+                            )
                             ( ExprVar
                                 ( NamedVar "R" )
                             )

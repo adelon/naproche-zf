@@ -16,17 +16,18 @@
             ( NamedVar "B" )
         )
         ( StmtFormula
-            { loc = Location
-                { locFile = "test/examples/inductive.tex"
-                , locLine = 4
-                , locColumn = 24
-                }
-            , formula = FormulaChain
+            { formula = FormulaChain
                 ( ChainBase
                     ( ExprVar
                         ( NamedVar "A" ) :| []
                     ) Positive
                     ( Relation
+                        ( Location
+                            { locFile = "test/examples/inductive.tex"
+                            , locLine = 4
+                            , locColumn = 27
+                            }
+                        )
                         ( RelationSymbol
                             ( Symbol "=" )
                             ( Marker "eq" )
@@ -61,6 +62,12 @@
             [ NamedVar "A" ]
         )
         ( ExprOp
+            ( Location
+                { locFile = "test/examples/inductive.tex"
+                , locLine = 8
+                , locColumn = 16
+                }
+            )
             ( MixfixItem
                 ( TokenCons
                     ( Command "emptyset" ) End
@@ -99,6 +106,12 @@
             ]
         )
         ( ExprOp
+            ( Location
+                { locFile = "test/examples/inductive.tex"
+                , locLine = 12
+                , locColumn = 20
+                }
+            )
             ( MixfixItem
                 ( TokenCons
                     ( Command "emptyset" ) End
@@ -130,6 +143,12 @@
             ]
         )
         ( ExprOp
+            ( Location
+                { locFile = "test/examples/inductive.tex"
+                , locLine = 16
+                , locColumn = 18
+                }
+            )
             ( MixfixItem
                 ( TokenCons
                     ( Command "emptyset" ) End
@@ -160,6 +179,12 @@
             [ NamedVar "R" ]
         )
         ( ExprOp
+            ( Location
+                { locFile = "test/examples/inductive.tex"
+                , locLine = 20
+                , locColumn = 16
+                }
+            )
             ( MixfixItem
                 ( TokenCons
                     ( Command "emptyset" ) End
@@ -198,6 +223,12 @@
             ]
         )
         ( ExprOp
+            ( Location
+                { locFile = "test/examples/inductive.tex"
+                , locLine = 24
+                , locColumn = 22
+                }
+            )
             ( MixfixItem
                 ( TokenCons
                     ( Command "emptyset" ) End
@@ -216,23 +247,30 @@
     ( Marker "lmao" )
     ( Axiom []
         ( StmtFormula
-            { loc = Location
-                { locFile = "test/examples/inductive.tex"
-                , locLine = 28
-                , locColumn = 5
-                }
-            , formula = FormulaChain
+            { formula = FormulaChain
                 ( ChainBase
                     ( ExprVar
                         ( NamedVar "x" ) :| []
                     ) Positive
                     ( Relation
+                        ( Location
+                            { locFile = "test/examples/inductive.tex"
+                            , locLine = 28
+                            , locColumn = 7
+                            }
+                        )
                         ( RelationSymbol
                             ( Command "in" )
                             ( Marker "elem" )
                         ) []
                     )
                     ( ExprOp
+                        ( Location
+                            { locFile = "test/examples/inductive.tex"
+                            , locLine = 28
+                            , locColumn = 10
+                            }
+                        )
                         ( MixfixItem
                             ( TokenCons
                                 ( Command "emptyset" ) End
@@ -265,6 +303,12 @@
             )
             [ NamedVar "A" ]
         , inductiveDomain = ExprOp
+            ( Location
+                { locFile = "test/examples/inductive.tex"
+                , locLine = 32
+                , locColumn = 29
+                }
+            )
             ( MixfixItem
                 ( TokenCons
                     ( Command "pow" )
@@ -282,6 +326,12 @@
             , introResult = FormulaChain
                 ( ChainBase
                     ( ExprOp
+                        ( Location
+                            { locFile = "test/examples/inductive.tex"
+                            , locLine = 34
+                            , locColumn = 16
+                            }
+                        )
                         ( MixfixItem
                             ( TokenCons
                                 ( Command "emptyset" ) End
@@ -290,12 +340,24 @@
                         ) [] :| []
                     ) Positive
                     ( Relation
+                        ( Location
+                            { locFile = "test/examples/inductive.tex"
+                            , locLine = 34
+                            , locColumn = 26
+                            }
+                        )
                         ( RelationSymbol
                             ( Command "in" )
                             ( Marker "elem" )
                         ) []
                     )
                     ( ExprOp
+                        ( Location
+                            { locFile = "test/examples/inductive.tex"
+                            , locLine = 34
+                            , locColumn = 29
+                            }
+                        )
                         ( MixfixItem
                             ( TokenCons
                                 ( Command "fin" )
@@ -319,6 +381,12 @@
                                 ( NamedVar "a" ) :| []
                             ) Positive
                             ( Relation
+                                ( Location
+                                    { locFile = "test/examples/inductive.tex"
+                                    , locLine = 35
+                                    , locColumn = 20
+                                    }
+                                )
                                 ( RelationSymbol
                                     ( Command "in" )
                                     ( Marker "elem" )
@@ -334,12 +402,24 @@
                                 ( NamedVar "B" ) :| []
                             ) Positive
                             ( Relation
+                                ( Location
+                                    { locFile = "test/examples/inductive.tex"
+                                    , locLine = 35
+                                    , locColumn = 33
+                                    }
+                                )
                                 ( RelationSymbol
                                     ( Command "in" )
                                     ( Marker "elem" )
                                 ) []
                             )
                             ( ExprOp
+                                ( Location
+                                    { locFile = "test/examples/inductive.tex"
+                                    , locLine = 35
+                                    , locColumn = 36
+                                    }
+                                )
                                 ( MixfixItem
                                     ( TokenCons
                                         ( Command "fin" )
@@ -358,6 +438,12 @@
                 , introResult = FormulaChain
                     ( ChainBase
                         ( ExprOp
+                            ( Location
+                                { locFile = "test/examples/inductive.tex"
+                                , locLine = 35
+                                , locColumn = 52
+                                }
+                            )
                             ( MixfixItem
                                 ( TokenCons
                                     ( Command "cons" )
@@ -380,12 +466,24 @@
                             ] :| []
                         ) Positive
                         ( Relation
+                            ( Location
+                                { locFile = "test/examples/inductive.tex"
+                                , locLine = 35
+                                , locColumn = 63
+                                }
+                            )
                             ( RelationSymbol
                                 ( Command "in" )
                                 ( Marker "elem" )
                             ) []
                         )
                         ( ExprOp
+                            ( Location
+                                { locFile = "test/examples/inductive.tex"
+                                , locLine = 35
+                                , locColumn = 66
+                                }
+                            )
                             ( MixfixItem
                                 ( TokenCons
                                     ( Command "fin" )
@@ -418,6 +516,12 @@
                 [ NamedVar "B" ]
             ) NounPhrase ( [] )
             ( Noun
+                ( Location
+                    { locFile = "test/examples/inductive.tex"
+                    , locLine = 40
+                    , locColumn = 19
+                    }
+                )
                 ( LexicalItemSgPl
                     ( SgPl
                         { sg = TokenCons
@@ -431,17 +535,18 @@
             ) ( Nothing ) ( [] ) ( Nothing )
         , AsmSuppose
             ( StmtFormula
-                { loc = Location
-                    { locFile = "test/examples/inductive.tex"
-                    , locLine = 41
-                    , locColumn = 13
-                    }
-                , formula = FormulaChain
+                { formula = FormulaChain
                     ( ChainBase
                         ( ExprVar
                             ( NamedVar "A" ) :| []
                         ) Positive
                         ( Relation
+                            ( Location
+                                { locFile = "test/examples/inductive.tex"
+                                , locLine = 41
+                                , locColumn = 15
+                                }
+                            )
                             ( RelationSymbol
                                 ( Command "subseteq" )
                                 ( Marker "subseteq" )
@@ -455,14 +560,15 @@
             )
         ]
         ( StmtFormula
-            { loc = Location
-                { locFile = "test/examples/inductive.tex"
-                , locLine = 42
-                , locColumn = 10
-                }
-            , formula = FormulaChain
+            { formula = FormulaChain
                 ( ChainBase
                     ( ExprOp
+                        ( Location
+                            { locFile = "test/examples/inductive.tex"
+                            , locLine = 42
+                            , locColumn = 11
+                            }
+                        )
                         ( MixfixItem
                             ( TokenCons
                                 ( Command "fin" )
@@ -477,12 +583,24 @@
                         ] :| []
                     ) Positive
                     ( Relation
+                        ( Location
+                            { locFile = "test/examples/inductive.tex"
+                            , locLine = 42
+                            , locColumn = 18
+                            }
+                        )
                         ( RelationSymbol
                             ( Command "subseteq" )
                             ( Marker "subseteq" )
                         ) []
                     )
                     ( ExprOp
+                        ( Location
+                            { locFile = "test/examples/inductive.tex"
+                            , locLine = 42
+                            , locColumn = 27
+                            }
+                        )
                         ( MixfixItem
                             ( TokenCons
                                 ( Command "fin" )
@@ -521,6 +639,12 @@
             )
             [ NamedVar "R" ]
         , inductiveDomain = ExprOp
+            ( Location
+                { locFile = "test/examples/inductive.tex"
+                , locLine = 46
+                , locColumn = 31
+                }
+            )
             ( MixfixItem
                 ( HoleCons
                     ( TokenCons
@@ -530,6 +654,12 @@
                 ( Marker "times" ) RightAssoc
             )
             [ ExprOp
+                ( Location
+                    { locFile = "test/examples/inductive.tex"
+                    , locLine = 46
+                    , locColumn = 31
+                    }
+                )
                 ( MixfixItem
                     ( TokenCons
                         ( Command "fld" )
@@ -543,6 +673,12 @@
                     ( NamedVar "R" )
                 ]
             , ExprOp
+                ( Location
+                    { locFile = "test/examples/inductive.tex"
+                    , locLine = 46
+                    , locColumn = 44
+                    }
+                )
                 ( MixfixItem
                     ( TokenCons
                         ( Command "fld" )
@@ -564,6 +700,12 @@
                             ( NamedVar "w" ) :| []
                         ) Positive
                         ( Relation
+                            ( Location
+                                { locFile = "test/examples/inductive.tex"
+                                , locLine = 48
+                                , locColumn = 20
+                                }
+                            )
                             ( RelationSymbol
                                 ( Command "in" )
                                 ( Marker "elem" )
@@ -580,12 +722,24 @@
                         ( NamedVar "w" ) :| []
                     ) Positive
                     ( Relation
+                        ( Location
+                            { locFile = "test/examples/inductive.tex"
+                            , locLine = 48
+                            , locColumn = 35
+                            }
+                        )
                         ( RelationSymbol
                             ( Command "in" )
                             ( Marker "elem" )
                         ) []
                     )
                     ( ExprOp
+                        ( Location
+                            { locFile = "test/examples/inductive.tex"
+                            , locLine = 48
+                            , locColumn = 38
+                            }
+                        )
                         ( MixfixItem
                             ( TokenCons
                                 ( Command "tracl" )
@@ -606,6 +760,12 @@
                     [ FormulaChain
                         ( ChainBase
                             ( ExprOp
+                                ( Location
+                                    { locFile = "test/examples/inductive.tex"
+                                    , locLine = 49
+                                    , locColumn = 19
+                                    }
+                                )
                                 ( MixfixItem
                                     ( TokenCons
                                         ( Command "pair" )
@@ -628,12 +788,24 @@
                                 ] :| []
                             ) Positive
                             ( Relation
+                                ( Location
+                                    { locFile = "test/examples/inductive.tex"
+                                    , locLine = 49
+                                    , locColumn = 25
+                                    }
+                                )
                                 ( RelationSymbol
                                     ( Command "in" )
                                     ( Marker "elem" )
                                 ) []
                             )
                             ( ExprOp
+                                ( Location
+                                    { locFile = "test/examples/inductive.tex"
+                                    , locLine = 49
+                                    , locColumn = 28
+                                    }
+                                )
                                 ( MixfixItem
                                     ( TokenCons
                                         ( Command "tracl" )
@@ -651,6 +823,12 @@
                     , FormulaChain
                         ( ChainBase
                             ( ExprOp
+                                ( Location
+                                    { locFile = "test/examples/inductive.tex"
+                                    , locLine = 49
+                                    , locColumn = 44
+                                    }
+                                )
                                 ( MixfixItem
                                     ( TokenCons
                                         ( Command "pair" )
@@ -673,6 +851,12 @@
                                 ] :| []
                             ) Positive
                             ( Relation
+                                ( Location
+                                    { locFile = "test/examples/inductive.tex"
+                                    , locLine = 49
+                                    , locColumn = 49
+                                    }
+                                )
                                 ( RelationSymbol
                                     ( Command "in" )
                                     ( Marker "elem" )
@@ -686,6 +870,12 @@
                 , introResult = FormulaChain
                     ( ChainBase
                         ( ExprOp
+                            ( Location
+                                { locFile = "test/examples/inductive.tex"
+                                , locLine = 49
+                                , locColumn = 63
+                                }
+                            )
                             ( MixfixItem
                                 ( TokenCons
                                     ( Command "pair" )
@@ -708,12 +898,24 @@
                             ] :| []
                         ) Positive
                         ( Relation
+                            ( Location
+                                { locFile = "test/examples/inductive.tex"
+                                , locLine = 49
+                                , locColumn = 68
+                                }
+                            )
                             ( RelationSymbol
                                 ( Command "in" )
                                 ( Marker "elem" )
                             ) []
                         )
                         ( ExprOp
+                            ( Location
+                                { locFile = "test/examples/inductive.tex"
+                                , locLine = 49
+                                , locColumn = 71
+                                }
+                            )
                             ( MixfixItem
                                 ( TokenCons
                                     ( Command "tracl" )
@@ -753,6 +955,12 @@
             )
             [ NamedVar "R" ]
         , inductiveDomain = ExprOp
+            ( Location
+                { locFile = "test/examples/inductive.tex"
+                , locLine = 54
+                , locColumn = 36
+                }
+            )
             ( MixfixItem
                 ( HoleCons
                     ( TokenCons
@@ -762,6 +970,12 @@
                 ( Marker "times" ) RightAssoc
             )
             [ ExprOp
+                ( Location
+                    { locFile = "test/examples/inductive.tex"
+                    , locLine = 54
+                    , locColumn = 36
+                    }
+                )
                 ( MixfixItem
                     ( TokenCons
                         ( Command "fld" )
@@ -775,6 +989,12 @@
                     ( NamedVar "R" )
                 ]
             , ExprOp
+                ( Location
+                    { locFile = "test/examples/inductive.tex"
+                    , locLine = 54
+                    , locColumn = 49
+                    }
+                )
                 ( MixfixItem
                     ( TokenCons
                         ( Command "fld" )
@@ -796,12 +1016,24 @@
                             ( NamedVar "a" ) :| []
                         ) Positive
                         ( Relation
+                            ( Location
+                                { locFile = "test/examples/inductive.tex"
+                                , locLine = 56
+                                , locColumn = 20
+                                }
+                            )
                             ( RelationSymbol
                                 ( Command "in" )
                                 ( Marker "elem" )
                             ) []
                         )
                         ( ExprOp
+                            ( Location
+                                { locFile = "test/examples/inductive.tex"
+                                , locLine = 56
+                                , locColumn = 23
+                                }
+                            )
                             ( MixfixItem
                                 ( TokenCons
                                     ( Command "fld" )
@@ -820,6 +1052,12 @@
             , introResult = FormulaChain
                 ( ChainBase
                     ( ExprOp
+                        ( Location
+                            { locFile = "test/examples/inductive.tex"
+                            , locLine = 56
+                            , locColumn = 39
+                            }
+                        )
                         ( MixfixItem
                             ( TokenCons
                                 ( Command "pair" )
@@ -842,12 +1080,24 @@
                         ] :| []
                     ) Positive
                     ( Relation
+                        ( Location
+                            { locFile = "test/examples/inductive.tex"
+                            , locLine = 56
+                            , locColumn = 44
+                            }
+                        )
                         ( RelationSymbol
                             ( Command "in" )
                             ( Marker "elem" )
                         ) []
                     )
                     ( ExprOp
+                        ( Location
+                            { locFile = "test/examples/inductive.tex"
+                            , locLine = 56
+                            , locColumn = 47
+                            }
+                        )
                         ( MixfixItem
                             ( TokenCons
                                 ( Command "qrefltracl" )
@@ -868,6 +1118,12 @@
                     [ FormulaChain
                         ( ChainBase
                             ( ExprOp
+                                ( Location
+                                    { locFile = "test/examples/inductive.tex"
+                                    , locLine = 57
+                                    , locColumn = 19
+                                    }
+                                )
                                 ( MixfixItem
                                     ( TokenCons
                                         ( Command "pair" )
@@ -890,12 +1146,24 @@
                                 ] :| []
                             ) Positive
                             ( Relation
+                                ( Location
+                                    { locFile = "test/examples/inductive.tex"
+                                    , locLine = 57
+                                    , locColumn = 25
+                                    }
+                                )
                                 ( RelationSymbol
                                     ( Command "in" )
                                     ( Marker "elem" )
                                 ) []
                             )
                             ( ExprOp
+                                ( Location
+                                    { locFile = "test/examples/inductive.tex"
+                                    , locLine = 57
+                                    , locColumn = 28
+                                    }
+                                )
                                 ( MixfixItem
                                     ( TokenCons
                                         ( Command "qrefltracl" )
@@ -913,6 +1181,12 @@
                     , FormulaChain
                         ( ChainBase
                             ( ExprOp
+                                ( Location
+                                    { locFile = "test/examples/inductive.tex"
+                                    , locLine = 57
+                                    , locColumn = 49
+                                    }
+                                )
                                 ( MixfixItem
                                     ( TokenCons
                                         ( Command "pair" )
@@ -935,6 +1209,12 @@
                                 ] :| []
                             ) Positive
                             ( Relation
+                                ( Location
+                                    { locFile = "test/examples/inductive.tex"
+                                    , locLine = 57
+                                    , locColumn = 54
+                                    }
+                                )
                                 ( RelationSymbol
                                     ( Command "in" )
                                     ( Marker "elem" )
@@ -948,6 +1228,12 @@
                 , introResult = FormulaChain
                     ( ChainBase
                         ( ExprOp
+                            ( Location
+                                { locFile = "test/examples/inductive.tex"
+                                , locLine = 57
+                                , locColumn = 68
+                                }
+                            )
                             ( MixfixItem
                                 ( TokenCons
                                     ( Command "pair" )
@@ -970,12 +1256,24 @@
                             ] :| []
                         ) Positive
                         ( Relation
+                            ( Location
+                                { locFile = "test/examples/inductive.tex"
+                                , locLine = 57
+                                , locColumn = 73
+                                }
+                            )
                             ( RelationSymbol
                                 ( Command "in" )
                                 ( Marker "elem" )
                             ) []
                         )
                         ( ExprOp
+                            ( Location
+                                { locFile = "test/examples/inductive.tex"
+                                , locLine = 57
+                                , locColumn = 76
+                                }
+                            )
                             ( MixfixItem
                                 ( TokenCons
                                     ( Command "qrefltracl" )
@@ -1023,6 +1321,12 @@
             , NamedVar "R"
             ]
         , inductiveDomain = ExprOp
+            ( Location
+                { locFile = "test/examples/inductive.tex"
+                , locLine = 62
+                , locColumn = 39
+                }
+            )
             ( MixfixItem
                 ( HoleCons
                     ( TokenCons
@@ -1044,6 +1348,12 @@
                             ( NamedVar "a" ) :| []
                         ) Positive
                         ( Relation
+                            ( Location
+                                { locFile = "test/examples/inductive.tex"
+                                , locLine = 64
+                                , locColumn = 20
+                                }
+                            )
                             ( RelationSymbol
                                 ( Command "in" )
                                 ( Marker "elem" )
@@ -1057,6 +1367,12 @@
             , introResult = FormulaChain
                 ( ChainBase
                     ( ExprOp
+                        ( Location
+                            { locFile = "test/examples/inductive.tex"
+                            , locLine = 64
+                            , locColumn = 34
+                            }
+                        )
                         ( MixfixItem
                             ( TokenCons
                                 ( Command "pair" )
@@ -1079,12 +1395,24 @@
                         ] :| []
                     ) Positive
                     ( Relation
+                        ( Location
+                            { locFile = "test/examples/inductive.tex"
+                            , locLine = 64
+                            , locColumn = 39
+                            }
+                        )
                         ( RelationSymbol
                             ( Command "in" )
                             ( Marker "elem" )
                         ) []
                     )
                     ( ExprOp
+                        ( Location
+                            { locFile = "test/examples/inductive.tex"
+                            , locLine = 64
+                            , locColumn = 42
+                            }
+                        )
                         ( MixfixItem
                             ( TokenCons
                                 ( Command "refltracl" )
@@ -1113,6 +1441,12 @@
                     [ FormulaChain
                         ( ChainBase
                             ( ExprOp
+                                ( Location
+                                    { locFile = "test/examples/inductive.tex"
+                                    , locLine = 65
+                                    , locColumn = 19
+                                    }
+                                )
                                 ( MixfixItem
                                     ( TokenCons
                                         ( Command "pair" )
@@ -1135,12 +1469,24 @@
                                 ] :| []
                             ) Positive
                             ( Relation
+                                ( Location
+                                    { locFile = "test/examples/inductive.tex"
+                                    , locLine = 65
+                                    , locColumn = 25
+                                    }
+                                )
                                 ( RelationSymbol
                                     ( Command "in" )
                                     ( Marker "elem" )
                                 ) []
                             )
                             ( ExprOp
+                                ( Location
+                                    { locFile = "test/examples/inductive.tex"
+                                    , locLine = 65
+                                    , locColumn = 28
+                                    }
+                                )
                                 ( MixfixItem
                                     ( TokenCons
                                         ( Command "refltracl" )
@@ -1166,6 +1512,12 @@
                     , FormulaChain
                         ( ChainBase
                             ( ExprOp
+                                ( Location
+                                    { locFile = "test/examples/inductive.tex"
+                                    , locLine = 65
+                                    , locColumn = 51
+                                    }
+                                )
                                 ( MixfixItem
                                     ( TokenCons
                                         ( Command "pair" )
@@ -1188,6 +1540,12 @@
                                 ] :| []
                             ) Positive
                             ( Relation
+                                ( Location
+                                    { locFile = "test/examples/inductive.tex"
+                                    , locLine = 65
+                                    , locColumn = 56
+                                    }
+                                )
                                 ( RelationSymbol
                                     ( Command "in" )
                                     ( Marker "elem" )
@@ -1201,6 +1559,12 @@
                 , introResult = FormulaChain
                     ( ChainBase
                         ( ExprOp
+                            ( Location
+                                { locFile = "test/examples/inductive.tex"
+                                , locLine = 65
+                                , locColumn = 70
+                                }
+                            )
                             ( MixfixItem
                                 ( TokenCons
                                     ( Command "pair" )
@@ -1223,12 +1587,24 @@
                             ] :| []
                         ) Positive
                         ( Relation
+                            ( Location
+                                { locFile = "test/examples/inductive.tex"
+                                , locLine = 65
+                                , locColumn = 75
+                                }
+                            )
                             ( RelationSymbol
                                 ( Command "in" )
                                 ( Marker "elem" )
                             ) []
                         )
                         ( ExprOp
+                            ( Location
+                                { locFile = "test/examples/inductive.tex"
+                                , locLine = 65
+                                , locColumn = 78
+                                }
+                            )
                             ( MixfixItem
                                 ( TokenCons
                                     ( Command "refltracl" )
@@ -1276,6 +1652,12 @@
             )
             [ NamedVar "R" ]
         , inductiveDomain = ExprOp
+            ( Location
+                { locFile = "test/examples/inductive.tex"
+                , locLine = 70
+                , locColumn = 30
+                }
+            )
             ( MixfixItem
                 ( TokenCons
                     ( Command "fld" )
@@ -1296,12 +1678,24 @@
                             ( NamedVar "a" ) :| []
                         ) Positive
                         ( Relation
+                            ( Location
+                                { locFile = "test/examples/inductive.tex"
+                                , locLine = 72
+                                , locColumn = 20
+                                }
+                            )
                             ( RelationSymbol
                                 ( Command "in" )
                                 ( Marker "elem" )
                             ) []
                         )
                         ( ExprOp
+                            ( Location
+                                { locFile = "test/examples/inductive.tex"
+                                , locLine = 72
+                                , locColumn = 23
+                                }
+                            )
                             ( MixfixItem
                                 ( TokenCons
                                     ( Command "fld" )
@@ -1319,6 +1713,12 @@
                 , FormulaChain
                     ( ChainBase
                         ( ExprOp
+                            ( Location
+                                { locFile = "test/examples/inductive.tex"
+                                , locLine = 72
+                                , locColumn = 37
+                                }
+                            )
                             ( MixfixItem
                                 ( TokenCons
                                     ( Command "preimg" )
@@ -1337,18 +1737,36 @@
                             [ ExprVar
                                 ( NamedVar "R" )
                             , ExprFiniteSet
+                                ( Location
+                                    { locFile = "test/examples/inductive.tex"
+                                    , locLine = 72
+                                    , locColumn = 48
+                                    }
+                                )
                                 ( ExprVar
                                     ( NamedVar "a" ) :| []
                                 )
                             ] :| []
                         ) Positive
                         ( Relation
+                            ( Location
+                                { locFile = "test/examples/inductive.tex"
+                                , locLine = 72
+                                , locColumn = 54
+                                }
+                            )
                             ( RelationSymbol
                                 ( Command "in" )
                                 ( Marker "elem" )
                             ) []
                         )
                         ( ExprOp
+                            ( Location
+                                { locFile = "test/examples/inductive.tex"
+                                , locLine = 72
+                                , locColumn = 57
+                                }
+                            )
                             ( MixfixItem
                                 ( TokenCons
                                     ( Command "pow" )
@@ -1359,6 +1777,12 @@
                                 ( Marker "pow" ) NonAssoc
                             )
                             [ ExprOp
+                                ( Location
+                                    { locFile = "test/examples/inductive.tex"
+                                    , locLine = 72
+                                    , locColumn = 62
+                                    }
+                                )
                                 ( MixfixItem
                                     ( TokenCons
                                         ( Command "acc" )
@@ -1381,12 +1805,24 @@
                         ( NamedVar "a" ) :| []
                     ) Positive
                     ( Relation
+                        ( Location
+                            { locFile = "test/examples/inductive.tex"
+                            , locLine = 72
+                            , locColumn = 80
+                            }
+                        )
                         ( RelationSymbol
                             ( Command "in" )
                             ( Marker "elem" )
                         ) []
                     )
                     ( ExprOp
+                        ( Location
+                            { locFile = "test/examples/inductive.tex"
+                            , locLine = 72
+                            , locColumn = 83
+                            }
+                        )
                         ( MixfixItem
                             ( TokenCons
                                 ( Command "acc" )

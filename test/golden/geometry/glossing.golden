@@ -31,9 +31,9 @@
         ( Connected Disjunction
             ( TermSymbol
                 ( Location
-                    { locFile = "<nowhere>"
-                    , locLine = -1
-                    , locColumn = -1
+                    { locFile = "test/examples/geometry.tex"
+                    , locLine = 2
+                    , locColumn = 44
                     }
                 )
                 ( SymbolPredicate
@@ -50,9 +50,9 @@
             ( Connected Disjunction
                 ( TermSymbol
                     ( Location
-                        { locFile = "<nowhere>"
-                        , locLine = -1
-                        , locColumn = -1
+                        { locFile = "test/examples/geometry.tex"
+                        , locLine = 2
+                        , locColumn = 64
                         }
                     )
                     ( SymbolPredicate
@@ -68,9 +68,9 @@
                 )
                 ( TermSymbol
                     ( Location
-                        { locFile = "<nowhere>"
-                        , locLine = -1
-                        , locColumn = -1
+                        { locFile = "test/examples/geometry.tex"
+                        , locLine = 2
+                        , locColumn = 84
                         }
                     )
                     ( SymbolPredicate
@@ -99,9 +99,9 @@
         [ Asm
             ( TermSymbol
                 ( Location
-                    { locFile = "<nowhere>"
-                    , locLine = -1
-                    , locColumn = -1
+                    { locFile = "test/examples/geometry.tex"
+                    , locLine = 6
+                    , locColumn = 19
                     }
                 )
                 ( SymbolPredicate
@@ -125,9 +125,9 @@
         , Asm
             ( TermSymbol
                 ( Location
-                    { locFile = "<nowhere>"
-                    , locLine = -1
-                    , locColumn = -1
+                    { locFile = "test/examples/geometry.tex"
+                    , locLine = 6
+                    , locColumn = 19
                     }
                 )
                 ( SymbolPredicate
@@ -151,9 +151,9 @@
         ]
         ( TermSymbol
             ( Location
-                { locFile = "<nowhere>"
-                , locLine = -1
-                , locColumn = -1
+                { locFile = "test/examples/geometry.tex"
+                , locLine = 7
+                , locColumn = 11
                 }
             )
             ( SymbolPredicate
@@ -182,9 +182,9 @@
         [ Asm
             ( TermSymbol
                 ( Location
-                    { locFile = "<nowhere>"
-                    , locLine = -1
-                    , locColumn = -1
+                    { locFile = "test/examples/geometry.tex"
+                    , locLine = 11
+                    , locColumn = 25
                     }
                 )
                 ( SymbolPredicate
@@ -208,9 +208,9 @@
         , Asm
             ( TermSymbol
                 ( Location
-                    { locFile = "<nowhere>"
-                    , locLine = -1
-                    , locColumn = -1
+                    { locFile = "test/examples/geometry.tex"
+                    , locLine = 11
+                    , locColumn = 25
                     }
                 )
                 ( SymbolPredicate
@@ -234,9 +234,9 @@
         , Asm
             ( TermSymbol
                 ( Location
-                    { locFile = "<nowhere>"
-                    , locLine = -1
-                    , locColumn = -1
+                    { locFile = "test/examples/geometry.tex"
+                    , locLine = 11
+                    , locColumn = 25
                     }
                 )
                 ( SymbolPredicate
@@ -260,9 +260,9 @@
         , Asm
             ( TermSymbol
                 ( Location
-                    { locFile = "<nowhere>"
-                    , locLine = -1
-                    , locColumn = -1
+                    { locFile = "test/examples/geometry.tex"
+                    , locLine = 11
+                    , locColumn = 25
                     }
                 )
                 ( SymbolPredicate
@@ -288,9 +288,9 @@
             ( Connected Conjunction
                 ( TermSymbol
                     ( Location
-                        { locFile = "<nowhere>"
-                        , locLine = -1
-                        , locColumn = -1
+                        { locFile = "test/examples/geometry.tex"
+                        , locLine = 12
+                        , locColumn = 9
                         }
                     )
                     ( SymbolPredicate
@@ -308,9 +308,9 @@
                 )
                 ( TermSymbol
                     ( Location
-                        { locFile = "<nowhere>"
-                        , locLine = -1
-                        , locColumn = -1
+                        { locFile = "test/examples/geometry.tex"
+                        , locLine = 12
+                        , locColumn = 33
                         }
                     )
                     ( SymbolPredicate
@@ -329,9 +329,9 @@
             )
             ( TermSymbol
                 ( Location
-                    { locFile = "<nowhere>"
-                    , locLine = -1
-                    , locColumn = -1
+                    { locFile = "test/examples/geometry.tex"
+                    , locLine = 12
+                    , locColumn = 58
                     }
                 )
                 ( SymbolPredicate
@@ -361,9 +361,9 @@
         [ Asm
             ( TermSymbol
                 ( Location
-                    { locFile = "<nowhere>"
-                    , locLine = -1
-                    , locColumn = -1
+                    { locFile = "test/examples/geometry.tex"
+                    , locLine = 16
+                    , locColumn = 22
                     }
                 )
                 ( SymbolPredicate
@@ -387,9 +387,9 @@
         , Asm
             ( TermSymbol
                 ( Location
-                    { locFile = "<nowhere>"
-                    , locLine = -1
-                    , locColumn = -1
+                    { locFile = "test/examples/geometry.tex"
+                    , locLine = 16
+                    , locColumn = 22
                     }
                 )
                 ( SymbolPredicate
@@ -413,9 +413,9 @@
         , Asm
             ( TermSymbol
                 ( Location
-                    { locFile = "<nowhere>"
-                    , locLine = -1
-                    , locColumn = -1
+                    { locFile = "test/examples/geometry.tex"
+                    , locLine = 16
+                    , locColumn = 22
                     }
                 )
                 ( SymbolPredicate
@@ -440,9 +440,9 @@
         ( Connected Implication
             ( TermSymbol
                 ( Location
-                    { locFile = "<nowhere>"
-                    , locLine = -1
-                    , locColumn = -1
+                    { locFile = "test/examples/geometry.tex"
+                    , locLine = 17
+                    , locColumn = 9
                     }
                 )
                 ( SymbolPredicate
@@ -460,9 +460,9 @@
             )
             ( TermSymbol
                 ( Location
-                    { locFile = "<nowhere>"
-                    , locLine = -1
-                    , locColumn = -1
+                    { locFile = "test/examples/geometry.tex"
+                    , locLine = 17
+                    , locColumn = 36
                     }
                 )
                 ( SymbolPredicate
@@ -495,9 +495,9 @@
                 ( Connected Conjunction
                     ( TermSymbol
                         ( Location
-                            { locFile = "<nowhere>"
-                            , locLine = -1
-                            , locColumn = -1
+                            { locFile = "test/examples/geometry.tex"
+                            , locLine = 22
+                            , locColumn = 20
                             }
                         )
                         ( SymbolPredicate
@@ -523,9 +523,9 @@
                     ( Connected Conjunction
                         ( TermSymbol
                             ( Location
-                                { locFile = "<nowhere>"
-                                , locLine = -1
-                                , locColumn = -1
+                                { locFile = "test/examples/geometry.tex"
+                                , locLine = 22
+                                , locColumn = 41
                                 }
                             )
                             ( SymbolPredicate
@@ -551,9 +551,9 @@
                         )
                         ( TermSymbol
                             ( Location
-                                { locFile = "<nowhere>"
-                                , locLine = -1
-                                , locColumn = -1
+                                { locFile = "test/examples/geometry.tex"
+                                , locLine = 22
+                                , locColumn = 62
                                 }
                             )
                             ( SymbolPredicate
@@ -600,9 +600,9 @@
         [ Asm
             ( TermSymbol
                 ( Location
-                    { locFile = "<nowhere>"
-                    , locLine = -1
-                    , locColumn = -1
+                    { locFile = "test/examples/geometry.tex"
+                    , locLine = 27
+                    , locColumn = 30
                     }
                 )
                 ( SymbolPredicate
@@ -626,9 +626,9 @@
         , Asm
             ( TermSymbol
                 ( Location
-                    { locFile = "<nowhere>"
-                    , locLine = -1
-                    , locColumn = -1
+                    { locFile = "test/examples/geometry.tex"
+                    , locLine = 27
+                    , locColumn = 30
                     }
                 )
                 ( SymbolPredicate
@@ -652,9 +652,9 @@
         , Asm
             ( TermSymbol
                 ( Location
-                    { locFile = "<nowhere>"
-                    , locLine = -1
-                    , locColumn = -1
+                    { locFile = "test/examples/geometry.tex"
+                    , locLine = 27
+                    , locColumn = 30
                     }
                 )
                 ( SymbolPredicate
@@ -678,9 +678,9 @@
         , Asm
             ( TermSymbol
                 ( Location
-                    { locFile = "<nowhere>"
-                    , locLine = -1
-                    , locColumn = -1
+                    { locFile = "test/examples/geometry.tex"
+                    , locLine = 27
+                    , locColumn = 30
                     }
                 )
                 ( SymbolPredicate
@@ -704,9 +704,9 @@
         , Asm
             ( TermSymbol
                 ( Location
-                    { locFile = "<nowhere>"
-                    , locLine = -1
-                    , locColumn = -1
+                    { locFile = "test/examples/geometry.tex"
+                    , locLine = 27
+                    , locColumn = 30
                     }
                 )
                 ( SymbolPredicate
@@ -730,9 +730,9 @@
         , Asm
             ( TermSymbol
                 ( Location
-                    { locFile = "<nowhere>"
-                    , locLine = -1
-                    , locColumn = -1
+                    { locFile = "test/examples/geometry.tex"
+                    , locLine = 27
+                    , locColumn = 30
                     }
                 )
                 ( SymbolPredicate
@@ -756,9 +756,9 @@
         , Asm
             ( TermSymbol
                 ( Location
-                    { locFile = "<nowhere>"
-                    , locLine = -1
-                    , locColumn = -1
+                    { locFile = "test/examples/geometry.tex"
+                    , locLine = 27
+                    , locColumn = 30
                     }
                 )
                 ( SymbolPredicate
@@ -782,9 +782,9 @@
         , Asm
             ( TermSymbol
                 ( Location
-                    { locFile = "<nowhere>"
-                    , locLine = -1
-                    , locColumn = -1
+                    { locFile = "test/examples/geometry.tex"
+                    , locLine = 27
+                    , locColumn = 30
                     }
                 )
                 ( SymbolPredicate
@@ -821,9 +821,9 @@
             ( Connected Conjunction
                 ( TermSymbol
                     ( Location
-                        { locFile = "<nowhere>"
-                        , locLine = -1
-                        , locColumn = -1
+                        { locFile = "test/examples/geometry.tex"
+                        , locLine = 29
+                        , locColumn = 6
                         }
                     )
                     ( SymbolPredicate
@@ -839,9 +839,9 @@
                 )
                 ( TermSymbol
                     ( Location
-                        { locFile = "<nowhere>"
-                        , locLine = -1
-                        , locColumn = -1
+                        { locFile = "test/examples/geometry.tex"
+                        , locLine = 30
+                        , locColumn = 13
                         }
                     )
                     ( SymbolPredicate
@@ -861,9 +861,9 @@
                     ( Connected Conjunction
                         ( TermSymbol
                             ( Location
-                                { locFile = "<nowhere>"
-                                , locLine = -1
-                                , locColumn = -1
+                                { locFile = "test/examples/geometry.tex"
+                                , locLine = 32
+                                , locColumn = 6
                                 }
                             )
                             ( SymbolPredicate
@@ -881,9 +881,9 @@
                         )
                         ( TermSymbol
                             ( Location
-                                { locFile = "<nowhere>"
-                                , locLine = -1
-                                , locColumn = -1
+                                { locFile = "test/examples/geometry.tex"
+                                , locLine = 33
+                                , locColumn = 13
                                 }
                             )
                             ( SymbolPredicate
@@ -902,9 +902,9 @@
                     )
                     ( TermSymbol
                         ( Location
-                            { locFile = "<nowhere>"
-                            , locLine = -1
-                            , locColumn = -1
+                            { locFile = "test/examples/geometry.tex"
+                            , locLine = 34
+                            , locColumn = 13
                             }
                         )
                         ( SymbolPredicate
@@ -923,9 +923,9 @@
                 )
                 ( TermSymbol
                     ( Location
-                        { locFile = "<nowhere>"
-                        , locLine = -1
-                        , locColumn = -1
+                        { locFile = "test/examples/geometry.tex"
+                        , locLine = 35
+                        , locColumn = 13
                         }
                     )
                     ( SymbolPredicate
@@ -956,9 +956,9 @@
         [ Asm
             ( TermSymbol
                 ( Location
-                    { locFile = "<nowhere>"
-                    , locLine = -1
-                    , locColumn = -1
+                    { locFile = "test/examples/geometry.tex"
+                    , locLine = 40
+                    , locColumn = 34
                     }
                 )
                 ( SymbolPredicate
@@ -982,9 +982,9 @@
         , Asm
             ( TermSymbol
                 ( Location
-                    { locFile = "<nowhere>"
-                    , locLine = -1
-                    , locColumn = -1
+                    { locFile = "test/examples/geometry.tex"
+                    , locLine = 40
+                    , locColumn = 34
                     }
                 )
                 ( SymbolPredicate
@@ -1008,9 +1008,9 @@
         , Asm
             ( TermSymbol
                 ( Location
-                    { locFile = "<nowhere>"
-                    , locLine = -1
-                    , locColumn = -1
+                    { locFile = "test/examples/geometry.tex"
+                    , locLine = 40
+                    , locColumn = 34
                     }
                 )
                 ( SymbolPredicate
@@ -1034,9 +1034,9 @@
         , Asm
             ( TermSymbol
                 ( Location
-                    { locFile = "<nowhere>"
-                    , locLine = -1
-                    , locColumn = -1
+                    { locFile = "test/examples/geometry.tex"
+                    , locLine = 40
+                    , locColumn = 34
                     }
                 )
                 ( SymbolPredicate
@@ -1060,9 +1060,9 @@
         , Asm
             ( TermSymbol
                 ( Location
-                    { locFile = "<nowhere>"
-                    , locLine = -1
-                    , locColumn = -1
+                    { locFile = "test/examples/geometry.tex"
+                    , locLine = 40
+                    , locColumn = 34
                     }
                 )
                 ( SymbolPredicate
@@ -1086,9 +1086,9 @@
         , Asm
             ( TermSymbol
                 ( Location
-                    { locFile = "<nowhere>"
-                    , locLine = -1
-                    , locColumn = -1
+                    { locFile = "test/examples/geometry.tex"
+                    , locLine = 40
+                    , locColumn = 34
                     }
                 )
                 ( SymbolPredicate
@@ -1112,9 +1112,9 @@
         , Asm
             ( TermSymbol
                 ( Location
-                    { locFile = "<nowhere>"
-                    , locLine = -1
-                    , locColumn = -1
+                    { locFile = "test/examples/geometry.tex"
+                    , locLine = 40
+                    , locColumn = 34
                     }
                 )
                 ( SymbolPredicate
@@ -1138,9 +1138,9 @@
         , Asm
             ( TermSymbol
                 ( Location
-                    { locFile = "<nowhere>"
-                    , locLine = -1
-                    , locColumn = -1
+                    { locFile = "test/examples/geometry.tex"
+                    , locLine = 40
+                    , locColumn = 34
                     }
                 )
                 ( SymbolPredicate
@@ -1166,9 +1166,9 @@
             ( Connected Conjunction
                 ( TermSymbol
                     ( Location
-                        { locFile = "<nowhere>"
-                        , locLine = -1
-                        , locColumn = -1
+                        { locFile = "test/examples/geometry.tex"
+                        , locLine = 41
+                        , locColumn = 9
                         }
                     )
                     ( SymbolPredicate
@@ -1194,9 +1194,9 @@
                 )
                 ( TermSymbol
                     ( Location
-                        { locFile = "<nowhere>"
-                        , locLine = -1
-                        , locColumn = -1
+                        { locFile = "test/examples/geometry.tex"
+                        , locLine = 42
+                        , locColumn = 8
                         }
                     )
                     ( SymbolPredicate
@@ -1216,9 +1216,9 @@
             )
             ( TermSymbol
                 ( Location
-                    { locFile = "<nowhere>"
-                    , locLine = -1
-                    , locColumn = -1
+                    { locFile = "test/examples/geometry.tex"
+                    , locLine = 42
+                    , locColumn = 22
                     }
                 )
                 ( SymbolPredicate
@@ -1248,9 +1248,9 @@
         [ Asm
             ( TermSymbol
                 ( Location
-                    { locFile = "<nowhere>"
-                    , locLine = -1
-                    , locColumn = -1
+                    { locFile = "test/examples/geometry.tex"
+                    , locLine = 47
+                    , locColumn = 18
                     }
                 )
                 ( SymbolPredicate
@@ -1274,9 +1274,9 @@
         , Asm
             ( TermSymbol
                 ( Location
-                    { locFile = "<nowhere>"
-                    , locLine = -1
-                    , locColumn = -1
+                    { locFile = "test/examples/geometry.tex"
+                    , locLine = 47
+                    , locColumn = 18
                     }
                 )
                 ( SymbolPredicate
@@ -1301,9 +1301,9 @@
         ( Connected Implication
             ( TermSymbol
                 ( Location
-                    { locFile = "<nowhere>"
-                    , locLine = -1
-                    , locColumn = -1
+                    { locFile = "test/examples/geometry.tex"
+                    , locLine = 48
+                    , locColumn = 9
                     }
                 )
                 ( SymbolPredicate
@@ -1319,9 +1319,9 @@
             )
             ( TermSymbol
                 ( Location
-                    { locFile = "<nowhere>"
-                    , locLine = -1
-                    , locColumn = -1
+                    { locFile = "test/examples/geometry.tex"
+                    , locLine = 48
+                    , locColumn = 33
                     }
                 )
                 ( SymbolPredicate
@@ -1352,9 +1352,9 @@
         [ Asm
             ( TermSymbol
                 ( Location
-                    { locFile = "<nowhere>"
-                    , locLine = -1
-                    , locColumn = -1
+                    { locFile = "test/examples/geometry.tex"
+                    , locLine = 53
+                    , locColumn = 26
                     }
                 )
                 ( SymbolPredicate
@@ -1378,9 +1378,9 @@
         , Asm
             ( TermSymbol
                 ( Location
-                    { locFile = "<nowhere>"
-                    , locLine = -1
-                    , locColumn = -1
+                    { locFile = "test/examples/geometry.tex"
+                    , locLine = 53
+                    , locColumn = 26
                     }
                 )
                 ( SymbolPredicate
@@ -1404,9 +1404,9 @@
         , Asm
             ( TermSymbol
                 ( Location
-                    { locFile = "<nowhere>"
-                    , locLine = -1
-                    , locColumn = -1
+                    { locFile = "test/examples/geometry.tex"
+                    , locLine = 53
+                    , locColumn = 26
                     }
                 )
                 ( SymbolPredicate
@@ -1430,9 +1430,9 @@
         , Asm
             ( TermSymbol
                 ( Location
-                    { locFile = "<nowhere>"
-                    , locLine = -1
-                    , locColumn = -1
+                    { locFile = "test/examples/geometry.tex"
+                    , locLine = 53
+                    , locColumn = 26
                     }
                 )
                 ( SymbolPredicate
@@ -1456,9 +1456,9 @@
         , Asm
             ( TermSymbol
                 ( Location
-                    { locFile = "<nowhere>"
-                    , locLine = -1
-                    , locColumn = -1
+                    { locFile = "test/examples/geometry.tex"
+                    , locLine = 53
+                    , locColumn = 26
                     }
                 )
                 ( SymbolPredicate
@@ -1482,9 +1482,9 @@
         , Asm
             ( TermSymbol
                 ( Location
-                    { locFile = "<nowhere>"
-                    , locLine = -1
-                    , locColumn = -1
+                    { locFile = "test/examples/geometry.tex"
+                    , locLine = 53
+                    , locColumn = 26
                     }
                 )
                 ( SymbolPredicate
@@ -1510,9 +1510,9 @@
             ( Connected Conjunction
                 ( TermSymbol
                     ( Location
-                        { locFile = "<nowhere>"
-                        , locLine = -1
-                        , locColumn = -1
+                        { locFile = "test/examples/geometry.tex"
+                        , locLine = 54
+                        , locColumn = 9
                         }
                     )
                     ( SymbolPredicate
@@ -1528,9 +1528,9 @@
                 )
                 ( TermSymbol
                     ( Location
-                        { locFile = "<nowhere>"
-                        , locLine = -1
-                        , locColumn = -1
+                        { locFile = "test/examples/geometry.tex"
+                        , locLine = 54
+                        , locColumn = 30
                         }
                     )
                     ( SymbolPredicate
@@ -1550,9 +1550,9 @@
                     ( Connected Conjunction
                         ( TermSymbol
                             ( Location
-                                { locFile = "<nowhere>"
-                                , locLine = -1
-                                , locColumn = -1
+                                { locFile = "test/examples/geometry.tex"
+                                , locLine = 54
+                                , locColumn = 66
                                 }
                             )
                             ( SymbolPredicate
@@ -1578,9 +1578,9 @@
                         ( Connected Conjunction
                             ( TermSymbol
                                 ( Location
-                                    { locFile = "<nowhere>"
-                                    , locLine = -1
-                                    , locColumn = -1
+                                    { locFile = "test/examples/geometry.tex"
+                                    , locLine = 55
+                                    , locColumn = 16
                                     }
                                 )
                                 ( SymbolPredicate
@@ -1606,9 +1606,9 @@
                             )
                             ( TermSymbol
                                 ( Location
-                                    { locFile = "<nowhere>"
-                                    , locLine = -1
-                                    , locColumn = -1
+                                    { locFile = "test/examples/geometry.tex"
+                                    , locLine = 55
+                                    , locColumn = 37
                                     }
                                 )
                                 ( SymbolPredicate
@@ -1650,9 +1650,9 @@
         [ Asm
             ( TermSymbol
                 ( Location
-                    { locFile = "<nowhere>"
-                    , locLine = -1
-                    , locColumn = -1
+                    { locFile = "test/examples/geometry.tex"
+                    , locLine = 67
+                    , locColumn = 24
                     }
                 )
                 ( SymbolPredicate
@@ -1676,9 +1676,9 @@
         , Asm
             ( TermSymbol
                 ( Location
-                    { locFile = "<nowhere>"
-                    , locLine = -1
-                    , locColumn = -1
+                    { locFile = "test/examples/geometry.tex"
+                    , locLine = 67
+                    , locColumn = 24
                     }
                 )
                 ( SymbolPredicate
@@ -1702,9 +1702,9 @@
         , Asm
             ( TermSymbol
                 ( Location
-                    { locFile = "<nowhere>"
-                    , locLine = -1
-                    , locColumn = -1
+                    { locFile = "test/examples/geometry.tex"
+                    , locLine = 67
+                    , locColumn = 24
                     }
                 )
                 ( SymbolPredicate
@@ -1728,9 +1728,9 @@
         , Asm
             ( TermSymbol
                 ( Location
-                    { locFile = "<nowhere>"
-                    , locLine = -1
-                    , locColumn = -1
+                    { locFile = "test/examples/geometry.tex"
+                    , locLine = 67
+                    , locColumn = 24
                     }
                 )
                 ( SymbolPredicate
@@ -1754,9 +1754,9 @@
         , Asm
             ( TermSymbol
                 ( Location
-                    { locFile = "<nowhere>"
-                    , locLine = -1
-                    , locColumn = -1
+                    { locFile = "test/examples/geometry.tex"
+                    , locLine = 67
+                    , locColumn = 24
                     }
                 )
                 ( SymbolPredicate
@@ -1782,9 +1782,9 @@
             ( Connected Conjunction
                 ( TermSymbol
                     ( Location
-                        { locFile = "<nowhere>"
-                        , locLine = -1
-                        , locColumn = -1
+                        { locFile = "test/examples/geometry.tex"
+                        , locLine = 68
+                        , locColumn = 9
                         }
                     )
                     ( SymbolPredicate
@@ -1803,9 +1803,9 @@
                 ( Connected Conjunction
                     ( TermSymbol
                         ( Location
-                            { locFile = "<nowhere>"
-                            , locLine = -1
-                            , locColumn = -1
+                            { locFile = "test/examples/geometry.tex"
+                            , locLine = 68
+                            , locColumn = 33
                             }
                         )
                         ( SymbolPredicate
@@ -1824,9 +1824,9 @@
                     ( Connected Conjunction
                         ( TermSymbol
                             ( Location
-                                { locFile = "<nowhere>"
-                                , locLine = -1
-                                , locColumn = -1
+                                { locFile = "test/examples/geometry.tex"
+                                , locLine = 69
+                                , locColumn = 10
                                 }
                             )
                             ( SymbolPredicate
@@ -1844,9 +1844,9 @@
                         )
                         ( TermSymbol
                             ( Location
-                                { locFile = "<nowhere>"
-                                , locLine = -1
-                                , locColumn = -1
+                                { locFile = "test/examples/geometry.tex"
+                                , locLine = 69
+                                , locColumn = 36
                                 }
                             )
                             ( SymbolPredicate
@@ -1913,9 +1913,9 @@
         [ Asm
             ( TermSymbol
                 ( Location
-                    { locFile = "<nowhere>"
-                    , locLine = -1
-                    , locColumn = -1
+                    { locFile = "test/examples/geometry.tex"
+                    , locLine = 83
+                    , locColumn = 19
                     }
                 )
                 ( SymbolPredicate
@@ -1939,9 +1939,9 @@
         , Asm
             ( TermSymbol
                 ( Location
-                    { locFile = "<nowhere>"
-                    , locLine = -1
-                    , locColumn = -1
+                    { locFile = "test/examples/geometry.tex"
+                    , locLine = 83
+                    , locColumn = 19
                     }
                 )
                 ( SymbolPredicate
@@ -1965,9 +1965,9 @@
         ]
         ( TermSymbol
             ( Location
-                { locFile = "<nowhere>"
-                , locLine = -1
-                , locColumn = -1
+                { locFile = "test/examples/geometry.tex"
+                , locLine = 84
+                , locColumn = 11
                 }
             )
             ( SymbolPredicate
@@ -1996,9 +1996,9 @@
         [ Asm
             ( TermSymbol
                 ( Location
-                    { locFile = "<nowhere>"
-                    , locLine = -1
-                    , locColumn = -1
+                    { locFile = "test/examples/geometry.tex"
+                    , locLine = 89
+                    , locColumn = 25
                     }
                 )
                 ( SymbolPredicate
@@ -2022,9 +2022,9 @@
         , Asm
             ( TermSymbol
                 ( Location
-                    { locFile = "<nowhere>"
-                    , locLine = -1
-                    , locColumn = -1
+                    { locFile = "test/examples/geometry.tex"
+                    , locLine = 89
+                    , locColumn = 25
                     }
                 )
                 ( SymbolPredicate
@@ -2048,9 +2048,9 @@
         , Asm
             ( TermSymbol
                 ( Location
-                    { locFile = "<nowhere>"
-                    , locLine = -1
-                    , locColumn = -1
+                    { locFile = "test/examples/geometry.tex"
+                    , locLine = 89
+                    , locColumn = 25
                     }
                 )
                 ( SymbolPredicate
@@ -2074,9 +2074,9 @@
         , Asm
             ( TermSymbol
                 ( Location
-                    { locFile = "<nowhere>"
-                    , locLine = -1
-                    , locColumn = -1
+                    { locFile = "test/examples/geometry.tex"
+                    , locLine = 89
+                    , locColumn = 25
                     }
                 )
                 ( SymbolPredicate
@@ -2100,9 +2100,9 @@
         , Asm
             ( TermSymbol
                 ( Location
-                    { locFile = "<nowhere>"
-                    , locLine = -1
-                    , locColumn = -1
+                    { locFile = "test/examples/geometry.tex"
+                    , locLine = 90
+                    , locColumn = 14
                     }
                 )
                 ( SymbolPredicate
@@ -2121,9 +2121,9 @@
         ]
         ( TermSymbol
             ( Location
-                { locFile = "<nowhere>"
-                , locLine = -1
-                , locColumn = -1
+                { locFile = "test/examples/geometry.tex"
+                , locLine = 91
+                , locColumn = 11
                 }
             )
             ( SymbolPredicate
@@ -2152,9 +2152,9 @@
         [ Asm
             ( TermSymbol
                 ( Location
-                    { locFile = "<nowhere>"
-                    , locLine = -1
-                    , locColumn = -1
+                    { locFile = "test/examples/geometry.tex"
+                    , locLine = 96
+                    , locColumn = 31
                     }
                 )
                 ( SymbolPredicate
@@ -2178,9 +2178,9 @@
         , Asm
             ( TermSymbol
                 ( Location
-                    { locFile = "<nowhere>"
-                    , locLine = -1
-                    , locColumn = -1
+                    { locFile = "test/examples/geometry.tex"
+                    , locLine = 96
+                    , locColumn = 31
                     }
                 )
                 ( SymbolPredicate
@@ -2204,9 +2204,9 @@
         , Asm
             ( TermSymbol
                 ( Location
-                    { locFile = "<nowhere>"
-                    , locLine = -1
-                    , locColumn = -1
+                    { locFile = "test/examples/geometry.tex"
+                    , locLine = 96
+                    , locColumn = 31
                     }
                 )
                 ( SymbolPredicate
@@ -2230,9 +2230,9 @@
         , Asm
             ( TermSymbol
                 ( Location
-                    { locFile = "<nowhere>"
-                    , locLine = -1
-                    , locColumn = -1
+                    { locFile = "test/examples/geometry.tex"
+                    , locLine = 96
+                    , locColumn = 31
                     }
                 )
                 ( SymbolPredicate
@@ -2256,9 +2256,9 @@
         , Asm
             ( TermSymbol
                 ( Location
-                    { locFile = "<nowhere>"
-                    , locLine = -1
-                    , locColumn = -1
+                    { locFile = "test/examples/geometry.tex"
+                    , locLine = 96
+                    , locColumn = 31
                     }
                 )
                 ( SymbolPredicate
@@ -2282,9 +2282,9 @@
         , Asm
             ( TermSymbol
                 ( Location
-                    { locFile = "<nowhere>"
-                    , locLine = -1
-                    , locColumn = -1
+                    { locFile = "test/examples/geometry.tex"
+                    , locLine = 96
+                    , locColumn = 31
                     }
                 )
                 ( SymbolPredicate
@@ -2310,9 +2310,9 @@
             ( Connected Conjunction
                 ( TermSymbol
                     ( Location
-                        { locFile = "<nowhere>"
-                        , locLine = -1
-                        , locColumn = -1
+                        { locFile = "test/examples/geometry.tex"
+                        , locLine = 97
+                        , locColumn = 9
                         }
                     )
                     ( SymbolPredicate
@@ -2330,9 +2330,9 @@
                 )
                 ( TermSymbol
                     ( Location
-                        { locFile = "<nowhere>"
-                        , locLine = -1
-                        , locColumn = -1
+                        { locFile = "test/examples/geometry.tex"
+                        , locLine = 97
+                        , locColumn = 33
                         }
                     )
                     ( SymbolPredicate
@@ -2351,9 +2351,9 @@
             )
             ( TermSymbol
                 ( Location
-                    { locFile = "<nowhere>"
-                    , locLine = -1
-                    , locColumn = -1
+                    { locFile = "test/examples/geometry.tex"
+                    , locLine = 98
+                    , locColumn = 11
                     }
                 )
                 ( SymbolPredicate
@@ -2383,9 +2383,9 @@
         [ Asm
             ( TermSymbol
                 ( Location
-                    { locFile = "<nowhere>"
-                    , locLine = -1
-                    , locColumn = -1
+                    { locFile = "test/examples/geometry.tex"
+                    , locLine = 103
+                    , locColumn = 25
                     }
                 )
                 ( SymbolPredicate
@@ -2409,9 +2409,9 @@
         , Asm
             ( TermSymbol
                 ( Location
-                    { locFile = "<nowhere>"
-                    , locLine = -1
-                    , locColumn = -1
+                    { locFile = "test/examples/geometry.tex"
+                    , locLine = 103
+                    , locColumn = 25
                     }
                 )
                 ( SymbolPredicate
@@ -2435,9 +2435,9 @@
         , Asm
             ( TermSymbol
                 ( Location
-                    { locFile = "<nowhere>"
-                    , locLine = -1
-                    , locColumn = -1
+                    { locFile = "test/examples/geometry.tex"
+                    , locLine = 103
+                    , locColumn = 25
                     }
                 )
                 ( SymbolPredicate
@@ -2461,9 +2461,9 @@
         , Asm
             ( TermSymbol
                 ( Location
-                    { locFile = "<nowhere>"
-                    , locLine = -1
-                    , locColumn = -1
+                    { locFile = "test/examples/geometry.tex"
+                    , locLine = 103
+                    , locColumn = 25
                     }
                 )
                 ( SymbolPredicate
@@ -2488,9 +2488,9 @@
         ( Connected Implication
             ( TermSymbol
                 ( Location
-                    { locFile = "<nowhere>"
-                    , locLine = -1
-                    , locColumn = -1
+                    { locFile = "test/examples/geometry.tex"
+                    , locLine = 104
+                    , locColumn = 9
                     }
                 )
                 ( SymbolPredicate
@@ -2508,9 +2508,9 @@
             )
             ( TermSymbol
                 ( Location
-                    { locFile = "<nowhere>"
-                    , locLine = -1
-                    , locColumn = -1
+                    { locFile = "test/examples/geometry.tex"
+                    , locLine = 105
+                    , locColumn = 11
                     }
                 )
                 ( SymbolPredicate
@@ -2540,9 +2540,9 @@
         [ Asm
             ( TermSymbol
                 ( Location
-                    { locFile = "<nowhere>"
-                    , locLine = -1
-                    , locColumn = -1
+                    { locFile = "test/examples/geometry.tex"
+                    , locLine = 110
+                    , locColumn = 25
                     }
                 )
                 ( SymbolPredicate
@@ -2566,9 +2566,9 @@
         , Asm
             ( TermSymbol
                 ( Location
-                    { locFile = "<nowhere>"
-                    , locLine = -1
-                    , locColumn = -1
+                    { locFile = "test/examples/geometry.tex"
+                    , locLine = 110
+                    , locColumn = 25
                     }
                 )
                 ( SymbolPredicate
@@ -2592,9 +2592,9 @@
         , Asm
             ( TermSymbol
                 ( Location
-                    { locFile = "<nowhere>"
-                    , locLine = -1
-                    , locColumn = -1
+                    { locFile = "test/examples/geometry.tex"
+                    , locLine = 110
+                    , locColumn = 25
                     }
                 )
                 ( SymbolPredicate
@@ -2618,9 +2618,9 @@
         , Asm
             ( TermSymbol
                 ( Location
-                    { locFile = "<nowhere>"
-                    , locLine = -1
-                    , locColumn = -1
+                    { locFile = "test/examples/geometry.tex"
+                    , locLine = 110
+                    , locColumn = 25
                     }
                 )
                 ( SymbolPredicate
@@ -2645,9 +2645,9 @@
         ( Connected Implication
             ( TermSymbol
                 ( Location
-                    { locFile = "<nowhere>"
-                    , locLine = -1
-                    , locColumn = -1
+                    { locFile = "test/examples/geometry.tex"
+                    , locLine = 111
+                    , locColumn = 9
                     }
                 )
                 ( SymbolPredicate
@@ -2665,9 +2665,9 @@
             )
             ( TermSymbol
                 ( Location
-                    { locFile = "<nowhere>"
-                    , locLine = -1
-                    , locColumn = -1
+                    { locFile = "test/examples/geometry.tex"
+                    , locLine = 112
+                    , locColumn = 11
                     }
                 )
                 ( SymbolPredicate
@@ -2697,9 +2697,9 @@
         [ Asm
             ( TermSymbol
                 ( Location
-                    { locFile = "<nowhere>"
-                    , locLine = -1
-                    , locColumn = -1
+                    { locFile = "test/examples/geometry.tex"
+                    , locLine = 117
+                    , locColumn = 18
                     }
                 )
                 ( SymbolPredicate
@@ -2723,9 +2723,9 @@
         , Asm
             ( TermSymbol
                 ( Location
-                    { locFile = "<nowhere>"
-                    , locLine = -1
-                    , locColumn = -1
+                    { locFile = "test/examples/geometry.tex"
+                    , locLine = 117
+                    , locColumn = 18
                     }
                 )
                 ( SymbolPredicate
@@ -2749,9 +2749,9 @@
         ]
         ( TermSymbol
             ( Location
-                { locFile = "<nowhere>"
-                , locLine = -1
-                , locColumn = -1
+                { locFile = "test/examples/geometry.tex"
+                , locLine = 118
+                , locColumn = 11
                 }
             )
             ( SymbolPredicate

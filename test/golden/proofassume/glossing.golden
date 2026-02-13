@@ -10,9 +10,9 @@
         ( Connected Implication
             ( TermSymbol
                 ( Location
-                    { locFile = "<nowhere>"
-                    , locLine = -1
-                    , locColumn = -1
+                    { locFile = "test/examples/proofassume.tex"
+                    , locLine = 2
+                    , locColumn = 10
                     }
                 )
                 ( SymbolPredicate
@@ -31,9 +31,9 @@
             )
             ( TermSymbol
                 ( Location
-                    { locFile = "<nowhere>"
-                    , locLine = -1
-                    , locColumn = -1
+                    { locFile = "test/examples/proofassume.tex"
+                    , locLine = 2
+                    , locColumn = 25
                     }
                 )
                 ( SymbolPredicate
@@ -74,9 +74,9 @@
         )
         ( TermSymbol
             ( Location
-                { locFile = "<nowhere>"
-                , locLine = -1
-                , locColumn = -1
+                { locFile = "test/examples/proofassume.tex"
+                , locLine = 5
+                , locColumn = 14
                 }
             )
             ( SymbolPredicate
@@ -102,9 +102,9 @@
             )
             ( TermSymbol
                 ( Location
-                    { locFile = "<nowhere>"
-                    , locLine = -1
-                    , locColumn = -1
+                    { locFile = "test/examples/proofassume.tex"
+                    , locLine = 6
+                    , locColumn = 12
                     }
                 )
                 ( SymbolPredicate
@@ -141,9 +141,9 @@
             ( Connected Conjunction
                 ( TermSymbol
                     ( Location
-                        { locFile = "<nowhere>"
-                        , locLine = -1
-                        , locColumn = -1
+                        { locFile = "test/examples/proofassume.tex"
+                        , locLine = 10
+                        , locColumn = 10
                         }
                     )
                     ( SymbolPredicate
@@ -162,9 +162,9 @@
                 )
                 ( TermSymbol
                     ( Location
-                        { locFile = "<nowhere>"
-                        , locLine = -1
-                        , locColumn = -1
+                        { locFile = "test/examples/proofassume.tex"
+                        , locLine = 10
+                        , locColumn = 23
                         }
                     )
                     ( SymbolPredicate
@@ -184,9 +184,9 @@
             )
             ( TermSymbol
                 ( Location
-                    { locFile = "<nowhere>"
-                    , locLine = -1
-                    , locColumn = -1
+                    { locFile = "test/examples/proofassume.tex"
+                    , locLine = 10
+                    , locColumn = 38
                     }
                 )
                 ( SymbolPredicate
@@ -227,9 +227,9 @@
         )
         ( TermSymbol
             ( Location
-                { locFile = "<nowhere>"
-                , locLine = -1
-                , locColumn = -1
+                { locFile = "test/examples/proofassume.tex"
+                , locLine = 13
+                , locColumn = 14
                 }
             )
             ( SymbolPredicate
@@ -255,9 +255,9 @@
             )
             ( TermSymbol
                 ( Location
-                    { locFile = "<nowhere>"
-                    , locLine = -1
-                    , locColumn = -1
+                    { locFile = "test/examples/proofassume.tex"
+                    , locLine = 14
+                    , locColumn = 14
                     }
                 )
                 ( SymbolPredicate
@@ -283,9 +283,9 @@
                 )
                 ( TermSymbol
                     ( Location
-                        { locFile = "<nowhere>"
-                        , locLine = -1
-                        , locColumn = -1
+                        { locFile = "test/examples/proofassume.tex"
+                        , locLine = 15
+                        , locColumn = 12
                         }
                     )
                     ( SymbolPredicate

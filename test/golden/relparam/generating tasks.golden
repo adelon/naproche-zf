@@ -11,9 +11,9 @@
         ( Scope
             ( TermSymbol
                 ( Location
-                    { locFile = "<nowhere>"
-                    , locLine = -1
-                    , locColumn = -1
+                    { locFile = "test/examples/relparam.tex"
+                    , locLine = 3
+                    , locColumn = 27
                     }
                 )
                 ( SymbolPredicate
@@ -43,9 +43,9 @@
             ( Scope
                 ( TermSymbol
                     ( Location
-                        { locFile = "<nowhere>"
-                        , locLine = -1
-                        , locColumn = -1
+                        { locFile = "test/examples/relparam.tex"
+                        , locLine = 3
+                        , locColumn = 27
                         }
                     )
                     ( SymbolPredicate
@@ -78,9 +78,9 @@
         ( Scope
             ( TermSymbol
                 ( Location
-                    { locFile = "<nowhere>"
-                    , locLine = -1
-                    , locColumn = -1
+                    { locFile = "test/examples/relparam.tex"
+                    , locLine = 12
+                    , locColumn = 28
                     }
                 )
                 ( SymbolPredicate

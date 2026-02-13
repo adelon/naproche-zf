@@ -12,9 +12,9 @@
                 ( Connected Conjunction
                     ( TermSymbol
                         ( Location
-                            { locFile = "<nowhere>"
-                            , locLine = -1
-                            , locColumn = -1
+                            { locFile = "test/examples/formula.tex"
+                            , locLine = 2
+                            , locColumn = 22
                             }
                         )
                         ( SymbolPredicate
@@ -37,9 +37,9 @@
                     )
                     ( TermSymbol
                         ( Location
-                            { locFile = "<nowhere>"
-                            , locLine = -1
-                            , locColumn = -1
+                            { locFile = "test/examples/formula.tex"
+                            , locLine = 2
+                            , locColumn = 33
                             }
                         )
                         ( SymbolPredicate
@@ -77,9 +77,9 @@
             ( Scope
                 ( TermSymbol
                     ( Location
-                        { locFile = "<nowhere>"
-                        , locLine = -1
-                        , locColumn = -1
+                        { locFile = "test/examples/formula.tex"
+                        , locLine = 6
+                        , locColumn = 22
                         }
                     )
                     ( SymbolPredicate
@@ -117,9 +117,9 @@
                 ( Scope
                     ( TermSymbol
                         ( Location
-                            { locFile = "<nowhere>"
-                            , locLine = -1
-                            , locColumn = -1
+                            { locFile = "test/examples/formula.tex"
+                            , locLine = 10
+                            , locColumn = 22
                             }
                         )
                         ( SymbolPredicate
@@ -153,9 +153,9 @@
                     ( Scope
                         ( TermSymbol
                             ( Location
-                                { locFile = "<nowhere>"
-                                , locLine = -1
-                                , locColumn = -1
+                                { locFile = "test/examples/formula.tex"
+                                , locLine = 10
+                                , locColumn = 60
                                 }
                             )
                             ( SymbolPredicate

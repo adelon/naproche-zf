@@ -39,12 +39,13 @@
             { conn = Disjunction
             , mloc = Nothing
             , stmt1 = StmtFormula
-                { loc = Location
-                    { locFile = "test/examples/geometry.tex"
-                    , locLine = 2
-                    , locColumn = 43
-                    }
-                , formula = FormulaPredicate
+                { formula = FormulaPredicate
+                    ( Location
+                        { locFile = "test/examples/geometry.tex"
+                        , locLine = 2
+                        , locColumn = 44
+                        }
+                    )
                     ( PrefixPredicate "Betw" 3 )
                     ( ExprVar
                         ( NamedVar "a" ) :|
@@ -59,12 +60,13 @@
                 { conn = Disjunction
                 , mloc = Nothing
                 , stmt1 = StmtFormula
-                    { loc = Location
-                        { locFile = "test/examples/geometry.tex"
-                        , locLine = 2
-                        , locColumn = 63
-                        }
-                    , formula = FormulaPredicate
+                    { formula = FormulaPredicate
+                        ( Location
+                            { locFile = "test/examples/geometry.tex"
+                            , locLine = 2
+                            , locColumn = 64
+                            }
+                        )
                         ( PrefixPredicate "Betw" 3 )
                         ( ExprVar
                             ( NamedVar "b" ) :|
@@ -76,12 +78,13 @@
                         )
                     }
                 , stmt2 = StmtFormula
-                    { loc = Location
-                        { locFile = "test/examples/geometry.tex"
-                        , locLine = 2
-                        , locColumn = 83
-                        }
-                    , formula = FormulaPredicate
+                    { formula = FormulaPredicate
+                        ( Location
+                            { locFile = "test/examples/geometry.tex"
+                            , locLine = 2
+                            , locColumn = 84
+                            }
+                        )
                         ( PrefixPredicate "Betw" 3 )
                         ( ExprVar
                             ( NamedVar "c" ) :|
@@ -110,6 +113,12 @@
                 [ NamedVar "b" ]
             ) NounPhrase ( [] )
             ( Noun
+                ( Location
+                    { locFile = "test/examples/geometry.tex"
+                    , locLine = 6
+                    , locColumn = 19
+                    }
+                )
                 ( LexicalItemSgPl
                     ( SgPl
                         { sg = TokenCons
@@ -123,12 +132,13 @@
             ) ( Nothing ) ( [] ) ( Nothing )
         ]
         ( StmtFormula
-            { loc = Location
-                { locFile = "test/examples/geometry.tex"
-                , locLine = 7
-                , locColumn = 10
-                }
-            , formula = FormulaPredicate
+            { formula = FormulaPredicate
+                ( Location
+                    { locFile = "test/examples/geometry.tex"
+                    , locLine = 7
+                    , locColumn = 11
+                    }
+                )
                 ( PrefixPredicate "Cong" 4 )
                 ( ExprVar
                     ( NamedVar "a" ) :|
@@ -160,6 +170,12 @@
                 ]
             ) NounPhrase ( [] )
             ( Noun
+                ( Location
+                    { locFile = "test/examples/geometry.tex"
+                    , locLine = 11
+                    , locColumn = 25
+                    }
+                )
                 ( LexicalItemSgPl
                     ( SgPl
                         { sg = TokenCons
@@ -185,12 +201,13 @@
                 { conn = Conjunction
                 , mloc = Nothing
                 , stmt1 = StmtFormula
-                    { loc = Location
-                        { locFile = "test/examples/geometry.tex"
-                        , locLine = 12
-                        , locColumn = 8
-                        }
-                    , formula = FormulaPredicate
+                    { formula = FormulaPredicate
+                        ( Location
+                            { locFile = "test/examples/geometry.tex"
+                            , locLine = 12
+                            , locColumn = 9
+                            }
+                        )
                         ( PrefixPredicate "Cong" 4 )
                         ( ExprVar
                             ( NamedVar "c" ) :|
@@ -204,12 +221,13 @@
                         )
                     }
                 , stmt2 = StmtFormula
-                    { loc = Location
-                        { locFile = "test/examples/geometry.tex"
-                        , locLine = 12
-                        , locColumn = 32
-                        }
-                    , formula = FormulaPredicate
+                    { formula = FormulaPredicate
+                        ( Location
+                            { locFile = "test/examples/geometry.tex"
+                            , locLine = 12
+                            , locColumn = 33
+                            }
+                        )
                         ( PrefixPredicate "Cong" 4 )
                         ( ExprVar
                             ( NamedVar "c" ) :|
@@ -224,12 +242,13 @@
                     }
                 }
             , stmt2 = StmtFormula
-                { loc = Location
-                    { locFile = "test/examples/geometry.tex"
-                    , locLine = 12
-                    , locColumn = 57
-                    }
-                , formula = FormulaPredicate
+                { formula = FormulaPredicate
+                    ( Location
+                        { locFile = "test/examples/geometry.tex"
+                        , locLine = 12
+                        , locColumn = 58
+                        }
+                    )
                     ( PrefixPredicate "Cong" 4 )
                     ( ExprVar
                         ( NamedVar "a" ) :|
@@ -261,6 +280,12 @@
                 ]
             ) NounPhrase ( [] )
             ( Noun
+                ( Location
+                    { locFile = "test/examples/geometry.tex"
+                    , locLine = 16
+                    , locColumn = 22
+                    }
+                )
                 ( LexicalItemSgPl
                     ( SgPl
                         { sg = TokenCons
@@ -283,12 +308,13 @@
                     }
                 )
             , stmt1 = StmtFormula
-                { loc = Location
-                    { locFile = "test/examples/geometry.tex"
-                    , locLine = 17
-                    , locColumn = 8
-                    }
-                , formula = FormulaPredicate
+                { formula = FormulaPredicate
+                    ( Location
+                        { locFile = "test/examples/geometry.tex"
+                        , locLine = 17
+                        , locColumn = 9
+                        }
+                    )
                     ( PrefixPredicate "Cong" 4 )
                     ( ExprVar
                         ( NamedVar "a" ) :|
@@ -302,17 +328,18 @@
                     )
                 }
             , stmt2 = StmtFormula
-                { loc = Location
-                    { locFile = "test/examples/geometry.tex"
-                    , locLine = 17
-                    , locColumn = 33
-                    }
-                , formula = FormulaChain
+                { formula = FormulaChain
                     ( ChainBase
                         ( ExprVar
                             ( NamedVar "a" ) :| []
                         ) Positive
                         ( Relation
+                            ( Location
+                                { locFile = "test/examples/geometry.tex"
+                                , locLine = 17
+                                , locColumn = 36
+                                }
+                            )
                             ( RelationSymbol
                                 ( Symbol "=" )
                                 ( Marker "eq" )
@@ -343,6 +370,12 @@
                 }
             , np = NounPhrase ( [] )
                 ( Noun
+                    ( Location
+                        { locFile = "test/examples/geometry.tex"
+                        , locLine = 22
+                        , locColumn = 20
+                        }
+                    )
                     ( LexicalItemSgPl
                         ( SgPl
                             { sg = TokenCons
@@ -362,12 +395,13 @@
                         { conn = Conjunction
                         , mloc = Nothing
                         , stmt1 = StmtFormula
-                            { loc = Location
-                                { locFile = "test/examples/geometry.tex"
-                                , locLine = 22
-                                , locColumn = 40
-                                }
-                            , formula = FormulaPredicate
+                            { formula = FormulaPredicate
+                                ( Location
+                                    { locFile = "test/examples/geometry.tex"
+                                    , locLine = 22
+                                    , locColumn = 41
+                                    }
+                                )
                                 ( PrefixPredicate "Betw" 3 )
                                 ( ExprVar
                                     ( NamedVar "a" ) :|
@@ -379,12 +413,13 @@
                                 )
                             }
                         , stmt2 = StmtFormula
-                            { loc = Location
-                                { locFile = "test/examples/geometry.tex"
-                                , locLine = 22
-                                , locColumn = 61
-                                }
-                            , formula = FormulaPredicate
+                            { formula = FormulaPredicate
+                                ( Location
+                                    { locFile = "test/examples/geometry.tex"
+                                    , locLine = 22
+                                    , locColumn = 62
+                                    }
+                                )
                                 ( PrefixPredicate "Cong" 4 )
                                 ( ExprVar
                                     ( NamedVar "b" ) :|
@@ -424,6 +459,12 @@
                 ]
             ) NounPhrase ( [] )
             ( Noun
+                ( Location
+                    { locFile = "test/examples/geometry.tex"
+                    , locLine = 27
+                    , locColumn = 30
+                    }
+                )
                 ( LexicalItemSgPl
                     ( SgPl
                         { sg = TokenCons
@@ -453,13 +494,20 @@
             { conn = Conjunction
             , mloc = Nothing
             , stmt1 = StmtFormula
-                { loc = Location
-                    { locFile = "test/examples/geometry.tex"
-                    , locLine = 29
-                    , locColumn = 5
-                    }
-                , formula = Connected Conjunction
+                { formula = Connected
+                    ( Location
+                        { locFile = "test/examples/geometry.tex"
+                        , locLine = 29
+                        , locColumn = 6
+                        }
+                    ) Conjunction
                     ( FormulaPredicate
+                        ( Location
+                            { locFile = "test/examples/geometry.tex"
+                            , locLine = 29
+                            , locColumn = 6
+                            }
+                        )
                         ( PrefixPredicate "Betw" 3 )
                         ( ExprVar
                             ( NamedVar "x" ) :|
@@ -471,6 +519,12 @@
                         )
                     )
                     ( FormulaPredicate
+                        ( Location
+                            { locFile = "test/examples/geometry.tex"
+                            , locLine = 30
+                            , locColumn = 13
+                            }
+                        )
                         ( PrefixPredicate "Betw" 3 )
                         ( ExprVar
                             ( NamedVar "u" ) :|
@@ -483,15 +537,34 @@
                     )
                 }
             , stmt2 = StmtFormula
-                { loc = Location
-                    { locFile = "test/examples/geometry.tex"
-                    , locLine = 32
-                    , locColumn = 5
-                    }
-                , formula = Connected Conjunction
-                    ( Connected Conjunction
-                        ( Connected Conjunction
+                { formula = Connected
+                    ( Location
+                        { locFile = "test/examples/geometry.tex"
+                        , locLine = 32
+                        , locColumn = 6
+                        }
+                    ) Conjunction
+                    ( Connected
+                        ( Location
+                            { locFile = "test/examples/geometry.tex"
+                            , locLine = 32
+                            , locColumn = 6
+                            }
+                        ) Conjunction
+                        ( Connected
+                            ( Location
+                                { locFile = "test/examples/geometry.tex"
+                                , locLine = 32
+                                , locColumn = 6
+                                }
+                            ) Conjunction
                             ( FormulaPredicate
+                                ( Location
+                                    { locFile = "test/examples/geometry.tex"
+                                    , locLine = 32
+                                    , locColumn = 6
+                                    }
+                                )
                                 ( PrefixPredicate "Cong" 4 )
                                 ( ExprVar
                                     ( NamedVar "x" ) :|
@@ -505,6 +578,12 @@
                                 )
                             )
                             ( FormulaPredicate
+                                ( Location
+                                    { locFile = "test/examples/geometry.tex"
+                                    , locLine = 33
+                                    , locColumn = 13
+                                    }
+                                )
                                 ( PrefixPredicate "Cong" 4 )
                                 ( ExprVar
                                     ( NamedVar "y" ) :|
@@ -519,6 +598,12 @@
                             )
                         )
                         ( FormulaPredicate
+                            ( Location
+                                { locFile = "test/examples/geometry.tex"
+                                , locLine = 34
+                                , locColumn = 13
+                                }
+                            )
                             ( PrefixPredicate "Cong" 4 )
                             ( ExprVar
                                 ( NamedVar "x" ) :|
@@ -533,6 +618,12 @@
                         )
                     )
                     ( FormulaPredicate
+                        ( Location
+                            { locFile = "test/examples/geometry.tex"
+                            , locLine = 35
+                            , locColumn = 13
+                            }
+                        )
                         ( PrefixPredicate "Cong" 4 )
                         ( ExprVar
                             ( NamedVar "y" ) :|
@@ -570,6 +661,12 @@
                 ]
             ) NounPhrase ( [] )
             ( Noun
+                ( Location
+                    { locFile = "test/examples/geometry.tex"
+                    , locLine = 40
+                    , locColumn = 34
+                    }
+                )
                 ( LexicalItemSgPl
                     ( SgPl
                         { sg = TokenCons
@@ -595,12 +692,13 @@
                 { conn = Conjunction
                 , mloc = Nothing
                 , stmt1 = StmtFormula
-                    { loc = Location
-                        { locFile = "test/examples/geometry.tex"
-                        , locLine = 41
-                        , locColumn = 8
-                        }
-                    , formula = FormulaPredicate
+                    { formula = FormulaPredicate
+                        ( Location
+                            { locFile = "test/examples/geometry.tex"
+                            , locLine = 41
+                            , locColumn = 9
+                            }
+                        )
                         ( PrefixPredicate "OFS" 8 )
                         ( ExprVar
                             ( NamedVar "a" ) :|
@@ -622,17 +720,18 @@
                         )
                     }
                 , stmt2 = StmtFormula
-                    { loc = Location
-                        { locFile = "test/examples/geometry.tex"
-                        , locLine = 42
-                        , locColumn = 5
-                        }
-                    , formula = FormulaChain
+                    { formula = FormulaChain
                         ( ChainBase
                             ( ExprVar
                                 ( NamedVar "a" ) :| []
                             ) Positive
                             ( Relation
+                                ( Location
+                                    { locFile = "test/examples/geometry.tex"
+                                    , locLine = 42
+                                    , locColumn = 8
+                                    }
+                                )
                                 ( RelationSymbol
                                     ( Command "neq" )
                                     ( Marker "neq" )
@@ -645,12 +744,13 @@
                     }
                 }
             , stmt2 = StmtFormula
-                { loc = Location
-                    { locFile = "test/examples/geometry.tex"
-                    , locLine = 42
-                    , locColumn = 21
-                    }
-                , formula = FormulaPredicate
+                { formula = FormulaPredicate
+                    ( Location
+                        { locFile = "test/examples/geometry.tex"
+                        , locLine = 42
+                        , locColumn = 22
+                        }
+                    )
                     ( PrefixPredicate "Cong" 4 )
                     ( ExprVar
                         ( NamedVar "c" ) :|
@@ -680,6 +780,12 @@
                 [ NamedVar "b" ]
             ) NounPhrase ( [] )
             ( Noun
+                ( Location
+                    { locFile = "test/examples/geometry.tex"
+                    , locLine = 47
+                    , locColumn = 18
+                    }
+                )
                 ( LexicalItemSgPl
                     ( SgPl
                         { sg = TokenCons
@@ -702,12 +808,13 @@
                     }
                 )
             , stmt1 = StmtFormula
-                { loc = Location
-                    { locFile = "test/examples/geometry.tex"
-                    , locLine = 48
-                    , locColumn = 8
-                    }
-                , formula = FormulaPredicate
+                { formula = FormulaPredicate
+                    ( Location
+                        { locFile = "test/examples/geometry.tex"
+                        , locLine = 48
+                        , locColumn = 9
+                        }
+                    )
                     ( PrefixPredicate "Betw" 3 )
                     ( ExprVar
                         ( NamedVar "a" ) :|
@@ -719,17 +826,18 @@
                     )
                 }
             , stmt2 = StmtFormula
-                { loc = Location
-                    { locFile = "test/examples/geometry.tex"
-                    , locLine = 48
-                    , locColumn = 30
-                    }
-                , formula = FormulaChain
+                { formula = FormulaChain
                     ( ChainBase
                         ( ExprVar
                             ( NamedVar "a" ) :| []
                         ) Positive
                         ( Relation
+                            ( Location
+                                { locFile = "test/examples/geometry.tex"
+                                , locLine = 48
+                                , locColumn = 33
+                                }
+                            )
                             ( RelationSymbol
                                 ( Symbol "=" )
                                 ( Marker "eq" )
@@ -762,6 +870,12 @@
                 ]
             ) NounPhrase ( [] )
             ( Noun
+                ( Location
+                    { locFile = "test/examples/geometry.tex"
+                    , locLine = 53
+                    , locColumn = 26
+                    }
+                )
                 ( LexicalItemSgPl
                     ( SgPl
                         { sg = TokenCons
@@ -787,12 +901,13 @@
                 { conn = Conjunction
                 , mloc = Nothing
                 , stmt1 = StmtFormula
-                    { loc = Location
-                        { locFile = "test/examples/geometry.tex"
-                        , locLine = 54
-                        , locColumn = 8
-                        }
-                    , formula = FormulaPredicate
+                    { formula = FormulaPredicate
+                        ( Location
+                            { locFile = "test/examples/geometry.tex"
+                            , locLine = 54
+                            , locColumn = 9
+                            }
+                        )
                         ( PrefixPredicate "Betw" 3 )
                         ( ExprVar
                             ( NamedVar "x" ) :|
@@ -804,12 +919,13 @@
                         )
                     }
                 , stmt2 = StmtFormula
-                    { loc = Location
-                        { locFile = "test/examples/geometry.tex"
-                        , locLine = 54
-                        , locColumn = 29
-                        }
-                    , formula = FormulaPredicate
+                    { formula = FormulaPredicate
+                        ( Location
+                            { locFile = "test/examples/geometry.tex"
+                            , locLine = 54
+                            , locColumn = 30
+                            }
+                        )
                         ( PrefixPredicate "Betw" 3 )
                         ( ExprVar
                             ( NamedVar "y" ) :|
@@ -829,6 +945,12 @@
                     }
                 , np = NounPhrase ( [] )
                     ( Noun
+                        ( Location
+                            { locFile = "test/examples/geometry.tex"
+                            , locLine = 54
+                            , locColumn = 66
+                            }
+                        )
                         ( LexicalItemSgPl
                             ( SgPl
                                 { sg = TokenCons
@@ -848,12 +970,13 @@
                             { conn = Conjunction
                             , mloc = Nothing
                             , stmt1 = StmtFormula
-                                { loc = Location
-                                    { locFile = "test/examples/geometry.tex"
-                                    , locLine = 55
-                                    , locColumn = 15
-                                    }
-                                , formula = FormulaPredicate
+                                { formula = FormulaPredicate
+                                    ( Location
+                                        { locFile = "test/examples/geometry.tex"
+                                        , locLine = 55
+                                        , locColumn = 16
+                                        }
+                                    )
                                     ( PrefixPredicate "Betw" 3 )
                                     ( ExprVar
                                         ( NamedVar "u" ) :|
@@ -865,12 +988,13 @@
                                     )
                                 }
                             , stmt2 = StmtFormula
-                                { loc = Location
-                                    { locFile = "test/examples/geometry.tex"
-                                    , locLine = 55
-                                    , locColumn = 36
-                                    }
-                                , formula = FormulaPredicate
+                                { formula = FormulaPredicate
+                                    ( Location
+                                        { locFile = "test/examples/geometry.tex"
+                                        , locLine = 55
+                                        , locColumn = 37
+                                        }
+                                    )
                                     ( PrefixPredicate "Betw" 3 )
                                     ( ExprVar
                                         ( NamedVar "v" ) :|
@@ -906,6 +1030,12 @@
                 ]
             ) NounPhrase ( [] )
             ( Noun
+                ( Location
+                    { locFile = "test/examples/geometry.tex"
+                    , locLine = 67
+                    , locColumn = 24
+                    }
+                )
                 ( LexicalItemSgPl
                     ( SgPl
                         { sg = TokenCons
@@ -931,12 +1061,13 @@
                 { conn = Conjunction
                 , mloc = Nothing
                 , stmt1 = StmtFormula
-                    { loc = Location
-                        { locFile = "test/examples/geometry.tex"
-                        , locLine = 68
-                        , locColumn = 8
-                        }
-                    , formula = FormulaPredicate
+                    { formula = FormulaPredicate
+                        ( Location
+                            { locFile = "test/examples/geometry.tex"
+                            , locLine = 68
+                            , locColumn = 9
+                            }
+                        )
                         ( PrefixPredicate "Cong" 4 )
                         ( ExprVar
                             ( NamedVar "x" ) :|
@@ -953,12 +1084,13 @@
                     { conn = Conjunction
                     , mloc = Nothing
                     , stmt1 = StmtFormula
-                        { loc = Location
-                            { locFile = "test/examples/geometry.tex"
-                            , locLine = 68
-                            , locColumn = 32
-                            }
-                        , formula = FormulaPredicate
+                        { formula = FormulaPredicate
+                            ( Location
+                                { locFile = "test/examples/geometry.tex"
+                                , locLine = 68
+                                , locColumn = 33
+                                }
+                            )
                             ( PrefixPredicate "Cong" 4 )
                             ( ExprVar
                                 ( NamedVar "y" ) :|
@@ -975,12 +1107,13 @@
                         { conn = Conjunction
                         , mloc = Nothing
                         , stmt1 = StmtFormula
-                            { loc = Location
-                                { locFile = "test/examples/geometry.tex"
-                                , locLine = 69
-                                , locColumn = 9
-                                }
-                            , formula = FormulaPredicate
+                            { formula = FormulaPredicate
+                                ( Location
+                                    { locFile = "test/examples/geometry.tex"
+                                    , locLine = 69
+                                    , locColumn = 10
+                                    }
+                                )
                                 ( PrefixPredicate "Cong" 4 )
                                 ( ExprVar
                                     ( NamedVar "z" ) :|
@@ -994,17 +1127,18 @@
                                 )
                             }
                         , stmt2 = StmtFormula
-                            { loc = Location
-                                { locFile = "test/examples/geometry.tex"
-                                , locLine = 69
-                                , locColumn = 33
-                                }
-                            , formula = FormulaChain
+                            { formula = FormulaChain
                                 ( ChainBase
                                     ( ExprVar
                                         ( NamedVar "u" ) :| []
                                     ) Positive
                                     ( Relation
+                                        ( Location
+                                            { locFile = "test/examples/geometry.tex"
+                                            , locLine = 69
+                                            , locColumn = 36
+                                            }
+                                        )
                                         ( RelationSymbol
                                             ( Command "neq" )
                                             ( Marker "neq" )
@@ -1020,12 +1154,6 @@
                 }
             , stmt2 = StmtVerbPhrase
                 { args = TermExpr
-                    ( Location
-                        { locFile = "test/examples/geometry.tex"
-                        , locLine = 70
-                        , locColumn = 10
-                        }
-                    )
                     ( ExprVar
                         ( NamedVar "x" )
                     ) :| []
@@ -1052,22 +1180,10 @@
                             ( Marker "collinear" )
                         )
                         [ TermExpr
-                            ( Location
-                                { locFile = "test/examples/geometry.tex"
-                                , locLine = 70
-                                , locColumn = 32
-                                }
-                            )
                             ( ExprVar
                                 ( NamedVar "y" )
                             )
                         , TermExpr
-                            ( Location
-                                { locFile = "test/examples/geometry.tex"
-                                , locLine = 70
-                                , locColumn = 40
-                                }
-                            )
                             ( ExprVar
                                 ( NamedVar "z" )
                             )
@@ -1091,6 +1207,12 @@
                 [ NamedVar "b" ]
             ) NounPhrase ( [] )
             ( Noun
+                ( Location
+                    { locFile = "test/examples/geometry.tex"
+                    , locLine = 83
+                    , locColumn = 19
+                    }
+                )
                 ( LexicalItemSgPl
                     ( SgPl
                         { sg = TokenCons
@@ -1104,12 +1226,13 @@
             ) ( Nothing ) ( [] ) ( Nothing )
         ]
         ( StmtFormula
-            { loc = Location
-                { locFile = "test/examples/geometry.tex"
-                , locLine = 84
-                , locColumn = 10
-                }
-            , formula = FormulaPredicate
+            { formula = FormulaPredicate
+                ( Location
+                    { locFile = "test/examples/geometry.tex"
+                    , locLine = 84
+                    , locColumn = 11
+                    }
+                )
                 ( PrefixPredicate "Cong" 4 )
                 ( ExprVar
                     ( NamedVar "a" ) :|
@@ -1141,6 +1264,12 @@
                 ]
             ) NounPhrase ( [] )
             ( Noun
+                ( Location
+                    { locFile = "test/examples/geometry.tex"
+                    , locLine = 89
+                    , locColumn = 25
+                    }
+                )
                 ( LexicalItemSgPl
                     ( SgPl
                         { sg = TokenCons
@@ -1154,12 +1283,13 @@
             ) ( Nothing ) ( [] ) ( Nothing )
         , AsmSuppose
             ( StmtFormula
-                { loc = Location
-                    { locFile = "test/examples/geometry.tex"
-                    , locLine = 90
-                    , locColumn = 13
-                    }
-                , formula = FormulaPredicate
+                { formula = FormulaPredicate
+                    ( Location
+                        { locFile = "test/examples/geometry.tex"
+                        , locLine = 90
+                        , locColumn = 14
+                        }
+                    )
                     ( PrefixPredicate "Cong" 4 )
                     ( ExprVar
                         ( NamedVar "a" ) :|
@@ -1175,12 +1305,13 @@
             )
         ]
         ( StmtFormula
-            { loc = Location
-                { locFile = "test/examples/geometry.tex"
-                , locLine = 91
-                , locColumn = 10
-                }
-            , formula = FormulaPredicate
+            { formula = FormulaPredicate
+                ( Location
+                    { locFile = "test/examples/geometry.tex"
+                    , locLine = 91
+                    , locColumn = 11
+                    }
+                )
                 ( PrefixPredicate "Cong" 4 )
                 ( ExprVar
                     ( NamedVar "c" ) :|
@@ -1214,6 +1345,12 @@
                 ]
             ) NounPhrase ( [] )
             ( Noun
+                ( Location
+                    { locFile = "test/examples/geometry.tex"
+                    , locLine = 96
+                    , locColumn = 31
+                    }
+                )
                 ( LexicalItemSgPl
                     ( SgPl
                         { sg = TokenCons
@@ -1239,12 +1376,13 @@
                 { conn = Conjunction
                 , mloc = Nothing
                 , stmt1 = StmtFormula
-                    { loc = Location
-                        { locFile = "test/examples/geometry.tex"
-                        , locLine = 97
-                        , locColumn = 8
-                        }
-                    , formula = FormulaPredicate
+                    { formula = FormulaPredicate
+                        ( Location
+                            { locFile = "test/examples/geometry.tex"
+                            , locLine = 97
+                            , locColumn = 9
+                            }
+                        )
                         ( PrefixPredicate "Cong" 4 )
                         ( ExprVar
                             ( NamedVar "a" ) :|
@@ -1258,12 +1396,13 @@
                         )
                     }
                 , stmt2 = StmtFormula
-                    { loc = Location
-                        { locFile = "test/examples/geometry.tex"
-                        , locLine = 97
-                        , locColumn = 32
-                        }
-                    , formula = FormulaPredicate
+                    { formula = FormulaPredicate
+                        ( Location
+                            { locFile = "test/examples/geometry.tex"
+                            , locLine = 97
+                            , locColumn = 33
+                            }
+                        )
                         ( PrefixPredicate "Cong" 4 )
                         ( ExprVar
                             ( NamedVar "c" ) :|
@@ -1278,12 +1417,13 @@
                     }
                 }
             , stmt2 = StmtFormula
-                { loc = Location
-                    { locFile = "test/examples/geometry.tex"
-                    , locLine = 98
-                    , locColumn = 10
-                    }
-                , formula = FormulaPredicate
+                { formula = FormulaPredicate
+                    ( Location
+                        { locFile = "test/examples/geometry.tex"
+                        , locLine = 98
+                        , locColumn = 11
+                        }
+                    )
                     ( PrefixPredicate "Cong" 4 )
                     ( ExprVar
                         ( NamedVar "a" ) :|
@@ -1316,6 +1456,12 @@
                 ]
             ) NounPhrase ( [] )
             ( Noun
+                ( Location
+                    { locFile = "test/examples/geometry.tex"
+                    , locLine = 103
+                    , locColumn = 25
+                    }
+                )
                 ( LexicalItemSgPl
                     ( SgPl
                         { sg = TokenCons
@@ -1338,12 +1484,13 @@
                     }
                 )
             , stmt1 = StmtFormula
-                { loc = Location
-                    { locFile = "test/examples/geometry.tex"
-                    , locLine = 104
-                    , locColumn = 8
-                    }
-                , formula = FormulaPredicate
+                { formula = FormulaPredicate
+                    ( Location
+                        { locFile = "test/examples/geometry.tex"
+                        , locLine = 104
+                        , locColumn = 9
+                        }
+                    )
                     ( PrefixPredicate "Cong" 4 )
                     ( ExprVar
                         ( NamedVar "a" ) :|
@@ -1357,12 +1504,13 @@
                     )
                 }
             , stmt2 = StmtFormula
-                { loc = Location
-                    { locFile = "test/examples/geometry.tex"
-                    , locLine = 105
-                    , locColumn = 10
-                    }
-                , formula = FormulaPredicate
+                { formula = FormulaPredicate
+                    ( Location
+                        { locFile = "test/examples/geometry.tex"
+                        , locLine = 105
+                        , locColumn = 11
+                        }
+                    )
                     ( PrefixPredicate "Cong" 4 )
                     ( ExprVar
                         ( NamedVar "b" ) :|
@@ -1395,6 +1543,12 @@
                 ]
             ) NounPhrase ( [] )
             ( Noun
+                ( Location
+                    { locFile = "test/examples/geometry.tex"
+                    , locLine = 110
+                    , locColumn = 25
+                    }
+                )
                 ( LexicalItemSgPl
                     ( SgPl
                         { sg = TokenCons
@@ -1417,12 +1571,13 @@
                     }
                 )
             , stmt1 = StmtFormula
-                { loc = Location
-                    { locFile = "test/examples/geometry.tex"
-                    , locLine = 111
-                    , locColumn = 8
-                    }
-                , formula = FormulaPredicate
+                { formula = FormulaPredicate
+                    ( Location
+                        { locFile = "test/examples/geometry.tex"
+                        , locLine = 111
+                        , locColumn = 9
+                        }
+                    )
                     ( PrefixPredicate "Cong" 4 )
                     ( ExprVar
                         ( NamedVar "a" ) :|
@@ -1436,12 +1591,13 @@
                     )
                 }
             , stmt2 = StmtFormula
-                { loc = Location
-                    { locFile = "test/examples/geometry.tex"
-                    , locLine = 112
-                    , locColumn = 10
-                    }
-                , formula = FormulaPredicate
+                { formula = FormulaPredicate
+                    ( Location
+                        { locFile = "test/examples/geometry.tex"
+                        , locLine = 112
+                        , locColumn = 11
+                        }
+                    )
                     ( PrefixPredicate "Cong" 4 )
                     ( ExprVar
                         ( NamedVar "b" ) :|
@@ -1471,6 +1627,12 @@
                 [ NamedVar "b" ]
             ) NounPhrase ( [] )
             ( Noun
+                ( Location
+                    { locFile = "test/examples/geometry.tex"
+                    , locLine = 117
+                    , locColumn = 18
+                    }
+                )
                 ( LexicalItemSgPl
                     ( SgPl
                         { sg = TokenCons
@@ -1484,12 +1646,13 @@
             ) ( Nothing ) ( [] ) ( Nothing )
         ]
         ( StmtFormula
-            { loc = Location
-                { locFile = "test/examples/geometry.tex"
-                , locLine = 118
-                , locColumn = 10
-                }
-            , formula = FormulaPredicate
+            { formula = FormulaPredicate
+                ( Location
+                    { locFile = "test/examples/geometry.tex"
+                    , locLine = 118
+                    , locColumn = 11
+                    }
+                )
                 ( PrefixPredicate "Cong" 4 )
                 ( ExprVar
                     ( NamedVar "a" ) :|

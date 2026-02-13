@@ -8,12 +8,7 @@
     ( Marker "indefinite_test_forall" )
     ( Lemma []
         ( StmtNoun
-            { loc = Location
-                { locFile = "test/examples/indefinite-terms.tex"
-                , locLine = 2
-                , locColumn = 5
-                }
-            , args = TermQuantified Universally
+            { args = TermQuantified Universally
                 ( Location
                     { locFile = "test/examples/indefinite-terms.tex"
                     , locLine = 2
@@ -21,6 +16,12 @@
                     }
                 ) NounPhrase ( [] )
                 ( Noun
+                    ( Location
+                        { locFile = "test/examples/indefinite-terms.tex"
+                        , locLine = 2
+                        , locColumn = 11
+                        }
+                    )
                     ( LexicalItemSgPl
                         ( SgPl
                             { sg = TokenCons
@@ -34,6 +35,12 @@
                 ) ( Nothing ) ( [] ) ( Nothing ) :| []
             , noun = NounPhrase ( [] )
                 ( Noun
+                    ( Location
+                        { locFile = "test/examples/indefinite-terms.tex"
+                        , locLine = 2
+                        , locColumn = 20
+                        }
+                    )
                     ( LexicalItemSgPl
                         ( SgPl
                             { sg = TokenCons
@@ -58,12 +65,7 @@
     ( Marker "indefinite_test_exists" )
     ( Lemma []
         ( StmtNoun
-            { loc = Location
-                { locFile = "test/examples/indefinite-terms.tex"
-                , locLine = 6
-                , locColumn = 5
-                }
-            , args = TermQuantified Existentially
+            { args = TermQuantified Existentially
                 ( Location
                     { locFile = "test/examples/indefinite-terms.tex"
                     , locLine = 6
@@ -71,6 +73,12 @@
                     }
                 ) NounPhrase ( [] )
                 ( Noun
+                    ( Location
+                        { locFile = "test/examples/indefinite-terms.tex"
+                        , locLine = 6
+                        , locColumn = 10
+                        }
+                    )
                     ( LexicalItemSgPl
                         ( SgPl
                             { sg = TokenCons
@@ -84,6 +92,12 @@
                 ) ( Nothing ) ( [] ) ( Nothing ) :| []
             , noun = NounPhrase ( [] )
                 ( Noun
+                    ( Location
+                        { locFile = "test/examples/indefinite-terms.tex"
+                        , locLine = 6
+                        , locColumn = 19
+                        }
+                    )
                     ( LexicalItemSgPl
                         ( SgPl
                             { sg = TokenCons

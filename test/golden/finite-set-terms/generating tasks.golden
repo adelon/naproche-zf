@@ -62,9 +62,9 @@
                                 )
                             , TermSymbol
                                 ( Location
-                                    { locFile = "<nowhere>"
-                                    , locLine = -1
-                                    , locColumn = -1
+                                    { locFile = "test/examples/finite-set-terms.tex"
+                                    , locLine = 6
+                                    , locColumn = 14
                                     }
                                 )
                                 ( SymbolMixfix
@@ -98,9 +98,9 @@
                                 )
                             , TermSymbol
                                 ( Location
-                                    { locFile = "<nowhere>"
-                                    , locLine = -1
-                                    , locColumn = -1
+                                    { locFile = "test/examples/finite-set-terms.tex"
+                                    , locLine = 6
+                                    , locColumn = 16
                                     }
                                 )
                                 ( SymbolMixfix
@@ -121,9 +121,9 @@
                 ( Connected Equivalence
                     ( TermSymbol
                         ( Location
-                            { locFile = "<nowhere>"
-                            , locLine = -1
-                            , locColumn = -1
+                            { locFile = "test/examples/finite-set-terms.tex"
+                            , locLine = 2
+                            , locColumn = 7
                             }
                         )
                         ( SymbolPredicate
@@ -140,9 +140,9 @@
                             )
                         , TermSymbol
                             ( Location
-                                { locFile = "<nowhere>"
-                                , locLine = -1
-                                , locColumn = -1
+                                { locFile = "test/examples/finite-set-terms.tex"
+                                , locLine = 2
+                                , locColumn = 11
                                 }
                             )
                             ( SymbolMixfix
@@ -176,9 +176,9 @@
                     ( Connected Disjunction
                         ( TermSymbol
                             ( Location
-                                { locFile = "<nowhere>"
-                                , locLine = -1
-                                , locColumn = -1
+                                { locFile = "test/examples/finite-set-terms.tex"
+                                , locLine = 2
+                                , locColumn = 31
                                 }
                             )
                             ( SymbolPredicate
@@ -201,9 +201,9 @@
                         )
                         ( TermSymbol
                             ( Location
-                                { locFile = "<nowhere>"
-                                , locLine = -1
-                                , locColumn = -1
+                                { locFile = "test/examples/finite-set-terms.tex"
+                                , locLine = 2
+                                , locColumn = 41
                                 }
                             )
                             ( SymbolPredicate
@@ -236,9 +236,9 @@
         }
     , taskConjecture = TermSymbol
         ( Location
-            { locFile = "<nowhere>"
-            , locLine = -1
-            , locColumn = -1
+            { locFile = "test/examples/finite-set-terms.tex"
+            , locLine = 10
+            , locColumn = 15
             }
         )
         ( SymbolPredicate
@@ -251,9 +251,9 @@
         )
         [ TermSymbol
             ( Location
-                { locFile = "<nowhere>"
-                , locLine = -1
-                , locColumn = -1
+                { locFile = "test/examples/finite-set-terms.tex"
+                , locLine = 10
+                , locColumn = 6
                 }
             )
             ( SymbolMixfix
@@ -266,9 +266,9 @@
             ) []
         , TermSymbol
             ( Location
-                { locFile = "<nowhere>"
-                , locLine = -1
-                , locColumn = -1
+                { locFile = "test/examples/finite-set-terms.tex"
+                , locLine = 10
+                , locColumn = 18
                 }
             )
             ( SymbolMixfix

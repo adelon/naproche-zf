@@ -8,9 +8,9 @@
                     ( Connected Equivalence
                         ( TermSymbol
                             ( Location
-                                { locFile = "<nowhere>"
-                                , locLine = -1
-                                , locColumn = -1
+                                { locFile = "test/examples/union.tex"
+                                , locLine = 8
+                                , locColumn = 7
                                 }
                             )
                             ( SymbolPredicate
@@ -27,9 +27,9 @@
                                 )
                             , TermSymbol
                                 ( Location
-                                    { locFile = "<nowhere>"
-                                    , locLine = -1
-                                    , locColumn = -1
+                                    { locFile = "test/examples/union.tex"
+                                    , locLine = 8
+                                    , locColumn = 11
                                     }
                                 )
                                 ( SymbolMixfix
@@ -56,9 +56,9 @@
                         ( Connected Disjunction
                             ( TermSymbol
                                 ( Location
-                                    { locFile = "<nowhere>"
-                                    , locLine = -1
-                                    , locColumn = -1
+                                    { locFile = "test/examples/union.tex"
+                                    , locLine = 8
+                                    , locColumn = 28
                                     }
                                 )
                                 ( SymbolPredicate
@@ -81,9 +81,9 @@
                             )
                             ( TermSymbol
                                 ( Location
-                                    { locFile = "<nowhere>"
-                                    , locLine = -1
-                                    , locColumn = -1
+                                    { locFile = "test/examples/union.tex"
+                                    , locLine = 8
+                                    , locColumn = 40
                                     }
                                 )
                                 ( SymbolPredicate
@@ -116,9 +116,9 @@
                             ( Connected Equivalence
                                 ( TermSymbol
                                     ( Location
-                                        { locFile = "<nowhere>"
-                                        , locLine = -1
-                                        , locColumn = -1
+                                        { locFile = "test/examples/union.tex"
+                                        , locLine = 2
+                                        , locColumn = 35
                                         }
                                     )
                                     ( SymbolPredicate
@@ -145,9 +145,9 @@
                                 )
                                 ( TermSymbol
                                     ( Location
-                                        { locFile = "<nowhere>"
-                                        , locLine = -1
-                                        , locColumn = -1
+                                        { locFile = "test/examples/union.tex"
+                                        , locLine = 2
+                                        , locColumn = 48
                                         }
                                     )
                                     ( SymbolPredicate
@@ -177,9 +177,9 @@
                     )
                     ( TermSymbol
                         ( Location
-                            { locFile = "<nowhere>"
-                            , locLine = -1
-                            , locColumn = -1
+                            { locFile = "test/examples/union.tex"
+                            , locLine = 3
+                            , locColumn = 13
                             }
                         )
                         ( SymbolPredicate
@@ -211,9 +211,9 @@
         }
     , taskConjecture = TermSymbol
         ( Location
-            { locFile = "<nowhere>"
-            , locLine = -1
-            , locColumn = -1
+            { locFile = "test/examples/union.tex"
+            , locLine = 12
+            , locColumn = 16
             }
         )
         ( SymbolPredicate
@@ -226,9 +226,9 @@
         )
         [ TermSymbol
             ( Location
-                { locFile = "<nowhere>"
-                , locLine = -1
-                , locColumn = -1
+                { locFile = "test/examples/union.tex"
+                , locLine = 12
+                , locColumn = 6
                 }
             )
             ( SymbolMixfix
@@ -248,9 +248,9 @@
             ]
         , TermSymbol
             ( Location
-                { locFile = "<nowhere>"
-                , locLine = -1
-                , locColumn = -1
+                { locFile = "test/examples/union.tex"
+                , locLine = 12
+                , locColumn = 18
                 }
             )
             ( SymbolMixfix
@@ -277,9 +277,9 @@
             ( Scope
                 ( TermSymbol
                     ( Location
-                        { locFile = "<nowhere>"
-                        , locLine = -1
-                        , locColumn = -1
+                        { locFile = "test/examples/union.tex"
+                        , locLine = 12
+                        , locColumn = 16
                         }
                     )
                     ( SymbolPredicate
@@ -292,9 +292,9 @@
                     )
                     [ TermSymbol
                         ( Location
-                            { locFile = "<nowhere>"
-                            , locLine = -1
-                            , locColumn = -1
+                            { locFile = "test/examples/union.tex"
+                            , locLine = 12
+                            , locColumn = 6
                             }
                         )
                         ( SymbolMixfix
@@ -318,9 +318,9 @@
                         ]
                     , TermSymbol
                         ( Location
-                            { locFile = "<nowhere>"
-                            , locLine = -1
-                            , locColumn = -1
+                            { locFile = "test/examples/union.tex"
+                            , locLine = 12
+                            , locColumn = 18
                             }
                         )
                         ( SymbolMixfix
@@ -352,9 +352,9 @@
                     ( Connected Equivalence
                         ( TermSymbol
                             ( Location
-                                { locFile = "<nowhere>"
-                                , locLine = -1
-                                , locColumn = -1
+                                { locFile = "test/examples/union.tex"
+                                , locLine = 8
+                                , locColumn = 7
                                 }
                             )
                             ( SymbolPredicate
@@ -371,9 +371,9 @@
                                 )
                             , TermSymbol
                                 ( Location
-                                    { locFile = "<nowhere>"
-                                    , locLine = -1
-                                    , locColumn = -1
+                                    { locFile = "test/examples/union.tex"
+                                    , locLine = 8
+                                    , locColumn = 11
                                     }
                                 )
                                 ( SymbolMixfix
@@ -400,9 +400,9 @@
                         ( Connected Disjunction
                             ( TermSymbol
                                 ( Location
-                                    { locFile = "<nowhere>"
-                                    , locLine = -1
-                                    , locColumn = -1
+                                    { locFile = "test/examples/union.tex"
+                                    , locLine = 8
+                                    , locColumn = 28
                                     }
                                 )
                                 ( SymbolPredicate
@@ -425,9 +425,9 @@
                             )
                             ( TermSymbol
                                 ( Location
-                                    { locFile = "<nowhere>"
-                                    , locLine = -1
-                                    , locColumn = -1
+                                    { locFile = "test/examples/union.tex"
+                                    , locLine = 8
+                                    , locColumn = 40
                                     }
                                 )
                                 ( SymbolPredicate
@@ -460,9 +460,9 @@
                             ( Connected Equivalence
                                 ( TermSymbol
                                     ( Location
-                                        { locFile = "<nowhere>"
-                                        , locLine = -1
-                                        , locColumn = -1
+                                        { locFile = "test/examples/union.tex"
+                                        , locLine = 2
+                                        , locColumn = 35
                                         }
                                     )
                                     ( SymbolPredicate
@@ -489,9 +489,9 @@
                                 )
                                 ( TermSymbol
                                     ( Location
-                                        { locFile = "<nowhere>"
-                                        , locLine = -1
-                                        , locColumn = -1
+                                        { locFile = "test/examples/union.tex"
+                                        , locLine = 2
+                                        , locColumn = 48
                                         }
                                     )
                                     ( SymbolPredicate
@@ -521,9 +521,9 @@
                     )
                     ( TermSymbol
                         ( Location
-                            { locFile = "<nowhere>"
-                            , locLine = -1
-                            , locColumn = -1
+                            { locFile = "test/examples/union.tex"
+                            , locLine = 3
+                            , locColumn = 13
                             }
                         )
                         ( SymbolPredicate
@@ -558,9 +558,9 @@
             ( Connected Implication
                 ( TermSymbol
                     ( Location
-                        { locFile = "<nowhere>"
-                        , locLine = -1
-                        , locColumn = -1
+                        { locFile = "test/examples/union.tex"
+                        , locLine = 19
+                        , locColumn = 30
                         }
                     )
                     ( SymbolPredicate
@@ -577,9 +577,9 @@
                         )
                     , TermSymbol
                         ( Location
-                            { locFile = "<nowhere>"
-                            , locLine = -1
-                            , locColumn = -1
+                            { locFile = "test/examples/union.tex"
+                            , locLine = 19
+                            , locColumn = 35
                             }
                         )
                         ( SymbolMixfix
@@ -594,9 +594,9 @@
                         )
                         [ TermSymbol
                             ( Location
-                                { locFile = "<nowhere>"
-                                , locLine = -1
-                                , locColumn = -1
+                                { locFile = "test/examples/union.tex"
+                                , locLine = 19
+                                , locColumn = 35
                                 }
                             )
                             ( SymbolMixfix
@@ -633,9 +633,9 @@
                 )
                 ( TermSymbol
                     ( Location
-                        { locFile = "<nowhere>"
-                        , locLine = -1
-                        , locColumn = -1
+                        { locFile = "test/examples/union.tex"
+                        , locLine = 19
+                        , locColumn = 63
                         }
                     )
                     ( SymbolPredicate
@@ -652,9 +652,9 @@
                         )
                     , TermSymbol
                         ( Location
-                            { locFile = "<nowhere>"
-                            , locLine = -1
-                            , locColumn = -1
+                            { locFile = "test/examples/union.tex"
+                            , locLine = 19
+                            , locColumn = 67
                             }
                         )
                         ( SymbolMixfix
@@ -675,9 +675,9 @@
                             )
                         , TermSymbol
                             ( Location
-                                { locFile = "<nowhere>"
-                                , locLine = -1
-                                , locColumn = -1
+                                { locFile = "test/examples/union.tex"
+                                , locLine = 19
+                                , locColumn = 76
                                 }
                             )
                             ( SymbolMixfix
@@ -716,9 +716,9 @@
             ( Scope
                 ( TermSymbol
                     ( Location
-                        { locFile = "<nowhere>"
-                        , locLine = -1
-                        , locColumn = -1
+                        { locFile = "test/examples/union.tex"
+                        , locLine = 12
+                        , locColumn = 16
                         }
                     )
                     ( SymbolPredicate
@@ -731,9 +731,9 @@
                     )
                     [ TermSymbol
                         ( Location
-                            { locFile = "<nowhere>"
-                            , locLine = -1
-                            , locColumn = -1
+                            { locFile = "test/examples/union.tex"
+                            , locLine = 12
+                            , locColumn = 6
                             }
                         )
                         ( SymbolMixfix
@@ -757,9 +757,9 @@
                         ]
                     , TermSymbol
                         ( Location
-                            { locFile = "<nowhere>"
-                            , locLine = -1
-                            , locColumn = -1
+                            { locFile = "test/examples/union.tex"
+                            , locLine = 12
+                            , locColumn = 18
                             }
                         )
                         ( SymbolMixfix
@@ -791,9 +791,9 @@
                     ( Connected Equivalence
                         ( TermSymbol
                             ( Location
-                                { locFile = "<nowhere>"
-                                , locLine = -1
-                                , locColumn = -1
+                                { locFile = "test/examples/union.tex"
+                                , locLine = 8
+                                , locColumn = 7
                                 }
                             )
                             ( SymbolPredicate
@@ -810,9 +810,9 @@
                                 )
                             , TermSymbol
                                 ( Location
-                                    { locFile = "<nowhere>"
-                                    , locLine = -1
-                                    , locColumn = -1
+                                    { locFile = "test/examples/union.tex"
+                                    , locLine = 8
+                                    , locColumn = 11
                                     }
                                 )
                                 ( SymbolMixfix
@@ -839,9 +839,9 @@
                         ( Connected Disjunction
                             ( TermSymbol
                                 ( Location
-                                    { locFile = "<nowhere>"
-                                    , locLine = -1
-                                    , locColumn = -1
+                                    { locFile = "test/examples/union.tex"
+                                    , locLine = 8
+                                    , locColumn = 28
                                     }
                                 )
                                 ( SymbolPredicate
@@ -864,9 +864,9 @@
                             )
                             ( TermSymbol
                                 ( Location
-                                    { locFile = "<nowhere>"
-                                    , locLine = -1
-                                    , locColumn = -1
+                                    { locFile = "test/examples/union.tex"
+                                    , locLine = 8
+                                    , locColumn = 40
                                     }
                                 )
                                 ( SymbolPredicate
@@ -899,9 +899,9 @@
                             ( Connected Equivalence
                                 ( TermSymbol
                                     ( Location
-                                        { locFile = "<nowhere>"
-                                        , locLine = -1
-                                        , locColumn = -1
+                                        { locFile = "test/examples/union.tex"
+                                        , locLine = 2
+                                        , locColumn = 35
                                         }
                                     )
                                     ( SymbolPredicate
@@ -928,9 +928,9 @@
                                 )
                                 ( TermSymbol
                                     ( Location
-                                        { locFile = "<nowhere>"
-                                        , locLine = -1
-                                        , locColumn = -1
+                                        { locFile = "test/examples/union.tex"
+                                        , locLine = 2
+                                        , locColumn = 48
                                         }
                                     )
                                     ( SymbolPredicate
@@ -960,9 +960,9 @@
                     )
                     ( TermSymbol
                         ( Location
-                            { locFile = "<nowhere>"
-                            , locLine = -1
-                            , locColumn = -1
+                            { locFile = "test/examples/union.tex"
+                            , locLine = 3
+                            , locColumn = 13
                             }
                         )
                         ( SymbolPredicate
@@ -990,9 +990,9 @@
                 ( Connected Implication
                     ( TermSymbol
                         ( Location
-                            { locFile = "<nowhere>"
-                            , locLine = -1
-                            , locColumn = -1
+                            { locFile = "test/examples/union.tex"
+                            , locLine = 19
+                            , locColumn = 30
                             }
                         )
                         ( SymbolPredicate
@@ -1009,9 +1009,9 @@
                             )
                         , TermSymbol
                             ( Location
-                                { locFile = "<nowhere>"
-                                , locLine = -1
-                                , locColumn = -1
+                                { locFile = "test/examples/union.tex"
+                                , locLine = 19
+                                , locColumn = 35
                                 }
                             )
                             ( SymbolMixfix
@@ -1026,9 +1026,9 @@
                             )
                             [ TermSymbol
                                 ( Location
-                                    { locFile = "<nowhere>"
-                                    , locLine = -1
-                                    , locColumn = -1
+                                    { locFile = "test/examples/union.tex"
+                                    , locLine = 19
+                                    , locColumn = 35
                                     }
                                 )
                                 ( SymbolMixfix
@@ -1065,9 +1065,9 @@
                     )
                     ( TermSymbol
                         ( Location
-                            { locFile = "<nowhere>"
-                            , locLine = -1
-                            , locColumn = -1
+                            { locFile = "test/examples/union.tex"
+                            , locLine = 19
+                            , locColumn = 63
                             }
                         )
                         ( SymbolPredicate
@@ -1084,9 +1084,9 @@
                             )
                         , TermSymbol
                             ( Location
-                                { locFile = "<nowhere>"
-                                , locLine = -1
-                                , locColumn = -1
+                                { locFile = "test/examples/union.tex"
+                                , locLine = 19
+                                , locColumn = 67
                                 }
                             )
                             ( SymbolMixfix
@@ -1107,9 +1107,9 @@
                                 )
                             , TermSymbol
                                 ( Location
-                                    { locFile = "<nowhere>"
-                                    , locLine = -1
-                                    , locColumn = -1
+                                    { locFile = "test/examples/union.tex"
+                                    , locLine = 19
+                                    , locColumn = 76
                                     }
                                 )
                                 ( SymbolMixfix
@@ -1152,9 +1152,9 @@
             ( Connected Implication
                 ( TermSymbol
                     ( Location
-                        { locFile = "<nowhere>"
-                        , locLine = -1
-                        , locColumn = -1
+                        { locFile = "test/examples/union.tex"
+                        , locLine = 20
+                        , locColumn = 30
                         }
                     )
                     ( SymbolPredicate
@@ -1171,9 +1171,9 @@
                         )
                     , TermSymbol
                         ( Location
-                            { locFile = "<nowhere>"
-                            , locLine = -1
-                            , locColumn = -1
+                            { locFile = "test/examples/union.tex"
+                            , locLine = 20
+                            , locColumn = 34
                             }
                         )
                         ( SymbolMixfix
@@ -1194,9 +1194,9 @@
                             )
                         , TermSymbol
                             ( Location
-                                { locFile = "<nowhere>"
-                                , locLine = -1
-                                , locColumn = -1
+                                { locFile = "test/examples/union.tex"
+                                , locLine = 20
+                                , locColumn = 43
                                 }
                             )
                             ( SymbolMixfix
@@ -1227,9 +1227,9 @@
                 )
                 ( TermSymbol
                     ( Location
-                        { locFile = "<nowhere>"
-                        , locLine = -1
-                        , locColumn = -1
+                        { locFile = "test/examples/union.tex"
+                        , locLine = 20
+                        , locColumn = 63
                         }
                     )
                     ( SymbolPredicate
@@ -1246,9 +1246,9 @@
                         )
                     , TermSymbol
                         ( Location
-                            { locFile = "<nowhere>"
-                            , locLine = -1
-                            , locColumn = -1
+                            { locFile = "test/examples/union.tex"
+                            , locLine = 20
+                            , locColumn = 68
                             }
                         )
                         ( SymbolMixfix
@@ -1263,9 +1263,9 @@
                         )
                         [ TermSymbol
                             ( Location
-                                { locFile = "<nowhere>"
-                                , locLine = -1
-                                , locColumn = -1
+                                { locFile = "test/examples/union.tex"
+                                , locLine = 20
+                                , locColumn = 68
                                 }
                             )
                             ( SymbolMixfix
@@ -1310,9 +1310,9 @@
             ( Scope
                 ( TermSymbol
                     ( Location
-                        { locFile = "<nowhere>"
-                        , locLine = -1
-                        , locColumn = -1
+                        { locFile = "test/examples/union.tex"
+                        , locLine = 12
+                        , locColumn = 16
                         }
                     )
                     ( SymbolPredicate
@@ -1325,9 +1325,9 @@
                     )
                     [ TermSymbol
                         ( Location
-                            { locFile = "<nowhere>"
-                            , locLine = -1
-                            , locColumn = -1
+                            { locFile = "test/examples/union.tex"
+                            , locLine = 12
+                            , locColumn = 6
                             }
                         )
                         ( SymbolMixfix
@@ -1351,9 +1351,9 @@
                         ]
                     , TermSymbol
                         ( Location
-                            { locFile = "<nowhere>"
-                            , locLine = -1
-                            , locColumn = -1
+                            { locFile = "test/examples/union.tex"
+                            , locLine = 12
+                            , locColumn = 18
                             }
                         )
                         ( SymbolMixfix
@@ -1385,9 +1385,9 @@
                     ( Connected Equivalence
                         ( TermSymbol
                             ( Location
-                                { locFile = "<nowhere>"
-                                , locLine = -1
-                                , locColumn = -1
+                                { locFile = "test/examples/union.tex"
+                                , locLine = 8
+                                , locColumn = 7
                                 }
                             )
                             ( SymbolPredicate
@@ -1404,9 +1404,9 @@
                                 )
                             , TermSymbol
                                 ( Location
-                                    { locFile = "<nowhere>"
-                                    , locLine = -1
-                                    , locColumn = -1
+                                    { locFile = "test/examples/union.tex"
+                                    , locLine = 8
+                                    , locColumn = 11
                                     }
                                 )
                                 ( SymbolMixfix
@@ -1433,9 +1433,9 @@
                         ( Connected Disjunction
                             ( TermSymbol
                                 ( Location
-                                    { locFile = "<nowhere>"
-                                    , locLine = -1
-                                    , locColumn = -1
+                                    { locFile = "test/examples/union.tex"
+                                    , locLine = 8
+                                    , locColumn = 28
                                     }
                                 )
                                 ( SymbolPredicate
@@ -1458,9 +1458,9 @@
                             )
                             ( TermSymbol
                                 ( Location
-                                    { locFile = "<nowhere>"
-                                    , locLine = -1
-                                    , locColumn = -1
+                                    { locFile = "test/examples/union.tex"
+                                    , locLine = 8
+                                    , locColumn = 40
                                     }
                                 )
                                 ( SymbolPredicate
@@ -1493,9 +1493,9 @@
                             ( Connected Equivalence
                                 ( TermSymbol
                                     ( Location
-                                        { locFile = "<nowhere>"
-                                        , locLine = -1
-                                        , locColumn = -1
+                                        { locFile = "test/examples/union.tex"
+                                        , locLine = 2
+                                        , locColumn = 35
                                         }
                                     )
                                     ( SymbolPredicate
@@ -1522,9 +1522,9 @@
                                 )
                                 ( TermSymbol
                                     ( Location
-                                        { locFile = "<nowhere>"
-                                        , locLine = -1
-                                        , locColumn = -1
+                                        { locFile = "test/examples/union.tex"
+                                        , locLine = 2
+                                        , locColumn = 48
                                         }
                                     )
                                     ( SymbolPredicate
@@ -1554,9 +1554,9 @@
                     )
                     ( TermSymbol
                         ( Location
-                            { locFile = "<nowhere>"
-                            , locLine = -1
-                            , locColumn = -1
+                            { locFile = "test/examples/union.tex"
+                            , locLine = 3
+                            , locColumn = 13
                             }
                         )
                         ( SymbolPredicate
@@ -1584,9 +1584,9 @@
                 ( Connected Implication
                     ( TermSymbol
                         ( Location
-                            { locFile = "<nowhere>"
-                            , locLine = -1
-                            , locColumn = -1
+                            { locFile = "test/examples/union.tex"
+                            , locLine = 20
+                            , locColumn = 30
                             }
                         )
                         ( SymbolPredicate
@@ -1603,9 +1603,9 @@
                             )
                         , TermSymbol
                             ( Location
-                                { locFile = "<nowhere>"
-                                , locLine = -1
-                                , locColumn = -1
+                                { locFile = "test/examples/union.tex"
+                                , locLine = 20
+                                , locColumn = 34
                                 }
                             )
                             ( SymbolMixfix
@@ -1626,9 +1626,9 @@
                                 )
                             , TermSymbol
                                 ( Location
-                                    { locFile = "<nowhere>"
-                                    , locLine = -1
-                                    , locColumn = -1
+                                    { locFile = "test/examples/union.tex"
+                                    , locLine = 20
+                                    , locColumn = 43
                                     }
                                 )
                                 ( SymbolMixfix
@@ -1659,9 +1659,9 @@
                     )
                     ( TermSymbol
                         ( Location
-                            { locFile = "<nowhere>"
-                            , locLine = -1
-                            , locColumn = -1
+                            { locFile = "test/examples/union.tex"
+                            , locLine = 20
+                            , locColumn = 63
                             }
                         )
                         ( SymbolPredicate
@@ -1678,9 +1678,9 @@
                             )
                         , TermSymbol
                             ( Location
-                                { locFile = "<nowhere>"
-                                , locLine = -1
-                                , locColumn = -1
+                                { locFile = "test/examples/union.tex"
+                                , locLine = 20
+                                , locColumn = 68
                                 }
                             )
                             ( SymbolMixfix
@@ -1695,9 +1695,9 @@
                             )
                             [ TermSymbol
                                 ( Location
-                                    { locFile = "<nowhere>"
-                                    , locLine = -1
-                                    , locColumn = -1
+                                    { locFile = "test/examples/union.tex"
+                                    , locLine = 20
+                                    , locColumn = 68
                                     }
                                 )
                                 ( SymbolMixfix
@@ -1739,9 +1739,9 @@
                 ( Connected Implication
                     ( TermSymbol
                         ( Location
-                            { locFile = "<nowhere>"
-                            , locLine = -1
-                            , locColumn = -1
+                            { locFile = "test/examples/union.tex"
+                            , locLine = 19
+                            , locColumn = 30
                             }
                         )
                         ( SymbolPredicate
@@ -1758,9 +1758,9 @@
                             )
                         , TermSymbol
                             ( Location
-                                { locFile = "<nowhere>"
-                                , locLine = -1
-                                , locColumn = -1
+                                { locFile = "test/examples/union.tex"
+                                , locLine = 19
+                                , locColumn = 35
                                 }
                             )
                             ( SymbolMixfix
@@ -1775,9 +1775,9 @@
                             )
                             [ TermSymbol
                                 ( Location
-                                    { locFile = "<nowhere>"
-                                    , locLine = -1
-                                    , locColumn = -1
+                                    { locFile = "test/examples/union.tex"
+                                    , locLine = 19
+                                    , locColumn = 35
                                     }
                                 )
                                 ( SymbolMixfix
@@ -1814,9 +1814,9 @@
                     )
                     ( TermSymbol
                         ( Location
-                            { locFile = "<nowhere>"
-                            , locLine = -1
-                            , locColumn = -1
+                            { locFile = "test/examples/union.tex"
+                            , locLine = 19
+                            , locColumn = 63
                             }
                         )
                         ( SymbolPredicate
@@ -1833,9 +1833,9 @@
                             )
                         , TermSymbol
                             ( Location
-                                { locFile = "<nowhere>"
-                                , locLine = -1
-                                , locColumn = -1
+                                { locFile = "test/examples/union.tex"
+                                , locLine = 19
+                                , locColumn = 67
                                 }
                             )
                             ( SymbolMixfix
@@ -1856,9 +1856,9 @@
                                 )
                             , TermSymbol
                                 ( Location
-                                    { locFile = "<nowhere>"
-                                    , locLine = -1
-                                    , locColumn = -1
+                                    { locFile = "test/examples/union.tex"
+                                    , locLine = 19
+                                    , locColumn = 76
                                     }
                                 )
                                 ( SymbolMixfix
@@ -1898,9 +1898,9 @@
         }
     , taskConjecture = TermSymbol
         ( Location
-            { locFile = "<nowhere>"
-            , locLine = -1
-            , locColumn = -1
+            { locFile = "test/examples/union.tex"
+            , locLine = 16
+            , locColumn = 26
             }
         )
         ( SymbolPredicate
@@ -1913,9 +1913,9 @@
         )
         [ TermSymbol
             ( Location
-                { locFile = "<nowhere>"
-                , locLine = -1
-                , locColumn = -1
+                { locFile = "test/examples/union.tex"
+                , locLine = 16
+                , locColumn = 7
                 }
             )
             ( SymbolMixfix
@@ -1930,9 +1930,9 @@
             )
             [ TermSymbol
                 ( Location
-                    { locFile = "<nowhere>"
-                    , locLine = -1
-                    , locColumn = -1
+                    { locFile = "test/examples/union.tex"
+                    , locLine = 16
+                    , locColumn = 7
                     }
                 )
                 ( SymbolMixfix
@@ -1955,9 +1955,9 @@
             ]
         , TermSymbol
             ( Location
-                { locFile = "<nowhere>"
-                , locLine = -1
-                , locColumn = -1
+                { locFile = "test/examples/union.tex"
+                , locLine = 16
+                , locColumn = 28
                 }
             )
             ( SymbolMixfix
@@ -1974,9 +1974,9 @@
                 ( NamedVar "A" )
             , TermSymbol
                 ( Location
-                    { locFile = "<nowhere>"
-                    , locLine = -1
-                    , locColumn = -1
+                    { locFile = "test/examples/union.tex"
+                    , locLine = 16
+                    , locColumn = 37
                     }
                 )
                 ( SymbolMixfix

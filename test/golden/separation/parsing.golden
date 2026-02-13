@@ -8,39 +8,47 @@
     ( Marker "sep_test" )
     ( Lemma []
         ( StmtFormula
-            { loc = Location
-                { locFile = "test/examples/separation.tex"
-                , locLine = 2
-                , locColumn = 5
-                }
-            , formula = FormulaChain
+            { formula = FormulaChain
                 ( ChainBase
                     ( ExprVar
                         ( NamedVar "X" ) :| []
                     ) Positive
                     ( Relation
+                        ( Location
+                            { locFile = "test/examples/separation.tex"
+                            , locLine = 2
+                            , locColumn = 8
+                            }
+                        )
                         ( RelationSymbol
                             ( Symbol "=" )
                             ( Marker "eq" )
                         ) []
                     )
                     ( ExprSep
+                        ( Location
+                            { locFile = "test/examples/separation.tex"
+                            , locLine = 2
+                            , locColumn = 10
+                            }
+                        )
                         ( NamedVar "x" )
                         ( ExprVar
                             ( NamedVar "X" )
                         )
                         ( StmtFormula
-                            { loc = Location
-                                { locFile = "<nowhere>"
-                                , locLine = -1
-                                , locColumn = -1
-                                }
-                            , formula = FormulaChain
+                            { formula = FormulaChain
                                 ( ChainBase
                                     ( ExprVar
                                         ( NamedVar "x" ) :| []
                                     ) Positive
                                     ( Relation
+                                        ( Location
+                                            { locFile = "test/examples/separation.tex"
+                                            , locLine = 2
+                                            , locColumn = 26
+                                            }
+                                        )
                                         ( RelationSymbol
                                             ( Symbol "=" )
                                             ( Marker "eq" )

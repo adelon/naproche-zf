@@ -18,17 +18,18 @@
             , b = Unbounded
             , suchThat = Nothing
             , stmt = StmtFormula
-                { loc = Location
-                    { locFile = "test/examples/prooffix.tex"
-                    , locLine = 2
-                    , locColumn = 25
-                    }
-                , formula = FormulaChain
+                { formula = FormulaChain
                     ( ChainBase
                         ( ExprVar
                             ( NamedVar "x" ) :| []
                         ) Positive
                         ( Relation
+                            ( Location
+                                { locFile = "test/examples/prooffix.tex"
+                                , locLine = 2
+                                , locColumn = 28
+                                }
+                            )
                             ( RelationSymbol
                                 ( Symbol "=" )
                                 ( Marker "eq" )
@@ -65,17 +66,18 @@
                 }
             ) Nothing
             ( StmtFormula
-                { loc = Location
-                    { locFile = "test/examples/prooffix.tex"
-                    , locLine = 6
-                    , locColumn = 10
-                    }
-                , formula = FormulaChain
+                { formula = FormulaChain
                     ( ChainBase
                         ( ExprVar
                             ( NamedVar "x" ) :| []
                         ) Positive
                         ( Relation
+                            ( Location
+                                { locFile = "test/examples/prooffix.tex"
+                                , locLine = 6
+                                , locColumn = 13
+                                }
+                            )
                             ( RelationSymbol
                                 ( Symbol "=" )
                                 ( Marker "eq" )

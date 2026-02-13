@@ -72,9 +72,9 @@
         ( NamedVar "f" :| [] )
         ( TermSymbol
             ( Location
-                { locFile = "<nowhere>"
-                , locLine = -1
-                , locColumn = -1
+                { locFile = "test/examples/proofdefinefunction.tex"
+                , locLine = 14
+                , locColumn = 31
                 }
             )
             ( SymbolPredicate
@@ -116,9 +116,9 @@
         ( NamedVar "f" :| [] )
         ( TermSymbol
             ( Location
-                { locFile = "<nowhere>"
-                , locLine = -1
-                , locColumn = -1
+                { locFile = "test/examples/proofdefinefunction.tex"
+                , locLine = 19
+                , locColumn = 29
                 }
             )
             ( SymbolPredicate
@@ -148,9 +148,9 @@
         ( Connected Implication
             ( TermSymbol
                 ( Location
-                    { locFile = "<nowhere>"
-                    , locLine = -1
-                    , locColumn = -1
+                    { locFile = "test/examples/proofdefinefunction.tex"
+                    , locLine = 23
+                    , locColumn = 10
                     }
                 )
                 ( SymbolPredicate
@@ -169,9 +169,9 @@
             )
             ( TermSymbol
                 ( Location
-                    { locFile = "<nowhere>"
-                    , locLine = -1
-                    , locColumn = -1
+                    { locFile = "test/examples/proofdefinefunction.tex"
+                    , locLine = 23
+                    , locColumn = 25
                     }
                 )
                 ( SymbolPredicate

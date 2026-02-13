@@ -15,6 +15,12 @@
                 }
             , qp = QuantPhrase Universally NounPhrase ( [] )
                 ( Noun
+                    ( Location
+                        { locFile = "test/examples/no-reflexive-set.tex"
+                        , locLine = 2
+                        , locColumn = 13
+                        }
+                    )
                     ( LexicalItemSgPl
                         ( SgPl
                             { sg = TokenCons
@@ -30,17 +36,18 @@
                     [ NamedVar "A" ]
                 ) ( [] ) ( Nothing )
             , stmt = StmtFormula
-                { loc = Location
-                    { locFile = "test/examples/no-reflexive-set.tex"
-                    , locLine = 2
-                    , locColumn = 30
-                    }
-                , formula = FormulaChain
+                { formula = FormulaChain
                     ( ChainBase
                         ( ExprVar
                             ( NamedVar "A" ) :| []
                         ) Negative
                         ( Relation
+                            ( Location
+                                { locFile = "test/examples/no-reflexive-set.tex"
+                                , locLine = 2
+                                , locColumn = 36
+                                }
+                            )
                             ( RelationSymbol
                                 ( Command "in" )
                                 ( Marker "elem" )
