@@ -17,9 +17,8 @@ module Api
     , encodeTasks
     , prepareDumpTasks
     , dumpTask
-    , verify, ProverAnswer(..), VerificationResult(..)
+    , verify, verifyStreaming, ProverAnswer(..), VerificationResult(..)
     , exportMegalodon
-    , showFailedTask
     , WithCache(..)
     , WithFilter(..)
     , WithOmissions(..)
@@ -32,7 +31,6 @@ module Api
     , WithParseOnly(..)
     , Options(..)
     , WithDumpPremselTraining(..)
-    , WithFailList(..)
     ) where
 
 
@@ -58,10 +56,11 @@ import Tptp.UnsortedFirstOrder qualified as Tptp
 import Control.Monad.Logger
 import Data.List (intercalate)
 import Control.Monad.Reader
+import Data.IntSet qualified as IntSet
 import Data.Set qualified as Set
-import Data.List qualified as List
 import Data.Text.IO qualified as Text
 import qualified Data.Text as Text
+import GHC.Conc (getNumProcessors)
 import System.FilePath.Posix
 import Text.Earley (parser, fullParses, Parser, Report(..))
 import Text.Megaparsec hiding (parse, Token)
@@ -260,38 +259,116 @@ data VerificationResult
     | VerificationFailure [(Internal.Formula, ProverAnswer)]
     deriving (Show)
 
-resultFromAnswers :: [(Internal.Formula, ProverAnswer)] -> VerificationResult
-resultFromAnswers answers =
-    case List.filter isFailure answers of
-        [] -> VerificationSuccess
-        failures -> VerificationFailure failures
-
 isFailure :: (a, ProverAnswer) -> Bool
 isFailure (_phi, Yes) = False
 isFailure (_phi, _ans) = True
 
-verify :: (MonadUnliftIO io, MonadLogger io, MonadReader Options io) => ProverInstance -> FilePath -> io VerificationResult
-verify prover file = do
-    tasks <- generateTasks file
-    filterOption <- asks withFilter
-    let filteredTasks = case filterOption of
-            WithFilter -> filterTask <$> tasks
-            WithoutFilter -> tasks
-    cacheOption <- asks withCache
-    answers <- case cacheOption of
-        WithoutCache ->
-            pooledForConcurrently filteredTasks (runProver prover)
-        WithCache -> do
-            cache <- prepareCache file
-            filteredTasks' <- filterM (notInCache cache) filteredTasks
-            answers' <- pooledForConcurrently filteredTasks' (runProver prover)
+data VerificationWorkItem
+    = VerifyTask Internal.Task
+    | StopWorker
 
-            -- MAYBE: use Seq.breakl
-            let firstFailure = find (\(_, answer) -> isFailure answer) (List.zip filteredTasks' answers')
-            let successfulPrefix = List.takeWhile (\task -> Just task /= (fst <$> firstFailure)) filteredTasks
-            putTaskCache cache successfulPrefix
-            pure answers'
-    pure (resultFromAnswers answers)
+verifyStreaming :: (MonadUnliftIO io, MonadLogger io, MonadReader Options io) => ProverInstance -> FilePath -> io VerificationResult
+verifyStreaming prover file = do
+    dumpPremselTraining <- asks withDumpPremselTraining
+    filterOption <- asks withFilter
+    cacheOption <- asks withCache
+    (blocks, lexicon) <- gloss file
+    workerCount <- liftIO (max 1 . subtract 1 <$> getNumProcessors)
+    workQueue <- liftIO (newTBQueueIO (fromIntegral workerCount))
+    failureVar <- liftIO newEmptyTMVarIO
+    runInIO <- askRunInIO
+
+    cacheState <- case cacheOption of
+        WithoutCache -> pure Nothing
+        WithCache -> do
+            cacheFile <- prepareCache file
+            hashedCache <- getTaskCache cacheFile
+            hashedCacheVar <- liftIO (newTVarIO hashedCache)
+            pure (Just (cacheFile, hashedCacheVar))
+
+    let applyFilter :: Internal.Task -> Internal.Task
+        applyFilter task = case filterOption of
+            WithFilter -> filterTask task
+            WithoutFilter -> task
+
+        rememberTask :: Internal.Task -> IO ()
+        rememberTask task = case cacheState of
+            Nothing -> pure ()
+            Just (_cacheFile, hashedCacheVar) ->
+                atomically (modifyTVar' hashedCacheVar (IntSet.insert (hash task)))
+
+        flushCache :: IO ()
+        flushCache = case cacheState of
+            Nothing -> pure ()
+            Just (cacheFile, hashedCacheVar) -> do
+                hashedCache <- atomically (readTVar hashedCacheVar)
+                putTaskCacheHashes cacheFile hashedCache
+
+        emitTask :: Internal.Task -> IO ()
+        emitTask rawTask = do
+            let task = applyFilter (contractionTask rawTask)
+            shouldRun <- case cacheState of
+                Nothing -> pure True
+                Just (_cacheFile, hashedCacheVar) ->
+                    atomically (IntSet.notMember (hash task) <$> readTVar hashedCacheVar)
+            if shouldRun
+                then atomically (writeTBQueue workQueue (VerifyTask task))
+                else
+                    skip
+
+        worker :: IO ()
+        worker = do
+            item <- atomically (readTBQueue workQueue)
+            case item of
+                StopWorker ->
+                    pure ()
+                VerifyTask task -> do
+                    answer <- runInIO (runProver prover task)
+                    if isFailure answer
+                        then
+                            atomically (void (tryPutTMVar failureVar answer))
+                        else
+                            rememberTask task
+                    worker
+
+        producer :: IO ()
+        producer = checkWith dumpPremselTraining lexicon blocks emitTask
+
+        withAsyncs :: [IO a] -> ([Async a] -> IO b) -> IO b
+        withAsyncs [] inner = inner []
+        withAsyncs (action : actions) inner =
+            withAsync action \a ->
+                withAsyncs actions (\as -> inner (a : as))
+
+    result <- liftIO $
+        withAsync producer \producerAsync ->
+            withAsync (atomically (takeTMVar failureVar)) \failureAsync ->
+                withAsyncs (replicate workerCount worker) \workerAsyncs -> do
+                    outcome <- waitEitherCatch producerAsync failureAsync
+                    case outcome of
+                        Right (Right failedAnswer) -> do
+                            cancel producerAsync
+                            traverse_ cancel workerAsyncs
+                            pure (VerificationFailure [failedAnswer])
+                        Right (Left ex) ->
+                            throwIO ex
+                        Left (Left ex) ->
+                            throwIO ex
+                        Left (Right ()) -> do
+                            atomically (replicateM_ workerCount (writeTBQueue workQueue StopWorker))
+                            traverse_ wait workerAsyncs
+                            maybeFailure <- atomically (tryReadTMVar failureVar)
+                            pure case maybeFailure of
+                                Just failedAnswer -> VerificationFailure [failedAnswer]
+                                Nothing -> VerificationSuccess
+
+    case result of
+        VerificationSuccess -> liftIO flushCache
+        VerificationFailure _ -> skip
+    pure result
+
+verify :: (MonadUnliftIO io, MonadLogger io, MonadReader Options io) => ProverInstance -> FilePath -> io VerificationResult
+verify = verifyStreaming
 
 dumpTask :: MonadIO io => FilePath -> Tptp.Task -> io ()
 dumpTask file tptp = liftIO (Text.writeFile file (Tptp.toText tptp))
@@ -300,19 +377,6 @@ exportMegalodon :: (MonadUnliftIO io) => FilePath -> io Text
 exportMegalodon file = do
     (blocks, _lexicon) <- gloss file
     pure (Megalodon.encodeBlocks blocks)
-
-
-
--- | This could be expandend with the dump case, with dump off just this and if dump is on it could show the number off the task. For quick use
-showFailedTask :: (a, ProverAnswer) -> IO()
-showFailedTask (_, Yes ) = Text.putStrLn ""
-showFailedTask (_, No tptp) = Text.putStrLn (Text.pack ("\ESC[31mProver found countermodel: \ESC[0m" ++ Text.unpack(Text.unlines (take 1 (Text.splitOn "." tptp)))))
-showFailedTask (_, ContradictoryAxioms tptp) = Text.putStrLn (Text.pack ("\ESC[31mContradictory axioms: \ESC[0m" ++ Text.unpack(Text.unlines (take 1 (Text.splitOn "." tptp)))))
-showFailedTask (_, Uncertain tptp) = Text.putStrLn (Text.pack ("\ESC[31mOut of resources: \ESC[0m" ++ Text.unpack(Text.unlines (take 1 (Text.splitOn "." tptp)))))
-showFailedTask (_, Error _ tptp _) = Text.putStrLn (Text.pack ("\ESC[31mError at: \ESC[0m" ++ Text.unpack(Text.unlines (take 1 (Text.splitOn "." tptp)))))
---showFailedTask (_, _) = Text.putStrLn "Error!"
-
-
 -- | Should we use caching?
 data WithCache = WithoutCache | WithCache deriving (Show, Eq)
 
@@ -340,9 +404,6 @@ pattern WithoutDump = WithDump ""
 
 data WithParseOnly = WithoutParseOnly | WithParseOnly deriving (Show, Eq)
 
-data WithFailList = WithoutFailList | WithFailList deriving (Show, Eq)
-
-
 data Options = Options
     { inputPath :: FilePath
     , withCache :: WithCache
@@ -357,5 +418,4 @@ data Options = Options
     , withVersion :: WithVersion
     , withMegalodon :: WithMegalodon
     , withDumpPremselTraining :: WithDumpPremselTraining
-    , withFailList :: WithFailList
     }

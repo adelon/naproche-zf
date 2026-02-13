@@ -19,12 +19,20 @@ hashTasks tasks = IntSet.fromList (hash <$> tasks)
 
 
 putTaskCache :: MonadIO io => FilePath -> [Task] -> io ()
-putTaskCache path tasks = liftIO $ encodeFile path $ hashTasks tasks
+putTaskCache path tasks = putTaskCacheHashes path (hashTasks tasks)
+
+putTaskCacheHashes :: MonadIO io => FilePath -> IntSet -> io ()
+putTaskCacheHashes path hashedTasks = liftIO (encodeFile path hashedTasks)
+
+getTaskCache :: MonadIO io => FilePath -> io IntSet
+getTaskCache path = do
+    eitherHashedTasks <- liftIO (decodeFileOrFail path)
+    pure case eitherHashedTasks of
+        Left _ -> IntSet.empty
+        Right hashedTasks -> hashedTasks
 
 
 notInCache :: MonadIO io => FilePath -> Task -> io Bool
 notInCache path task = do
-    eitherHashedTasks <- liftIO $ decodeFileOrFail path
-    pure case eitherHashedTasks of
-        Left _ -> True
-        Right hashedTasks -> hash task `IntSet.notMember` hashedTasks
+    hashedTasks <- getTaskCache path
+    pure (hash task `IntSet.notMember` hashedTasks)

@@ -29,6 +29,7 @@ dependencies:
     - process
     - process-extras
     - regex-applicative
+    - stm
     - tasty
     - tasty-golden
     - tasty-hunit

@@ -66,35 +66,26 @@ run = do
                         pure (Provers.vampire vampirePathPath)
             let proverInstance = prover Provers.Silent (withTimeLimit opts) (withMemoryLimit opts)
             result <- verify proverInstance (inputPath opts)
-            case withFailList opts of
-                WithoutFailList -> liftIO case result of
-                    VerificationSuccess -> putStrLn "Verification successful."
-                    VerificationFailure [] -> error "Empty verification fail"
-                    VerificationFailure ((_, proverAnswer) : _) -> case proverAnswer of
-                        Yes ->
-                            skip
-                        No tptp -> do
-                            putStrLn "Verification failed: prover found countermodel"
-                            Text.hPutStrLn stderr tptp
-                        ContradictoryAxioms tptp -> do
-                            putStrLn "Verification failed: contradictory axioms"
-                            Text.hPutStrLn stderr tptp
-                        Uncertain tptp -> do
-                            putStrLn "Verification failed: out of resources"
-                            Text.hPutStrLn stderr tptp
-                        Error err tptp task -> do
-                            putStr "Error at:"
-                            Text.putStrLn $ "Task: " <> task
-                            Text.putStrLn $ "Error: " <> err
-                            Text.putStrLn tptp
-
-                WithFailList -> liftIO case result of
-                    VerificationSuccess -> putStrLn "\ESC[32mVerification successful.\ESC[0m"
-                    VerificationFailure [] -> error "Empty verification fail"
-                    VerificationFailure fails -> do
-                        putStrLn "\ESC[35mFollowing task couldn't be solved by the ATP: \ESC[0m"
-                        traverse_ showFailedTask fails
-                        Text.hPutStrLn stderr "Don't give up!"
+            liftIO case result of
+                VerificationSuccess -> putStrLn "Verification successful."
+                VerificationFailure [] -> error "Empty verification fail"
+                VerificationFailure ((_, proverAnswer) : _) -> case proverAnswer of
+                    Yes ->
+                        skip
+                    No tptp -> do
+                        putStrLn "Verification failed: prover found countermodel"
+                        Text.hPutStrLn stderr tptp
+                    ContradictoryAxioms tptp -> do
+                        putStrLn "Verification failed: contradictory axioms"
+                        Text.hPutStrLn stderr tptp
+                    Uncertain tptp -> do
+                        putStrLn "Verification failed: out of resources"
+                        Text.hPutStrLn stderr tptp
+                    Error err tptp task -> do
+                        putStr "Error at:"
+                        Text.putStrLn $ "Task: " <> task
+                        Text.putStrLn $ "Error: " <> err
+                        Text.putStrLn tptp
 
 
 getExecutable :: MonadIO m => String -> String -> String -> m FilePath
@@ -127,7 +118,6 @@ parseOptions = do
     withVersion <- withVersionParser
     withMegalodon <- withMegalodonParser
     withDumpPremselTraining <- withDumpPremselTrainingParser
-    withFailList <- withFailListParser
     pure Options{..}
 
 withTimeLimitParser :: Parser Provers.TimeLimit
@@ -184,7 +174,3 @@ withDumpPremselTrainingParser = flag' WithDumpPremselTraining (long "premseldump
 withMegalodonParser :: Parser WithMegalodon
 withMegalodonParser = flag' WithMegalodon (long "megalodon" <> help "Export to Megalodon (experimental).")
     <|> pure WithoutMegalodon
-
-withFailListParser :: Parser WithFailList
-withFailListParser = flag' WithFailList (long "list_fails" <> help "Will list all unproven task with possible reason of failure.")
-    <|> pure WithoutFailList

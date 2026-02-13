@@ -39,7 +39,6 @@ testOptions = Api.Options
     , withTimeLimit = Provers.defaultTimeLimit
     , withVersion = Api.WithoutVersion
     , withMegalodon = Api.WithoutMegalodon
-    , withFailList = Api.WithoutFailList
     }
 
 goldenTests :: IO TestTree
