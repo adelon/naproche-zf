@@ -91,22 +91,30 @@ constructTheoryGraph root = fmap snd (go mempty (TheoryGraph.singleton root) roo
 
 
 -- | Given a filename for a theory, look for it in a set of predetermined places:
--- the current directory and the library directory.
+-- the current directory, the library, and the debug directory.
 findAndReadFile :: MonadIO io => FilePath -> io Text
 findAndReadFile path = do
     currentDir <- getCurrentDirectory
     libraryDir <- (?? (currentDir </> "library")) <$> lookupEnv "NAPROCHE_LIB"
+    let debugDir = currentDir </> "debug"
 
-    existsCurrent     <- doesFileExist (currentDir </> path)
-    existsUserLib     <- doesFileExist (libraryDir </> path)
+    let currentFile = currentDir </> path
+    let libraryFile = libraryDir </> path
+    let debugFile = debugDir </> path
+
+    existsInCurrent <- doesFileExist currentFile
+    existsInLibrary <- doesFileExist libraryFile
+    existsInDebug <- doesFileExist debugFile
     liftIO if
-        | existsCurrent     -> Text.readFile (currentDir </> path)
-        | existsUserLib     -> Text.readFile (libraryDir </> path)
-        | otherwise         -> error $ unlines
+        | existsInCurrent -> Text.readFile currentFile
+        | existsInLibrary -> Text.readFile libraryFile
+        | existsInDebug -> Text.readFile debugFile
+        | otherwise -> error $ unlines
             [ "Could not find file from relative path: " <> path
             , "Searched in:"
             , "  " <> currentDir </> path
             , "  " <> libraryDir </> path <> " (which you can override by setting the NAPROCHE_LIB environment variable)"
+            , "  " <> debugDir </> path
             ]
 
 lexFile :: MonadIO io => FilePath -> io (Text, [[Located Token]])
