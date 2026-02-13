@@ -70,8 +70,8 @@ import UnliftIO.Directory
 import UnliftIO.Environment
 
 -- | Follow all @\\import@ statements recursively and build a theory graph from them.
--- The @\\import@ statements should be on their own separate line and precede all
--- top-level environments. This process is entirely decoupled from tokenizing and
+-- Each @\\import@ statement should be on its own separate line and the imports should precede
+-- all top-level environments. This process is entirely decoupled from tokenizing and
 -- parsing processes.
 constructTheoryGraph :: forall io. MonadIO io => FilePath -> io TheoryGraph
 constructTheoryGraph root = fmap snd (go mempty (TheoryGraph.singleton root) root)
@@ -91,7 +91,7 @@ constructTheoryGraph root = fmap snd (go mempty (TheoryGraph.singleton root) roo
 
 
 -- | Given a filename for a theory, look for it in a set of predetermined places:
--- the current directory, the library directory, and the Naproche root directory.
+-- the current directory and the library directory.
 findAndReadFile :: MonadIO io => FilePath -> io Text
 findAndReadFile path = do
     currentDir <- getCurrentDirectory
@@ -274,8 +274,7 @@ prepareCache file = do
     createDirectoryIfMissing True cacheDir
     -- Initialize with an empty cache when no cache exists.
     -- If we do not do this opening the cache file will fail.
-    unlessM (doesFileExist cache)
-        (putTaskCache cache [])
+    unlessM (doesFileExist cache) (putTaskCache cache [])
     pure cache
 
 prepareDumpTasks :: (MonadIO io, MonadReader Options io) => FilePath -> io [(Int, Tptp.Task)]
@@ -323,7 +322,7 @@ verifyStreaming prover file = do
     dumpPremselTraining <- asks withDumpPremselTraining
     filterOption <- asks withFilter
     cacheOption <- asks withCache
-    workerCount <- liftIO (max 1 . subtract 1 <$> getNumProcessors)
+    workerCount <- liftIO (max 1 <$> getNumProcessors)
     workQueue <- liftIO (newTBQueueIO (fromIntegral workerCount))
     stopVar <- liftIO (newTVarIO False)
     nextTaskIndexVar <- liftIO (newTVarIO 0)
@@ -397,8 +396,7 @@ verifyStreaming prover file = do
             if shouldRun
                 then do
                     -- The stop check and enqueue must be in one STM transaction.
-                    -- This guarantees that no new task is enqueued after stopVar
-                    -- has become True.
+                    -- This guarantees that no new task is enqueued after stopVar has become True.
                     enqueueSucceeded <- atomically do
                         stopRequested' <- readTVar stopVar
                         if stopRequested'
@@ -443,8 +441,9 @@ verifyStreaming prover file = do
                     _ ->
                         runCheckedBlocks checkingStateRef [block]
                 Just lemma -> case block of
-                    -- Preserve the original semantics from `checkBlocks`:
-                    -- a `BlockProof` attaches to the immediately preceding `BlockLemma`.
+                    -- | We have seen a lemma, but not yet emitted it, so we delay emitting it until we see the next block.
+                    --   If the next block is a proof, then we emit them together as a checked lemma+proof pair.
+                    --   If the next block is not a proof, then we emit the lemma by itself and emit the next block separately.
                     Internal.BlockProof{} -> do
                         writeIORef pendingLemmaRef Nothing
                         runCheckedBlocks checkingStateRef [lemma, block]
