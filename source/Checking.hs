@@ -22,12 +22,11 @@ import Bound.Var (Var(..), unvar)
 import Control.Exception (Exception)
 import Control.Monad.Reader
 import Control.Monad.State
-import Control.Monad.Writer.Strict
-import Data.DList qualified as DList
 import Data.HashMap.Strict qualified as HM
 import Data.HashSet qualified as HS
 import Data.InsOrdMap (InsOrdMap)
 import Data.InsOrdMap qualified as InsOrdMap
+import Data.IORef (newIORef, modifyIORef', readIORef)
 import Data.List qualified as List
 import Data.List.NonEmpty qualified as NonEmpty
 import Data.Set qualified as Set
@@ -37,7 +36,7 @@ import System.FilePath.Posix
 import UnliftIO.Directory
 
 type Checking = CheckingM ()
-type CheckingM = StateT CheckingState (WriterT (DList Task) IO)
+type CheckingM = StateT CheckingState IO
 
 -- | Like 'Base.locally', but preserves the hypothesis counter so labels stay unique
 -- across nested local proof blocks.
@@ -51,8 +50,13 @@ locally ma = do
 
 check :: WithDumpPremselTraining -> Lexicon -> [Block] -> IO [Task]
 check dumpPremselTraining lexicon blocks = do
-    tasks <- execWriterT (runStateT (checkBlocks blocks) initialCheckingState)
-    pure (DList.toList tasks)
+    tasksRef <- newIORef []
+    checkWith dumpPremselTraining lexicon blocks (\task -> modifyIORef' tasksRef (task :))
+    reverse <$> readIORef tasksRef
+
+checkWith :: WithDumpPremselTraining -> Lexicon -> [Block] -> (Task -> IO ()) -> IO ()
+checkWith dumpPremselTraining lexicon blocks emitTask =
+    void (runStateT (checkBlocks blocks) initialCheckingState)
     where
         initialCheckingState = CheckingState
             { checkingAssumptions = []
@@ -72,12 +76,13 @@ check dumpPremselTraining lexicon blocks = do
             , blockEndLocation = Nowhere
             , fixedVars = mempty
             , checkingHypothesisCounter = 0
+            , checkingEmitTask = emitTask
             }
 
 data WithDumpPremselTraining = WithoutDumpPremselTraining | WithDumpPremselTraining
 
--- | The checking state accumulates the proof tasks and
--- helps to keep track of the surrounding context.
+-- | The checking state manages contextual information while checking and
+-- emits generated proof tasks through a callback.
 -- INVARIANT: All formulas in the checking state that eventually
 -- get exported should have all their abbreviations resolved.
 data CheckingState = CheckingState
@@ -129,6 +134,7 @@ data CheckingState = CheckingState
     , stepLocation :: Location -- ^ Location of the current proof step
     , blockEndLocation :: Location -- ^ Ending of the current proof block, useful for error messages for implicit QEDs.
     , checkingHypothesisCounter :: Int -- ^ Counter for labeling local hypotheses within a proof.
+    , checkingEmitTask :: Task -> IO () -- ^ Callback for emitting proof tasks.
     }
 
 initCheckingStructs :: StructGraph
@@ -251,9 +257,9 @@ tellTasks = do
     assumptions <- gets checkingAssumptions
     directness <- gets checkingDirectness
     loc <- gets stepLocation
+    emitTask <- gets checkingEmitTask
     let hypos = (snd <$> InsOrdMap.toList facts) <> assumptions
-    let tasks = DList.fromList (Task directness hypos m loc <$> goals)
-    tell tasks
+    liftIO (traverse_ emitTask (Task directness hypos m loc <$> goals))
 
 -- | Make a fact available to all future paragraphs.
 addFact :: Formula -> Checking
