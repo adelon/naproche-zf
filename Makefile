@@ -35,6 +35,8 @@ profilemem:
 	stack --work-dir .stack-work-profile build --profile --ghc-options "-fprof-auto -fprof-cafs"
 	stack --work-dir .stack-work-profile exec --profile zf -- library/formalizations_with_section_20_up_to_euclidean_metric_theorem.tex --uncached +RTS -hc -RTS
 	hp2ps zf.hp
+	gs -q -dNOPAUSE -dBATCH -sOutputFile=temp.ps -sDEVICE=ps2write -c "<</Orientation 1>> setpagedevice" -- zf.ps && mv temp.ps zf.ps
+
 
 .PHONE: profileparser
 profileparser:
