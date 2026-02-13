@@ -48,14 +48,14 @@ locally ma = do
     put st{checkingHypothesisCounter = checkingHypothesisCounter st'}
     pure a
 
-check :: WithDumpPremselTraining -> Lexicon -> [Block] -> IO [Task]
-check dumpPremselTraining lexicon blocks = do
+check :: WithDumpPremselTraining -> [Block] -> IO [Task]
+check dumpPremselTraining blocks = do
     tasksRef <- newIORef []
-    checkWith dumpPremselTraining lexicon blocks (\task -> modifyIORef' tasksRef (task :))
+    checkWith dumpPremselTraining blocks (\task -> modifyIORef' tasksRef (task :))
     reverse <$> readIORef tasksRef
 
-checkWith :: WithDumpPremselTraining -> Lexicon -> [Block] -> (Task -> IO ()) -> IO ()
-checkWith dumpPremselTraining lexicon blocks emitTask =
+checkWith :: WithDumpPremselTraining -> [Block] -> (Task -> IO ()) -> IO ()
+checkWith dumpPremselTraining blocks emitTask =
     void (runStateT (checkBlocks blocks) initialCheckingState)
     where
         initialCheckingState = CheckingState
@@ -70,7 +70,6 @@ checkWith dumpPremselTraining lexicon blocks emitTask =
             , instantiatedStructs = Set.empty
             , instantiatedStructOps = HM.empty
             , definedMarkers = HS.empty
-            , checkingLexicon = lexicon
             , blockLabel = Marker ""
             , stepLocation = Nowhere
             , blockEndLocation = Nowhere
@@ -86,9 +85,7 @@ data WithDumpPremselTraining = WithoutDumpPremselTraining | WithDumpPremselTrain
 -- INVARIANT: All formulas in the checking state that eventually
 -- get exported should have all their abbreviations resolved.
 data CheckingState = CheckingState
-    { checkingLexicon :: Lexicon -- For debugging and dumping training data.
-
-    , checkingDumpPremselTraining :: WithDumpPremselTraining
+    { checkingDumpPremselTraining :: WithDumpPremselTraining
 
     , checkingAssumptions :: [Hypothesis]
     -- ^ Local assumptions (cached encoding).

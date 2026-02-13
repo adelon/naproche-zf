@@ -47,7 +47,7 @@ import Syntax.Abstract qualified as Raw
 import Syntax.Adapt (adaptChunks, scanChunk, ScannedLexicalItem)
 import Syntax.Concrete
 import Syntax.Internal qualified as Internal
-import Syntax.Lexicon (Lexicon, builtins)
+import Syntax.Lexicon (builtins)
 import Syntax.Token
 import TheoryGraph (TheoryGraph, Precedes(..))
 import TheoryGraph qualified
@@ -62,7 +62,7 @@ import Data.Text.IO qualified as Text
 import qualified Data.Text as Text
 import GHC.Conc (getNumProcessors)
 import System.FilePath.Posix
-import Text.Earley (parser, fullParses, Parser, Report(..))
+import Text.Earley (parser, fullParses, Report(..))
 import Text.Megaparsec hiding (parse, Token)
 import UnliftIO
 import UnliftIO.Directory
@@ -127,7 +127,7 @@ scan input = do
 
 -- | Parse a file. Throws a 'ParseException' when tokenizing, scanning, or
 -- parsing fails.
-parse :: MonadIO io => FilePath -> io ([Raw.Block], Lexicon)
+parse :: MonadIO io => FilePath -> io [Raw.Block]
 parse file = do
     -- We need to consider the entire theory graph here already
     -- since we can use vocabulary of imported theories.
@@ -142,7 +142,7 @@ parse file = do
             let lexicon = adaptChunks chunks builtins
             let p :: [Located Token] -> ([Raw.Block], Report Text [Located Token])
                 p = fullParses (parser (grammar lexicon))
-            (, lexicon) <$> combineParseResults [p toks | toks <- chunks]
+            combineParseResults [p toks | toks <- chunks]
 
 combineParseResults :: MonadIO io => [([Raw.Block], Report Text [Located Token])] -> io [Raw.Block]
 combineParseResults [] = pure []
@@ -205,19 +205,19 @@ describeToken = \case
 -- | gloss generates internal represantation of the LaTeX files.
 -- First the file will be parsed and therefore checkt for grammer.
 -- 'meaning' then transfer the raw parsed grammer to the internal semantics.
-gloss :: MonadIO io => FilePath -> io ([Internal.Block], Lexicon)
+gloss :: MonadIO io => FilePath -> io [Internal.Block]
 gloss file = do
-    (blocks, lexicon) <- parse file
+    blocks <- parse file
     case meaning blocks of
         Left err -> throwIO err
-        Right blocks' -> pure (blocks', lexicon)
+        Right blocks' -> pure blocks'
 
 
 generateTasks :: (MonadIO io, MonadReader Options io) => FilePath -> io [Internal.Task]
 generateTasks file = do
     dumpPremselTraining <- asks withDumpPremselTraining
-    (blocks, lexicon) <- gloss file
-    tasks <- liftIO (check dumpPremselTraining lexicon blocks)
+    blocks <- gloss file
+    tasks <- liftIO (check dumpPremselTraining blocks)
     pure (contractionTask <$> tasks)
 
 prepareCache :: MonadIO io => FilePath -> io FilePath
@@ -277,7 +277,7 @@ verifyStreaming prover file = do
     dumpPremselTraining <- asks withDumpPremselTraining
     filterOption <- asks withFilter
     cacheOption <- asks withCache
-    (blocks, lexicon) <- gloss file
+    blocks <- gloss file
     workerCount <- liftIO (max 1 . subtract 1 <$> getNumProcessors)
     workQueue <- liftIO (newTBQueueIO (fromIntegral workerCount))
     stopVar <- liftIO (newTVarIO False)
@@ -370,7 +370,7 @@ verifyStreaming prover file = do
 
         producer :: IO ()
         producer =
-            checkWith dumpPremselTraining lexicon blocks emitTask
+            checkWith dumpPremselTraining blocks emitTask
                 `catch` \VerificationProducerStopped -> pure ()
 
         withAsyncs :: [IO a] -> ([Async a] -> IO b) -> IO b
@@ -411,7 +411,7 @@ dumpTask file tptp = liftIO (Text.writeFile file (Tptp.toText tptp))
 
 exportMegalodon :: (MonadUnliftIO io) => FilePath -> io Text
 exportMegalodon file = do
-    (blocks, _lexicon) <- gloss file
+    blocks <- gloss file
     pure (Megalodon.encodeBlocks blocks)
 -- | Should we use caching?
 data WithCache = WithoutCache | WithCache deriving (Show, Eq)

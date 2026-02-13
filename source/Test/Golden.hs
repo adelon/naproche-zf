@@ -111,13 +111,13 @@ scanning = makeGoldenTest "scanning" $ \Triple{..} -> do
 
 parsing :: (MonadUnliftIO io, MonadReader Api.Options io) => io TestTree
 parsing = makeGoldenTest "parsing" $ \Triple{..} -> do
-    (parseResult, _) <- Api.parse input
+    parseResult <- Api.parse input
     liftIO (LazyTextIO.writeFile output (pShowNoColor parseResult))
 
 
 glossing :: (MonadUnliftIO io, MonadReader Api.Options io) => io TestTree
 glossing = makeGoldenTest "glossing" $ \Triple{..} -> do
-    (interpretationResult, _) <- Api.gloss input
+    interpretationResult <- Api.gloss input
     liftIO (LazyTextIO.writeFile output (pShowNoColor interpretationResult))
 
 
