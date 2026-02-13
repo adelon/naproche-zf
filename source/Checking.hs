@@ -875,7 +875,7 @@ addIntroRule (IntroRule conditions result) = addFact (forallClosure mempty (make
 checkIntroRule :: FunctionSymbol -> [VarSymbol] -> Expr -> IntroRule -> Checking
 checkIntroRule f args dom rule = do
     case isValidIntroRule f args rule of
-        Left err -> error err
+        Left err -> throwWithLocationAndMarker (\loc marker -> CheckingError (Text.pack err) loc marker)
         Right goals -> case List.filter (/= Top) goals of
             [] -> skip
             goals' -> setGoals goals' *> tellTasks
@@ -928,7 +928,7 @@ isValidCondition f args phi = if isSideCondition phi
 
 isValidResult :: FunctionSymbol -> [VarSymbol] -> Formula -> Bool
 isValidResult f args phi = case phi of
-    IsElementOf _pos _ e | e == TermOp Nowhere f (TermVar <$> args) -> True
+    IsElementOf _pos _ e | equivalent e (TermOp Nowhere f (TermVar <$> args)) -> True
     _ -> False
 
 isValidIntroRule :: FunctionSymbol -> [VarSymbol] -> IntroRule -> Either String [Formula]
