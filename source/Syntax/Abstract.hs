@@ -42,9 +42,11 @@ pattern FreshVar n <- FreshVarAt _ n where
 {-# COMPLETE NamedVar, FreshVar #-}
 
 instance Show VarSymbol where
-    show = \case
-        NamedVarAt _ x -> "NamedVar " <> show x
-        FreshVarAt _ n -> "FreshVar " <> show n
+    showsPrec d = \case
+        NamedVarAt _ x ->
+            showParen (d > 10) (showString "NamedVar " . showsPrec 11 x)
+        FreshVarAt _ n ->
+            showParen (d > 10) (showString "FreshVar " . showsPrec 11 n)
 
 instance Eq VarSymbol where
     NamedVarAt _ x == NamedVarAt _ y = x == y
