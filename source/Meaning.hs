@@ -148,16 +148,21 @@ freshVar = do
     modify $ \s -> s {varCount = varCount s + 1}
     pure $ FreshVar i
 
+initialGlossState :: GlossState
+initialGlossState = GlossState
+    { varCount = 0
+    , lemmaCount = Serial.start
+    , lexicon = builtins
+    , pretypings = mempty
+    }
+
+glossStep :: GlossState -> Raw.Block -> Either GlossError (Sem.Block, GlossState)
+glossStep glossState block = case runState (runExceptT (glossBlock block)) glossState of
+    (Left err, _nextGlossState) -> Left err
+    (Right glossedBlock, nextGlossState) -> Right (glossedBlock, nextGlossState)
 
 meaning :: [Raw.Block] -> Either GlossError [Sem.Block]
-meaning a = evalState (runExceptT (glossBlocks a)) initialGlossState
-    where
-        initialGlossState = GlossState
-            { varCount = 0
-            , lemmaCount = Serial.start
-            , lexicon = builtins
-            , pretypings = mempty
-            }
+meaning blocks = evalState (runExceptT (glossBlocks blocks)) initialGlossState
 
 glossExpr :: Raw.Expr -> Gloss (Sem.ExprOf VarSymbol)
 glossExpr = \case

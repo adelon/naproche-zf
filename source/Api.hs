@@ -39,7 +39,7 @@ import Checking
 import Checking.Cache
 import Encoding
 import Filter(filterTask)
-import Meaning (meaning, GlossError(..))
+import Meaning (GlossError(..), glossStep, initialGlossState)
 import Megalodon qualified
 import Provers
 import Report.Location
@@ -108,14 +108,23 @@ findAndReadFile path = do
             , "  " <> libraryDir </> path <> " (which you can override by setting the NAPROCHE_LIB environment variable)"
             ]
 
+lexFile :: MonadIO io => FilePath -> io (Text, [[Located Token]])
+lexFile file = do
+    raw <- findAndReadFile file
+    case runLexer file raw of
+        Left tokenError ->
+            throwIO (TokenError (errorBundlePretty tokenError))
+        Right (_imports, chunks) ->
+            pure (raw, chunks)
+
+tokenizeChunks :: MonadIO io => FilePath -> io [[Located Token]]
+tokenizeChunks file = snd <$> lexFile file
 
 -- | Throws a 'ParseException' when tokenizing fails.
 tokenize :: MonadIO io => FilePath -> io TokStream
 tokenize file = do
-    raw <- findAndReadFile file
-    case runLexer file raw of
-        Left tokenError -> throwIO (TokenError (errorBundlePretty tokenError))
-        Right (_imports, chunks) -> pure (TokStream raw chunks)
+    (raw, chunks) <- lexFile file
+    pure (TokStream raw chunks)
 
 -- | Scan the given file for lexical items. The actual parsing process
 -- uses 'adaptChunks' instead.
@@ -129,6 +138,12 @@ scan input = do
 -- parsing fails.
 parse :: MonadIO io => FilePath -> io [Raw.Block]
 parse file = do
+    blocksRef <- liftIO (newIORef [])
+    parseWith file (\block -> modifyIORef' blocksRef (block :))
+    reverse <$> liftIO (readIORef blocksRef)
+
+parseWith :: MonadIO io => FilePath -> (Raw.Block -> IO ()) -> io ()
+parseWith file emitBlock = do
     -- We need to consider the entire theory graph here already
     -- since we can use vocabulary of imported theories.
     theoryGraph <- constructTheoryGraph file
@@ -136,27 +151,35 @@ parse file = do
         -- LATER replace with a more helpful error message, like actually showing the cycle properly
         Left cyc -> error ("could not linearize theory graph (likely due to circular dependencies):\n" <> show cyc)
         Right theoryChain -> do
-            tokenStreams <- traverse tokenize theoryChain
-            let tokenStream = mconcat (toList tokenStreams)
-            let chunks = unTokStream tokenStream
-            let lexicon = adaptChunks chunks builtins
-            let p :: [Located Token] -> ([Raw.Block], Report Text [Located Token])
-                p = fullParses (parser (grammar lexicon))
-            combineParseResults [p toks | toks <- chunks]
+            -- Pass 1: gather lexical extensions from all chunks to build the final parser.
+            lexicon <- foldM
+                (\accLexicon theoryFile -> do
+                    chunks <- tokenizeChunks theoryFile
+                    pure (adaptChunks chunks accLexicon)
+                )
+                builtins
+                theoryChain
 
-combineParseResults :: MonadIO io => [([Raw.Block], Report Text [Located Token])] -> io [Raw.Block]
-combineParseResults [] = pure []
-combineParseResults (result : results) = case result of
+            let parseChunk :: [Located Token] -> ([Raw.Block], Report Text [Located Token])
+                parseChunk = fullParses (parser (grammar lexicon))
+
+            -- Pass 2: parse and emit one block at a time.
+            for_ theoryChain \theoryFile -> do
+                chunks <- tokenizeChunks theoryFile
+                for_ chunks \toks -> do
+                    blocks <- parseChunkResult (parseChunk toks)
+                    liftIO (traverse_ emitBlock blocks)
+
+parseChunkResult :: MonadIO io => ([Raw.Block], Report Text [Located Token]) -> io [Raw.Block]
+parseChunkResult result = case result of
     (_, Report _ es (tok:toks)) -> throwIO (UnconsumedTokens es (tok :| toks))
     ([], _) -> throwIO EmptyParse
     (ambi@(_:_:_), _) -> case nubOrd ambi of
-        [block] -> do
-            blocks <- combineParseResults results
-            pure (trace ("technically ambiguous parse:\n" <> show block) (block : blocks))
+        [block] ->
+            pure [trace ("technically ambiguous parse:\n" <> show block) block]
         ambi' -> throwIO (AmbigousParse ambi')
-    ([block], _) -> do
-        blocks <- combineParseResults results
-        pure (block : blocks)
+    ([block], _) ->
+        pure [block]
 
 
 simpleStream :: TokStream -> [[Token]]
@@ -207,10 +230,21 @@ describeToken = \case
 -- 'meaning' then transfer the raw parsed grammer to the internal semantics.
 gloss :: MonadIO io => FilePath -> io [Internal.Block]
 gloss file = do
-    blocks <- parse file
-    case meaning blocks of
-        Left err -> throwIO err
-        Right blocks' -> pure blocks'
+    blocksRef <- liftIO (newIORef [])
+    glossWith file (\block -> modifyIORef' blocksRef (block :))
+    reverse <$> liftIO (readIORef blocksRef)
+
+glossWith :: MonadIO io => FilePath -> (Internal.Block -> IO ()) -> io ()
+glossWith file emitBlock = do
+    glossStateRef <- liftIO (newIORef initialGlossState)
+    parseWith file \rawBlock -> do
+        glossState <- readIORef glossStateRef
+        case glossStep glossState rawBlock of
+            Left err ->
+                throwIO err
+            Right (glossedBlock, nextGlossState) -> do
+                writeIORef glossStateRef nextGlossState
+                emitBlock glossedBlock
 
 
 generateTasks :: (MonadIO io, MonadReader Options io) => FilePath -> io [Internal.Task]
@@ -277,7 +311,6 @@ verifyStreaming prover file = do
     dumpPremselTraining <- asks withDumpPremselTraining
     filterOption <- asks withFilter
     cacheOption <- asks withCache
-    blocks <- gloss file
     workerCount <- liftIO (max 1 . subtract 1 <$> getNumProcessors)
     workQueue <- liftIO (newTBQueueIO (fromIntegral workerCount))
     stopVar <- liftIO (newTVarIO False)
@@ -323,7 +356,7 @@ verifyStreaming prover file = do
 
         emitTask :: Internal.Task -> IO ()
         emitTask rawTask = do
-            -- ASSUMPTION: There is exactly one emitter ('checkWith' callback), so
+            -- ASSUMPTION: There is exactly one emitter (the producer pipeline), so
             -- queue insertion order is well-defined by this callback execution order.
             --
             -- If a failure has already been observed, stop emitting immediately.
@@ -368,10 +401,45 @@ verifyStreaming prover file = do
                             rememberTask task
                     worker
 
+        runCheckedBlocks :: IORef CheckingState -> [Internal.Block] -> IO ()
+        runCheckedBlocks checkingStateRef blocks = do
+            checkingState <- readIORef checkingStateRef
+            nextCheckingState <- runCheckingBlocks blocks checkingState
+            writeIORef checkingStateRef nextCheckingState
+
+        emitCheckedBlock :: IORef CheckingState -> IORef (Maybe Internal.Block) -> Internal.Block -> IO ()
+        emitCheckedBlock checkingStateRef pendingLemmaRef block = do
+            pendingLemma <- readIORef pendingLemmaRef
+            case pendingLemma of
+                Nothing -> case block of
+                    Internal.BlockLemma{} ->
+                        writeIORef pendingLemmaRef (Just block)
+                    _ ->
+                        runCheckedBlocks checkingStateRef [block]
+                Just lemma -> case block of
+                    -- Preserve the original semantics from `checkBlocks`:
+                    -- a `BlockProof` attaches to the immediately preceding `BlockLemma`.
+                    Internal.BlockProof{} -> do
+                        writeIORef pendingLemmaRef Nothing
+                        runCheckedBlocks checkingStateRef [lemma, block]
+                    _ -> do
+                        writeIORef pendingLemmaRef Nothing
+                        runCheckedBlocks checkingStateRef [lemma]
+                        emitCheckedBlock checkingStateRef pendingLemmaRef block
+
+        flushPendingLemma :: IORef CheckingState -> IORef (Maybe Internal.Block) -> IO ()
+        flushPendingLemma checkingStateRef pendingLemmaRef = do
+            pendingLemma <- readIORef pendingLemmaRef
+            for_ pendingLemma \lemma -> do
+                writeIORef pendingLemmaRef Nothing
+                runCheckedBlocks checkingStateRef [lemma]
+
         producer :: IO ()
-        producer =
-            checkWith dumpPremselTraining blocks emitTask
-                `catch` \VerificationProducerStopped -> pure ()
+        producer = do
+            checkingStateRef <- newIORef (initialCheckingState dumpPremselTraining emitTask)
+            pendingLemmaRef <- newIORef Nothing
+            glossWith file (emitCheckedBlock checkingStateRef pendingLemmaRef)
+            flushPendingLemma checkingStateRef pendingLemmaRef
 
         withAsyncs :: [IO a] -> ([Async a] -> IO b) -> IO b
         withAsyncs [] inner = inner []
@@ -381,7 +449,7 @@ verifyStreaming prover file = do
 
     result <- liftIO $
         withAsyncs (replicate workerCount worker) \workerAsyncs -> do
-            producerResult <- tryAny producer
+            producerResult <- tryAny (producer `catch` \VerificationProducerStopped -> pure ())
             case producerResult of
                 Left ex -> do
                     traverse_ cancel workerAsyncs
@@ -413,6 +481,7 @@ exportMegalodon :: (MonadUnliftIO io) => FilePath -> io Text
 exportMegalodon file = do
     blocks <- gloss file
     pure (Megalodon.encodeBlocks blocks)
+
 -- | Should we use caching?
 data WithCache = WithoutCache | WithCache deriving (Show, Eq)
 

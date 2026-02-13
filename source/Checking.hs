@@ -54,29 +54,34 @@ check dumpPremselTraining blocks = do
     checkWith dumpPremselTraining blocks (\task -> modifyIORef' tasksRef (task :))
     reverse <$> readIORef tasksRef
 
+initialCheckingState :: WithDumpPremselTraining -> (Task -> IO ()) -> CheckingState
+initialCheckingState dumpPremselTraining emitTask = CheckingState
+    { checkingAssumptions = []
+    , checkingDumpPremselTraining = dumpPremselTraining
+    , checkingGoals = []
+    , checkingFacts = mempty
+    , checkingDirectness = Direct
+    , checkingAbbreviations = initAbbreviations
+    , checkingPredicateDefinitions = mempty
+    , checkingStructs = initCheckingStructs
+    , instantiatedStructs = Set.empty
+    , instantiatedStructOps = HM.empty
+    , definedMarkers = HS.empty
+    , blockLabel = Marker ""
+    , stepLocation = Nowhere
+    , blockEndLocation = Nowhere
+    , fixedVars = mempty
+    , checkingHypothesisCounter = 0
+    , checkingEmitTask = emitTask
+    }
+
 checkWith :: WithDumpPremselTraining -> [Block] -> (Task -> IO ()) -> IO ()
 checkWith dumpPremselTraining blocks emitTask =
-    void (runStateT (checkBlocks blocks) initialCheckingState)
-    where
-        initialCheckingState = CheckingState
-            { checkingAssumptions = []
-            , checkingDumpPremselTraining = dumpPremselTraining
-            , checkingGoals = []
-            , checkingFacts = mempty
-            , checkingDirectness = Direct
-            , checkingAbbreviations = initAbbreviations
-            , checkingPredicateDefinitions = mempty
-            , checkingStructs = initCheckingStructs
-            , instantiatedStructs = Set.empty
-            , instantiatedStructOps = HM.empty
-            , definedMarkers = HS.empty
-            , blockLabel = Marker ""
-            , stepLocation = Nowhere
-            , blockEndLocation = Nowhere
-            , fixedVars = mempty
-            , checkingHypothesisCounter = 0
-            , checkingEmitTask = emitTask
-            }
+    void (runStateT (checkBlocks blocks) (initialCheckingState dumpPremselTraining emitTask))
+
+runCheckingBlocks :: [Block] -> CheckingState -> IO CheckingState
+runCheckingBlocks blocks checkingState =
+    snd <$> runStateT (checkBlocks blocks) checkingState
 
 data WithDumpPremselTraining = WithoutDumpPremselTraining | WithDumpPremselTraining
 
