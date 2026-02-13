@@ -19,6 +19,8 @@ import Syntax.Abstract
     , Associativity(..)
     , Connective(..)
     , VarSymbol(..)
+    , pattern NamedVar
+    , pattern FreshVar
     , FunctionSymbol
     , MixfixItem(..)
     , Pattern(..)

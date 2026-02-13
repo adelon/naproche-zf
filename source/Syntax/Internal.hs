@@ -25,6 +25,8 @@ import Syntax.Abstract
     , Associativity(..)
     , Connective(..)
     , VarSymbol(..)
+    , pattern NamedVar
+    , pattern FreshVar
     , FunctionSymbol
     , MixfixItem(..)
     , Pattern(..)
@@ -33,7 +35,6 @@ import Syntax.Abstract
     , RelationSymbol(..)
     , StructSymbol (..)
     , Relation
-    , VarSymbol(..)
     , PropositionalConstant(..)
     , StructPhrase
     , Justification(..)

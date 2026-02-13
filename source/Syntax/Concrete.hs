@@ -20,19 +20,20 @@ import Syntax.Mixfix
 
 grammar :: Lexicon -> Grammar r (Prod r Text (Located Token) Block)
 grammar lexicon@Lexicon{..} = mdo
-    let patternToProd :: Pattern -> Holey (Prod r Text (Located Token) Token)
-        patternToProd pat = map (fmap token) (patternToHoley pat)
-        makeMixfixOp item = (patternToProd (mixfixPattern item), mixfixAssoc item, \_ args -> ExprOp item args)
+    let patternToProd :: Pattern -> Holey (Prod r Text (Located Token) (Located Token))
+        patternToProd pat = map (fmap tokenLocated) (patternToHoley pat)
+        makeMixfixOp item = (patternToProd (mixfixPattern item), mixfixAssoc item, \parts args -> ExprOp (mixfixLoc parts args) item args)
         mixfixItems = toList (Map.elems <$> lexiconMixfixTable)
         mixfixOps = map (map makeMixfixOp) mixfixItems
-        makeConn (pat, assoc) = (map (fmap token) pat, assoc)
+        makeConn (pat, assoc) = (map (fmap tokenLocated) pat, assoc)
         conns = map (map makeConn) lexiconConnectives
 
-    integer    <- rule (terminal maybeIntToken <?> "integer")
-    relator    <- rule $ asum
-        [ token (relationSymbolToken item) *> pure item
+    integerWithLoc <- rule (terminal maybeIntTokenWithLoc <?> "integer")
+    relatorWithLoc <- rule $ asum
+        [ (,) <$> tokenPos (relationSymbolToken item) <*> pure item
         | item <- lexiconRelationSymbols
         ] <?> "relator"
+    relator <- rule (snd <$> relatorWithLoc)
     varSymbol  <- rule (terminal maybeVarToken <?> "variable")
     varSymbols <- rule (commaList varSymbol)
     cmd        <- rule (terminal maybeCmdToken <?> "TEX command")
@@ -57,16 +58,16 @@ grammar lexicon@Lexicon{..} = mdo
 --
     replaceBound  <- rule $ (,) <$> varSymbol <* _in <*> expr
     replaceBounds <- rule $ commaList replaceBound
-    replaceFun    <- rule $ ExprReplace <$> expr <* _pipe <*> replaceBounds <*> optional (_pipe *> comprStmt)
-    comprStmt   <- rule $ (StmtFormula Nowhere <$> formula) <|> text stmt
+    comprStmt <- rule $ (StmtFormula <$> formula) <|> text stmt
 
-    replacePredSymbolic <- rule $ ExprReplacePred <$> varSymbol <* _pipe <*> (command "exists" *> varSymbol) <* _in <*> expr <* _dot <*> (StmtFormula Nowhere <$> formula)
-    replacePredText     <- rule $ ExprReplacePred <$> varSymbol <* _pipe <*> (begin "text" *> _exists *> beginMath *> varSymbol <* _in) <*> expr <* endMath <* _suchThat <*> stmt <* end "text"
-    replacePred         <- rule $ replacePredSymbolic <|> replacePredText
+    let replaceFun = (\e bounds mstmt loc -> ExprReplace loc e bounds mstmt) <$> expr <* _pipe <*> replaceBounds <*> optional (_pipe *> comprStmt)
+        replacePredSymbolic = (\y x xBound st loc -> ExprReplacePred loc y x xBound st) <$> varSymbol <* _pipe <*> (command "exists" *> varSymbol) <* _in <*> expr <* _dot <*> (StmtFormula <$> formula)
+        replacePredText = (\y x xBound st loc -> ExprReplacePred loc y x xBound st) <$> varSymbol <* _pipe <*> (begin "text" *> _exists *> beginMath *> varSymbol <* _in) <*> expr <* endMath <* _suchThat <*> stmt <* end "text"
+        replacePred = replacePredSymbolic <|> replacePredText
 
     let exprStructOpOf ann = foldr alg empty lexiconStructFun
             where
-                alg s prod = prod <|> (ExprStructOp <$> structSymbol s <*> ann)
+                alg s prod = prod <|> (uncurry ExprStructOp <$> structSymbolPos s <*> ann)
 
     exprStructOp <- rule (exprStructOpOf (optional (bracket expr)))
 
@@ -74,31 +75,46 @@ grammar lexicon@Lexicon{..} = mdo
     let prefixPredicateOf f arg symb@(PrefixPredicate c ar) = f <$> pure symb <* command c <*> bracedArgs1 ar arg
 
 
-    exprParen   <- rule $ paren expr
-    exprInteger <- rule $ ExprInteger <$> integer
-    exprVar     <- rule $ ExprVar <$> varSymbol
-    exprTuple   <- rule $ makeTuple <$> paren (commaList2 expr)
-    exprSep     <- rule $ brace $ ExprSep <$> varSymbol <* _in <*> expr <* _pipe <*> comprStmt
-    exprReplace <- rule $ brace $ (replaceFun <|> replacePred)
-    exprFinSet  <- rule $ brace $ ExprFiniteSet <$> exprs
+    exprParen <- rule $ paren expr
+    exprInteger <- rule $ uncurry ExprInteger <$> integerWithLoc
+    exprVar <- rule $ ExprVar <$> varSymbol
+    exprTuple <- rule do
+        loc <- tokenPos ParenL
+        es <- commaList2 expr <* token ParenR
+        pure (makeTuple loc es)
+    exprSep <- rule do
+        loc <- tokenPos VisibleBraceL
+        x <- varSymbol <* _in
+        bound <- expr <* _pipe
+        phi <- comprStmt <* token VisibleBraceR
+        pure (ExprSep loc x bound phi)
+    exprReplace <- rule do
+        (\loc mk -> mk loc) <$> tokenPos VisibleBraceL <*> (replaceFun <|> replacePred) <* token VisibleBraceR
+    exprFinSet <- rule do
+        loc <- tokenPos VisibleBraceL
+        es <- exprs <* token VisibleBraceR
+        pure (ExprFiniteSet loc es)
     exprBase    <- rule $ asum [exprVar, exprInteger, exprStructOp, exprParen, exprTuple, exprSep, exprReplace, exprFinSet]
-    exprApp     <- rule $ ExprApp <$> exprBase <*> (paren expr <|> exprTuple)
+    exprApp <- rule $ (\e1 e2 -> ExprApp (locate e1) e1 e2) <$> exprBase <*> (paren expr <|> exprTuple)
     expr        <- mixfixExpressionSeparate mixfixOps (exprBase <|> exprApp)
     exprs       <- rule $ commaList expr
 
     relationSign   <- rule $ pure Positive <|> (Negative <$ command "not")
-    relationExpr   <- rule $ RelationExpr <$> (command "mathrel" *> group expr)
-    relation       <- rule $ (Relation <$> relator <*> many (group expr)) <|> relationExpr
-    chainBase      <- rule $ ChainBase <$> exprs <*> relationSign <*> relation <*> exprs
-    chainCons      <- rule $ ChainCons <$> exprs <*> relationSign <*> relation <*> chain
+    relationExpr <- rule $ RelationExpr <$> command "mathrel" <*> group expr
+    relation <- rule $ (uncurry Relation <$> relatorWithLoc <*> many (group expr)) <|> relationExpr
+    chainBase <- rule $ (\es sign rel es' -> ChainBase es sign rel es') <$> exprs <*> relationSign <*> relation <*> exprs
+    chainCons <- rule $ (\es sign rel ch -> ChainCons es sign rel ch) <$> exprs <*> relationSign <*> relation <*> chain
     chain          <- rule $ chainCons <|> chainBase
 
-    formulaPredicate  <- rule $ asum $ prefixPredicateOf FormulaPredicate expr <$> (fst <$> lexiconPrefixPredicates)
-    formulaChain      <- rule $ FormulaChain <$> chain
-    formulaBottom     <- rule $ PropositionalConstant IsBottom <$ command "bot" <?> "\"\\bot\""
-    formulaTop        <- rule $ PropositionalConstant IsTop    <$ command "top" <?> "\"\\top\""
-    formulaExists     <- rule $ FormulaQuantified Existentially <$> (command "exists" *> varSymbols) <*> maybeBounded <* _dot <*> formula
-    formulaAll        <- rule $ FormulaQuantified Universally  <$> (command "forall" *> varSymbols) <*> maybeBounded <* _dot <*> formula
+    formulaPredicate <- rule $ asum
+        [ (\loc es -> FormulaPredicate loc symb es) <$> command c <*> bracedArgs1 ar expr
+        | (symb@(PrefixPredicate c ar), _marker) <- lexiconPrefixPredicates
+        ]
+    formulaChain <- rule $ FormulaChain <$> chain
+    formulaBottom <- rule $ PropositionalConstant <$> command "bot" <*> pure IsBottom <?> "\"\\bot\""
+    formulaTop <- rule $ PropositionalConstant <$> command "top" <*> pure IsTop <?> "\"\\top\""
+    formulaExists <- rule $ FormulaQuantified <$> command "exists" <*> pure Existentially <*> varSymbols <*> maybeBounded <* _dot <*> formula
+    formulaAll <- rule $ FormulaQuantified <$> command "forall" <*> pure Universally <*> varSymbols <*> maybeBounded <* _dot <*> formula
     formulaQuantified <- rule $ formulaExists <|> formulaAll
     formulaBase       <- rule $ asum [formulaChain, formulaPredicate, formulaBottom, formulaTop, paren formula]
     formulaConn       <- mixfixExpression conns formulaBase makeConnective
@@ -179,7 +195,9 @@ grammar lexicon@Lexicon{..} = mdo
     quant      <- rule $ quantAll <|> quantSome <|> quantNone -- <|> quantUniq
 
 
-    termExpr       <- rule $ uncurry TermExpr <$> mathPos expr
+    termExpr <- rule $ math do
+        e <- expr
+        pure (TermExpr e)
     termFun        <- rule $ TermFun <$> (optional _the *> fun)
     termIota       <- rule $ TermIota <$> _the <*> var <* _suchThat <*> stmt
     termAll        <- rule $ TermQuantified Universally <$> _every <*> nounPhraseMay
@@ -198,38 +216,40 @@ grammar lexicon@Lexicon{..} = mdo
     stmtNounIs    <- rule do
         ts <- singletonTerm
         np <- _is *> _an *> nounPhrase
-        pure let t :| _ = ts in (StmtNoun (locate t) ts np)
+        pure let t :| _ = ts in (StmtNoun ts np)
     stmtNounAre   <- rule do
         ts <- nonemptyTerms <* _are
         np <- nounPhrasePlMay
-        pure let t :| _ = ts in (StmtNoun (locate t) ts np)
+        pure let t :| _ = ts in (StmtNoun ts np)
     stmtNounIsNot <- rule do
         ts <- singletonTerm
         np <- _is *> _not *> _an *> nounPhrase
-        pure let t :| _ = ts in (StmtNeg (locate t) (StmtNoun (locate t) ts np))
+        pure let t :| _ = ts in (StmtNeg (locate t) (StmtNoun ts np))
     stmtNounAreNot <- rule do
         ts <- nonemptyTerms
         np <- _are *> _not *> nounPhrasePlMay
-        pure let t :| _ = ts in (StmtNeg (locate t) (StmtNoun (locate t) ts np))
+        pure let t :| _ = ts in (StmtNeg (locate t) (StmtNoun ts np))
     stmtNoun      <- rule $ stmtNounIs <|> stmtNounIsNot <|> stmtNounAre <|> stmtNounAreNot
     stmtStruct    <- rule do
         t <- term
         s <- _is *> _an *> structNounNameless
-        pure (StmtStruct (locate t) t s)
+        pure (StmtStruct t s)
     stmtExists    <- rule $ StmtExists <$> _exists <*> (_an *> nounPhrase')
     stmtExist     <- rule $ StmtExists <$> _exist <*> nounPhrasePl
     stmtExistsNot <- rule do
         p <- _exists *> _no
         np <- nounPhrase'
         pure (StmtNeg p (StmtExists p np))
-    stmtFormula <- rule $ uncurry StmtFormula <$> mathPos formula
+    stmtFormula <- rule $ math do
+        phi <- formula
+        pure (StmtFormula phi)
     stmtFormualNeg <- rule do
         loc <- _not
-        phi <- mathPos formula
-        pure (StmtNeg loc (uncurry StmtFormula phi))
+        phi <- math formula
+        pure (StmtNeg loc (StmtFormula phi))
     stmtBot <- rule do
         loc <- _contradiction
-        return (StmtFormula loc (PropositionalConstant IsBottom))
+        return (StmtFormula (PropositionalConstant loc IsBottom))
     stmt'         <- rule $ stmtVerb <|> stmtNoun <|> stmtStruct <|> stmtFormula <|> stmtFormualNeg <|> stmtBot
     stmtOr  <- rule $ stmt'   <|> (StmtConnected Disjunction Nothing <$> stmt'   <* _or  <*> stmt)
     stmtAnd <- rule $ stmtOr  <|> (StmtConnected Conjunction Nothing <$> stmtOr  <* _and <*> stmt)
@@ -257,14 +277,14 @@ grammar lexicon@Lexicon{..} = mdo
         b <- maybeBounded
         loc2 <- endMath
         ms <- optional (_suchThat *> stmt)
-        pure (SymbolicExists loc1 xs b (ms ?? StmtFormula loc2 (PropositionalConstant IsTop)))
+        pure (SymbolicExists loc1 xs b (ms ?? StmtFormula (PropositionalConstant loc2 IsTop)))
     symbolicNotExists <- rule do
         p <- _exists *> _no
         xs <- beginMath *> varSymbols
         b <- maybeBounded <* endMath
         s <- _suchThat *> stmt
         pure (makeSymbolicNotExists p xs b s)
-    symbolicBound <- rule $ Bounded <$> relationSign <*> relation <*> expr
+    symbolicBound <- rule $ (\sign rel e -> Bounded (locate rel) sign rel e) <$> relationSign <*> relation <*> expr
     maybeBounded <- rule (pure Unbounded <|> symbolicBound)
 
     symbolicQuantified <- rule $ symbolicForall <|> symbolicExists <|> symbolicNotExists
@@ -555,7 +575,7 @@ funOf lexicon proj arg = phraseOf Fun lexicon lexiconFuns (proj . lexicalItemSgP
 
 -- | A noun with a @t VarSymbol@ as name(s).
 nounOf
-    :: Lexicon
+    :: Locatable arg => Lexicon
     -> (SgPl LexicalPhrase -> LexicalPhrase)
     -> Prod r Text (Located Token) arg
     -> Prod r Text (Located Token) (t VarSymbol)
@@ -564,12 +584,12 @@ nounOf lexicon proj arg vars =
     nounOfTrie (nounTrieOf proj (lexiconNouns lexicon)) arg vars
 
 nounOfTrie
-    :: Trie NounStep LexicalItemSgPl
+    :: Locatable arg => Trie NounStep LexicalItemSgPl
     -> Prod r Text (Located Token) arg
     -> Prod r Text (Located Token) (t VarSymbol)
     -> Prod r Text (Located Token) (NounOf arg, t VarSymbol)
 nounOfTrie trie arg vars =
-    (\(pat, args, xs) -> (Noun pat args, xs))
+    (\(loc, pat, args, xs) -> (Noun loc pat args, xs))
         <$> buildNounTrie arg vars trie
         <?> "a noun"
 
@@ -583,17 +603,17 @@ nounTrieOf proj pats = trieFromList
     ]
 
 structNounOfTrie
-    :: Trie NounStep LexicalItemSgPl
+    :: Locatable arg => Trie NounStep LexicalItemSgPl
     -> Prod r Text (Located Token) arg
     -> Prod r Text (Located Token) name
     -> Prod r Text (Located Token) (StructPhrase, name)
 structNounOfTrie trie arg name =
-    (\(pat, _args, xs) -> (pat, xs))
+    (\(_loc, pat, _args, xs) -> (pat, xs))
         <$> buildNounTrie arg name trie
         <?> "a structure noun"
 
 structNounOf
-    :: Lexicon
+    :: Locatable arg => Lexicon
     -> (SgPl LexicalPhrase -> LexicalPhrase)
     -> Prod r Text (Located Token) arg
     -> Prod r Text (Located Token) name
@@ -661,13 +681,15 @@ emptyPhraseAcc :: PhraseAcc a
 emptyPhraseAcc = PhraseAcc Nothing id
 
 setPhraseLoc :: Location -> PhraseAcc a -> PhraseAcc a
+setPhraseLoc Nowhere acc = acc
 setPhraseLoc _loc acc@PhraseAcc{phraseLoc = Just _} = acc
 setPhraseLoc loc PhraseAcc{phraseLoc = Nothing, phraseArgs = args} =
     PhraseAcc (Just loc) args
 
 addPhraseArg :: Locatable a => a -> PhraseAcc a -> PhraseAcc a
-addPhraseArg a PhraseAcc{phraseLoc = loc, phraseArgs = args} =
-    PhraseAcc (loc <|> Just (locate a)) (args . (a :))
+addPhraseArg a acc@PhraseAcc{phraseLoc = loc, phraseArgs = args}
+    | locate a == Nowhere = acc{phraseArgs = args . (a :)}
+    | otherwise = PhraseAcc (loc <|> Just (locate a)) (args . (a :))
 
 finalizePhraseAcc :: PhraseAcc a -> (Location, [a])
 finalizePhraseAcc PhraseAcc{phraseLoc = Just loc, phraseArgs = args} =
@@ -676,27 +698,37 @@ finalizePhraseAcc PhraseAcc{phraseLoc = Nothing} =
     impossible "phraseOf: empty phrase"
 
 data NounAcc a name = NounAcc
-    { nounArgs :: [a] -> [a]
+    { nounLoc :: Maybe Location
+    , nounArgs :: [a] -> [a]
     , nounName :: Maybe name
     }
 
 emptyNounAcc :: NounAcc a name
-emptyNounAcc = NounAcc id Nothing
+emptyNounAcc = NounAcc Nothing id Nothing
 
-addNounArg :: a -> NounAcc a name -> NounAcc a name
-addNounArg a NounAcc{nounArgs = args, nounName = name} =
-    NounAcc (args . (a :)) name
+setNounLoc :: Location -> NounAcc a name -> NounAcc a name
+setNounLoc Nowhere acc = acc
+setNounLoc _loc acc@NounAcc{nounLoc = Just _} = acc
+setNounLoc loc NounAcc{nounLoc = Nothing, nounArgs = args, nounName = name} =
+    NounAcc (Just loc) args name
+
+addNounArg :: Locatable a => a -> NounAcc a name -> NounAcc a name
+addNounArg a acc@NounAcc{nounLoc = loc, nounArgs = args, nounName = name}
+    | locate a == Nowhere = acc{nounArgs = args . (a :)}
+    | otherwise = NounAcc (loc <|> Just (locate a)) (args . (a :)) name
 
 setNounName :: name -> NounAcc a name -> NounAcc a name
-setNounName name NounAcc{nounArgs = args, nounName = Nothing} =
-    NounAcc args (Just name)
+setNounName name NounAcc{nounLoc = loc, nounArgs = args, nounName = Nothing} =
+    NounAcc loc args (Just name)
 setNounName _ acc@NounAcc{nounName = Just _} = acc
 
-finalizeNounAcc :: NounAcc a name -> ([a], name)
-finalizeNounAcc NounAcc{nounArgs = args, nounName = Just name} =
-    (args [], name)
+finalizeNounAcc :: NounAcc a name -> (Location, [a], name)
+finalizeNounAcc NounAcc{nounLoc = Just loc, nounArgs = args, nounName = Just name} =
+    (loc, args [], name)
 finalizeNounAcc NounAcc{nounName = Nothing} =
     impossible "nounOf: missing variable slot"
+finalizeNounAcc NounAcc{nounLoc = Nothing} =
+    impossible "nounOf: empty noun phrase"
 
 buildPhraseTrie
     :: Locatable a
@@ -728,19 +760,20 @@ buildTrieProd stepParser = go
             in leafs <|> edgesProds
 
 buildNounTrie
-    :: Prod r Text (Located Token) a
+    :: Locatable a
+    => Prod r Text (Located Token) a
     -> Prod r Text (Located Token) name
     -> Trie NounStep pat
-    -> Prod r Text (Located Token) (pat, [a], name)
+    -> Prod r Text (Located Token) (Location, pat, [a], name)
 buildNounTrie arg vars trie =
     let stepParser = \case
-            NounTok tok -> const id <$> token tok
+            NounTok tok -> setNounLoc <$> tokenPos tok
             NounHole    -> addNounArg <$> arg
             NounVar     -> setNounName <$> vars
         finish f =
             let (acc, pat) = f emptyNounAcc
-                (args, name) = finalizeNounAcc acc
-            in (pat, args, name)
+                (loc, args, name) = finalizeNounAcc acc
+            in (loc, pat, args, name)
     in finish <$> buildTrieProd stepParser trie
 
 
@@ -851,7 +884,7 @@ cases body = begin "cases" *> body <* end "cases"
 
 maybeVarToken :: Located Token -> Maybe VarSymbol
 maybeVarToken ltok = case unLocated ltok of
-    Variable x -> Just (NamedVar x)
+    Variable x -> Just (NamedVarAt (startPos ltok) x)
     _tok -> Nothing
 
 maybeWordToken :: Located Token -> Maybe Text
@@ -864,6 +897,11 @@ maybeIntToken ltok = case unLocated ltok of
     Integer n -> Just n
     _tok -> Nothing
 
+maybeIntTokenWithLoc :: Located Token -> Maybe (Location, Int)
+maybeIntTokenWithLoc ltok = case unLocated ltok of
+    Integer n -> Just (startPos ltok, n)
+    _tok -> Nothing
+
 maybeCmdToken :: Located Token -> Maybe Text
 maybeCmdToken ltok = case unLocated ltok of
     Command n -> Just n
@@ -872,6 +910,11 @@ maybeCmdToken ltok = case unLocated ltok of
 structSymbol :: StructSymbol -> Prod r Text (Located Token) StructSymbol
 structSymbol s@(StructSymbol c) = terminal \ltok -> case unLocated ltok of
     Command c' | c == c' -> Just s
+    _ -> Nothing
+
+structSymbolPos :: StructSymbol -> Prod r Text (Located Token) (Location, StructSymbol)
+structSymbolPos s@(StructSymbol c) = terminal \ltok -> case unLocated ltok of
+    Command c' | c == c' -> Just (startPos ltok, s)
     _ -> Nothing
 
 -- | Tokens that are allowed to appear in labels of environments.
@@ -887,6 +930,13 @@ token tok = terminal maybeToken <?> tokToText tok
     where
         maybeToken ltok = case unLocated ltok of
             tok' | tok == tok' -> Just tok
+            _ -> Nothing
+
+tokenLocated :: Token -> Prod r Text (Located Token) (Located Token)
+tokenLocated tok = terminal maybeToken <?> tokToText tok
+    where
+        maybeToken ltok = case unLocated ltok of
+            tok' | tok == tok' -> Just ltok
             _ -> Nothing
 
 tokenPos :: Token -> Prod r Text (Located Token) Location

@@ -18,7 +18,7 @@ module Syntax.Abstract
 
 import Base
 import Syntax.LexicalPhrase (LexicalPhrase, SgPl(..), unsafeReadPhraseSgPl, unsafeReadPhrase)
-import Syntax.Token (Token(..))
+import Syntax.Token (Token(..), Located(..))
 import Report.Location
 
 import Text.Earley.Mixfix (Holey)
@@ -26,29 +26,74 @@ import Data.Text qualified as Text
 
 -- | Local "variable-like" symbols that can be captured by binders.
 data VarSymbol
-    = NamedVar Text -- ^ A named variable.
-    | FreshVar Int -- ^ A nameless (implicit) variable. Should only come from desugaring.
-    deriving (Show, Eq, Ord, Generic, Hashable)
+    = NamedVarAt Location Text -- ^ A named variable.
+    | FreshVarAt Location Int -- ^ A nameless (implicit) variable. Should only come from desugaring.
+    deriving (Generic)
+
+pattern NamedVar :: Text -> VarSymbol
+pattern NamedVar x <- NamedVarAt _ x where
+    NamedVar x = NamedVarAt Nowhere x
+
+pattern FreshVar :: Int -> VarSymbol
+pattern FreshVar n <- FreshVarAt _ n where
+    FreshVar n = FreshVarAt Nowhere n
+
+{-# COMPLETE NamedVarAt, FreshVarAt #-}
+{-# COMPLETE NamedVar, FreshVar #-}
+
+instance Show VarSymbol where
+    show = \case
+        NamedVarAt _ x -> "NamedVar " <> show x
+        FreshVarAt _ n -> "FreshVar " <> show n
+
+instance Eq VarSymbol where
+    NamedVarAt _ x == NamedVarAt _ y = x == y
+    FreshVarAt _ n == FreshVarAt _ m = n == m
+    _ == _ = False
+
+instance Ord VarSymbol where
+    compare (NamedVarAt _ x) (NamedVarAt _ y) = compare x y
+    compare NamedVarAt{} FreshVarAt{} = LT
+    compare FreshVarAt{} NamedVarAt{} = GT
+    compare (FreshVarAt _ n) (FreshVarAt _ m) = compare n m
+
+instance Hashable VarSymbol where
+    hashWithSalt s = \case
+        NamedVarAt _ x -> hashWithSalt s (0 :: Int, x)
+        FreshVarAt _ n -> hashWithSalt s (1 :: Int, n)
 
 instance IsString VarSymbol where
     fromString v = NamedVar $ Text.pack v
 
 instance Locatable VarSymbol where
-    locate _ = Nowhere -- TODO more info?
+    locate = \case
+        NamedVarAt l _ -> l
+        FreshVarAt l _ -> l
 
 data Expr
     = ExprVar VarSymbol
-    | ExprInteger Int
-    | ExprOp MixfixItem [Expr]
-    | ExprStructOp StructSymbol (Maybe Expr)
-    | ExprFiniteSet (NonEmpty Expr)
-    | ExprSep VarSymbol Expr Stmt
+    | ExprInteger Location Int
+    | ExprOp Location MixfixItem [Expr]
+    | ExprStructOp Location StructSymbol (Maybe Expr)
+    | ExprFiniteSet Location (NonEmpty Expr)
+    | ExprSep Location VarSymbol Expr Stmt
     -- ^ Of the form /@{x ∈ X | P(x)}@/.
-    | ExprReplace Expr (NonEmpty (VarSymbol,Expr)) (Maybe Stmt)
+    | ExprReplace Location Expr (NonEmpty (VarSymbol,Expr)) (Maybe Stmt)
     -- ^ E.g.: /@{ f(x, y) | x ∈ X, y ∈ Y | P(x, y) }@/.
-    | ExprReplacePred VarSymbol VarSymbol Expr Stmt
+    | ExprReplacePred Location VarSymbol VarSymbol Expr Stmt
     -- ^ E.g.: /@{ y | \\exists x\\in X. P(x, y) }@/.
     deriving (Show, Eq, Ord)
+
+instance Locatable Expr where
+    locate = \case
+        ExprVar x -> locate x
+        ExprInteger l _ -> l
+        ExprOp l _ _ -> l
+        ExprStructOp l _ _ -> l
+        ExprFiniteSet l _ -> l
+        ExprSep l _ _ _ -> l
+        ExprReplace l _ _ _ -> l
+        ExprReplacePred l _ _ _ _ -> l
 
 
 data LexicalItem = LexicalItem Pattern Marker deriving (Show, Generic)
@@ -228,16 +273,16 @@ markerFromToken = \case
     Integer n -> Marker (Text.pack (show n))
     tok -> error ("markerFromToken: unsupported token " <> show tok)
 
-pattern ExprConst :: Token -> Expr
-pattern ExprConst c <- ExprOp (MixfixItem (TokenCons c End) _ NonAssoc) []
+pattern ExprConst :: Location -> Token -> Expr
+pattern ExprConst l c <- ExprOp l (MixfixItem (TokenCons c End) _ NonAssoc) []
     where
-        ExprConst c = ExprOp (MixfixItem (TokenCons c End) (markerFromToken c) NonAssoc) []
+        ExprConst l c = ExprOp l (MixfixItem (TokenCons c End) (markerFromToken c) NonAssoc) []
 
-pattern ExprApp :: Expr -> Expr -> Expr
-pattern ExprApp e1 e2 = ExprOp ApplySymbol [e1, e2]
+pattern ExprApp :: Location -> Expr -> Expr -> Expr
+pattern ExprApp loc e1 e2 = ExprOp loc ApplySymbol [e1, e2]
 
-pattern ExprPair :: Expr -> Expr -> Expr
-pattern ExprPair e1 e2 = ExprOp PairSymbol [e1, e2]
+pattern ExprPair :: Location -> Expr -> Expr -> Expr
+pattern ExprPair loc e1 e2 = ExprOp loc PairSymbol [e1, e2]
 
 -- | Tuples are interpreted as nested pairs:
 -- the triple /@(a, b, c)@/ is interpreted as
@@ -245,8 +290,10 @@ pattern ExprPair e1 e2 = ExprOp PairSymbol [e1, e2]
 -- This means that the product operation should also
 -- be right associative, so that /@(a, b, c)@/ can
 -- form elements of /@A\times B\times C@/.
-makeTuple :: NonEmpty Expr -> Expr
-makeTuple = foldr1 ExprPair
+makeTuple :: Location -> NonEmpty Expr -> Expr
+makeTuple l = \case
+    e :| [] -> e
+    e :| (e' : es) -> ExprPair l e (makeTuple l (e' :| es))
 
 
 data Chain
@@ -254,21 +301,39 @@ data Chain
     | ChainCons (NonEmpty Expr) Sign Relation Chain
     deriving (Show, Eq, Ord)
 
+instance Locatable Chain where
+    locate (ChainBase lhs _ _ _) = locate lhs
+    locate (ChainCons lhs _ _ _) = locate lhs
+
 data Relation
-    = Relation RelationSymbol [Expr] -- ^  E.g.: /@x \in X@/, potentially with parameters in braces
-    | RelationExpr Expr   -- ^  E.g.: /@x \mathrel{R} y@/
+    = Relation Location RelationSymbol [Expr] -- ^  E.g.: /@x \in X@/, potentially with parameters in braces
+    | RelationExpr Location Expr   -- ^  E.g.: /@x \mathrel{R} y@/
     deriving (Show, Eq, Ord)
+
+instance Locatable Relation where
+    locate = \case
+        Relation l _ _ -> l
+        RelationExpr l _ -> l
 
 data Sign = Positive | Negative deriving (Show, Eq, Ord)
 
 data Formula
     = FormulaChain Chain
-    | FormulaPredicate PrefixPredicate (NonEmpty Expr)
-    | Connected Connective Formula Formula
-    | FormulaNeg Formula
-    | FormulaQuantified Quantifier (NonEmpty VarSymbol) Bound Formula
-    | PropositionalConstant PropositionalConstant
+    | FormulaPredicate Location PrefixPredicate (NonEmpty Expr)
+    | Connected Location Connective Formula Formula
+    | FormulaNeg Location Formula
+    | FormulaQuantified Location Quantifier (NonEmpty VarSymbol) Bound Formula
+    | PropositionalConstant Location PropositionalConstant
     deriving (Show, Eq, Ord)
+
+instance Locatable Formula where
+    locate = \case
+        FormulaChain chain -> locate chain
+        FormulaPredicate l _ _ -> l
+        Connected l _ _ _ -> l
+        FormulaNeg l _ -> l
+        FormulaQuantified l _ _ _ _ -> l
+        PropositionalConstant l _ -> l
 
 data PropositionalConstant = IsBottom | IsTop
     deriving (Show, Eq, Ord, Generic, Hashable)
@@ -289,12 +354,22 @@ data Connective
 
 
 
-makeConnective :: Holey Token -> [Formula] -> Formula
-makeConnective [Nothing, Just (Command "implies"), Nothing] [f1, f2] = Connected Implication  f1 f2
-makeConnective [Nothing, Just (Command "land"), Nothing] [f1, f2] = Connected Conjunction f1 f2
-makeConnective [Nothing, Just (Command "lor"), Nothing] [f1, f2] = Connected Disjunction f1 f2
-makeConnective [Nothing, Just (Command "iff"), Nothing] [f1, f2] = Connected Equivalence f1 f2
-makeConnective [Just(Command "lnot"), Nothing] [f1] = FormulaNeg f1
+mixfixLoc :: Locatable a => Holey (Located Token) -> [a] -> Location
+mixfixLoc parts args0 = go parts args0
+    where
+        go [] _ = Nowhere
+        go (Just ltok : _parts') _args' = startPos ltok
+        go (Nothing : parts') (a : args')
+            | locate a == Nowhere = go parts' args'
+            | otherwise = locate a
+        go (Nothing : parts') [] = go parts' []
+
+makeConnective :: Holey (Located Token) -> [Formula] -> Formula
+makeConnective parts@[Nothing, Just Located{unLocated = Command "implies"}, Nothing] [f1, f2] = Connected (mixfixLoc parts [f1, f2]) Implication  f1 f2
+makeConnective parts@[Nothing, Just Located{unLocated = Command "land"}, Nothing] [f1, f2] = Connected (mixfixLoc parts [f1, f2]) Conjunction f1 f2
+makeConnective parts@[Nothing, Just Located{unLocated = Command "lor"}, Nothing] [f1, f2] = Connected (mixfixLoc parts [f1, f2]) Disjunction f1 f2
+makeConnective parts@[Nothing, Just Located{unLocated = Command "iff"}, Nothing] [f1, f2] = Connected (mixfixLoc parts [f1, f2]) Equivalence f1 f2
+makeConnective parts@[Just Located{unLocated = Command "lnot"}, Nothing] [f1] = FormulaNeg (mixfixLoc parts [f1]) f1
 makeConnective pat _ = error ("makeConnective does not handle the following connective correctly: " <> show pat)
 
 
@@ -305,8 +380,11 @@ type StructPhrase = LexicalItemSgPl
 -- > Noun (unsafeReadPhrase "integer[/s]") []
 type Noun = NounOf Term
 data NounOf a
-    = Noun LexicalItemSgPl [a]
+    = Noun Location LexicalItemSgPl [a]
     deriving (Show, Eq, Ord)
+
+instance Locatable (NounOf a) where
+    locate (Noun l _ _) = l
 
 
 
@@ -360,6 +438,9 @@ data AdjLOf a
     = AdjL Location LexicalItem [a]
     deriving (Show, Eq, Ord)
 
+instance Locatable (AdjLOf a) where
+    locate (AdjL l _ _) = l
+
 
 -- | Right attributes consist of basic right adjectives, e.g.
 -- /@divisible by ?@/, or /@of finite type@/ and verb phrases
@@ -374,7 +455,7 @@ data AdjROf a
 
 instance Locatable (AdjROf a) where
     locate (AdjR l _ _) = l
-    locate (AttrRThat _) = Nowhere -- TODO
+    locate (AttrRThat vp) = locate vp
 
 -- | Adjectives for parts of the AST where adjectives are not used
 -- to modify nouns and the L/R distinction does not matter, such as
@@ -384,17 +465,26 @@ data AdjOf a
     = Adj Location LexicalItem [a]
     deriving (Show, Eq, Ord)
 
+instance Locatable (AdjOf a) where
+    locate (Adj l _ _) = l
+
 
 type Verb = VerbOf Term
 data VerbOf a
     = Verb Location LexicalItemSgPl [a]
     deriving (Show, Eq, Ord)
 
+instance Locatable (VerbOf a) where
+    locate (Verb l _ _) = l
+
 
 type Fun = FunOf Term
 data FunOf a
     = Fun {loc :: Location, phrase :: LexicalItemSgPl, funArgs :: [a]}
     deriving (Show, Eq, Ord)
+
+instance Locatable (FunOf a) where
+    locate = (.loc)
 
 
 type VerbPhrase = VerbPhraseOf Term
@@ -404,6 +494,13 @@ data VerbPhraseOf a
     | VPVerbNot (VerbOf a)
     | VPAdjNot (NonEmpty (AdjOf a)) -- ^ @x is not foo@ / @x is neither foo nor bar@
     deriving (Show, Eq, Ord)
+
+instance Locatable (VerbPhraseOf a) where
+    locate = \case
+        VPVerb v -> locate v
+        VPAdj adjs -> locate adjs
+        VPVerbNot v -> locate v
+        VPAdjNot adjs -> locate adjs
 
 
 data Quantifier
@@ -416,7 +513,7 @@ data QuantPhrase = QuantPhrase Quantifier (NounPhrase []) deriving (Show, Eq, Or
 
 
 data Term
-    = TermExpr Location Expr
+    = TermExpr Expr
     -- ^ A symbolic expression.
     | TermFun Fun
     -- ^ Definite noun phrase, e.g. /@the derivative of $f$@/.
@@ -428,17 +525,17 @@ data Term
 
 instance Locatable Term where
     locate :: Term -> Location
-    locate (TermExpr l _) = l
+    locate (TermExpr e) = locate e
     locate (TermFun f) = f.loc
     locate (TermIota l _ _) = l
     locate (TermQuantified _ l _) = l
 
 
 data Stmt
-    = StmtFormula {loc :: Location, formula :: Formula} -- ^ E.g.: /@We have \<Formula\>@/.
+    = StmtFormula {formula :: Formula} -- ^ E.g.: /@We have \<Formula\>@/.
     | StmtVerbPhrase {args :: NonEmpty Term, verb :: VerbPhrase} -- ^ E.g.: /@\<Term\> and \<Term\> \<verb\>@/.
-    | StmtNoun {loc :: Location, args :: NonEmpty Term, noun :: (NounPhrase Maybe)} -- ^ E.g.: /@\<Term\> is a(n) \<NP\>@/.
-    | StmtStruct {loc :: Location, arg :: Term, struct :: StructPhrase}
+    | StmtNoun {args :: NonEmpty Term, noun :: (NounPhrase Maybe)} -- ^ E.g.: /@\<Term\> is a(n) \<NP\>@/.
+    | StmtStruct {arg :: Term, struct :: StructPhrase}
     | StmtNeg {loc :: Location, stmt :: Stmt} -- ^ E.g.: /@It is not the case that \<Stmt\>@/.
     | StmtExists {loc :: Location, np :: NounPhrase []} -- ^ E.g.: /@There exists a(n) \<NP\>@/.
     | StmtConnected {conn :: Connective, mloc :: Maybe Location, stmt1 :: Stmt, stmt2 :: Stmt}
@@ -448,18 +545,23 @@ data Stmt
 
 instance Locatable Stmt where
     locate :: Stmt -> Location
-    locate StmtFormula{loc = p} = p
+    locate StmtFormula{formula = phi} = locate phi
     locate StmtConnected{mloc = Just p} = p
     locate StmtConnected{mloc = Nothing, stmt1 = s} = locate s
     locate StmtVerbPhrase{args = a :| _} = locate a
-    locate StmtNoun{loc = p} = p
-    locate StmtStruct{loc = p} = p
+    locate StmtNoun{args = a :| _} = locate a
+    locate StmtStruct{arg = a} = locate a
     locate StmtNeg{loc = p} = p
     locate StmtExists{loc = p} = p
     locate StmtQuantPhrase{loc = p} = p
     locate SymbolicQuantified{loc = p} = p
 
-data Bound = Unbounded | Bounded Sign Relation Expr deriving (Show, Eq, Ord)
+data Bound = Unbounded | Bounded Location Sign Relation Expr deriving (Show, Eq, Ord)
+
+instance Locatable Bound where
+    locate = \case
+        Unbounded -> Nowhere
+        Bounded l _ _ _ -> l
 
 pattern SymbolicForall :: Location -> NonEmpty VarSymbol -> Bound -> Maybe Stmt -> Stmt -> Stmt
 pattern SymbolicForall loc vs bound suchThat have = SymbolicQuantified loc Universally vs bound suchThat have

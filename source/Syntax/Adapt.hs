@@ -7,7 +7,6 @@ module Syntax.Adapt where
 import Base
 import Syntax.Abstract
 import Syntax.Lexicon
-import Syntax.Token
 import Report.Location
 
 import Data.Map.Strict qualified as Map
