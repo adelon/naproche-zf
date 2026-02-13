@@ -216,11 +216,11 @@ grammar lexicon@Lexicon{..} = mdo
     stmtNounIs    <- rule do
         ts <- singletonTerm
         np <- _is *> _an *> nounPhrase
-        pure let t :| _ = ts in (StmtNoun ts np)
+        pure (StmtNoun ts np)
     stmtNounAre   <- rule do
         ts <- nonemptyTerms <* _are
         np <- nounPhrasePlMay
-        pure let t :| _ = ts in (StmtNoun ts np)
+        pure (StmtNoun ts np)
     stmtNounIsNot <- rule do
         ts <- singletonTerm
         np <- _is *> _not *> _an *> nounPhrase
