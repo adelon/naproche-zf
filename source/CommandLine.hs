@@ -55,17 +55,15 @@ run = do
             createDirectoryIfMissing True (takeDirectory outputFile)
             liftIO (Text.writeFile outputFile megalodon)
         (WithoutParseOnly, WithoutMegalodon) -> do
-            -- A custom E executable can be configured using environment variables.
-            -- If the environment variable is undefined we fall back to the
-            -- a globally installed E executable.
             liftIO (Text.putStrLn "\ESC[1;96mStart of verification.\ESC[0m")
-            vampirePathPath <- (?? "vampire") <$> lookupEnv "NAPROCHE_ZF_VAMPIRE"
-            eproverPath <- (?? "eprover") <$> lookupEnv "NAPROCHE_ZF_EPROVER"
-            let prover = case withProver opts of
-                    WithVampire -> Provers.vampire vampirePathPath
-                    WithEprover -> Provers.eprover eproverPath
-                    WithIprover -> Provers.iprover
-                    WithDefaultProver -> Provers.vampire vampirePathPath
+            prover <- case withProver opts of
+                    WithEprover -> do
+                        eproverPath <- getExecutable "eprover" "E" "NAPROCHE_ZF_EPROVER"
+                        pure (Provers.eprover eproverPath)
+                    WithIprover -> pure Provers.iprover
+                    _ -> do -- TODO: when upgrading to GHC 9.12, use OR pattern for WithVampire | WithDefaultProver here and move this entire block to top
+                        vampirePathPath <- getExecutable "vampire" "Vampire" "NAPROCHE_ZF_VAMPIRE"
+                        pure (Provers.vampire vampirePathPath)
             let proverInstance = prover Provers.Silent (withTimeLimit opts) (withMemoryLimit opts)
             result <- verify proverInstance (inputPath opts)
             case withFailList opts of
@@ -98,6 +96,21 @@ run = do
                         traverse_ showFailedTask fails
                         Text.hPutStrLn stderr "Don't give up!"
 
+
+getExecutable :: MonadIO m => String -> String -> String -> m FilePath
+getExecutable exeName exeDisplayName envOverride = do
+    envPath <- lookupEnv envOverride
+    case envPath of
+        Just path -> do
+            exists <- doesFileExist path
+            if exists
+                then pure path
+                else error $ "The environment variable " <> envOverride <> " for " <> exeDisplayName <> " is set to \"" <> path <> "\", but this executable does not exist. Make sure the environment variable is correct or remove it to look for " <> exeDisplayName <> " on your $PATH instead."
+        Nothing -> do
+            mPath <- findExecutable exeName
+            case mPath of
+                Just path -> pure path
+                Nothing -> error $ exeDisplayName <> " (" <> exeName <> ") not found on $PATH. Make sure it is installed and available on your $PATH or set the " <> envOverride <> " environment variable to its path."
 
 parseOptions :: Parser Options
 parseOptions = do
