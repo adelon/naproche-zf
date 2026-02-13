@@ -264,8 +264,13 @@ isFailure (_phi, Yes) = False
 isFailure (_phi, _ans) = True
 
 data VerificationWorkItem
-    = VerifyTask Internal.Task
+    = VerifyTask Int Internal.Task
     | StopWorker
+
+data VerificationProducerStopped = VerificationProducerStopped
+    deriving (Show)
+
+instance Exception VerificationProducerStopped
 
 verifyStreaming :: (MonadUnliftIO io, MonadLogger io, MonadReader Options io) => ProverInstance -> FilePath -> io VerificationResult
 verifyStreaming prover file = do
@@ -275,7 +280,9 @@ verifyStreaming prover file = do
     (blocks, lexicon) <- gloss file
     workerCount <- liftIO (max 1 . subtract 1 <$> getNumProcessors)
     workQueue <- liftIO (newTBQueueIO (fromIntegral workerCount))
-    failureVar <- liftIO newEmptyTMVarIO
+    stopVar <- liftIO (newTVarIO False)
+    nextTaskIndexVar <- liftIO (newTVarIO 0)
+    firstFailureVar <- liftIO (newTVarIO Nothing)
     runInIO <- askRunInIO
 
     cacheState <- case cacheOption of
@@ -297,6 +304,16 @@ verifyStreaming prover file = do
             Just (_cacheFile, hashedCacheVar) ->
                 atomically (modifyTVar' hashedCacheVar (IntSet.insert (hash task)))
 
+        rememberFailure :: Int -> (Internal.Formula, ProverAnswer) -> IO ()
+        rememberFailure idx failedAnswer = atomically do
+            writeTVar stopVar True
+            currentFailure <- readTVar firstFailureVar
+            case currentFailure of
+                Nothing ->
+                    writeTVar firstFailureVar (Just (idx, failedAnswer))
+                Just (oldIdx, _oldFailedAnswer) ->
+                    when (idx < oldIdx) (writeTVar firstFailureVar (Just (idx, failedAnswer)))
+
         flushCache :: IO ()
         flushCache = case cacheState of
             Nothing -> pure ()
@@ -306,13 +323,33 @@ verifyStreaming prover file = do
 
         emitTask :: Internal.Task -> IO ()
         emitTask rawTask = do
+            -- ASSUMPTION: There is exactly one emitter ('checkWith' callback), so
+            -- queue insertion order is well-defined by this callback execution order.
+            --
+            -- If a failure has already been observed, stop emitting immediately.
+            stopRequested <- atomically (readTVar stopVar)
+            when stopRequested (throwIO VerificationProducerStopped)
+
             let task = applyFilter (contractionTask rawTask)
             shouldRun <- case cacheState of
                 Nothing -> pure True
                 Just (_cacheFile, hashedCacheVar) ->
                     atomically (IntSet.notMember (hash task) <$> readTVar hashedCacheVar)
             if shouldRun
-                then atomically (writeTBQueue workQueue (VerifyTask task))
+                then do
+                    -- The stop check and enqueue must be in one STM transaction.
+                    -- This guarantees that no new task is enqueued after stopVar
+                    -- has become True.
+                    enqueueSucceeded <- atomically do
+                        stopRequested' <- readTVar stopVar
+                        if stopRequested'
+                            then pure False
+                            else do
+                                nextTaskIndex <- readTVar nextTaskIndexVar
+                                writeTVar nextTaskIndexVar (nextTaskIndex + 1)
+                                writeTBQueue workQueue (VerifyTask nextTaskIndex task)
+                                pure True
+                    unless enqueueSucceeded (throwIO VerificationProducerStopped)
                 else
                     skip
 
@@ -322,17 +359,19 @@ verifyStreaming prover file = do
             case item of
                 StopWorker ->
                     pure ()
-                VerifyTask task -> do
+                VerifyTask taskIndex task -> do
                     answer <- runInIO (runProver prover task)
                     if isFailure answer
                         then
-                            atomically (void (tryPutTMVar failureVar answer))
+                            rememberFailure taskIndex answer
                         else
                             rememberTask task
                     worker
 
         producer :: IO ()
-        producer = checkWith dumpPremselTraining lexicon blocks emitTask
+        producer =
+            checkWith dumpPremselTraining lexicon blocks emitTask
+                `catch` \VerificationProducerStopped -> pure ()
 
         withAsyncs :: [IO a] -> ([Async a] -> IO b) -> IO b
         withAsyncs [] inner = inner []
@@ -341,26 +380,23 @@ verifyStreaming prover file = do
                 withAsyncs actions (\as -> inner (a : as))
 
     result <- liftIO $
-        withAsync producer \producerAsync ->
-            withAsync (atomically (takeTMVar failureVar)) \failureAsync ->
-                withAsyncs (replicate workerCount worker) \workerAsyncs -> do
-                    outcome <- waitEitherCatch producerAsync failureAsync
-                    case outcome of
-                        Right (Right failedAnswer) -> do
-                            cancel producerAsync
-                            traverse_ cancel workerAsyncs
-                            pure (VerificationFailure [failedAnswer])
-                        Right (Left ex) ->
-                            throwIO ex
-                        Left (Left ex) ->
-                            throwIO ex
-                        Left (Right ()) -> do
-                            atomically (replicateM_ workerCount (writeTBQueue workQueue StopWorker))
-                            traverse_ wait workerAsyncs
-                            maybeFailure <- atomically (tryReadTMVar failureVar)
-                            pure case maybeFailure of
-                                Just failedAnswer -> VerificationFailure [failedAnswer]
-                                Nothing -> VerificationSuccess
+        withAsyncs (replicate workerCount worker) \workerAsyncs -> do
+            producerResult <- tryAny producer
+            case producerResult of
+                Left ex -> do
+                    traverse_ cancel workerAsyncs
+                    throwIO ex
+                Right () -> do
+                    -- Shutdown protocol:
+                    -- 1) Producer has stopped.
+                    -- 2) Enqueue one StopWorker sentinel per worker.
+                    -- 3) Workers drain all earlier queued tasks, then terminate.
+                    atomically (replicateM_ workerCount (writeTBQueue workQueue StopWorker))
+                    traverse_ wait workerAsyncs
+                    firstFailure <- atomically (readTVar firstFailureVar)
+                    pure case firstFailure of
+                        Just (_firstFailureIndex, failedAnswer) -> VerificationFailure [failedAnswer]
+                        Nothing -> VerificationSuccess
 
     case result of
         VerificationSuccess -> liftIO flushCache
