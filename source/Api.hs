@@ -56,6 +56,7 @@ import Tptp.UnsortedFirstOrder qualified as Tptp
 import Control.Monad.Logger
 import Data.List (intercalate)
 import Control.Monad.Reader
+import Data.IntMap.Strict qualified as IntMap
 import Data.IntSet qualified as IntSet
 import Data.Set qualified as Set
 import Data.Text.IO qualified as Text
@@ -335,18 +336,21 @@ verifyStreaming prover file = do
             cacheFile <- prepareCache file
             hashedCache <- getTaskCache cacheFile
             hashedCacheVar <- liftIO (newTVarIO hashedCache)
-            pure (Just (cacheFile, hashedCacheVar))
+            successfulTaskHashesByIndexVar <- liftIO (newTVarIO IntMap.empty)
+            pure (Just (cacheFile, hashedCache, hashedCacheVar, successfulTaskHashesByIndexVar))
 
     let applyFilter :: Internal.Task -> Internal.Task
         applyFilter task = case filterOption of
             WithFilter -> filterTask task
             WithoutFilter -> task
 
-        rememberTask :: Internal.Task -> IO ()
-        rememberTask task = case cacheState of
+        rememberTask :: Int -> Internal.Task -> IO ()
+        rememberTask taskIndex task = case cacheState of
             Nothing -> pure ()
-            Just (_cacheFile, hashedCacheVar) ->
-                atomically (modifyTVar' hashedCacheVar (IntSet.insert (hash task)))
+            Just (_cacheFile, _initialHashedCache, hashedCacheVar, successfulTaskHashesByIndexVar) ->
+                atomically do
+                    modifyTVar' hashedCacheVar (IntSet.insert (hash task))
+                    modifyTVar' successfulTaskHashesByIndexVar (IntMap.insert taskIndex (hash task))
 
         rememberFailure :: Int -> (Internal.Formula, ProverAnswer) -> IO ()
         rememberFailure idx failedAnswer = atomically do
@@ -358,12 +362,23 @@ verifyStreaming prover file = do
                 Just (oldIdx, _oldFailedAnswer) ->
                     when (idx < oldIdx) (writeTVar firstFailureVar (Just (idx, failedAnswer)))
 
-        flushCache :: IO ()
-        flushCache = case cacheState of
+        flushCache :: Maybe Int -> IO ()
+        flushCache mFirstFailureIndex = case cacheState of
             Nothing -> pure ()
-            Just (cacheFile, hashedCacheVar) -> do
-                hashedCache <- atomically (readTVar hashedCacheVar)
-                putTaskCacheHashes cacheFile hashedCache
+            Just (cacheFile, initialHashedCache, _hashedCacheVar, successfulTaskHashesByIndexVar) -> do
+                finalHashedCache <- atomically do
+                    successfulTaskHashesByIndex <- readTVar successfulTaskHashesByIndexVar
+                    let successfulTaskHashes = IntSet.fromList $
+                            case mFirstFailureIndex of
+                                Nothing ->
+                                    IntMap.elems successfulTaskHashesByIndex
+                                Just firstFailureIndex ->
+                                    [ successfulTaskHash
+                                    | (taskIndex, successfulTaskHash) <- IntMap.toList successfulTaskHashesByIndex
+                                    , taskIndex < firstFailureIndex
+                                    ]
+                    pure (initialHashedCache <> successfulTaskHashes)
+                putTaskCacheHashes cacheFile finalHashedCache
 
         emitTask :: Internal.Task -> IO ()
         emitTask rawTask = do
@@ -377,7 +392,7 @@ verifyStreaming prover file = do
             let task = applyFilter (contractionTask rawTask)
             shouldRun <- case cacheState of
                 Nothing -> pure True
-                Just (_cacheFile, hashedCacheVar) ->
+                Just (_cacheFile, _initialHashedCache, hashedCacheVar, _successfulTaskHashesByIndexVar) ->
                     atomically (IntSet.notMember (hash task) <$> readTVar hashedCacheVar)
             if shouldRun
                 then do
@@ -409,7 +424,7 @@ verifyStreaming prover file = do
                         then
                             rememberFailure taskIndex answer
                         else
-                            rememberTask task
+                            rememberTask taskIndex task
                     worker
 
         runCheckedBlocks :: IORef CheckingState -> [Internal.Block] -> IO ()
@@ -458,7 +473,7 @@ verifyStreaming prover file = do
             withAsync action \a ->
                 withAsyncs actions (\as -> inner (a : as))
 
-    result <- liftIO $
+    (result, firstFailureIndex) <- liftIO $
         withAsyncs (replicate workerCount worker) \workerAsyncs -> do
             producerResult <- tryAny (producer `catch` \VerificationProducerStopped -> pure ())
             case producerResult of
@@ -474,12 +489,10 @@ verifyStreaming prover file = do
                     traverse_ wait workerAsyncs
                     firstFailure <- atomically (readTVar firstFailureVar)
                     pure case firstFailure of
-                        Just (_firstFailureIndex, failedAnswer) -> VerificationFailure [failedAnswer]
-                        Nothing -> VerificationSuccess
+                        Just (firstFailureIndex', failedAnswer) -> (VerificationFailure [failedAnswer], Just firstFailureIndex')
+                        Nothing -> (VerificationSuccess, Nothing)
 
-    case result of
-        VerificationSuccess -> liftIO flushCache
-        VerificationFailure _ -> skip
+    liftIO (flushCache firstFailureIndex)
     pure result
 
 verify :: (MonadUnliftIO io, MonadLogger io, MonadReader Options io) => ProverInstance -> FilePath -> io VerificationResult
