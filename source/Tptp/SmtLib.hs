@@ -60,13 +60,13 @@ encodeExpr = buildExpr . fmap encodeFreeVar
         Not _pos f ->
             text "(not " <> buildExpr f <> char ')'
         Connected Conjunction f1 f2 ->
-            text "(and  " <> buildExpr f1 <> char ' ' <> buildExpr f2 <> char ' '
+            text "(and  " <> buildExpr f1 <> char ' ' <> buildExpr f2 <> char ')'
         Connected Disjunction f1 f2 ->
-            text "(or  " <> buildExpr f1 <> char ' ' <> buildExpr f2 <> char ' '
+            text "(or  " <> buildExpr f1 <> char ' ' <> buildExpr f2 <> char ')'
         Connected Implication f1 f2 ->
-            text "(=>  " <> buildExpr f1 <> char ' ' <> buildExpr f2 <> char ' '
+            text "(=>  " <> buildExpr f1 <> char ' ' <> buildExpr f2 <> char ')'
         Connected Equivalence f1 f2 ->
-            text "(=  " <> buildExpr f1 <> char ' ' <> buildExpr f2 <> char ' '
+            text "(=  " <> buildExpr f1 <> char ' ' <> buildExpr f2 <> char ')'
         Connected NegatedDisjunction f1 f2 ->
             text "(not " <> buildExpr (Connected Disjunction f1 f2) <> char ')'
         Connected ExclusiveOr f1 f2 ->
