@@ -111,7 +111,8 @@ findAndReadFile path = do
 lexFile :: MonadIO io => FilePath -> io (Text, [[Located Token]])
 lexFile file = do
     raw <- findAndReadFile file
-    case runLexer file raw of
+    fileId <- registerFilePath file
+    case runLexer fileId file raw of
         Left tokenError ->
             throwIO (TokenError (errorBundlePretty tokenError))
         Right (_imports, chunks) ->

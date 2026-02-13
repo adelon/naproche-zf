@@ -40,8 +40,8 @@ import Text.Megaparsec.Char.Lexer qualified as Lexer
 import Tptp.UnsortedFirstOrder (isAsciiLetter, isAsciiAlphaNumOrUnderscore)
 
 
-runLexer :: String -> Text -> Either (ParseErrorBundle Text Void) ([FilePath], [[Located Token]])
-runLexer file raw = runParser (evalStateT document initLexerState) file raw
+runLexer :: FileId -> String -> Text -> Either (ParseErrorBundle Text Void) ([FilePath], [[Located Token]])
+runLexer fileId file raw = runParser (evalStateT document (initLexerState fileId)) file raw
 
 
 type Lexer = StateT LexerState (Parsec Void Text)
@@ -54,14 +54,15 @@ data LexerState = LexerState
     -- to text tokens. In order to switch back to math mode correctly
     -- we need to count the braces.
     , mode :: !Mode
+    , currentFileId :: !FileId
     } deriving (Show, Eq)
 
-initLexerState :: LexerState
-initLexerState = LexerState 0 TextMode
+initLexerState :: FileId -> LexerState
+initLexerState fileId = LexerState 0 TextMode fileId
 
 incrNesting, decrNesting :: LexerState -> LexerState
-incrNesting (LexerState n m) = LexerState (succ n) m
-decrNesting (LexerState n m) = LexerState (pred n) m
+incrNesting (LexerState n m fileId) = LexerState (succ n) m fileId
+decrNesting (LexerState n m fileId) = LexerState (pred n) m fileId
 
 data Mode = TextMode | MathMode deriving (Show, Eq)
 
@@ -217,7 +218,7 @@ importBlock = do
 
 -- TODO remove once we have a proper build system and incremental compilation
 gatherImports :: Text -> [FilePath]
-gatherImports raw = case runParser (evalStateT importBlock initLexerState) "TODO filename" raw of
+gatherImports raw = case runParser (evalStateT importBlock (initLexerState (FileId maxBound))) "TODO filename" raw of
     Left err -> error (errorBundlePretty err)
     Right paths -> paths
 
@@ -507,10 +508,11 @@ closing = lexeme (group <|> optional (Char.string "\\right") *> (paren <|> brace
 -- and consumes trailing whitespace.
 lexeme :: Lexer a -> Lexer (Located a)
 lexeme p = do
+    fileId <- gets currentFileId
     start <- getSourcePos
     t <- p
     w <- whitespace
-    pure (Located (fromSourcePos start) t w)
+    pure (Located (fromSourcePos fileId start) t w)
 
 space :: Lexer Whitespace
 space = Space <$ (Char.char ' ' <|> Char.char '\n' <|> Char.char '\r')
