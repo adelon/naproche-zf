@@ -3,12 +3,12 @@ all: test lib
 .PHONY: lib
 lib:
 	stack build
-	time stack exec zf -- --log library/everything.tex -t 15 --uncached
+	time stack exec zf -- --log library/everything.tex -t 17 --uncached
 
 .PHONY: dump
 dump:
 	stack build
-	time stack exec zf -- --log library/everything.tex -t 15 --uncached --dump dump
+	time stack exec zf -- --log library/everything.tex -t 17 --uncached --dump dump
 
 .PHONY: build
 build:
