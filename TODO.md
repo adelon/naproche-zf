@@ -1,0 +1,1 @@
+- [ ] Use `Data.Text.IO.Utf8` after upgrading to `text-2.1.*` (needs stack resolver bump)
