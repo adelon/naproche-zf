@@ -16,9 +16,10 @@ import Data.Text qualified as Text
 import Data.Text.IO qualified as TextIO
 import Data.Time
 import System.Exit (ExitCode)
-import System.IO (hClose)
+import System.IO (hClose, hSetEncoding, utf8)
 import System.Process (CreateProcess(..), StdStream(CreatePipe), createProcess, proc, waitForProcess)
 import TextBuilder
+import UnliftIO.Async (concurrently)
 
 type Prover = Verbosity -> TimeLimit -> MemoryLimit -> ProverInstance
 
@@ -150,11 +151,17 @@ runProverProcess :: FilePath -> [String] -> Task -> IO (ExitCode, Text, Text)
 runProverProcess path args task = do
     (Just hin, Just hout, Just herr, ph) <-
         createProcess (proc path args){std_in = CreatePipe, std_out = CreatePipe, std_err = CreatePipe}
+
+    hSetEncoding hin utf8
+    hSetEncoding hout utf8
+    hSetEncoding herr utf8
     writeTask hin task
     hClose hin
-    out <- TextIO.hGetContents hout
-    err <- TextIO.hGetContents herr
-    _ <- evaluate (Text.length out + Text.length err)
+    let consumeStrict h = do
+            txt <- TextIO.hGetContents h
+            _ <- evaluate (Text.length txt)
+            pure txt
+    (out, err) <- concurrently (consumeStrict hout) (consumeStrict herr)
     exitCode <- waitForProcess ph
     pure (exitCode, out, err)
 

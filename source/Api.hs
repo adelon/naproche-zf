@@ -61,7 +61,7 @@ import Data.IntSet qualified as IntSet
 import Data.Set qualified as Set
 import Data.Text.IO qualified as Text
 import qualified Data.Text as Text
-import GHC.Conc (getNumProcessors)
+import GHC.Conc (getNumProcessors, retry)
 import System.FilePath.Posix
 import Text.Earley (parser, fullParses, Report(..))
 import Text.Megaparsec hiding (parse, Token)
@@ -318,7 +318,6 @@ isFailure (_phi, _ans) = True
 
 data VerificationWorkItem
     = VerifyTask Int Internal.Task
-    | StopWorker
 
 data VerificationProducerStopped = VerificationProducerStopped
     deriving (Show)
@@ -332,6 +331,7 @@ verifyStreaming prover file = do
     cacheOption <- asks withCache
     workerCount <- liftIO (max 1 <$> getNumProcessors)
     workQueue <- liftIO (newTBQueueIO (fromIntegral workerCount))
+    producerDoneVar <- liftIO (newTVarIO False)
     stopVar <- liftIO (newTVarIO False)
     nextTaskIndexVar <- liftIO (newTVarIO 0)
     firstFailureVar <- liftIO (newTVarIO Nothing)
@@ -420,11 +420,20 @@ verifyStreaming prover file = do
 
         worker :: IO ()
         worker = do
-            item <- atomically (readTBQueue workQueue)
-            case item of
-                StopWorker ->
+            mItem <- atomically do
+                mQueuedItem <- tryReadTBQueue workQueue
+                case mQueuedItem of
+                    Just queuedItem ->
+                        pure (Just queuedItem)
+                    Nothing -> do
+                        producerDone <- readTVar producerDoneVar
+                        if producerDone
+                            then pure Nothing
+                            else retry
+            case mItem of
+                Nothing ->
                     pure ()
-                VerifyTask taskIndex task -> do
+                Just (VerifyTask taskIndex task) -> do
                     answer <- runInIO (runProver prover task)
                     if isFailure answer
                         then
@@ -482,6 +491,7 @@ verifyStreaming prover file = do
 
     (result, firstFailureIndex) <- liftIO $
         withAsyncs (replicate workerCount worker) \workerAsyncs -> do
+            traverse_ link workerAsyncs
             producerResult <- tryAny (producer `catch` \VerificationProducerStopped -> pure ())
             case producerResult of
                 Left ex -> do
@@ -490,9 +500,9 @@ verifyStreaming prover file = do
                 Right () -> do
                     -- Shutdown protocol:
                     -- 1) Producer has stopped.
-                    -- 2) Enqueue one StopWorker sentinel per worker.
-                    -- 3) Workers drain all earlier queued tasks, then terminate.
-                    atomically (replicateM_ workerCount (writeTBQueue workQueue StopWorker))
+                    -- 2) Mark producer as done.
+                    -- 3) Workers drain all queued tasks and then terminate once the queue is empty.
+                    atomically (writeTVar producerDoneVar True)
                     traverse_ wait workerAsyncs
                     firstFailure <- atomically (readTVar firstFailureVar)
                     pure case firstFailure of
