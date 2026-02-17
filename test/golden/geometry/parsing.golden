@@ -654,10 +654,10 @@
                 [ NamedVar "b"
                 , NamedVar "c"
                 , NamedVar "d"
-                , NamedVar "aprime"
-                , NamedVar "bprime"
-                , NamedVar "cprime"
-                , NamedVar "dprime"
+                , NamedVar "a_"
+                , NamedVar "b_"
+                , NamedVar "c_"
+                , NamedVar "d_"
                 ]
             ) NounPhrase ( [] )
             ( Noun
@@ -709,13 +709,13 @@
                             , ExprVar
                                 ( NamedVar "d" )
                             , ExprVar
-                                ( NamedVar "aprime" )
+                                ( NamedVar "a_" )
                             , ExprVar
-                                ( NamedVar "bprime" )
+                                ( NamedVar "b_" )
                             , ExprVar
-                                ( NamedVar "cprime" )
+                                ( NamedVar "c_" )
                             , ExprVar
-                                ( NamedVar "dprime" )
+                                ( NamedVar "d_" )
                             ]
                         )
                     }
@@ -757,9 +757,9 @@
                         [ ExprVar
                             ( NamedVar "d" )
                         , ExprVar
-                            ( NamedVar "cprime" )
+                            ( NamedVar "c_" )
                         , ExprVar
-                            ( NamedVar "dprime" )
+                            ( NamedVar "d_" )
                         ]
                     )
                 }

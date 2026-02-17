@@ -1080,7 +1080,7 @@
                     )
                 )
                 [ TermVar
-                    ( NamedVar "aprime" )
+                    ( NamedVar "a_" )
                 ]
             )
         , Asm
@@ -1106,7 +1106,7 @@
                     )
                 )
                 [ TermVar
-                    ( NamedVar "bprime" )
+                    ( NamedVar "b_" )
                 ]
             )
         , Asm
@@ -1132,7 +1132,7 @@
                     )
                 )
                 [ TermVar
-                    ( NamedVar "cprime" )
+                    ( NamedVar "c_" )
                 ]
             )
         , Asm
@@ -1158,7 +1158,7 @@
                     )
                 )
                 [ TermVar
-                    ( NamedVar "dprime" )
+                    ( NamedVar "d_" )
                 ]
             )
         ]
@@ -1183,13 +1183,13 @@
                     , TermVar
                         ( NamedVar "d" )
                     , TermVar
-                        ( NamedVar "aprime" )
+                        ( NamedVar "a_" )
                     , TermVar
-                        ( NamedVar "bprime" )
+                        ( NamedVar "b_" )
                     , TermVar
-                        ( NamedVar "cprime" )
+                        ( NamedVar "c_" )
                     , TermVar
-                        ( NamedVar "dprime" )
+                        ( NamedVar "d_" )
                     ]
                 )
                 ( TermSymbol
@@ -1229,9 +1229,9 @@
                 , TermVar
                     ( NamedVar "d" )
                 , TermVar
-                    ( NamedVar "cprime" )
+                    ( NamedVar "c_" )
                 , TermVar
-                    ( NamedVar "dprime" )
+                    ( NamedVar "d_" )
                 ]
             )
         )

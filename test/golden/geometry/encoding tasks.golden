@@ -2,7 +2,7 @@ fof(cong_refl,conjecture,'Cong'(fa,fb,fa,fb),"test/examples/geometry.tex 82:1").
 fof(upperdim,axiom,![Xx,Xy,Xz,Xu,Xv]:((point(Xx)&point(Xy)&point(Xz)&point(Xu)&point(Xv))=>(('Cong'(Xx,Xu,Xx,Xv)&'Cong'(Xy,Xu,Xy,Xv)&'Cong'(Xz,Xu,Xz,Xv)&Xu!=Xv)=>collinear(Xx,Xy,Xz)))).
 fof(innerpasch,axiom,![Xx,Xy,Xz,Xu,Xv,Xw]:((point(Xx)&point(Xy)&point(Xz)&point(Xu)&point(Xv)&point(Xw))=>(('Betw'(Xx,Xu,Xz)&'Betw'(Xy,Xv,Xz))=>?[Xw]:(point(Xw)&'Betw'(Xu,Xw,Xy)&'Betw'(Xv,Xw,Xx))))).
 fof(betw_id,axiom,![Xa,Xb]:((point(Xa)&point(Xb))=>('Betw'(Xa,Xb,Xa)=>Xa=Xb))).
-fof(five_segment,axiom,![Xa,Xb,Xc,Xd,Xaprime,Xbprime,Xcprime,Xdprime]:((point(Xa)&point(Xb)&point(Xc)&point(Xd)&point(Xaprime)&point(Xbprime)&point(Xcprime)&point(Xdprime))=>(('OFS'(Xa,Xb,Xc,Xd,Xaprime,Xbprime,Xcprime,Xdprime)&Xa!=Xb)=>'Cong'(Xc,Xd,Xcprime,Xdprime)))).
+fof(five_segment,axiom,![Xa,Xb,Xc,Xd,Xa_,Xb_,Xc_,Xd_]:((point(Xa)&point(Xb)&point(Xc)&point(Xd)&point(Xa_)&point(Xb_)&point(Xc_)&point(Xd_))=>(('OFS'(Xa,Xb,Xc,Xd,Xa_,Xb_,Xc_,Xd_)&Xa!=Xb)=>'Cong'(Xc,Xd,Xc_,Xd_)))).
 fof(ofs,axiom,![Xx,Xy,Xz,Xr,Xu,Xv,Xw,Xp]:((point(Xx)&point(Xy)&point(Xz)&point(Xr)&point(Xu)&point(Xv)&point(Xw)&point(Xp))=>('OFS'(Xx,Xy,Xz,Xr,Xu,Xv,Xw,Xp)<=>('Betw'(Xx,Xy,Xz)&'Betw'(Xu,Xv,Xw)&'Cong'(Xx,Xy,Xu,Xv)&'Cong'(Xy,Xz,Xv,Xw)&'Cong'(Xx,Xr,Xu,Xp)&'Cong'(Xy,Xr,Xv,Xp))))).
 fof(segment_construction,axiom,![Xa,Xb,Xd,Xe]:?[Xc]:(point(Xc)&'Betw'(Xa,Xb,Xc)&'Cong'(Xb,Xc,Xd,Xe))).
 fof(cong_id,axiom,![Xa,Xb,Xc]:((point(Xa)&point(Xb)&point(Xc))=>('Cong'(Xa,Xb,Xc,Xc)=>Xa=Xb))).
@@ -17,7 +17,7 @@ fof(cong_refl,axiom,![Xa,Xb]:((point(Xa)&point(Xb))=>'Cong'(Xa,Xb,Xa,Xb))).
 fof(upperdim,axiom,![Xx,Xy,Xz,Xu,Xv]:((point(Xx)&point(Xy)&point(Xz)&point(Xu)&point(Xv))=>(('Cong'(Xx,Xu,Xx,Xv)&'Cong'(Xy,Xu,Xy,Xv)&'Cong'(Xz,Xu,Xz,Xv)&Xu!=Xv)=>collinear(Xx,Xy,Xz)))).
 fof(innerpasch,axiom,![Xx,Xy,Xz,Xu,Xv,Xw]:((point(Xx)&point(Xy)&point(Xz)&point(Xu)&point(Xv)&point(Xw))=>(('Betw'(Xx,Xu,Xz)&'Betw'(Xy,Xv,Xz))=>?[Xw]:(point(Xw)&'Betw'(Xu,Xw,Xy)&'Betw'(Xv,Xw,Xx))))).
 fof(betw_id,axiom,![Xa,Xb]:((point(Xa)&point(Xb))=>('Betw'(Xa,Xb,Xa)=>Xa=Xb))).
-fof(five_segment,axiom,![Xa,Xb,Xc,Xd,Xaprime,Xbprime,Xcprime,Xdprime]:((point(Xa)&point(Xb)&point(Xc)&point(Xd)&point(Xaprime)&point(Xbprime)&point(Xcprime)&point(Xdprime))=>(('OFS'(Xa,Xb,Xc,Xd,Xaprime,Xbprime,Xcprime,Xdprime)&Xa!=Xb)=>'Cong'(Xc,Xd,Xcprime,Xdprime)))).
+fof(five_segment,axiom,![Xa,Xb,Xc,Xd,Xa_,Xb_,Xc_,Xd_]:((point(Xa)&point(Xb)&point(Xc)&point(Xd)&point(Xa_)&point(Xb_)&point(Xc_)&point(Xd_))=>(('OFS'(Xa,Xb,Xc,Xd,Xa_,Xb_,Xc_,Xd_)&Xa!=Xb)=>'Cong'(Xc,Xd,Xc_,Xd_)))).
 fof(ofs,axiom,![Xx,Xy,Xz,Xr,Xu,Xv,Xw,Xp]:((point(Xx)&point(Xy)&point(Xz)&point(Xr)&point(Xu)&point(Xv)&point(Xw)&point(Xp))=>('OFS'(Xx,Xy,Xz,Xr,Xu,Xv,Xw,Xp)<=>('Betw'(Xx,Xy,Xz)&'Betw'(Xu,Xv,Xw)&'Cong'(Xx,Xy,Xu,Xv)&'Cong'(Xy,Xz,Xv,Xw)&'Cong'(Xx,Xr,Xu,Xp)&'Cong'(Xy,Xr,Xv,Xp))))).
 fof(segment_construction,axiom,![Xa,Xb,Xd,Xe]:?[Xc]:(point(Xc)&'Betw'(Xa,Xb,Xc)&'Cong'(Xb,Xc,Xd,Xe))).
 fof(cong_id,axiom,![Xa,Xb,Xc]:((point(Xa)&point(Xb)&point(Xc))=>('Cong'(Xa,Xb,Xc,Xc)=>Xa=Xb))).
@@ -36,7 +36,7 @@ fof(cong_refl,axiom,![Xa,Xb]:((point(Xa)&point(Xb))=>'Cong'(Xa,Xb,Xa,Xb))).
 fof(upperdim,axiom,![Xx,Xy,Xz,Xu,Xv]:((point(Xx)&point(Xy)&point(Xz)&point(Xu)&point(Xv))=>(('Cong'(Xx,Xu,Xx,Xv)&'Cong'(Xy,Xu,Xy,Xv)&'Cong'(Xz,Xu,Xz,Xv)&Xu!=Xv)=>collinear(Xx,Xy,Xz)))).
 fof(innerpasch,axiom,![Xx,Xy,Xz,Xu,Xv,Xw]:((point(Xx)&point(Xy)&point(Xz)&point(Xu)&point(Xv)&point(Xw))=>(('Betw'(Xx,Xu,Xz)&'Betw'(Xy,Xv,Xz))=>?[Xw]:(point(Xw)&'Betw'(Xu,Xw,Xy)&'Betw'(Xv,Xw,Xx))))).
 fof(betw_id,axiom,![Xa,Xb]:((point(Xa)&point(Xb))=>('Betw'(Xa,Xb,Xa)=>Xa=Xb))).
-fof(five_segment,axiom,![Xa,Xb,Xc,Xd,Xaprime,Xbprime,Xcprime,Xdprime]:((point(Xa)&point(Xb)&point(Xc)&point(Xd)&point(Xaprime)&point(Xbprime)&point(Xcprime)&point(Xdprime))=>(('OFS'(Xa,Xb,Xc,Xd,Xaprime,Xbprime,Xcprime,Xdprime)&Xa!=Xb)=>'Cong'(Xc,Xd,Xcprime,Xdprime)))).
+fof(five_segment,axiom,![Xa,Xb,Xc,Xd,Xa_,Xb_,Xc_,Xd_]:((point(Xa)&point(Xb)&point(Xc)&point(Xd)&point(Xa_)&point(Xb_)&point(Xc_)&point(Xd_))=>(('OFS'(Xa,Xb,Xc,Xd,Xa_,Xb_,Xc_,Xd_)&Xa!=Xb)=>'Cong'(Xc,Xd,Xc_,Xd_)))).
 fof(ofs,axiom,![Xx,Xy,Xz,Xr,Xu,Xv,Xw,Xp]:((point(Xx)&point(Xy)&point(Xz)&point(Xr)&point(Xu)&point(Xv)&point(Xw)&point(Xp))=>('OFS'(Xx,Xy,Xz,Xr,Xu,Xv,Xw,Xp)<=>('Betw'(Xx,Xy,Xz)&'Betw'(Xu,Xv,Xw)&'Cong'(Xx,Xy,Xu,Xv)&'Cong'(Xy,Xz,Xv,Xw)&'Cong'(Xx,Xr,Xu,Xp)&'Cong'(Xy,Xr,Xv,Xp))))).
 fof(segment_construction,axiom,![Xa,Xb,Xd,Xe]:?[Xc]:(point(Xc)&'Betw'(Xa,Xb,Xc)&'Cong'(Xb,Xc,Xd,Xe))).
 fof(cong_id,axiom,![Xa,Xb,Xc]:((point(Xa)&point(Xb)&point(Xc))=>('Cong'(Xa,Xb,Xc,Xc)=>Xa=Xb))).
@@ -57,7 +57,7 @@ fof(cong_refl,axiom,![Xa,Xb]:((point(Xa)&point(Xb))=>'Cong'(Xa,Xb,Xa,Xb))).
 fof(upperdim,axiom,![Xx,Xy,Xz,Xu,Xv]:((point(Xx)&point(Xy)&point(Xz)&point(Xu)&point(Xv))=>(('Cong'(Xx,Xu,Xx,Xv)&'Cong'(Xy,Xu,Xy,Xv)&'Cong'(Xz,Xu,Xz,Xv)&Xu!=Xv)=>collinear(Xx,Xy,Xz)))).
 fof(innerpasch,axiom,![Xx,Xy,Xz,Xu,Xv,Xw]:((point(Xx)&point(Xy)&point(Xz)&point(Xu)&point(Xv)&point(Xw))=>(('Betw'(Xx,Xu,Xz)&'Betw'(Xy,Xv,Xz))=>?[Xw]:(point(Xw)&'Betw'(Xu,Xw,Xy)&'Betw'(Xv,Xw,Xx))))).
 fof(betw_id,axiom,![Xa,Xb]:((point(Xa)&point(Xb))=>('Betw'(Xa,Xb,Xa)=>Xa=Xb))).
-fof(five_segment,axiom,![Xa,Xb,Xc,Xd,Xaprime,Xbprime,Xcprime,Xdprime]:((point(Xa)&point(Xb)&point(Xc)&point(Xd)&point(Xaprime)&point(Xbprime)&point(Xcprime)&point(Xdprime))=>(('OFS'(Xa,Xb,Xc,Xd,Xaprime,Xbprime,Xcprime,Xdprime)&Xa!=Xb)=>'Cong'(Xc,Xd,Xcprime,Xdprime)))).
+fof(five_segment,axiom,![Xa,Xb,Xc,Xd,Xa_,Xb_,Xc_,Xd_]:((point(Xa)&point(Xb)&point(Xc)&point(Xd)&point(Xa_)&point(Xb_)&point(Xc_)&point(Xd_))=>(('OFS'(Xa,Xb,Xc,Xd,Xa_,Xb_,Xc_,Xd_)&Xa!=Xb)=>'Cong'(Xc,Xd,Xc_,Xd_)))).
 fof(ofs,axiom,![Xx,Xy,Xz,Xr,Xu,Xv,Xw,Xp]:((point(Xx)&point(Xy)&point(Xz)&point(Xr)&point(Xu)&point(Xv)&point(Xw)&point(Xp))=>('OFS'(Xx,Xy,Xz,Xr,Xu,Xv,Xw,Xp)<=>('Betw'(Xx,Xy,Xz)&'Betw'(Xu,Xv,Xw)&'Cong'(Xx,Xy,Xu,Xv)&'Cong'(Xy,Xz,Xv,Xw)&'Cong'(Xx,Xr,Xu,Xp)&'Cong'(Xy,Xr,Xv,Xp))))).
 fof(segment_construction,axiom,![Xa,Xb,Xd,Xe]:?[Xc]:(point(Xc)&'Betw'(Xa,Xb,Xc)&'Cong'(Xb,Xc,Xd,Xe))).
 fof(cong_id,axiom,![Xa,Xb,Xc]:((point(Xa)&point(Xb)&point(Xc))=>('Cong'(Xa,Xb,Xc,Xc)=>Xa=Xb))).
@@ -77,7 +77,7 @@ fof(cong_refl,axiom,![Xa,Xb]:((point(Xa)&point(Xb))=>'Cong'(Xa,Xb,Xa,Xb))).
 fof(upperdim,axiom,![Xx,Xy,Xz,Xu,Xv]:((point(Xx)&point(Xy)&point(Xz)&point(Xu)&point(Xv))=>(('Cong'(Xx,Xu,Xx,Xv)&'Cong'(Xy,Xu,Xy,Xv)&'Cong'(Xz,Xu,Xz,Xv)&Xu!=Xv)=>collinear(Xx,Xy,Xz)))).
 fof(innerpasch,axiom,![Xx,Xy,Xz,Xu,Xv,Xw]:((point(Xx)&point(Xy)&point(Xz)&point(Xu)&point(Xv)&point(Xw))=>(('Betw'(Xx,Xu,Xz)&'Betw'(Xy,Xv,Xz))=>?[Xw]:(point(Xw)&'Betw'(Xu,Xw,Xy)&'Betw'(Xv,Xw,Xx))))).
 fof(betw_id,axiom,![Xa,Xb]:((point(Xa)&point(Xb))=>('Betw'(Xa,Xb,Xa)=>Xa=Xb))).
-fof(five_segment,axiom,![Xa,Xb,Xc,Xd,Xaprime,Xbprime,Xcprime,Xdprime]:((point(Xa)&point(Xb)&point(Xc)&point(Xd)&point(Xaprime)&point(Xbprime)&point(Xcprime)&point(Xdprime))=>(('OFS'(Xa,Xb,Xc,Xd,Xaprime,Xbprime,Xcprime,Xdprime)&Xa!=Xb)=>'Cong'(Xc,Xd,Xcprime,Xdprime)))).
+fof(five_segment,axiom,![Xa,Xb,Xc,Xd,Xa_,Xb_,Xc_,Xd_]:((point(Xa)&point(Xb)&point(Xc)&point(Xd)&point(Xa_)&point(Xb_)&point(Xc_)&point(Xd_))=>(('OFS'(Xa,Xb,Xc,Xd,Xa_,Xb_,Xc_,Xd_)&Xa!=Xb)=>'Cong'(Xc,Xd,Xc_,Xd_)))).
 fof(ofs,axiom,![Xx,Xy,Xz,Xr,Xu,Xv,Xw,Xp]:((point(Xx)&point(Xy)&point(Xz)&point(Xr)&point(Xu)&point(Xv)&point(Xw)&point(Xp))=>('OFS'(Xx,Xy,Xz,Xr,Xu,Xv,Xw,Xp)<=>('Betw'(Xx,Xy,Xz)&'Betw'(Xu,Xv,Xw)&'Cong'(Xx,Xy,Xu,Xv)&'Cong'(Xy,Xz,Xv,Xw)&'Cong'(Xx,Xr,Xu,Xp)&'Cong'(Xy,Xr,Xv,Xp))))).
 fof(segment_construction,axiom,![Xa,Xb,Xd,Xe]:?[Xc]:(point(Xc)&'Betw'(Xa,Xb,Xc)&'Cong'(Xb,Xc,Xd,Xe))).
 fof(cong_id,axiom,![Xa,Xb,Xc]:((point(Xa)&point(Xb)&point(Xc))=>('Cong'(Xa,Xb,Xc,Xc)=>Xa=Xb))).
@@ -98,7 +98,7 @@ fof(cong_refl,axiom,![Xa,Xb]:((point(Xa)&point(Xb))=>'Cong'(Xa,Xb,Xa,Xb))).
 fof(upperdim,axiom,![Xx,Xy,Xz,Xu,Xv]:((point(Xx)&point(Xy)&point(Xz)&point(Xu)&point(Xv))=>(('Cong'(Xx,Xu,Xx,Xv)&'Cong'(Xy,Xu,Xy,Xv)&'Cong'(Xz,Xu,Xz,Xv)&Xu!=Xv)=>collinear(Xx,Xy,Xz)))).
 fof(innerpasch,axiom,![Xx,Xy,Xz,Xu,Xv,Xw]:((point(Xx)&point(Xy)&point(Xz)&point(Xu)&point(Xv)&point(Xw))=>(('Betw'(Xx,Xu,Xz)&'Betw'(Xy,Xv,Xz))=>?[Xw]:(point(Xw)&'Betw'(Xu,Xw,Xy)&'Betw'(Xv,Xw,Xx))))).
 fof(betw_id,axiom,![Xa,Xb]:((point(Xa)&point(Xb))=>('Betw'(Xa,Xb,Xa)=>Xa=Xb))).
-fof(five_segment,axiom,![Xa,Xb,Xc,Xd,Xaprime,Xbprime,Xcprime,Xdprime]:((point(Xa)&point(Xb)&point(Xc)&point(Xd)&point(Xaprime)&point(Xbprime)&point(Xcprime)&point(Xdprime))=>(('OFS'(Xa,Xb,Xc,Xd,Xaprime,Xbprime,Xcprime,Xdprime)&Xa!=Xb)=>'Cong'(Xc,Xd,Xcprime,Xdprime)))).
+fof(five_segment,axiom,![Xa,Xb,Xc,Xd,Xa_,Xb_,Xc_,Xd_]:((point(Xa)&point(Xb)&point(Xc)&point(Xd)&point(Xa_)&point(Xb_)&point(Xc_)&point(Xd_))=>(('OFS'(Xa,Xb,Xc,Xd,Xa_,Xb_,Xc_,Xd_)&Xa!=Xb)=>'Cong'(Xc,Xd,Xc_,Xd_)))).
 fof(ofs,axiom,![Xx,Xy,Xz,Xr,Xu,Xv,Xw,Xp]:((point(Xx)&point(Xy)&point(Xz)&point(Xr)&point(Xu)&point(Xv)&point(Xw)&point(Xp))=>('OFS'(Xx,Xy,Xz,Xr,Xu,Xv,Xw,Xp)<=>('Betw'(Xx,Xy,Xz)&'Betw'(Xu,Xv,Xw)&'Cong'(Xx,Xy,Xu,Xv)&'Cong'(Xy,Xz,Xv,Xw)&'Cong'(Xx,Xr,Xu,Xp)&'Cong'(Xy,Xr,Xv,Xp))))).
 fof(segment_construction,axiom,![Xa,Xb,Xd,Xe]:?[Xc]:(point(Xc)&'Betw'(Xa,Xb,Xc)&'Cong'(Xb,Xc,Xd,Xe))).
 fof(cong_id,axiom,![Xa,Xb,Xc]:((point(Xa)&point(Xb)&point(Xc))=>('Cong'(Xa,Xb,Xc,Xc)=>Xa=Xb))).

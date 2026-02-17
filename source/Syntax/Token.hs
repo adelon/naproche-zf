@@ -403,15 +403,17 @@ var = guardM isMathMode *> lexeme (fmap Variable var')
         unbraced <|> braced <|> text
         where
             unbraced = Text.singleton <$> Char.alphaNumChar
-            braced = Text.pack <$> (Char.char '{' *> some Char.alphaNumChar <* Char.char '}')
+            braced = Text.pack <$> (Char.char '{' *> some (Char.alphaNumChar <|> tick) <* Char.char '}')
             text = Char.string "\\text" *> braced -- for rendering the subscript in roman type
 
-    -- Temporary hack to fit the TPTP format.
+    -- A bit of a hack to fit the TPTP format.
+    tick :: Lexer Char
+    tick = '_' <$ Char.char '\''
+
     ticked :: Lexer Text
     ticked = do
-        ticks <- some $ Char.char '\''
-        let ticks' = "prime" <$ ticks :: [Text]
-        pure (Text.concat ticks')
+        ticks <- some tick
+        pure (Text.pack ticks)
 
     letter :: Lexer Text
     letter = fmap Text.singleton Char.letterChar

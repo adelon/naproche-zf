@@ -412,13 +412,13 @@
     , Symbol ","
     , Variable "d"
     , Symbol ","
-    , Variable "aprime"
+    , Variable "a_"
     , Symbol ","
-    , Variable "bprime"
+    , Variable "b_"
     , Symbol ","
-    , Variable "cprime"
+    , Variable "c_"
     , Symbol ","
-    , Variable "dprime"
+    , Variable "d_"
     , EndEnv "math"
     , Word "be"
     , Word "points"
@@ -439,16 +439,16 @@
     , Variable "d"
     , InvisibleBraceR
     , InvisibleBraceL
-    , Variable "aprime"
+    , Variable "a_"
     , InvisibleBraceR
     , InvisibleBraceL
-    , Variable "bprime"
+    , Variable "b_"
     , InvisibleBraceR
     , InvisibleBraceL
-    , Variable "cprime"
+    , Variable "c_"
     , InvisibleBraceR
     , InvisibleBraceL
-    , Variable "dprime"
+    , Variable "d_"
     , InvisibleBraceR
     , EndEnv "math"
     , Word "and"
@@ -467,10 +467,10 @@
     , Variable "d"
     , InvisibleBraceR
     , InvisibleBraceL
-    , Variable "cprime"
+    , Variable "c_"
     , InvisibleBraceR
     , InvisibleBraceL
-    , Variable "dprime"
+    , Variable "d_"
     , InvisibleBraceR
     , EndEnv "math"
     , Symbol "."
