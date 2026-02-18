@@ -163,8 +163,10 @@ _satisfying :: Prod r Text (Located Token) Location
 _satisfying = _suchThat <|> word "satisfying" ? "satisfying"
 _setOf :: Prod r Text (Located Token) Location
 _setOf = word "set" <* word "of" ? "set of"
+_now :: Prod r Text (Located Token) Location
+_now = (word "then" <|> word "next" <|> word "now" <|> word "first" <|> word "finally" <|> word "subsequently" <|> word "ultimately")
 _show :: Prod r Text (Located Token) Location
-_show = optional (word "first" <|> word "finally" <|> word "next" <|> word "now") *> optional (word "we") *> word "show" <* optional (word "that")
+_show = optional _now *> optional (word "we") *> word "show" <* optional (word "that")
 _since :: Prod r Text (Located Token) Location
 _since = word "since" <|> word "because" ? "since"
 _some :: Prod r Text (Located Token) Location
@@ -176,7 +178,7 @@ _sufficesThat = word "it" <* word "suffices" <* word "to" <* word "show" <* word
 _suppose :: Prod r Text (Located Token) Location
 _suppose = (word "suppose" <|> word "assume") <* optional (word "that") ? "assume"
 _take :: Prod r Text (Located Token) Location
-_take = word "take" <|> word "consider" ? "take"
+_take = optional _now *> (word "take" <|> word "consider") ? "take"
 _that :: Prod r Text (Located Token) Location
 _that = word "that" ? "that"
 _the :: Prod r Text (Located Token) Location
@@ -184,7 +186,7 @@ _the = word "the" ? "the"
 _then :: Prod r Text (Located Token) Location
 _then = word "then" ? "then"
 _thus :: Prod r Text (Located Token) Location
-_thus = word "thus" <|> word "then" <|> word "hence" <|> word "now" <|> word "finally" <|> word "therefore" ? "thus"
+_thus = word "thus" <|> word "hence" <|> _now <|> word "therefore" ? "thus"
 _trivial :: Prod r Text (Located Token) Location
 _trivial = word "straightforward" <|> word "trivial" ? "trivial"
 _unique :: Prod r Text (Located Token) Location
