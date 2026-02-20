@@ -9,6 +9,7 @@ module Provers where
 import Base
 import Encoding
 import Syntax.Internal (Formula, Task(..), isIndirect)
+import Report.Location
 
 import Control.Exception (evaluate)
 import Control.Monad.Logger
@@ -135,7 +136,7 @@ timeDifferenceToText :: UTCTime -> UTCTime -> Text
 timeDifferenceToText startTime endTime = nominalDiffTimeToText (diffUTCTime endTime startTime)
 
 
-runProver :: (MonadIO io, MonadLogger io) => ProverInstance -> Task -> io (Formula, ProverAnswer)
+runProver :: (MonadIO io, MonadLogger io) => ProverInstance -> Task -> io (Location, Formula, ProverAnswer)
 runProver prover@Prover{..} task = do
     startTime <- liftIO getCurrentTime
     (_exitCode, answer, answerErr) <- liftIO (runProverProcess proverPath proverArgs task)
@@ -146,7 +147,7 @@ runProver prover@Prover{..} task = do
         let conjLine = encodeConjectureLine (taskConjectureLabel task) (taskLocation task) (taskDirectness task) (taskConjecture task)
         in  duration <> " " <> toText conjLine
 
-    pure (taskConjecture task, recognizeAnswer prover task answer answerErr)
+    pure (taskLocation task, taskConjecture task, recognizeAnswer prover task answer answerErr)
 
 runProverProcess :: FilePath -> [String] -> Task -> IO (ExitCode, Text, Text)
 runProverProcess path args task = do

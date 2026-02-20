@@ -309,12 +309,12 @@ encodeTasks file = do
 
 data VerificationResult
     = VerificationSuccess
-    | VerificationFailure [(Internal.Formula, ProverAnswer)]
+    | VerificationFailure [(Location, Internal.Formula, ProverAnswer)]
     deriving (Show)
 
-isFailure :: (a, ProverAnswer) -> Bool
-isFailure (_phi, Yes) = False
-isFailure (_phi, _ans) = True
+isFailure :: (loc, formula, ProverAnswer) -> Bool
+isFailure (_loc, _phi, Yes) = False
+isFailure (_loc, _phi, _ans) = True
 
 data VerificationWorkItem
     = VerifyTask Int Internal.Task
@@ -330,7 +330,7 @@ verifyStreaming prover file = do
     filterOption <- asks withFilter
     cacheOption <- asks withCache
     threadCount <- liftIO getNumProcessors
-    let workerCount = max 1 (threadCount `div` 2 - 1)
+    let workerCount = max 1 (threadCount `div` 2)
     workQueue <- liftIO (newTBQueueIO (fromIntegral workerCount))
     producerDoneVar <- liftIO (newTVarIO False)
     stopVar <- liftIO (newTVarIO False)
@@ -360,7 +360,7 @@ verifyStreaming prover file = do
                     modifyTVar' hashedCacheVar (IntSet.insert (hash task))
                     modifyTVar' successfulTaskHashesByIndexVar (IntMap.insert taskIndex (hash task))
 
-        rememberFailure :: Int -> (Internal.Formula, ProverAnswer) -> IO ()
+        rememberFailure :: Int -> (Location, Internal.Formula, ProverAnswer) -> IO ()
         rememberFailure idx failedAnswer = atomically do
             writeTVar stopVar True
             currentFailure <- readTVar firstFailureVar

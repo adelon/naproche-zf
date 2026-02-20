@@ -7,6 +7,7 @@ import Api
 import Base
 import Provers qualified
 import Version qualified
+import Report.Location
 
 import Control.Monad.Logger
 import Control.Monad.Reader
@@ -69,14 +70,14 @@ run = do
             liftIO case result of
                 VerificationSuccess -> putStrLn "Verification successful."
                 VerificationFailure [] -> error "Empty verification fail"
-                VerificationFailure ((_, proverAnswer) : _) -> case proverAnswer of
+                VerificationFailure ((loc, _phi, proverAnswer) : _) -> case proverAnswer of
                     Yes ->
                         skip
                     No tptp -> do
                         putStrLn "Verification failed: prover found countermodel"
                         Text.hPutStrLn stderr tptp
                     ContradictoryAxioms tptp -> do
-                        putStrLn "Verification failed: contradictory axioms"
+                        Text.putStrLn $ "Verification failed: contradictory axioms" <> locationToText loc
                         Text.hPutStrLn stderr tptp
                     Uncertain tptp -> do
                         putStrLn "Verification failed: out of resources"
