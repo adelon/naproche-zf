@@ -329,7 +329,8 @@ verifyStreaming prover file = do
     dumpPremselTraining <- asks withDumpPremselTraining
     filterOption <- asks withFilter
     cacheOption <- asks withCache
-    workerCount <- liftIO (max 1 <$> getNumProcessors)
+    threadCount <- liftIO getNumProcessors
+    let workerCount = max 1 (threadCount `div` 2 - 1)
     workQueue <- liftIO (newTBQueueIO (fromIntegral workerCount))
     producerDoneVar <- liftIO (newTVarIO False)
     stopVar <- liftIO (newTVarIO False)

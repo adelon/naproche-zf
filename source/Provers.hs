@@ -84,6 +84,7 @@ vampire path _verbosity timeLimit memoryLimit = Prover
         [ "--mode", "casc"
         , "--time_limit", toSeconds timeLimit
         , "--memory_limit", toMegabytes memoryLimit
+        , "--cores", "2"
         ]
     , proverSaysYes = ["% SZS status Theorem"]
     , proverSaysNo = ["% SZS status CounterSatisfiable"]
