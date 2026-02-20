@@ -66,7 +66,8 @@ builtins =
             , lexiconNouns              = builtinNouns
             , lexiconStructNouns        = builtinStructNouns
             , lexiconFuns               = []
-            , lexiconAllPatterns        = mempty
+            , lexiconAllPatterns        =
+                fold (Map.keysSet <$> builtinMixfixTable)
             }
     in base{lexiconAllPatterns = lexiconPatterns base}
 
