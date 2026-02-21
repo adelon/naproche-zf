@@ -465,7 +465,7 @@ extendLexicon (scan : scans) lexicon@Lexicon{..} = case scan of
         in extendLexicon scans lexicon{lexiconRelationSymbols = items', lexiconAllPatterns = patterns'}
     ScanFunctionSymbol pat m ->
         if mixfixPatternExists pat lexiconAllPatterns
-            then extendLexicon scans lexicon
+            then warnExists pat (extendLexicon scans lexicon)
             else extendLexicon scans lexicon
                 { lexiconMixfixTable = Seq.adjust (Map.insert pat (MixfixItem pat m NonAssoc)) 9 lexiconMixfixTable
                 , lexiconAllPatterns = Set.insert pat lexiconAllPatterns
