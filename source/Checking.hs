@@ -96,7 +96,7 @@ data CheckingState = CheckingState
     -- ^ Local assumptions (cached encoding).
     --
     , checkingGoals :: [Formula]
-    -- ^ The current goals.
+    -- ^ The current goals. INVARIANT: these should always be canonicalized and have all abbreviations resolved.
     --
     , checkingFacts :: InsOrdMap Marker Hypothesis
     -- ^ Axioms and proven results (cached encoding).
