@@ -323,7 +323,7 @@ unabbreviateWith abbrs = unabbr
             TermSep vs e scope ->
                 TermSep vs (unabbr e) (hoistScope unabbr scope)
             ReplacePred y x xB scope ->
-                ReplacePred y x xB (hoistScope unabbr scope)
+                ReplacePred y x (unabbr xB) (hoistScope unabbr scope)
             ReplaceFun bounds scope cond ->
                 ReplaceFun ((\(x, e) -> (x, unabbr e)) <$> bounds) (hoistScope unabbr scope) (hoistScope unabbr cond)
             Connected con e1 e2 ->
@@ -339,42 +339,59 @@ unabbreviateWith abbrs = unabbr
             TermSymbolStruct symb e ->
                 TermSymbolStruct symb (unabbr <$> e)
 
--- | Unroll comprehensions in equations.
+-- | Unroll supported comprehensions in equations and reject leftover ones.
 -- E.g. /@B = \\{f(a) | a\\in A \\}@/ turns into
 -- /@\\forall b. b\\in B \\iff \\exists a\\in A. b = f(a)@/.
-desugarComprehensions :: forall a. ExprOf a -> ExprOf a
-desugarComprehensions = \case
-     -- We only desugar comprehensions under equations. We do not allow nesting.
-    e@TermSep{} -> e
-    e@ReplacePred{} -> e
-    e@ReplaceFun{} -> e
-    e@TermVar{} -> e
-    e@PropositionalConstant{} -> e
-    e@TermSymbolStruct{}-> e
+desugarComprehensionsA :: ExprOf a -> CheckingM (ExprOf a)
+desugarComprehensionsA = \case
+    -- We only desugar comprehensions directly under equations.
+    -- Any remaining comprehension is currently unsupported.
+    e@TermSep{} ->
+        reject e
+    e@ReplacePred{} ->
+        reject e
+    e@ReplaceFun{} ->
+        reject e
+    e@TermVar{} ->
+        pure e
+    e@PropositionalConstant{} ->
+        pure e
+    e@TermSymbolStruct{} ->
+        pure e
     --
-    Equals _pos e (TermSep x bound scope) -> desugarSeparation e x bound scope
-    Equals _pos (TermSep x bound scope) e -> desugarSeparation e x bound scope
+    Equals _pos e (TermSep x bound scope) ->
+        pure (desugarSeparation e x bound scope)
+    Equals _pos (TermSep x bound scope) e ->
+        pure (desugarSeparation e x bound scope)
     --
-    Equals _pos e (ReplaceFun bounds scope cond) -> makeReplacementIff (F <$> e) bounds scope cond
-    Equals _pos (ReplaceFun bounds scope cond) e -> makeReplacementIff (F <$> e) bounds scope cond
+    Equals _pos e (ReplaceFun bounds scope cond) ->
+        pure (makeReplacementIff (F <$> e) bounds scope cond)
+    Equals _pos (ReplaceFun bounds scope cond) e ->
+        pure (makeReplacementIff (F <$> e) bounds scope cond)
     --
-    Apply e es -> Apply (desugarComprehensions e) (desugarComprehensions <$> es)
-    Not loc e -> Not loc (desugarComprehensions e)
-    TermSymbol loc sym es -> TermSymbol loc sym (desugarComprehensions <$> es)
-    Connected conn e1 e2 -> Connected conn (desugarComprehensions e1) (desugarComprehensions e2)
-    Lambda scope -> Lambda (hoistScope desugarComprehensions scope)
-    Quantified quant scope -> Quantified quant (hoistScope desugarComprehensions scope)
+    Apply e es ->
+        Apply <$> desugarComprehensionsA e <*> traverse desugarComprehensionsA es
+    Not loc e ->
+        Not loc <$> desugarComprehensionsA e
+    TermSymbol loc sym es ->
+        TermSymbol loc sym <$> traverse desugarComprehensionsA es
+    Connected conn e1 e2 ->
+        Connected conn <$> desugarComprehensionsA e1 <*> desugarComprehensionsA e2
+    Lambda scope ->
+        Lambda <$> transverseScope desugarComprehensionsA scope
+    Quantified quant scope ->
+        Quantified quant <$> transverseScope desugarComprehensionsA scope
     where
+        reject :: ExprOf a -> CheckingM b
+        reject _ =
+            throwWithLocationAndMarker (CheckingError "Could not eliminate set comprehensions in this step. Nested comprehensions are not supported yet.")
+
         desugarSeparation :: ExprOf a -> VarSymbol -> (ExprOf a) -> (Scope () ExprOf a) -> ExprOf a
         desugarSeparation e x bound scope =
-            let phi = (isElementOf (TermVar (B x)) (F <$> e)) :: ExprOf (Var VarSymbol a)
-                psi = (isElementOf (TermVar (B x)) (F <$> bound)) :: ExprOf (Var VarSymbol a)
+            let phi = isElementOf (TermVar (B x)) (F <$> e)
+                psi = isElementOf (TermVar (B x)) (F <$> bound)
                 rho = fromScope (mapBound (const x) scope)
             in  Quantified Universally (toScope (phi `Iff` (psi `And` rho)))
-
-
-desugarComprehensionsA :: Applicative f => ExprOf a -> f (ExprOf a)
-desugarComprehensionsA e = pure (desugarComprehensions e)
 
 
 
@@ -611,7 +628,9 @@ checkProof = \case
                                 makeForall [y, y'] (((phi `And` psi) `Implies` (TermVar y `equals` TermVar y')))
                 setGoals [singleValued]
                 tellTasks
-                setGoals goals
+
+                -- Now we restore the goals, which should already be canonical, so we don't need to canonicalize them again.
+                modify (\st -> st{checkingGoals = goals})
                 assume [Asm $
                     makeForall [y] $
                         (TermVar y `isElementOf` TermVar x)
