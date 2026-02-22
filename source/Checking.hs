@@ -585,15 +585,43 @@ checkProof = \case
             checkProof continue
     Define loc x t continue -> locally do
         setLocation loc
-        assume [Asm case t of
+        case t of
             TermSep y yBound phi ->
-                makeForall [y] $
-                    Iff (isElementOf (TermVar y) (TermVar x))
-                        ((isElementOf (TermVar y) yBound) `And` instantiate1 (TermVar y) phi)
+                assume [Asm $
+                    makeForall [y] $
+                        Iff (isElementOf (TermVar y) (TermVar x))
+                            ((isElementOf (TermVar y) yBound) `And` instantiate1 (TermVar y) phi)
+                    ]
+            ReplacePred _y _x xBound scope -> do
+                goals <- gets checkingGoals
+                let x' = FreshVar 0
+                let y  = FreshVar 1
+                let y' = FreshVar 2
+                let fromReplacementVar = \case
+                        ReplacementDomVar -> TermVar x'
+                        ReplacementRangeVar -> TermVar y
+                let fromReplacementVar' = \case
+                        ReplacementDomVar -> TermVar x'
+                        ReplacementRangeVar -> TermVar y'
+                let phi = instantiate fromReplacementVar scope
+                let psi = instantiate fromReplacementVar' scope
+                let singleValued =
+                        makeForall [x'] $
+                            (TermVar x' `isElementOf` xBound) `Implies`
+                                makeForall [y, y'] (((phi `And` psi) `Implies` (TermVar y `equals` TermVar y')))
+                setGoals [singleValued]
+                tellTasks
+                setGoals goals
+                assume [Asm $
+                    makeForall [y] $
+                        (TermVar y `isElementOf` TermVar x)
+                            `Iff`
+                        makeExists [x'] ((TermVar x' `isElementOf` xBound) `And` phi)
+                    ]
             ReplaceFun bounds lhs cond ->
-                makeReplacementIff (TermVar (F x)) bounds lhs cond
-            _ -> Equals loc (TermVar x) t
-            ]
+                assume [Asm (makeReplacementIff (TermVar (F x)) bounds lhs cond)]
+            _ ->
+                assume [Asm (Equals loc (TermVar x) t)]
         checkProof continue
     DefineFunction loc funVar argVar valueExpr domExpr continue -> do
         setLocation loc
